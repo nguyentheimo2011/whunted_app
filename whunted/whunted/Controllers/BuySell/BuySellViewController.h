@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericController.h"
 
-@interface BuySellViewController : UIViewController
+@interface BuySellViewController : GenericController
 
 @end

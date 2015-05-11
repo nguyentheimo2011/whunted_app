@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
+		E916F44E1B00B978005055E3 /* GenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F44D1B00B978005055E3 /* GenericController.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CF1AF8B57700E31B01 /* NewsFeedViewController.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -68,6 +69,8 @@
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
 		E916F4471B00AF8B005055E3 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Utilities/Utilities.h; sourceTree = "<group>"; };
+		E916F44C1B00B978005055E3 /* GenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericController.h; path = Controllers/GenericControllers/GenericController.h; sourceTree = "<group>"; };
+		E916F44D1B00B978005055E3 /* GenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericController.m; path = Controllers/GenericControllers/GenericController.m; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17CE1AF8B57700E31B01 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedViewController.h; sourceTree = "<group>"; };
@@ -158,6 +161,15 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		E916F44B1B00B8F5005055E3 /* GenericControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E916F44C1B00B978005055E3 /* GenericController.h */,
+				E916F44D1B00B978005055E3 /* GenericController.m */,
+			);
+			name = GenericControllers;
+			sourceTree = "<group>";
+		};
 		E94D17C81AF8B4FD00E31B01 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +183,7 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E916F44B1B00B8F5005055E3 /* GenericControllers */,
 				E916F4421B00A95F005055E3 /* Main Controller */,
 				E94D17EB1AF9B32500E31B01 /* Browse */,
 				E94D17EA1AF9B28700E31B01 /* BuySell */,
@@ -466,6 +479,7 @@
 			files = (
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E94D17F41AF9B3E300E31B01 /* BuySellViewController.m in Sources */,
+				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E94D18441AFA032600E31B01 /* BuyingData.m in Sources */,

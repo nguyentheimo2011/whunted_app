@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericController.h"
 
-@interface NewsFeedViewController : UITableViewController
+@interface NewsFeedViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) NSMutableArray *newsfeedList;
 

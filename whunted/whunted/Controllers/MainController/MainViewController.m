@@ -10,6 +10,7 @@
 #import "NewsFeedViewController.h"
 #import "BrowseViewController.h"
 #import "BuySellViewController.h"
+#import "GenericController.h"
 
 @interface MainViewController ()
 
@@ -23,21 +24,23 @@
 {
     self = [super init];
     if (self != nil) {
-        UINavigationController *navController = [[UINavigationController alloc] init];
+        UINavigationController *nfNavController = [[UINavigationController alloc] init];
         NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
-        [navController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
-        [navController setTitle:@"News Feed"];
-        [navController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+        [nfNavController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
+        [nfNavController setTitle:@"News Feed"];
+        [nfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         
         BrowseViewController *browseController = [[BrowseViewController alloc] init];
         [browseController setTitle:@"Browse"];
         [browseController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
         
+        UINavigationController *bsNavController = [[UINavigationController alloc] init];
         BuySellViewController *bsController = [[BuySellViewController alloc] init];
-        [bsController setTitle:@"Buy&Sell"];
-        [bsController.tabBarItem setImage:[UIImage imageNamed:@"gun_target.png"]];
+        [bsNavController setViewControllers:[NSArray arrayWithObject:bsController]];
+        [bsNavController setTitle:@"Buy&Sell"];
+        [bsNavController.tabBarItem setImage:[UIImage imageNamed:@"gun_target.png"]];
         
-        NSArray *controllers = [NSArray arrayWithObjects:navController, bsController, browseController, nil];
+        NSArray *controllers = [NSArray arrayWithObjects:nfNavController, bsNavController, browseController, nil];
         [self setViewControllers:controllers];
         
         [self customizeNavigationBar];

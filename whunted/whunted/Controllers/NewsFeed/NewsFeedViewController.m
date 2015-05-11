@@ -11,15 +11,13 @@
 
 @interface NewsFeedViewController ()
 
-- (void) addBarItems;
-
 @end
 
 @implementation NewsFeedViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -29,37 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];
-    
-    [self addBarItems];
-    
+    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) addBarItems
-{
-    UIImage *searchImage = [UIImage imageNamed:@"search.png"];
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    UIImage *chatImage = [UIImage imageNamed:@"chat.png"];
-    UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    UIImage *profile = [UIImage imageNamed:@"profile.png"];
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    UIBarButtonItem *buyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
-    
-    NSArray *actionButtonItems = @[buyButton, profileButton, chatButton, searchButton];
-    self.navigationItem.rightBarButtonItems = actionButtonItems;
-    
-    UIImage *appIcon = [UIImage imageNamed:@"app_icon.png"];
-    UIBarButtonItem *appIconButton = [[UIBarButtonItem alloc] initWithImage:appIcon style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.leftBarButtonItem = appIconButton;
-    self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
 #pragma - TableView Delegate Methods
@@ -83,12 +56,6 @@
     
     return cell;
 }
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:[NSString stringWithFormat:@"Selected Value is %@",[self.newsfeedList objectAtIndex:indexPath.row]] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//    [alertView show];
-//}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
