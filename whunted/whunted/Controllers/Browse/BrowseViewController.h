@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericController.h"
 
-@interface BrowseViewController : UIViewController
+@interface BrowseViewController : GenericController
 
 @end

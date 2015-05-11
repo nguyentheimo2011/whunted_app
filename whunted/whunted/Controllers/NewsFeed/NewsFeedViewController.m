@@ -18,8 +18,8 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
-        // Custom initialization
+    if (self != nil) {
+        
     }
     return self;
 }
@@ -27,7 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];    
+    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];
+    
+    
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
 }
 
 - (void)didReceiveMemoryWarning {

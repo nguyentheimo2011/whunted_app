@@ -30,17 +30,19 @@
         [nfNavController setTitle:@"News Feed"];
         [nfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         
-        BrowseViewController *browseController = [[BrowseViewController alloc] init];
-        [browseController setTitle:@"Browse"];
-        [browseController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
-        
         UINavigationController *bsNavController = [[UINavigationController alloc] init];
         BuySellViewController *bsController = [[BuySellViewController alloc] init];
         [bsNavController setViewControllers:[NSArray arrayWithObject:bsController]];
         [bsNavController setTitle:@"Buy&Sell"];
         [bsNavController.tabBarItem setImage:[UIImage imageNamed:@"gun_target.png"]];
         
-        NSArray *controllers = [NSArray arrayWithObjects:nfNavController, bsNavController, browseController, nil];
+        UINavigationController *brNavController = [[UINavigationController alloc] init];
+        BrowseViewController *brController = [[BrowseViewController alloc] init];
+        [brNavController setViewControllers:[NSArray arrayWithObject:brController]];
+        [brNavController setTitle:@"Browse"];
+        [brNavController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
+        
+        NSArray *controllers = [NSArray arrayWithObjects:nfNavController, bsNavController, brNavController, nil];
         [self setViewControllers:controllers];
         
         [self customizeNavigationBar];

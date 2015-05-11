@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E916F44E1B00B978005055E3 /* GenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F44D1B00B978005055E3 /* GenericController.m */; };
+		E916F4501B00C28D005055E3 /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E916F44F1B00C28D005055E3 /* NewsFeedViewController.xib */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CF1AF8B57700E31B01 /* NewsFeedViewController.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -71,6 +72,7 @@
 		E916F4471B00AF8B005055E3 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Utilities/Utilities.h; sourceTree = "<group>"; };
 		E916F44C1B00B978005055E3 /* GenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericController.h; path = Controllers/GenericControllers/GenericController.h; sourceTree = "<group>"; };
 		E916F44D1B00B978005055E3 /* GenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericController.m; path = Controllers/GenericControllers/GenericController.m; sourceTree = "<group>"; };
+		E916F44F1B00C28D005055E3 /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedViewController.xib; path = Controllers/NewsFeed/NewsFeedViewController.xib; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17CE1AF8B57700E31B01 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedViewController.h; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				E94D17CE1AF8B57700E31B01 /* NewsFeedViewController.h */,
 				E94D17CF1AF8B57700E31B01 /* NewsFeedViewController.m */,
+				E916F44F1B00C28D005055E3 /* NewsFeedViewController.xib */,
 				E94D18451AFA05F300E31B01 /* NewsFeedTableViewCell.h */,
 				E94D18461AFA05F300E31B01 /* NewsFeedTableViewCell.m */,
 				E94D18471AFA05F300E31B01 /* NewsFeedTableViewCell.xib */,
@@ -430,6 +433,7 @@
 				E94D18141AF9CE8900E31B01 /* chat@3x.png in Resources */,
 				E94D18121AF9CE8900E31B01 /* chat@1x.png in Resources */,
 				E94D181D1AF9CE8900E31B01 /* profile@3x.png in Resources */,
+				E916F4501B00C28D005055E3 /* NewsFeedViewController.xib in Resources */,
 				E94D18251AF9CFC700E31B01 /* app_icon@1x.png in Resources */,
 				E94D17F51AF9B3E300E31B01 /* BuySellViewController.xib in Resources */,
 				E94D181C1AF9CE8900E31B01 /* profile@2x.png in Resources */,

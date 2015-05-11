@@ -11,6 +11,8 @@
 
 @interface NewsFeedViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, retain) NSMutableArray *newsfeedList;
 
 @end
