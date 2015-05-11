@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CF1AF8B57700E31B01 /* NewsFeedViewController.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -64,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
+		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
+		E916F4471B00AF8B005055E3 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Utilities/Utilities.h; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17CE1AF8B57700E31B01 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedViewController.h; sourceTree = "<group>"; };
@@ -137,6 +141,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E916F4421B00A95F005055E3 /* Main Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E916F4431B00A9ED005055E3 /* MainViewController.h */,
+				E916F4441B00A9ED005055E3 /* MainViewController.m */,
+			);
+			name = "Main Controller";
+			sourceTree = "<group>";
+		};
+		E916F4461B00AEE1005055E3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E916F4471B00AF8B005055E3 /* Utilities.h */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		E94D17C81AF8B4FD00E31B01 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +171,7 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E916F4421B00A95F005055E3 /* Main Controller */,
 				E94D17EB1AF9B32500E31B01 /* Browse */,
 				E94D17EA1AF9B28700E31B01 /* BuySell */,
 				E94D17CD1AF8B56400E31B01 /* NewsFeed */,
@@ -283,6 +305,7 @@
 				E94D17C81AF8B4FD00E31B01 /* Application */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
 				E94D183D1AF9FB2300E31B01 /* Models */,
+				E916F4461B00AEE1005055E3 /* Utilities */,
 				E94D17D51AF8B68600E31B01 /* Resources */,
 				E955744B1AF86D2600F0B230 /* Images.xcassets */,
 				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
@@ -444,6 +467,7 @@
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E94D17F41AF9B3E300E31B01 /* BuySellViewController.m in Sources */,
 				E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */,
+				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E94D18441AFA032600E31B01 /* BuyingData.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */,

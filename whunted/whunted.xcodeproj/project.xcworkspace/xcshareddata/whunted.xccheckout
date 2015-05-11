@@ -10,14 +10,14 @@
 	<string>whunted</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>641CEE0CCF489BCBDC26E5B42560A902FFFC3C31</key>
+		<key>A5E6228BF2A352DE6C29D159A249251349BF9F22</key>
 		<string>github.com:whunted/whunted_app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>whunted/whunted.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>641CEE0CCF489BCBDC26E5B42560A902FFFC3C31</key>
+		<key>A5E6228BF2A352DE6C29D159A249251349BF9F22</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>641CEE0CCF489BCBDC26E5B42560A902FFFC3C31</string>
+	<string>A5E6228BF2A352DE6C29D159A249251349BF9F22</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>641CEE0CCF489BCBDC26E5B42560A902FFFC3C31</string>
+			<string>A5E6228BF2A352DE6C29D159A249251349BF9F22</string>
 			<key>IDESourceControlWCCName</key>
 			<string>whunted_app</string>
 		</dict>
