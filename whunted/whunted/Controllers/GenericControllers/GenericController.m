@@ -7,10 +7,12 @@
 //
 
 #import "GenericController.h"
+#import "UploadMethodViewController.h"
 
 @interface GenericController ()
 
 - (void) addBarItems;
+- (void) wantButtonEvent;
 
 @end
 
@@ -36,15 +38,29 @@
     UIImage *profile = [UIImage imageNamed:@"profile.png"];
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:nil];
     
-    UIBarButtonItem *buyButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
+    UIImage *camera = [UIImage imageNamed:@"camera.png"];
+    UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(wantButtonEvent)];
     
-    NSArray *actionButtonItems = @[buyButton, profileButton, chatButton, searchButton];
+    
+    NSArray *actionButtonItems = @[wantButton, profileButton, chatButton, searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
     
     UIImage *appIcon = [UIImage imageNamed:@"app_icon.png"];
     UIBarButtonItem *appIconButton = [[UIBarButtonItem alloc] initWithImage:appIcon style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.leftBarButtonItem = appIconButton;
     self.navigationItem.leftBarButtonItem.enabled = NO;
+}
+
+- (void) wantButtonEvent
+{
+    UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
+//    [UIView animateWithDuration:0.75
+//                     animations:^{
+//                         [self.navigationController pushViewController:uploadMethodVC animated:NO];
+//                         [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:NO];
+//                     }];
+    
+    
 }
 
 @end
