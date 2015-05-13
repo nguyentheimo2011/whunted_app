@@ -9,7 +9,6 @@
 #import "GenericController.h"
 #import "UploadMethodViewController.h"
 #import "KLCPopup.h"
-#import "UploadMethodView.h"
 
 @interface GenericController ()
 
@@ -55,9 +54,11 @@
 
 - (void) wantButtonEvent
 {
-    UploadMethodView* uploadMethodView = [[UploadMethodView alloc] init];
+//    UploadMethodView* uploadMethodView = [[UploadMethodView alloc] init];
     
-    KLCPopup* popup = [KLCPopup popupWithContentView:uploadMethodView];
+    UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
+    
+    KLCPopup* popup = [KLCPopup popupWithContentView:uploadMethodVC.view];
     [popup show];
 }
 
