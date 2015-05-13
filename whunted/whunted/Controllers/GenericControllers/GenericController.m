@@ -56,7 +56,7 @@
 {
     UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
     
-    KLCPopup* popup = [KLCPopup popupWithContentView:uploadMethodVC.view];
+    KLCPopup* popup = [KLCPopup popupWithContentViewController:uploadMethodVC];
     [popup show];
 }
 

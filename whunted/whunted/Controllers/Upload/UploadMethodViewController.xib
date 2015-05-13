@@ -6,9 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMethodViewController">
             <connections>
-                <outlet property="choosingPhotoButton" destination="8tf-BS-yBj" id="uMa-8I-htk"/>
-                <outlet property="postingImageLinkButton" destination="QdG-zf-LVr" id="4ji-DZ-a0D"/>
-                <outlet property="takingPhotoButton" destination="k1z-EJ-H3k" id="mLo-dW-RcZ"/>
                 <outlet property="titleView" destination="MbC-17-CMG" id="fJI-zy-O5D"/>
                 <outlet property="view" destination="iN0-l3-epB" id="C2i-aa-DJI"/>
             </connections>
@@ -42,6 +39,9 @@
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </state>
+                    <connections>
+                        <action selector="imageLinkOptionChosen:" destination="-1" eventType="touchUpInside" id="tk0-fc-GDY"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tf-BS-yBj">
                     <rect key="frame" x="0.0" y="114" width="280" height="46"/>
@@ -49,6 +49,9 @@
                         <color key="titleColor" red="0.66666666666666663" green="0.44646567872188703" blue="0.21776967957410931" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </state>
+                    <connections>
+                        <action selector="selectPhoto:" destination="-1" eventType="touchUpInside" id="sLp-kS-sNs"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-EJ-H3k">
                     <rect key="frame" x="0.0" y="66" width="280" height="46"/>
@@ -56,6 +59,9 @@
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <connections>
+                        <action selector="takePhoto:" destination="-1" eventType="touchUpInside" id="BgN-SG-u4Z"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

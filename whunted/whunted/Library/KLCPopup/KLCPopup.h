@@ -106,6 +106,8 @@ extern const KLCPopupLayout KLCPopupLayoutCenter;
 // - Must set desired size of contentView before or in willStartShowing.
 @property (nonatomic, strong) UIView* contentView;
 
+@property (nonatomic, strong) UIViewController* contentViewController;
+
 // Animation transition for presenting contentView. default = shrink in
 @property (nonatomic, assign) KLCPopupShowType showType;
 
@@ -134,10 +136,10 @@ extern const KLCPopupLayout KLCPopupLayoutCenter;
 @property (nonatomic, copy) void (^didFinishDismissingCompletion)();
 
 // Convenience method for creating popup with default values (mimics UIAlertView).
-+ (KLCPopup*)popupWithContentView:(UIView*)contentView;
++ (KLCPopup*)popupWithContentViewController:(UIViewController*)contentViewController;
 
 // Convenience method for creating popup with custom values.
-+ (KLCPopup*)popupWithContentView:(UIView*)contentView
++ (KLCPopup*)popupWithContentViewController:(UIViewController*)contentView
                          showType:(KLCPopupShowType)showType
                       dismissType:(KLCPopupDismissType)dismissType
                          maskType:(KLCPopupMaskType)maskType

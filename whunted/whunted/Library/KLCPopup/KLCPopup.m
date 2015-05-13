@@ -165,15 +165,16 @@ const KLCPopupLayout KLCPopupLayoutCenter = { KLCPopupHorizontalLayoutCenter, KL
 
 #pragma mark - Class Public
 
-+ (KLCPopup*)popupWithContentView:(UIView*)contentView
++ (KLCPopup*)popupWithContentViewController:(UIViewController*)contentViewController
 {
   KLCPopup* popup = [[[self class] alloc] init];
-  popup.contentView = contentView;
+  popup.contentView = contentViewController.view;
+  popup.contentViewController = contentViewController;
   return popup;
 }
 
 
-+ (KLCPopup*)popupWithContentView:(UIView*)contentView
++ (KLCPopup*)popupWithContentViewController:(UIViewController*)contentViewController
                          showType:(KLCPopupShowType)showType
                       dismissType:(KLCPopupDismissType)dismissType
                          maskType:(KLCPopupMaskType)maskType
@@ -181,7 +182,8 @@ const KLCPopupLayout KLCPopupLayoutCenter = { KLCPopupHorizontalLayoutCenter, KL
             dismissOnContentTouch:(BOOL)shouldDismissOnContentTouch
 {
   KLCPopup* popup = [[[self class] alloc] init];
-  popup.contentView = contentView;
+  popup.contentView = contentViewController.view;
+    popup.contentViewController = contentViewController;
   popup.showType = showType;
   popup.dismissType = dismissType;
   popup.maskType = maskType;

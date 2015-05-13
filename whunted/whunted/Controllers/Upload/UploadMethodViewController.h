@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UploadMethodViewController : UIViewController
+@interface UploadMethodViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *titleView;
-@property (weak, nonatomic) IBOutlet UIButton *takingPhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *choosingPhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *postingImageLinkButton;
+
+- (IBAction)takePhoto:(UIButton *)sender;
+- (IBAction)selectPhoto:(UIButton *)sender;
+- (IBAction)imageLinkOptionChosen:(UIButton *)sender;
+
 
 @end
