@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-UAModalPanel.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2917699D63879BCD2629B91E</key>
+		<key>05D0F88FEF399281406C4104</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>801698A125FC6EB5161C731E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D65CD33A8541D460D468D012</key>
+		<key>AA0881521A5355B0D6FCA204</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -53,12 +53,7 @@
 
 - (void) wantButtonEvent
 {
-    UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
-//    [UIView animateWithDuration:0.75
-//                     animations:^{
-//                         [self.navigationController pushViewController:uploadMethodVC animated:NO];
-//                         [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.navigationController.view cache:NO];
-//                     }];
+    
     
     
 }

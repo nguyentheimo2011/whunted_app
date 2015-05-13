@@ -57,22 +57,6 @@ install_resource()
       ;;
   esac
 }
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/close.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/close@2x.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton-selected.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton-selected@2x.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton@2x.png"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/close.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/close@2x.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton-selected.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton-selected@2x.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton.png"
-  install_resource "UAModalPanel/UAModalPanel/Panel/Images/modalButton@2x.png"
-fi
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

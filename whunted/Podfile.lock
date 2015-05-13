@@ -20,14 +20,11 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - UAModalPanel (1.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - UAModalPanel (~> 1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
-  UAModalPanel: f53b27c1c2704b49335c14ccfab1b427167cb8b0
 
 COCOAPODS: 0.37.0
