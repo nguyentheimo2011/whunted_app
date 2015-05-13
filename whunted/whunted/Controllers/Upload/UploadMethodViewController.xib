@@ -6,6 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMethodViewController">
             <connections>
+                <outlet property="choosingPhotoButton" destination="8tf-BS-yBj" id="uMa-8I-htk"/>
+                <outlet property="postingImageLinkButton" destination="QdG-zf-LVr" id="4ji-DZ-a0D"/>
+                <outlet property="takingPhotoButton" destination="k1z-EJ-H3k" id="mLo-dW-RcZ"/>
+                <outlet property="titleView" destination="MbC-17-CMG" id="fJI-zy-O5D"/>
                 <outlet property="view" destination="iN0-l3-epB" id="C2i-aa-DJI"/>
             </connections>
         </placeholder>

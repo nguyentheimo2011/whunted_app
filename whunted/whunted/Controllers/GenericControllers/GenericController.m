@@ -54,8 +54,6 @@
 
 - (void) wantButtonEvent
 {
-//    UploadMethodView* uploadMethodView = [[UploadMethodView alloc] init];
-    
     UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
     
     KLCPopup* popup = [KLCPopup popupWithContentView:uploadMethodVC.view];

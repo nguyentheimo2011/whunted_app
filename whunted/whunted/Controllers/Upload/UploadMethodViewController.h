@@ -10,4 +10,9 @@
 
 @interface UploadMethodViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *titleView;
+@property (weak, nonatomic) IBOutlet UIButton *takingPhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *choosingPhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *postingImageLinkButton;
+
 @end

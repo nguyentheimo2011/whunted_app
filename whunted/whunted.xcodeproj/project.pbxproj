@@ -17,7 +17,7 @@
 		E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4581B01EC57005055E3 /* camera@2x.png */; };
 		E916F45C1B01EC57005055E3 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4591B01EC57005055E3 /* camera@3x.png */; };
 		E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4601B02F62C005055E3 /* KLCPopup.m */; };
-		E916F46A1B030433005055E3 /* PSCustomViewFromXib.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4691B030433005055E3 /* PSCustomViewFromXib.m */; };
+		E916F46E1B033BDE005055E3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F46D1B033BDE005055E3 /* Utilities.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CF1AF8B57700E31B01 /* NewsFeedViewController.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -79,7 +79,6 @@
 		A02F6CD541644ABF1CD6C53B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
-		E916F4471B00AF8B005055E3 /* Utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Utilities/Utilities.h; sourceTree = "<group>"; };
 		E916F44C1B00B978005055E3 /* GenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericController.h; path = Controllers/GenericControllers/GenericController.h; sourceTree = "<group>"; };
 		E916F44D1B00B978005055E3 /* GenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericController.m; path = Controllers/GenericControllers/GenericController.m; sourceTree = "<group>"; };
 		E916F44F1B00C28D005055E3 /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedViewController.xib; path = Controllers/NewsFeed/NewsFeedViewController.xib; sourceTree = "<group>"; };
@@ -91,8 +90,8 @@
 		E916F4591B01EC57005055E3 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@3x.png"; path = "Resources/Tab Bar Icons/camera@3x.png"; sourceTree = "<group>"; };
 		E916F45F1B02F62C005055E3 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = Library/KLCPopup/KLCPopup.h; sourceTree = "<group>"; };
 		E916F4601B02F62C005055E3 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = Library/KLCPopup/KLCPopup.m; sourceTree = "<group>"; };
-		E916F4681B030433005055E3 /* PSCustomViewFromXib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCustomViewFromXib.h; path = Library/PSCustomView/PSCustomViewFromXib.h; sourceTree = "<group>"; };
-		E916F4691B030433005055E3 /* PSCustomViewFromXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCustomViewFromXib.m; path = Library/PSCustomView/PSCustomViewFromXib.m; sourceTree = "<group>"; };
+		E916F46C1B033BDE005055E3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Library/Utilities/Utilities.h; sourceTree = "<group>"; };
+		E916F46D1B033BDE005055E3 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = Library/Utilities/Utilities.m; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17CE1AF8B57700E31B01 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedViewController.h; sourceTree = "<group>"; };
@@ -197,7 +196,8 @@
 		E916F4461B00AEE1005055E3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E916F4471B00AF8B005055E3 /* Utilities.h */,
+				E916F46C1B033BDE005055E3 /* Utilities.h */,
+				E916F46D1B033BDE005055E3 /* Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -224,7 +224,7 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E916F4671B03041D005055E3 /* PSCustomView */,
+				E916F4461B00AEE1005055E3 /* Utilities */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
 			);
 			name = Library;
@@ -237,15 +237,6 @@
 				E916F4601B02F62C005055E3 /* KLCPopup.m */,
 			);
 			name = KLCPopup;
-			sourceTree = "<group>";
-		};
-		E916F4671B03041D005055E3 /* PSCustomView */ = {
-			isa = PBXGroup;
-			children = (
-				E916F4681B030433005055E3 /* PSCustomViewFromXib.h */,
-				E916F4691B030433005055E3 /* PSCustomViewFromXib.m */,
-			);
-			name = PSCustomView;
 			sourceTree = "<group>";
 		};
 		E94D17C81AF8B4FD00E31B01 /* Application */ = {
@@ -403,7 +394,6 @@
 				E94D17C81AF8B4FD00E31B01 /* Application */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
 				E94D183D1AF9FB2300E31B01 /* Models */,
-				E916F4461B00AEE1005055E3 /* Utilities */,
 				E94D17D51AF8B68600E31B01 /* Resources */,
 				E916F45D1B02F604005055E3 /* Library */,
 				E955744B1AF86D2600F0B230 /* Images.xcassets */,
@@ -607,9 +597,9 @@
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E94D17F41AF9B3E300E31B01 /* BuySellViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
-				E916F46A1B030433005055E3 /* PSCustomViewFromXib.m in Sources */,
 				E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
+				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
 				E94D18441AFA032600E31B01 /* BuyingData.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
