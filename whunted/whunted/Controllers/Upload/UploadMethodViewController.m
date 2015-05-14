@@ -26,6 +26,10 @@
 }
 
 - (void) viewDidLoad {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat width = screenRect.size.width * 0.875;
+    self.view.frame = CGRectMake(0, 0, width, self.view.frame.size.height);
+    [self.view layoutSubviews];
     [super viewDidLoad];
 }
 

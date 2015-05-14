@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMethodViewController">
@@ -15,16 +16,16 @@
             <rect key="frame" x="0.0" y="2" width="280" height="205"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-17-CMG">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-17-CMG">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="66"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a way to upload your image!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI0-gz-3wk">
-                            <rect key="frame" x="8" y="29" width="257" height="29"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a way to upload your image!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI0-gz-3wk">
+                            <rect key="frame" x="8" y="32" width="251" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tell people what you want!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grl-Py-4Z1">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tell people what you want!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grl-Py-4Z1">
                             <rect key="frame" x="8" y="8" width="188" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -32,9 +33,33 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.055264086430220447" green="0.66666666669999997" blue="0.60216679767937387" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="mI0-gz-3wk" firstAttribute="top" secondItem="Grl-Py-4Z1" secondAttribute="bottom" constant="6" id="3k8-vU-RG5"/>
+                        <constraint firstItem="mI0-gz-3wk" firstAttribute="leading" secondItem="Grl-Py-4Z1" secondAttribute="trailing" id="EjG-SH-dNZ"/>
+                        <constraint firstAttribute="width" constant="280" id="ITN-PE-7HO"/>
+                        <constraint firstItem="Grl-Py-4Z1" firstAttribute="leading" secondItem="MbC-17-CMG" secondAttribute="leading" constant="8" id="UH2-i2-y8v"/>
+                        <constraint firstAttribute="height" constant="66" id="VWi-GH-HVE"/>
+                        <constraint firstItem="mI0-gz-3wk" firstAttribute="width" secondItem="MbC-17-CMG" secondAttribute="height" multiplier="257:66" id="hF7-9y-lUD"/>
+                        <constraint firstItem="Grl-Py-4Z1" firstAttribute="top" secondItem="MbC-17-CMG" secondAttribute="top" constant="8" id="nsn-CR-EdH"/>
+                        <constraint firstAttribute="centerX" secondItem="mI0-gz-3wk" secondAttribute="centerX" constant="6.5" id="vKa-Jw-Vjh"/>
+                        <constraint firstItem="mI0-gz-3wk" firstAttribute="leading" secondItem="MbC-17-CMG" secondAttribute="leading" constant="8" id="wxj-ZR-RXW"/>
+                        <constraint firstItem="mI0-gz-3wk" firstAttribute="leading" secondItem="Grl-Py-4Z1" secondAttribute="leading" id="xYt-hK-jZg"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ITN-PE-7HO"/>
+                            <exclude reference="UH2-i2-y8v"/>
+                            <exclude reference="EjG-SH-dNZ"/>
+                            <exclude reference="hF7-9y-lUD"/>
+                            <exclude reference="wxj-ZR-RXW"/>
+                        </mask>
+                    </variation>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdG-zf-LVr">
-                    <rect key="frame" x="0.0" y="159" width="280" height="46"/>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdG-zf-LVr">
+                    <rect key="frame" x="0.0" y="158" width="280" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="sfC-J4-8tw"/>
+                    </constraints>
                     <state key="normal" title="Post image link">
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -43,8 +68,11 @@
                         <action selector="imageLinkOptionChosen:" destination="-1" eventType="touchUpInside" id="tk0-fc-GDY"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tf-BS-yBj">
-                    <rect key="frame" x="0.0" y="114" width="280" height="46"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tf-BS-yBj">
+                    <rect key="frame" x="0.0" y="112" width="280" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="S5A-zi-dmr"/>
+                    </constraints>
                     <state key="normal" title="Choose existing photo from gallery">
                         <color key="titleColor" red="0.66666666666666663" green="0.44646567872188703" blue="0.21776967957410931" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -53,8 +81,11 @@
                         <action selector="selectPhoto:" destination="-1" eventType="touchUpInside" id="sLp-kS-sNs"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-EJ-H3k">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-EJ-H3k">
                     <rect key="frame" x="0.0" y="66" width="280" height="46"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="ff6-Jh-e5g"/>
+                    </constraints>
                     <state key="normal" title="Take photo from Camera">
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -65,7 +96,27 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QdG-zf-LVr" secondAttribute="trailing" id="0I4-hE-d7Y"/>
+                <constraint firstAttribute="trailing" secondItem="MbC-17-CMG" secondAttribute="trailing" id="4dY-T3-Rrv"/>
+                <constraint firstItem="QdG-zf-LVr" firstAttribute="top" secondItem="k1z-EJ-H3k" secondAttribute="bottom" constant="47" id="6cf-og-j0U"/>
+                <constraint firstItem="k1z-EJ-H3k" firstAttribute="top" secondItem="MbC-17-CMG" secondAttribute="bottom" id="7MN-hI-gih"/>
+                <constraint firstItem="QdG-zf-LVr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ElN-rz-RXx"/>
+                <constraint firstItem="MbC-17-CMG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IQG-Su-FMs"/>
+                <constraint firstAttribute="trailing" secondItem="8tf-BS-yBj" secondAttribute="trailing" id="VHw-Sy-RY9"/>
+                <constraint firstAttribute="trailing" secondItem="k1z-EJ-H3k" secondAttribute="trailing" id="glM-6K-waj"/>
+                <constraint firstItem="MbC-17-CMG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ktu-op-Ksz"/>
+                <constraint firstItem="QdG-zf-LVr" firstAttribute="top" secondItem="8tf-BS-yBj" secondAttribute="bottom" id="qSZ-xf-cwu"/>
+                <constraint firstItem="k1z-EJ-H3k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rRY-GB-Kzr"/>
+                <constraint firstItem="8tf-BS-yBj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="stb-hp-mYN"/>
+                <constraint firstItem="8tf-BS-yBj" firstAttribute="top" secondItem="k1z-EJ-H3k" secondAttribute="bottom" id="zPa-YX-SDe"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="6cf-og-j0U"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="400" y="180.5"/>
         </view>
     </objects>
