@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "WantDetailsViewController.h"
 
 @interface AppDelegate ()
 
@@ -29,8 +30,9 @@
 }
 
 - (void) setViewController {
-    MainViewController *mainVC = [[MainViewController alloc] init];
-    [self.window setRootViewController:mainVC];
+//    MainViewController *mainVC = [[MainViewController alloc] init];
+    WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
+    [self.window setRootViewController:vc];
 }
 
 @end
