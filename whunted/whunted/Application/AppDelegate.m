@@ -32,7 +32,8 @@
 - (void) setViewController {
 //    MainViewController *mainVC = [[MainViewController alloc] init];
     WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
-    [self.window setRootViewController:vc];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self.window setRootViewController:navController];
 }
 
 @end
