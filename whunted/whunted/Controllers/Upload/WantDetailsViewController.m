@@ -32,6 +32,7 @@
     
     [self initializeButtonListCell];
     [self initializeSecondSection];
+    self.view.backgroundColor = [UIColor colorWithRed:232/255.0 green:233/255.0 blue:232/255.0 alpha:1.0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,15 +102,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     switch(section)
     {
-        case 0:  return 1;  // section 0 has 1 row
-        case 1:  return 5;  // section 1 has 5 rows
+        case 0: return 0;   // section 0 has 0 row. Use footer of section i as the header of section i+1
+        case 1:  return 1;  // section 0 has 1 row
+        case 2:  return 5;  // section 1 has 5 rows
         default: return 0;
     };
 }
@@ -119,9 +121,10 @@
 {
     switch(indexPath.section)
     {
-        case 0:
-            return self.buttonListCell;
+        case 0: return nil;
         case 1:
+            return self.buttonListCell;
+        case 2:
             switch(indexPath.row)
             {
                 case 0: return self.categoryCell;
@@ -131,16 +134,17 @@
                 case 4: return self.escrowRequestCell;
             }
     }
-    return self.buttonListCell;
+    return nil;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case 0:
-            return 80.0f;
-            break;
+            return 0;
         case 1:
+            return 80.0f;
+        case 2:
             return 40;
             
         default:
@@ -149,5 +153,55 @@
     }
 }
 
+// Customize the section headings for each section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 1: return @" ";
+    }
+    return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 1: return @"DETAILS";
+    }
+    return nil;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 0: return 0.0f;
+        case 1: return 10.0f;
+    }
+    return 0.0f;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    switch(section)
+    {
+        case 0: return 0.0f;
+        case 1: return 40.0f;
+        case 2:
+            return 10.0f;
+    }
+    return 0.0f;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = [UIColor clearColor];
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = [UIColor clearColor];
+}
 
 @end
