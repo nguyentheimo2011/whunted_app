@@ -77,25 +77,40 @@
 
 - (void) initializeSecondSection
 {
-    self.categoryCell = [[UITableViewCell alloc] init];
+    self.categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     self.categoryCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     self.categoryCell.textLabel.text = @"Category";
+    self.categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.categoryCell.detailTextLabel.text = @"Choose category";
+    self.categoryCell.detailTextLabel.font = [UIFont systemFontOfSize:16];
     
-    self.itemCell = [[UITableViewCell alloc] init];
+    self.itemCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item"];
     self.itemCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     self.itemCell.textLabel.text = @"Item";
+    self.itemCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.itemCell.detailTextLabel.text = @"What are you buying?";
+    self.itemCell.detailTextLabel.font = [UIFont systemFontOfSize:16];
     
     self.priceCell = [[UITableViewCell alloc] init];
     self.priceCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     self.priceCell.textLabel.text = @"Item price";
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    [textField setPlaceholder:@"Set a price"];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Set a price" attributes:@{NSForegroundColorAttributeName: color}];
+    self.priceCell.accessoryView = textField;
     
-    self.locationCell = [[UITableViewCell alloc] init];
+    self.locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     self.locationCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     self.locationCell.textLabel.text = @"Location";
+    self.locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.locationCell.detailTextLabel.text = @"Where to meet?";
+    self.locationCell.detailTextLabel.font = [UIFont systemFontOfSize:16];
     
     self.escrowRequestCell = [[UITableViewCell alloc] init];
     self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     self.escrowRequestCell.textLabel.text = @"Escrow Request";
+    self.escrowRequestCell.accessoryView = [[UISwitch alloc] init];
 }
 
 #pragma mark - Table view data source
