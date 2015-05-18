@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageGetterViewController.h"
 
-@interface GenericController : UIViewController
-
+@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate>
 
 
 @end

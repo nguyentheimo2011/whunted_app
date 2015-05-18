@@ -7,17 +7,17 @@
 //
 
 #import "GenericController.h"
-#import "UploadMethodViewController.h"
+#import "ImageGetterViewController.h"
 #import "KLCPopup.h"
 
 @interface GenericController ()
 
-- (void) addBarItems;
-- (void) wantButtonEvent;
-
 @end
 
 @implementation GenericController
+{
+    KLCPopup* popup;
+}
 
 - (id) init
 {
@@ -54,10 +54,53 @@
 
 - (void) wantButtonEvent
 {
-    UploadMethodViewController *uploadMethodVC = [[UploadMethodViewController alloc] init];
+    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
+    imageGetterVC.delegate = self;
     
-    KLCPopup* popup = [KLCPopup popupWithContentViewController:uploadMethodVC];
+    popup = [KLCPopup popupWithContentViewController:imageGetterVC];
     [popup show];
+}
+
+#pragma mark - Image Getter View Controller delegate methods
+- (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
+{
+    if (popup != nil) {
+        [popup dismiss:YES];
+    }
+    
+    if (method == PhotoLibrary) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    } else if (method == Camera) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    } else if (method == ImageURL) {
+        
+    }
+}
+
+#pragma mark - Image Picker Controller delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    //    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    //    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 @end

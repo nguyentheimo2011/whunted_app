@@ -30,10 +30,10 @@
 }
 
 - (void) setViewController {
-//    MainViewController *mainVC = [[MainViewController alloc] init];
-    WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
-    [self.window setRootViewController:navController];
+    MainViewController *mainVC = [[MainViewController alloc] init];
+//    WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
+//    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self.window setRootViewController:mainVC];
 }
 
 @end

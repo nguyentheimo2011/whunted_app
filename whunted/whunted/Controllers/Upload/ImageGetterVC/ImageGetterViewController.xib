@@ -5,7 +5,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadMethodViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageGetterViewController">
             <connections>
                 <outlet property="titleView" destination="MbC-17-CMG" id="fJI-zy-O5D"/>
                 <outlet property="view" destination="iN0-l3-epB" id="C2i-aa-DJI"/>

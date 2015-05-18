@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    PhotoLibrary,
+    Camera,
+    ImageURL
+} ImageGettingMethod;
+
 @interface Utilities : NSObject
 
 + (void) addBorderAndShadow: (UIView *) view;

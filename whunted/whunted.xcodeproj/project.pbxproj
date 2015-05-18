@@ -72,12 +72,12 @@
 		E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */; };
 		E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */; };
 		E97CE4A11B09ECC90027C5FA /* WantDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4A01B09ECC90027C5FA /* WantDetailsViewController.m */; };
-		E97CE4A51B09ECE20027C5FA /* UploadMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4A31B09ECE20027C5FA /* UploadMethodViewController.m */; };
-		E97CE4A61B09ECE20027C5FA /* UploadMethodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4A41B09ECE20027C5FA /* UploadMethodViewController.xib */; };
 		E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4AA1B09EF230027C5FA /* NewsFeedViewController.m */; };
 		E97CE4AD1B09EF230027C5FA /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4AB1B09EF230027C5FA /* NewsFeedViewController.xib */; };
 		E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4AF1B09EF330027C5FA /* NewsFeedTableViewCell.m */; };
 		E97CE4B21B09EF330027C5FA /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4B01B09EF330027C5FA /* NewsFeedTableViewCell.xib */; };
+		E97CE4B61B0A076B0027C5FA /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */; };
+		E97CE4B71B0A076B0027C5FA /* ImageGetterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,15 +172,15 @@
 		E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
 		E97CE49F1B09ECC90027C5FA /* WantDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantDetailsViewController.h; path = Controllers/Upload/WantDetailsVC/WantDetailsViewController.h; sourceTree = "<group>"; };
 		E97CE4A01B09ECC90027C5FA /* WantDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WantDetailsViewController.m; path = Controllers/Upload/WantDetailsVC/WantDetailsViewController.m; sourceTree = "<group>"; };
-		E97CE4A21B09ECE20027C5FA /* UploadMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadMethodViewController.h; path = Controllers/Upload/UploadMethodVC/UploadMethodViewController.h; sourceTree = "<group>"; };
-		E97CE4A31B09ECE20027C5FA /* UploadMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadMethodViewController.m; path = Controllers/Upload/UploadMethodVC/UploadMethodViewController.m; sourceTree = "<group>"; };
-		E97CE4A41B09ECE20027C5FA /* UploadMethodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UploadMethodViewController.xib; path = Controllers/Upload/UploadMethodVC/UploadMethodViewController.xib; sourceTree = "<group>"; };
 		E97CE4A91B09EF230027C5FA /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.h; sourceTree = "<group>"; };
 		E97CE4AA1B09EF230027C5FA /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsFeedViewController.m; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.m; sourceTree = "<group>"; };
 		E97CE4AB1B09EF230027C5FA /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedViewController.xib; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.xib; sourceTree = "<group>"; };
 		E97CE4AE1B09EF330027C5FA /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedTableViewCell.h; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		E97CE4AF1B09EF330027C5FA /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsFeedTableViewCell.m; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.m; sourceTree = "<group>"; };
 		E97CE4B01B09EF330027C5FA /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedTableViewCell.xib; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
+		E97CE4B31B0A076B0027C5FA /* ImageGetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageGetterViewController.h; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.h; sourceTree = "<group>"; };
+		E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageGetterViewController.m; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.m; sourceTree = "<group>"; };
+		E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageGetterViewController.xib; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.xib; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,8 +250,8 @@
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				E97CE49D1B09ECA00027C5FA /* ImageGetterVC */,
 				E97CE49E1B09ECAE0027C5FA /* WantDetailsVC */,
-				E97CE49D1B09ECA00027C5FA /* UploadMethodVC */,
 				E97CE4991B09C7730027C5FA /* ItemInfoTable */,
 				E97CE4951B09BED20027C5FA /* LocationTable */,
 				E97CE4911B09334A0027C5FA /* CategoryTable */,
@@ -501,14 +501,14 @@
 			name = ItemInfoTable;
 			sourceTree = "<group>";
 		};
-		E97CE49D1B09ECA00027C5FA /* UploadMethodVC */ = {
+		E97CE49D1B09ECA00027C5FA /* ImageGetterVC */ = {
 			isa = PBXGroup;
 			children = (
-				E97CE4A21B09ECE20027C5FA /* UploadMethodViewController.h */,
-				E97CE4A31B09ECE20027C5FA /* UploadMethodViewController.m */,
-				E97CE4A41B09ECE20027C5FA /* UploadMethodViewController.xib */,
+				E97CE4B31B0A076B0027C5FA /* ImageGetterViewController.h */,
+				E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */,
+				E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */,
 			);
-			name = UploadMethodVC;
+			name = ImageGetterVC;
 			sourceTree = "<group>";
 		};
 		E97CE49E1B09ECAE0027C5FA /* WantDetailsVC */ = {
@@ -660,8 +660,8 @@
 				E91A5A6F1B04C1E6008382E2 /* next@2x.png in Resources */,
 				E94D18361AF9F18300E31B01 /* gun_target@3x.png in Resources */,
 				E97CE4AD1B09EF230027C5FA /* NewsFeedViewController.xib in Resources */,
+				E97CE4B71B0A076B0027C5FA /* ImageGetterViewController.xib in Resources */,
 				E94D18191AF9CE8900E31B01 /* newsfeed@2x.png in Resources */,
-				E97CE4A61B09ECE20027C5FA /* UploadMethodViewController.xib in Resources */,
 				E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */,
 				E94D181E1AF9CE8900E31B01 /* search@1x.png in Resources */,
 				E94D18341AF9F18300E31B01 /* gun_target@1x.png in Resources */,
@@ -738,9 +738,9 @@
 				E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */,
 				E94D18441AFA032600E31B01 /* BuyingData.m in Sources */,
 				E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */,
+				E97CE4B61B0A076B0027C5FA /* ImageGetterViewController.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */,
-				E97CE4A51B09ECE20027C5FA /* UploadMethodViewController.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
