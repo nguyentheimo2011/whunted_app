@@ -76,6 +76,8 @@
 		E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48B1B07745A0027C5FA /* squareplus@3x.png */; };
 		E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48F1B07876C0027C5FA /* squareplus@2x.png */; };
 		E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */; };
+		E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */; };
+		E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,10 @@
 		E97CE48F1B07876C0027C5FA /* squareplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@2x.png"; path = "Resources/Want Details/squareplus@2x.png"; sourceTree = "<group>"; };
 		E97CE4921B0933EE0027C5FA /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableViewController.h; path = Controllers/Upload/CategoryTable/CategoryTableViewController.h; sourceTree = "<group>"; };
 		E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controllers/Upload/CategoryTable/CategoryTableViewController.m; sourceTree = "<group>"; };
+		E97CE4961B09BEFF0027C5FA /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = Controllers/Upload/LocationTable/LocationTableViewController.h; sourceTree = "<group>"; };
+		E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = Controllers/Upload/LocationTable/LocationTableViewController.m; sourceTree = "<group>"; };
+		E97CE49A1B09C84A0027C5FA /* ItemInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoTableViewController.h; path = Controllers/Upload/ItemInfoTable/ItemInfoTableViewController.h; sourceTree = "<group>"; };
+		E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,6 +250,8 @@
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				E97CE4991B09C7730027C5FA /* ItemInfoTable */,
+				E97CE4951B09BED20027C5FA /* LocationTable */,
 				E97CE4911B09334A0027C5FA /* CategoryTable */,
 				E97CE46C1B074FC00027C5FA /* UploadMethodViewController.h */,
 				E97CE46D1B074FC00027C5FA /* UploadMethodViewController.m */,
@@ -482,6 +490,24 @@
 			name = CategoryTable;
 			sourceTree = "<group>";
 		};
+		E97CE4951B09BED20027C5FA /* LocationTable */ = {
+			isa = PBXGroup;
+			children = (
+				E97CE4961B09BEFF0027C5FA /* LocationTableViewController.h */,
+				E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */,
+			);
+			name = LocationTable;
+			sourceTree = "<group>";
+		};
+		E97CE4991B09C7730027C5FA /* ItemInfoTable */ = {
+			isa = PBXGroup;
+			children = (
+				E97CE49A1B09C84A0027C5FA /* ItemInfoTableViewController.h */,
+				E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */,
+			);
+			name = ItemInfoTable;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -676,7 +702,9 @@
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
 				E94D18441AFA032600E31B01 /* BuyingData.m in Sources */,
+				E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
+				E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */,
 				E97CE46F1B074FC00027C5FA /* UploadMethodViewController.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E94D17D11AF8B57700E31B01 /* NewsFeedViewController.m in Sources */,

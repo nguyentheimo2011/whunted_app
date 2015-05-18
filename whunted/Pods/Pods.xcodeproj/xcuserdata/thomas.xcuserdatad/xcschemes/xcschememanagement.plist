@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SZTextView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05D0F88FEF399281406C4104</key>
+		<key>7ECA86192334646C807AC965</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA0881521A5355B0D6FCA204</key>
+		<key>D5AD7BF66352CD6D401D780E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E62312AAB1F27086A71A6FA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

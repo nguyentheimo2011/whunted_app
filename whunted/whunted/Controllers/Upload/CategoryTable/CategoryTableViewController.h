@@ -18,7 +18,7 @@
 
 @interface CategoryTableViewController : UITableViewController
 
-@property (nonatomic, weak) id<CategoryTableViewControllerDelegate> deleagte;
+@property (nonatomic, weak) id<CategoryTableViewControllerDelegate> delegte;
 @property (nonatomic, strong) NSString *category;
 
 @end

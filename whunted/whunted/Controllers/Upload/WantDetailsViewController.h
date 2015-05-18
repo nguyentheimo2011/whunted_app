@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryTableViewController.h"
+#import "LocationTableViewController.h"
+#import "ItemInfoTableViewController.h"
 
-@interface WantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate>
+@interface WantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate>
 
 @end

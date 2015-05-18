@@ -1,29 +1,28 @@
 //
-//  CategoryTableViewController.m
+//  LocationTableViewController.m
 //  whunted
 //
 //  Created by thomas nguyen on 18/5/15.
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "CategoryTableViewController.h"
+#import "LocationTableViewController.h"
 
-@interface CategoryTableViewController ()
+@interface LocationTableViewController ()
 
 @end
 
-@implementation CategoryTableViewController
+@implementation LocationTableViewController
 {
-    NSArray *categoryList;
+    NSArray *locationList;
     NSUInteger selectedIndex;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    categoryList = [NSArray arrayWithObjects:@"Beauty, Health & Grocery", @"Books & Magazines", @"Clothing, Shoes and Jewelry", @"Electronics & Computers", @"Home, Garden & Tools", @"Movies, Music & Games", @"Sports & Outdoors", @"Toys, Kids & Baby", nil];
-    
-    selectedIndex = [categoryList indexOfObject:self.category];
+    locationList = [NSArray arrayWithObjects:@"Changhua", @"Hualien", @"Magong", @"Taichung", @"Taipao", @"Taipei", @"Yilan", nil];
+    selectedIndex = [locationList indexOfObject:self.location];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,19 +39,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [categoryList count];
+    return [locationList count];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellID = @"CategoryCell";
+    NSString *cellID = @"LocationCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = [categoryList objectAtIndex:indexPath.row];
+    cell.textLabel.text = [locationList objectAtIndex:indexPath.row];
     if (indexPath.row == selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -71,11 +70,8 @@
     selectedIndex = indexPath.row;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    NSString *selectedCategory = [categoryList objectAtIndex:indexPath.row];
-    [self.delegte categoryTableViewController:self didSelectCategory:selectedCategory];
+    NSString *selectedLocation = [locationList objectAtIndex:indexPath.row];
+    [self.delegate locationTableViewController:self didSelectLocation:selectedLocation];
 }
-
-
- 
 
 @end
