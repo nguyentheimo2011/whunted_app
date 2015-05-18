@@ -75,6 +75,7 @@
 		E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4891B07745A0027C5FA /* squareplus@1x.png */; };
 		E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48B1B07745A0027C5FA /* squareplus@3x.png */; };
 		E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48F1B07876C0027C5FA /* squareplus@2x.png */; };
+		E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,8 @@
 		E97CE4891B07745A0027C5FA /* squareplus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@1x.png"; path = "Resources/Want Details/squareplus@1x.png"; sourceTree = "<group>"; };
 		E97CE48B1B07745A0027C5FA /* squareplus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@3x.png"; path = "Resources/Want Details/squareplus@3x.png"; sourceTree = "<group>"; };
 		E97CE48F1B07876C0027C5FA /* squareplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@2x.png"; path = "Resources/Want Details/squareplus@2x.png"; sourceTree = "<group>"; };
+		E97CE4921B0933EE0027C5FA /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableViewController.h; path = Controllers/Upload/CategoryTable/CategoryTableViewController.h; sourceTree = "<group>"; };
+		E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controllers/Upload/CategoryTable/CategoryTableViewController.m; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,6 +244,7 @@
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				E97CE4911B09334A0027C5FA /* CategoryTable */,
 				E97CE46C1B074FC00027C5FA /* UploadMethodViewController.h */,
 				E97CE46D1B074FC00027C5FA /* UploadMethodViewController.m */,
 				E97CE46E1B074FC00027C5FA /* UploadMethodViewController.xib */,
@@ -469,6 +473,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E97CE4911B09334A0027C5FA /* CategoryTable */ = {
+			isa = PBXGroup;
+			children = (
+				E97CE4921B0933EE0027C5FA /* CategoryTableViewController.h */,
+				E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */,
+			);
+			name = CategoryTable;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -656,6 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
+				E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */,
 				E94D17F41AF9B3E300E31B01 /* BuySellViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */,

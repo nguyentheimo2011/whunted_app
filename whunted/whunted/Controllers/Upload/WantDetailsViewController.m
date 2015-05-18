@@ -25,6 +25,9 @@
 @end
 
 @implementation WantDetailsViewController
+{
+    NSString *selectedCategory;
+}
 
 - (void) loadView
 {
@@ -217,6 +220,27 @@
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 {
     view.tintColor = [UIColor clearColor];
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            CategoryTableViewController *catVC = [[CategoryTableViewController alloc] init];
+            catVC.deleagte = self;
+            catVC.category = selectedCategory;
+            [self.navigationController pushViewController:catVC animated:YES];
+        }
+    }
+}
+
+#pragma mark - CategoryTableViewControllerDelegate
+
+- (void) categoryTableViewController:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
+{
+    selectedCategory = category;
+    [self.navigationController popViewControllerAnimated:YES];
+    self.categoryCell.detailTextLabel.text = selectedCategory;
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryTableViewController.h"
 
-@interface WantDetailsViewController : UITableViewController
+@interface WantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate>
 
 @end
