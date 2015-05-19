@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UITableViewCell *locationCell;
 @property (strong, nonatomic) UITableViewCell *escrowRequestCell;
 
+@property (strong, nonatomic) NSMutableDictionary *wantDetailsDict;
+
 @end
 
 @implementation WantDetailsViewController
@@ -28,18 +30,27 @@
     NSString *selectedLocation;
 }
 
-- (void) loadView
+- (id) init
 {
-    [super loadView];
+    self = [super init];
     
-    [self initializeButtonListCell];
-    [self initializeSecondSection];
-    self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
+    if (self != nil) {
+        [self initializeButtonListCell];
+        [self initializeSecondSection];
+        self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
+    }
+    
+    return self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+- (void) loadView
+{
+    [super loadView];
 }
 
 #pragma mark - Initialization
@@ -56,9 +67,11 @@
     
     for (int i=0; i<4; i++) {
         UIButton *addingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [addingButton setTag:i];
         [addingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
         [addingButton setEnabled:YES];
         addingButton.frame = CGRectMake((i+1) * spaceWidth + i * imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
+        [addingButton addTarget:self action:@selector(addingButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
         [self.buttonListCell addSubview:addingButton];
         [self.addingButtonList addObject:addingButton];
     }
@@ -111,7 +124,25 @@
     self.escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-#pragma mark - Table view data source
+#pragma mark - Set image back ground for button
+
+- (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
+{
+    [[self.addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
+    
+    NSString *key = [NSString stringWithFormat:@"itemImage%lu", (unsigned long)buttonIndex];
+    [self.wantDetailsDict setObject:image forKey:key];
+}
+
+#pragma mark - Event Handling
+
+- (void) addingButtonEvent: (id) sender
+{
+    UIButton *button = (UIButton *) sender;
+    [self.delegate wantDetailsViewController:self didPressButton:[button tag]];
+}
+
+#pragma mark - Table view data source and table view delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.

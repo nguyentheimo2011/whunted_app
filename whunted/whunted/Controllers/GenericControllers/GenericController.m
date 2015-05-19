@@ -9,8 +9,6 @@
 #import "KLCPopup.h"
 
 #import "GenericController.h"
-#import "ImageGetterViewController.h"
-#import "WantDetailsViewController.h"
 
 @interface GenericController ()
 
@@ -19,6 +17,7 @@
 @implementation GenericController
 {
     KLCPopup* popup;
+    NSUInteger currButtonIndex;
 }
 
 - (id) init
@@ -42,7 +41,7 @@
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:nil];
     
     UIImage *camera = [UIImage imageNamed:@"camera.png"];
-    UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(wantButtonEvent)];
+    UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(showImageGettingOptionPopup)];
     
     
     NSArray *actionButtonItems = @[wantButton, profileButton, chatButton, searchButton];
@@ -54,13 +53,21 @@
     self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 
-- (void) wantButtonEvent
+- (void) showImageGettingOptionPopup
 {
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
     imageGetterVC.delegate = self;
     
     popup = [KLCPopup popupWithContentViewController:imageGetterVC];
     [popup show];
+}
+
+#pragma mark - Want Details View Controller delegate methods
+
+- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressButton:(NSUInteger)buttonIndex
+{
+    currButtonIndex = buttonIndex;
+    [self showImageGettingOptionPopup];
 }
 
 #pragma mark - Image Getter View Controller delegate methods
@@ -92,11 +99,19 @@
 #pragma mark - Image Picker Controller delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIViewController *topVC = [self.navigationController topViewController];
+    if ([topVC isKindOfClass:[WantDetailsViewController class]]) {
+        WantDetailsViewController *wantDetailsVC = (WantDetailsViewController *) topVC;
+        [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
+    } else {
+        WantDetailsViewController *wantDetailsVC = [[WantDetailsViewController alloc] init];
+        wantDetailsVC.delegate = self;
+        currButtonIndex = 0;
+        [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
+        [self.navigationController pushViewController:wantDetailsVC animated:YES];
+    }
     
-    //    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    //    self.imageView.image = chosenImage;
-    WantDetailsViewController *wantDetailsVC = [[WantDetailsViewController alloc] init];
-    [self.navigationController pushViewController:wantDetailsVC animated:YES];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
