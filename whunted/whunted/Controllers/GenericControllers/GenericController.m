@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
+#import "KLCPopup.h"
+
 #import "GenericController.h"
 #import "ImageGetterViewController.h"
-#import "KLCPopup.h"
+#import "WantDetailsViewController.h"
 
 @interface GenericController ()
 
@@ -93,6 +95,8 @@
     
     //    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     //    self.imageView.image = chosenImage;
+    WantDetailsViewController *wantDetailsVC = [[WantDetailsViewController alloc] init];
+    [self.navigationController pushViewController:wantDetailsVC animated:YES];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }

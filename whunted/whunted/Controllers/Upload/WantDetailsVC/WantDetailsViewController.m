@@ -10,10 +10,7 @@
 
 @interface WantDetailsViewController ()
 
-@property (strong, nonatomic) UIButton *firstAddingButton;
-@property (strong, nonatomic) UIButton *secondAddingButton;
-@property (strong, nonatomic) UIButton *thirdAddingButton;
-@property (strong, nonatomic) UIButton *fourthAddingButton;
+@property (strong, nonatomic) NSMutableArray *addingButtonList;
 @property (strong, nonatomic) UITableViewCell *buttonListCell;
 
 @property (strong, nonatomic) UITableViewCell *categoryCell;
@@ -51,34 +48,20 @@
 {
     self.buttonListCell = [[UITableViewCell alloc] init];
     self.buttonListCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
+    self.buttonListCell.selectionStyle = UITableViewCellSelectionStyleNone;
     CGSize imageSize = [UIImage imageNamed:@"squareplus.png"].size;
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
     CGFloat spaceWidth = (windowSize.width - 4 * imageSize.width) / 5.0;
-
-    self.firstAddingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.firstAddingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
-    [self.firstAddingButton setEnabled:YES];
-    self.firstAddingButton.frame = CGRectMake(spaceWidth, imageSize.width/6.0, imageSize.width, imageSize.height);
-    [self.buttonListCell addSubview:self.firstAddingButton];
+    self.addingButtonList = [[NSMutableArray alloc] init];
     
-    self.secondAddingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.secondAddingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
-    [self.secondAddingButton setEnabled:YES];
-    self.secondAddingButton.frame = CGRectMake(2*spaceWidth + imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
-    [self.buttonListCell addSubview:self.secondAddingButton];
-    
-    self.thirdAddingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.thirdAddingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
-    [self.thirdAddingButton setEnabled:YES];
-    self.thirdAddingButton.frame = CGRectMake(3*spaceWidth + 2*imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
-    [self.buttonListCell addSubview:self.thirdAddingButton];
-    
-    self.fourthAddingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.fourthAddingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
-    [self.fourthAddingButton setEnabled:YES];
-    self.fourthAddingButton.frame = CGRectMake(4*spaceWidth + 3*imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
-    [self.buttonListCell addSubview:self.fourthAddingButton];
-    self.buttonListCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    for (int i=0; i<4; i++) {
+        UIButton *addingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [addingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
+        [addingButton setEnabled:YES];
+        addingButton.frame = CGRectMake((i+1) * spaceWidth + i * imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
+        [self.buttonListCell addSubview:addingButton];
+        [self.addingButtonList addObject:addingButton];
+    }
 }
 
 - (void) initializeSecondSection
