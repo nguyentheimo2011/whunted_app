@@ -15,11 +15,12 @@
 
 @protocol WantDetailsViewControllerDelegate <NSObject>
 
-- (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressButton: (NSUInteger) buttonIndex;
+- (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressItemImageButton: (NSUInteger) buttonIndex;
+- (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressSubmittingButton: (NSDictionary *) itemInfoDict;
 
 @end
 
-@interface WantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate>
+@interface WantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) id<WantDetailsViewControllerDelegate> delegate;
 

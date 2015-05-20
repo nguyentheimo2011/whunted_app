@@ -7,25 +7,39 @@
 //
 
 #import "ItemInfoTableViewController.h"
-#include <SZTextView/SZTextView.h>
+#import <SZTextView/SZTextView.h>
+#import "Utilities.h"
 
 @interface ItemInfoTableViewController ()
 
+@property (nonatomic, strong) UITableViewCell *itemNameCell;
 @property (nonatomic, strong) UITableViewCell *descriptionCell;
 @property (nonatomic,strong) UITableViewCell *hashtagCell;
+@property (nonatomic, strong) NSMutableDictionary *itemInfoDict;
 
 @end
 
 @implementation ItemInfoTableViewController
-
-- (void) loadView
 {
-    [super loadView];
-    [self initializeDescriptionCell];
-    [self initializeHashtagCell];
-    self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
-    self.navigationItem.title = @"Item Info";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonEvent)];
+    UITextField *itemNameTextField;
+    SZTextView *descriptionTextView;
+    SZTextView *hashTagTextView;
+}
+
+- (id) initWithItemInfoDict: (NSDictionary *) infoDict
+{
+    self = [super init];
+    if (self != nil) {
+        self.itemInfoDict = [NSMutableDictionary dictionaryWithDictionary:infoDict];
+        [self initializeItemNameCell];
+        [self initializeDescriptionCell];
+        [self initializeHashtagCell];
+        self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
+        self.navigationItem.title = @"Item Info";
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonEvent)];
+    }
+    
+    return self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,30 +48,54 @@
 }
 
 #pragma mark - Initialization 
+
+- (void) initializeItemNameCell
+{
+    self.itemNameCell = [[UITableViewCell alloc] init];
+    self.itemNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
+    
+    itemNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 5, windowSize.width-15, 30)];
+    itemNameTextField.text = [self.itemInfoDict objectForKey:ITEM_NAME_KEY];
+    UIColor *color = [UIColor colorWithRed:130/255.0 green:130/255.0 blue:130/255.0 alpha:0.8];
+    itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Item name" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:17]}];
+    [self.itemNameCell addSubview:itemNameTextField];
+}
+
 - (void) initializeDescriptionCell
 {
     self.descriptionCell = [[UITableViewCell alloc] init];
+    self.descriptionCell.selectionStyle = UITableViewCellSelectionStyleNone;
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
     
-    SZTextView *textView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height/3)];
-    textView.placeholder = @"Descibe more about the item that you want.\nE.g. Size, condition, color, etc.";
-    [self.descriptionCell addSubview:textView];
+    descriptionTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height * 0.3)];
+    descriptionTextView.text = [self.itemInfoDict objectForKey:ITEM_DESC_KEY];
+    descriptionTextView.font = [UIFont systemFontOfSize:17];
+    descriptionTextView.placeholder = @"Descibe more about the item that you want.\nE.g. Size, condition, color, etc.";
+    [self.descriptionCell addSubview:descriptionTextView];
 }
 
 - (void) initializeHashtagCell
 {
     self.hashtagCell = [[UITableViewCell alloc] init];
+    self.hashtagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
     
-    SZTextView *textView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height/6)];
-    textView.placeholder = @"Enter hash tags for the item to help sellers find you.\nE.g. #shoes #bag #book, etc.";
-    [self.hashtagCell addSubview:textView];
+    hashTagTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height/6)];
+    hashTagTextView.text = [self.itemInfoDict objectForKey:ITEM_HASH_TAG_KEY];
+    hashTagTextView.font = [UIFont systemFontOfSize:17];
+    hashTagTextView.placeholder = @"Enter hash tags for the item to help sellers find you.\nE.g. #shoes #bag #book, etc.";
+    [self.hashtagCell addSubview:hashTagTextView];
 }
 
 #pragma mark - Event Handling
 - (void) doneButtonEvent
 {
-    [self.delegate itemInfoTableViewController:self didPressDone:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"", nil]];
+    [self.itemInfoDict setObject:itemNameTextField.text forKey:ITEM_NAME_KEY];
+    [self.itemInfoDict setObject:descriptionTextView.text forKey:ITEM_DESC_KEY];
+    [self.itemInfoDict setObject:hashTagTextView.text forKey:ITEM_HASH_TAG_KEY];
+    
+    [self.delegate itemInfoTableViewController:self didPressDone:self.itemInfoDict];
 }
 
 #pragma mark - Table view data source
@@ -69,13 +107,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return self.descriptionCell;
+        return self.itemNameCell;
     } else if (indexPath.row == 1) {
+        return self.descriptionCell;
+    } else if (indexPath.row == 2) {
         return self.hashtagCell;
     }
     
@@ -91,10 +131,11 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
-    
     if (indexPath.row == 0) {
-        return windowSize.height/3;
-    } else if (indexPath.row == 1) {
+        return 35;
+    }else if (indexPath.row == 1) {
+        return windowSize.height * 0.3;
+    } else if (indexPath.row == 2) {
         return windowSize.height/6;
     }
     

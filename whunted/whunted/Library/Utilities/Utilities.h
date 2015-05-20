@@ -15,6 +15,14 @@ typedef enum {
     ImageURL
 } ImageGettingMethod;
 
+#define ITEM_NAME_KEY           @"itemName"
+#define ITEM_DESC_KEY           @"itemDescription"
+#define ITEM_HASH_TAG_KEY       @"itemHashTag"
+#define ITEM_CATEGORY_KEY       @"itemCategory"
+#define ITEM_PRICE_KEY          @"itemPrice"
+#define ITEM_LOCATION_KEY       @"location"
+#define ITEM_ESCROW_OPTION_KEY  @"escrowOption"
+
 @interface Utilities : NSObject
 
 + (void) addBorderAndShadow: (UIView *) view;

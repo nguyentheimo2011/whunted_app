@@ -64,10 +64,15 @@
 
 #pragma mark - Want Details View Controller delegate methods
 
-- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressButton:(NSUInteger)buttonIndex
+- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
 {
     currButtonIndex = buttonIndex;
     [self showImageGettingOptionPopup];
+}
+
+- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressSubmittingButton:(NSDictionary *)itemInfoDict
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Image Getter View Controller delegate methods

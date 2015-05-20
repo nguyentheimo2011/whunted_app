@@ -18,6 +18,8 @@
 
 @interface ItemInfoTableViewController : UITableViewController
 
+- (id) initWithItemInfoDict: (NSDictionary *) infoDict;
+
 @property (nonatomic, weak) id<ItemInfoTableViewControllerDelegate> delegate;
 
 @end
