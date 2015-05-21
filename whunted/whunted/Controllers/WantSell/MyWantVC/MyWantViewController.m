@@ -7,16 +7,31 @@
 //
 
 #import "MyWantViewController.h"
+#import "HorizontalLineViewController.h"
 
 @interface MyWantViewController ()
 
 @end
 
 @implementation MyWantViewController
+{
+    UITableView *wantTableView;
+    CGSize windowSize;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    windowSize = [[UIScreen mainScreen] bounds].size;
+    
+    HorizontalLineViewController *horizontalLineVC = [[HorizontalLineViewController alloc] init];
+    CGRect frame = horizontalLineVC.view.frame;
+    horizontalLineVC.view.frame = CGRectMake(0, 80, windowSize.width, frame.size.height);
+    [self.view addSubview:horizontalLineVC.view];
+
+    wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.8)];
+    [self.view addSubview:wantTableView];
 }
 
 - (void)didReceiveMemoryWarning {

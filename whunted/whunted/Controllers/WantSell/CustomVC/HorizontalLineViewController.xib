@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HorizontalLineViewController">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="Mpp-9X-uuB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 sells" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEo-0P-1pF">
+                    <rect key="frame" x="120" y="13" width="77" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPj-zQ-kzN">
+                    <rect key="frame" x="202" y="24" width="118" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="PRu-UI-Ckx"/>
+                        <constraint firstAttribute="height" constant="1" id="i5C-0r-Qte"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="PRu-UI-Ckx"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goL-Rq-94P">
+                    <rect key="frame" x="0.0" y="24" width="115" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="7NR-Uv-qik"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="cPj-zQ-kzN" secondAttribute="centerY" constant="2.5" id="8e4-wV-NKV"/>
+                <constraint firstItem="cPj-zQ-kzN" firstAttribute="leading" secondItem="fEo-0P-1pF" secondAttribute="trailing" constant="5" id="9AJ-uP-OfC"/>
+                <constraint firstAttribute="centerY" secondItem="fEo-0P-1pF" secondAttribute="centerY" constant="1" id="AMq-yc-GLs"/>
+                <constraint firstItem="goL-Rq-94P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cax-I6-YPj"/>
+                <constraint firstAttribute="trailing" secondItem="fEo-0P-1pF" secondAttribute="trailing" constant="100" id="CgP-pX-Doq"/>
+                <constraint firstItem="cPj-zQ-kzN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="RGK-w6-gHM"/>
+                <constraint firstItem="cPj-zQ-kzN" firstAttribute="centerY" secondItem="fEo-0P-1pF" secondAttribute="centerY" id="S7B-0f-6vY"/>
+                <constraint firstAttribute="centerY" secondItem="cPj-zQ-kzN" secondAttribute="centerY" id="Ylb-gp-5e3"/>
+                <constraint firstAttribute="centerY" secondItem="goL-Rq-94P" secondAttribute="centerY" id="aEd-iz-ENo"/>
+                <constraint firstItem="fEo-0P-1pF" firstAttribute="leading" secondItem="goL-Rq-94P" secondAttribute="trailing" constant="5" id="amQ-br-UUG"/>
+                <constraint firstAttribute="centerY" secondItem="cPj-zQ-kzN" secondAttribute="centerY" constant="3.5" id="dtB-Ti-prC"/>
+                <constraint firstAttribute="centerX" secondItem="fEo-0P-1pF" secondAttribute="centerX" constant="2" id="uCT-vc-90i"/>
+                <constraint firstAttribute="trailing" secondItem="cPj-zQ-kzN" secondAttribute="trailing" id="xUl-hq-1Bd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="CgP-pX-Doq"/>
+                    <exclude reference="8e4-wV-NKV"/>
+                    <exclude reference="RGK-w6-gHM"/>
+                    <exclude reference="S7B-0f-6vY"/>
+                    <exclude reference="dtB-Ti-prC"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="256" y="-756.5"/>
+        </view>
+    </objects>
+</document>

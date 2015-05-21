@@ -1,24 +1,22 @@
 //
-//  MySellViewController.m
+//  HorizontalLineViewController.m
 //  whunted
 //
 //  Created by thomas nguyen on 21/5/15.
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "MySellViewController.h"
+#import "HorizontalLineViewController.h"
 
-@interface MySellViewController ()
+@interface HorizontalLineViewController ()
 
 @end
 
-@implementation MySellViewController
-
+@implementation HorizontalLineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "GenericController.h"
 
-@interface MyWantViewController : GenericController
+@interface MyWantViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
 
 @end

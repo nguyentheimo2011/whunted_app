@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "GenericController.h"
 
-@interface MySellViewController : GenericController
+@interface MySellViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
 
 @end
