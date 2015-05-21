@@ -105,6 +105,7 @@
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
     priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Set a price" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     priceTextField.delegate = self;
+    [priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     self.priceCell.accessoryView = priceTextField;
     self.priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -143,13 +144,13 @@
 {
     UIAlertView *submissionAlertView;
     if ([self.wantDetailsDict objectForKey:ITEM_CATEGORY_KEY] == nil) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Whoops" message:@"Please choose a category!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please choose a category!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else if ([self.wantDetailsDict objectForKey:ITEM_NAME_KEY] == nil || [[self.wantDetailsDict objectForKey:ITEM_NAME_KEY] length] == 0) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Whoops" message:@"Please fill in item name!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please fill in item name!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else if ([self.wantDetailsDict objectForKey:ITEM_PRICE_KEY] == nil || [[self.wantDetailsDict objectForKey:ITEM_PRICE_KEY] length] == 0) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Whoops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
         if ([self.wantDetailsDict objectForKey:ITEM_DESC_KEY] == nil) {
@@ -378,6 +379,11 @@
 #pragma mark - UITextFieldDelegate
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {
+    if ([textField.text length] == 0) {
+        NSString *text = [@"TWD" stringByAppendingString:textField.text];
+        textField.text = text;
+    }
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(didFinishEditingPrice)];
 }
 
@@ -387,6 +393,16 @@
     if (buttonIndex == 1) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
+        
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+    return [string isEqualToString:filtered];
+    
 }
 
 @end
