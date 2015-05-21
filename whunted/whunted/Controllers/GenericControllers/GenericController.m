@@ -24,16 +24,21 @@
 {
     self = [super init];
     if (self != nil) {
-        [self addBarItems];
+        
     }
     return self;
+}
+
+- (void) viewDidLoad
+{
+    [self addBarItems];
 }
 
 - (void) addBarItems
 {
     UIImage *searchImage = [UIImage imageNamed:@"search.png"];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
-    
+
     UIImage *chatImage = [UIImage imageNamed:@"chat.png"];
     UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:nil];
     
@@ -43,14 +48,16 @@
     UIImage *camera = [UIImage imageNamed:@"camera.png"];
     UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(showImageGettingOptionPopup)];
     
-    
     NSArray *actionButtonItems = @[wantButton, profileButton, chatButton, searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
     
-    UIImage *appIcon = [UIImage imageNamed:@"app_icon.png"];
-    UIBarButtonItem *appIconButton = [[UIBarButtonItem alloc] initWithImage:appIcon style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.leftBarButtonItem = appIconButton;
-    self.navigationItem.leftBarButtonItem.enabled = NO;
+    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowSize.width, 100)];
+    UIImage *appIcon = [UIImage imageNamed:@"logo_icon.png"];
+    UIImageView *appIconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 30, 30)];
+    [appIconView setImage:appIcon];
+    [titleView addSubview:appIconView];
+    self.navigationItem.titleView = titleView;
 }
 
 - (void) showImageGettingOptionPopup

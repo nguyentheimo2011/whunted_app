@@ -1,18 +1,18 @@
 //
-//  BuySellViewController.m
+//  MyWantViewController.m
 //  whunted
 //
-//  Created by thomas nguyen on 6/5/15.
+//  Created by thomas nguyen on 21/5/15.
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "BuySellViewController.h"
+#import "MyWantViewController.h"
 
-@interface BuySellViewController ()
+@interface MyWantViewController ()
 
 @end
 
-@implementation BuySellViewController
+@implementation MyWantViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,5 +23,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

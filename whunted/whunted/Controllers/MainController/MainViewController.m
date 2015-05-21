@@ -9,8 +9,9 @@
 #import "MainViewController.h"
 #import "NewsFeedViewController.h"
 #import "BrowseViewController.h"
-#import "BuySellViewController.h"
 #import "GenericController.h"
+#import "MySellViewController.h"
+#import "MyWantViewController.h"
 
 @interface MainViewController ()
 
@@ -24,25 +25,31 @@
 {
     self = [super init];
     if (self != nil) {
-        UINavigationController *nfNavController = [[UINavigationController alloc] init];
-        NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
-        [nfNavController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
-        [nfNavController setTitle:@"News Feed"];
-        [nfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
-        
-        UINavigationController *bsNavController = [[UINavigationController alloc] init];
-        BuySellViewController *bsController = [[BuySellViewController alloc] init];
-        [bsNavController setViewControllers:[NSArray arrayWithObject:bsController]];
-        [bsNavController setTitle:@"Buy&Sell"];
-        [bsNavController.tabBarItem setImage:[UIImage imageNamed:@"gun_target.png"]];
-        
-        UINavigationController *brNavController = [[UINavigationController alloc] init];
+        UINavigationController *browserNavController = [[UINavigationController alloc] init];
         BrowseViewController *brController = [[BrowseViewController alloc] init];
-        [brNavController setViewControllers:[NSArray arrayWithObject:brController]];
-        [brNavController setTitle:@"Browse"];
-        [brNavController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
+        [browserNavController setViewControllers:[NSArray arrayWithObject:brController]];
+        [browserNavController setTitle:@"Browse"];
+        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
         
-        NSArray *controllers = [NSArray arrayWithObjects:nfNavController, bsNavController, brNavController, nil];
+        UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
+        NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
+        [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
+        [newsFeedfNavController setTitle:@"News Feed"];
+        [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+        
+        UINavigationController *myWantNavController = [[UINavigationController alloc] init];
+        MyWantViewController *myWantVC = [[MyWantViewController alloc] init];
+        [myWantNavController setViewControllers: [NSArray arrayWithObject:myWantVC]];
+        [myWantNavController setTitle:@"Want"];
+        [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
+        
+        UINavigationController *mySellNavController = [[UINavigationController alloc] init];
+        MySellViewController *mySellVC = [[MySellViewController alloc] init];
+        [mySellNavController setViewControllers: [NSArray arrayWithObject:mySellVC]];
+        [mySellNavController setTitle:@"Sell"];
+        [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
+        
+        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, myWantNavController, mySellNavController, nil];
         [self setViewControllers:controllers];
         
         [self customizeNavigationBar];
