@@ -11,4 +11,6 @@
 
 @interface MyWantViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) NSMutableArray *wantDataList;
+
 @end

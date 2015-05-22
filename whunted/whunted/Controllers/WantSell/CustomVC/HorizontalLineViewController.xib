@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HorizontalLineViewController">
             <connections>
+                <outlet property="firstLine" destination="goL-Rq-94P" id="Sbb-26-Ev2"/>
+                <outlet property="numLabel" destination="fEo-0P-1pF" id="WwP-dp-CMy"/>
+                <outlet property="secondLine" destination="cPj-zQ-kzN" id="J57-fD-k52"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Mpp-9X-uuB"/>
             </connections>
         </placeholder>
