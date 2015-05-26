@@ -6,12 +6,14 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "MainViewController.h"
-#import "WantDetailsViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Parse/Parse.h>
+
+#import "AppDelegate.h"
+#import "MainViewController.h"
+#import "WantDetailsViewController.h"
+#import "LoginSignupViewController.h"
 
 @interface AppDelegate ()
 
@@ -50,10 +52,11 @@
 }
 
 - (void) setViewController {
-    MainViewController *mainVC = [[MainViewController alloc] init];
+//    MainViewController *mainVC = [[MainViewController alloc] init];
 //    WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
 //    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
-    [self.window setRootViewController:mainVC];
+    LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
+    [self.window setRootViewController:loginVC];
 }
 
 @end

@@ -98,6 +98,7 @@
 		E9B800951B144527006D9133 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800921B144527006D9133 /* FBSDKLoginKit.framework */; };
 		E9B800961B144527006D9133 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800931B144527006D9133 /* FBSDKShareKit.framework */; };
 		E9B800981B14458B006D9133 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800971B14458B006D9133 /* ParseFacebookUtilsV4.framework */; };
+		E9B8009A1B145481006D9133 /* background_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9B800991B145481006D9133 /* background_image.jpg */; };
 		E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4565E1B0D863200E8B55D /* MyWantViewController.m */; };
 		E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456631B0D866F00E8B55D /* MySellViewController.m */; };
 		E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456671B0D8C7400E8B55D /* sell_icon@1x.png */; };
@@ -241,6 +242,7 @@
 		E9B800921B144527006D9133 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "whunted/Library/Facebook SDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		E9B800931B144527006D9133 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "whunted/Library/Facebook SDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		E9B800971B14458B006D9133 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "whunted/Library/Parse-library-1.7.4/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		E9B800991B145481006D9133 /* background_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background_image.jpg; path = Resources/LoginSignup/background_image.jpg; sourceTree = "<group>"; };
 		E9E4565D1B0D863200E8B55D /* MyWantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyWantViewController.h; path = Controllers/WantSell/MyWantVC/MyWantViewController.h; sourceTree = "<group>"; };
 		E9E4565E1B0D863200E8B55D /* MyWantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyWantViewController.m; path = Controllers/WantSell/MyWantVC/MyWantViewController.m; sourceTree = "<group>"; };
 		E9E456621B0D866F00E8B55D /* MySellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySellViewController.h; path = Controllers/WantSell/MySellVC/MySellViewController.h; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 		E95CFA511B141ED0003755E3 /* LoginSignup */ = {
 			isa = PBXGroup;
 			children = (
+				E9B800991B145481006D9133 /* background_image.jpg */,
 				E95CFA521B141EDE003755E3 /* facebook_login_button@1x.png */,
 				E95CFA531B141EDE003755E3 /* facebook_login_button@2x.png */,
 				E95CFA541B141EDE003755E3 /* facebook_login_button@3x.png */,
@@ -879,6 +882,7 @@
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
 				E9E456841B0DE8E100E8B55D /* HorizontalLineViewController.xib in Resources */,
 				E95CFA561B141EDE003755E3 /* facebook_login_button@2x.png in Resources */,
+				E9B8009A1B145481006D9133 /* background_image.jpg in Resources */,
 				E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */,
 				E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */,
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
