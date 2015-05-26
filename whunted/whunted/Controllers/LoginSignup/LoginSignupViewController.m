@@ -7,6 +7,7 @@
 //
 
 #import "LoginSignupViewController.h"
+#import "MainViewController.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
 #import <Parse/Parse.h>
@@ -60,9 +61,15 @@
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
         } else if (user.isNew) {
             NSLog(@"User signed up and logged in through Facebook!");
+            MainViewController *mainVC = [[MainViewController alloc] init];
+            [self presentViewController:mainVC animated:YES completion:^{
+                [self addDataToUser:user];
+            }];
         } else {
             NSLog(@"User logged in through Facebook!");
-            [self addDataToUser:user];
+            MainViewController *mainVC = [[MainViewController alloc] init];
+            [self presentViewController:mainVC animated:YES completion:^{
+            }];
         }
     }];
 }
