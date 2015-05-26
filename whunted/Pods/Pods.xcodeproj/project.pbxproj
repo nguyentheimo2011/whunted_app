@@ -555,6 +555,12 @@
 			baseConfigurationReference = 2224A0581F667C5C767F0EB2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Thomas/Documents/FacebookSDK,
+					/Users/Thomas/Documents/Whunted,
+					"Company/whunted_app/whunted/whunted/Library/Parse-library-1.7.4",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -626,6 +632,12 @@
 			baseConfigurationReference = 3755F79F90593D985E1FBCBB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Thomas/Documents/FacebookSDK,
+					/Users/Thomas/Documents/Whunted,
+					"Company/whunted_app/whunted/whunted/Library/Parse-library-1.7.4",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";

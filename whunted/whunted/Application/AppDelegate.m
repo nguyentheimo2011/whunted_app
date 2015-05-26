@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "WantDetailsViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -26,7 +29,24 @@
     
     [self setViewController];
     
+    [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
 }
 
 - (void) setViewController {

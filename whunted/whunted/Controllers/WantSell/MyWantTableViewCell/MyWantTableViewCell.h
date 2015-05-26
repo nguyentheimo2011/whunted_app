@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WantData.h"
 
-@interface MyWantTableViewCell : UITableViewCell
+@interface MyWantTableViewCell : UITableViewCell <UIPageViewControllerDataSource>
+
+@property (nonatomic, strong) UIPageViewController *pageViewController;
+@property (nonatomic, strong) WantData *wantData;
 
 @end
