@@ -7,6 +7,9 @@
 //
 
 #import "LoginSignupViewController.h"
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKGraphRequest.h>
+#import <Parse/Parse.h>
 
 @interface LoginSignupViewController ()
 
@@ -42,7 +45,70 @@
     UIButton *loginButton = [[UIButton alloc] init];
     [loginButton setBackgroundImage: loginImage forState:UIControlStateNormal];
     loginButton.frame = CGRectMake(winSize.width/2 - loginImage.size.width/2, winSize.height/2 - loginImage.size.height/2, loginImage.size.width, loginImage.size.height);
+    [loginButton addTarget:self action:@selector(loginOrSignUpWithFacebook) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
+}
+
+#pragma mark - Event Handling
+
+- (void) loginOrSignUpWithFacebook
+{
+    NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
+    
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in through Facebook!");
+        } else {
+            NSLog(@"User logged in through Facebook!");
+            [self addDataToUser:user];
+        }
+    }];
+}
+
+- (void) addDataToUser: (PFUser*) user
+{
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        // result is a dictionary with the user's Facebook data
+        NSDictionary *userData = (NSDictionary *)result;
+        
+        NSString *facebookID = userData[@"id"];
+        user[@"email"] = userData[@"email"];
+        user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
+        user[@"firstName"] = userData[@"first_name"];
+        user[@"lastName"] = userData[@"last_name"];
+        user[@"gender"] = userData[@"gender"];
+        
+        NSArray *addresses = [self extractCountry:userData[@"location"][@"name"]];
+        user[@"areaAddress"] = addresses[0];
+        user[@"country"] = addresses[1];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        user[@"dob"] = [dateFormatter dateFromString:userData[@"birthday"]];
+
+        [user saveEventually];
+
+        NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+
+         //Run network request asynchronously
+        [NSURLConnection sendAsynchronousRequest:urlRequest
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:
+         ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+             if (connectionError == nil && data != nil) {
+                 PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
+                 user[@"profilePicture"] = profilePictureFile;
+                 [user saveEventually];
+             }
+         }];
+    }];
 }
 
 #pragma mark - Supporting function
@@ -73,6 +139,22 @@
     
     // *************** if you need scaling
     // return [[self class] scaleIfNeeded:cgImage];
+}
+
+- (NSString *) extractUsernameFromEmail: (NSString *) email
+{
+    NSRange atCharRange = [email rangeOfString:@"@"];
+    NSString *username = [email substringToIndex:atCharRange.location];
+    return username;
+}
+
+- (NSArray *) extractCountry: (NSString *) location
+{
+    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
+    NSString *specificAddress = [location substringToIndex:commaSignRange.location];
+    NSString *country = [location substringFromIndex:commaSignRange.location + 1];
+    
+    return [NSArray arrayWithObjects:specificAddress, country, nil];
 }
 
 @end
