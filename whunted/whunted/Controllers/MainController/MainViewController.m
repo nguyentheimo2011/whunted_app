@@ -25,9 +25,9 @@
 
 @implementation MainViewController
 
-- (id) init
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super init];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self != nil) {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         BrowseViewController *brController = [[BrowseViewController alloc] init];
@@ -66,6 +66,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
     [self addDataToUser];
 }
 
@@ -89,21 +93,47 @@
         PFUser *user = [PFUser currentUser];
         
         NSString *facebookID = userData[@"id"];
-        user[@"email"] = userData[@"email"];
-        user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
-        user[@"firstName"] = userData[@"first_name"];
-        user[@"lastName"] = userData[@"last_name"];
-        user[@"gender"] = userData[@"gender"];
         
-        NSArray *addresses = [self extractCountry:userData[@"location"][@"name"]];
-        user[@"areaAddress"] = addresses[0];
-        user[@"country"] = addresses[1];
+        NSString *email = userData[@"email"];
+        if (email) {
+            user[@"email"] =email ;
+            user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
+        }
+     
+        NSString *firstName = userData[@"first_name"];
+        if (firstName) {
+            user[@"firstName"] = firstName;
+        }
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-        [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-        user[@"dob"] = [dateFormatter dateFromString:userData[@"birthday"]];
+        NSString *lastName = userData[@"last_name"];
+        if (lastName) {
+            user[@"lastName"] = lastName;
+        }
+        
+        NSString *gender = userData[@"gender"];
+        if (gender) {
+            user[@"gender"] = gender;
+        }
+        
+        NSString *location = userData[@"location"][@"name"];
+        if (location) {
+            NSArray *addresses = [self extractCountry:location];
+            if (addresses[0]) {
+                user[@"areaAddress"] = addresses[0];
+            }
+            if (addresses[1]) {
+                user[@"country"] = addresses[1];
+            }
+        }
+
+        NSString *dob = userData[@"birthday"];
+        if (dob) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+            [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+            user[@"dob"] = [dateFormatter dateFromString:dob];
+        }
         
         [user saveEventually];
         
@@ -118,8 +148,10 @@
          ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
              if (connectionError == nil && data != nil) {
                  PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
-                 user[@"profilePicture"] = profilePictureFile;
-                 [user saveEventually];
+                 if (profilePictureFile) {
+                     user[@"profilePicture"] = profilePictureFile;
+                     [user saveInBackground];
+                 }
              }
          }];
     }];

@@ -8,6 +8,7 @@
 
 #import "LoginSignupViewController.h"
 #import "MainViewController.h"
+
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
 #import <Parse/Parse.h>
@@ -115,9 +116,8 @@
 
 - (void) presentMainViewController
 {
-    MainViewController *mainVC = [[MainViewController alloc] init];
+    MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:mainVC animated:YES completion:^{
-        
     }];
 }
 
