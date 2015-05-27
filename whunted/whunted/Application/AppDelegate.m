@@ -29,10 +29,10 @@
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     
-    [self setViewController];
-    
     [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    
+    [self setViewController];
     
     return YES;
 }
@@ -52,11 +52,15 @@
 }
 
 - (void) setViewController {
-//    MainViewController *mainVC = [[MainViewController alloc] init];
-//    WantDetailsViewController *vc = [[WantDetailsViewController alloc] init];
-//    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
-    LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
-    [self.window setRootViewController:loginVC];
+    if (![PFUser currentUser] || // Check if user is cached
+        ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) { // Check if user is linked to Facebook
+        
+        LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
+        [self.window setRootViewController:loginVC];
+    } else {
+        MainViewController *mainVC = [[MainViewController alloc] init];
+        [self.window setRootViewController:mainVC];
+    }
 }
 
 @end
