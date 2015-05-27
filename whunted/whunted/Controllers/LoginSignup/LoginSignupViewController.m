@@ -103,7 +103,7 @@
             [self userDidTryToLogin];
             [self addDataToUser];
             [self presentMainViewController];
-        }        
+        }
     }];
 }
 
@@ -124,72 +124,80 @@
 {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        // result is a dictionary with the user's Facebook data
-        NSDictionary *userData = (NSDictionary *)result;
-        PFUser *user = [PFUser currentUser];
-        
-        NSString *facebookID = userData[@"id"];
-        
-        NSString *email = userData[@"email"];
-        if (email) {
-            user[@"email"] =email ;
-            user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
-        }
-        
-        NSString *firstName = userData[@"first_name"];
-        if (firstName) {
-            user[@"firstName"] = firstName;
-        }
-        
-        NSString *lastName = userData[@"last_name"];
-        if (lastName) {
-            user[@"lastName"] = lastName;
-        }
-        
-        NSString *gender = userData[@"gender"];
-        if (gender) {
-            user[@"gender"] = gender;
-        }
-        
-        NSString *location = userData[@"location"][@"name"];
-        if (location) {
-            NSArray *addresses = [self extractCountry:location];
-            if (addresses[0]) {
-                user[@"areaAddress"] = addresses[0];
+        if (!error) {
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)result;
+            PFUser *user = [PFUser currentUser];
+            
+            NSString *facebookID = userData[@"id"];
+            
+            NSString *email = userData[@"email"];
+            if (email) {
+                user[@"email"] =email ;
+                user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
             }
-            if (addresses[1]) {
-                user[@"country"] = addresses[1];
+            
+            NSString *firstName = userData[@"first_name"];
+            if (firstName) {
+                user[@"firstName"] = firstName;
             }
-        }
-        
-        NSString *dob = userData[@"birthday"];
-        if (dob) {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
-            [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-            user[@"dob"] = [dateFormatter dateFromString:dob];
-        }
-        
-        [user saveInBackground];
-        
-        NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-        
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
-        
-        //Run network request asynchronously
-        [NSURLConnection sendAsynchronousRequest:urlRequest
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:
-         ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-             if (connectionError == nil && data != nil) {
-                 PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
-                 if (profilePictureFile) {
-                     user[@"profilePicture"] = profilePictureFile;
-                     [user saveInBackground];
+            
+            NSString *lastName = userData[@"last_name"];
+            if (lastName) {
+                user[@"lastName"] = lastName;
+            }
+            
+            NSString *gender = userData[@"gender"];
+            if (gender) {
+                user[@"gender"] = gender;
+            }
+            
+            NSString *location = userData[@"location"][@"name"];
+            if (location) {
+                NSArray *addresses = [self extractCountry:location];
+                if (addresses[0]) {
+                    user[@"areaAddress"] = addresses[0];
+                }
+                if (addresses[1]) {
+                    user[@"country"] = addresses[1];
+                }
+            }
+            
+            NSString *dob = userData[@"birthday"];
+            if (dob) {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+                user[@"dob"] = [dateFormatter dateFromString:dob];
+            }
+            
+            [user saveInBackground];
+            
+            // retrieve and save profile picture
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+            
+            //Run network request asynchronously
+            [NSURLConnection sendAsynchronousRequest:urlRequest
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:
+             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                 if (connectionError == nil && data != nil) {
+                     PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
+                     if (profilePictureFile) {
+                         user[@"profilePicture"] = profilePictureFile;
+                         [user saveInBackground];
+                     }
                  }
-             }
-         }];
+             }];
+        }  else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+            NSLog(@"The facebook session was invalidated");
+            [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
+        } else {
+            NSLog(@"Some other error: %@", error);
+        }
     }];
 }
 
