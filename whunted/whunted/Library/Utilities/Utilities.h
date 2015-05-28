@@ -24,6 +24,8 @@ typedef enum {
 #define ITEM_ESCROW_OPTION_KEY  @"escrowOption"
 #define ACCEPTABLE_CHARECTERS   @"0123456789."
 
+#define APP_COLOR               [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
+
 @interface Utilities : NSObject
 
 + (void) addBorderAndShadow: (UIView *) view;

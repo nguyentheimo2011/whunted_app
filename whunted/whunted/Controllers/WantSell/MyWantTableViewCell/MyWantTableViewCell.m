@@ -20,9 +20,11 @@
     // Configure the view for the selected state
 }
 
-//- (UIViewController *) pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-//{
-//    
-//}
+- (IBAction)likeButtonClicked:(UIButton *)sender {
+}
 
+- (IBAction)promotionButtonClicked:(id)sender {
+}
+- (IBAction)sellerButtonClicked:(UIButton *)sender {
+}
 @end

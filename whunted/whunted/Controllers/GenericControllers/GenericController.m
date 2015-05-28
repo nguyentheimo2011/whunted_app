@@ -24,7 +24,7 @@
 {
     self = [super init];
     if (self != nil) {
-        
+        [self customizeTarBarAppearance];
     }
     return self;
 }
@@ -134,6 +134,11 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+
+- (void) customizeTarBarAppearance
+{
+    [[UITabBar appearance] setTintColor:APP_COLOR];
 }
 
 @end

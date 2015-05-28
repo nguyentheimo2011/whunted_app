@@ -12,21 +12,23 @@
 
 @interface MyWantViewController ()
 
+@property (strong, nonatomic) UITableView *wantTableView;
+@property (strong, nonatomic) UICollectionView *wantCollectionView;
+@property (strong, nonatomic) HorizontalLineViewController *horizontalLineVC;
+
 @end
 
 @implementation MyWantViewController
 {
-    UITableView *wantTableView;
-    UICollectionView *wantCollectionView;
-    HorizontalLineViewController *horizontalLineVC;
     CGSize windowSize;
 }
 
-- (id) initWithWantDataList: (NSArray *) wantDataList
+- (id) init
 {
     self = [super init];
     if (self != nil) {
-        self.wantDataList = [NSMutableArray arrayWithArray:wantDataList];
+        [self retrieveWantDataList];
+        NSLog(@"");
     }
     
     return self;
@@ -42,29 +44,50 @@
     [self addTableView];
 }
 
+#pragma mark - UI Handlers
+
 - (void) addHorizontalLine
 {
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     
-    horizontalLineVC = [[HorizontalLineViewController alloc] init];
-    CGRect frame = horizontalLineVC.view.frame;
-    horizontalLineVC.view.frame = CGRectMake(0, navBarSize.height + 15, windowSize.width, frame.size.height);
+    self.horizontalLineVC = [[HorizontalLineViewController alloc] init];
+    CGRect frame = self.horizontalLineVC.view.frame;
+    self.horizontalLineVC.view.frame = CGRectMake(0, navBarSize.height + 15, windowSize.width, frame.size.height);
     NSString *labelText = [NSString stringWithFormat:@"%d wants", [self.wantDataList count]];
-    [horizontalLineVC.numLabel setText:labelText];
-    [self.view addSubview:horizontalLineVC.view];
+    [self.horizontalLineVC.numLabel setText:labelText];
+    [self.view addSubview:self.horizontalLineVC.view];
 }
 
 - (void) addTableView
 {
-    wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
-    wantTableView.dataSource = self;
-    wantTableView.delegate = self;
-    [self.view addSubview:wantTableView];
+    self.wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
+    self.wantTableView.dataSource = self;
+    self.wantTableView.delegate = self;
+    [self.view addSubview:self.wantTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Data Handler
+
+- (void) retrieveWantDataList
+{
+    self.wantDataList = [[NSMutableArray alloc] init];
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query whereKey:@"buyerID" equalTo:currentUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                [self.wantDataList addObject:wantData];
+                [self.wantTableView reloadData];
+                NSString *labelText = [NSString stringWithFormat:@"%d wants", [self.wantDataList count]];
+                [self.horizontalLineVC.numLabel setText:labelText];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -76,7 +99,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [self.wantDataList count];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,9 +111,25 @@
 {
     static NSString *cellIdentifier = @"MyWantTableViewCell";
     
-    [tableView registerNib:[UINib nibWithNibName:cellIdentifier bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    MyWantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    MyWantTableViewCell *cell;
+//    = (MyWantTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell==nil){
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
+        [cell.itemNameLabel setText:wantData.itemName];
+        
+        PFRelation *picRelation = wantData.itemPictureList;
+        PFObject *firstObject = [[picRelation query] getFirstObject];
+        PFFile *firstPicture = firstObject[@"itemPicture"];
+        NSData *data = [firstPicture getData];
+        UIImage *image = [UIImage imageWithData:data];
+        [cell.imageView setImage:image];
+    }
+    
     
     return cell;
 }

@@ -12,6 +12,7 @@
 #import "GenericController.h"
 #import "MySellViewController.h"
 #import "MyWantViewController.h"
+#import "Utilities.h"
 
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
@@ -75,7 +76,7 @@
 
 - (void) customizeNavigationBar
 {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]];
+    [[UINavigationBar appearance] setBarTintColor:APP_COLOR];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 }
 

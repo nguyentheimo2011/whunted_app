@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="377" id="KGk-i7-Jjw" customClass="MyWantTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyWantTableViewCell" rowHeight="377" id="KGk-i7-Jjw" customClass="MyWantTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="377"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -35,29 +35,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scd-W7-Y1r">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="view_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="KJf-w5-swE">
                                 <rect key="frame" x="55" y="5" width="23" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Scd-W7-Y1r" secondAttribute="height" multiplier="1:1" id="Q6U-gN-aO7"/>
+                                    <constraint firstAttribute="width" secondItem="KJf-w5-swE" secondAttribute="height" multiplier="1:1" id="pnh-H6-ndr"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="view_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.92178077028508765" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" secondItem="Scd-W7-Y1r" secondAttribute="height" multiplier="3:2" id="PiB-cT-bAj"/>
+                            <constraint firstItem="KJf-w5-swE" firstAttribute="height" secondItem="rdR-BI-PgB" secondAttribute="height" multiplier="2:3" id="49Z-61-3Gk"/>
                             <constraint firstAttribute="centerY" secondItem="A3c-GH-AUZ" secondAttribute="centerY" constant="1" id="Uve-H7-Cc4"/>
+                            <constraint firstAttribute="centerY" secondItem="KJf-w5-swE" secondAttribute="centerY" id="WFY-TL-vdT"/>
                             <constraint firstAttribute="centerX" secondItem="A3c-GH-AUZ" secondAttribute="centerX" constant="15" id="ZME-WG-8LK"/>
                             <constraint firstAttribute="width" secondItem="rdR-BI-PgB" secondAttribute="height" multiplier="2.5:1" id="aOO-fz-UNM"/>
+                            <constraint firstAttribute="centerX" secondItem="KJf-w5-swE" secondAttribute="centerX" id="bEk-3f-l5y"/>
+                            <constraint firstAttribute="trailing" secondItem="KJf-w5-swE" secondAttribute="trailing" constant="10" id="cvY-cC-HfA"/>
                             <constraint firstItem="A3c-GH-AUZ" firstAttribute="leading" secondItem="rdR-BI-PgB" secondAttribute="leading" constant="8" id="ivi-Ft-jUN"/>
-                            <constraint firstAttribute="trailing" secondItem="Scd-W7-Y1r" secondAttribute="trailing" constant="10" id="nWW-04-c1N"/>
-                            <constraint firstAttribute="centerY" secondItem="Scd-W7-Y1r" secondAttribute="centerY" constant="0.5" id="ylz-Ov-xdj"/>
+                            <constraint firstAttribute="centerX" secondItem="KJf-w5-swE" secondAttribute="centerX" constant="-22" id="y8W-1z-E2I"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="ivi-Ft-jUN"/>
+                                <exclude reference="bEk-3f-l5y"/>
+                                <exclude reference="y8W-1z-E2I"/>
                             </mask>
                         </variation>
                     </view>
@@ -86,6 +87,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="promotionButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CAT-bZ-8Py"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.92178077030000005" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,6 +126,9 @@
                         <state key="normal" backgroundImage="sellers_icon.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="sellerButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Fn2-8Q-9kA"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaX-UW-vz3">
                         <rect key="frame" x="228" y="332" width="10" height="21"/>
@@ -137,6 +144,9 @@
                         <state key="normal" backgroundImage="likes_icon.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="likeButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kAG-yw-XHK"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -181,6 +191,14 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="itemImageView" destination="meM-CZ-HkX" id="7Pf-Fq-8Pc"/>
+                <outlet property="itemNameLabel" destination="ZTv-XS-OEv" id="QDA-93-bbL"/>
+                <outlet property="likesNumLabel" destination="4W9-hk-6kS" id="Z9B-y2-utO"/>
+                <outlet property="lowestPriceLabel" destination="PUp-v5-qmY" id="LTE-Fs-Ckk"/>
+                <outlet property="sellersNumLabel" destination="XaX-UW-vz3" id="h9d-Qd-v1b"/>
+                <outlet property="viewsNumLabel" destination="A3c-GH-AUZ" id="p5C-XR-5qx"/>
+            </connections>
             <point key="canvasLocation" x="327" y="241.5"/>
         </tableViewCell>
     </objects>

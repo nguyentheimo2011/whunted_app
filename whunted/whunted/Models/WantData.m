@@ -33,4 +33,25 @@
     return self;
 }
 
+- (id) initWithPFObject: (PFObject *) wantDataPFObject
+{
+    self = [super init];
+    if (self != nil) {
+        self.itemID = wantDataPFObject[@"objectID"];
+        self.itemName = wantDataPFObject[@"itemName"];
+        self.itemDesc = wantDataPFObject[@"itemDesc"];
+        self.itemCategory = wantDataPFObject[@"category"];
+        self.demandedPrice = wantDataPFObject[@"demandedPrice"];
+        self.paymentMethod = wantDataPFObject[@"paymentMethod"];
+        self.meetingLocation = wantDataPFObject[@"meetingPlace"];
+        self.itemPictureList = wantDataPFObject[@"itemPictures"];
+        self.buyerID = wantDataPFObject[@"buyerID"];
+        self.hashTagList = wantDataPFObject[@"hashtaglist"];
+    }
+    
+    return self;
+}
+
+
+
 @end
