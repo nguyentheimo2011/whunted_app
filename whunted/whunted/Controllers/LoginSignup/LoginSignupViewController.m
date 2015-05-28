@@ -213,8 +213,17 @@
 - (NSArray *) extractCountry: (NSString *) location
 {
     NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
-    NSString *specificAddress = [location substringToIndex:commaSignRange.location];
-    NSString *country = [location substringFromIndex:commaSignRange.location + 1];
+    NSString *specificAddress;
+    NSString *country;
+    
+    if (commaSignRange.location >= location.length)
+    {
+        specificAddress = @"";
+        country = location;
+    } else {
+        specificAddress = [location substringToIndex:commaSignRange.location];
+        country = [location substringFromIndex:commaSignRange.location + 1];
+    }
     
     return [NSArray arrayWithObjects:specificAddress, country, nil];
 }
