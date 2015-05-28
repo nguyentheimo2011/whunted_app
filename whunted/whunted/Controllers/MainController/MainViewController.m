@@ -33,7 +33,7 @@
         BrowseViewController *brController = [[BrowseViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:brController]];
         [browserNavController setTitle:@"Browse"];
-        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"shopping_cart.png"]];
+        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
