@@ -42,7 +42,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.92178077028508765" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="RtA-Aj-ZSd" secondAttribute="trailing" constant="10" id="C7q-Cc-yrN"/>
                             <constraint firstItem="RtA-Aj-ZSd" firstAttribute="height" secondItem="rdR-BI-PgB" secondAttribute="height" multiplier="2:3" id="Igo-Fp-Jxq"/>
@@ -68,7 +68,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.92178077030000005" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="kw0-jM-waJ" secondAttribute="height" multiplier="3:2" id="5tj-4A-eBv"/>
                             <constraint firstAttribute="width" secondItem="mBq-Fm-bhB" secondAttribute="height" multiplier="2.5:1" id="85Z-2V-PLE"/>
@@ -95,7 +95,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.055264086429999998" green="0.66666666669999997" blue="0.60216679770000003" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.92178077030000005" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="ktL-1O-xFX" secondAttribute="centerY" id="4bW-2b-MMK"/>
                             <constraint firstAttribute="width" secondItem="r7x-bM-hxG" secondAttribute="height" multiplier="2.5:1" id="5jX-xq-jzT"/>
