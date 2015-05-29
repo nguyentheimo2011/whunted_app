@@ -14,6 +14,7 @@
 {
     // border radius
     [view.layer setCornerRadius:10.0f];
+    [view clipsToBounds];
     
     // border
     [view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
@@ -31,6 +32,19 @@
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
                                      byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
+                                           cornerRadii:CGSizeMake(10.0f, 10.0f)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
+}
+
++ (void) setBottomRoundedCorner: (UIView *) view
+{
+    UIBezierPath *maskPath;
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
+                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerBottomRight)
                                            cornerRadii:CGSizeMake(10.0f, 10.0f)];
     
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];

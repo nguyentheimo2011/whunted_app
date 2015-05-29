@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageGetterViewController">
             <connections>
+                <outlet property="choosingPhotoButton" destination="8tf-BS-yBj" id="VSy-Ah-CX8"/>
+                <outlet property="firstTitleLabel" destination="Grl-Py-4Z1" id="B0f-wj-gxb"/>
+                <outlet property="postingImageLinkButton" destination="QdG-zf-LVr" id="loL-gL-WPN"/>
+                <outlet property="secondTitleLabel" destination="mI0-gz-3wk" id="fiT-20-3IK"/>
+                <outlet property="takingPhotoButton" destination="k1z-EJ-H3k" id="uPs-Jh-4yH"/>
                 <outlet property="titleView" destination="MbC-17-CMG" id="fJI-zy-O5D"/>
                 <outlet property="view" destination="iN0-l3-epB" id="C2i-aa-DJI"/>
             </connections>

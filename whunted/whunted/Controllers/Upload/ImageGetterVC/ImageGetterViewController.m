@@ -21,16 +21,30 @@
     if (self != nil) {
         [Utilities addBorderAndShadow:self.view];
         [Utilities setTopRoundedCorner:self.titleView];
+        [Utilities setBottomRoundedCorner:self.postingImageLinkButton];
     }
     return self;
 }
 
 - (void) viewDidLoad {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat width = screenRect.size.width * 0.875;
+    [super viewDidLoad];
+    
+    CGFloat width = WINSIZE.width * 0.875;
     self.view.frame = CGRectMake(0, 0, width, self.view.frame.size.height);
     [self.view layoutSubviews];
-    [super viewDidLoad];
+    
+    [self customizeUI];
+}
+
+- (void) customizeUI
+{
+    [self.titleView setBackgroundColor:APP_COLOR_5];
+    [self.firstTitleLabel setTextColor:[UIColor whiteColor]];
+    [self.secondTitleLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.takingPhotoButton setBackgroundColor:APP_COLOR_2];
+    [self.choosingPhotoButton setBackgroundColor:APP_COLOR_4];
+    [self.postingImageLinkButton setBackgroundColor:APP_COLOR_2];
 }
 
 - (void) didReceiveMemoryWarning {
