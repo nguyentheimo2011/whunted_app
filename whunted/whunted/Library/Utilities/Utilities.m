@@ -39,4 +39,23 @@
     view.layer.mask = maskLayer;
 }
 
++ (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize
+{
+    CGFloat wRatio = newSize.width * 1.0 / originalImage.size.width;
+    CGFloat hRatio = newSize.height * 1.0 / originalImage.size.height;
+    CGFloat minRatio = MIN(wRatio, hRatio);
+    CGFloat newWidth = originalImage.size.width * minRatio;
+    CGFloat newHeight = originalImage.size.height * minRatio;
+    
+    CGRect rect = CGRectMake(0,0,newWidth,newHeight);
+    UIGraphicsBeginImageContext( rect.size );
+    [originalImage drawInRect:rect];
+    UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSData *imageData = UIImagePNGRepresentation(picture1);
+    UIImage *newImage=[UIImage imageWithData:imageData];
+    return newImage;
+}
+
 @end

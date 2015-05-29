@@ -25,10 +25,15 @@ typedef enum {
 #define ACCEPTABLE_CHARECTERS   @"0123456789."
 
 #define APP_COLOR               [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
+#define APP_COLOR_2             [UIColor colorWithRed:224.0/255 green:224.0/255 blue:224.0/255 alpha:1.0]
+#define APP_COLOR_3             [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
+
+#define WINSIZE                 [[UIScreen mainScreen] bounds].size
 
 @interface Utilities : NSObject
 
 + (void) addBorderAndShadow: (UIView *) view;
 + (void) setTopRoundedCorner: (UIView *) view;
++ (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize;
 
 @end

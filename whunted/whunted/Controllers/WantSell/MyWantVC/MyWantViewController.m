@@ -8,7 +8,11 @@
 
 #import "MyWantViewController.h"
 #import "HorizontalLineViewController.h"
-#import "MyWantTableViewCell.h"
+#import "WantTableViewCell.h"
+#import "WantData.h"
+
+#import <UIImage-ResizeMagick/UIImage+ResizeMagick.h>
+#import <Parse/Parse.h>
 
 @interface MyWantViewController ()
 
@@ -28,7 +32,6 @@
     self = [super init];
     if (self != nil) {
         [self retrieveWantDataList];
-        NSLog(@"");
     }
     
     return self;
@@ -111,24 +114,50 @@
 {
     static NSString *cellIdentifier = @"MyWantTableViewCell";
     
-    MyWantTableViewCell *cell;
-//    = (MyWantTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    WantTableViewCell *cell = (WantTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell==nil){
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+//        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
+//        cell = [topLevelObjects objectAtIndex:0];
+        cell = [[WantTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [cell layoutIfNeeded];
         
-        WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
-        [cell.itemNameLabel setText:wantData.itemName];
-        
-        PFRelation *picRelation = wantData.itemPictureList;
-        PFObject *firstObject = [[picRelation query] getFirstObject];
-        PFFile *firstPicture = firstObject[@"itemPicture"];
-        NSData *data = [firstPicture getData];
-        UIImage *image = [UIImage imageWithData:data];
-        [cell.imageView setImage:image];
+    } else {
+//        [cell.imageView setImage:[[UIImage alloc] init]];
+//        NSLog(@"width: %f, height: %f", cell.imageView.frame.size.width, cell.imageView.frame.size.height);
     }
+    
+//    [cell.imageView setImage:[[UIImage alloc] init]];
+//    WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
+//    [cell.itemNameLabel setText:wantData.itemName];
+//    
+//    PFRelation *picRelation = wantData.itemPictureList;
+//    [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+//        if (!error) {
+//            PFFile *firstPicture = firstObject[@"itemPicture"];
+//            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+//                if (!error_2) {
+////                    UIImage *image = [UIImage imageWithData:data];
+////                    UIImage *resizedImage = [image resizedImageByWidth:264];
+////                    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+////                    cell.imageView.clipsToBounds = YES;
+////                    [cell.imageView setImage:resizedImage];
+//                    
+//                    
+//                    
+////                    [self.wantTableView reloadData];
+////                    [self.wantTableView beginUpdates];
+////                    [self.wantTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+////                    [self.wantTableView endUpdates];
+//                } else {
+//                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+//                }
+//            }];
+//        } else {
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
     
     
     return cell;
