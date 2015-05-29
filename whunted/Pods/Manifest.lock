@@ -21,16 +21,13 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - SZTextView (1.2.1)
-  - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - SZTextView
-  - UIImage-ResizeMagick
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
-  UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
 
 COCOAPODS: 0.37.0

@@ -11,7 +11,6 @@
 #import "WantTableViewCell.h"
 #import "WantData.h"
 
-#import <UIImage-ResizeMagick/UIImage+ResizeMagick.h>
 #import <Parse/Parse.h>
 
 @interface MyWantViewController ()

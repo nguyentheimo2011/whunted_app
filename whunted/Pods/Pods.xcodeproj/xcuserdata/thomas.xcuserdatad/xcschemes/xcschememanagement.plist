@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-UIImage-ResizeMagick.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8CA0D74A8FFCAB2B741102A7</key>
+		<key>5133EE808999DE211A502D9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>982C2E045B0E2FA770CE690E</key>
+		<key>79B7594885BC394BE1BF6203</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ADE03522F2DFD4272EEC7EC4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D8DDC699C068A90328B0B7F7</key>
+		<key>C60C2A2755A54648919C83B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
