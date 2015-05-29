@@ -117,47 +117,30 @@
     WantTableViewCell *cell = (WantTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell==nil){
-//        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-//        cell = [topLevelObjects objectAtIndex:0];
         cell = [[WantTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        [cell layoutIfNeeded];
-        
-    } else {
-//        [cell.imageView setImage:[[UIImage alloc] init]];
-//        NSLog(@"width: %f, height: %f", cell.imageView.frame.size.width, cell.imageView.frame.size.height);
     }
     
-//    [cell.imageView setImage:[[UIImage alloc] init]];
-//    WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
-//    [cell.itemNameLabel setText:wantData.itemName];
-//    
-//    PFRelation *picRelation = wantData.itemPictureList;
-//    [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-//        if (!error) {
-//            PFFile *firstPicture = firstObject[@"itemPicture"];
-//            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
-//                if (!error_2) {
-////                    UIImage *image = [UIImage imageWithData:data];
-////                    UIImage *resizedImage = [image resizedImageByWidth:264];
-////                    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-////                    cell.imageView.clipsToBounds = YES;
-////                    [cell.imageView setImage:resizedImage];
-//                    
-//                    
-//                    
-////                    [self.wantTableView reloadData];
-////                    [self.wantTableView beginUpdates];
-////                    [self.wantTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-////                    [self.wantTableView endUpdates];
-//                } else {
-//                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
-//                }
-//            }];
-//        } else {
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
+    [cell.itemImageView setImage:[[UIImage alloc] init]];
+    WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
+    [cell.itemNameLabel setText:wantData.itemName];
+    
+    PFRelation *picRelation = wantData.itemPictureList;
+    [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+        if (!error) {
+            PFFile *firstPicture = firstObject[@"itemPicture"];
+            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                if (!error_2) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [cell.itemImageView setImage:image];
+                } else {
+                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                }
+            }];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
     
     return cell;
