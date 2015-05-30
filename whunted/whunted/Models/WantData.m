@@ -20,14 +20,14 @@
     return self;
 }
 
-- (id) initWithItemID: (NSString *) itemID andItemCategory: (NSString *) itemCat andItemName: (NSString *) itemName andBuyerID: (NSString *) buyerID
+- (id) initWithItemID: (NSString *) itemID andItemCategory: (NSString *) itemCat andItemName: (NSString *) itemName andBuyerID: (PFUser *) buyerID
 {
     self = [super init];
     if (self != nil) {
         self.itemID = itemID;
         self.itemCategory = itemCat;
         self.itemName = itemName;
-        self.buyerID = buyerID;
+        self.buyer = buyerID;
     }
     
     return self;
@@ -45,7 +45,7 @@
         self.paymentMethod = wantDataPFObject[@"paymentMethod"];
         self.meetingLocation = wantDataPFObject[@"meetingPlace"];
         self.itemPictureList = wantDataPFObject[@"itemPictures"];
-        self.buyerID = wantDataPFObject[@"buyerID"];
+        self.buyer = wantDataPFObject[@"buyerID"];
         self.hashTagList = wantDataPFObject[@"hashtaglist"];
     }
     

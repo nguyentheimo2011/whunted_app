@@ -10,13 +10,14 @@
 #import "CategoryTableViewController.h"
 #import "LocationTableViewController.h"
 #import "ItemInfoTableViewController.h"
+#import "WantData.h"
 
 @class WantDetailsViewController;
 
 @protocol WantDetailsViewControllerDelegate <NSObject>
 
 - (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressItemImageButton: (NSUInteger) buttonIndex;
-- (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressSubmittingButton: (NSDictionary *) itemInfoDict;
+- (void) wantDetailsViewController: (WantDetailsViewController *) controller didPressSubmittingButton: (WantData *) wantData;
 
 @end
 

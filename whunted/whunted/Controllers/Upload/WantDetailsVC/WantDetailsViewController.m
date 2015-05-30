@@ -8,7 +8,6 @@
 
 #import "WantDetailsViewController.h"
 #import "Utilities.h"
-#import "WantData.h"
 
 @interface WantDetailsViewController ()
 
@@ -21,7 +20,7 @@
 @property (strong, nonatomic) UITableViewCell *locationCell;
 @property (strong, nonatomic) UITableViewCell *escrowRequestCell;
 
-@property (strong, nonatomic) NSMutableDictionary *wantDetailsDict;
+//@property (strong, nonatomic) NSMutableDictionary *wantDetailsDict;
 @property (strong, nonatomic) WantData *wantData;
 
 @end
@@ -30,6 +29,7 @@
 {
     UITextField *priceTextField;
     UISwitch *escrowSwitch;
+    NSString *hashtagString;
 }
 
 - (id) init
@@ -41,7 +41,9 @@
         [self initializeSecondSection];
         [self customizeNavigationBar];
         self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
-        self.wantDetailsDict = [NSMutableDictionary dictionary];
+        self.wantData = [[WantData alloc] init];
+        self.wantData.buyer = [PFUser currentUser];
+        self.wantData.itemPictureList = [[PFRelation alloc] init];
     }
     
     return self;
@@ -145,35 +147,17 @@
 - (void) submittingButtonEvent
 {
     UIAlertView *submissionAlertView;
-    if ([self.wantDetailsDict objectForKey:ITEM_CATEGORY_KEY] == nil) {
+    if (self.wantData.itemCategory == nil) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please choose a category!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if ([self.wantDetailsDict objectForKey:ITEM_NAME_KEY] == nil || [[self.wantDetailsDict objectForKey:ITEM_NAME_KEY] length] == 0) {
+    } else if (self.wantData.itemName == nil || [self.wantData.itemName length] == 0) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please fill in item name!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if ([self.wantDetailsDict objectForKey:ITEM_PRICE_KEY] == nil || [[self.wantDetailsDict objectForKey:ITEM_PRICE_KEY] length] == 0) {
+    } else if (self.wantData.demandedPrice == nil || [self.wantData.demandedPrice length] == 0) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
-        if ([self.wantDetailsDict objectForKey:ITEM_DESC_KEY] == nil) {
-            [self.wantDetailsDict setObject:@"" forKey:ITEM_DESC_KEY];
-        }
-        
-        if ([self.wantDetailsDict objectForKey:ITEM_HASH_TAG_KEY] == nil) {
-            [self.wantDetailsDict setObject:@"" forKey:ITEM_HASH_TAG_KEY];
-        }
-        
-        if ([self.wantDetailsDict objectForKey:ITEM_LOCATION_KEY] == nil) {
-            [self.wantDetailsDict setObject:@"" forKey:ITEM_LOCATION_KEY];
-        }
-        
-        if ([self.wantDetailsDict objectForKey:ITEM_ESCROW_OPTION_KEY] == nil) {
-            [self.wantDetailsDict setObject:@"NO" forKey:ITEM_ESCROW_OPTION_KEY];
-        }
-        
-        NSLog(@"submittingButtonEvent cat: %@, name: %@, desc: %@, tag: %@, price: %@, location: %@, escrow: %@", [self.wantDetailsDict objectForKey:ITEM_CATEGORY_KEY], [self.wantDetailsDict objectForKey:ITEM_NAME_KEY], [self.wantDetailsDict objectForKey:ITEM_DESC_KEY], [self.wantDetailsDict objectForKey:ITEM_HASH_TAG_KEY], [self.wantDetailsDict objectForKey:ITEM_PRICE_KEY], [self.wantDetailsDict objectForKey:ITEM_LOCATION_KEY], [self.wantDetailsDict objectForKey:ITEM_ESCROW_OPTION_KEY]);
-        
-        [self.delegate wantDetailsViewController:self didPressSubmittingButton:self.wantDetailsDict];
+        [self.delegate wantDetailsViewController:self didPressSubmittingButton:self.wantData];
     }
 }
 
@@ -185,7 +169,7 @@
 
 - (void) didFinishEditingPrice
 {
-    [self.wantDetailsDict setObject:priceTextField.text forKey:ITEM_PRICE_KEY];
+    self.wantData.demandedPrice = priceTextField.text;
     [priceTextField resignFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
 }
@@ -194,9 +178,9 @@
 {
     BOOL state = [escrowSwitch isOn];
     if (state) {
-        [self.wantDetailsDict setValue:@"YES" forKey:ITEM_ESCROW_OPTION_KEY];
+        self.wantData.paymentMethod = @"escrow";
     } else {
-        [self.wantDetailsDict setValue:@"NO" forKey:ITEM_ESCROW_OPTION_KEY];
+        self.wantData.paymentMethod = @"non-escrow";
     }
 }
 
@@ -206,8 +190,19 @@
 {
     [[self.addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
     
-    NSString *key = [NSString stringWithFormat:@"itemImage%lu", (unsigned long)buttonIndex];
-    [self.wantDetailsDict setObject:image forKey:key];
+    NSData *data = UIImageJPEGRepresentation(image, 1.0);
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", self.wantData.buyer.objectId] data:data];
+    
+    // Temporary code. Not handle changing image yet
+    PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];
+    itemPictureObj[@"itemPicture"] = imageFile;
+    [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (succeeded) {
+            [self.wantData.itemPictureList addObject:itemPictureObj];
+        } else {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - Table view data source and table view delegate
@@ -322,17 +317,17 @@
         if (indexPath.row == 0) {
             CategoryTableViewController *catVC = [[CategoryTableViewController alloc] init];
             catVC.delegte = self;
-            catVC.category = [self.wantDetailsDict objectForKey:ITEM_CATEGORY_KEY];
+            catVC.category = self.wantData.itemCategory;
             [self.navigationController pushViewController:catVC animated:YES];
         } else if (indexPath.row == 1) {
-            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:[self.wantDetailsDict objectForKey:ITEM_NAME_KEY], ITEM_NAME_KEY, [self.wantDetailsDict objectForKey:ITEM_DESC_KEY], ITEM_DESC_KEY, [self.wantDetailsDict objectForKey:ITEM_HASH_TAG_KEY], ITEM_HASH_TAG_KEY, nil];
+            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:self.wantData.itemName, ITEM_NAME_KEY, self.wantData.itemDesc, ITEM_DESC_KEY, @"", ITEM_HASH_TAG_KEY, nil];
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 3) {
             LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
             locVC.delegate = self;
-            locVC.location = [self.wantDetailsDict objectForKey:ITEM_LOCATION_KEY];
+            locVC.location = self.wantData.meetingLocation;
             [self.navigationController pushViewController:locVC animated:YES];
         }
     }
@@ -340,7 +335,7 @@
     if (indexPath.section != 2 || indexPath.row != 2) {
         [priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:@"Done"]) {
-            [self.wantDetailsDict setObject:priceTextField.text forKey:ITEM_PRICE_KEY];
+            self.wantData.demandedPrice = priceTextField.text;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
         }
     }
@@ -350,25 +345,26 @@
 
 - (void) categoryTableViewController:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
 {
-    [self.wantDetailsDict setObject:category forKey:ITEM_CATEGORY_KEY];
+    self.wantData.itemCategory = category;;
     [self.navigationController popViewControllerAnimated:YES];
-    self.categoryCell.detailTextLabel.text = [self.wantDetailsDict objectForKey:ITEM_CATEGORY_KEY];
+    self.categoryCell.detailTextLabel.text = self.wantData.itemCategory;
 }
 
 #pragma mark - LocationTableViewControllerDelegate
 - (void) locationTableViewController:(LocationTableViewController *)controller didSelectLocation:(NSString *)location
 {
-    [self.wantDetailsDict setObject:location forKey:ITEM_LOCATION_KEY];
+    self.wantData.meetingLocation = location;
     [self.navigationController popViewControllerAnimated:YES];
-    self.locationCell.detailTextLabel.text = [self.wantDetailsDict objectForKey:ITEM_LOCATION_KEY];
+    self.locationCell.detailTextLabel.text = self.wantData.meetingLocation;
 }
 
 #pragma mark - ItemInfoTableViewController
 - (void) itemInfoTableViewController:(ItemInfoTableViewController *)controller didPressDone:(NSDictionary *)itemInfo
 {
-    [self.wantDetailsDict setObject:[itemInfo objectForKey:ITEM_NAME_KEY] forKey:ITEM_NAME_KEY];
-    [self.wantDetailsDict setObject:[itemInfo objectForKey:ITEM_DESC_KEY] forKey:ITEM_DESC_KEY];
-    [self.wantDetailsDict setObject:[itemInfo objectForKey:ITEM_HASH_TAG_KEY] forKey:ITEM_HASH_TAG_KEY];
+    self.wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
+    self.wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
+    hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
+    self.wantData.hashTagList = [hashtagString componentsSeparatedByString:@" "];
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     if (itemName != nil) {
         self.itemInfoCell.detailTextLabel.text = itemName;

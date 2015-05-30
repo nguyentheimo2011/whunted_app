@@ -79,7 +79,7 @@
     [self showImageGettingOptionPopup];
 }
 
-- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressSubmittingButton:(NSDictionary *)itemInfoDict
+- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressSubmittingButton:(WantData *) wantData
 {
     [self.navigationController popViewControllerAnimated:YES];
 }

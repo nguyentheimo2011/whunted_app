@@ -12,7 +12,7 @@
 @interface WantData : NSObject
 
 @property (nonatomic, strong) NSString *itemID;
-@property (nonatomic, strong) NSString *buyerID;
+@property (nonatomic, strong) PFUser *buyer;
 @property (nonatomic, strong) NSString *itemName;
 @property (nonatomic, strong) NSString *itemDesc;
 @property (nonatomic, strong) NSString *itemCategory;

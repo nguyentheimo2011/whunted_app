@@ -127,7 +127,8 @@
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
     [cell.itemNameLabel setText:wantData.itemName];
     
-    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", wantData.itemID];
+    cell.itemImageView.image = nil;
+    NSString *fileName = [NSString stringWithFormat:@"want_%@.jpg", wantData.itemID];
     NSString *path = [documents stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (fileExists) {
