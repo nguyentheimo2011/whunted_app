@@ -8,6 +8,7 @@
 
 #import "WantDetailsViewController.h"
 #import "Utilities.h"
+#import "WantData.h"
 
 @interface WantDetailsViewController ()
 
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) UITableViewCell *escrowRequestCell;
 
 @property (strong, nonatomic) NSMutableDictionary *wantDetailsDict;
+@property (strong, nonatomic) WantData *wantData;
 
 @end
 
