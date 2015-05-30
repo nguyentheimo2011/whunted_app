@@ -24,6 +24,7 @@
 @implementation MyWantViewController
 {
     CGSize windowSize;
+    NSString *documents;
 }
 
 - (id) init
@@ -41,6 +42,7 @@
     // Do any additional setup after loading the view from its nib.
     
     windowSize = [[UIScreen mainScreen] bounds].size;
+    documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     [self addHorizontalLine];
     [self addTableView];
@@ -55,7 +57,7 @@
     self.horizontalLineVC = [[HorizontalLineViewController alloc] init];
     CGRect frame = self.horizontalLineVC.view.frame;
     self.horizontalLineVC.view.frame = CGRectMake(0, navBarSize.height + 15, windowSize.width, frame.size.height);
-    NSString *labelText = [NSString stringWithFormat:@"%d wants", [self.wantDataList count]];
+    NSString *labelText = [NSString stringWithFormat:@"%lu wants", (unsigned long)[self.wantDataList count]];
     [self.horizontalLineVC.numLabel setText:labelText];
     [self.view addSubview:self.horizontalLineVC.view];
 }
@@ -82,9 +84,11 @@
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [self.wantDataList addObject:wantData];
                 [self.wantTableView reloadData];
-                NSString *labelText = [NSString stringWithFormat:@"%d wants", [self.wantDataList count]];
-                [self.horizontalLineVC.numLabel setText:labelText];
             }
+            
+            NSString *labelText = [NSString stringWithFormat:@"%lu wants", (unsigned long)[self.wantDataList count]];
+            [self.horizontalLineVC.numLabel setText:labelText];
+            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -120,27 +124,35 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    [cell.itemImageView setImage:[[UIImage alloc] init]];
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
     [cell.itemNameLabel setText:wantData.itemName];
     
-    PFRelation *picRelation = wantData.itemPictureList;
-    [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-        if (!error) {
-            PFFile *firstPicture = firstObject[@"itemPicture"];
-            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
-                if (!error_2) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    [cell.itemImageView setImage:image];
-                } else {
-                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
-                }
-            }];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
+    NSString *fileName = [NSString stringWithFormat:@"%@.jpg", wantData.itemID];
+    NSString *path = [documents stringByAppendingPathComponent:fileName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (fileExists) {
+        [cell.itemImageView hnk_setImageFromFile:path];
+    } else {
+        PFRelation *picRelation = wantData.itemPictureList;
+        [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+            if (!error) {
+                PFFile *firstPicture = firstObject[@"itemPicture"];
+                [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                    if (!error_2) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        NSData *data = UIImageJPEGRepresentation(image, 1);
+                        [data writeToFile:path atomically:YES];
+                        [cell.itemImageView hnk_setImageFromFile:path];
+                    } else {
+                        NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                    }
+                }];
+            } else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
+
     
     return cell;
 }

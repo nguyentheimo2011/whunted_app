@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Haneke.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SZTextView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5133EE808999DE211A502D9D</key>
+		<key>16EDF6206EE89C670B7294AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79B7594885BC394BE1BF6203</key>
+		<key>4216E67C203D2EF5421B6328</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C60C2A2755A54648919C83B3</key>
+		<key>56EFDEE896AFA4247DD403AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>936B43F4B3806646011389A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

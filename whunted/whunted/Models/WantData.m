@@ -37,7 +37,7 @@
 {
     self = [super init];
     if (self != nil) {
-        self.itemID = wantDataPFObject[@"objectID"];
+        self.itemID = wantDataPFObject.objectId;
         self.itemName = wantDataPFObject[@"itemName"];
         self.itemDesc = wantDataPFObject[@"itemDesc"];
         self.itemCategory = wantDataPFObject[@"category"];

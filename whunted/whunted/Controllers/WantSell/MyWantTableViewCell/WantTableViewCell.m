@@ -46,6 +46,8 @@
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, WINSIZE.width-20, WINSIZE.width-20)];
     [itemImageView setBackgroundColor:APP_COLOR_2];
     [self addSubview:itemImageView];
+    [itemImageView hnk_cancelSetImage];
+    itemImageView.image = nil;
 }
 
 - (void) addViewNumberSection
