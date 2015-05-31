@@ -81,7 +81,14 @@
 
 - (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressSubmittingButton:(WantData *) wantData
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    PFObject *pfObj = [wantData getPFObject];
+    [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - Image Getter View Controller delegate methods

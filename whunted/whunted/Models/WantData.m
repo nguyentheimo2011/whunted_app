@@ -52,6 +52,27 @@
     return self;
 }
 
+- (PFObject *) getPFObject
+{
+    PFObject *wantDataPFObject = [PFObject objectWithClassName:@"WantedPost"];
+    wantDataPFObject[@"itemName"] = self.itemName;
+    wantDataPFObject[@"itemDesc"] = self.itemDesc;
+    wantDataPFObject[@"category"] = self.itemCategory;
+    wantDataPFObject[@"demandedPrice"] = self.demandedPrice;
+    wantDataPFObject[@"paymentMethod"] = self.paymentMethod;
+    wantDataPFObject[@"meetingPlace"] = self.meetingLocation;
+    wantDataPFObject[@"buyerID"] = self.buyer;
+    wantDataPFObject[@"hashtaglist"] = self.hashTagList;
+    
+    NSArray *objects = [[self.itemPictureList query] findObjects];
+    PFRelation *relation = [wantDataPFObject relationForKey:@"itemPictures"];
+    for (PFObject *obj in objects) {
+        [relation addObject:obj];
+    }
+    
+    return wantDataPFObject;
+}
+
 
 
 @end
