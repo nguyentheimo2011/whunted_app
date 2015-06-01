@@ -64,9 +64,8 @@
     wantDataPFObject[@"buyerID"] = self.buyer;
     wantDataPFObject[@"hashtaglist"] = self.hashTagList;
     
-    NSArray *objects = [[self.itemPictureList query] findObjects];
     PFRelation *relation = [wantDataPFObject relationForKey:@"itemPictures"];
-    for (PFObject *obj in objects) {
+    for (PFObject *obj in self.backupItemPictureList) {
         [relation addObject:obj];
     }
     

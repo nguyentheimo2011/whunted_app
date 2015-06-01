@@ -83,8 +83,8 @@
             for (PFObject *object in objects) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [self.wantDataList addObject:wantData];
-                [self.wantTableView reloadData];
             }
+            [self.wantTableView reloadData];
             
             NSString *labelText = [NSString stringWithFormat:@"%lu wants", (unsigned long)[self.wantDataList count]];
             [self.horizontalLineVC.numLabel setText:labelText];
@@ -143,7 +143,7 @@
                         UIImage *image = [UIImage imageWithData:data];
                         NSData *data = UIImageJPEGRepresentation(image, 1);
                         [data writeToFile:path atomically:YES];
-                        [cell.itemImageView hnk_setImageFromFile:path];
+                        [cell.itemImageView setImage:image];
                     } else {
                         NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                     }

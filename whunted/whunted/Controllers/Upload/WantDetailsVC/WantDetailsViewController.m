@@ -44,6 +44,7 @@
         self.wantData = [[WantData alloc] init];
         self.wantData.buyer = [PFUser currentUser];
         self.wantData.itemPictureList = [[PFRelation alloc] init];
+        self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -199,6 +200,7 @@
     [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
             [self.wantData.itemPictureList addObject:itemPictureObj];
+            [self.wantData.backupItemPictureList addObject:itemPictureObj];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }

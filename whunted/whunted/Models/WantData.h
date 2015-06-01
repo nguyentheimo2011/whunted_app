@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *paymentMethod;
 @property (nonatomic, strong) NSString *meetingLocation;
 @property (nonatomic, strong) PFRelation *itemPictureList;
+@property (nonatomic, strong) NSMutableArray *backupItemPictureList;
 @property (nonatomic, strong) NSArray *hashTagList;
 @property (nonatomic, strong) NSMutableArray *likerList;
 @property (nonatomic, strong) NSMutableArray *supplierList;
