@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "NewsFeedViewController.h"
-#import "BrowseViewController.h"
+#import "MarketplaceViewController.h"
 #import "GenericController.h"
 #import "MySellViewController.h"
 #import "MyWantViewController.h"
@@ -31,7 +31,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self != nil) {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
-        BrowseViewController *brController = [[BrowseViewController alloc] init];
+        MarketplaceViewController *brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:brController]];
         [browserNavController setTitle:@"Browse"];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];

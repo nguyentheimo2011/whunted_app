@@ -27,8 +27,6 @@
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
 		E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94D17D91AF8B8F800E31B01 /* Info.plist */; };
-		E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17F71AF9B3FC00E31B01 /* BrowseViewController.m */; };
-		E94D17FA1AF9B3FC00E31B01 /* BrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94D17F81AF9B3FC00E31B01 /* BrowseViewController.xib */; };
 		E94D180F1AF9CE8900E31B01 /* browse@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D17FD1AF9CE8900E31B01 /* browse@1x.png */; };
 		E94D18101AF9CE8900E31B01 /* browse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D17FE1AF9CE8900E31B01 /* browse@2x.png */; };
 		E94D18111AF9CE8900E31B01 /* browse@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D17FF1AF9CE8900E31B01 /* browse@3x.png */; };
@@ -100,6 +98,8 @@
 		E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A01B16B5BC006D9133 /* app_icon@1x.png */; };
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
+		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
+		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4565E1B0D863200E8B55D /* MyWantViewController.m */; };
 		E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456631B0D866F00E8B55D /* MySellViewController.m */; };
 		E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456671B0D8C7400E8B55D /* sell_icon@1x.png */; };
@@ -154,9 +154,6 @@
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17D31AF8B66000E31B01 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
 		E94D17D91AF8B8F800E31B01 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E94D17F61AF9B3FC00E31B01 /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrowseViewController.h; path = Controllers/Browse/BrowseViewController.h; sourceTree = "<group>"; };
-		E94D17F71AF9B3FC00E31B01 /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrowseViewController.m; path = Controllers/Browse/BrowseViewController.m; sourceTree = "<group>"; };
-		E94D17F81AF9B3FC00E31B01 /* BrowseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BrowseViewController.xib; path = Controllers/Browse/BrowseViewController.xib; sourceTree = "<group>"; };
 		E94D17FD1AF9CE8900E31B01 /* browse@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "browse@1x.png"; path = "Resources/Navigation Icons/browse@1x.png"; sourceTree = "<group>"; };
 		E94D17FE1AF9CE8900E31B01 /* browse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "browse@2x.png"; path = "Resources/Navigation Icons/browse@2x.png"; sourceTree = "<group>"; };
 		E94D17FF1AF9CE8900E31B01 /* browse@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "browse@3x.png"; path = "Resources/Navigation Icons/browse@3x.png"; sourceTree = "<group>"; };
@@ -241,6 +238,10 @@
 		E9B800A01B16B5BC006D9133 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@1x.png"; path = "Resources/App Icons/App Icon/app_icon@1x.png"; sourceTree = "<group>"; };
 		E9B800A11B16B5BC006D9133 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/App Icons/App Icon/app_icon@2x.png"; sourceTree = "<group>"; };
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
+		E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceViewController.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.h; sourceTree = "<group>"; };
+		E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
+		E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceCollectionViewCell.h; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.h; sourceTree = "<group>"; };
+		E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceCollectionViewCell.m; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.m; sourceTree = "<group>"; };
 		E9E4565D1B0D863200E8B55D /* MyWantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyWantViewController.h; path = Controllers/WantSell/MyWantVC/MyWantViewController.h; sourceTree = "<group>"; };
 		E9E4565E1B0D863200E8B55D /* MyWantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyWantViewController.m; path = Controllers/WantSell/MyWantVC/MyWantViewController.m; sourceTree = "<group>"; };
 		E9E456621B0D866F00E8B55D /* MySellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySellViewController.h; path = Controllers/WantSell/MySellVC/MySellViewController.h; sourceTree = "<group>"; };
@@ -426,10 +427,10 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9D9C5071B1BFFCE00222E0C /* Marketplace */,
 				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
 				E916F4421B00A95F005055E3 /* Main Controller */,
 				E916F44B1B00B8F5005055E3 /* GenericControllers */,
-				E94D17EB1AF9B32500E31B01 /* Browse */,
 				E94D17EA1AF9B28700E31B01 /* WantSell */,
 				E94D17CD1AF8B56400E31B01 /* NewsFeed */,
 				E916F4511B01AAAD005055E3 /* Upload */,
@@ -494,16 +495,6 @@
 				E9E456881B0F095000E8B55D /* MyWantTableViewCell */,
 			);
 			name = WantSell;
-			sourceTree = "<group>";
-		};
-		E94D17EB1AF9B32500E31B01 /* Browse */ = {
-			isa = PBXGroup;
-			children = (
-				E94D17F61AF9B3FC00E31B01 /* BrowseViewController.h */,
-				E94D17F71AF9B3FC00E31B01 /* BrowseViewController.m */,
-				E94D17F81AF9B3FC00E31B01 /* BrowseViewController.xib */,
-			);
-			name = Browse;
 			sourceTree = "<group>";
 		};
 		E94D18211AF9CFB400E31B01 /* App Icons */ = {
@@ -705,6 +696,33 @@
 			name = NewsFeedVC;
 			sourceTree = "<group>";
 		};
+		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
+			isa = PBXGroup;
+			children = (
+				E9D9C5081B1C009400222E0C /* MarketplaceVC */,
+				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
+			);
+			name = Marketplace;
+			sourceTree = "<group>";
+		};
+		E9D9C5081B1C009400222E0C /* MarketplaceVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */,
+				E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */,
+			);
+			name = MarketplaceVC;
+			sourceTree = "<group>";
+		};
+		E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */,
+				E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */,
+			);
+			name = MarketplaceCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		E9E456551B0D84D800E8B55D /* MyWantVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,7 +893,6 @@
 				E94D18131AF9CE8900E31B01 /* chat@2x.png in Resources */,
 				E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */,
 				E9E4566F1B0D8C7400E8B55D /* sell_icon@3x.png in Resources */,
-				E94D17FA1AF9B3FC00E31B01 /* BrowseViewController.xib in Resources */,
 				E94D18201AF9CE8900E31B01 /* search@3x.png in Resources */,
 				E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */,
 				E94D180F1AF9CE8900E31B01 /* browse@1x.png in Resources */,
@@ -965,10 +982,10 @@
 				E97CE4A11B09ECC90027C5FA /* WantDetailsViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
-				E94D17F91AF9B3FC00E31B01 /* BrowseViewController.m in Sources */,
 				E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
+				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */,
 				E94D18441AFA032600E31B01 /* WantData.m in Sources */,
 				E9E456D21B0F3B6B00E8B55D /* WantImageViewController.m in Sources */,
@@ -977,6 +994,7 @@
 				E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
+				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
 				E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
