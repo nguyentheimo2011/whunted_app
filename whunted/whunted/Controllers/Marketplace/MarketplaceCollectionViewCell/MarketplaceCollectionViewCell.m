@@ -37,12 +37,14 @@
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, WINSIZE.width/2-15, WINSIZE.width/2-10)];
     [itemImageView setBackgroundColor:APP_COLOR_2];
     [self addSubview:itemImageView];
+    [itemImageView hnk_cancelSetImage];
+    itemImageView.image = nil;
 }
 
 - (void) addItemNameLabel
 {
     CGFloat yPos = WINSIZE.width/2 + 5;
-    itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
+    itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 20)];
     [itemNameLabel setText:@"Item name"];
     [itemNameLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:itemNameLabel];

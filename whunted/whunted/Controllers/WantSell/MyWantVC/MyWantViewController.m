@@ -70,7 +70,7 @@
     [self.view addSubview:self.wantTableView];
 }
 
-#pragma mark - Data Handler
+#pragma mark - Data Handlers
 
 - (void) retrieveWantDataList
 {

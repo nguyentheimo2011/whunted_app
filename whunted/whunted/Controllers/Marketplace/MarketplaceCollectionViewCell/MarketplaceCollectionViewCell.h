@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Haneke/UIImageView+Haneke.h>
 
 @interface MarketplaceCollectionViewCell : UICollectionViewCell
 

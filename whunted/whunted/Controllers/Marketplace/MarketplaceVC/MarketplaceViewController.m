@@ -17,16 +17,26 @@
 
 @implementation MarketplaceViewController
 {
-    CGSize _winSize;
+    NSString *documents;
 }
 
 @synthesize wantDataList;
 @synthesize _wantCollectionView;
 
+- (id) init
+{
+    self = [super init];
+    if (self != nil) {
+        [self retrieveWantDataList];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _winSize = [[UIScreen mainScreen] bounds].size;
+    documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     [self addWantCollectionView];
 }
@@ -35,6 +45,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UI Handlers
 
 - (void) addWantCollectionView
 {
@@ -50,19 +62,70 @@
     [self.view addSubview:_wantCollectionView];
 }
 
+#pragma mark - Data Handlers
+- (void) retrieveWantDataList
+{
+    wantDataList = [[NSMutableArray alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                [self.wantDataList addObject:wantData];
+            }
+            [_wantCollectionView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 #pragma mark - Collection View Datasource 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return [wantDataList count];
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     
-//    cell.backgroundColor=[UIColor greenColor];
-    [cell initCell];
-    cell.backgroundView.frame = CGRectMake(0, 0, 150, 150);
+    if (cell.itemImageView == nil) {
+        [cell initCell];
+    }
+    
+    WantData *wantData = [wantDataList objectAtIndex:indexPath.row];
+    [cell.itemNameLabel setText:wantData.itemName];
+    [cell.demandedPriceLabel setText:wantData.demandedPrice];
+    [cell.buyerUsernameLabel setText:wantData.buyer.objectId];
+    
+    cell.itemImageView.image = nil;
+    NSString *fileName = [NSString stringWithFormat:@"marketplace_%@.jpg", wantData.itemID];
+    NSString *path = [documents stringByAppendingPathComponent:fileName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (fileExists) {
+        [cell.itemImageView hnk_setImageFromFile:path];
+    } else {
+        PFRelation *picRelation = wantData.itemPictureList;
+        [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+            if (!error) {
+                PFFile *firstPicture = firstObject[@"itemPicture"];
+                [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                    if (!error_2) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        NSData *data = UIImageJPEGRepresentation(image, 1);
+                        [data writeToFile:path atomically:YES];
+                        [cell.itemImageView setImage:image];
+                    } else {
+                        NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                    }
+                }];
+            } else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
     
     return cell;
 }
