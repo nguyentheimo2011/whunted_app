@@ -8,6 +8,7 @@
 
 #import "MarketplaceViewController.h"
 #import "MarketplaceCollectionViewCell.h"
+#import "ItemDetailsViewController.h"
 
 @interface MarketplaceViewController ()
 
@@ -81,7 +82,7 @@
     }];
 }
 
-#pragma mark - Collection View Datasource 
+#pragma mark - CollectionView datasource methods
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [wantDataList count];
@@ -133,6 +134,14 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(WINSIZE.width/2-5, WINSIZE.height/2);
+}
+
+#pragma mark - UICollectionView delegate methods
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
+    itemDetailsVC.wantData = [wantDataList objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:itemDetailsVC animated:YES];
 }
 
 @end

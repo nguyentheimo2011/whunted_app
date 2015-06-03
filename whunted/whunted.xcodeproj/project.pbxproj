@@ -24,6 +24,7 @@
 		E91A5A6E1B04C1E6008382E2 /* next@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6B1B04C1E6008382E2 /* next@1x.png */; };
 		E91A5A6F1B04C1E6008382E2 /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6C1B04C1E6008382E2 /* next@2x.png */; };
 		E91A5A701B04C1E6008382E2 /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6D1B04C1E6008382E2 /* next@3x.png */; };
+		E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
 		E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94D17D91AF8B8F800E31B01 /* Info.plist */; };
@@ -100,6 +101,7 @@
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
 		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
+		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
 		E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4565E1B0D863200E8B55D /* MyWantViewController.m */; };
 		E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456631B0D866F00E8B55D /* MySellViewController.m */; };
 		E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456671B0D8C7400E8B55D /* sell_icon@1x.png */; };
@@ -114,7 +116,6 @@
 		E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456901B0F0DA500E8B55D /* view_icon.png */; };
 		E9E456941B0F20CE00E8B55D /* promote_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456931B0F20CE00E8B55D /* promote_icon.png */; };
 		E9E456961B0F25E400E8B55D /* sellers_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456951B0F25E400E8B55D /* sellers_icon.png */; };
-		E9E456D21B0F3B6B00E8B55D /* WantImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456D11B0F3B6B00E8B55D /* WantImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,8 @@
 		E91A5A6B1B04C1E6008382E2 /* next@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@1x.png"; path = "Resources/Want Details/next@1x.png"; sourceTree = "<group>"; };
 		E91A5A6C1B04C1E6008382E2 /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@2x.png"; path = "Resources/Want Details/next@2x.png"; sourceTree = "<group>"; };
 		E91A5A6D1B04C1E6008382E2 /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@3x.png"; path = "Resources/Want Details/next@3x.png"; sourceTree = "<group>"; };
+		E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageViewController.h; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.h; sourceTree = "<group>"; };
+		E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageViewController.m; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.m; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
 		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
 		E94D17D31AF8B66000E31B01 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 		E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
 		E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceCollectionViewCell.h; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.h; sourceTree = "<group>"; };
 		E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceCollectionViewCell.m; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.m; sourceTree = "<group>"; };
+		E9D9C5111B1DA51F00222E0C /* ItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailsViewController.h; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.h; sourceTree = "<group>"; };
+		E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailsViewController.m; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.m; sourceTree = "<group>"; };
 		E9E4565D1B0D863200E8B55D /* MyWantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyWantViewController.h; path = Controllers/WantSell/MyWantVC/MyWantViewController.h; sourceTree = "<group>"; };
 		E9E4565E1B0D863200E8B55D /* MyWantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyWantViewController.m; path = Controllers/WantSell/MyWantVC/MyWantViewController.m; sourceTree = "<group>"; };
 		E9E456621B0D866F00E8B55D /* MySellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySellViewController.h; path = Controllers/WantSell/MySellVC/MySellViewController.h; sourceTree = "<group>"; };
@@ -259,8 +264,6 @@
 		E9E456901B0F0DA500E8B55D /* view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_icon.png; path = Resources/WantSellCell/view_icon.png; sourceTree = "<group>"; };
 		E9E456931B0F20CE00E8B55D /* promote_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = promote_icon.png; path = Resources/WantSellCell/promote_icon.png; sourceTree = "<group>"; };
 		E9E456951B0F25E400E8B55D /* sellers_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sellers_icon.png; path = Resources/WantSellCell/sellers_icon.png; sourceTree = "<group>"; };
-		E9E456D01B0F3B6B00E8B55D /* WantImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantImageViewController.h; path = Controllers/WantSell/WantImageVC/WantImageViewController.h; sourceTree = "<group>"; };
-		E9E456D11B0F3B6B00E8B55D /* WantImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WantImageViewController.m; path = Controllers/WantSell/WantImageVC/WantImageViewController.m; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +417,15 @@
 			name = "Want Details";
 			sourceTree = "<group>";
 		};
+		E94A03711B1E9B3A00339BC4 /* ItemImageVC */ = {
+			isa = PBXGroup;
+			children = (
+				E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */,
+				E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */,
+			);
+			name = ItemImageVC;
+			sourceTree = "<group>";
+		};
 		E94D17C81AF8B4FD00E31B01 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,7 +500,6 @@
 		E94D17EA1AF9B28700E31B01 /* WantSell */ = {
 			isa = PBXGroup;
 			children = (
-				E9E456CF1B0F3A7200E8B55D /* WantImageVC */,
 				E9E4567D1B0DDC9500E8B55D /* CustomVC */,
 				E9E456561B0D84E200E8B55D /* MySellVC */,
 				E9E456551B0D84D800E8B55D /* MyWantVC */,
@@ -699,6 +710,8 @@
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				E94A03711B1E9B3A00339BC4 /* ItemImageVC */,
+				E9D9C5101B1DA43700222E0C /* ItemDetailsVC */,
 				E9D9C5081B1C009400222E0C /* MarketplaceVC */,
 				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
 			);
@@ -721,6 +734,15 @@
 				E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */,
 			);
 			name = MarketplaceCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		E9D9C5101B1DA43700222E0C /* ItemDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D9C5111B1DA51F00222E0C /* ItemDetailsViewController.h */,
+				E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */,
+			);
+			name = ItemDetailsVC;
 			sourceTree = "<group>";
 		};
 		E9E456551B0D84D800E8B55D /* MyWantVC */ = {
@@ -769,15 +791,6 @@
 				E9E456901B0F0DA500E8B55D /* view_icon.png */,
 			);
 			name = WantSellCell;
-			sourceTree = "<group>";
-		};
-		E9E456CF1B0F3A7200E8B55D /* WantImageVC */ = {
-			isa = PBXGroup;
-			children = (
-				E9E456D01B0F3B6B00E8B55D /* WantImageViewController.h */,
-				E9E456D11B0F3B6B00E8B55D /* WantImageViewController.m */,
-			);
-			name = WantImageVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -976,19 +989,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */,
 				E97CE4A11B09ECC90027C5FA /* WantDetailsViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
+				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
 				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */,
 				E94D18441AFA032600E31B01 /* WantData.m in Sources */,
-				E9E456D21B0F3B6B00E8B55D /* WantImageViewController.m in Sources */,
 				E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */,
 				E97CE4B61B0A076B0027C5FA /* ImageGetterViewController.m in Sources */,
 				E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */,

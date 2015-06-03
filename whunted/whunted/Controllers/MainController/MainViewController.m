@@ -33,7 +33,7 @@
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         MarketplaceViewController *brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:brController]];
-        [browserNavController setTitle:@"Browse"];
+        [browserNavController setTitle:@"Marketplace"];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
