@@ -14,6 +14,12 @@
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) WantData *wantData;
-@property (nonatomic) NSInteger itemImageNum;
+@property (nonatomic) NSInteger itemImagesNum;
+@property (nonatomic, strong) UILabel *itemNameLabel;
+@property (nonatomic, strong) UILabel *postedTimestampLabel;
+@property (nonatomic, strong) UIButton *buyerUsernameButton;
+@property (nonatomic, strong) UILabel *demandedPriceLabel;
+@property (nonatomic, strong) UILabel *locationLabel;
+@property (nonatomic, strong) UILabel *itemDescLabel;
 
 @end

@@ -56,7 +56,7 @@
     demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
     [demandedPriceLabel setText:@"Item price"];
     [demandedPriceLabel setFont:[UIFont systemFontOfSize:15]];
-    [demandedPriceLabel setTextColor:APP_COLOR_2];
+    [demandedPriceLabel setTextColor:[UIColor grayColor]];
     [self addSubview:demandedPriceLabel];
 }
 
@@ -76,7 +76,7 @@
     buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [buyerUsernameLabel setText:@"Username"];
     [buyerUsernameLabel setFont:[UIFont systemFontOfSize:14]];
-    [buyerUsernameLabel setTextColor:APP_COLOR_2];
+    [buyerUsernameLabel setTextColor:[UIColor grayColor]];
     [self addSubview:buyerUsernameLabel];
 }
 
@@ -86,7 +86,7 @@
     timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [timestampLabel setText:@"timestamp"];
     [timestampLabel setFont:[UIFont systemFontOfSize:14]];
-    [timestampLabel setTextColor:APP_COLOR_2];
+    [timestampLabel setTextColor:[UIColor grayColor]];
     [self addSubview:timestampLabel];
 }
 
