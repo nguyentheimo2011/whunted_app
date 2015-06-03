@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) WantData *wantData;
+@property (nonatomic) NSInteger itemImageNum;
 
 @end

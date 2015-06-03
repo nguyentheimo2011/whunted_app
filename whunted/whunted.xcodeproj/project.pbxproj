@@ -710,10 +710,10 @@
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
-				E94A03711B1E9B3A00339BC4 /* ItemImageVC */,
-				E9D9C5101B1DA43700222E0C /* ItemDetailsVC */,
 				E9D9C5081B1C009400222E0C /* MarketplaceVC */,
 				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
+				E9D9C5101B1DA43700222E0C /* ItemDetailsVC */,
+				E94A03711B1E9B3A00339BC4 /* ItemImageVC */,
 			);
 			name = Marketplace;
 			sourceTree = "<group>";

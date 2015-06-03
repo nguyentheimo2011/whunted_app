@@ -18,13 +18,13 @@
 
 @implementation ItemDetailsViewController
 {
-    NSInteger imageNum;
     NSInteger currIndex;
 }
 
 @synthesize pageViewController;
 @synthesize wantData;
 @synthesize itemImageList;
+@synthesize itemImageNum;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,8 +69,6 @@
     itemImageList = [[NSMutableArray alloc] init];
     PFRelation *picRelation = wantData.itemPictureList;
     
-    imageNum = [[picRelation query] countObjects];
-    
     [[picRelation query] findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
         for (PFObject *pfObj in pfObjList) {
             PFFile *imageFile = pfObj[@"itemPicture"];
@@ -99,7 +97,7 @@
 - (UIViewController *) pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSInteger index = [(ItemImageViewController*)viewController index];
-    if (index == imageNum-1) {
+    if (index == itemImageNum-1) {
         return nil;
     } else {
         return [self viewControllerAtIndex:index+1];
@@ -108,7 +106,7 @@
 
 - (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return imageNum;
+    return itemImageNum;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {

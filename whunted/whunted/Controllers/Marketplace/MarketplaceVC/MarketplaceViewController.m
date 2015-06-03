@@ -141,7 +141,14 @@
 {
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [wantDataList objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:itemDetailsVC animated:YES];
+    [[itemDetailsVC.wantData.itemPictureList query] countObjectsInBackgroundWithBlock:^(NSInteger itemImageNum, NSError *error) {
+        if (!error) {
+            itemDetailsVC.itemImageNum = itemImageNum;
+            [self.navigationController pushViewController:itemDetailsVC animated:YES];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end
