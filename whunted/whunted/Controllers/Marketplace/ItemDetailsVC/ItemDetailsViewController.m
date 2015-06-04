@@ -9,6 +9,7 @@
 #import "ItemDetailsViewController.h"
 #import "Utilities.h"
 #import "ItemImageViewController.h"
+#import "SellersOfferViewController.h"
 
 @interface ItemDetailsViewController ()
 
@@ -79,7 +80,6 @@
 {
     pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     pageViewController.dataSource = self;
-//    CGFloat yPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
     pageViewController.view.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6);
     
     ItemImageViewController *itemImageVC = [self viewControllerAtIndex:0];
@@ -106,7 +106,7 @@
 - (void) addItemNameLabel
 {
     itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6, WINSIZE.width - 20, 15)];
-    [itemNameLabel setText:@"Item name"];
+    [itemNameLabel setText:wantData.itemName];
     [itemNameLabel setFont:[UIFont systemFontOfSize:16]];
     [itemNameLabel setTextColor:[UIColor blackColor]];
     [_scrollView addSubview:itemNameLabel];
@@ -133,7 +133,7 @@
 - (void) addDemandedPriceLabel
 {
     demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 + 50, WINSIZE.width-20, 15)];
-    [demandedPriceLabel setText:@"TWD15000"];
+    [demandedPriceLabel setText:wantData.demandedPrice];
     [demandedPriceLabel setFont:[UIFont systemFontOfSize:14]];
     [demandedPriceLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:demandedPriceLabel];
@@ -142,7 +142,7 @@
 - (void) addLocationLabel
 {
     locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 + 80, WINSIZE.width-20, 15)];
-    [locationLabel setText:@"Taipei"];
+    [locationLabel setText:wantData.meetingLocation];
     [locationLabel setFont:[UIFont systemFontOfSize:14]];
     [locationLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:locationLabel];
@@ -151,7 +151,7 @@
 - (void) addItemDescLabel
 {
     itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 + 110, WINSIZE.width-20, 40)];
-    [itemDescLabel setText:@"Item description.\nRead to know more about the product."];
+    [itemDescLabel setText:wantData.itemDesc];
     [itemDescLabel setFont:[UIFont systemFontOfSize:14]];
     [itemDescLabel setTextColor:[UIColor grayColor]];
     itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -170,11 +170,30 @@
 
 - (void) addOfferButton
 {
-    UIButton *offerButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
-    [offerButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-    [offerButton setTitle:@"Offer your price!" forState:UIControlStateNormal];
-    [offerButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [self.view addSubview:offerButton];
+    PFUser *curUser = [PFUser currentUser];
+    
+    if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
+        UIButton *promoteButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+        [promoteButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
+        [promoteButton setTitle:@"Promote your post!" forState:UIControlStateNormal];
+        [promoteButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [self.view addSubview:promoteButton];
+    } else {
+        UIButton *offerButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+        [offerButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
+        [offerButton setTitle:@"Offer your price!" forState:UIControlStateNormal];
+        [offerButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [offerButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:offerButton];
+    }
+}
+
+#pragma mark - Event Handlers
+- (void) sellerOfferButtonClickedHandler
+{
+    SellersOfferViewController *sellersOfferVC = [[SellersOfferViewController alloc] init];
+    sellersOfferVC.wantData = wantData;
+    [self.navigationController pushViewController:sellersOfferVC animated:YES];
 }
 
 #pragma mark - Data Handlers
