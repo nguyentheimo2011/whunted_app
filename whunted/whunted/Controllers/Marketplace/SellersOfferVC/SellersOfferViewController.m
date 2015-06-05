@@ -153,6 +153,14 @@
     offerData.offeredPrice = offeredPriceTextField.text;
     offerData.deliveryTime = offeredDeliveryTextField.text;
     
+    if (offerData.offeredPrice == nil) {
+        offerData.offeredPrice = wantData.demandedPrice;
+    }
+    
+    if (offerData.deliveryTime == nil) {
+        offerData.deliveryTime = @"";
+    }
+    
     [[offerData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         [activityLogin stopAnimating];
         

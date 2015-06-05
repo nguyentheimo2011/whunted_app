@@ -8,12 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import <Haneke/UIImageView+Haneke.h>
+#import "WantData.h"
+
+@class WantTableViewCell;
+
+@protocol WantTableViewCellDelegate <NSObject>
+
+- (void) wantTableViewCell: (WantTableViewCell *) cell didClickSellersNumButton: (WantData *) wantData;
+
+@end
 
 @interface WantTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) id<WantTableViewCellDelegate> delegate;
+
+@property (nonatomic, strong) WantData *wantData;
 
 @property (nonatomic, strong) UIImageView *itemImageView;
 @property (nonatomic, strong) UILabel *viewsNumLabel;
 @property (nonatomic, strong) UILabel *likesNumLabel;
 @property (nonatomic, strong) UILabel *itemNameLabel;
+@property (nonatomic, strong) UILabel *lowestOfferedPriceLabel;
+@property (nonatomic, strong) UIButton *sellersNumButton;
 
 @end

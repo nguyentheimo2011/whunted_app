@@ -7,8 +7,8 @@
 //
 
 #import "MarketplaceViewController.h"
-#import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
+#import "SellerListViewController.h"
 
 @interface MarketplaceViewController ()
 
@@ -127,6 +127,23 @@
             }
         }];
     }
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
+    [query whereKey:@"itemID" equalTo:wantData.itemID];
+    [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
+        NSString *text;
+        if (sellersNum <= 1) {
+            text = [NSString stringWithFormat:@"%d seller", sellersNum];
+        } else {
+            text = [NSString stringWithFormat:@"%d sellers", sellersNum];
+        }
+        
+        if (!error) {
+            [cell.sellerNumButton setTitle:text forState:UIControlStateNormal];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
     return cell;
 }

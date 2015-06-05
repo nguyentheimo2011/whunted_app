@@ -8,8 +8,8 @@
 
 #import "MyWantViewController.h"
 #import "HorizontalLineViewController.h"
-#import "WantTableViewCell.h"
 #import "WantData.h"
+#import "SellerListViewController.h"
 
 #import <Parse/Parse.h>
 
@@ -110,7 +110,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return windowSize.width * 1.3;
+    return windowSize.width * 1.4;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,6 +123,8 @@
         cell = [[WantTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    cell.delegate = self;
     
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
     [cell.itemNameLabel setText:wantData.itemName];
@@ -156,6 +158,13 @@
 
     
     return cell;
+}
+
+#pragma mark - WantTableView Delegate methods
+- (void) wantTableViewCell:(WantTableViewCell *)cell didClickSellersNumButton:(WantData *)wantData
+{
+    SellerListViewController *sellerListVC = [[SellerListViewController alloc] init];
+    [self.navigationController pushViewController:sellerListVC animated:YES];
 }
 
 @end

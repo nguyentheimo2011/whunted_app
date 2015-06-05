@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Haneke/UIImageView+Haneke.h>
+#import "WantData.h"
 
 @interface MarketplaceCollectionViewCell : UICollectionViewCell
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) UILabel *cheapestPriceLabel;
 @property (nonatomic, strong) UIImageView *buyerProfilePic;
 @property (nonatomic, strong) UIImageView *itemImageView;
+
+@property (nonatomic, strong) WantData *wantData;
 
 - (void) initCell;
 

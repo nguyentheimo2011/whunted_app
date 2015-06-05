@@ -10,14 +10,15 @@
 #import "Utilities.h"
 
 @implementation WantTableViewCell
-{
-    
-}
 
+@synthesize delegate;
+@synthesize wantData;
 @synthesize itemImageView;
 @synthesize viewsNumLabel;
 @synthesize likesNumLabel;
 @synthesize itemNameLabel;
+@synthesize lowestOfferedPriceLabel;
+@synthesize sellersNumButton;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -28,6 +29,8 @@
         [self addLikesSection];
         [self addPromotionSection];
         [self addItemNameLabel];
+        [self addLowestOfferedPrice];
+        [self addSellersNumButton];
     }
     return self;
 }
@@ -105,17 +108,49 @@
 - (void) addItemNameLabel
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
-    CGFloat yPos = itemImageWidth * 7.0/6;
+    CGFloat yPos = itemImageWidth * 7.0/6 + 5;
     itemNameLabel = [[UILabel alloc] init];
-    itemNameLabel.frame = CGRectMake(10, yPos, itemImageWidth, itemImageWidth/8);
+    itemNameLabel.frame = CGRectMake(10, yPos, itemImageWidth, 20);
     [itemNameLabel setText:@"Item Name"];
+    [itemNameLabel setTextColor:[UIColor grayColor]];
+    [itemNameLabel setFont:[UIFont systemFontOfSize:17]];
     [self addSubview:itemNameLabel];
+}
+
+- (void) addLowestOfferedPrice
+{
+    CGFloat itemImageWidth = WINSIZE.width-20;
+    CGFloat yPos = itemImageWidth * 7.0/6 + 35;
+    lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 150, 15)];
+    [lowestOfferedPriceLabel setText:@"Lowest offered: $90"];
+    [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
+    [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
+    [self addSubview:lowestOfferedPriceLabel];
+}
+
+- (void) addSellersNumButton
+{
+    CGFloat itemImageWidth = WINSIZE.width-20;
+    CGFloat yPos = itemImageWidth * 7.0/6 + 30;
+    sellersNumButton = [[UIButton alloc] initWithFrame:CGRectMake(180, yPos, 90, 25)];
+    [sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
+    [sellersNumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [sellersNumButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [sellersNumButton setBackgroundColor:APP_COLOR_4];
+    sellersNumButton.layer.cornerRadius = 8;
+    [sellersNumButton addTarget:self action:@selector(sellerNumButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:sellersNumButton];
 }
 
 #pragma mark - Event Handlers
 - (void) likeButtonClicked
 {
     NSLog(@"likeButtonClicked");
+}
+
+- (void) sellerNumButtonClickedHandler
+{
+    [delegate wantTableViewCell:self didClickSellersNumButton:wantData];
 }
 
 @end

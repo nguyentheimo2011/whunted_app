@@ -7,6 +7,7 @@
 //
 
 #import "GenericController.h"
+#import "MarketplaceCollectionViewCell.h"
 
 @interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate>
 
