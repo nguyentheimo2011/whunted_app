@@ -46,7 +46,14 @@
         self.meetingLocation = wantDataPFObject[@"meetingPlace"];
         self.itemPictureList = wantDataPFObject[@"itemPictures"];
         self.buyer = wantDataPFObject[@"buyerID"];
-        self.hashTagList = wantDataPFObject[@"hashtaglist"];
+        self.hashTagList = [NSArray arrayWithArray:wantDataPFObject[@"hashtaglist"]];
+        
+        NSString *dealClosed = wantDataPFObject[@"isDealClosed"];
+        if ([dealClosed isEqual:@"YES"]) {
+            self.isDealClosed = YES;
+        } else {
+            self.isDealClosed = NO;
+        }
     }
     
     return self;
@@ -55,6 +62,7 @@
 - (PFObject *) getPFObject
 {
     PFObject *wantDataPFObject = [PFObject objectWithClassName:@"WantedPost"];
+    wantDataPFObject.objectId = self.itemID;
     wantDataPFObject[@"itemName"] = self.itemName;
     wantDataPFObject[@"itemDesc"] = self.itemDesc;
     wantDataPFObject[@"category"] = self.itemCategory;
@@ -63,6 +71,12 @@
     wantDataPFObject[@"meetingPlace"] = self.meetingLocation;
     wantDataPFObject[@"buyerID"] = self.buyer;
     wantDataPFObject[@"hashtaglist"] = self.hashTagList;
+    
+    if (self.isDealClosed) {
+        wantDataPFObject[@"isDealClosed"] = @"YES";
+    } else {
+        wantDataPFObject[@"isDealClosed"] = @"NO";
+    }
     
     PFRelation *relation = [wantDataPFObject relationForKey:@"itemPictures"];
     for (PFObject *obj in self.backupItemPictureList) {

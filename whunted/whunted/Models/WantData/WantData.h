@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "SellersOfferData.h"
 
 @interface WantData : NSObject
 
@@ -23,7 +24,9 @@
 @property (nonatomic, strong) NSMutableArray *backupItemPictureList;
 @property (nonatomic, strong) NSArray *hashTagList;
 @property (nonatomic, strong) NSMutableArray *likerList;
-@property (nonatomic, strong) NSMutableArray *supplierList;
+@property (nonatomic, strong) NSArray *sellersOfferList;
+@property (nonatomic) BOOL isDealClosed;
+@property (nonatomic, strong) SellersOfferData *acceptedOffer;
 
 - (id) initWithPFObject: (PFObject *) wantDataPFObject;
 - (PFObject *) getPFObject;

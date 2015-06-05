@@ -11,6 +11,8 @@
 
 @implementation SellerListCell
 
+@synthesize delegate;
+@synthesize offerData;
 @synthesize profilePicButton;
 @synthesize sellerUsernameButton;
 @synthesize sellersOfferedPrice;
@@ -24,8 +26,6 @@
         [self addSellerUsername];
         [self addSellersOfferedPrice];
         [self addSellersOfferedDelivery];
-        [self addChatWithSellerButton];
-        [self addAcceptButton];
     }
     
     return self;
@@ -39,6 +39,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) addButtonsIfNotAccepted
+{
+    [self addChatWithSellerButton];
+    [self addAcceptButton];
 }
 
 - (void) addProfilePicButton
@@ -88,7 +94,13 @@
 {
     UIButton *acceptButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width - 50, 30, 25, 25)];
     [acceptButton setBackgroundImage:[UIImage imageNamed:@"accept.png"] forState:UIControlStateNormal];
+    [acceptButton addTarget:self action:@selector(acceptButtonCLickedHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:acceptButton];
+}
+
+- (void) acceptButtonCLickedHandler
+{
+    [self.delegate sellerListCell:self didAcceptOfferFromSeller:offerData];
 }
 
 @end

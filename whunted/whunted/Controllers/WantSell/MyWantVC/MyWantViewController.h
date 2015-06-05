@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GenericController.h"
 #import "WantTableViewCell.h"
+#import "SellerListViewController.h"
 
-@interface MyWantViewController : GenericController <UITableViewDataSource, UITableViewDelegate, WantTableViewCellDelegate>
+@interface MyWantViewController : GenericController <UITableViewDataSource, UITableViewDelegate, WantTableViewCellDelegate, SellerListViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *wantDataList;
 

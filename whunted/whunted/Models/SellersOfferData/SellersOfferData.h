@@ -18,6 +18,6 @@
 @property (nonatomic, strong) NSString *deliveryTime;
 
 - (id) initWithPFObject: (PFObject *) pfObj;
-- (PFObject *) getPFObject;
+- (PFObject *) getPFObjectWithClassName: (NSString *) className;
 
 @end

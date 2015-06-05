@@ -9,7 +9,7 @@
 #import "MyWantViewController.h"
 #import "HorizontalLineViewController.h"
 #import "WantData.h"
-#import "SellerListViewController.h"
+#import "SellersOfferData.h"
 
 #import <Parse/Parse.h>
 
@@ -26,6 +26,8 @@
     CGSize windowSize;
     NSString *documents;
 }
+
+@synthesize wantTableView;
 
 - (id) init
 {
@@ -127,6 +129,7 @@
     cell.delegate = self;
     
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
+    cell.wantData = wantData;
     [cell.itemNameLabel setText:wantData.itemName];
     
     cell.itemImageView.image = nil;
@@ -155,6 +158,30 @@
             }
         }];
     }
+    
+    if (wantData.isDealClosed) {
+        [cell.sellersNumButton setTitle:@"1 seller" forState:UIControlStateNormal];
+        [cell.sellersNumButton setBackgroundColor:[UIColor colorWithRed:219.0/255 green:112.0/255 blue:147.0/255 alpha:1.0]];
+    } else {
+        [cell.sellersNumButton setBackgroundColor: APP_COLOR_4];
+        [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
+        PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
+        [query whereKey:@"itemID" equalTo:wantData.itemID];
+        [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
+            NSString *text;
+            if (sellersNum <= 1) {
+                text = [NSString stringWithFormat:@"%d seller", sellersNum];
+            } else {
+                text = [NSString stringWithFormat:@"%d sellers", sellersNum];
+            }
+            
+            if (!error) {
+                [cell.sellersNumButton setTitle:text forState:UIControlStateNormal];
+            } else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
 
     
     return cell;
@@ -163,8 +190,36 @@
 #pragma mark - WantTableView Delegate methods
 - (void) wantTableViewCell:(WantTableViewCell *)cell didClickSellersNumButton:(WantData *)wantData
 {
-    SellerListViewController *sellerListVC = [[SellerListViewController alloc] init];
-    [self.navigationController pushViewController:sellerListVC animated:YES];
+    PFQuery *query;
+    if (wantData.isDealClosed) {
+        query = [PFQuery queryWithClassName:@"AcceptedOffer"];
+    } else {
+        query = [PFQuery queryWithClassName:@"OfferedWant"];
+    }
+    
+    [query whereKey:@"itemID" equalTo:wantData.itemID];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *sellersOfferList, NSError *error) {
+        if (!error) {
+            NSMutableArray *offerDataList = [[NSMutableArray alloc] init];
+            for (PFObject *obj in sellersOfferList) {
+                SellersOfferData *offerData = [[SellersOfferData alloc] initWithPFObject:obj];
+                [offerDataList addObject:offerData];
+            }
+            wantData.sellersOfferList = [NSArray arrayWithArray:offerDataList];
+            SellerListViewController *sellerListVC = [[SellerListViewController alloc] init];
+            sellerListVC.wantData = wantData;
+            sellerListVC.delegate = self;
+            [self.navigationController pushViewController:sellerListVC animated:YES];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+#pragma mark - SellerListViewController delegate methods
+- (void) sellerListViewController:(SellerListViewController *)controller didAcceptOfferFromSeller:(WantData *)wantData
+{
+    [wantTableView reloadData];
 }
 
 @end

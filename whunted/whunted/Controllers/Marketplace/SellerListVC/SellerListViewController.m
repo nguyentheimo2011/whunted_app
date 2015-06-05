@@ -7,7 +7,7 @@
 //
 
 #import "SellerListViewController.h"
-#import "SellerListCell.h"
+#import "SellersOfferData.h"
 #import "Utilities.h"
 
 @interface SellerListViewController ()
@@ -20,6 +20,8 @@
 }
 
 @synthesize sellerTableView;
+@synthesize wantData;
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +46,7 @@
 #pragma mark - table view datasource method
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [wantData.sellersOfferList count];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -57,6 +59,18 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    SellersOfferData *offerData = [wantData.sellersOfferList objectAtIndex:indexPath.row];
+    [cell.sellerUsernameButton setTitle:offerData.sellerID forState:UIControlStateNormal];
+    [cell.sellersOfferedPrice setText:offerData.offeredPrice];
+    [cell.sellersOfferedDelivery setText:offerData.deliveryTime];
+    
+    if (!wantData.isDealClosed) {
+        [cell addButtonsIfNotAccepted];
+    }
+    
+    cell.delegate = self;
+    cell.offerData = offerData;
+    
     return cell;
 }
 
@@ -65,6 +79,32 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
+}
+
+#pragma mark - SellerListCell delegate mothods
+
+- (void) sellerListCell:(SellerListCell *)cell didAcceptOfferFromSeller:(SellersOfferData *)offerData
+{
+    [wantData setIsDealClosed:YES];
+    [[wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Update successfully");
+        } else {
+            NSLog(@"Update unsuccessfully");
+        }
+        
+        PFObject *obj = [offerData getPFObjectWithClassName:@"AcceptedOffer"];
+        [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"Upload to AcceptedOffer successfully");
+            } else {
+                NSLog(@"Upload to AcceptedOffer unsuccessfully");
+            }
+            
+            [delegate sellerListViewController:self didAcceptOfferFromSeller:wantData];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }];
 }
 
 @end

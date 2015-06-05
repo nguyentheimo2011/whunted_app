@@ -161,7 +161,7 @@
         offerData.deliveryTime = @"";
     }
     
-    [[offerData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    [[offerData getPFObjectWithClassName:@"OfferedWant"] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         [activityLogin stopAnimating];
         
         if (!error) {

@@ -7,10 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WantData.h"
+#import "SellerListCell.h"
 
-@interface SellerListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@class SellerListViewController;
+
+@protocol SellerListViewControllerDelegate <NSObject>
+
+- (void) sellerListViewController: (SellerListViewController *) controller didAcceptOfferFromSeller: (WantData *) wantData;
+
+@end
+
+@interface SellerListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SellerListCellDelegate>
+
+@property (nonatomic, strong) id<SellerListViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) UITableView *sellerTableView;
-@property (nonatomic, strong) NSArray *sellersOfferList;
+@property (nonatomic, strong) WantData *wantData;
 
 @end

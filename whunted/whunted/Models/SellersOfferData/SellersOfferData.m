@@ -40,9 +40,9 @@
     return self;
 }
 
-- (PFObject *) getPFObject
+- (PFObject *) getPFObjectWithClassName: (NSString *) className
 {
-    PFObject *pfObj = [PFObject objectWithClassName:@"OfferedWant"];
+    PFObject *pfObj = [PFObject objectWithClassName:className];
     pfObj[@"sellerID"] = self.sellerID;
     pfObj[@"itemID"] = self.itemID;
     pfObj[@"offeredPrice"] = self.offeredPrice;
@@ -50,5 +50,7 @@
     
     return pfObj;
 }
+
+
 
 @end
