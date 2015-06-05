@@ -73,13 +73,13 @@
 
 #pragma mark - Want Details View Controller delegate methods
 
-- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
 {
     currButtonIndex = buttonIndex;
     [self showImageGettingOptionPopup];
 }
 
-- (void) wantDetailsViewController:(WantDetailsViewController *)controller didPressSubmittingButton:(WantData *) wantData
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressSubmittingButton:(WantData *) wantData
 {
     PFObject *pfObj = [wantData getPFObject];
     [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -122,11 +122,11 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     UIViewController *topVC = [self.navigationController topViewController];
-    if ([topVC isKindOfClass:[WantDetailsViewController class]]) {
-        WantDetailsViewController *wantDetailsVC = (WantDetailsViewController *) topVC;
+    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
         [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
     } else {
-        WantDetailsViewController *wantDetailsVC = [[WantDetailsViewController alloc] init];
+        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
         wantDetailsVC.delegate = self;
         currButtonIndex = 0;
         [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];

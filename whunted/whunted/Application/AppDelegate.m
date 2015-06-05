@@ -12,7 +12,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "WantDetailsViewController.h"
 #import "LoginSignupViewController.h"
 
 @interface AppDelegate ()

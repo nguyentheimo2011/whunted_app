@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "WantDetailsViewController.h"
+#import "UploadingWantDetailsViewController.h"
 #import "Utilities.h"
 
-@interface WantDetailsViewController ()
+@interface UploadingWantDetailsViewController ()
 
 @property (strong, nonatomic) NSMutableArray *addingButtonList;
 @property (strong, nonatomic) UITableViewCell *buttonListCell;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation WantDetailsViewController
+@implementation UploadingWantDetailsViewController
 {
     UITextField *priceTextField;
     UISwitch *escrowSwitch;
@@ -45,6 +45,9 @@
         self.wantData.buyer = [PFUser currentUser];
         self.wantData.itemPictureList = [[PFRelation alloc] init];
         self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
+        
+        // hide bottom bar when uploading a new want 
+        self.hidesBottomBarWhenPushed = YES;
     }
     
     return self;
@@ -142,7 +145,7 @@
 - (void) addingImageButtonEvent: (id) sender
 {
     UIButton *button = (UIButton *) sender;
-    [self.delegate wantDetailsViewController:self didPressItemImageButton:[button tag]];
+    [self.delegate uploadingWantDetailsViewController:self didPressItemImageButton:[button tag]];
 }
 
 - (void) submittingButtonEvent
@@ -158,7 +161,7 @@
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
-        [self.delegate wantDetailsViewController:self didPressSubmittingButton:self.wantData];
+        [self.delegate uploadingWantDetailsViewController:self didPressSubmittingButton:self.wantData];
     }
 }
 

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ImageGetterViewController.h"
-#import "WantDetailsViewController.h"
+#import "UploadingWantDetailsViewController.h"
 
-@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, WantDetailsViewControllerDelegate>
+@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate>
 
 
 @end
