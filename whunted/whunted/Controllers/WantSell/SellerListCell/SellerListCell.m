@@ -26,6 +26,7 @@
         [self addSellerUsername];
         [self addSellersOfferedPrice];
         [self addSellersOfferedDelivery];
+        [self addChatWithSellerButton];
     }
     
     return self;
@@ -43,7 +44,6 @@
 
 - (void) addButtonsIfNotAccepted
 {
-    [self addChatWithSellerButton];
     [self addAcceptButton];
 }
 
