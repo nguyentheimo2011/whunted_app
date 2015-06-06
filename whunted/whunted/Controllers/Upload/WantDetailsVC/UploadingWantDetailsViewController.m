@@ -175,6 +175,19 @@
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
+        if (!self.wantData.itemDesc)
+            self.wantData.itemDesc = @"";
+        if (!self.wantData.hashTagList)
+            self.wantData.hashTagList = [NSArray array];
+        if (!self.wantData.productOrigin)
+            self.wantData.productOrigin = @"";
+        if (!self.wantData.demandedPrice)
+            self.wantData.demandedPrice = @"0";
+        if (!self.wantData.paymentMethod)
+            self.wantData.paymentMethod = @"Pay later";
+        if (!self.wantData.meetingLocation)
+            self.wantData.meetingLocation = @"";
+        
         [self.delegate uploadingWantDetailsViewController:self didPressSubmittingButton:self.wantData];
     }
 }
@@ -388,7 +401,8 @@
     self.wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     self.wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
     hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
-    self.wantData.hashTagList = [hashtagString componentsSeparatedByString:@" "];
+    if ([hashtagString length] > 0)
+        self.wantData.hashTagList = [hashtagString componentsSeparatedByString:@" "];
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     if (itemName != nil) {
         self.itemInfoCell.detailTextLabel.text = itemName;
