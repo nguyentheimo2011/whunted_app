@@ -16,17 +16,18 @@
 
 @property (strong, nonatomic) UITableViewCell *categoryCell;
 @property (strong, nonatomic) UITableViewCell *itemInfoCell;
+@property (strong, nonatomic) UITableViewCell *productOriginCell;
 @property (strong, nonatomic) UITableViewCell *priceCell;
 @property (strong, nonatomic) UITableViewCell *locationCell;
 @property (strong, nonatomic) UITableViewCell *escrowRequestCell;
 
-//@property (strong, nonatomic) NSMutableDictionary *wantDetailsDict;
 @property (strong, nonatomic) WantData *wantData;
 
 @end
 
 @implementation UploadingWantDetailsViewController
 {
+    UITextField *productOriginTextField;
     UITextField *priceTextField;
     UISwitch *escrowSwitch;
     NSString *hashtagString;
@@ -46,7 +47,7 @@
         self.wantData.itemPictureList = [[PFRelation alloc] init];
         self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
         
-        // hide bottom bar when uploading a new want 
+        // hide bottom bar when uploading a new want
         self.hidesBottomBarWhenPushed = YES;
     }
     
@@ -105,14 +106,27 @@
     self.itemInfoCell.detailTextLabel.text = @"What are you buying?";
     self.itemInfoCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     
+    self.productOriginCell = [[UITableViewCell alloc] init];
+    self.productOriginCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
+    self.productOriginCell.textLabel.text  = @"Product origin";
+    productOriginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.50, 30)];
+    [productOriginTextField setTextAlignment:NSTextAlignmentRight];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
+    productOriginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Taiwan" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
+    productOriginTextField.delegate = self;
+    productOriginTextField.tag = 101;
+    [productOriginTextField setKeyboardType:UIKeyboardTypeAlphabet];
+    self.productOriginCell.accessoryView = productOriginTextField;
+    self.productOriginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     self.priceCell = [[UITableViewCell alloc] init];
     self.priceCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.priceCell.textLabel.text = @"Your price";
     priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.55, 30)];
     [priceTextField setTextAlignment:NSTextAlignmentRight];
-    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
     priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Set a price" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     priceTextField.delegate = self;
+    priceTextField.tag = 102;
     [priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     self.priceCell.accessoryView = priceTextField;
     self.priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -174,7 +188,9 @@
 - (void) didFinishEditingPrice
 {
     self.wantData.demandedPrice = priceTextField.text;
+    self.wantData.productOrigin = productOriginTextField.text;
     [priceTextField resignFirstResponder];
+    [productOriginTextField resignFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
 }
 
@@ -223,7 +239,7 @@
     {
         case 0: return 0;   // section 0 has 0 row. Use footer of section i as the header of section i+1
         case 1:  return 1;  // section 0 has 1 row
-        case 2:  return 5;  // section 1 has 5 rows
+        case 2:  return 6;  // section 1 has 6 rows
         default: return 0;
     };
 }
@@ -241,9 +257,10 @@
             {
                 case 0: return self.categoryCell;
                 case 1: return self.itemInfoCell;
-                case 2: return self.priceCell;
-                case 3: return self.locationCell;
-                case 4: return self.escrowRequestCell;
+                case 2: return self.productOriginCell;
+                case 3: return self.priceCell;
+                case 4: return self.locationCell;
+                case 5: return self.escrowRequestCell;
             }
     }
     return nil;
@@ -329,7 +346,7 @@
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 4) {
             LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
             locVC.delegate = self;
             locVC.location = self.wantData.meetingLocation;
@@ -337,10 +354,12 @@
         }
     }
     
-    if (indexPath.section != 2 || indexPath.row != 2) {
+    if (indexPath.section != 2 || (indexPath.row != 2 && indexPath.row != 3)) {
+        [productOriginTextField resignFirstResponder];
         [priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:@"Done"]) {
             self.wantData.demandedPrice = priceTextField.text;
+            self.wantData.productOrigin = productOriginTextField.text;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
         }
     }
@@ -382,11 +401,13 @@
 #pragma mark - UITextFieldDelegate
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {
-    if ([textField.text length] == 0) {
-        NSString *text = [@"TWD" stringByAppendingString:textField.text];
-        textField.text = text;
+    if (textField.tag == 102) {
+        if ([textField.text length] == 0) {
+            NSString *text = [@"TWD" stringByAppendingString:textField.text];
+            textField.text = text;
+        }
     }
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(didFinishEditingPrice)];
 }
 
@@ -400,12 +421,13 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
-        
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        
-    return [string isEqualToString:filtered];
-    
+    if (textField.tag == 102) {
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        return [string isEqualToString:filtered];
+    } else {
+        return YES;
+    }
 }
 
 @end

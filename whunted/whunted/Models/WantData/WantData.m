@@ -41,6 +41,7 @@
         self.itemName = wantDataPFObject[@"itemName"];
         self.itemDesc = wantDataPFObject[@"itemDesc"];
         self.itemCategory = wantDataPFObject[@"category"];
+        self.productOrigin = wantDataPFObject[@"productOrigin"];
         self.demandedPrice = wantDataPFObject[@"demandedPrice"];
         self.paymentMethod = wantDataPFObject[@"paymentMethod"];
         self.meetingLocation = wantDataPFObject[@"meetingPlace"];
@@ -66,6 +67,7 @@
     wantDataPFObject[@"itemName"] = self.itemName;
     wantDataPFObject[@"itemDesc"] = self.itemDesc;
     wantDataPFObject[@"category"] = self.itemCategory;
+    wantDataPFObject[@"productOrigin"] = self.productOrigin;
     wantDataPFObject[@"demandedPrice"] = self.demandedPrice;
     wantDataPFObject[@"paymentMethod"] = self.paymentMethod;
     wantDataPFObject[@"meetingPlace"] = self.meetingLocation;
