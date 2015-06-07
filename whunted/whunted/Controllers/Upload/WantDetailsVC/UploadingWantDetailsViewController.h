@@ -17,7 +17,7 @@
 @protocol UploadingWantDetailsViewControllerDelegate <NSObject>
 
 - (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didPressItemImageButton: (NSUInteger) buttonIndex;
-- (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didPressSubmittingButton: (WantData *) wantData;
+- (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didCompleteSubmittingWantData: (WantData *) wantData;
 
 @end
 

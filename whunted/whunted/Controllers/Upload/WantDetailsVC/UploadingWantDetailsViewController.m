@@ -187,8 +187,16 @@
             self.wantData.paymentMethod = @"Pay later";
         if (!self.wantData.meetingLocation)
             self.wantData.meetingLocation = @"";
-        
-        [self.delegate uploadingWantDetailsViewController:self didPressSubmittingButton:self.wantData];
+                
+        PFObject *pfObj = [self.wantData getPFObject];
+        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self.navigationController popViewControllerAnimated:YES];
+                [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:self.wantData];
+            } else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
     }
 }
 

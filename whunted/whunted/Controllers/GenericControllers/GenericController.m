@@ -71,7 +71,7 @@
     [popup show];
 }
 
-#pragma mark - Want Details View Controller delegate methods
+#pragma mark - Upload Want Details View Controller delegate methods
 
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
 {
@@ -79,16 +79,9 @@
     [self showImageGettingOptionPopup];
 }
 
-- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressSubmittingButton:(WantData *) wantData
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 {
-    PFObject *pfObj = [wantData getPFObject];
-    [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    
 }
 
 #pragma mark - Image Getter View Controller delegate methods

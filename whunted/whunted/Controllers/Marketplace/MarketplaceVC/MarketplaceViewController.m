@@ -68,6 +68,7 @@
 {
     wantDataList = [[NSMutableArray alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
@@ -77,6 +78,21 @@
             [_wantCollectionView reloadData];
         } else {
             // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void) retrieveLatestWantData
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query orderByDescending:@"updatedAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
+            [self.wantDataList insertObject:wantData atIndex:0];
+            [_wantCollectionView reloadData];
+        } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
@@ -166,6 +182,12 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+#pragma mark - Overriden methods
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
+{
+    [self retrieveLatestWantData];
 }
 
 @end

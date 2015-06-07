@@ -10,7 +10,8 @@
 #import "ImageGetterViewController.h"
 #import "UploadingWantDetailsViewController.h"
 
-@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate>
+@class MarketplaceViewController;
 
+@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate>
 
 @end
