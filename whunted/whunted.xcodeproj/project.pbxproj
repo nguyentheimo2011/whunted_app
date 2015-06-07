@@ -84,6 +84,7 @@
 		E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E981130F1B2155CB00ECAA0C /* chat_with_seller@3x.png */; };
 		E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113191B21EB6C00ECAA0C /* SellerListViewController.m */; };
 		E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E981131C1B21EB7D00ECAA0C /* SellerListCell.m */; };
+		E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113201B24B85F00ECAA0C /* SellTableViewCell.m */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -240,6 +241,8 @@
 		E98113191B21EB6C00ECAA0C /* SellerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellerListViewController.m; path = Controllers/WantSell/SellerListVC/SellerListViewController.m; sourceTree = "<group>"; };
 		E981131B1B21EB7D00ECAA0C /* SellerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellerListCell.h; path = Controllers/WantSell/SellerListCell/SellerListCell.h; sourceTree = "<group>"; };
 		E981131C1B21EB7D00ECAA0C /* SellerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellerListCell.m; path = Controllers/WantSell/SellerListCell/SellerListCell.m; sourceTree = "<group>"; };
+		E981131F1B24B85F00ECAA0C /* SellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellTableViewCell.h; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.h; sourceTree = "<group>"; };
+		E98113201B24B85F00ECAA0C /* SellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellTableViewCell.m; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.m; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -536,6 +539,7 @@
 				E98113161B21EB0A00ECAA0C /* SellerListCell */,
 				E9E4567D1B0DDC9500E8B55D /* CustomVC */,
 				E9E456561B0D84E200E8B55D /* MySellVC */,
+				E981131E1B24B73B00ECAA0C /* MySellTableViewCell */,
 				E9E456551B0D84D800E8B55D /* MyWantVC */,
 				E9E456881B0F095000E8B55D /* MyWantTableViewCell */,
 			);
@@ -780,6 +784,15 @@
 				E98113191B21EB6C00ECAA0C /* SellerListViewController.m */,
 			);
 			name = SellerListVC;
+			sourceTree = "<group>";
+		};
+		E981131E1B24B73B00ECAA0C /* MySellTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E981131F1B24B85F00ECAA0C /* SellTableViewCell.h */,
+				E98113201B24B85F00ECAA0C /* SellTableViewCell.m */,
+			);
+			name = MySellTableViewCell;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
@@ -1106,6 +1119,7 @@
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */,
 				E97CE4A11B09ECC90027C5FA /* UploadingWantDetailsViewController.m in Sources */,
+				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,

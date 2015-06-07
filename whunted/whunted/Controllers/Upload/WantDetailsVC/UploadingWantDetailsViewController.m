@@ -187,7 +187,7 @@
             self.wantData.paymentMethod = @"Pay later";
         if (!self.wantData.meetingLocation)
             self.wantData.meetingLocation = @"";
-                
+        
         PFObject *pfObj = [self.wantData getPFObject];
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
