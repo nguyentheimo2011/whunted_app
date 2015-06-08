@@ -20,6 +20,7 @@
 @synthesize lowestOfferedPriceLabel;
 @synthesize sellersNumButton;
 @synthesize sellersNum;
+@synthesize acceptedStatusLabel;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -141,6 +142,22 @@
     sellersNumButton.layer.cornerRadius = 8;
     [sellersNumButton addTarget:self action:@selector(sellerNumButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:sellersNumButton];
+}
+
+- (void) addAcceptedStatusLabel
+{
+    acceptedStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemImageView.frame.size.width - 90, 0, 90, 20)];
+    [acceptedStatusLabel setText:@"Accepted"];
+    [acceptedStatusLabel setTextColor:[UIColor whiteColor]];
+    [acceptedStatusLabel setFont:[UIFont systemFontOfSize:18]];
+    [acceptedStatusLabel setTextAlignment:NSTextAlignmentCenter];
+    [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
+    [itemImageView addSubview:acceptedStatusLabel];
+}
+
+- (void) removeAcceptedStatusLabel
+{
+    [acceptedStatusLabel removeFromSuperview];
 }
 
 #pragma mark - Event Handlers

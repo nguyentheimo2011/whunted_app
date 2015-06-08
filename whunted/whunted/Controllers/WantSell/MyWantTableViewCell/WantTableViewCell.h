@@ -31,5 +31,9 @@
 @property (nonatomic, strong) UILabel *itemNameLabel;
 @property (nonatomic, strong) UILabel *lowestOfferedPriceLabel;
 @property (nonatomic, strong) UIButton *sellersNumButton;
+@property (nonatomic, strong) UILabel *acceptedStatusLabel;
+
+- (void) addAcceptedStatusLabel;
+- (void) removeAcceptedStatusLabel;
 
 @end
