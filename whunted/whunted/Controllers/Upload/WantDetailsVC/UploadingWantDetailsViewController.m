@@ -48,7 +48,7 @@
         self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
         
         // hide bottom bar when uploading a new want
-        self.tabBarController.tabBar.hidden = YES;
+        self.hidesBottomBarWhenPushed = YES;
     }
     
     return self;
