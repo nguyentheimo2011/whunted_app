@@ -184,10 +184,4 @@
     }];
 }
 
-#pragma mark - Overriden methods
-- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
-{
-    [self retrieveLatestWantData];
-}
-
 @end

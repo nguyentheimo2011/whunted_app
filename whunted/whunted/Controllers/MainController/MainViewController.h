@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericController.h"
 
-@interface MainViewController : UITabBarController
+@interface MainViewController : UITabBarController<GenericControllerDelegate>
 
 @end

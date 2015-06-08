@@ -15,7 +15,7 @@
 
 @interface MyWantViewController ()
 
-@property (strong, nonatomic) UITableView *wantTableView;
+@property (strong, nonatomic) UITableView *_wantTableView;
 @property (strong, nonatomic) UICollectionView *wantCollectionView;
 @property (strong, nonatomic) HorizontalLineViewController *horizontalLineVC;
 
@@ -27,7 +27,7 @@
     NSString *documents;
 }
 
-@synthesize wantTableView;
+@synthesize _wantTableView;
 
 - (id) init
 {
@@ -66,10 +66,10 @@
 
 - (void) addTableView
 {
-    self.wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
-    self.wantTableView.dataSource = self;
-    self.wantTableView.delegate = self;
-    [self.view addSubview:self.wantTableView];
+    _wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
+    _wantTableView.dataSource = self;
+    _wantTableView.delegate = self;
+    [self.view addSubview:_wantTableView];
 }
 
 #pragma mark - Data Handlers
@@ -80,19 +80,39 @@
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
     [query whereKey:@"buyerID" equalTo:currentUser];
+    [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [self.wantDataList addObject:wantData];
             }
-            [self.wantTableView reloadData];
+            [_wantTableView reloadData];
             
             NSString *labelText = [NSString stringWithFormat:@"%lu wants", (unsigned long)[self.wantDataList count]];
             [self.horizontalLineVC.numLabel setText:labelText];
             
         } else {
             // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void) retrieveLatestWantData
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
+    [query orderByDescending:@"updatedAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
+            [self.wantDataList insertObject:wantData atIndex:0];
+            [_wantTableView reloadData];
+            
+            NSString *labelText = [NSString stringWithFormat:@"%lu wants", (unsigned long)[self.wantDataList count]];
+            [self.horizontalLineVC.numLabel setText:labelText];
+        } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
@@ -119,7 +139,7 @@
 {
     static NSString *cellIdentifier = @"MyWantTableViewCell";
     
-    WantTableViewCell *cell = (WantTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    WantTableViewCell *cell = (WantTableViewCell*)[_wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell==nil){
         cell = [[WantTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -219,7 +239,8 @@
 #pragma mark - SellerListViewController delegate methods
 - (void) sellerListViewController:(SellerListViewController *)controller didAcceptOfferFromSeller:(WantData *)wantData
 {
-    [wantTableView reloadData];
+    [_wantTableView reloadData];
 }
+
 
 @end

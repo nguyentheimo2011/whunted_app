@@ -10,8 +10,16 @@
 #import "ImageGetterViewController.h"
 #import "UploadingWantDetailsViewController.h"
 
-@class MarketplaceViewController;
+@class GenericController;
+
+@protocol GenericControllerDelegate <NSObject>
+
+- (void) genericController: (GenericController *) controller shouldUpdateData: (BOOL) updated;
+
+@end
 
 @interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate>
+
+@property (nonatomic, weak) id<GenericControllerDelegate> delegate;
 
 @end

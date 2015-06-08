@@ -80,6 +80,7 @@
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
+    [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
         if (!error) {
             for (int i=0; i<[offerObjects count]; i++) {
@@ -102,6 +103,11 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+- (void) retrieveLatestWantData
+{
+    
 }
 
 #pragma mark - Table view data source

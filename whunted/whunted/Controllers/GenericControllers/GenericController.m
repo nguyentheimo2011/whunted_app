@@ -81,7 +81,7 @@
 
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 {
-    
+    [self.delegate genericController:self shouldUpdateData:YES];
 }
 
 #pragma mark - Image Getter View Controller delegate methods

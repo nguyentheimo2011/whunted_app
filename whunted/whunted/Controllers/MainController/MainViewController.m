@@ -19,8 +19,10 @@
 #import <Parse/Parse.h>
 
 @interface MainViewController ()
-
-- (void) customizeNavigationBar;
+{
+    MarketplaceViewController *_brController;
+    MyWantViewController *_myWantVC;
+}
 
 @end
 
@@ -31,10 +33,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self != nil) {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
-        MarketplaceViewController *brController = [[MarketplaceViewController alloc] init];
-        [browserNavController setViewControllers:[NSArray arrayWithObject:brController]];
+        _brController = [[MarketplaceViewController alloc] init];
+        [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController setTitle:@"Marketplace"];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
+        _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
@@ -43,10 +46,11 @@
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         
         UINavigationController *myWantNavController = [[UINavigationController alloc] init];
-        MyWantViewController *myWantVC = [[MyWantViewController alloc] init];
-        [myWantNavController setViewControllers: [NSArray arrayWithObject:myWantVC]];
+        _myWantVC = [[MyWantViewController alloc] init];
+        [myWantNavController setViewControllers: [NSArray arrayWithObject:_myWantVC]];
         [myWantNavController setTitle:@"Want"];
         [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
+        _myWantVC.delegate = self;
         
         UINavigationController *mySellNavController = [[UINavigationController alloc] init];
         MySellViewController *mySellVC = [[MySellViewController alloc] init];
@@ -78,6 +82,15 @@
 {
     [[UINavigationBar appearance] setBarTintColor:APP_COLOR];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+}
+
+#pragma mark - GenericController Delegate methods
+- (void) genericController:(GenericController *)controller shouldUpdateData:(BOOL)updated
+{
+    if (updated) {
+        [_brController retrieveLatestWantData];
+        [_myWantVC retrieveLatestWantData];
+    }
 }
 
 @end
