@@ -29,5 +29,6 @@
 @property (nonatomic, strong) UILabel *likesNumLabel;
 @property (nonatomic, strong) UILabel *itemNameLabel;
 @property (nonatomic, strong) UILabel *lowestOfferedPriceLabel;
+@property (nonatomic, strong) UILabel *yourOfferLabel;
 
 @end

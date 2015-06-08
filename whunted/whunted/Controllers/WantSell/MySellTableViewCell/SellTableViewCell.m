@@ -18,6 +18,7 @@
 @synthesize likesNumLabel;
 @synthesize itemNameLabel;
 @synthesize lowestOfferedPriceLabel;
+@synthesize yourOfferLabel;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,6 +30,7 @@
         [self addPromotionSection];
         [self addItemNameLabel];
         [self addLowestOfferedPrice];
+        [self addYourOfferLabel];
     }
     return self;
 }
@@ -119,11 +121,22 @@
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 35;
-    lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 150, 15)];
-    [lowestOfferedPriceLabel setText:@"Lowest offered: $90"];
+    lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
+    [lowestOfferedPriceLabel setText:@"Lowest offered: TWD90"];
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
     [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:lowestOfferedPriceLabel];
+}
+
+- (void) addYourOfferLabel
+{
+    CGFloat itemImageWidth = WINSIZE.width-20;
+    CGFloat yPos = itemImageWidth * 7.0/6 + 60;
+    yourOfferLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
+    [yourOfferLabel setText:@"Your offer: TWD0"];
+    [yourOfferLabel setTextColor:[UIColor grayColor]];
+    [yourOfferLabel setFont:[UIFont systemFontOfSize:15]];
+    [self addSubview:yourOfferLabel];
 }
 
 #pragma mark - Event Handlers

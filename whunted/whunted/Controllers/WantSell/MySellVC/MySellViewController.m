@@ -19,12 +19,14 @@
 @property (strong, nonatomic) UICollectionView *wantCollectionView;
 @property (strong, nonatomic) HorizontalLineViewController *horizontalLineVC;
 
+
 @end
 
 @implementation MySellViewController
 {
     CGSize windowSize;
     NSString *documents;
+    NSMutableArray *_yourOfferPriceList;
 }
 
 @synthesize wantTableView;
@@ -45,6 +47,7 @@
     
     windowSize = [[UIScreen mainScreen] bounds].size;
     documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    _yourOfferPriceList = [[NSMutableArray alloc] init];
     
     [self addHorizontalLine];
     [self addTableView];
@@ -90,6 +93,7 @@
                 [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [self.wantDataList addObject:wantData];
+                    [_yourOfferPriceList addObject:object[@"offeredPrice"]];
                     if (i == [offerObjects count] - 1)
                         [self.wantTableView reloadData];
                 }];
@@ -118,6 +122,7 @@
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [self.wantDataList insertObject:wantData atIndex:0];
+                [_yourOfferPriceList insertObject:offerObject[@"offeredPrice"] atIndex:0];
                 [self.wantTableView reloadData];
             }];
             
@@ -160,6 +165,10 @@
     }
     
     cell.delegate = self;
+    
+    if ([_yourOfferPriceList count] > indexPath.row) {
+        [cell.yourOfferLabel setText:[NSString stringWithFormat:@"Your offer: %@", [_yourOfferPriceList objectAtIndex:indexPath.row]]];
+    }
     
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
     cell.wantData = wantData;
