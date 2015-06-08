@@ -35,6 +35,9 @@
 @synthesize offeredPriceTextField;
 @synthesize offeredDeliveryTextField;
 @synthesize activityLogin;
+@synthesize delegate;
+@synthesize currOfferedPrice;
+@synthesize currOfferedDelivery;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,10 +88,13 @@
     offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, startingYPos + 75, WINSIZE.width - 80, 60)];
     offeredPriceTextField.minimumFontSize = 15;
     [offeredPriceTextField setTextColor:[UIColor grayColor]];
+    [offeredPriceTextField setText:currOfferedPrice];
     [offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
     [offeredPriceTextField setFont:[UIFont systemFontOfSize:30]];
     [offeredPriceTextField setPlaceholder:wantData.demandedPrice];
+    [offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     offeredPriceTextField.delegate = self;
+    offeredPriceTextField.tag = 103;
     [self.view addSubview:offeredPriceTextField];
 }
 
@@ -107,6 +113,7 @@
     offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, startingYPos + 175, WINSIZE.width - 120, 40)];
     offeredDeliveryTextField.minimumFontSize = 15;
     [offeredDeliveryTextField setTextColor:[UIColor grayColor]];
+    [offeredDeliveryTextField setText:currOfferedDelivery];
     [offeredDeliveryTextField setTextAlignment:NSTextAlignmentCenter];
     [offeredDeliveryTextField setFont:[UIFont systemFontOfSize:25]];
     [offeredDeliveryTextField setPlaceholder:@"1 week"];
@@ -165,6 +172,7 @@
         [activityLogin stopAnimating];
         
         if (!error) {
+            [delegate sellerOfferViewController:self didOfferForItem:[offerData getPFObjectWithClassName:@"OfferedWant"]];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -182,6 +190,16 @@
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 13;
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.tag == 103) {
+        if ([textField.text length] == 0) {
+            NSString *text = [@"TWD" stringByAppendingString:textField.text];
+            textField.text = text;
+        }
+    }
 }
 
 @end

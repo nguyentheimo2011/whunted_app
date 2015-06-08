@@ -177,7 +177,24 @@
     [[itemDetailsVC.wantData.itemPictureList query] countObjectsInBackgroundWithBlock:^(int itemImagesNum, NSError *error) {
         if (!error) {
             itemDetailsVC.itemImagesNum = itemImagesNum;
-            [self.navigationController pushViewController:itemDetailsVC animated:YES];
+            
+            PFQuery *sQuery = [PFQuery queryWithClassName:@"OfferedWant"];
+            [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
+            [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
+            [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
+                if (!error) {
+                    if (object) {
+                        itemDetailsVC.offeredByCurrUser = YES;
+                        itemDetailsVC.offerPFObject = object;
+                    }
+                    else
+                        itemDetailsVC.offeredByCurrUser = NO;
+                } else {
+                    NSLog(@"Error %@ %@", error, [error userInfo]);
+                }
+                
+                [self.navigationController pushViewController:itemDetailsVC animated:YES];
+            }];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

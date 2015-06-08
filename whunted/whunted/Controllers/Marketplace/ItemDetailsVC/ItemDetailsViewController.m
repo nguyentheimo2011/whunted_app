@@ -9,7 +9,6 @@
 #import "ItemDetailsViewController.h"
 #import "Utilities.h"
 #import "ItemImageViewController.h"
-#import "SellersOfferViewController.h"
 
 @interface ItemDetailsViewController ()
 
@@ -34,6 +33,9 @@
 @synthesize demandedPriceLabel;
 @synthesize locationLabel;
 @synthesize itemDescLabel;
+@synthesize secondBottomButton;
+@synthesize offeredByCurrUser;
+@synthesize offerPFObject;
 
 - (id) init
 {
@@ -171,20 +173,22 @@
 - (void) addOfferButton
 {
     PFUser *curUser = [PFUser currentUser];
+    secondBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
     
     if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
-        UIButton *promoteButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
-        [promoteButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        [promoteButton setTitle:@"Promote your post!" forState:UIControlStateNormal];
-        [promoteButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [self.view addSubview:promoteButton];
+        [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
+        [secondBottomButton setTitle:@"Promote your post!" forState:UIControlStateNormal];
+        [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [self.view addSubview:secondBottomButton];
     } else {
-        UIButton *offerButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
-        [offerButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        [offerButton setTitle:@"Offer your price!" forState:UIControlStateNormal];
-        [offerButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [offerButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:offerButton];
+        [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
+        if (offeredByCurrUser)
+            [secondBottomButton setTitle:@"Change your offer!" forState:UIControlStateNormal];
+        else
+            [secondBottomButton setTitle:@"Offer your price!" forState:UIControlStateNormal];
+        [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [secondBottomButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:secondBottomButton];
     }
 }
 
@@ -193,12 +197,19 @@
 {
     SellersOfferViewController *sellersOfferVC = [[SellersOfferViewController alloc] init];
     sellersOfferVC.wantData = wantData;
+    sellersOfferVC.delegate = self;
+    
+    if (offerPFObject) {
+        sellersOfferVC.currOfferedPrice = offerPFObject[@"offeredPrice"];
+        sellersOfferVC.currOfferedDelivery = offerPFObject[@"deliveryTime"];
+    }
+    
     [self.navigationController pushViewController:sellersOfferVC animated:YES];
 }
 
 #pragma mark - Data Handlers
 - (void) retrieveItemImages
-{
+{    
     itemImageList = [[NSMutableArray alloc] init];
     PFRelation *picRelation = wantData.itemPictureList;
     
@@ -245,6 +256,14 @@
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     // The selected item reflected in the page indicator.
     return 0;
+}
+
+#pragma mark - SellersOfferViewController delegate methods
+- (void) sellerOfferViewController:(SellersOfferViewController *)controller didOfferForItem:(PFObject *) object
+{
+    offeredByCurrUser = YES;
+    offerPFObject = object;
+    [secondBottomButton setTitle:@"Change your offer!" forState:UIControlStateNormal];
 }
 
 
