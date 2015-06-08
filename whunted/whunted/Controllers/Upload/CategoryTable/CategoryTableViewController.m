@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    categoryList = [NSArray arrayWithObjects:@"Beauty, Health & Grocery", @"Books & Magazines", @"Clothing, Shoes and Jewelry", @"Electronics & Computers", @"Home, Garden & Tools", @"Movies, Music & Games", @"Sports & Outdoors", @"Toys, Kids & Baby", nil];
+    categoryList = [NSArray arrayWithObjects:@"美容產品", @"書籍雜誌", @"品牌產品", @"遊戲玩具", @"專業服務", @"體育器材", @"門票優惠券", @"手錶", @"定制產品", @"我想藉", @"家具", @"其他", nil];
     
     selectedIndex = [categoryList indexOfObject:self.category];
 }

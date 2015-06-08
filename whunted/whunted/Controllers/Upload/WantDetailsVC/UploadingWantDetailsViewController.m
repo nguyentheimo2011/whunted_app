@@ -94,21 +94,21 @@
     
     self.categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     self.categoryCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.categoryCell.textLabel.text = @"Category";
+    self.categoryCell.textLabel.text = @"品類";
     self.categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.categoryCell.detailTextLabel.text = @"Choose category";
+    self.categoryCell.detailTextLabel.text = @"選擇物品品類";
     self.categoryCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     
     self.itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
     self.itemInfoCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.itemInfoCell.textLabel.text = @"Item info";
+    self.itemInfoCell.textLabel.text = @"物品類目";
     self.itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.itemInfoCell.detailTextLabel.text = @"What are you buying?";
+    self.itemInfoCell.detailTextLabel.text = @"你要買什麼?";
     self.itemInfoCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     
     self.productOriginCell = [[UITableViewCell alloc] init];
     self.productOriginCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.productOriginCell.textLabel.text  = @"Product origin";
+    self.productOriginCell.textLabel.text  = @"物品產地";
     productOriginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.50, 30)];
     [productOriginTextField setTextAlignment:NSTextAlignmentRight];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
@@ -121,10 +121,10 @@
     
     self.priceCell = [[UITableViewCell alloc] init];
     self.priceCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.priceCell.textLabel.text = @"Your price";
+    self.priceCell.textLabel.text = @"你開的價";
     priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.55, 30)];
     [priceTextField setTextAlignment:NSTextAlignmentRight];
-    priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Set a price" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
+    priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"開個價" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     priceTextField.delegate = self;
     priceTextField.tag = 102;
     [priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
@@ -133,14 +133,14 @@
     
     self.locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     self.locationCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.locationCell.textLabel.text = @"Location";
+    self.locationCell.textLabel.text = @"地點";
     self.locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.locationCell.detailTextLabel.text = @"Where to meet?";
+    self.locationCell.detailTextLabel.text = @"選擇交易地點?";
     self.locationCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     
     self.escrowRequestCell = [[UITableViewCell alloc] init];
     self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.escrowRequestCell.textLabel.text = @"Request for Escrow?";
+    self.escrowRequestCell.textLabel.text = @"第三方託管?";
     escrowSwitch = [[UISwitch alloc] init];
     [escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
     self.escrowRequestCell.accessoryView = escrowSwitch;
@@ -149,9 +149,9 @@
 
 - (void) customizeNavigationBar
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonEvent)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonEvent)];
 }
 
 #pragma mark - Event Handling
@@ -317,7 +317,7 @@
 {
     switch(section)
     {
-        case 1: return @"DETAILS";
+        case 1: return @"具體信息";
     }
     return nil;
 }

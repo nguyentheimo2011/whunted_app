@@ -148,9 +148,9 @@
     [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
         NSString *text;
         if (sellersNum <= 1) {
-            text = [NSString stringWithFormat:@"%d seller", sellersNum];
+            text = [NSString stringWithFormat:@"%d 賣家", sellersNum];
         } else {
-            text = [NSString stringWithFormat:@"%d sellers", sellersNum];
+            text = [NSString stringWithFormat:@"%d 賣家", sellersNum];
         }
         
         if (!error) {

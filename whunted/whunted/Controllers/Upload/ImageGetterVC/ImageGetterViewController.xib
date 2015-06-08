@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -24,13 +25,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-17-CMG">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="66"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a way to upload your image!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI0-gz-3wk">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="你可以用一下三種方式上載物品照" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI0-gz-3wk">
                             <rect key="frame" x="8" y="32" width="251" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tell people what you want!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grl-Py-4Z1">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="告訴賣家你要賣什麼" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grl-Py-4Z1">
                             <rect key="frame" x="8" y="8" width="188" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +66,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="sfC-J4-8tw"/>
                     </constraints>
-                    <state key="normal" title="Post image link">
+                    <state key="normal" title="貼圖片網址">
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -78,7 +79,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="S5A-zi-dmr"/>
                     </constraints>
-                    <state key="normal" title="Choose existing photo from gallery">
+                    <state key="normal" title="從照片庫中選擇">
                         <color key="titleColor" red="0.66666666666666663" green="0.44646567872188703" blue="0.21776967957410931" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -91,7 +92,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="ff6-Jh-e5g"/>
                     </constraints>
-                    <state key="normal" title="Take photo from Camera">
+                    <state key="normal" title="拍你想要的物品">
                         <color key="titleColor" red="0.66666666669999997" green="0.44646567869999998" blue="0.21776967959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>

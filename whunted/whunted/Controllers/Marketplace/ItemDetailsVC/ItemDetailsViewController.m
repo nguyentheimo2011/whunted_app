@@ -166,7 +166,7 @@
 {
     UIButton *chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 40, WINSIZE.width/2, 40)];
     [chatButton setBackgroundColor:[UIColor grayColor]];
-    [chatButton setTitle:@"Chat" forState:UIControlStateNormal];
+    [chatButton setTitle:@"對話" forState:UIControlStateNormal];
     [chatButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [self.view addSubview:chatButton];
 }
@@ -178,15 +178,15 @@
     
     if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        [secondBottomButton setTitle:@"Promote your post!" forState:UIControlStateNormal];
+        [secondBottomButton setTitle:@"跟朋友分享!" forState:UIControlStateNormal];
         [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [self.view addSubview:secondBottomButton];
     } else {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
         if (offeredByCurrUser)
-            [secondBottomButton setTitle:@"Change your offer!" forState:UIControlStateNormal];
+            [secondBottomButton setTitle:@"修改出價" forState:UIControlStateNormal];
         else
-            [secondBottomButton setTitle:@"Offer your price!" forState:UIControlStateNormal];
+            [secondBottomButton setTitle:@"出價" forState:UIControlStateNormal];
         [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [secondBottomButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:secondBottomButton];
@@ -264,7 +264,7 @@
 {
     offeredByCurrUser = YES;
     offerPFObject = object;
-    [secondBottomButton setTitle:@"Change your offer!" forState:UIControlStateNormal];
+    [secondBottomButton setTitle:@"修改出價" forState:UIControlStateNormal];
     [delegate itemDetailsViewController:self didCompleteOffer:YES];
 }
 

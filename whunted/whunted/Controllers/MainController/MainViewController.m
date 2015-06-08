@@ -36,27 +36,27 @@
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
-        [browserNavController setTitle:@"Marketplace"];
+        [browserNavController setTitle:@"市場"];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
-        [newsFeedfNavController setTitle:@"News Feed"];
+        [newsFeedfNavController setTitle:@"最新動態"];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         
         UINavigationController *myWantNavController = [[UINavigationController alloc] init];
         _myWantVC = [[MyWantViewController alloc] init];
         [myWantNavController setViewControllers: [NSArray arrayWithObject:_myWantVC]];
-        [myWantNavController setTitle:@"Want"];
+        [myWantNavController setTitle:@"要買"];
         [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
         _myWantVC.delegate = self;
         
         UINavigationController *mySellNavController = [[UINavigationController alloc] init];
         _mySellVC = [[MySellViewController alloc] init];
         [mySellNavController setViewControllers: [NSArray arrayWithObject:_mySellVC]];
-        [mySellNavController setTitle:@"Sell"];
+        [mySellNavController setTitle:@"要賣"];
         [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
         _mySellVC.delegate = self;
         

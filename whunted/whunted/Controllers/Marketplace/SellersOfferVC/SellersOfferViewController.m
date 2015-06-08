@@ -64,7 +64,7 @@
 #pragma mark - UI Handlers
 - (void) addSummaryLabel
 {
-    NSString *text = [NSString stringWithFormat:@"%@ wants to buy at %@", wantData.buyer.objectId, wantData.demandedPrice];
+    NSString *text = [NSString stringWithFormat:@"%@ 要付 %@", wantData.buyer.objectId, wantData.demandedPrice];
     summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
     summaryLabel.textAlignment = NSTextAlignmentCenter;
     [summaryLabel setText:text];
@@ -77,7 +77,7 @@
 {
     priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 45, WINSIZE.width - 40, 20)];
     priceAskingLabel.textAlignment = NSTextAlignmentCenter;
-    [priceAskingLabel setText:@"You are willing to sell at "];
+    [priceAskingLabel setText:@"你的出價是 "];
     [priceAskingLabel setTextColor:[UIColor grayColor]];
     [priceAskingLabel setFont:[UIFont systemFontOfSize:15]];
     [self.view addSubview:priceAskingLabel];
@@ -102,7 +102,7 @@
 {
     deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 140, WINSIZE.width - 40, 20)];
     deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
-    [deliveryAskingLabel setText:@"You can deliver the item in"];
+    [deliveryAskingLabel setText:@"你可以在多長時間里交貨"];
     [deliveryAskingLabel setTextColor:[UIColor grayColor]];
     [deliveryAskingLabel setFont:[UIFont systemFontOfSize:15]];
     [self.view addSubview:deliveryAskingLabel];

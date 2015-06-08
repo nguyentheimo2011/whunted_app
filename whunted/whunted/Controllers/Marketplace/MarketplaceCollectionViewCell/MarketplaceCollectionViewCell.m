@@ -97,7 +97,7 @@
     CGFloat yPos = WINSIZE.width/2 + 90;
     sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(xPos, yPos, (WINSIZE.width/2-15)/2, 25)];
     [sellerNumButton setBackgroundColor:APP_COLOR_2];
-    [sellerNumButton setTitle:@"0 sellers" forState:UIControlStateNormal];
+    [sellerNumButton setTitle:@"0 賣家" forState:UIControlStateNormal];
     sellerNumButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:sellerNumButton];
 }
@@ -108,7 +108,7 @@
     CGFloat yPos = WINSIZE.width/2 + 90;
     cheapestPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, (WINSIZE.width/2-15)/2, 25)];
     [cheapestPriceLabel setBackgroundColor:APP_COLOR_3];
-    [cheapestPriceLabel setText:@"$90"];
+    [cheapestPriceLabel setText:@"TWD90"];
     [cheapestPriceLabel setTextColor:[UIColor whiteColor]];
     [cheapestPriceLabel setTextAlignment:NSTextAlignmentCenter];
     cheapestPriceLabel.font = [UIFont systemFontOfSize:16];
