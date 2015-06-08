@@ -19,6 +19,7 @@
 @synthesize itemNameLabel;
 @synthesize lowestOfferedPriceLabel;
 @synthesize sellersNumButton;
+@synthesize sellersNum;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -150,7 +151,11 @@
 
 - (void) sellerNumButtonClickedHandler
 {
-    [delegate wantTableViewCell:self didClickSellersNumButton:wantData];
+    if (sellersNum <= 0) {
+        NSLog(@"No sellers for this item");
+    } else {
+        [delegate wantTableViewCell:self didClickSellersNumButton:wantData];
+    }
 }
 
 @end

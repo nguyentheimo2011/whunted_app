@@ -148,6 +148,9 @@
     
     cell.delegate = self;
     
+    // add tag to cell to prevent asynchronous effects of network
+    cell.tag = indexPath.row;
+    
     WantData *wantData = [self.wantDataList objectAtIndex:indexPath.row];
     cell.wantData = wantData;
     [cell.itemNameLabel setText:wantData.itemName];
@@ -182,9 +185,11 @@
     if (wantData.isDealClosed) {
         [cell.sellersNumButton setTitle:@"1 seller" forState:UIControlStateNormal];
         [cell.sellersNumButton setBackgroundColor:[UIColor colorWithRed:219.0/255 green:112.0/255 blue:147.0/255 alpha:1.0]];
+        cell.sellersNum = 1;
     } else {
         [cell.sellersNumButton setBackgroundColor: APP_COLOR_4];
         [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
+        cell.sellersNum = 0;
         PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
         [query whereKey:@"itemID" equalTo:wantData.itemID];
         [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
@@ -196,7 +201,10 @@
             }
             
             if (!error) {
-                [cell.sellersNumButton setTitle:text forState:UIControlStateNormal];
+                if (cell.tag == indexPath.row) {
+                    [cell.sellersNumButton setTitle:text forState:UIControlStateNormal];
+                    cell.sellersNum = sellersNum;
+                }
             } else {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }

@@ -23,6 +23,7 @@
 @property (nonatomic, strong) id<WantTableViewCellDelegate> delegate;
 
 @property (nonatomic, strong) WantData *wantData;
+@property (nonatomic) NSInteger sellersNum;
 
 @property (nonatomic, strong) UIImageView *itemImageView;
 @property (nonatomic, strong) UILabel *viewsNumLabel;
