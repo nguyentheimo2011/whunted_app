@@ -93,7 +93,6 @@
         [_brController retrieveLatestWantData];
     } else if (controllerIndex == 2) {
         [_myWantVC retrieveLatestWantData];
-        [self setSelectedIndex:2];
     } else if (controllerIndex == 3) {
         [_mySellVC retrieveLatestWantData];
         [self setSelectedIndex:3];

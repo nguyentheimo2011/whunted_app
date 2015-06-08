@@ -48,7 +48,6 @@
 		E94D18201AF9CE8900E31B01 /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D180E1AF9CE8900E31B01 /* search@3x.png */; };
 		E94D18371AF9F18300E31B01 /* newsfeed@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D182E1AF9F18300E31B01 /* newsfeed@1x.png */; };
 		E94D18381AF9F18300E31B01 /* newsfeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D182F1AF9F18300E31B01 /* newsfeed@2x.png */; };
-		E94D18391AF9F18300E31B01 /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D18301AF9F18300E31B01 /* newsfeed@3x.png */; };
 		E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E955744B1AF86D2600F0B230 /* Images.xcassets */; };
 		E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E955744D1AF86D2600F0B230 /* LaunchScreen.xib */; };
 		E955745B1AF86D2600F0B230 /* whuntedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E955745A1AF86D2600F0B230 /* whuntedTests.m */; };
@@ -87,6 +86,7 @@
 		E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113201B24B85F00ECAA0C /* SellTableViewCell.m */; };
 		E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113261B25898C00ECAA0C /* UserProfileViewController.m */; };
 		E98113291B258A4E00ECAA0C /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113281B258A4E00ECAA0C /* logout.png */; };
+		E9A639161B260ACC0085C54F /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639151B260ACC0085C54F /* newsfeed@3x.png */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -193,7 +193,6 @@
 		E94D180E1AF9CE8900E31B01 /* search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search@3x.png"; path = "Resources/Navigation Icons/search@3x.png"; sourceTree = "<group>"; };
 		E94D182E1AF9F18300E31B01 /* newsfeed@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@1x.png"; path = "Resources/Tab Bar Icons/newsfeed@1x.png"; sourceTree = "<group>"; };
 		E94D182F1AF9F18300E31B01 /* newsfeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@2x.png"; path = "Resources/Tab Bar Icons/newsfeed@2x.png"; sourceTree = "<group>"; };
-		E94D18301AF9F18300E31B01 /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E955743B1AF86D2600F0B230 /* whunted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whunted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E955744B1AF86D2600F0B230 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E955744E1AF86D2600F0B230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -248,6 +247,7 @@
 		E98113251B25898C00ECAA0C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = Controllers/UserProfileVC/UserProfileViewController.h; sourceTree = "<group>"; };
 		E98113261B25898C00ECAA0C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfileViewController.m; sourceTree = "<group>"; };
 		E98113281B258A4E00ECAA0C /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout.png; path = "Resources/User Profile/logout.png"; sourceTree = "<group>"; };
+		E9A639151B260ACC0085C54F /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -579,7 +579,7 @@
 				E916F4591B01EC57005055E3 /* camera@3x.png */,
 				E94D182E1AF9F18300E31B01 /* newsfeed@1x.png */,
 				E94D182F1AF9F18300E31B01 /* newsfeed@2x.png */,
-				E94D18301AF9F18300E31B01 /* newsfeed@3x.png */,
+				E9A639151B260ACC0085C54F /* newsfeed@3x.png */,
 			);
 			name = "Tab Bar Icons";
 			sourceTree = "<group>";
@@ -1012,6 +1012,7 @@
 				E91A5A641B048590008382E2 /* cameraplus@3x.png in Resources */,
 				E94D18111AF9CE8900E31B01 /* browse@3x.png in Resources */,
 				E9E456961B0F25E400E8B55D /* sellers_icon.png in Resources */,
+				E9A639161B260ACC0085C54F /* newsfeed@3x.png in Resources */,
 				E94D18141AF9CE8900E31B01 /* chat@3x.png in Resources */,
 				E97CE4B21B09EF330027C5FA /* NewsFeedTableViewCell.xib in Resources */,
 				E94D18121AF9CE8900E31B01 /* chat@1x.png in Resources */,
@@ -1078,7 +1079,6 @@
 				E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */,
 				E91A5A681B049A2D008382E2 /* square_dashed@1x.png in Resources */,
 				E94D18171AF9CE8900E31B01 /* filter@3x.png in Resources */,
-				E94D18391AF9F18300E31B01 /* newsfeed@3x.png in Resources */,
 				E94D18151AF9CE8900E31B01 /* filter@1x.png in Resources */,
 				E91A5A631B048590008382E2 /* cameraplus@2x.png in Resources */,
 			);

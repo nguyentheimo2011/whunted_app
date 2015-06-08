@@ -90,8 +90,11 @@
 
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 {
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.tabBarController setSelectedIndex:0];
     [self.delegate genericController:self shouldUpdateDataAt:0];
     [self.delegate genericController:self shouldUpdateDataAt:2];
+    [self.tabBarController setSelectedIndex:2];
 }
 
 #pragma mark - Image Getter View Controller delegate methods

@@ -48,7 +48,7 @@
         self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
         
         // hide bottom bar when uploading a new want
-        self.hidesBottomBarWhenPushed = YES;
+        self.tabBarController.tabBar.hidden = YES;
     }
     
     return self;
@@ -191,7 +191,6 @@
         PFObject *pfObj = [self.wantData getPFObject];
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self.navigationController popViewControllerAnimated:YES];
                 [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:self.wantData];
             } else {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
