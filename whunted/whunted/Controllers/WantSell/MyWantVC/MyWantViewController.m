@@ -186,12 +186,12 @@
         [cell.sellersNumButton setTitle:@"1 seller" forState:UIControlStateNormal];
         [cell.sellersNumButton setBackgroundColor:[UIColor colorWithRed:219.0/255 green:112.0/255 blue:147.0/255 alpha:1.0]];
         cell.sellersNum = 1;
-        [cell addAcceptedStatusLabel];
+        [cell activateAcceptedStatusLabel];
     } else {
         [cell.sellersNumButton setBackgroundColor: APP_COLOR_4];
         [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
         cell.sellersNum = 0;
-        [cell removeAcceptedStatusLabel];
+        [cell deactivateAcceptedStatusLabel];
         PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
         [query whereKey:@"itemID" equalTo:wantData.itemID];
         [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {

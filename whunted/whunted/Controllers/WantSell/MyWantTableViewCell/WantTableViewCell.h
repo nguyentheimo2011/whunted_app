@@ -33,7 +33,7 @@
 @property (nonatomic, strong) UIButton *sellersNumButton;
 @property (nonatomic, strong) UILabel *acceptedStatusLabel;
 
-- (void) addAcceptedStatusLabel;
-- (void) removeAcceptedStatusLabel;
+- (void) activateAcceptedStatusLabel;
+- (void) deactivateAcceptedStatusLabel;
 
 @end

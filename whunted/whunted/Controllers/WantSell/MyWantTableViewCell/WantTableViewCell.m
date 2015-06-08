@@ -33,6 +33,7 @@
         [self addItemNameLabel];
         [self addLowestOfferedPrice];
         [self addSellersNumButton];
+        [self addAcceptedStatusLabel];
     }
     return self;
 }
@@ -151,13 +152,18 @@
     [acceptedStatusLabel setTextColor:[UIColor whiteColor]];
     [acceptedStatusLabel setFont:[UIFont systemFontOfSize:18]];
     [acceptedStatusLabel setTextAlignment:NSTextAlignmentCenter];
-    [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
+    [acceptedStatusLabel setBackgroundColor:[UIColor whiteColor]];
     [itemImageView addSubview:acceptedStatusLabel];
 }
 
-- (void) removeAcceptedStatusLabel
+- (void) activateAcceptedStatusLabel
 {
-    [acceptedStatusLabel removeFromSuperview];
+    [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
+}
+
+- (void) deactivateAcceptedStatusLabel
+{
+    [acceptedStatusLabel setBackgroundColor:[UIColor whiteColor]];
 }
 
 #pragma mark - Event Handlers
