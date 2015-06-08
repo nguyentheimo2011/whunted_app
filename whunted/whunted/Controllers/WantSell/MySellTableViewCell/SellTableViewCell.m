@@ -18,7 +18,6 @@
 @synthesize likesNumLabel;
 @synthesize itemNameLabel;
 @synthesize lowestOfferedPriceLabel;
-@synthesize sellersNumButton;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,7 +29,6 @@
         [self addPromotionSection];
         [self addItemNameLabel];
         [self addLowestOfferedPrice];
-        [self addSellersNumButton];
     }
     return self;
 }
@@ -126,20 +124,6 @@
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
     [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:lowestOfferedPriceLabel];
-}
-
-- (void) addSellersNumButton
-{
-    CGFloat itemImageWidth = WINSIZE.width-20;
-    CGFloat yPos = itemImageWidth * 7.0/6 + 30;
-    sellersNumButton = [[UIButton alloc] initWithFrame:CGRectMake(180, yPos, 90, 25)];
-    [sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
-    [sellersNumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [sellersNumButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [sellersNumButton setBackgroundColor:APP_COLOR_4];
-    sellersNumButton.layer.cornerRadius = 8;
-    [sellersNumButton addTarget:self action:@selector(sellerNumButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:sellersNumButton];
 }
 
 #pragma mark - Event Handlers

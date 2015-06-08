@@ -171,31 +171,6 @@
         }];
     }
     
-    if (wantData.isDealClosed) {
-        [cell.sellersNumButton setTitle:@"1 seller" forState:UIControlStateNormal];
-        [cell.sellersNumButton setBackgroundColor:[UIColor colorWithRed:219.0/255 green:112.0/255 blue:147.0/255 alpha:1.0]];
-    } else {
-        [cell.sellersNumButton setBackgroundColor: APP_COLOR_4];
-        [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
-        PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
-        [query whereKey:@"itemID" equalTo:wantData.itemID];
-        [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
-            NSString *text;
-            if (sellersNum <= 1) {
-                text = [NSString stringWithFormat:@"%d seller", sellersNum];
-            } else {
-                text = [NSString stringWithFormat:@"%d sellers", sellersNum];
-            }
-            
-            if (!error) {
-                [cell.sellersNumButton setTitle:text forState:UIControlStateNormal];
-            } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-    }
-    
-    
     return cell;
 }
 
