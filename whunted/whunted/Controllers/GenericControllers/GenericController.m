@@ -43,7 +43,7 @@
     UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:nil];
     
     UIImage *profile = [UIImage imageNamed:@"profile.png"];
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
     
     UIImage *camera = [UIImage imageNamed:@"camera.png"];
     UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(showImageGettingOptionPopup)];
@@ -62,6 +62,8 @@
     self.navigationItem.titleView = titleView;
 }
 
+#pragma mark - Event Handlers
+
 - (void) showImageGettingOptionPopup
 {
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
@@ -69,6 +71,13 @@
     
     popup = [KLCPopup popupWithContentViewController:imageGetterVC];
     [popup show];
+}
+
+- (void) userProfileButtonClickedEvent
+{
+    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
+    userProfileVC.delegate = self;
+    [self.navigationController pushViewController:userProfileVC animated:YES];
 }
 
 #pragma mark - Upload Want Details View Controller delegate methods
@@ -140,6 +149,14 @@
 - (void) customizeTarBarAppearance
 {
     [[UITabBar appearance] setTintColor:APP_COLOR];
+}
+
+#pragma mark - UserProfileViewController Delegate methods
+- (void) userProfileViewController:(UserProfileViewController *)controller didPressLogout:(BOOL)pressed
+{
+    [PFUser logOut];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
