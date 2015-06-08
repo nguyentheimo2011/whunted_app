@@ -152,18 +152,18 @@
     [acceptedStatusLabel setTextColor:[UIColor whiteColor]];
     [acceptedStatusLabel setFont:[UIFont systemFontOfSize:18]];
     [acceptedStatusLabel setTextAlignment:NSTextAlignmentCenter];
-    [acceptedStatusLabel setBackgroundColor:[UIColor whiteColor]];
+    [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
     [itemImageView addSubview:acceptedStatusLabel];
 }
 
 - (void) activateAcceptedStatusLabel
 {
-    [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
+    [acceptedStatusLabel setHidden:NO];
 }
 
 - (void) deactivateAcceptedStatusLabel
 {
-    [acceptedStatusLabel setBackgroundColor:[UIColor whiteColor]];
+    [acceptedStatusLabel setHidden:YES];
 }
 
 #pragma mark - Event Handlers
