@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) NSMutableArray *wantDataList;
 
+- (void) retrieveLatestWantData;
+
 @end

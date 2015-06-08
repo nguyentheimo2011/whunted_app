@@ -7,7 +7,6 @@
 //
 
 #import "MarketplaceViewController.h"
-#import "ItemDetailsViewController.h"
 #import "SellerListViewController.h"
 
 @interface MarketplaceViewController ()
@@ -174,6 +173,7 @@
 {
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [wantDataList objectAtIndex:indexPath.row];
+    itemDetailsVC.delegate = self;
     [[itemDetailsVC.wantData.itemPictureList query] countObjectsInBackgroundWithBlock:^(int itemImagesNum, NSError *error) {
         if (!error) {
             itemDetailsVC.itemImagesNum = itemImagesNum;
@@ -199,6 +199,14 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+#pragma mark - ItemDetailsViewController Delegate
+- (void) itemDetailsViewController:(ItemDetailsViewController *)controller didCompleteOffer:(BOOL)completed
+{
+    if (completed) {
+        [self.delegate genericController:self shouldUpdateDataAt:3];
+    }
 }
 
 @end

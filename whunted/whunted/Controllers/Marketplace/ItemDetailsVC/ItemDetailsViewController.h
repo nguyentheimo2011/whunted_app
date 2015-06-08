@@ -11,7 +11,17 @@
 #import "WantData.h"
 #import "SellersOfferViewController.h"
 
+@class ItemDetailsViewController;
+
+@protocol ItemDetailsViewControllerDelegate <NSObject>
+
+- (void) itemDetailsViewController: (ItemDetailsViewController *) controller didCompleteOffer: (BOOL) completed;
+
+@end
+
 @interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, SellerOfferViewControllerDelegate>
+
+@property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) WantData *wantData;

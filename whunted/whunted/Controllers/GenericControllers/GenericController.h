@@ -14,7 +14,7 @@
 
 @protocol GenericControllerDelegate <NSObject>
 
-- (void) genericController: (GenericController *) controller shouldUpdateData: (BOOL) updated;
+- (void) genericController: (GenericController *) controller shouldUpdateDataAt: (NSInteger) controllerIndex;
 
 @end
 

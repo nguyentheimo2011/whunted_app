@@ -22,6 +22,7 @@
 {
     MarketplaceViewController *_brController;
     MyWantViewController *_myWantVC;
+    MySellViewController *_mySellVC;
 }
 
 @end
@@ -53,10 +54,11 @@
         _myWantVC.delegate = self;
         
         UINavigationController *mySellNavController = [[UINavigationController alloc] init];
-        MySellViewController *mySellVC = [[MySellViewController alloc] init];
-        [mySellNavController setViewControllers: [NSArray arrayWithObject:mySellVC]];
+        _mySellVC = [[MySellViewController alloc] init];
+        [mySellNavController setViewControllers: [NSArray arrayWithObject:_mySellVC]];
         [mySellNavController setTitle:@"Sell"];
         [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
+        _mySellVC.delegate = self;
         
         NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, myWantNavController, mySellNavController, nil];
         [self setViewControllers:controllers];
@@ -85,11 +87,16 @@
 }
 
 #pragma mark - GenericController Delegate methods
-- (void) genericController:(GenericController *)controller shouldUpdateData:(BOOL)updated
+- (void) genericController:(GenericController *)controller shouldUpdateDataAt:(NSInteger)controllerIndex
 {
-    if (updated) {
+    if (controllerIndex == 0) {
         [_brController retrieveLatestWantData];
+    } else if (controllerIndex == 2) {
         [_myWantVC retrieveLatestWantData];
+        [self setSelectedIndex:2];
+    } else if (controllerIndex == 3) {
+        [_mySellVC retrieveLatestWantData];
+        [self setSelectedIndex:3];
     }
 }
 

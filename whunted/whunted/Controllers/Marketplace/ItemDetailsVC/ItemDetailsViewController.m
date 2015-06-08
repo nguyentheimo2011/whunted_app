@@ -36,6 +36,7 @@
 @synthesize secondBottomButton;
 @synthesize offeredByCurrUser;
 @synthesize offerPFObject;
+@synthesize delegate;
 
 - (id) init
 {
@@ -264,6 +265,7 @@
     offeredByCurrUser = YES;
     offerPFObject = object;
     [secondBottomButton setTitle:@"Change your offer!" forState:UIControlStateNormal];
+    [delegate itemDetailsViewController:self didCompleteOffer:YES];
 }
 
 

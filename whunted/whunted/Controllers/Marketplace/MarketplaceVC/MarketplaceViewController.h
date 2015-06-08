@@ -8,8 +8,9 @@
 
 #import "GenericController.h"
 #import "MarketplaceCollectionViewCell.h"
+#import "ItemDetailsViewController.h"
 
-@interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *wantDataList;
 

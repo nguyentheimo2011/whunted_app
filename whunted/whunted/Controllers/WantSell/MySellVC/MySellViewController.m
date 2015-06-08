@@ -107,7 +107,28 @@
 
 - (void) retrieveLatestWantData
 {
-    
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
+    [query whereKey:@"sellerID" equalTo:currentUser.objectId];
+    [query orderByDescending:@"updatedAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
+        if (!error) {
+            NSString *itemID = offerObject[@"itemID"];
+            PFQuery *sQuery = [PFQuery queryWithClassName:@"WantedPost"];
+            [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
+                [self.wantDataList insertObject:wantData atIndex:0];
+                [self.wantTableView reloadData];
+            }];
+            
+            NSString *labelText = [NSString stringWithFormat:@"%lu offers", (unsigned long)[self.wantDataList count]];
+            [self.horizontalLineVC.numLabel setText:labelText];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 #pragma mark - Table view data source
