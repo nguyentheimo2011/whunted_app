@@ -192,6 +192,7 @@
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:self.wantData];
+                [self.navigationController popViewControllerAnimated:YES];
             } else {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }

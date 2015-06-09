@@ -23,4 +23,6 @@
 
 @property (nonatomic, weak) id<GenericControllerDelegate> delegate;
 
+- (void) pushViewController: (UIViewController *) controller;
+
 @end

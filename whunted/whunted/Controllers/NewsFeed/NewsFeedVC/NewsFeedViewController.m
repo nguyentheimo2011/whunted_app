@@ -66,5 +66,10 @@
     return 300;
 }
 
+- (void) pushViewController:(UIViewController *)controller
+{
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 @end

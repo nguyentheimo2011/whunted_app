@@ -90,7 +90,6 @@
 
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 {
-    [self.navigationController popViewControllerAnimated:YES];
     [self.delegate genericController:self shouldUpdateDataAt:0];
     [self.delegate genericController:self shouldUpdateDataAt:2];
 }
@@ -134,7 +133,7 @@
         wantDetailsVC.delegate = self;
         currButtonIndex = 0;
         [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
-        [self.navigationController pushViewController:wantDetailsVC animated:YES];
+        [self pushViewController:wantDetailsVC];
     }
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -143,7 +142,6 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 - (void) customizeTarBarAppearance
@@ -158,5 +156,12 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Methods for overridding by inherited class
+- (void) pushViewController: (UIViewController *) controller
+{
+    
+}
+
 
 @end

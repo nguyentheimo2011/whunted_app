@@ -252,5 +252,11 @@
     [_wantTableView reloadData];
 }
 
+#pragma mark - Overridden methods
+- (void) pushViewController:(UIViewController *)controller
+{
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 @end

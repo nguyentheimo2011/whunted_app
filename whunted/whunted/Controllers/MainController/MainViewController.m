@@ -23,6 +23,7 @@
     MarketplaceViewController *_brController;
     MyWantViewController *_myWantVC;
     MySellViewController *_mySellVC;
+    NewsFeedViewController *_newsFeedVC;
 }
 
 @end
@@ -41,10 +42,11 @@
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
-        NewsFeedViewController *newsFeedVC = [[NewsFeedViewController alloc] init];
-        [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:newsFeedVC]];
+        _newsFeedVC = [[NewsFeedViewController alloc] init];
+        [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
         [newsFeedfNavController setTitle:@"最新動態"];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+        _newsFeedVC.delegate = self;
         
         UINavigationController *myWantNavController = [[UINavigationController alloc] init];
         _myWantVC = [[MyWantViewController alloc] init];
@@ -93,10 +95,12 @@
         [_brController retrieveLatestWantData];
     } else if (controllerIndex == 2) {
         [_myWantVC retrieveLatestWantData];
+        [self setSelectedIndex:2];
     } else if (controllerIndex == 3) {
         [_mySellVC retrieveLatestWantData];
         [self setSelectedIndex:3];
     }
 }
+
 
 @end
