@@ -62,16 +62,10 @@
 		E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4891B07745A0027C5FA /* squareplus@1x.png */; };
 		E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48B1B07745A0027C5FA /* squareplus@3x.png */; };
 		E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48F1B07876C0027C5FA /* squareplus@2x.png */; };
-		E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */; };
-		E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */; };
-		E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */; };
-		E97CE4A11B09ECC90027C5FA /* UploadingWantDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4A01B09ECC90027C5FA /* UploadingWantDetailsViewController.m */; };
 		E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4AA1B09EF230027C5FA /* NewsFeedViewController.m */; };
 		E97CE4AD1B09EF230027C5FA /* NewsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4AB1B09EF230027C5FA /* NewsFeedViewController.xib */; };
 		E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4AF1B09EF330027C5FA /* NewsFeedTableViewCell.m */; };
 		E97CE4B21B09EF330027C5FA /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4B01B09EF330027C5FA /* NewsFeedTableViewCell.xib */; };
-		E97CE4B61B0A076B0027C5FA /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */; };
-		E97CE4B71B0A076B0027C5FA /* ImageGetterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */; };
 		E98113061B2155AB00ECAA0C /* userprofile@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113031B2155AB00ECAA0C /* userprofile@1x.png */; };
 		E98113071B2155AB00ECAA0C /* userprofile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113041B2155AB00ECAA0C /* userprofile@2x.png */; };
 		E98113081B2155AB00ECAA0C /* userprofile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113051B2155AB00ECAA0C /* userprofile@3x.png */; };
@@ -87,6 +81,14 @@
 		E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113261B25898C00ECAA0C /* UserProfileViewController.m */; };
 		E98113291B258A4E00ECAA0C /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113281B258A4E00ECAA0C /* logout.png */; };
 		E9A639161B260ACC0085C54F /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639151B260ACC0085C54F /* newsfeed@3x.png */; };
+		E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */; };
+		E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */; };
+		E9A639201B28131F0085C54F /* ImageGetterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A6391E1B28131F0085C54F /* ImageGetterViewController.xib */; };
+		E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */; };
+		E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A639291B2813C40085C54F /* CategoryTableViewController.m */; };
+		E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */; };
+		E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392F1B2814070085C54F /* LocationTableViewController.m */; };
+		E9A639321B298A500085C54F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639311B298A500085C54F /* placeholder.png */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -212,23 +214,12 @@
 		E97CE4891B07745A0027C5FA /* squareplus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@1x.png"; path = "Resources/Want Details/squareplus@1x.png"; sourceTree = "<group>"; };
 		E97CE48B1B07745A0027C5FA /* squareplus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@3x.png"; path = "Resources/Want Details/squareplus@3x.png"; sourceTree = "<group>"; };
 		E97CE48F1B07876C0027C5FA /* squareplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@2x.png"; path = "Resources/Want Details/squareplus@2x.png"; sourceTree = "<group>"; };
-		E97CE4921B0933EE0027C5FA /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableViewController.h; path = Controllers/Upload/CategoryTable/CategoryTableViewController.h; sourceTree = "<group>"; };
-		E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controllers/Upload/CategoryTable/CategoryTableViewController.m; sourceTree = "<group>"; };
-		E97CE4961B09BEFF0027C5FA /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = Controllers/Upload/LocationTable/LocationTableViewController.h; sourceTree = "<group>"; };
-		E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = Controllers/Upload/LocationTable/LocationTableViewController.m; sourceTree = "<group>"; };
-		E97CE49A1B09C84A0027C5FA /* ItemInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoTableViewController.h; path = Controllers/Upload/ItemInfoTable/ItemInfoTableViewController.h; sourceTree = "<group>"; };
-		E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
-		E97CE49F1B09ECC90027C5FA /* UploadingWantDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadingWantDetailsViewController.h; path = Controllers/Upload/WantDetailsVC/UploadingWantDetailsViewController.h; sourceTree = "<group>"; };
-		E97CE4A01B09ECC90027C5FA /* UploadingWantDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadingWantDetailsViewController.m; path = Controllers/Upload/WantDetailsVC/UploadingWantDetailsViewController.m; sourceTree = "<group>"; };
 		E97CE4A91B09EF230027C5FA /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedViewController.h; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.h; sourceTree = "<group>"; };
 		E97CE4AA1B09EF230027C5FA /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsFeedViewController.m; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.m; sourceTree = "<group>"; };
 		E97CE4AB1B09EF230027C5FA /* NewsFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedViewController.xib; path = Controllers/NewsFeed/NewsFeedVC/NewsFeedViewController.xib; sourceTree = "<group>"; };
 		E97CE4AE1B09EF330027C5FA /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsFeedTableViewCell.h; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		E97CE4AF1B09EF330027C5FA /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsFeedTableViewCell.m; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.m; sourceTree = "<group>"; };
 		E97CE4B01B09EF330027C5FA /* NewsFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsFeedTableViewCell.xib; path = Controllers/NewsFeed/NewsFeedTableViewCell/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
-		E97CE4B31B0A076B0027C5FA /* ImageGetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageGetterViewController.h; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.h; sourceTree = "<group>"; };
-		E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageGetterViewController.m; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.m; sourceTree = "<group>"; };
-		E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageGetterViewController.xib; path = Controllers/Upload/ImageGetterVC/ImageGetterViewController.xib; sourceTree = "<group>"; };
 		E98113031B2155AB00ECAA0C /* userprofile@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "userprofile@1x.png"; path = "Resources/User Profile/userprofile@1x.png"; sourceTree = "<group>"; };
 		E98113041B2155AB00ECAA0C /* userprofile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "userprofile@2x.png"; path = "Resources/User Profile/userprofile@2x.png"; sourceTree = "<group>"; };
 		E98113051B2155AB00ECAA0C /* userprofile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "userprofile@3x.png"; path = "Resources/User Profile/userprofile@3x.png"; sourceTree = "<group>"; };
@@ -248,6 +239,20 @@
 		E98113261B25898C00ECAA0C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfileViewController.m; sourceTree = "<group>"; };
 		E98113281B258A4E00ECAA0C /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout.png; path = "Resources/User Profile/logout.png"; sourceTree = "<group>"; };
 		E9A639151B260ACC0085C54F /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
+		E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRetrieverViewController.h; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.h; sourceTree = "<group>"; };
+		E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRetrieverViewController.m; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.m; sourceTree = "<group>"; };
+		E9A6391C1B28131F0085C54F /* ImageGetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageGetterViewController.h; path = Controllers/Upload/ImageGetterPopupVC/ImageGetterViewController.h; sourceTree = "<group>"; };
+		E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageGetterViewController.m; path = Controllers/Upload/ImageGetterPopupVC/ImageGetterViewController.m; sourceTree = "<group>"; };
+		E9A6391E1B28131F0085C54F /* ImageGetterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageGetterViewController.xib; path = Controllers/Upload/ImageGetterPopupVC/ImageGetterViewController.xib; sourceTree = "<group>"; };
+		E9A639251B2813910085C54F /* UploadingWantDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadingWantDetailsViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/UploadingWantDetailsVC/UploadingWantDetailsViewController.h; sourceTree = "<group>"; };
+		E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadingWantDetailsViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/UploadingWantDetailsVC/UploadingWantDetailsViewController.m; sourceTree = "<group>"; };
+		E9A639281B2813C40085C54F /* CategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/CategoryTable/CategoryTableViewController.h; sourceTree = "<group>"; };
+		E9A639291B2813C40085C54F /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/CategoryTable/CategoryTableViewController.m; sourceTree = "<group>"; };
+		E9A6392B1B2813F40085C54F /* ItemInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.h; sourceTree = "<group>"; };
+		E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
+		E9A6392E1B2814070085C54F /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/LocationTable/LocationTableViewController.h; sourceTree = "<group>"; };
+		E9A6392F1B2814070085C54F /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/LocationTable/LocationTableViewController.m; sourceTree = "<group>"; };
+		E9A639311B298A500085C54F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = "Resources/Want Details/placeholder.png"; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -409,11 +414,9 @@
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
-				E97CE49D1B09ECA00027C5FA /* ImageGetterVC */,
+				E97CE49D1B09ECA00027C5FA /* ImageGetterPopupVC */,
+				E9A639181B28107B0085C54F /* ImageRetrieverVC */,
 				E97CE49E1B09ECAE0027C5FA /* WantDetailsVC */,
-				E97CE4991B09C7730027C5FA /* ItemInfoTable */,
-				E97CE4951B09BED20027C5FA /* LocationTable */,
-				E97CE4911B09334A0027C5FA /* CategoryTable */,
 			);
 			name = Upload;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 		E91A5A581B0484CA008382E2 /* Want Details */ = {
 			isa = PBXGroup;
 			children = (
+				E9A639311B298A500085C54F /* placeholder.png */,
 				E97CE4891B07745A0027C5FA /* squareplus@1x.png */,
 				E97CE48F1B07876C0027C5FA /* squareplus@2x.png */,
 				E97CE48B1B07745A0027C5FA /* squareplus@3x.png */,
@@ -685,48 +689,23 @@
 			name = LoginSignup;
 			sourceTree = "<group>";
 		};
-		E97CE4911B09334A0027C5FA /* CategoryTable */ = {
+		E97CE49D1B09ECA00027C5FA /* ImageGetterPopupVC */ = {
 			isa = PBXGroup;
 			children = (
-				E97CE4921B0933EE0027C5FA /* CategoryTableViewController.h */,
-				E97CE4931B0933EE0027C5FA /* CategoryTableViewController.m */,
+				E9A6391C1B28131F0085C54F /* ImageGetterViewController.h */,
+				E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */,
+				E9A6391E1B28131F0085C54F /* ImageGetterViewController.xib */,
 			);
-			name = CategoryTable;
-			sourceTree = "<group>";
-		};
-		E97CE4951B09BED20027C5FA /* LocationTable */ = {
-			isa = PBXGroup;
-			children = (
-				E97CE4961B09BEFF0027C5FA /* LocationTableViewController.h */,
-				E97CE4971B09BEFF0027C5FA /* LocationTableViewController.m */,
-			);
-			name = LocationTable;
-			sourceTree = "<group>";
-		};
-		E97CE4991B09C7730027C5FA /* ItemInfoTable */ = {
-			isa = PBXGroup;
-			children = (
-				E97CE49A1B09C84A0027C5FA /* ItemInfoTableViewController.h */,
-				E97CE49B1B09C84A0027C5FA /* ItemInfoTableViewController.m */,
-			);
-			name = ItemInfoTable;
-			sourceTree = "<group>";
-		};
-		E97CE49D1B09ECA00027C5FA /* ImageGetterVC */ = {
-			isa = PBXGroup;
-			children = (
-				E97CE4B31B0A076B0027C5FA /* ImageGetterViewController.h */,
-				E97CE4B41B0A076B0027C5FA /* ImageGetterViewController.m */,
-				E97CE4B51B0A076B0027C5FA /* ImageGetterViewController.xib */,
-			);
-			name = ImageGetterVC;
+			name = ImageGetterPopupVC;
 			sourceTree = "<group>";
 		};
 		E97CE49E1B09ECAE0027C5FA /* WantDetailsVC */ = {
 			isa = PBXGroup;
 			children = (
-				E97CE49F1B09ECC90027C5FA /* UploadingWantDetailsViewController.h */,
-				E97CE4A01B09ECC90027C5FA /* UploadingWantDetailsViewController.m */,
+				E9A639241B2813730085C54F /* UploadingWantDetailsVC */,
+				E9A639231B2813670085C54F /* CategoryTable */,
+				E9A639221B2813550085C54F /* ItemInfoTable */,
+				E9A639211B2813450085C54F /* LocationTable */,
 			);
 			name = WantDetailsVC;
 			sourceTree = "<group>";
@@ -809,6 +788,51 @@
 				E98113261B25898C00ECAA0C /* UserProfileViewController.m */,
 			);
 			name = UserProfileVC;
+			sourceTree = "<group>";
+		};
+		E9A639181B28107B0085C54F /* ImageRetrieverVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */,
+				E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */,
+			);
+			name = ImageRetrieverVC;
+			sourceTree = "<group>";
+		};
+		E9A639211B2813450085C54F /* LocationTable */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6392E1B2814070085C54F /* LocationTableViewController.h */,
+				E9A6392F1B2814070085C54F /* LocationTableViewController.m */,
+			);
+			name = LocationTable;
+			sourceTree = "<group>";
+		};
+		E9A639221B2813550085C54F /* ItemInfoTable */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6392B1B2813F40085C54F /* ItemInfoTableViewController.h */,
+				E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */,
+			);
+			name = ItemInfoTable;
+			sourceTree = "<group>";
+		};
+		E9A639231B2813670085C54F /* CategoryTable */ = {
+			isa = PBXGroup;
+			children = (
+				E9A639281B2813C40085C54F /* CategoryTableViewController.h */,
+				E9A639291B2813C40085C54F /* CategoryTableViewController.m */,
+			);
+			name = CategoryTable;
+			sourceTree = "<group>";
+		};
+		E9A639241B2813730085C54F /* UploadingWantDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9A639251B2813910085C54F /* UploadingWantDetailsViewController.h */,
+				E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */,
+			);
+			name = UploadingWantDetailsVC;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
@@ -1052,6 +1076,7 @@
 				E916F45A1B01EC57005055E3 /* camera@1x.png in Resources */,
 				E963614D1B16C7F000EB9D35 /* marketplace@1x.png in Resources */,
 				E94D18371AF9F18300E31B01 /* newsfeed@1x.png in Resources */,
+				E9A639201B28131F0085C54F /* ImageGetterViewController.xib in Resources */,
 				E98113071B2155AB00ECAA0C /* userprofile@2x.png in Resources */,
 				E94D18101AF9CE8900E31B01 /* browse@2x.png in Resources */,
 				E94D18381AF9F18300E31B01 /* newsfeed@2x.png in Resources */,
@@ -1060,7 +1085,6 @@
 				E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */,
 				E98113131B2155CB00ECAA0C /* chat_with_seller@1x.png in Resources */,
 				E97CE4AD1B09EF230027C5FA /* NewsFeedViewController.xib in Resources */,
-				E97CE4B71B0A076B0027C5FA /* ImageGetterViewController.xib in Resources */,
 				E963614F1B16C7F000EB9D35 /* marketplace@3x.png in Resources */,
 				E94D18191AF9CE8900E31B01 /* newsfeed@2x.png in Resources */,
 				E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */,
@@ -1079,6 +1103,7 @@
 				E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */,
 				E91A5A681B049A2D008382E2 /* square_dashed@1x.png in Resources */,
 				E94D18171AF9CE8900E31B01 /* filter@3x.png in Resources */,
+				E9A639321B298A500085C54F /* placeholder.png in Resources */,
 				E94D18151AF9CE8900E31B01 /* filter@1x.png in Resources */,
 				E91A5A631B048590008382E2 /* cameraplus@2x.png in Resources */,
 			);
@@ -1132,24 +1157,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
+				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
+				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
-				E97CE4941B0933EE0027C5FA /* CategoryTableViewController.m in Sources */,
 				E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */,
-				E97CE4A11B09ECC90027C5FA /* UploadingWantDetailsViewController.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
+				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9FB2E9E1B20485B00F8C435 /* SellersOfferData.m in Sources */,
+				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
 				E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */,
 				E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
+				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */,
-				E97CE4981B09BEFF0027C5FA /* LocationTableViewController.m in Sources */,
-				E97CE4B61B0A076B0027C5FA /* ImageGetterViewController.m in Sources */,
 				E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E9FB2E961B1F0E3800F8C435 /* SellersOfferViewController.m in Sources */,
@@ -1157,7 +1183,7 @@
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
-				E97CE49C1B09C84A0027C5FA /* ItemInfoTableViewController.m in Sources */,
+				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
 			);

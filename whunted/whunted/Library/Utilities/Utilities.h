@@ -39,5 +39,7 @@ typedef enum {
 + (void) setTopRoundedCorner: (UIView *) view;
 + (void) setBottomRoundedCorner: (UIView *) view;
 + (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize;
++ (void) addGradientToButton: (UIButton *) button;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 @end

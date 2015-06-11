@@ -72,4 +72,37 @@
     return newImage;
 }
 
++ (void) addGradientToButton:(UIButton *)button
+{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = button.layer.bounds;
+    
+    gradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer.cornerRadius = button.layer.cornerRadius;
+    [button.layer addSublayer:gradientLayer];
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 @end

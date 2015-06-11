@@ -9,6 +9,7 @@
 #import "KLCPopup.h"
 
 #import "GenericController.h"
+#import "ImageRetrieverViewController.h"
 
 @interface GenericController ()
 
@@ -116,7 +117,8 @@
         
         [self presentViewController:picker animated:YES completion:NULL];
     } else if (method == ImageURL) {
-        
+        ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
+        [self pushViewController:retrieverVC];
     }
 }
 

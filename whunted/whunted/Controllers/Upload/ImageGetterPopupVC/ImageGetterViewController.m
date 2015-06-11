@@ -63,7 +63,7 @@
 
 - (IBAction)imageLinkOptionChosen:(UIButton *)sender
 {
-    
+    [self.delegate imageGetterViewController:self didChooseAMethod:ImageURL];
 }
 
 @end
