@@ -10,6 +10,7 @@
 #import "ImageGetterViewController.h"
 #import "UploadingWantDetailsViewController.h"
 #import "UserProfileViewController.h"
+#import "ImageRetrieverViewController.h"
 
 @class GenericController;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate, UserProfileViewControllerDelegate>
+@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageGetterViewControllerDelegate, UploadingWantDetailsViewControllerDelegate, UserProfileViewControllerDelegate, ImageRetrieverDelegate>
 
 @property (nonatomic, weak) id<GenericControllerDelegate> delegate;
 

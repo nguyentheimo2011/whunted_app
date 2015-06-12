@@ -16,6 +16,8 @@
 
 @end
 
-@interface ImageRetrieverViewController : UIViewController<UITextViewDelegate>
+@interface ImageRetrieverViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate>
+
+@property (nonatomic, weak) id<ImageRetrieverDelegate> delegate;
 
 @end

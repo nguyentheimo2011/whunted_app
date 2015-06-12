@@ -9,10 +9,13 @@
 #import "ImageRetrieverViewController.h"
 #import "Utilities.h"
 
+#import "MBProgressHUD.h"
+
 @interface ImageRetrieverViewController ()
 
 @property (nonatomic, strong) UITextView *_imageLinkTextView;
 @property (nonatomic, strong) UIImageView *_itemImageView;
+@property (nonatomic, strong) UIImage *_currItemImage;
 @property (nonatomic, strong) UIScrollView *_scrollView;
 
 @end
@@ -21,7 +24,9 @@
 
 @synthesize _imageLinkTextView;
 @synthesize _itemImageView;
+@synthesize _currItemImage;
 @synthesize _scrollView;
+@synthesize delegate;
 
 - (id) init
 {
@@ -57,6 +62,8 @@
 - (void) customizeNavigationBar
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didStopEditing)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
 }
 
 - (void) addScrollView
@@ -126,6 +133,7 @@
     doneButton.layer.cornerRadius = 5.0;
     doneButton.clipsToBounds = YES;
     [Utilities addGradientToButton:doneButton];
+    [doneButton addTarget:self action:@selector(doneButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:doneButton];
 }
 
@@ -135,10 +143,50 @@
     [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
 }
 
+- (void) textViewDidChange:(UITextView *)textView
+{
+    [MBProgressHUD showHUDAddedTo:_itemImageView animated:YES];
+    NSURL *url = [NSURL URLWithString:_imageLinkTextView.text];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:_itemImageView animated:YES];
+        if (data) {
+            _currItemImage = [UIImage imageWithData:data];
+            [_itemImageView setImage:_currItemImage];
+        } else {
+            // handle error
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 - (void) didStopEditing
 {
     [_imageLinkTextView resignFirstResponder];
     [self.navigationItem.rightBarButtonItem setTitle:@""];
+}
+
+- (void) backButtonClickedEvent
+{
+    if (_currItemImage) {
+        UIAlertView *backAlertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to discard the image?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+        [backAlertView show];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void) doneButtonClickedEvent
+{
+    [delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

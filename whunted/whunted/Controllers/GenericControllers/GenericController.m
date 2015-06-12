@@ -9,7 +9,6 @@
 #import "KLCPopup.h"
 
 #import "GenericController.h"
-#import "ImageRetrieverViewController.h"
 
 @interface GenericController ()
 
@@ -118,6 +117,7 @@
         [self presentViewController:picker animated:YES completion:NULL];
     } else if (method == ImageURL) {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
+        retrieverVC.delegate = self;
         [self pushViewController:retrieverVC];
     }
 }
@@ -126,17 +126,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    UIViewController *topVC = [self.navigationController topViewController];
-    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
-        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
-        [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
-    } else {
-        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
-        wantDetailsVC.delegate = self;
-        currButtonIndex = 0;
-        [wantDetailsVC setImage:chosenImage forButton:currButtonIndex];
-        [self pushViewController:wantDetailsVC];
-    }
+    [self sendImageToUploadingWantDetailsVC:chosenImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -149,6 +139,28 @@
 - (void) customizeTarBarAppearance
 {
     [[UITabBar appearance] setTintColor:APP_COLOR];
+}
+
+#pragma mark - ImageRetrieverDekegate methods
+- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [self sendImageToUploadingWantDetailsVC:image];
+}
+
+- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
+{
+    UIViewController *topVC = [self.navigationController topViewController];
+    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+    } else {
+        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+        wantDetailsVC.delegate = self;
+        currButtonIndex = 0;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+        [self pushViewController:wantDetailsVC];
+    }
 }
 
 #pragma mark - UserProfileViewController Delegate methods
