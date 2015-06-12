@@ -20,18 +20,23 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CLImageEditor (0.1.4):
+    - CLImageEditor/Core (= 0.1.4)
+  - CLImageEditor/Core (0.1.4)
   - Haneke (1.0.1)
   - MBProgressHUD (0.9.1)
   - SZTextView (1.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - CLImageEditor
   - Haneke (~> 1.0)
   - MBProgressHUD (~> 0.9.1)
   - SZTextView
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238

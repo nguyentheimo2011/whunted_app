@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-CLImageEditor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Haneke.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09F0A16DE3FA1328708FC2E0</key>
+		<key>22A13FB81139A354B5B232E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F8256EA7D45B8A2D89DCE6C</key>
+		<key>3B94786E990EB749B2D730A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4EE56A7D5C8B36E8ED055D6A</key>
+		<key>66D9A6C5127474165C975FB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B550EAEA24CD8FB79C4866E</key>
+		<key>B6597B004595F6D018CDAD54</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7BD0852E3FA29042F71626A</key>
+		<key>C0D0300BCC864C3DE83A0DC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E84B85B270790C36607B4575</key>
 		<dict>
 			<key>primary</key>
 			<true/>

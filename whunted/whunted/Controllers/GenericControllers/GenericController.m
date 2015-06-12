@@ -144,23 +144,28 @@
 #pragma mark - ImageRetrieverDekegate methods
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
 {
-    [self.navigationController popViewControllerAnimated:YES];
     [self sendImageToUploadingWantDetailsVC:image];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
 {
-    UIViewController *topVC = [self.navigationController topViewController];
-    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
-        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
-        [wantDetailsVC setImage:image forButton:currButtonIndex];
-    } else {
-        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
-        wantDetailsVC.delegate = self;
-        currButtonIndex = 0;
-        [wantDetailsVC setImage:image forButton:currButtonIndex];
-        [self pushViewController:wantDetailsVC];
-    }
+//    UIViewController *topVC = [self.navigationController topViewController];
+//    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+//        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
+//        [wantDetailsVC setImage:image forButton:currButtonIndex];
+//    } else {
+//        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+//        wantDetailsVC.delegate = self;
+//        currButtonIndex = 0;
+//        [wantDetailsVC setImage:image forButton:currButtonIndex];
+//        [self pushViewController:wantDetailsVC];
+//    }
+    
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
+    editor.delegate = self;
+    
+    [self presentViewController:editor animated:YES completion:nil];
 }
 
 #pragma mark - UserProfileViewController Delegate methods
