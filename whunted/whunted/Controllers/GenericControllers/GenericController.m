@@ -107,18 +107,18 @@
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
-        [self presentViewController:picker animated:YES completion:NULL];
+        [self presentViewController:picker animated:YES completion:nil];
     } else if (method == Camera) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
-        [self presentViewController:picker animated:YES completion:NULL];
+        [self presentViewController:picker animated:YES completion:nil];
     } else if (method == ImageURL) {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
-        [self pushViewController:retrieverVC];
+        [self.navigationController pushViewController:retrieverVC animated:YES];
     }
 }
 
@@ -128,7 +128,7 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [self sendImageToUploadingWantDetailsVC:chosenImage];
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:NO completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -144,28 +144,37 @@
 #pragma mark - ImageRetrieverDekegate methods
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
 {
+    [self.navigationController popViewControllerAnimated:NO];
     [self sendImageToUploadingWantDetailsVC:image];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
 {
-//    UIViewController *topVC = [self.navigationController topViewController];
-//    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
-//        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
-//        [wantDetailsVC setImage:image forButton:currButtonIndex];
-//    } else {
-//        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
-//        wantDetailsVC.delegate = self;
-//        currButtonIndex = 0;
-//        [wantDetailsVC setImage:image forButton:currButtonIndex];
-//        [self pushViewController:wantDetailsVC];
-//    }
-    
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
     editor.delegate = self;
+    editor.hidesBottomBarWhenPushed = YES;
     
-    [self presentViewController:editor animated:YES completion:nil];
+    CLImageToolInfo *effectTool = [editor.toolInfo subToolInfoWithToolName:@"CLEffectTool" recursive:YES];
+    
+    [self.navigationController pushViewController:editor animated:NO];
+}
+
+#pragma mark - CLImageEditorDelegate methods
+
+- (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    UIViewController *topVC = [self.navigationController topViewController];
+    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+    } else {
+        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+        wantDetailsVC.delegate = self;
+        currButtonIndex = 0;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+        [self.navigationController pushViewController:wantDetailsVC animated:NO];
+    }
 }
 
 #pragma mark - UserProfileViewController Delegate methods
