@@ -7,7 +7,7 @@
 //
 
 #import "KLCPopup.h"
-
+#import "AppConstant.h"
 #import "GenericController.h"
 
 @interface GenericController ()
@@ -153,8 +153,6 @@
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
     editor.delegate = self;
     editor.hidesBottomBarWhenPushed = YES;
-    
-    CLImageToolInfo *effectTool = [editor.toolInfo subToolInfoWithToolName:@"CLEffectTool" recursive:YES];
     
     [self.navigationController pushViewController:editor animated:NO];
 }

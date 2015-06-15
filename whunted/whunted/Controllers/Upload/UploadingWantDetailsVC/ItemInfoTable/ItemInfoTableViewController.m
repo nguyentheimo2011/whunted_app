@@ -8,7 +8,7 @@
 
 #import "ItemInfoTableViewController.h"
 #import <SZTextView/SZTextView.h>
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @interface ItemInfoTableViewController ()
 

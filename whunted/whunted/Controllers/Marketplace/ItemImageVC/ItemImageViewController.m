@@ -7,7 +7,7 @@
 //
 
 #import "ItemImageViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @interface ItemImageViewController ()
 

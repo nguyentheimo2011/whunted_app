@@ -7,7 +7,7 @@
 //
 
 #import "WantTableViewCell.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @implementation WantTableViewCell
 

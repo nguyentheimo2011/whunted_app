@@ -7,6 +7,7 @@
 //
 
 #import "ImageGetterViewController.h"
+#import "AppConstant.h"
 #import "Utilities.h"
 
 @interface ImageGetterViewController ()

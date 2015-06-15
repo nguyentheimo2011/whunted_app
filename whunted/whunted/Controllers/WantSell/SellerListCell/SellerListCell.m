@@ -7,7 +7,7 @@
 //
 
 #import "SellerListCell.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @implementation SellerListCell
 

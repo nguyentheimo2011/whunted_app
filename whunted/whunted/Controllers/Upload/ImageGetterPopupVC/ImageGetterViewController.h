@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @class ImageGetterViewController;
 

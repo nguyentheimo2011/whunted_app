@@ -7,6 +7,7 @@
 //
 
 #import "ImageRetrieverViewController.h"
+#import "AppConstant.h"
 #import "Utilities.h"
 
 #import "MBProgressHUD.h"

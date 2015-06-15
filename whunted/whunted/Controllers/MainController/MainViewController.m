@@ -12,7 +12,7 @@
 #import "GenericController.h"
 #import "MySellViewController.h"
 #import "MyWantViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>

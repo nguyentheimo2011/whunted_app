@@ -7,7 +7,7 @@
 //
 
 #import "SellersOfferViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 #import "SellersOfferData.h"
 
 @interface SellersOfferViewController ()

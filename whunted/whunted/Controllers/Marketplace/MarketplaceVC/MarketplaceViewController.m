@@ -8,6 +8,7 @@
 
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
+#import "AppConstant.h"
 
 @interface MarketplaceViewController ()
 

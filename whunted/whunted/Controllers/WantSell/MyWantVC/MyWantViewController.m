@@ -10,6 +10,7 @@
 #import "HorizontalLineViewController.h"
 #import "WantData.h"
 #import "SellersOfferData.h"
+#import "AppConstant.h"
 
 #import <Parse/Parse.h>
 

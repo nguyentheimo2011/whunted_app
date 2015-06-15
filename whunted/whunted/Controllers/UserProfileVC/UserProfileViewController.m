@@ -7,7 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 #import <Parse/Parse.h>
 

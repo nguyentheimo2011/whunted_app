@@ -7,7 +7,7 @@
 //
 
 #import "UploadingWantDetailsViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @interface UploadingWantDetailsViewController ()
 

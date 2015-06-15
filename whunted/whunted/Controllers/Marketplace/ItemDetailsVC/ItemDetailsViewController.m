@@ -7,7 +7,7 @@
 //
 
 #import "ItemDetailsViewController.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 #import "ItemImageViewController.h"
 
 @interface ItemDetailsViewController ()

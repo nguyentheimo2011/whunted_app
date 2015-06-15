@@ -7,7 +7,7 @@
 //
 
 #import "MarketplaceCollectionViewCell.h"
-#import "Utilities.h"
+#import "AppConstant.h"
 
 @implementation MarketplaceCollectionViewCell
 

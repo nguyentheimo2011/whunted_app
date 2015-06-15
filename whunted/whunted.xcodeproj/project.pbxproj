@@ -238,6 +238,7 @@
 		E98113251B25898C00ECAA0C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = Controllers/UserProfileVC/UserProfileViewController.h; sourceTree = "<group>"; };
 		E98113261B25898C00ECAA0C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfileViewController.m; sourceTree = "<group>"; };
 		E98113281B258A4E00ECAA0C /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout.png; path = "Resources/User Profile/logout.png"; sourceTree = "<group>"; };
+		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
 		E9A639151B260ACC0085C54F /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRetrieverViewController.h; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.h; sourceTree = "<group>"; };
 		E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRetrieverViewController.m; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.m; sourceTree = "<group>"; };
@@ -474,6 +475,7 @@
 				E94D17C91AF8B51000E31B01 /* AppDelegate.h */,
 				E94D17CA1AF8B51000E31B01 /* AppDelegate.m */,
 				E94D17D31AF8B66000E31B01 /* main.m */,
+				E9A07BE31B2ED9F500904DE9 /* AppConstant.h */,
 			);
 			name = Application;
 			sourceTree = "<group>";
