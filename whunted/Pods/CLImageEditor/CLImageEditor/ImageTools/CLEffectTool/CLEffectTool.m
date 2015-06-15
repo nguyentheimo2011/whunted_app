@@ -109,6 +109,7 @@
         }
         
         CLToolbarMenuItem *view = [CLImageEditorTheme menuItemWithFrame:CGRectMake(x, 0, W, H) target:self action:@selector(tappedMenu:) toolInfo:info];
+        [view setIconImage:_thumbnailImage];
         [_menuScroll addSubview:view];
         x += W;
         
