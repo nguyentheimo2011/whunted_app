@@ -80,6 +80,8 @@
 		E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113201B24B85F00ECAA0C /* SellTableViewCell.m */; };
 		E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113261B25898C00ECAA0C /* UserProfileViewController.m */; };
 		E98113291B258A4E00ECAA0C /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113281B258A4E00ECAA0C /* logout.png */; };
+		E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE41B3009D800904DE9 /* libicucore.dylib */; };
+		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
 		E9A639161B260ACC0085C54F /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639151B260ACC0085C54F /* newsfeed@3x.png */; };
 		E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */; };
 		E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */; };
@@ -239,6 +241,8 @@
 		E98113261B25898C00ECAA0C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfileViewController.m; sourceTree = "<group>"; };
 		E98113281B258A4E00ECAA0C /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout.png; path = "Resources/User Profile/logout.png"; sourceTree = "<group>"; };
 		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
+		E9A07BE41B3009D800904DE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		E9A07BE61B3009F500904DE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		E9A639151B260ACC0085C54F /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRetrieverViewController.h; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.h; sourceTree = "<group>"; };
 		E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRetrieverViewController.m; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.m; sourceTree = "<group>"; };
@@ -316,11 +320,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9B8008F1B1444F2006D9133 /* libz.dylib in Frameworks */,
 				E9B8008D1B1444DE006D9133 /* SystemConfiguration.framework in Frameworks */,
+				E9B800891B1444C7006D9133 /* Security.framework in Frameworks */,
+				E9B8007B1B144431006D9133 /* CFNetwork.framework in Frameworks */,
+				E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */,
+				E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */,
+				E9B8008F1B1444F2006D9133 /* libz.dylib in Frameworks */,
 				E9B800951B144527006D9133 /* FBSDKLoginKit.framework in Frameworks */,
 				E9B8008B1B1444D1006D9133 /* StoreKit.framework in Frameworks */,
-				E9B800891B1444C7006D9133 /* Security.framework in Frameworks */,
 				E9B800871B1444BB006D9133 /* QuartzCore.framework in Frameworks */,
 				E9B800851B1444B3006D9133 /* MobileCoreServices.framework in Frameworks */,
 				E9B800831B14447B006D9133 /* AdSupport.framework in Frameworks */,
@@ -329,7 +336,6 @@
 				E9B800981B14458B006D9133 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				E9B8007F1B14445B006D9133 /* Social.framework in Frameworks */,
 				E9B8007D1B144447006D9133 /* Foundation.framework in Frameworks */,
-				E9B8007B1B144431006D9133 /* CFNetwork.framework in Frameworks */,
 				E9B800791B144412006D9133 /* CoreLocation.framework in Frameworks */,
 				E9B800771B1443E3006D9133 /* AudioToolbox.framework in Frameworks */,
 				E9B800751B1443D8006D9133 /* Accounts.framework in Frameworks */,
@@ -354,6 +360,8 @@
 		6FB553A10BCC9D1C8BA1C3B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9A07BE61B3009F500904DE9 /* libc++.dylib */,
+				E9A07BE41B3009D800904DE9 /* libicucore.dylib */,
 				E9B8008E1B1444F2006D9133 /* libz.dylib */,
 				E9B8008C1B1444DE006D9133 /* SystemConfiguration.framework */,
 				E9B8008A1B1444D1006D9133 /* StoreKit.framework */,
