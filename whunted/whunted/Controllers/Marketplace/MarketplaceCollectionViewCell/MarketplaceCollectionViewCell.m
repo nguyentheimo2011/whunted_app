@@ -10,6 +10,10 @@
 #import "AppConstant.h"
 
 @implementation MarketplaceCollectionViewCell
+{
+    CGFloat _cellWidth;
+    CGFloat _cellHeight;
+}
 
 @synthesize itemNameLabel;
 @synthesize demandedPriceLabel;
@@ -23,6 +27,7 @@
 
 - (void) initCell
 {
+    [self customizeCell];
     [self addItemImageView];
     [self addItemNameLabel];
     [self addPriceLabel];
@@ -33,10 +38,21 @@
     [self addCheapestPriceLabel];
 }
 
+#pragma mark - UI Handlers
+
+- (void) customizeCell
+{
+    [self setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
+    self.layer.cornerRadius = 5;
+    self.clipsToBounds = YES;
+    _cellWidth = self.frame.size.width;
+    _cellHeight = self.frame.size.height;
+}
+
 - (void) addItemImageView
 {
-    itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, WINSIZE.width/2-15, WINSIZE.width/2-10)];
-    [itemImageView setBackgroundColor:APP_COLOR_2];
+    itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
+    [itemImageView setBackgroundColor:APP_COLOR_3];
     [self addSubview:itemImageView];
     [itemImageView hnk_cancelSetImage];
     itemImageView.image = nil;
@@ -44,7 +60,7 @@
 
 - (void) addItemNameLabel
 {
-    CGFloat yPos = WINSIZE.width/2 + 5;
+    CGFloat yPos = _cellWidth + 10;
     itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 20)];
     [itemNameLabel setText:@"Item name"];
     [itemNameLabel setFont:[UIFont systemFontOfSize:15]];
@@ -53,7 +69,7 @@
 
 - (void) addPriceLabel
 {
-    CGFloat yPos = WINSIZE.width/2 + 25;
+    CGFloat yPos = _cellWidth + 35;
     demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
     [demandedPriceLabel setText:@"Item price"];
     [demandedPriceLabel setFont:[UIFont systemFontOfSize:15]];
@@ -63,7 +79,7 @@
 
 - (void) addBuyerProfilePic
 {
-    CGFloat yPos = WINSIZE.width/2 + 50;
+    CGFloat yPos = _cellWidth + 60;
     buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(5, yPos, 30, 30)];
     [buyerProfilePic setBackgroundColor:APP_COLOR_6];
     buyerProfilePic.layer.cornerRadius = 13;
@@ -73,7 +89,7 @@
 - (void) addBuyerUsername
 {
     CGFloat xPos = 45;
-    CGFloat yPos = WINSIZE.width/2 + 50;
+    CGFloat yPos = _cellWidth + 60;
     buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [buyerUsernameLabel setText:@"Username"];
     [buyerUsernameLabel setFont:[UIFont systemFontOfSize:14]];
@@ -83,7 +99,7 @@
 
 - (void) addTimestampLabel {
     CGFloat xPos = 45;
-    CGFloat yPos = WINSIZE.width/2 + 65;
+    CGFloat yPos = _cellWidth + 75;
     timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [timestampLabel setText:@"timestamp"];
     [timestampLabel setFont:[UIFont systemFontOfSize:14]];
@@ -93,10 +109,9 @@
 
 - (void) addSellerNumButton
 {
-    CGFloat xPos = 5;
-    CGFloat yPos = WINSIZE.width/2 + 90;
-    sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(xPos, yPos, (WINSIZE.width/2-15)/2, 25)];
-    [sellerNumButton setBackgroundColor:APP_COLOR_2];
+    CGFloat yPos = _cellWidth + 100;
+    sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, yPos, _cellWidth/2, 25)];
+    [sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
     [sellerNumButton setTitle:@"0 賣家" forState:UIControlStateNormal];
     sellerNumButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:sellerNumButton];
@@ -104,9 +119,9 @@
 
 - (void) addCheapestPriceLabel
 {
-    CGFloat xPos = (WINSIZE.width/2-15)/2 + 5;
-    CGFloat yPos = WINSIZE.width/2 + 90;
-    cheapestPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, (WINSIZE.width/2-15)/2, 25)];
+    CGFloat xPos = _cellWidth/2;
+    CGFloat yPos = _cellWidth + 100;
+    cheapestPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, _cellWidth/2, 25)];
     [cheapestPriceLabel setBackgroundColor:APP_COLOR_3];
     [cheapestPriceLabel setText:@"TWD90"];
     [cheapestPriceLabel setTextColor:[UIColor whiteColor]];

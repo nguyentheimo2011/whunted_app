@@ -16,6 +16,7 @@
 #define APP_COLOR_4             [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
 #define APP_COLOR_5             [UIColor colorWithRed:52.0/255 green:68.0/255 blue:105.0/255 alpha:1.0]
 #define APP_COLOR_6             [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
+#define BACKGROUND_COLOR        [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define WINSIZE                 [[UIScreen mainScreen] bounds].size

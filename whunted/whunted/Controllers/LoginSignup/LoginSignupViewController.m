@@ -127,7 +127,7 @@
 - (void) presentMainViewController
 {
     MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-    [self presentViewController:mainVC animated:YES completion:^{
+    [self presentViewController:mainVC animated:NO completion:^{
     }];
 }
 
