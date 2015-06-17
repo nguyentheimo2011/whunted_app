@@ -8,6 +8,8 @@
 
 #import "InboxAllViewController.h"
 #import "MessageViewCell.h"
+#import "AppConstant.h"
+#import "converter.h"
 #import <Firebase/Firebase.h>
 
 @interface InboxAllViewController ()
@@ -29,6 +31,8 @@
     self = [super init];
     if (self != nil) {
         [self addInboxTableView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRecents) name:NOTIFICATION_APP_STARTED object:nil];
     }
     
     return self;
@@ -37,6 +41,9 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Inbox";
+    [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
 }
 
 - (void) addInboxTableView
@@ -47,7 +54,41 @@
     [self.view addSubview:_inboxTableView];
 }
 
+#pragma mark - Backend methods
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)loadRecents
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [PFUser currentUser];
+    if ((user != nil) && (_firebase == nil))
+    {
+        _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
+        FQuery *query = [[_firebase queryOrderedByChild:@"userId"] queryEqualToValue:user.objectId];
+        [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
+         {
+             [_recentMessages removeAllObjects];
+             if (snapshot.value != [NSNull null])
+             {
+                 NSArray *sorted = [[snapshot.value allValues] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+                                    {
+                                        NSDictionary *recent1 = (NSDictionary *)obj1;
+                                        NSDictionary *recent2 = (NSDictionary *)obj2;
+                                        NSDate *date1 = String2Date(recent1[@"date"]);
+                                        NSDate *date2 = String2Date(recent2[@"date"]);
+                                        return [date2 compare:date1];
+                                    }];
+                 for (NSDictionary *recent in sorted)
+                 {
+                     [_recentMessages addObject:recent];
+                 }
+             }
+             [_inboxTableView reloadData];
+         }];
+    }
+}
+
 #pragma mark - UITableView Datasource Delegate methods
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;
@@ -57,11 +98,6 @@
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
-    }
     
     return cell;
 }

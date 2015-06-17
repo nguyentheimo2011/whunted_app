@@ -18,4 +18,6 @@
 + (void) addGradientToButton: (UIButton *) button;
 + (UIImage *)imageWithColor:(UIColor *)color;
 
++ (void) postNotification: (NSString *) notification;
+
 @end

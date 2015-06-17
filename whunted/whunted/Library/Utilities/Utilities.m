@@ -91,7 +91,8 @@
     [button.layer addSublayer:gradientLayer];
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color {
++ (UIImage *)imageWithColor:(UIColor *)color
+{
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -103,6 +104,11 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
++ (void) postNotification: (NSString *) notification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
 }
 
 @end

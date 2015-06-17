@@ -33,10 +33,18 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ACCEPTABLE_CHARECTERS               @"0123456789."
 
-
+//-----------------------------------------------------------------------------------------------------------------------------
 #define		PF_USER_CLASS_NAME					@"_User"				//	Class name
 #define		PF_USER_OBJECTID					@"objectId"				//	String
 #define		PF_USER_PICTURE						@"profilePicture"		//	File
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define		NOTIFICATION_APP_STARTED			@"NCAppStarted"
+#define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
+#define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     FIREBASE                            @"https://incandescent-heat-6966.firebaseio.com/"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

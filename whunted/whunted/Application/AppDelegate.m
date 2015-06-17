@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "LoginSignupViewController.h"
+#import "Utilities.h"
 
 @interface AppDelegate ()
 
@@ -34,6 +35,13 @@
     [self setViewController];
     
     return YES;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)applicationDidBecomeActive:(UIApplication *)application
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities postNotification:NOTIFICATION_APP_STARTED];
 }
 
 - (BOOL)application:(UIApplication *)application

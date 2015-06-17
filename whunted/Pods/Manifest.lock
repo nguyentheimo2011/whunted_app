@@ -25,6 +25,9 @@ PODS:
   - CLImageEditor/Core (0.1.4)
   - Firebase (2.3.1)
   - Haneke (1.0.1)
+  - JSQMessagesViewController (7.1.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - MBProgressHUD (0.9.1)
   - SZTextView (1.2.1)
 
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - CLImageEditor
   - Firebase (>= 2.3.1)
   - Haneke (~> 1.0)
+  - JSQMessagesViewController
   - MBProgressHUD (~> 0.9.1)
   - SZTextView
 
@@ -41,6 +45,8 @@ SPEC CHECKSUMS:
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   Firebase: 462795adf92029ddb97777660627f5dd4fd59876
   Haneke: d60be8b96b228633b24708dd153169d6849d6f78
+  JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
 
