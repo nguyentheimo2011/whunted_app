@@ -8,6 +8,7 @@
 
 #import "InboxAllViewController.h"
 #import "MessageViewCell.h"
+#import "ChatView.h"
 #import "AppConstant.h"
 #import "converter.h"
 #import <Firebase/Firebase.h>
@@ -105,6 +106,15 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 70.0;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ChatView *chatView = [[ChatView alloc] initWith:@""];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 @end

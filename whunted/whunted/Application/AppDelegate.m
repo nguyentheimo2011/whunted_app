@@ -42,6 +42,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities postNotification:NOTIFICATION_APP_STARTED];
+    [FBSDKAppEvents activateApp];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -52,10 +53,6 @@
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [FBSDKAppEvents activateApp];
 }
 
 - (void) setViewController {

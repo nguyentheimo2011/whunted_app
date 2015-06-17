@@ -59,6 +59,8 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "CLImageEditor/CLImageEditor/CLImageEditor.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib"
@@ -69,6 +71,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "CLImageEditor/CLImageEditor/CLImageEditor.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
+  install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.xib"
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesCollectionViewCellIncoming.xib"
