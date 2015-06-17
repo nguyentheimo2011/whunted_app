@@ -82,6 +82,10 @@
 		E98113291B258A4E00ECAA0C /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = E98113281B258A4E00ECAA0C /* logout.png */; };
 		E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE41B3009D800904DE9 /* libicucore.dylib */; };
 		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
+		E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */; };
+		E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BF21B313EF200904DE9 /* MessageViewCell.m */; };
+		E9A07BF51B313EF200904DE9 /* MessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */; };
+		E9A07BF81B31437D00904DE9 /* converter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BF71B31437D00904DE9 /* converter.m */; };
 		E9A639161B260ACC0085C54F /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639151B260ACC0085C54F /* newsfeed@3x.png */; };
 		E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */; };
 		E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */; };
@@ -243,6 +247,13 @@
 		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
 		E9A07BE41B3009D800904DE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		E9A07BE61B3009F500904DE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		E9A07BEE1B313D7000904DE9 /* InboxAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboxAllViewController.h; path = Controllers/InboxController/InboxAllController/InboxAllViewController.h; sourceTree = "<group>"; };
+		E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboxAllViewController.m; path = Controllers/InboxController/InboxAllController/InboxAllViewController.m; sourceTree = "<group>"; };
+		E9A07BF11B313EF200904DE9 /* MessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageViewCell.h; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.h; sourceTree = "<group>"; };
+		E9A07BF21B313EF200904DE9 /* MessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewCell.m; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.m; sourceTree = "<group>"; };
+		E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewCell.xib; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.xib; sourceTree = "<group>"; };
+		E9A07BF61B31437D00904DE9 /* converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = converter.h; path = Library/Utilities/converter.h; sourceTree = "<group>"; };
+		E9A07BF71B31437D00904DE9 /* converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = converter.m; path = Library/Utilities/converter.m; sourceTree = "<group>"; };
 		E9A639151B260ACC0085C54F /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRetrieverViewController.h; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.h; sourceTree = "<group>"; };
 		E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRetrieverViewController.m; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.m; sourceTree = "<group>"; };
@@ -405,6 +416,8 @@
 		E916F4461B00AEE1005055E3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E9A07BF61B31437D00904DE9 /* converter.h */,
+				E9A07BF71B31437D00904DE9 /* converter.m */,
 				E916F46C1B033BDE005055E3 /* Utilities.h */,
 				E916F46D1B033BDE005055E3 /* Utilities.m */,
 			);
@@ -491,6 +504,7 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9A07BE81B313B5400904DE9 /* InboxController */,
 				E9D9C5071B1BFFCE00222E0C /* Marketplace */,
 				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
 				E916F4421B00A95F005055E3 /* Main Controller */,
@@ -800,6 +814,34 @@
 			name = UserProfileVC;
 			sourceTree = "<group>";
 		};
+		E9A07BE81B313B5400904DE9 /* InboxController */ = {
+			isa = PBXGroup;
+			children = (
+				E9A07BEC1B313C8D00904DE9 /* InboxAllController */,
+				E9A07BED1B313C9300904DE9 /* InboxTableViewCell */,
+			);
+			name = InboxController;
+			sourceTree = "<group>";
+		};
+		E9A07BEC1B313C8D00904DE9 /* InboxAllController */ = {
+			isa = PBXGroup;
+			children = (
+				E9A07BEE1B313D7000904DE9 /* InboxAllViewController.h */,
+				E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */,
+			);
+			name = InboxAllController;
+			sourceTree = "<group>";
+		};
+		E9A07BED1B313C9300904DE9 /* InboxTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9A07BF11B313EF200904DE9 /* MessageViewCell.h */,
+				E9A07BF21B313EF200904DE9 /* MessageViewCell.m */,
+				E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */,
+			);
+			name = InboxTableViewCell;
+			sourceTree = "<group>";
+		};
 		E9A639181B28107B0085C54F /* ImageRetrieverVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,6 +1095,7 @@
 				E94D181D1AF9CE8900E31B01 /* profile@3x.png in Resources */,
 				E91A5A6E1B04C1E6008382E2 /* next@1x.png in Resources */,
 				E91A5A691B049A2D008382E2 /* square_dashed@2x.png in Resources */,
+				E9A07BF51B313EF200904DE9 /* MessageViewCell.xib in Resources */,
 				E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */,
 				E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */,
 				E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */,
@@ -1174,9 +1217,11 @@
 				E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
+				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
+				E9A07BF81B31437D00904DE9 /* converter.m in Sources */,
 				E9FB2E9E1B20485B00F8C435 /* SellersOfferData.m in Sources */,
 				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
 				E97CE4B11B09EF330027C5FA /* NewsFeedTableViewCell.m in Sources */,
@@ -1192,6 +1237,7 @@
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
+				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,

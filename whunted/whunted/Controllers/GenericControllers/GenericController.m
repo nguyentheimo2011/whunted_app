@@ -9,6 +9,7 @@
 #import "KLCPopup.h"
 #import "AppConstant.h"
 #import "GenericController.h"
+#import "InboxAllViewController.h"
 
 @interface GenericController ()
 
@@ -40,7 +41,7 @@
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
 
     UIImage *chatImage = [UIImage imageNamed:@"chat.png"];
-    UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:@selector(openInbox)];
     
     UIImage *profile = [UIImage imageNamed:@"profile.png"];
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
@@ -78,6 +79,12 @@
     UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
     userProfileVC.delegate = self;
     [self.navigationController pushViewController:userProfileVC animated:YES];
+}
+
+- (void) openInbox
+{
+    InboxAllViewController *inboxVC = [[InboxAllViewController alloc] init];
+    [self.navigationController pushViewController:inboxVC animated:YES];
 }
 
 #pragma mark - Upload Want Details View Controller delegate methods

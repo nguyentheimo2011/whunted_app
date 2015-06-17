@@ -22,16 +22,21 @@
 #define WINSIZE                 [[UIScreen mainScreen] bounds].size
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define ITEM_NAME_KEY           @"itemName"
-#define ITEM_DESC_KEY           @"itemDescription"
-#define ITEM_HASH_TAG_KEY       @"itemHashTag"
-#define ITEM_CATEGORY_KEY       @"itemCategory"
-#define ITEM_PRICE_KEY          @"itemPrice"
-#define ITEM_LOCATION_KEY       @"location"
-#define ITEM_ESCROW_OPTION_KEY  @"escrowOption"
+#define     ITEM_NAME_KEY                       @"itemName"
+#define     ITEM_DESC_KEY                       @"itemDescription"
+#define     ITEM_HASH_TAG_KEY                   @"itemHashTag"
+#define     ITEM_CATEGORY_KEY                   @"itemCategory"
+#define     ITEM_PRICE_KEY                      @"itemPrice"
+#define     ITEM_LOCATION_KEY                   @"location"
+#define     ITEM_ESCROW_OPTION_KEY              @"escrowOption"
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define ACCEPTABLE_CHARECTERS   @"0123456789."
+#define     ACCEPTABLE_CHARECTERS               @"0123456789."
+
+
+#define		PF_USER_CLASS_NAME					@"_User"				//	Class name
+#define		PF_USER_OBJECTID					@"objectId"				//	String
+#define		PF_USER_PICTURE						@"profilePicture"		//	File
 
 //-----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
