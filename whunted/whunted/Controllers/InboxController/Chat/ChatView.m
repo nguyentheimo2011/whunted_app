@@ -81,7 +81,7 @@
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
 	bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"chat_blank"] diameter:30.0];
+//	avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"chat_blank"] diameter:30.0];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
 	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionDelete:)];

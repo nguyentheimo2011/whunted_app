@@ -9,6 +9,8 @@
 #import "ItemDetailsViewController.h"
 #import "AppConstant.h"
 #import "ItemImageViewController.h"
+#import "ChatView.h"
+#import "recent.h"
 
 @interface ItemDetailsViewController ()
 
@@ -168,6 +170,7 @@
     [chatButton setBackgroundColor:[UIColor grayColor]];
     [chatButton setTitle:@"對話" forState:UIControlStateNormal];
     [chatButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:chatButton];
 }
 
@@ -193,7 +196,10 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Event Handlers
+//------------------------------------------------------------------------------------------------------------------------------
+
 - (void) sellerOfferButtonClickedHandler
 {
     SellersOfferViewController *sellersOfferVC = [[SellersOfferViewController alloc] init];
@@ -208,7 +214,31 @@
     [self.navigationController pushViewController:sellersOfferVC animated:YES];
 }
 
+- (void) chatButtonClickedEvent
+{
+    PFUser *user1 = [PFUser currentUser];
+    PFUser *user2 = [wantData buyer];
+    [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+        if (!error) {
+            NSString *groupId = StartPrivateChat(user1, user2);
+            [self actionChat:groupId];
+        } else {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (void)actionChat:(NSString *)groupId
+{
+    ChatView *chatView = [[ChatView alloc] initWith:groupId];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Data Handlers
+//------------------------------------------------------------------------------------------------------------------------------
+
 - (void) retrieveItemImages
 {    
     itemImageList = [[NSMutableArray alloc] init];
@@ -228,7 +258,10 @@
     }];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - PageViewController datasource methods
+//------------------------------------------------------------------------------------------------------------------------------
+
 - (UIViewController *) pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSInteger index = [(ItemImageViewController*)viewController index];
@@ -259,7 +292,10 @@
     return 0;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - SellersOfferViewController delegate methods
+//------------------------------------------------------------------------------------------------------------------------------
+
 - (void) sellerOfferViewController:(SellersOfferViewController *)controller didOfferForItem:(PFObject *) object
 {
     offeredByCurrUser = YES;
