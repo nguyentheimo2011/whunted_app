@@ -11,12 +11,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Parse/Parse.h>
+
 #import "JSQMessages.h"
 #import "RNGridMenu.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic, strong) PFUser *user2;
 
 - (id)initWith:(NSString *)groupId_;
 

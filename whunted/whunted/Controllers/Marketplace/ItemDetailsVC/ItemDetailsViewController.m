@@ -220,7 +220,8 @@
     PFUser *user2 = [wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
-            NSString *groupId = StartPrivateChat(user1, user2);
+            [user pinInBackground];
+            NSString *groupId = StartPrivateChat(user1, user2, wantData.itemID);
             [self actionChat:groupId];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -231,6 +232,7 @@
 - (void)actionChat:(NSString *)groupId
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
+    [chatView setUser2:wantData.buyer];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

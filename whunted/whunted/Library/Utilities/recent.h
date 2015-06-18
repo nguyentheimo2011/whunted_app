@@ -12,7 +12,7 @@
 #import <Parse/Parse.h>
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString*		StartPrivateChat		(PFUser *user1, PFUser *user2);
+NSString* StartPrivateChat(PFUser *user1, PFUser *user2, NSString *itemID);
 NSString*		StartMultipleChat		(NSMutableArray *users);
 
 void			StartGroupChat			(PFObject *group, NSMutableArray *users);
