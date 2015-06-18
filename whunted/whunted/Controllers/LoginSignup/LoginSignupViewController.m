@@ -200,6 +200,7 @@
                      if (profilePictureFile) {
                          user[@"profilePicture"] = profilePictureFile;
                          [user saveInBackground];
+                         [user pinInBackground];
                      }
                  }
              }];

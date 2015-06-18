@@ -81,7 +81,13 @@
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
 	bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"chat_blank"] diameter:30.0];
+    [user fetchFromLocalDatastoreInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            NSData *data = [obj[@"profilePicture"] getData];
+            avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:data] diameter:30.0];
+        }
+    }];
+    
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
 	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionDelete:)];
