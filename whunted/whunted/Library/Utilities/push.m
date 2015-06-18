@@ -71,7 +71,7 @@ void SendPushNotification2(NSArray *members, NSString *text)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
-	NSString *message = [NSString stringWithFormat:@"%@: %@", user[PF_USER_FULLNAME], text];
+	NSString *message = [NSString stringWithFormat:@"%@: %@", user[PF_USER_USERNAME], text];
 	
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
 	[query whereKey:PF_USER_OBJECTID containedIn:members];

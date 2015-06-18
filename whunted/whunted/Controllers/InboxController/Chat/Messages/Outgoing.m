@@ -54,7 +54,7 @@
 	NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	item[@"userId"] = user.objectId;
-	item[@"name"] = user[PF_USER_FULLNAME];
+	item[@"name"] = user[PF_USER_USERNAME];
 	item[@"date"] = Date2String([NSDate date]);
 	item[@"status"] = @"Delivered";
 	//---------------------------------------------------------------------------------------------------------------------------------------------

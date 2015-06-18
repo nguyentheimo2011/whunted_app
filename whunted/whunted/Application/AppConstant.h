@@ -44,8 +44,17 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		PF_USER_CLASS_NAME					@"_User"				//	Class name
 #define		PF_USER_OBJECTID					@"objectId"				//	String
+#define     PF_USER_USERNAME                    @"username"             //  String
+#define     PF_USER_PASSWORD                    @"password"             //  String
+#define     PF_USER_EMAIL                       @"email"                //  String
+#define     PF_USER_EMAIL_VERIFICATION          @"emailVerified"        //  Boolean
+#define     PF_USER_FIRSTNAME                   @"firstName"            //  String
+#define     PF_USER_LASTNAME                    @"lastName"             //  String
+#define     PF_USER_GENDER                      @"gender"               //  String
+#define     PF_USER_DOB                         @"dob"                  //  Date
 #define		PF_USER_PICTURE						@"profilePicture"		//	File
-#define		PF_USER_FULLNAME					@"firstName"				//	String
+#define     PF_USER_AREA_ADDRESS                @"areaAddress"          //  String
+#define     PF_USER_COUNTRY                     @"country"              //  String
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_APP_STARTED			@"NCAppStarted"

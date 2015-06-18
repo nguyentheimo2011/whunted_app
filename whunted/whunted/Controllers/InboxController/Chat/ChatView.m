@@ -69,7 +69,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.title = user2[@"username"];
+	self.title = user2[PF_USER_USERNAME];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	items = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
@@ -77,7 +77,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	PFUser *user = [PFUser currentUser];
 	self.senderId = user.objectId;
-	self.senderDisplayName = user[PF_USER_FULLNAME];
+	self.senderDisplayName = user[PF_USER_USERNAME];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
