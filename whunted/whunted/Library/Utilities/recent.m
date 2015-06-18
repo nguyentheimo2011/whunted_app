@@ -28,10 +28,10 @@ NSString* StartPrivateChat(PFUser *user1, PFUser *user2, NSString *itemID)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", itemID, id2, id1];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	NSArray *members = @[user1.objectId, user2.objectId];
+	NSArray *members = @[user1.objectId, user2.objectId];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2);
-//	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1);
+	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2);
+	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return groupId;
 }

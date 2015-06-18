@@ -90,14 +90,14 @@
         }
     }];
     
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
-	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionDelete:)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
-	UIMenuItem *menuItemDelete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(actionDelete:)];
-	[UIMenuController sharedMenuController].menuItems = @[menuItemCopy, menuItemDelete];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
+//	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionDelete:)];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
+//	UIMenuItem *menuItemDelete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(actionDelete:)];
+//	[UIMenuController sharedMenuController].menuItems = @[menuItemCopy, menuItemDelete];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
 	firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
 	firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
 	//---------------------------------------------------------------------------------------------------------------------------------------------

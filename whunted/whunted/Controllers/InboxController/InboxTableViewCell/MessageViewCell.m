@@ -49,7 +49,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
 	[query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
-	[query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+//	[query setCachePolicy:kPFCachePolicyCacheThenNetwork];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
 		if (error == nil)

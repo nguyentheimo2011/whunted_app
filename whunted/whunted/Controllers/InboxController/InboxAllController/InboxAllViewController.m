@@ -31,9 +31,10 @@
 {
     self = [super init];
     if (self != nil) {
-        [self addInboxTableView];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRecents) name:NOTIFICATION_APP_STARTED object:nil];
+        [self addInboxTableView];
+        _recentMessages = [NSMutableArray array];
+        [self loadRecents];
     }
     
     return self;
@@ -92,13 +93,14 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [_recentMessages count];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell bindData:_recentMessages[indexPath.row]];
     
     return cell;
 }
@@ -112,7 +114,8 @@
 {
     [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ChatView *chatView = [[ChatView alloc] initWith:@""];
+    NSDictionary *recent = _recentMessages[indexPath.row];
+    ChatView *chatView = [[ChatView alloc] initWith:recent[@"groupId"]];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }
