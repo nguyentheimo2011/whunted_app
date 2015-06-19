@@ -9,6 +9,7 @@
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
 #import "AppConstant.h"
+#import "MBProgressHUD.h"
 
 @interface MarketplaceViewController ()
 
@@ -187,6 +188,7 @@
 #pragma mark - UICollectionView delegate methods
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [wantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.delegate = self;
@@ -210,6 +212,7 @@
                 }
                 
                 [self.navigationController pushViewController:itemDetailsVC animated:YES];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
