@@ -137,6 +137,7 @@
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
 		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
 		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
+		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
 		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
@@ -343,6 +344,9 @@
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
 		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
 		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
+		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E9D5049B1B340F6F008ABDE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9D5049D1B340F74008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceViewController.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.h; sourceTree = "<group>"; };
 		E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
 		E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceCollectionViewCell.h; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.h; sourceTree = "<group>"; };
@@ -719,6 +723,7 @@
 				E955744B1AF86D2600F0B230 /* Images.xcassets */,
 				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
 				E94D17D91AF8B8F800E31B01 /* Info.plist */,
+				E9D5049C1B340F6F008ABDE4 /* Localizable.strings */,
 			);
 			path = whunted;
 			sourceTree = "<group>";
@@ -1172,6 +1177,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = E95574321AF86D2600F0B230;
 			productRefGroup = E955743C1AF86D2600F0B230 /* Products */;
@@ -1250,6 +1256,7 @@
 				E98113121B2155CB00ECAA0C /* accept@3x.png in Resources */,
 				E94D181E1AF9CE8900E31B01 /* search@1x.png in Resources */,
 				E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */,
+				E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */,
 				E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */,
 				E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */,
 				E94D18181AF9CE8900E31B01 /* newsfeed@1x.png in Resources */,
@@ -1390,8 +1397,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				E955744E1AF86D2600F0B230 /* Base */,
+				E9D504971B340E00008ABDE4 /* zh-Hant */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		E9D5049C1B340F6F008ABDE4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9D5049B1B340F6F008ABDE4 /* en */,
+				E9D5049D1B340F74008ABDE4 /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

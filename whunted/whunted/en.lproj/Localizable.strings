@@ -1,0 +1,91 @@
+/* 
+  Localizable.strings
+  whunted
+
+  Created by thomas nguyen on 19/6/15.
+  Copyright (c) 2015 Whunted. All rights reserved.
+*/
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Cancel"                =           "Cancel";
+"Submit"                =           "Submit";
+"Done"                  =           "Done";
+"Back"                  =           "Back";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Details"               =           "DETAILS";
+"Category"              =           "Category";
+"Choose category"       =           "Choose category";
+"Item info"             =           "Item info";
+"What are you buying?"  =           "What are you buying?";
+"Your price"            =           "Your price";
+"Set a price"           =           "Set a price";
+"Product origin"        =           "Product origin";
+"Location"              =           "Location";
+"Where to meet?"        =           "Where to meet?";
+"Request for Escrow?"   =           "Request for Escrow?";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Item name"             =           "Item name";
+"Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "Describe more about the item that you want. \nE.g. Size, condition, color, etc.";
+"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc." =   "Enter hashtags for the item to help sellers find you. \nE.g. Coach LV Prada, etc.";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Marketplace"           =           "Marketplace";
+"Newsfeed"              =           "Newsfeed";
+"Want"                  =           "Want";
+"Sell"                  =           "Sell";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"seller"                =           "seller";
+"sellers"               =           "sellers";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Beauty products"       =           "Beauty products";
+"Books and magazines"   =           "Books and magazines";
+"Luxury branded"        =           "Luxury branded";
+"Games & Toys"          =           "Games & Toys";
+"Professional services" =           "Professional services";
+"Sporting equipment"    =           "Sporting equipment";
+"Tickets and vouchers"  =           "Tickets and vouchers";
+"Watches"               =           "Watches";
+"Customization"         =           "Customization";
+"Borrowing"             =           "Borrowing";
+"Furniture"             =           "Furniture";
+"Others"                =           "Others";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"listed"                =           "listed";
+"Chat"                  =           "Chat";
+"Offer your price"      =           "Offer your price";
+"Change your offer"     =           "Change your offer";
+"Accepted"              =           "Accepted";
+"Promote your post"     =           "Promote your post";
+"Promote"               =           "Promote";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Tell people what you want to buy"    =   "Tell people what you want to buy";
+"Choose a way to upload your photo"   =   "Choose a way to upload your photo";
+"Take a photo"                        =   "Take a photo";
+"Choose from gallery"                 =   "Choose from gallery";
+"Paste image URL"                     =   "Paste image URL";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Delivery time"         =           "Delivery time";
+"Wants to buy at"       =           "Wants to buy at";
+//------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
