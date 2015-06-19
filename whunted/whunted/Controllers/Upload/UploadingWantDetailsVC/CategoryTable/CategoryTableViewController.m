@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    categoryList = [NSArray arrayWithObjects:@"美容產品", @"書籍雜誌", @"品牌產品", @"遊戲玩具", @"專業服務", @"體育器材", @"門票優惠券", @"手錶", @"定制產品", @"我想藉", @"家具", @"其他", nil];
+    categoryList = [NSArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
     
     selectedIndex = [categoryList indexOfObject:self.category];
 }

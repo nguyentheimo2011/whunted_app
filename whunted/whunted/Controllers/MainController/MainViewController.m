@@ -37,28 +37,28 @@
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
-        [browserNavController setTitle:@"市場"];
+        [browserNavController setTitle:NSLocalizedString(@"Marketplace", nil)];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         _newsFeedVC = [[NewsFeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
-        [newsFeedfNavController setTitle:@"最新動態"];
+        [newsFeedfNavController setTitle:NSLocalizedString(@"Newsfeed", nil)];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         _newsFeedVC.delegate = self;
         
         UINavigationController *myWantNavController = [[UINavigationController alloc] init];
         _myWantVC = [[MyWantViewController alloc] init];
         [myWantNavController setViewControllers: [NSArray arrayWithObject:_myWantVC]];
-        [myWantNavController setTitle:@"要買"];
+        [myWantNavController setTitle:NSLocalizedString(@"Want", nil)];
         [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
         _myWantVC.delegate = self;
         
         UINavigationController *mySellNavController = [[UINavigationController alloc] init];
         _mySellVC = [[MySellViewController alloc] init];
         [mySellNavController setViewControllers: [NSArray arrayWithObject:_mySellVC]];
-        [mySellNavController setTitle:@"要賣"];
+        [mySellNavController setTitle:NSLocalizedString(@"Sell", nil)];
         [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
         _mySellVC.delegate = self;
         

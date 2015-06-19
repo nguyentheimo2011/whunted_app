@@ -35,7 +35,7 @@
         [self initializeDescriptionCell];
         [self initializeHashtagCell];
         self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
-        self.navigationItem.title = @"物品類目";
+        self.navigationItem.title = NSLocalizedString(@"Item info", nil);
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonEvent)];
     }
     
@@ -58,7 +58,7 @@
     itemNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 5, windowSize.width-15, 30)];
     itemNameTextField.text = [self.itemInfoDict objectForKey:ITEM_NAME_KEY];
     UIColor *color = [UIColor colorWithRed:130/255.0 green:130/255.0 blue:130/255.0 alpha:0.8];
-    itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"物品名稱" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:17]}];
+    itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:17]}];
     [self.itemNameCell addSubview:itemNameTextField];
 }
 
@@ -71,7 +71,7 @@
     descriptionTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height * 0.3)];
     descriptionTextView.text = [self.itemInfoDict objectForKey:ITEM_DESC_KEY];
     descriptionTextView.font = [UIFont systemFontOfSize:17];
-    descriptionTextView.placeholder = @"請描述您所需的物品.\n詳細細節如：尺碼， 顏色，等";
+    descriptionTextView.placeholder = NSLocalizedString(@"Describe more about the item that you want. \nE.g. Size, condition, color, etc.", nil);
     [self.descriptionCell addSubview:descriptionTextView];
 }
 
@@ -84,7 +84,7 @@
     hashTagTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, windowSize.width, windowSize.height/6)];
     hashTagTextView.text = [self.itemInfoDict objectForKey:ITEM_HASH_TAG_KEY];
     hashTagTextView.font = [UIFont systemFontOfSize:17];
-    hashTagTextView.placeholder = @"鍵入關於所需物品的井字號，好讓賣家滿足您所望.\n列如： #Coach #LV #Prada";
+    hashTagTextView.placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc.", nil);
     [self.hashtagCell addSubview:hashTagTextView];
 }
 

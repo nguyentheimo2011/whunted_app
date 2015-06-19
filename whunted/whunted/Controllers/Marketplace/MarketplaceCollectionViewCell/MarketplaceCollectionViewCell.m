@@ -123,7 +123,7 @@
     CGFloat yPos = _cellWidth + 100;
     sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, yPos, _cellWidth/2, 25)];
     [sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
-    [sellerNumButton setTitle:@"0 賣家" forState:UIControlStateNormal];
+    [sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
     sellerNumButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:sellerNumButton];
 }
