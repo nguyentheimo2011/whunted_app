@@ -135,6 +135,8 @@
 		E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A01B16B5BC006D9133 /* app_icon@1x.png */; };
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
+		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
+		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
 		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
@@ -339,6 +341,8 @@
 		E9B800A01B16B5BC006D9133 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@1x.png"; path = "Resources/App Icons/App Icon/app_icon@1x.png"; sourceTree = "<group>"; };
 		E9B800A11B16B5BC006D9133 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/App Icons/App Icon/app_icon@2x.png"; sourceTree = "<group>"; };
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
+		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
+		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
 		E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceViewController.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.h; sourceTree = "<group>"; };
 		E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
 		E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceCollectionViewCell.h; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1065,6 +1069,8 @@
 		E9E4568E1B0F0D9300E8B55D /* WantSellCell */ = {
 			isa = PBXGroup;
 			children = (
+				E9D504931B33F661008ABDE4 /* heart_red.png */,
+				E9D504941B33F661008ABDE4 /* heart_white.png */,
 				E9E456951B0F25E400E8B55D /* sellers_icon.png */,
 				E9E456931B0F20CE00E8B55D /* promote_icon.png */,
 				E9E4568F1B0F0DA500E8B55D /* likes_icon.png */,
@@ -1216,6 +1222,7 @@
 				E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */,
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
 				E94D18131AF9CE8900E31B01 /* chat@2x.png in Resources */,
+				E9D504961B33F661008ABDE4 /* heart_white.png in Resources */,
 				E98113291B258A4E00ECAA0C /* logout.png in Resources */,
 				E98113111B2155CB00ECAA0C /* accept@2x.png in Resources */,
 				E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */,
@@ -1257,6 +1264,7 @@
 				E94D18171AF9CE8900E31B01 /* filter@3x.png in Resources */,
 				E9A639321B298A500085C54F /* placeholder.png in Resources */,
 				E94D18151AF9CE8900E31B01 /* filter@1x.png in Resources */,
+				E9D504951B33F661008ABDE4 /* heart_red.png in Resources */,
 				E91A5A631B048590008382E2 /* cameraplus@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

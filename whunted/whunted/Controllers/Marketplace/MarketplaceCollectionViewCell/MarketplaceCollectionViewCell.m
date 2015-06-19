@@ -13,6 +13,10 @@
 {
     CGFloat _cellWidth;
     CGFloat _cellHeight;
+    BOOL _likedByMe;
+    NSInteger _likesNum;
+    UIImageView *_likeImageView;
+    UILabel *_likesNumLabel;
 }
 
 @synthesize itemNameLabel;
@@ -20,13 +24,14 @@
 @synthesize buyerUsernameLabel;
 @synthesize timestampLabel;
 @synthesize sellerNumButton;
-@synthesize cheapestPriceLabel;
+@synthesize likeButton;
 @synthesize buyerProfilePic;
 @synthesize itemImageView;
 @synthesize wantData;
 
 - (void) initCell
 {
+    [self initData];
     [self customizeCell];
     [self addItemImageView];
     [self addItemNameLabel];
@@ -35,7 +40,13 @@
     [self addBuyerUsername];
     [self addTimestampLabel];
     [self addSellerNumButton];
-    [self addCheapestPriceLabel];
+    [self addLikeButton];
+}
+
+- (void) initData
+{
+    _likedByMe = NO;
+    _likesNum = 124;
 }
 
 #pragma mark - UI Handlers
@@ -117,21 +128,42 @@
     [self addSubview:sellerNumButton];
 }
 
-- (void) addCheapestPriceLabel
+- (void) addLikeButton
 {
     CGFloat xPos = _cellWidth/2;
     CGFloat yPos = _cellWidth + 100;
-    cheapestPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, _cellWidth/2, 25)];
-    [cheapestPriceLabel setBackgroundColor:APP_COLOR_3];
-    [cheapestPriceLabel setText:@"TWD90"];
-    [cheapestPriceLabel setTextColor:[UIColor whiteColor]];
-    [cheapestPriceLabel setTextAlignment:NSTextAlignmentCenter];
-    cheapestPriceLabel.font = [UIFont systemFontOfSize:16];
-    [self addSubview:cheapestPriceLabel];
+    likeButton = [[UIButton alloc] initWithFrame:CGRectMake(xPos, yPos, _cellWidth/2, 25)];
+    [likeButton setBackgroundColor:APP_COLOR_3];
+    [likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:likeButton];
+    
+    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, -1.5, 28, 28)];
+    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+    [likeButton addSubview:_likeImageView];
+    
+    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
+    [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    [_likesNumLabel setTextColor:[UIColor whiteColor]];
+    [_likesNumLabel setFont:[UIFont systemFontOfSize:16]];
+    [likeButton addSubview:_likesNumLabel];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Event Handlers
-
-
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) likeButtonClickedEvent
+{
+    if (_likedByMe) {
+        _likedByMe = NO;
+        _likesNum -= 1;
+        [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    } else {
+        _likedByMe = YES;
+        _likesNum += 1;
+        [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
+        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    }
+}
 
 @end
