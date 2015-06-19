@@ -100,7 +100,7 @@
     [self addSubview:view];
     
     UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, itemImageWidth/4, itemImageWidth/8)];
-    [promotionButton setTitle:@"分享" forState:UIControlStateNormal];
+    [promotionButton setTitle:NSLocalizedString(@"Promote", nil) forState:UIControlStateNormal];
     [promotionButton setEnabled:YES];
     [view addSubview:promotionButton];
 }
@@ -122,7 +122,7 @@
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 35;
     lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
-    [lowestOfferedPriceLabel setText:@"最低競價: TWD90"];
+    [lowestOfferedPriceLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
     [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:lowestOfferedPriceLabel];
@@ -133,7 +133,7 @@
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 60;
     yourOfferLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
-    [yourOfferLabel setText:@"你開的價: TWD0"];
+    [yourOfferLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [yourOfferLabel setTextColor:[UIColor grayColor]];
     [yourOfferLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:yourOfferLabel];

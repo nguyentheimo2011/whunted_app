@@ -103,7 +103,7 @@
     [self addSubview:view];
     
     UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, itemImageWidth/4, itemImageWidth/8)];
-    [promotionButton setTitle:@"分享" forState:UIControlStateNormal];
+    [promotionButton setTitle:NSLocalizedString(@"Promote", nil) forState:UIControlStateNormal];
     [promotionButton setEnabled:YES];
     [view addSubview:promotionButton];
 }
@@ -125,7 +125,7 @@
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 35;
     lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 150, 15)];
-    [lowestOfferedPriceLabel setText:@"最低競價: TWD90"];
+    [lowestOfferedPriceLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
     [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
     [self addSubview:lowestOfferedPriceLabel];
@@ -148,7 +148,7 @@
 - (void) addAcceptedStatusLabel
 {
     acceptedStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemImageView.frame.size.width - 120, 0, 120, 20)];
-    [acceptedStatusLabel setText:@"接受了報價"];
+    [acceptedStatusLabel setText:NSLocalizedString(@"Accepted", nil)];
     [acceptedStatusLabel setTextColor:[UIColor whiteColor]];
     [acceptedStatusLabel setFont:[UIFont systemFontOfSize:18]];
     [acceptedStatusLabel setTextAlignment:NSTextAlignmentCenter];
