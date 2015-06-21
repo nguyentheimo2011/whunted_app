@@ -40,11 +40,16 @@
 - (void) customizeUI
 {
     [self.titleView setBackgroundColor:APP_COLOR_5];
+    [self.firstTitleLabel setText:NSLocalizedString(@"Tell people what you want to buy", nil)];
     [self.firstTitleLabel setTextColor:[UIColor whiteColor]];
+    [self.secondTitleLabel setText:NSLocalizedString(@"Choose a way to upload your photo", nil)];
     [self.secondTitleLabel setTextColor:[UIColor whiteColor]];
     
+    [self.takingPhotoButton setTitle:NSLocalizedString(@"Take a photo", nil) forState:UIControlStateNormal];
     [self.takingPhotoButton setBackgroundColor:APP_COLOR_2];
+    [self.choosingPhotoButton setTitle:NSLocalizedString(@"Choose from gallery", nil) forState:UIControlStateNormal];
     [self.choosingPhotoButton setBackgroundColor:APP_COLOR_4];
+    [self.postingImageLinkButton setTitle:NSLocalizedString(@"Paste image URL", nil) forState:UIControlStateNormal];
     [self.postingImageLinkButton setBackgroundColor:APP_COLOR_2];
 }
 
