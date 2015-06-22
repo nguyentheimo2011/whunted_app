@@ -189,14 +189,27 @@
     }
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
-    return newLength <= 13;
+    if (newLength > 13)
+        return NO;
+    else {
+        if (textField.tag == 103) {
+            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
+            NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+            BOOL isEqual = [string isEqualToString:filtered];
+            if (isEqual && range.location >= [TAIWAN_CURRENCY length])
+                return YES;
+            else
+                return NO;
+        } else
+            return YES;
+    }
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag == 103) {
         if ([textField.text length] == 0) {
-            NSString *text = [@"TWD" stringByAppendingString:textField.text];
+            NSString *text = [TAIWAN_CURRENCY stringByAppendingString:textField.text];
             textField.text = text;
         }
     }

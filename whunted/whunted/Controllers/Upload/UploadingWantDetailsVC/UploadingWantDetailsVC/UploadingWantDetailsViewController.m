@@ -425,7 +425,7 @@
 {
     if (textField.tag == 102) {
         if ([textField.text length] == 0) {
-            NSString *text = [@"TWD" stringByAppendingString:textField.text];
+            NSString *text = [TAIWAN_CURRENCY stringByAppendingString:textField.text];
             textField.text = text;
         }
     }
@@ -446,7 +446,11 @@
     if (textField.tag == 102) {
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        return [string isEqualToString:filtered];
+        BOOL isEqual = [string isEqualToString:filtered];
+        if (isEqual && range.location >= [TAIWAN_CURRENCY length])
+            return YES;
+        else
+            return NO;
     } else {
         return YES;
     }
