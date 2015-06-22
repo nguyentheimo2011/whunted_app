@@ -34,7 +34,9 @@
     NSString *hashtagString;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     
@@ -55,19 +57,11 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
+#pragma mark - UI Handlers
 
-- (void) loadView
-{
-    [super loadView];
-}
-
-#pragma mark - Initialization
-
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeButtonListCell
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.buttonListCell = [[UITableViewCell alloc] init];
     self.buttonListCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
@@ -89,28 +83,50 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeSecondSection
+//------------------------------------------------------------------------------------------------------------------------------
 {
-    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
-    
+    [self initializeCategoryCell];
+    [self initializeItemInfoCell];
+    [self initializeProductOriginCell];
+    [self initializePriceCell];
+    [self initializeLocationCell];
+    [self initializeEscrowRequestCell];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeCategoryCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     self.categoryCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
     self.categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
     self.categoryCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeItemInfoCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
     self.itemInfoCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
     self.itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
     self.itemInfoCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeProductOriginCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.productOriginCell = [[UITableViewCell alloc] init];
     self.productOriginCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.productOriginCell.textLabel.text  = NSLocalizedString(@"Product origin", nil);
-    productOriginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.50, 30)];
+    productOriginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.50, 30)];
     [productOriginTextField setTextAlignment:NSTextAlignmentRight];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
     productOriginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Taiwan" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
@@ -119,12 +135,18 @@
     [productOriginTextField setKeyboardType:UIKeyboardTypeAlphabet];
     self.productOriginCell.accessoryView = productOriginTextField;
     self.productOriginCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializePriceCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.priceCell = [[UITableViewCell alloc] init];
     self.priceCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
-    priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, windowSize.width * 0.55, 30)];
+    priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [priceTextField setTextAlignment:NSTextAlignmentRight];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
     priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     priceTextField.delegate = self;
     priceTextField.tag = 102;
@@ -140,14 +162,23 @@
     [priceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     self.priceCell.accessoryView = priceTextField;
     self.priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeLocationCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     self.locationCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
     self.locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
     self.locationCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeEscrowRequestCell
+{
     self.escrowRequestCell = [[UITableViewCell alloc] init];
     self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
     self.escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow?", nil);
@@ -156,8 +187,11 @@
     self.escrowRequestCell.accessoryView = escrowSwitch;
     self.escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+//------------------------------------------------------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
     
@@ -166,13 +200,17 @@
 
 #pragma mark - Event Handling
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addingImageButtonEvent: (id) sender
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = (UIButton *) sender;
     [self.delegate uploadingWantDetailsViewController:self didPressItemImageButton:[button tag]];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) submittingButtonEvent
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIAlertView *submissionAlertView;
     if (self.wantData.itemCategory == nil) {
@@ -210,13 +248,17 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) backButtonEvent
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIAlertView *backAlertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel your listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
     [backAlertView show];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) didFinishEditingPrice
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantData.demandedPrice = priceTextField.text;
     self.wantData.productOrigin = productOriginTextField.text;
@@ -225,7 +267,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) escrowSwitchDidChangeState
+//------------------------------------------------------------------------------------------------------------------------------
 {
     BOOL state = [escrowSwitch isOn];
     if (state) {
@@ -237,7 +281,9 @@
 
 #pragma mark - Set image back ground for button
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [[self.addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
     
@@ -259,12 +305,18 @@
 
 #pragma mark - Table view data source and table view delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//------------------------------------------------------------------------------------------------------------------------------
+{
     // Return the number of sections.
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
     // Return the number of rows in the section.
     switch(section)
     {
@@ -275,8 +327,9 @@
     };
 }
 
-// Return the row for the corresponding section and row
+//------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch(indexPath.section)
     {
@@ -297,7 +350,9 @@
     return nil;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch (indexPath.section) {
         case 0:
@@ -313,8 +368,9 @@
     }
 }
 
-// Customize the section headings for each section
+//------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch(section)
     {
@@ -323,7 +379,9 @@
     return nil;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch(section)
     {
@@ -332,7 +390,9 @@
     return nil;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch(section)
     {
@@ -342,7 +402,9 @@
     return 0.0f;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     switch(section)
     {
@@ -354,17 +416,23 @@
     return 0.0f;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = [UIColor clearColor];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = [UIColor clearColor];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
@@ -398,7 +466,9 @@
 
 #pragma mark - CategoryTableViewControllerDelegate
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) categoryTableViewController:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantData.itemCategory = category;;
     [self.navigationController popViewControllerAnimated:YES];
@@ -406,7 +476,10 @@
 }
 
 #pragma mark - LocationTableViewControllerDelegate
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) locationTableViewController:(LocationTableViewController *)controller didSelectLocation:(NSString *)location
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantData.meetingLocation = location;
     [self.navigationController popViewControllerAnimated:YES];
@@ -414,7 +487,9 @@
 }
 
 #pragma mark - ItemInfoTableViewController
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) itemInfoTableViewController:(ItemInfoTableViewController *)controller didPressDone:(NSDictionary *)itemInfo
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     self.wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
@@ -430,10 +505,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UITextFieldDelegate
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidBeginEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (textField.tag == 102) {
         if ([textField.text length] == 0) {
@@ -445,7 +521,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(didFinishEditingPrice)];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (textField.tag == 102) {
         if (range.location >= [TAIWAN_CURRENCY length]) {
@@ -458,7 +536,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidEndEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (textField.tag == 102) {
         NSString *text = [Utilities removeLastDotCharacterIfNeeded:textField.text];
@@ -466,7 +546,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) priceTextFieldDidChange
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [priceTextField setText:[Utilities formatPriceText:priceTextField.text]];
 }
