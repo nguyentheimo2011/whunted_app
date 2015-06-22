@@ -16,7 +16,7 @@
 
 @end
 
-@interface ItemInfoTableViewController : UITableViewController
+@interface ItemInfoTableViewController : UITableViewController<UITextFieldDelegate>
 
 - (id) initWithItemInfoDict: (NSDictionary *) infoDict;
 
