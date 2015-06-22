@@ -114,12 +114,12 @@
 
 + (BOOL) checkIfIsValidPrice: (NSString *) price
 {
-    NSRange range = [price rangeOfString:@"."];
+    NSRange range = [price rangeOfString:DOT_CHARACTER];
     if (range.location == NSNotFound)
         return YES;
     else {
         NSString *subString = [price substringFromIndex:range.location + 1];
-        if ([subString containsString:@"."])
+        if ([subString containsString:DOT_CHARACTER])
             return NO;
         else {
             if (range.location < [price length]-3)
@@ -133,12 +133,14 @@
 + (NSString *) formatPriceText: (NSString *) originalPrice
 {
     originalPrice = [originalPrice substringFromIndex:TAIWAN_CURRENCY.length];
-    NSRange range = [originalPrice rangeOfString:@"."];
+    originalPrice = [originalPrice stringByReplacingOccurrencesOfString:COMMA_CHARACTER withString:@""];
+    
+    NSRange range = [originalPrice rangeOfString:DOT_CHARACTER];
     NSString *fractional;
     if (range.location == NSNotFound || range.location >= [originalPrice length])
         fractional = @"";
     else
-        fractional = [originalPrice substringFromIndex:range.location + 1];
+        fractional = [originalPrice substringFromIndex:range.location];
     
     NSInteger integerPrice;
     if (range.location == NSNotFound || range.location >= [originalPrice length])
@@ -149,6 +151,7 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     NSString *formattedIntegerPrice = [formatter stringFromNumber:[NSNumber numberWithInteger:integerPrice]];
+    
     return [TAIWAN_CURRENCY stringByAppendingString:[formattedIntegerPrice stringByAppendingString:fractional]];
 }
 
@@ -167,6 +170,14 @@
             return [[firstSubstring stringByAppendingString:string] stringByAppendingString:secondSubstring];
         }
     }
+}
+
++ (NSString *) removeLastDotCharacterIfNeeded:(NSString *)price
+{
+    if ([price characterAtIndex:[price length]-1] == '.')
+        return [price substringToIndex:[price length]-1];
+    else
+        return price;
 }
 
 @end

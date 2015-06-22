@@ -23,5 +23,6 @@
 + (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string;
 + (BOOL) checkIfIsValidPrice: (NSString *) price;
 + (NSString *) formatPriceText: (NSString *) originalPrice;
++ (NSString *) removeLastDotCharacterIfNeeded: (NSString *) price;
 
 @end

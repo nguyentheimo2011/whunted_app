@@ -132,7 +132,7 @@
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
         //
-        [numberPad.leftFunctionButton setTitle:@"." forState:UIControlStateNormal];
+        [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad;
     });
@@ -458,6 +458,14 @@
     }
 }
 
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 102) {
+        NSString *text = [Utilities removeLastDotCharacterIfNeeded:textField.text];
+        [textField setText:text];
+    }
+}
+
 - (void) priceTextFieldDidChange
 {
     [priceTextField setText:[Utilities formatPriceText:priceTextField.text]];
@@ -478,8 +486,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
     NSRange range = {[[priceTextField text] length], 1};
-    if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:@"."])
-        [textInput insertText:@"."];
+    if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
+        [textInput insertText:DOT_CHARACTER];
 }
 
 
