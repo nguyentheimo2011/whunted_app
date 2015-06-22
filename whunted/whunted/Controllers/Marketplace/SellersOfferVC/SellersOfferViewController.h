@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <APNumberPad.h>
 #import "WantData.h"
 
 @class SellersOfferViewController;
@@ -17,7 +18,7 @@
 
 @end
 
-@interface SellersOfferViewController : UIViewController <UITextFieldDelegate>
+@interface SellersOfferViewController : UIViewController <UITextFieldDelegate, APNumberPadDelegate>
 
 @property (nonatomic, weak) id<SellerOfferViewControllerDelegate> delegate;
 

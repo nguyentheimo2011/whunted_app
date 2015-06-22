@@ -96,6 +96,14 @@
     [offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     offeredPriceTextField.delegate = self;
     offeredPriceTextField.tag = 103;
+    offeredPriceTextField.inputView = ({
+        APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
+        // configure function button
+        //
+        [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
+        numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        numberPad;
+    });
     [self.view addSubview:offeredPriceTextField];
 }
 
@@ -119,6 +127,7 @@
     [offeredDeliveryTextField setFont:[UIFont systemFontOfSize:25]];
     [offeredDeliveryTextField setPlaceholder:@"1 week"];
     offeredDeliveryTextField.delegate = self;
+    [offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:offeredDeliveryTextField];
 }
 
@@ -181,15 +190,14 @@
     }];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - TextField delegate methods
+//------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     // Prevent crashing undo bug – see note below.
     
     if (textField.tag == 103) {
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
-        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        BOOL isEqual = [string isEqualToString:filtered];
-        if (isEqual && range.location >= [TAIWAN_CURRENCY length]) {
+        if (range.location >= [TAIWAN_CURRENCY length]) {
             NSString *resultantString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
             return [Utilities checkIfIsValidPrice:resultantString];
         } else
@@ -213,6 +221,28 @@
             textField.text = text;
         }
     }
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 103) {
+        NSString *text = [Utilities removeLastDotCharacterIfNeeded:textField.text];
+        [textField setText:text];
+    }
+}
+
+- (void) priceTextFieldDidChange
+{
+    [offeredPriceTextField setText:[Utilities formatPriceText:offeredPriceTextField.text]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - APNumberPad
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
+    NSRange range = {[[offeredPriceTextField text] length], 1};
+    if ([self textField:offeredPriceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
+        [textInput insertText:DOT_CHARACTER];
 }
 
 @end
