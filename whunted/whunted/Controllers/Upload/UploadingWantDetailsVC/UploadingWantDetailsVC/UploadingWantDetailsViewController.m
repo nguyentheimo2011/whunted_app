@@ -8,6 +8,7 @@
 
 #import "UploadingWantDetailsViewController.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @interface UploadingWantDetailsViewController ()
 
@@ -127,7 +128,16 @@
     priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
     priceTextField.delegate = self;
     priceTextField.tag = 102;
+    priceTextField.inputView = ({
+        APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
+        // configure function button
+        //
+        [numberPad.leftFunctionButton setTitle:@"." forState:UIControlStateNormal];
+        numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        numberPad;
+    });
     [priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [priceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     self.priceCell.accessoryView = priceTextField;
     self.priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -420,7 +430,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UITextFieldDelegate
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag == 102) {
@@ -433,7 +445,27 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(didFinishEditingPrice)];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField.tag == 102) {
+        if (range.location >= [TAIWAN_CURRENCY length]) {
+            NSString *resultantString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
+            return [Utilities checkIfIsValidPrice:resultantString];
+        } else
+            return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (void) priceTextFieldDidChange
+{
+    [priceTextField setText:[Utilities formatPriceText:priceTextField.text]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UIAlertViewDelegate
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
@@ -441,19 +473,14 @@
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if (textField.tag == 102) {
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
-        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        BOOL isEqual = [string isEqualToString:filtered];
-        if (isEqual && range.location >= [TAIWAN_CURRENCY length])
-            return YES;
-        else
-            return NO;
-    } else {
-        return YES;
-    }
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - APNumberPad
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
+    NSRange range = {[[priceTextField text] length], 1};
+    if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:@"."])
+        [textInput insertText:@"."];
 }
+
 
 @end

@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - APNumberPad (1.1.2)
   - CLImageEditor (0.1.4):
     - CLImageEditor/Core (= 0.1.4)
   - CLImageEditor/Core (0.1.4)
@@ -43,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - APNumberPad
   - CLImageEditor
   - Firebase (>= 2.3.1)
   - Haneke (~> 1.0)
@@ -55,6 +57,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  APNumberPad: 705e9e1a38df66e71b12d6628a6229a9a2ddb5c5
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Firebase: 462795adf92029ddb97777660627f5dd4fd59876

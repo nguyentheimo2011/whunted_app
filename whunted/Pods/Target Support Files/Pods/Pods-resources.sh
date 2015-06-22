@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "APNumberPad/APNumberPad/APNumberPad.bundle"
   install_resource "CLImageEditor/CLImageEditor/CLImageEditor.bundle"
   install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
   install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"
@@ -70,6 +71,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "JSQMessagesViewController/JSQMessagesViewController/Views/JSQMessagesTypingIndicatorFooterView.xib"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "APNumberPad/APNumberPad/APNumberPad.bundle"
   install_resource "CLImageEditor/CLImageEditor/CLImageEditor.bundle"
   install_resource "IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle"
   install_resource "IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle"

@@ -9,6 +9,7 @@
 #import "SellersOfferViewController.h"
 #import "AppConstant.h"
 #import "SellersOfferData.h"
+#import "Utilities.h"
 
 @interface SellersOfferViewController ()
 
@@ -183,25 +184,24 @@
 #pragma mark - TextField delegate methods
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     // Prevent crashing undo bug – see note below.
-    if(range.length + range.location > textField.text.length)
-    {
-        return NO;
-    }
     
-    NSUInteger newLength = [textField.text length] + [string length] - range.length;
-    if (newLength > 13)
-        return NO;
-    else {
-        if (textField.tag == 103) {
-            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
-            NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-            BOOL isEqual = [string isEqualToString:filtered];
-            if (isEqual && range.location >= [TAIWAN_CURRENCY length])
-                return YES;
-            else
-                return NO;
+    if (textField.tag == 103) {
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARECTERS] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        BOOL isEqual = [string isEqualToString:filtered];
+        if (isEqual && range.location >= [TAIWAN_CURRENCY length]) {
+            NSString *resultantString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
+            return [Utilities checkIfIsValidPrice:resultantString];
         } else
-            return YES;
+            return NO;
+    } else {
+        if(range.length + range.location > textField.text.length)
+        {
+            return NO;
+        }
+        
+        NSUInteger newLength = [textField.text length] + [string length] - range.length;
+        return newLength <= 13;
     }
 }
 

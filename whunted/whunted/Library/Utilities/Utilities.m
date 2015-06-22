@@ -7,6 +7,7 @@
 //
 
 #import "Utilities.h"
+#import "AppConstant.h"
 
 @implementation Utilities
 
@@ -109,6 +110,63 @@
 + (void) postNotification: (NSString *) notification
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
+}
+
++ (BOOL) checkIfIsValidPrice: (NSString *) price
+{
+    NSRange range = [price rangeOfString:@"."];
+    if (range.location == NSNotFound)
+        return YES;
+    else {
+        NSString *subString = [price substringFromIndex:range.location + 1];
+        if ([subString containsString:@"."])
+            return NO;
+        else {
+            if (range.location < [price length]-3)
+                return NO;
+            else
+                return YES;
+        }
+    }
+}
+
++ (NSString *) formatPriceText: (NSString *) originalPrice
+{
+    originalPrice = [originalPrice substringFromIndex:TAIWAN_CURRENCY.length];
+    NSRange range = [originalPrice rangeOfString:@"."];
+    NSString *fractional;
+    if (range.location == NSNotFound || range.location >= [originalPrice length])
+        fractional = @"";
+    else
+        fractional = [originalPrice substringFromIndex:range.location + 1];
+    
+    NSInteger integerPrice;
+    if (range.location == NSNotFound || range.location >= [originalPrice length])
+        integerPrice = [originalPrice integerValue];
+    else
+        integerPrice = [[originalPrice substringToIndex:range.location] integerValue];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSString *formattedIntegerPrice = [formatter stringFromNumber:[NSNumber numberWithInteger:integerPrice]];
+    return [TAIWAN_CURRENCY stringByAppendingString:[formattedIntegerPrice stringByAppendingString:fractional]];
+}
+
++ (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
+{
+    if (range.location == [originalText length]) {
+        return [originalText stringByAppendingString:string];
+    } else {
+        if ([string length] == 0) { // User removes a character
+            NSString *firstSubstring = [originalText substringToIndex:range.location];
+            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
+            return [firstSubstring stringByAppendingString:secondSubstring];
+        } else {
+            NSString *firstSubstring = [originalText substringToIndex:range.location];
+            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
+            return [[firstSubstring stringByAppendingString:string] stringByAppendingString:secondSubstring];
+        }
+    }
 }
 
 @end

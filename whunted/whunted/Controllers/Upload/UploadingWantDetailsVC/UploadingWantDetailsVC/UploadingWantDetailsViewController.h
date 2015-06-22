@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <APNumberPad.h>
 #import "CategoryTableViewController.h"
 #import "LocationTableViewController.h"
 #import "ItemInfoTableViewController.h"
@@ -21,7 +22,7 @@
 
 @end
 
-@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 
