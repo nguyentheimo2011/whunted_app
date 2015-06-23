@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		64AE23510F482E5A1A10D7E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A02F6CD541644ABF1CD6C53B /* libPods.a */; };
 		E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */; };
+		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
+		E915F81F1B3916F000D0A2F8 /* ProductOriginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E916F44E1B00B978005055E3 /* GenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F44D1B00B978005055E3 /* GenericController.m */; };
 		E916F45A1B01EC57005055E3 /* camera@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4571B01EC57005055E3 /* camera@1x.png */; };
@@ -176,6 +178,9 @@
 		A02F6CD541644ABF1CD6C53B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriceOptionViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.h; sourceTree = "<group>"; };
 		E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriceOptionViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.m; sourceTree = "<group>"; };
+		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
+		E915F81D1B3916F000D0A2F8 /* ProductOriginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductOriginTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/ProductOriginTableViewController.h; sourceTree = "<group>"; };
+		E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductOriginTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/ProductOriginTableViewController.m; sourceTree = "<group>"; };
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
 		E916F44C1B00B978005055E3 /* GenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericController.h; path = Controllers/GenericControllers/GenericController.h; sourceTree = "<group>"; };
@@ -469,6 +474,23 @@
 			name = PriceOptionVC;
 			sourceTree = "<group>";
 		};
+		E915F8191B3908CE00D0A2F8 /* pList-Files */ = {
+			isa = PBXGroup;
+			children = (
+				E915F81A1B39090D00D0A2F8 /* CountryNames.plist */,
+			);
+			name = "pList-Files";
+			sourceTree = "<group>";
+		};
+		E915F81C1B39162B00D0A2F8 /* ProductOriginTable */ = {
+			isa = PBXGroup;
+			children = (
+				E915F81D1B3916F000D0A2F8 /* ProductOriginTableViewController.h */,
+				E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */,
+			);
+			name = ProductOriginTable;
+			sourceTree = "<group>";
+		};
 		E916F4421B00A95F005055E3 /* Main Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +634,7 @@
 		E94D17D51AF8B68600E31B01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E915F8191B3908CE00D0A2F8 /* pList-Files */,
 				E98113091B2155B200ECAA0C /* Transaction */,
 				E98113021B21559B00ECAA0C /* User Profile */,
 				E95CFA511B141ED0003755E3 /* LoginSignup */,
@@ -812,6 +835,7 @@
 			children = (
 				E9A639241B2813730085C54F /* UploadingWantDetailsVC */,
 				E9A639231B2813670085C54F /* CategoryTable */,
+				E915F81C1B39162B00D0A2F8 /* ProductOriginTable */,
 				E9A639221B2813550085C54F /* ItemInfoTable */,
 				E9A639211B2813450085C54F /* LocationTable */,
 				E915F8151B38024900D0A2F8 /* PriceOptionVC */,
@@ -1224,6 +1248,7 @@
 				E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */,
 				E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */,
 				E91A5A701B04C1E6008382E2 /* next@3x.png in Resources */,
+				E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */,
 				E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */,
 				E916F45C1B01EC57005055E3 /* camera@3x.png in Resources */,
 				E91A5A6A1B049A2D008382E2 /* square_dashed@3x.png in Resources */,
@@ -1377,6 +1402,7 @@
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
+				E915F81F1B3916F000D0A2F8 /* ProductOriginTableViewController.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
