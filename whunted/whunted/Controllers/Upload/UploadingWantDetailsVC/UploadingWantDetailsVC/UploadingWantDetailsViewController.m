@@ -12,26 +12,25 @@
 
 @interface UploadingWantDetailsViewController ()
 
-@property (strong, nonatomic) NSMutableArray *addingButtonList;
-@property (strong, nonatomic) UITableViewCell *buttonListCell;
+@property (strong, nonatomic) NSMutableArray    *addingButtonList;
+@property (strong, nonatomic) UITableViewCell   *buttonListCell;
 
-@property (strong, nonatomic) UITableViewCell *categoryCell;
-@property (strong, nonatomic) UITableViewCell *itemInfoCell;
-@property (strong, nonatomic) UITableViewCell *productOriginCell;
-@property (strong, nonatomic) UITableViewCell *priceCell;
-@property (strong, nonatomic) UITableViewCell *locationCell;
-@property (strong, nonatomic) UITableViewCell *escrowRequestCell;
+@property (strong, nonatomic) UITableViewCell   *categoryCell;
+@property (strong, nonatomic) UITableViewCell   *itemInfoCell;
+@property (strong, nonatomic) UITableViewCell   *productOriginCell;
+@property (strong, nonatomic) UITableViewCell   *priceCell;
+@property (strong, nonatomic) UITableViewCell   *locationCell;
+@property (strong, nonatomic) UITableViewCell   *escrowRequestCell;
 
-@property (strong, nonatomic) WantData *wantData;
+@property (strong, nonatomic) WantData          *wantData;
 
 @end
 
 @implementation UploadingWantDetailsViewController
 {
-    UITextField *productOriginTextField;
-    UITextField *priceTextField;
-    UISwitch *escrowSwitch;
-    NSString *hashtagString;
+    UITextField     *priceTextField;
+    UISwitch        *escrowSwitch;
+    NSString        *hashtagString;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -123,18 +122,12 @@
 - (void) initializeProductOriginCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.productOriginCell = [[UITableViewCell alloc] init];
+    self.productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
     self.productOriginCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.productOriginCell.textLabel.text  = NSLocalizedString(@"Product origin", nil);
-    productOriginTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.50, 30)];
-    [productOriginTextField setTextAlignment:NSTextAlignmentRight];
-    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
-    productOriginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Taiwan" attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont systemFontOfSize:15]}];
-    productOriginTextField.delegate = self;
-    productOriginTextField.tag = 101;
-    [productOriginTextField setKeyboardType:UIKeyboardTypeAlphabet];
-    self.productOriginCell.accessoryView = productOriginTextField;
-    self.productOriginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
+    self.productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+    self.productOriginCell.detailTextLabel.font = [UIFont systemFontOfSize:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -261,9 +254,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantData.demandedPrice = priceTextField.text;
-    self.wantData.productOrigin = productOriginTextField.text;
     [priceTextField resignFirstResponder];
-    [productOriginTextField resignFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
 }
 
@@ -445,6 +436,9 @@
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
+        } else if (indexPath.row == 2) {
+            ProductOriginTableViewController *productTableVC = [[ProductOriginTableViewController alloc] initWithSelectedOrigins:nil];
+            [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
             LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
             locVC.delegate = self;
@@ -454,11 +448,9 @@
     }
     
     if (indexPath.section != 2 || (indexPath.row != 2 && indexPath.row != 3)) {
-        [productOriginTextField resignFirstResponder];
         [priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)]) {
             self.wantData.demandedPrice = priceTextField.text;
-            self.wantData.productOrigin = productOriginTextField.text;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
         }
     }

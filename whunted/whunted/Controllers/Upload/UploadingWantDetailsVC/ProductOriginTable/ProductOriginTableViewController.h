@@ -10,4 +10,8 @@
 
 @interface ProductOriginTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *selectedOrigins;
+
+- (id) initWithSelectedOrigins: (NSArray *) origins;
+
 @end

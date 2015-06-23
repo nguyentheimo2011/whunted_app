@@ -11,6 +11,7 @@
 #import "CategoryTableViewController.h"
 #import "LocationTableViewController.h"
 #import "ItemInfoTableViewController.h"
+#import "ProductOriginTableViewController.h"
 #import "WantData.h"
 
 @class UploadingWantDetailsViewController;
