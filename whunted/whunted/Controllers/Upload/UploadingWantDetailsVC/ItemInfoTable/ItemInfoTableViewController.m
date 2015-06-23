@@ -25,6 +25,7 @@
     UITextField *itemNameTextField;
     SZTextView  *descriptionTextView;
     SZTextView  *hashTagTextView;
+    UISwitch    *_secondHandOptionSwitch;
 }
 
 @synthesize _secondHandOptionCell;
@@ -114,8 +115,9 @@
     [secondHandLabel setTextColor:[UIColor blackColor]];
     [_secondHandOptionCell addSubview:secondHandLabel];
     
-    UISwitch *secondHandOptionSwitch = [[UISwitch alloc] init];
-    _secondHandOptionCell.accessoryView = secondHandOptionSwitch;
+    _secondHandOptionSwitch = [[UISwitch alloc] init];
+    _secondHandOptionSwitch.on = [(NSNumber *)self.itemInfoDict[ITEM_SECONDHAND_OPTION] boolValue];
+    _secondHandOptionCell.accessoryView = _secondHandOptionSwitch;
 }
 
 #pragma mark - Event Handling
@@ -127,6 +129,7 @@
     [self.itemInfoDict setObject:itemNameTextField.text forKey:ITEM_NAME_KEY];
     [self.itemInfoDict setObject:descriptionTextView.text forKey:ITEM_DESC_KEY];
     [self.itemInfoDict setObject:hashTagTextView.text forKey:ITEM_HASH_TAG_KEY];
+    [self.itemInfoDict setObject:[NSNumber numberWithBool:_secondHandOptionSwitch.on] forKey:ITEM_SECONDHAND_OPTION];
     
     [self.delegate itemInfoTableViewController:self didPressDone:self.itemInfoDict];
 }

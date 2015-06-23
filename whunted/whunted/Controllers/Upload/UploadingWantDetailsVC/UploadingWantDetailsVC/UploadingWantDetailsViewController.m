@@ -441,7 +441,7 @@
             catVC.category = self.wantData.itemCategory;
             [self.navigationController pushViewController:catVC animated:YES];
         } else if (indexPath.row == 1) {
-            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:self.wantData.itemName, ITEM_NAME_KEY, self.wantData.itemDesc, ITEM_DESC_KEY, hashtagString, ITEM_HASH_TAG_KEY, nil];
+            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:self.wantData.itemName, ITEM_NAME_KEY, self.wantData.itemDesc, ITEM_DESC_KEY, hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:self.wantData.secondHandOption], ITEM_SECONDHAND_OPTION, nil];
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
@@ -493,6 +493,7 @@
 {
     self.wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     self.wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
+    self.wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
     hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
     if ([hashtagString length] > 0)
         self.wantData.hashTagList = [hashtagString componentsSeparatedByString:@" "];
