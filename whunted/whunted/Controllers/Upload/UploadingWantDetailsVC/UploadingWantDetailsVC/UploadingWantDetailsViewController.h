@@ -23,7 +23,7 @@
 
 @end
 
-@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
+@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, ProductOriginTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 

@@ -33,6 +33,9 @@
     NSString        *hashtagString;
 }
 
+@synthesize wantData;
+@synthesize productOriginCell;
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
 //------------------------------------------------------------------------------------------------------------------------------
@@ -220,8 +223,6 @@
             self.wantData.itemDesc = @"";
         if (!self.wantData.hashTagList)
             self.wantData.hashTagList = [NSArray array];
-        if (!self.wantData.productOrigin)
-            self.wantData.productOrigin = @"";
         if (!self.wantData.demandedPrice)
             self.wantData.demandedPrice = @"0";
         if (!self.wantData.paymentMethod)
@@ -437,7 +438,8 @@
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 2) {
-            ProductOriginTableViewController *productTableVC = [[ProductOriginTableViewController alloc] initWithSelectedOrigins:nil];
+            ProductOriginTableViewController *productTableVC = [[ProductOriginTableViewController alloc] initWithSelectedOrigins:wantData.productOriginList];
+            productTableVC.delegate = self;
             [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
             LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
@@ -559,10 +561,26 @@
 //------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - APNumberPad
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
+- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput
+{
     NSRange range = {[[priceTextField text] length], 1};
     if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
         [textInput insertText:DOT_CHARACTER];
+}
+
+#pragma mark - ProductOriginTableViewDelegate
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) productOriginTableView:(ProductOriginTableViewController *)controller didCompleteChoosingOrigins:(NSArray *)countries
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    wantData.productOriginList = [NSArray arrayWithArray:countries];
+    
+    if ([wantData.productOriginList count] > 0) {
+        NSString *originText = [wantData.productOriginList componentsJoinedByString:@", "];
+        [productOriginCell.detailTextLabel setText:originText];
+    } else
+        productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
 }
 
 

@@ -18,6 +18,7 @@
 }
 
 @synthesize selectedOrigins;
+@synthesize delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithSelectedOrigins: (NSArray *) origins
@@ -28,6 +29,7 @@
     if (self != nil) {
         selectedOrigins = [NSArray arrayWithArray:origins];
         [self getCountryList];
+        [self customizeNavigationBar];
     }
     
     return self;
@@ -39,6 +41,19 @@
 {
     [super viewDidLoad];
 }
+
+#pragma mark - UI Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingOrigins)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(completeChoosingOrigins)];
+}
+
+#pragma mark - Data Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) getCountryList
@@ -75,7 +90,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = [_fullCountryList objectAtIndex:indexPath.row];    
+    cell.textLabel.text = [_fullCountryList objectAtIndex:indexPath.row];
+    
+    NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
+    if ([selectedOrigins containsObject:country]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     return cell;
 }
 
@@ -99,6 +122,22 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Event Handlers
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) completeChoosingOrigins
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [delegate productOriginTableView:self didCompleteChoosingOrigins:selectedOrigins];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cancelChoosingOrigins
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class ProductOriginTableViewController;
+
+@protocol ProductOriginTableViewDelegate <NSObject>
+
+- (void) productOriginTableView: (ProductOriginTableViewController *) controller didCompleteChoosingOrigins: (NSArray *) countries;
+
+@end
+
 @interface ProductOriginTableViewController : UITableViewController
+
+@property (nonatomic, weak) id<ProductOriginTableViewDelegate> delegate;
 
 @property (nonatomic, strong) NSArray *selectedOrigins;
 
