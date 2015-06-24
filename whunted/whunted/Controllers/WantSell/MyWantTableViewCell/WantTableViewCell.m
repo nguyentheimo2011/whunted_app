@@ -50,7 +50,7 @@
 - (void) addItemImageView
 {
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, WINSIZE.width-20, WINSIZE.width-20)];
-    [itemImageView setBackgroundColor:APP_COLOR_2];
+    [itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     [self addSubview:itemImageView];
     [itemImageView hnk_cancelSetImage];
     itemImageView.image = nil;
@@ -60,7 +60,7 @@
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
-    [view setBackgroundColor:APP_COLOR_3];
+    [view setBackgroundColor:LIGHT_GRAY_COLOR];
     [self addSubview:view];
     
     viewsNumLabel = [[UILabel alloc] init];
@@ -80,7 +80,7 @@
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 + itemImageWidth/3, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
-    [view setBackgroundColor:APP_COLOR_3];
+    [view setBackgroundColor:LIGHT_GRAY_COLOR];
     [self addSubview:view];
     
     likesNumLabel = [[UILabel alloc] init];
@@ -99,7 +99,7 @@
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 + 2 * itemImageWidth/3, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
-    [view setBackgroundColor:APP_COLOR_3];
+    [view setBackgroundColor:LIGHT_GRAY_COLOR];
     [self addSubview:view];
     
     UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, itemImageWidth/4, itemImageWidth/8)];
@@ -139,7 +139,7 @@
     [sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
     [sellersNumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [sellersNumButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [sellersNumButton setBackgroundColor:APP_COLOR_4];
+    [sellersNumButton setBackgroundColor:LIGHTER_GRAY_COLOR];
     sellersNumButton.layer.cornerRadius = 8;
     [sellersNumButton addTarget:self action:@selector(sellerNumButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:sellersNumButton];

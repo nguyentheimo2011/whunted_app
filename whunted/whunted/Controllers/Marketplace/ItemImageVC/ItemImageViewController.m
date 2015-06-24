@@ -40,7 +40,7 @@
 - (void) addItemImageView
 {
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6)];
-    [itemImageView setBackgroundColor:APP_COLOR_4];
+    [itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
     [self.view addSubview:itemImageView];
 }
 

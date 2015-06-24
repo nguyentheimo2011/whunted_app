@@ -58,7 +58,7 @@
     _wantCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
     _wantCollectionView.dataSource = self;
     _wantCollectionView.delegate = self;
-    _wantCollectionView.backgroundColor = BACKGROUND_COLOR;
+    _wantCollectionView.backgroundColor = BACKGROUND_GRAY_COLOR;
     
     [_wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [self.view addSubview:_wantCollectionView];

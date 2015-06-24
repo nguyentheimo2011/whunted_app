@@ -10,13 +10,12 @@
 #define whunted_AppConstant_h
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     APP_COLOR                           [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
-#define     APP_COLOR_2                         [UIColor colorWithRed:224.0/255 green:224.0/255 blue:224.0/255 alpha:1.0]
-#define     APP_COLOR_3                         [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
-#define     APP_COLOR_4                         [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
-#define     APP_COLOR_5                         [UIColor colorWithRed:52.0/255 green:68.0/255 blue:105.0/255 alpha:1.0]
-#define     APP_COLOR_6                         [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
-#define     BACKGROUND_COLOR                    [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0]
+#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
+#define     DARK_BLUE_COLOR                     [UIColor colorWithRed:52.0/255 green:68.0/255 blue:105.0/255 alpha:1.0]
+#define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
+#define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
+#define     LIGHTEST_GRAY_COLOR                 [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
+#define     BACKGROUND_GRAY_COLOR               [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0]
 #define		COLOR_OUTGOING						[UIColor colorWithRed:0.0/255 green:122.0/255 blue:255.0/255 alpha:1.0]
 #define		COLOR_INCOMING						[UIColor colorWithRed:230.0/255 green:229.0/255 blue:234.0/255 alpha:1.0]
 

@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.view setBackgroundColor:APP_COLOR_6];
+    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
     [self addLogoutButton];
 }
 

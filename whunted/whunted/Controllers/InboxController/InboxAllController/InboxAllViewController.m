@@ -27,7 +27,9 @@
 @synthesize _firebase;
 @synthesize _recentMessages;
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -40,7 +42,9 @@
     return self;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
     
@@ -48,9 +52,12 @@
     [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addInboxTableView
+//------------------------------------------------------------------------------------------------------------------------------
 {
     _inboxTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [_inboxTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
     [self.view addSubview:_inboxTableView];
@@ -91,12 +98,16 @@
 
 #pragma mark - UITableView Datasource Delegate methods
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return [_recentMessages count];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -105,12 +116,40 @@
     return cell;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return 70.0;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1.0;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return 1.0;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
     

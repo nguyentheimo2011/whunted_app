@@ -189,7 +189,7 @@
         cell.sellersNum = 1;
         [cell activateAcceptedStatusLabel];
     } else {
-        [cell.sellersNumButton setBackgroundColor: APP_COLOR_4];
+        [cell.sellersNumButton setBackgroundColor: LIGHTER_GRAY_COLOR];
         [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
         cell.sellersNum = 0;
         [cell deactivateAcceptedStatusLabel];

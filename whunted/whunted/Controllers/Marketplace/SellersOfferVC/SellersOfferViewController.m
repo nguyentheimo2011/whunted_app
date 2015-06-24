@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.view setBackgroundColor:APP_COLOR_6];
+    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
     startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;;
     
     [self addSummaryLabel];

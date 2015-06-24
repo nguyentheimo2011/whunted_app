@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:APP_COLOR_6];
+    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
     
     [self customizeNavigationBar];
     
@@ -98,7 +98,7 @@
 - (void) addItemImageView
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 110, WINSIZE.width - 30, WINSIZE.width - 30)];
-    [_itemImageView setBackgroundColor:APP_COLOR_2];
+    [_itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     [_scrollView addSubview:_itemImageView];
 }

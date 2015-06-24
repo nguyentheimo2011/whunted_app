@@ -63,7 +63,7 @@
 - (void) addItemImageView
 {
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
-    [itemImageView setBackgroundColor:APP_COLOR_3];
+    [itemImageView setBackgroundColor:LIGHT_GRAY_COLOR];
     [self addSubview:itemImageView];
     [itemImageView hnk_cancelSetImage];
     itemImageView.image = nil;
@@ -92,7 +92,7 @@
 {
     CGFloat yPos = _cellWidth + 60;
     buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(5, yPos, 30, 30)];
-    [buyerProfilePic setBackgroundColor:APP_COLOR_6];
+    [buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
     buyerProfilePic.layer.cornerRadius = 13;
     [self addSubview:buyerProfilePic];
 }
@@ -133,7 +133,7 @@
     CGFloat xPos = _cellWidth/2;
     CGFloat yPos = _cellWidth + 100;
     likeButton = [[UIButton alloc] initWithFrame:CGRectMake(xPos, yPos, _cellWidth/2, 25)];
-    [likeButton setBackgroundColor:APP_COLOR_3];
+    [likeButton setBackgroundColor:LIGHT_GRAY_COLOR];
     [likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:likeButton];
     
