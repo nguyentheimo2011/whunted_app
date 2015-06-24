@@ -85,7 +85,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     [user fetchFromLocalDatastoreInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
-            NSData *data = [obj[@"profilePicture"] getData];
+            NSData *data = [obj[PF_USER_PICTURE] getData];
             avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:data] diameter:30.0];
         }
     }];

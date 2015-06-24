@@ -46,17 +46,22 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+    
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
 	[query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
-//	[query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    [query fromLocalDatastore];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
-		if (error == nil)
+		if (!error)
 		{
 			PFUser *user = [objects firstObject];
-			[imageUser setFile:user[PF_USER_PICTURE]];
-			[imageUser loadInBackground];
+			PFFile *userPicture = user[PF_USER_PICTURE];
+            NSData *data = [userPicture getData];
+            if (data) {
+                [imageUser setImage:[UIImage imageWithData:data]];
+            } else {
+                [self getProfileImageFromRemoteServer];
+            }
 		}
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -69,6 +74,27 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	int counter = [_message[@"counter"] intValue];
 	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
+}
+
+- (void) getProfileImageFromRemoteServer
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             PFUser *user = [objects firstObject];
+             PFFile *userPicture = user[PF_USER_PICTURE];
+             
+             [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                 if (!error) {
+                     [imageUser setImage:[UIImage imageWithData:data]];
+                     [user pinInBackground];
+                 }
+             }];
+         }
+     }];
 }
 
 @end

@@ -198,7 +198,7 @@
                  if (connectionError == nil && data != nil) {
                      PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
                      if (profilePictureFile) {
-                         user[@"profilePicture"] = profilePictureFile;
+                         user[PF_USER_PICTURE] = profilePictureFile;
                          [user saveInBackground];
                          [user pinInBackground];
                      }
