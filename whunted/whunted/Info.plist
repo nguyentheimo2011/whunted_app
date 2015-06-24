@@ -41,6 +41,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array/>
 	<key>FacebookAppID</key>
 	<string>634987609968784</string>
 	<key>FacebookDisplayName</key>

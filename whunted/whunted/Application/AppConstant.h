@@ -77,6 +77,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     NORMAL_FONT_SIZE                    16
 #define     NORMAL_FONT                         [UIFont systemFontOfSize:16]
+#define     APP_REGULAR_FONT                  [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:16]
+#define     APP_BOLD_FONT                     [UIFont fontWithName:@"AppleSDGothicNeo-Bold " size:16]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

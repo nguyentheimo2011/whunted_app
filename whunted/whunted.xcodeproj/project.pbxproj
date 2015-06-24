@@ -651,6 +651,7 @@
 		E94D17D51AF8B68600E31B01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9B5CAB31B3AA8240004CDC9 /* Fonts */,
 				E915F8191B3908CE00D0A2F8 /* pList-Files */,
 				E98113091B2155B200ECAA0C /* Transaction */,
 				E98113021B21559B00ECAA0C /* User Profile */,
@@ -1048,6 +1049,13 @@
 				E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */,
 			);
 			name = UploadingWantDetailsVC;
+			sourceTree = "<group>";
+		};
+		E9B5CAB31B3AA8240004CDC9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {

@@ -38,12 +38,12 @@
 @synthesize labelDescription, labelLastMessage;
 @synthesize labelElapsed, labelCounter;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 - (void)bindData:(NSDictionary *)message
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	_message = message;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
     
@@ -64,19 +64,26 @@
             }
 		}
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	labelDescription.text = _message[@"description"];
 	labelLastMessage.text = _message[@"lastMessage"];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSDate *date = String2Date(_message[@"date"]);
 	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:date];
 	labelElapsed.text = TimeElapsed(seconds);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	int counter = [_message[@"counter"] intValue];
 	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
+    if (counter == 0) {
+        [labelLastMessage setTextColor:[UIColor grayColor]];
+    } else {
+        [labelLastMessage setTextColor:[UIColor blackColor]];
+    }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) getProfileImageFromRemoteServer
+//------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
