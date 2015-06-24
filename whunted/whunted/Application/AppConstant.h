@@ -57,7 +57,6 @@
 #define     PF_USER_COUNTRY                     @"country"              //  String
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define		NOTIFICATION_APP_STARTED			@"NCAppStarted"
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
 #define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
 

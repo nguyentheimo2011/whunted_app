@@ -42,7 +42,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities postNotification:NOTIFICATION_APP_STARTED];
     [FBSDKAppEvents activateApp];
 }
 

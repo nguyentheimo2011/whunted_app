@@ -12,6 +12,7 @@
 #import "AppConstant.h"
 #import "converter.h"
 #import <Firebase/Firebase.h>
+#import <MBProgressHUD.h>
 
 @interface InboxAllViewController ()
 
@@ -33,7 +34,6 @@
 {
     self = [super init];
     if (self != nil) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadRecents) name:NOTIFICATION_APP_STARTED object:nil];
         [self addInboxTableView];
         _recentMessages = [NSMutableArray array];
         [self loadRecents];
@@ -71,6 +71,8 @@
     PFUser *user = [PFUser currentUser];
     if ((user != nil) && (_firebase == nil))
     {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
         FQuery *query = [[_firebase queryOrderedByChild:@"userId"] queryEqualToValue:user.objectId];
         [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
@@ -92,6 +94,7 @@
                  }
              }
              [_inboxTableView reloadData];
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
          }];
     }
 }
