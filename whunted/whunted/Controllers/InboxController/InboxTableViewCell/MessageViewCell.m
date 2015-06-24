@@ -27,7 +27,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelDescription;
 @property (strong, nonatomic) IBOutlet UILabel *labelLastMessage;
 @property (strong, nonatomic) IBOutlet UILabel *labelElapsed;
-@property (strong, nonatomic) IBOutlet UILabel *labelCounter;
 
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +35,7 @@
 
 @synthesize imageUser;
 @synthesize labelDescription, labelLastMessage;
-@synthesize labelElapsed, labelCounter;
+@synthesize labelElapsed;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)bindData:(NSDictionary *)message
@@ -73,7 +72,6 @@
 	labelElapsed.text = TimeElapsed(seconds);
 	
 	int counter = [_message[@"counter"] intValue];
-	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
     if (counter == 0) {
         [labelLastMessage setTextColor:[UIColor grayColor]];
     } else {
