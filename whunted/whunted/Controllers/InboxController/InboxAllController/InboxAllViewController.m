@@ -114,6 +114,7 @@
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    [cell customizeUI];
     [cell bindData:_recentMessages[indexPath.row]];
     
     return cell;
@@ -123,7 +124,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 110.0;
+    return 112.0;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -23,28 +23,63 @@
 	NSDictionary *_message;
 }
 
-@property (strong, nonatomic) IBOutlet PFImageView *imageUser;
-@property (strong, nonatomic) IBOutlet UILabel *labelDescription;
-@property (strong, nonatomic) IBOutlet UILabel *labelLastMessage;
-@property (strong, nonatomic) IBOutlet UILabel *labelElapsed;
+@property (strong, nonatomic) IBOutlet PFImageView  *imageUser;
+@property (strong, nonatomic) IBOutlet UILabel      *labelDescription;
+@property (strong, nonatomic) IBOutlet UILabel      *labelItemName;
+@property (strong, nonatomic) IBOutlet UILabel      *labelLastMessage;
+@property (strong, nonatomic) IBOutlet UILabel      *labelElapsed;
+@property (strong, nonatomic) IBOutlet UIImageView  *itemImage;
+@property (strong, nonatomic) IBOutlet UILabel      *labelTransactionStatus;
+@property (strong, nonatomic) IBOutlet UILabel      *labelOfferedPrice;
 
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 
 @implementation MessageViewCell
 
 @synthesize imageUser;
-@synthesize labelDescription, labelLastMessage;
+@synthesize labelDescription, labelItemName, labelLastMessage;
 @synthesize labelElapsed;
+@synthesize itemImage;
+@synthesize labelTransactionStatus, labelOfferedPrice;
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)bindData:(NSDictionary *)message
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [imageUser setImage:[UIImage imageNamed:@"userprofile.png"]];
+    imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
+    imageUser.layer.masksToBounds = YES;
+    
+    [labelDescription setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [labelItemName setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:17]];
+    
+    [labelLastMessage setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [labelLastMessage setTextColor:[UIColor blackColor]];
+    
+    [labelElapsed setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:13]];
+    
+    [labelTransactionStatus setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [labelTransactionStatus setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
+    [labelTransactionStatus setTextColor:[UIColor whiteColor]];
+    [labelTransactionStatus setTextAlignment:NSTextAlignmentCenter];
+    labelTransactionStatus.layer.cornerRadius = 2;
+    labelTransactionStatus.layer.masksToBounds = YES;
+    [labelTransactionStatus setHidden:NO];
+    
+    [labelOfferedPrice setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [labelOfferedPrice setHidden:NO];
+    
+    [itemImage setImage:[UIImage imageNamed:@"placeholder.png"]];
+    itemImage.layer.cornerRadius = 3;
+    itemImage.layer.masksToBounds = YES;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) bindData:(NSDictionary *)message
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	_message = message;
-	
-	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
-	imageUser.layer.masksToBounds = YES;
     
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
 	[query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
