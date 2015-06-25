@@ -40,7 +40,6 @@
 #define		PF_INSTALLATION_CLASS_NAME			@"_Installation"		//	Class name
 #define		PF_INSTALLATION_OBJECTID			@"objectId"				//	String
 #define		PF_INSTALLATION_USER				@"user"					//	Pointer to User Class
-#define		PF_USER_THUMBNAIL					@"thumbnail"			//	File
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		PF_USER_CLASS_NAME					@"_User"				//	Class name

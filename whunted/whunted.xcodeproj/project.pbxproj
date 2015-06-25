@@ -122,6 +122,7 @@
 		E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */; };
 		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
 		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
+		E9B5CABF1B3BC2960004CDC9 /* user_profile_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -343,6 +344,7 @@
 		E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Resources/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Resources/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_profile_circle.png; path = "Resources/User Profile/user_profile_circle.png"; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -891,6 +893,7 @@
 		E98113021B21559B00ECAA0C /* User Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */,
 				E98113281B258A4E00ECAA0C /* logout.png */,
 				E98113031B2155AB00ECAA0C /* userprofile@1x.png */,
 				E98113041B2155AB00ECAA0C /* userprofile@2x.png */,
@@ -1338,6 +1341,7 @@
 				E98113121B2155CB00ECAA0C /* accept@3x.png in Resources */,
 				E94D181E1AF9CE8900E31B01 /* search@1x.png in Resources */,
 				E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */,
+				E9B5CABF1B3BC2960004CDC9 /* user_profile_circle.png in Resources */,
 				E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */,
 				E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */,
 				E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */,

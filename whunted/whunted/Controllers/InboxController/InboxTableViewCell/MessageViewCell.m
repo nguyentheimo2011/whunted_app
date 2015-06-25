@@ -47,7 +47,7 @@
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [imageUser setImage:[UIImage imageNamed:@"userprofile.png"]];
+    [imageUser setImage:[UIImage imageNamed:@"user_profile_circle.png"]];
     imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
     imageUser.layer.masksToBounds = YES;
     
@@ -57,7 +57,7 @@
     [labelLastMessage setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [labelLastMessage setTextColor:[UIColor blackColor]];
     
-    [labelElapsed setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:13]];
+    [labelElapsed setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:12]];
     
     [labelTransactionStatus setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [labelTransactionStatus setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
