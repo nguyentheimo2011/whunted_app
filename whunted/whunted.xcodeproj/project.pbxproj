@@ -123,6 +123,7 @@
 		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
 		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
 		E9B5CABF1B3BC2960004CDC9 /* user_profile_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */; };
+		E9B5CAC31B3D433C0004CDC9 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5CAC21B3D433C0004CDC9 /* CacheManager.m */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -345,6 +346,8 @@
 		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Resources/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_profile_circle.png; path = "Resources/User Profile/user_profile_circle.png"; sourceTree = "<group>"; };
+		E9B5CAC11B3D433C0004CDC9 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheManager.h; path = Library/Caching/CacheManager.h; sourceTree = "<group>"; };
+		E9B5CAC21B3D433C0004CDC9 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheManager.m; path = Library/Caching/CacheManager.m; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -571,6 +574,7 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E9B5CAC01B3D42AA0004CDC9 /* Caching */,
 				E916F4461B00AEE1005055E3 /* Utilities */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
 			);
@@ -1070,6 +1074,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		E9B5CAC01B3D42AA0004CDC9 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				E9B5CAC11B3D433C0004CDC9 /* CacheManager.h */,
+				E9B5CAC21B3D433C0004CDC9 /* CacheManager.m */,
+			);
+			name = Caching;
+			sourceTree = "<group>";
+		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1441,7 @@
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
+				E9B5CAC31B3D433C0004CDC9 /* CacheManager.m in Sources */,
 				E9A07BF81B31437D00904DE9 /* converter.m in Sources */,
 				E9A07C1F1B31640B00904DE9 /* PFUser+Util.m in Sources */,
 				E9FB2E9E1B20485B00F8C435 /* SellersOfferData.m in Sources */,
