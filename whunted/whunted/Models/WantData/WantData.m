@@ -7,6 +7,7 @@
 //
 
 #import "WantData.h"
+#import "AppConstant.h"
 
 @implementation WantData
 
@@ -38,17 +39,18 @@
     self = [super init];
     if (self != nil) {
         self.itemID = wantDataPFObject.objectId;
-        self.itemName = wantDataPFObject[@"itemName"];
-        self.itemDesc = wantDataPFObject[@"itemDesc"];
-        self.itemCategory = wantDataPFObject[@"category"];
-        self.demandedPrice = wantDataPFObject[@"demandedPrice"];
-        self.paymentMethod = wantDataPFObject[@"paymentMethod"];
-        self.meetingLocation = wantDataPFObject[@"meetingPlace"];
-        self.itemPictureList = wantDataPFObject[@"itemPictures"];
-        self.buyer = wantDataPFObject[@"buyerID"];
-        self.hashTagList = [NSArray arrayWithArray:wantDataPFObject[@"hashtaglist"]];
+        self.itemName = wantDataPFObject[PF_ITEM_NAME];
+        self.itemDesc = wantDataPFObject[PF_ITEM_DESC];
+        self.itemCategory = wantDataPFObject[PF_ITEM_CATEGORY];
+        self.demandedPrice = wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
+        self.paymentMethod = wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
+        self.meetingLocation = wantDataPFObject[PF_ITEM_MEETING_PLACE];
+        self.itemPictureList = wantDataPFObject[PF_ITEM_PICTURE_LIST];
+        self.buyer = wantDataPFObject[PF_ITEM_BUYER_ID];
+        self.hashTagList = [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
+        self.sellersNum = [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
         
-        NSString *dealClosed = wantDataPFObject[@"isDealClosed"];
+        NSString *dealClosed = wantDataPFObject[PF_ITEM_CLOSED_DEAL];
         if ([dealClosed isEqual:@"YES"]) {
             self.isDealClosed = YES;
         } else {
@@ -63,22 +65,23 @@
 {
     PFObject *wantDataPFObject = [PFObject objectWithClassName:@"WantedPost"];
     wantDataPFObject.objectId = self.itemID;
-    wantDataPFObject[@"itemName"] = self.itemName;
-    wantDataPFObject[@"itemDesc"] = self.itemDesc;
-    wantDataPFObject[@"category"] = self.itemCategory;
-    wantDataPFObject[@"demandedPrice"] = self.demandedPrice;
-    wantDataPFObject[@"paymentMethod"] = self.paymentMethod;
-    wantDataPFObject[@"meetingPlace"] = self.meetingLocation;
-    wantDataPFObject[@"buyerID"] = self.buyer;
-    wantDataPFObject[@"hashtaglist"] = self.hashTagList;
+    wantDataPFObject[PF_ITEM_NAME] = self.itemName;
+    wantDataPFObject[PF_ITEM_DESC] = self.itemDesc;
+    wantDataPFObject[PF_ITEM_CATEGORY] = self.itemCategory;
+    wantDataPFObject[PF_ITEM_DEMANDED_PRICE] = self.demandedPrice;
+    wantDataPFObject[PF_ITEM_PAYMENT_METHOD] = self.paymentMethod;
+    wantDataPFObject[PF_ITEM_MEETING_PLACE] = self.meetingLocation;
+    wantDataPFObject[PF_ITEM_BUYER_ID] = self.buyer;
+    wantDataPFObject[PF_ITEM_HASHTAG_LIST] = self.hashTagList;
+    wantDataPFObject[PF_ITEM_SELLERS_NUM] = [NSString stringWithFormat:@"%ld", self.sellersNum];
     
     if (self.isDealClosed) {
-        wantDataPFObject[@"isDealClosed"] = @"YES";
+        wantDataPFObject[PF_ITEM_CLOSED_DEAL] = @"YES";
     } else {
-        wantDataPFObject[@"isDealClosed"] = @"NO";
+        wantDataPFObject[PF_ITEM_CLOSED_DEAL] = @"NO";
     }
     
-    PFRelation *relation = [wantDataPFObject relationForKey:@"itemPictures"];
+    PFRelation *relation = [wantDataPFObject relationForKey:PF_ITEM_PICTURE_LIST];
     for (PFObject *obj in self.backupItemPictureList) {
         [relation addObject:obj];
     }

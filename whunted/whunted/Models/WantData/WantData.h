@@ -21,12 +21,19 @@
 @property (nonatomic, strong) NSString          *demandedPrice;
 @property (nonatomic, strong) NSString          *paymentMethod;
 @property (nonatomic, strong) NSString          *meetingLocation;
+
 @property (nonatomic, strong) PFRelation        *itemPictureList;
 @property (nonatomic, strong) NSMutableArray    *backupItemPictureList;
+
 @property (nonatomic, strong) NSArray           *hashTagList;
+
 @property (nonatomic, strong) NSArray           *productOriginList;
+
 @property (nonatomic, strong) NSMutableArray    *likerList;
+
 @property (nonatomic, strong) NSArray           *sellersOfferList;
+@property (nonatomic)         NSInteger         sellersNum;
+
 @property (nonatomic)         BOOL              isDealClosed;
 @property (nonatomic, strong) SellersOfferData  *acceptedOffer;
 

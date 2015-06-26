@@ -29,6 +29,7 @@
 #define     ITEM_HASH_TAG_KEY                   @"itemHashTag"
 #define     ITEM_CATEGORY_KEY                   @"itemCategory"
 #define     ITEM_PRICE_KEY                      @"itemPrice"
+#define     ITEM_PAYMENT_METHOD                 @"paymentMethod"
 #define     ITEM_LOCATION_KEY                   @"location"
 #define     ITEM_ESCROW_OPTION_KEY              @"escrowOption"
 #define     ITEM_SECONDHAND_OPTION              @"secondHandOption"
@@ -55,6 +56,19 @@
 #define		PF_USER_PICTURE						@"profilePicture"		//	File
 #define     PF_USER_AREA_ADDRESS                @"areaAddress"          //  String
 #define     PF_USER_COUNTRY                     @"country"              //  String
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_ITEM_NAME                        @"itemName"
+#define     PF_ITEM_DESC                        @"itemDesc"
+#define     PF_ITEM_CATEGORY                    @"category"
+#define     PF_ITEM_DEMANDED_PRICE              @"demandedPrice"
+#define     PF_ITEM_PAYMENT_METHOD              @"paymentMethod"
+#define     PF_ITEM_MEETING_PLACE               @"meetingPlace"
+#define     PF_ITEM_PICTURE_LIST                @"itemPictures"
+#define     PF_ITEM_BUYER_ID                    @"buyerID"
+#define     PF_ITEM_HASHTAG_LIST                @"hashtaglist"
+#define     PF_ITEM_CLOSED_DEAL                 @"isDealClosed"
+#define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"

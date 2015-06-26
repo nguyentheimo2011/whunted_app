@@ -13,19 +13,23 @@
 
 @interface MarketplaceViewController ()
 
-@property (nonatomic, strong) UICollectionView *_wantCollectionView;
+@property (nonatomic, strong) UICollectionView *wantCollectionView;
 
 @end
+
+//------------------------------------------------------------------------------------------------------------------------------
 
 @implementation MarketplaceViewController
 {
     NSString *documents;
 }
 
-@synthesize wantDataList;
-@synthesize _wantCollectionView;
+@synthesize wantDataList = _wantDataList;
+@synthesize wantCollectionView = _wantCollectionView;
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -35,22 +39,29 @@
     return self;
 }
 
-- (void)viewDidLoad {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     [self addWantCollectionView];
 }
 
-- (void)didReceiveMemoryWarning {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UI Handlers
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addWantCollectionView
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -64,48 +75,18 @@
     [self.view addSubview:_wantCollectionView];
 }
 
-#pragma mark - Data Handlers
-- (void) retrieveWantDataList
-{
-    wantDataList = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
-    [query orderByDescending:@"updatedAt"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                [self.wantDataList addObject:wantData];
-            }
-            [_wantCollectionView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
-- (void) retrieveLatestWantData
-{
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
-    [query orderByDescending:@"updatedAt"];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
-        if (!error) {
-            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
-            [self.wantDataList insertObject:wantData atIndex:0];
-            [_wantCollectionView reloadData];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
 #pragma mark - CollectionView datasource methods
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
-    return [wantDataList count];
+    return [_wantDataList count];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     
@@ -113,7 +94,7 @@
         [cell initCell];
     }
     
-    WantData *wantData = [wantDataList objectAtIndex:indexPath.row];
+    WantData *wantData = [_wantDataList objectAtIndex:indexPath.row];
     [cell.itemNameLabel setText:wantData.itemName];
     [cell.demandedPriceLabel setText:wantData.demandedPrice];
     [cell.buyerUsernameLabel setText:wantData.buyer.objectId];
@@ -145,52 +126,56 @@
         }];
     }
     
-    PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
-    [query whereKey:@"itemID" equalTo:wantData.itemID];
-    [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
-        NSString *text;
-        if (sellersNum <= 1) {
-            text = [NSString stringWithFormat:@"%d %@", sellersNum, NSLocalizedString(@"seller", nil)];
-        } else {
-            text = [NSString stringWithFormat:@"%d %@", sellersNum, NSLocalizedString(@"sellers", nil)];
-        }
-        
-        if (!error) {
-            [cell.sellerNumButton setTitle:text forState:UIControlStateNormal];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    
+    NSString *text;
+    if (wantData.sellersNum <= 1) {
+        text = [NSString stringWithFormat:@"%ld %@", (long)wantData.sellersNum, NSLocalizedString(@"seller", nil)];
+    } else {
+        text = [NSString stringWithFormat:@"%ld %@", (long)wantData.sellersNum, NSLocalizedString(@"sellers", nil)];
+    }
+    
+    [cell.sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     return cell;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return CGSizeMake(WINSIZE.width/2-15, WINSIZE.width/2 + 110);
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return 10.0;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     return 15.0;
 }
 
 #pragma mark - UICollectionView delegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
-    itemDetailsVC.wantData = [wantDataList objectAtIndex:indexPath.row];
+    itemDetailsVC.wantData = [_wantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.delegate = self;
     [[itemDetailsVC.wantData.itemPictureList query] countObjectsInBackgroundWithBlock:^(int itemImagesNum, NSError *error) {
         if (!error) {
@@ -221,7 +206,10 @@
 }
 
 #pragma mark - ItemDetailsViewController Delegate
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) itemDetailsViewController:(ItemDetailsViewController *)controller didCompleteOffer:(BOOL)completed
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (completed) {
         [self.delegate genericController:self shouldUpdateDataAt:3];
@@ -229,9 +217,57 @@
 }
 
 #pragma mark - Overridden methods
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) pushViewController:(UIViewController *)controller
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Backend Handler
+//------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveWantDataList
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _wantDataList = [[NSMutableArray alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query orderByDescending:@"updatedAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                [self.wantDataList addObject:wantData];
+            }
+            [_wantCollectionView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveLatestWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query orderByDescending:@"updatedAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
+            [self.wantDataList insertObject:wantData atIndex:0];
+            [_wantCollectionView reloadData];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end
