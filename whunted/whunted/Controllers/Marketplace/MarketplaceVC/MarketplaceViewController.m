@@ -20,9 +20,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 @implementation MarketplaceViewController
-{
-    NSString *documents;
-}
 
 @synthesize wantDataList = _wantDataList;
 @synthesize wantCollectionView = _wantCollectionView;
@@ -44,8 +41,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    
-    documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     [self addWantCollectionView];
 }
@@ -95,46 +90,7 @@
     }
     
     WantData *wantData = [_wantDataList objectAtIndex:indexPath.row];
-    [cell.itemNameLabel setText:wantData.itemName];
-    [cell.demandedPriceLabel setText:wantData.demandedPrice];
-    [cell.buyerUsernameLabel setText:wantData.buyer.objectId];
-    
-    cell.itemImageView.image = nil;
-    NSString *fileName = [NSString stringWithFormat:@"marketplace_%@.jpg", wantData.itemID];
-    NSString *path = [documents stringByAppendingPathComponent:fileName];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (fileExists) {
-        [cell.itemImageView hnk_setImageFromFile:path];
-    } else {
-        PFRelation *picRelation = wantData.itemPictureList;
-        [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-            if (!error) {
-                PFFile *firstPicture = firstObject[@"itemPicture"];
-                [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
-                    if (!error_2) {
-                        UIImage *image = [UIImage imageWithData:data];
-                        NSData *data = UIImageJPEGRepresentation(image, 1);
-                        [data writeToFile:path atomically:YES];
-                        [cell.itemImageView setImage:image];
-                    } else {
-                        NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
-                    }
-                }];
-            } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
-    }
-    
-    
-    NSString *text;
-    if (wantData.sellersNum <= 1) {
-        text = [NSString stringWithFormat:@"%ld %@", (long)wantData.sellersNum, NSLocalizedString(@"seller", nil)];
-    } else {
-        text = [NSString stringWithFormat:@"%ld %@", (long)wantData.sellersNum, NSLocalizedString(@"sellers", nil)];
-    }
-    
-    [cell.sellerNumButton setTitle:text forState:UIControlStateNormal];
+    [cell setWantData:wantData];
     
     return cell;
 }
