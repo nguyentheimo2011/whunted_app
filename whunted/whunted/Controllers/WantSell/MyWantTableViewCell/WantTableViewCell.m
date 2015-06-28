@@ -116,7 +116,7 @@
     itemNameLabel.frame = CGRectMake(10, yPos, itemImageWidth, 20);
     [itemNameLabel setText:@"Item Name"];
     [itemNameLabel setTextColor:[UIColor grayColor]];
-    [itemNameLabel setFont:[UIFont systemFontOfSize:17]];
+    [itemNameLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:17]];
     [self addSubview:itemNameLabel];
 }
 
@@ -127,7 +127,7 @@
     lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 150, 15)];
     [lowestOfferedPriceLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
-    [lowestOfferedPriceLabel setFont:[UIFont systemFontOfSize:15]];
+    [lowestOfferedPriceLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self addSubview:lowestOfferedPriceLabel];
 }
 
@@ -138,7 +138,7 @@
     sellersNumButton = [[UIButton alloc] initWithFrame:CGRectMake(180, yPos, 90, 25)];
     [sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
     [sellersNumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [sellersNumButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [sellersNumButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [sellersNumButton setBackgroundColor:LIGHTER_GRAY_COLOR];
     sellersNumButton.layer.cornerRadius = 8;
     [sellersNumButton addTarget:self action:@selector(sellerNumButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
@@ -150,7 +150,7 @@
     acceptedStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemImageView.frame.size.width - 120, 0, 120, 20)];
     [acceptedStatusLabel setText:NSLocalizedString(@"Accepted", nil)];
     [acceptedStatusLabel setTextColor:[UIColor whiteColor]];
-    [acceptedStatusLabel setFont:[UIFont systemFontOfSize:18]];
+    [acceptedStatusLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:18]];
     [acceptedStatusLabel setTextAlignment:NSTextAlignmentCenter];
     [acceptedStatusLabel setBackgroundColor:[UIColor redColor]];
     [itemImageView addSubview:acceptedStatusLabel];

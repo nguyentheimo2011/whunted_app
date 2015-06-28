@@ -115,7 +115,7 @@
     CGFloat yPos = _cellWidth + 10;
     _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 20)];
     [_itemNameLabel setText:@"Item name"];
-    [_itemNameLabel setFont:[UIFont systemFontOfSize:15]];
+    [_itemNameLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self addSubview:_itemNameLabel];
 }
 
@@ -126,7 +126,7 @@
     CGFloat yPos = _cellWidth + 35;
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
     [_demandedPriceLabel setText:@"Item price"];
-    [_demandedPriceLabel setFont:[UIFont systemFontOfSize:15]];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [_demandedPriceLabel setTextColor:[UIColor grayColor]];
     [self addSubview:_demandedPriceLabel];
 }
@@ -150,7 +150,7 @@
     CGFloat yPos = _cellWidth + 60;
     _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [_buyerUsernameLabel setText:@"Username"];
-    [_buyerUsernameLabel setFont:[UIFont systemFontOfSize:14]];
+    [_buyerUsernameLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
     [_buyerUsernameLabel setTextColor:[UIColor grayColor]];
     [self addSubview:_buyerUsernameLabel];
 }
@@ -163,7 +163,7 @@
     CGFloat yPos = _cellWidth + 75;
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [_timestampLabel setText:@"timestamp"];
-    [_timestampLabel setFont:[UIFont systemFontOfSize:14]];
+    [_timestampLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
     [_timestampLabel setTextColor:[UIColor grayColor]];
     [self addSubview:_timestampLabel];
 }
@@ -176,7 +176,7 @@
     _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, yPos, _cellWidth/2, 25)];
     [_sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
     [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
-    _sellerNumButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    _sellerNumButton.titleLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
     [self addSubview:_sellerNumButton];
 }
 
@@ -198,7 +198,7 @@
     _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
     [_likesNumLabel setTextColor:[UIColor whiteColor]];
-    [_likesNumLabel setFont:[UIFont systemFontOfSize:16]];
+    [_likesNumLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [_likeButton addSubview:_likesNumLabel];
 }
 

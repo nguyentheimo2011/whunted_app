@@ -128,7 +128,7 @@
 {
     itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 - 10, WINSIZE.width - 20, 20)];
     [itemNameLabel setText:wantData.itemName];
-    [itemNameLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE + 2]];
+    [itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
     [itemNameLabel setTextColor:[UIColor blackColor]];
     [_scrollView addSubview:itemNameLabel];
     
@@ -144,7 +144,7 @@
     
     postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _nextYPos, expectedSize.width, expectedSize.height)];
     [postedTimestampLabel setText:placeHolderText];
-    [postedTimestampLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [postedTimestampLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [postedTimestampLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:postedTimestampLabel];
     
@@ -159,7 +159,7 @@
     buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(_nextXPos, postedTimestampLabel.frame.origin.y, 150, 20)];
     [buyerUsernameButton setTitle:wantData.buyer.objectId forState:UIControlStateNormal];
     [buyerUsernameButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [buyerUsernameButton.titleLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [_scrollView addSubview:buyerUsernameButton];
     
     _nextXPos = 10;
@@ -179,7 +179,7 @@
     
     demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
     [demandedPriceLabel setText:wantData.demandedPrice];
-    [demandedPriceLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [demandedPriceLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [demandedPriceLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:demandedPriceLabel];
     
@@ -201,7 +201,7 @@
     
     locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 25)];
     [locationLabel setText:wantData.meetingLocation];
-    [locationLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [locationLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [locationLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:locationLabel];
     
@@ -224,7 +224,7 @@
     CGSize expectedSize = [wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: NORMAL_FONT}];
     itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
     [itemDescLabel setText:wantData.itemDesc];
-    [itemDescLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [itemDescLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [itemDescLabel setTextColor:[UIColor grayColor]];
     itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
     itemDescLabel.numberOfLines = 0;
@@ -317,7 +317,7 @@
     UIButton *chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 40, WINSIZE.width/2, 40)];
     [chatButton setBackgroundColor:[UIColor grayColor]];
     [chatButton setTitle:NSLocalizedString(@"Chat", nil) forState:UIControlStateNormal];
-    [chatButton.titleLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+    [chatButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
     [chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:chatButton];
 }
@@ -332,7 +332,7 @@
     if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
         [secondBottomButton setTitle:NSLocalizedString(@"Promote your post", nil) forState:UIControlStateNormal];
-        [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+        [secondBottomButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
         [self.view addSubview:secondBottomButton];
     } else {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
@@ -340,7 +340,7 @@
             [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
         else
             [secondBottomButton setTitle:NSLocalizedString(@"Offer your price", nil) forState:UIControlStateNormal];
-        [secondBottomButton.titleLabel setFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]];
+        [secondBottomButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
         [secondBottomButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:secondBottomButton];
     }

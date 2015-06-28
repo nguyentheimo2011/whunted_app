@@ -70,7 +70,7 @@
     summaryLabel.textAlignment = NSTextAlignmentCenter;
     [summaryLabel setText:text];
     [summaryLabel setTextColor:[UIColor grayColor]];
-    [summaryLabel setFont:[UIFont systemFontOfSize:15]];
+    [summaryLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self.view addSubview:summaryLabel];
 }
 
@@ -80,7 +80,7 @@
     priceAskingLabel.textAlignment = NSTextAlignmentCenter;
     [priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
     [priceAskingLabel setTextColor:[UIColor grayColor]];
-    [priceAskingLabel setFont:[UIFont systemFontOfSize:15]];
+    [priceAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self.view addSubview:priceAskingLabel];
 }
 
@@ -91,7 +91,7 @@
     [offeredPriceTextField setTextColor:[UIColor grayColor]];
     [offeredPriceTextField setText:currOfferedPrice];
     [offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
-    [offeredPriceTextField setFont:[UIFont systemFontOfSize:30]];
+    [offeredPriceTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:30]];
     [offeredPriceTextField setPlaceholder:wantData.demandedPrice];
     [offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     offeredPriceTextField.delegate = self;
@@ -113,7 +113,7 @@
     deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
     [deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
     [deliveryAskingLabel setTextColor:[UIColor grayColor]];
-    [deliveryAskingLabel setFont:[UIFont systemFontOfSize:15]];
+    [deliveryAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self.view addSubview:deliveryAskingLabel];
 }
 
@@ -124,7 +124,7 @@
     [offeredDeliveryTextField setTextColor:[UIColor grayColor]];
     [offeredDeliveryTextField setText:currOfferedDelivery];
     [offeredDeliveryTextField setTextAlignment:NSTextAlignmentCenter];
-    [offeredDeliveryTextField setFont:[UIFont systemFontOfSize:25]];
+    [offeredDeliveryTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:25]];
     [offeredDeliveryTextField setPlaceholder:@"1 week"];
     offeredDeliveryTextField.delegate = self;
     [offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
@@ -137,7 +137,7 @@
     instructionLabel.textAlignment = NSTextAlignmentCenter;
     [instructionLabel setText:@"Tap to change"];
     [instructionLabel setTextColor:[UIColor grayColor]];
-    [instructionLabel setFont:[UIFont systemFontOfSize:15]];
+    [instructionLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
     [self.view addSubview:instructionLabel];
 }
 
