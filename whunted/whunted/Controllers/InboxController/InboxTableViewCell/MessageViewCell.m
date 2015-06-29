@@ -109,8 +109,10 @@
 	int counter = [_message[@"counter"] intValue];
     if (counter == 0) {
         [labelLastMessage setTextColor:[UIColor grayColor]];
+        [labelLastMessage setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
     } else {
         [labelLastMessage setTextColor:[UIColor blackColor]];
+        [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     }
 }
 

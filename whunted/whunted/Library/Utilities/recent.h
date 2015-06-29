@@ -30,5 +30,5 @@ void			ClearRecentCounter1		(NSString *groupId);
 void			ClearRecentCounter2		(NSDictionary *recent);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			DeleteRecentItems		(PFUser *user1, PFUser *user2);
+void			DeleteRecentItems		(NSString *groupId);
 void			DeleteRecentItem		(NSDictionary *recent);

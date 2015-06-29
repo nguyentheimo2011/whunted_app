@@ -70,6 +70,7 @@
 {
 	[super viewDidLoad];
 	self.navigationItem.title = user2[PF_USER_USERNAME];
+    [self customizeNavigationBar];
 	
 	items = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
@@ -113,10 +114,24 @@
 	[super viewWillDisappear:animated];
 	if (self.isMovingFromParentViewController)
 	{
-		ClearRecentCounter1(groupId);
 		[firebase1 removeAllObservers];
 		[firebase2 removeAllObservers];
 	}
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) backButtonClickedEvent
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    DeleteRecentItems(groupId);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Backend methods
