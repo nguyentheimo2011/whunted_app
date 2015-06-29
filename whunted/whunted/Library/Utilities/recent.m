@@ -19,26 +19,26 @@
 
 #import "recent.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 NSString* StartPrivateChat(PFUser *user1, PFUser *user2, NSString *itemID)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	NSString *id1 = user1.objectId;
 	NSString *id2 = user2.objectId;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", itemID, id2, id1];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSArray *members = @[user1.objectId, user2.objectId];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2);
 	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	return groupId;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
@@ -56,29 +56,29 @@ void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	Firebase *reference = [firebase childByAutoId];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSString *recentId = reference.key;
 	PFUser *lastUser = [PFUser currentUser];
 	NSString *date = Date2String([NSDate date]);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
 								@"lastUser":lastUser.objectId, @"lastMessage":@"", @"counter":@0, @"date":date, @"profileId":profile.objectId};
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
 		if (error != nil) NSLog(@"CreateRecentItem2 save error.");
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void UpdateRecentCounter1(NSString *groupId, NSInteger amount, NSString *lastMessage)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
@@ -94,27 +94,26 @@ void UpdateRecentCounter1(NSString *groupId, NSInteger amount, NSString *lastMes
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void UpdateRecentCounter2(NSDictionary *recent, NSInteger amount, NSString *lastMessage)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
 	NSString *date = Date2String([NSDate date]);
 	NSInteger counter = [recent[@"counter"] integerValue];
 	if ([recent[@"userId"] isEqualToString:user.objectId] == NO) counter += amount;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
 	NSDictionary *values = @{@"lastUser":user.objectId, @"lastMessage":lastMessage, @"counter":@(counter), @"date":date};
 	[firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
-//		[MBProgressHUD dismiss];
 		if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void ClearRecentCounter1(NSString *groupId)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
@@ -134,9 +133,9 @@ void ClearRecentCounter1(NSString *groupId)
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void ClearRecentCounter2(NSDictionary *recent)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
 	[firebase updateChildValues:@{@"counter":@0} withCompletionBlock:^(NSError *error, Firebase *ref)
@@ -145,9 +144,9 @@ void ClearRecentCounter2(NSDictionary *recent)
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void DeleteRecentItems(PFUser *user1, PFUser *user2)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	FQuery *query = [[firebase queryOrderedByChild:@"userId"] queryEqualToValue:user1.objectId];
@@ -166,9 +165,9 @@ void DeleteRecentItems(PFUser *user1, PFUser *user2)
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void DeleteRecentItem(NSDictionary *recent)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
 	[firebase removeValueWithCompletionBlock:^(NSError *error, Firebase *ref)
