@@ -14,6 +14,7 @@
 #import "MainViewController.h"
 #import "LoginSignupViewController.h"
 #import "Utilities.h"
+#import "SyncEngine.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +24,10 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
@@ -34,6 +37,8 @@
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     [self setViewController];
+    
+    [[SyncEngine sharedEngine] startSync];
     
     return YES;
 }
@@ -55,7 +60,10 @@
                                                        annotation:annotation];
 }
 
-- (void) setViewController {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setViewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
     if (![PFUser currentUser] || // Check if user is cached
         ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) { // Check if user is linked to Facebook
         

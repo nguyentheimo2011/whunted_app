@@ -10,6 +10,7 @@
 #import "SellerListViewController.h"
 #import "AppConstant.h"
 #import "MBProgressHUD.h"
+#import "SyncEngine.h"
 
 @interface MarketplaceViewController ()
 
@@ -140,6 +141,10 @@
             PFQuery *sQuery = [PFQuery queryWithClassName:@"OfferedWant"];
             [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
             [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
+            
+            if (![SyncEngine sharedEngine].syncInProgess)
+                [sQuery fromPinWithName:PF_OFFER_CLASS];
+                 
             [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
                 if (!error) {
                     if (object) {
