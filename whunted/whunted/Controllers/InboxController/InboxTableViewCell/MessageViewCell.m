@@ -11,7 +11,7 @@
 
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
-#import <Haneke.h>
+#import <Haneke/UIImageView+Haneke.h>
 
 #import "AppConstant.h"
 #import "converter.h"
@@ -124,13 +124,8 @@
 - (void) setItemPicture: (NSString *) itemID
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *fileName = [NSString stringWithFormat:@"item_%@.jpg", itemID];
-    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *path = [documents stringByAppendingPathComponent:fileName];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (fileExists) {
-        [itemImage hnk_setImageFromFile:path];
-    }
+    NSString *fileName = [NSString stringWithFormat:@"item_%@", itemID];
+    [itemImage hnk_setImage:nil withKey:fileName];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

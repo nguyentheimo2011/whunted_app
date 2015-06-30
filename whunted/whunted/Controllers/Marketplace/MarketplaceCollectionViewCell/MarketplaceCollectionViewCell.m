@@ -75,7 +75,7 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     _itemImageView.image = nil;
-    [_itemImageView hnk_setImage:nil withKey:[NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID]];
+    [_itemImageView hnk_setImage:nil withKey:[NSString stringWithFormat:@"item_%@", _wantData.itemID]];
     
     if (!_itemImageView.image)
         [self downloadItemImage];
@@ -229,7 +229,7 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2) {
                     UIImage *image = [UIImage imageWithData:data];
-                    [_itemImageView hnk_setImage:image withKey:[NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID]];
+                    [_itemImageView hnk_setImage:image withKey:[NSString stringWithFormat:@"item_%@", _wantData.itemID]];
                 } else {
                     NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                 }
