@@ -134,35 +134,30 @@
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [_wantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.delegate = self;
-    [[itemDetailsVC.wantData.itemPictureList query] countObjectsInBackgroundWithBlock:^(int itemImagesNum, NSError *error) {
+    
+    itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
+    
+    PFQuery *sQuery = [PFQuery queryWithClassName:@"OfferedWant"];
+    [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
+    [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
+    
+    if (![SyncEngine sharedEngine].syncInProgess)
+        [sQuery fromPinWithName:PF_OFFER_CLASS];
+    
+    [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
         if (!error) {
-            itemDetailsVC.itemImagesNum = itemImagesNum;
-            
-            PFQuery *sQuery = [PFQuery queryWithClassName:@"OfferedWant"];
-            [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
-            [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
-            
-            if (![SyncEngine sharedEngine].syncInProgess)
-                [sQuery fromPinWithName:PF_OFFER_CLASS];
-                 
-            [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
-                if (!error) {
-                    if (object) {
-                        itemDetailsVC.offeredByCurrUser = YES;
-                        itemDetailsVC.offerPFObject = object;
-                    }
-                    else
-                        itemDetailsVC.offeredByCurrUser = NO;
-                } else {
-                    NSLog(@"Error %@ %@", error, [error userInfo]);
-                }
-                
-                [self.navigationController pushViewController:itemDetailsVC animated:YES];
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            }];
+            if (object) {
+                itemDetailsVC.offeredByCurrUser = YES;
+                itemDetailsVC.offerPFObject = object;
+            }
+            else
+                itemDetailsVC.offeredByCurrUser = NO;
         } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
+        
+        [self.navigationController pushViewController:itemDetailsVC animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

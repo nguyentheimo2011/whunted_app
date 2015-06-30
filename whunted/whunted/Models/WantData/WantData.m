@@ -46,6 +46,7 @@
         self.paymentMethod = wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
         self.meetingLocation = wantDataPFObject[PF_ITEM_MEETING_PLACE];
         self.itemPictureList = wantDataPFObject[PF_ITEM_PICTURE_LIST];
+        self.itemPicturesNum = [wantDataPFObject[PF_ITEM_PICTURES_NUM] integerValue];
         self.buyer = wantDataPFObject[PF_ITEM_BUYER_ID];
         self.hashTagList = [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
         self.sellersNum = [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
@@ -74,6 +75,7 @@
     wantDataPFObject[PF_ITEM_BUYER_ID] = self.buyer;
     wantDataPFObject[PF_ITEM_HASHTAG_LIST] = self.hashTagList;
     wantDataPFObject[PF_ITEM_SELLERS_NUM] = [NSString stringWithFormat:@"%ld", self.sellersNum];
+    wantDataPFObject[PF_ITEM_PICTURES_NUM] = [NSString stringWithFormat:@"%ld", self.itemPicturesNum];
     
     if (self.isDealClosed) {
         wantDataPFObject[PF_ITEM_CLOSED_DEAL] = @"YES";

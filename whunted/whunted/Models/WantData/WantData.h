@@ -24,6 +24,7 @@
 
 @property (nonatomic, strong) PFRelation        *itemPictureList;
 @property (nonatomic, strong) NSMutableArray    *backupItemPictureList;
+@property (nonatomic)         NSInteger         itemPicturesNum;
 
 @property (nonatomic, strong) NSArray           *hashTagList;
 

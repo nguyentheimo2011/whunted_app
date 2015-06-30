@@ -75,7 +75,7 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     _itemImageView.image = nil;
-    NSString *fileName = [NSString stringWithFormat:@"marketplace_%@.jpg", _wantData.itemID];
+    NSString *fileName = [NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID];
     NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *path = [documents stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
