@@ -123,7 +123,7 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
