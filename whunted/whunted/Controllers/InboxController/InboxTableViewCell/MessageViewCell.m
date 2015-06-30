@@ -11,6 +11,7 @@
 
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import <Haneke.h>
 
 #import "AppConstant.h"
 #import "converter.h"
@@ -100,7 +101,10 @@
 	}];
 	
 	labelDescription.text = _message[@"description"];
+    labelItemName.text = _message[PF_ITEM_NAME];
 	labelLastMessage.text = _message[@"lastMessage"];
+    
+    [self setItemPicture:_message[PF_ITEM_ID]];
 	
 	NSDate *date = String2Date(_message[@"date"]);
 	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:date];
@@ -113,6 +117,19 @@
     } else {
         [labelLastMessage setTextColor:[UIColor blackColor]];
         [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setItemPicture: (NSString *) itemID
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *fileName = [NSString stringWithFormat:@"item_%@.jpg", itemID];
+    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *path = [documents stringByAppendingPathComponent:fileName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (fileExists) {
+        [itemImage hnk_setImageFromFile:path];
     }
 }
 

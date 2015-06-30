@@ -11,24 +11,24 @@
 
 #import <Parse/Parse.h>
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString* StartPrivateChat(PFUser *user1, PFUser *user2, NSString *itemID);
+//------------------------------------------------------------------------------------------------------------------------------
+NSString*       StartPrivateChat        (PFUser *user1, PFUser *user2, NSString *itemID, NSString *itemName);
 NSString*		StartMultipleChat		(NSMutableArray *users);
 
 void			StartGroupChat			(PFObject *group, NSMutableArray *users);
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile);
-void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile);
+//------------------------------------------------------------------------------------------------------------------------------
+void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, NSString *itemID, NSString *itemName);
+void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, NSString *itemID, NSString *itemName);
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *lastMessage);
 void			UpdateRecentCounter2	(NSDictionary *recent, NSInteger amount, NSString *lastMessage);
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void			ClearRecentCounter1		(NSString *groupId);
 void			ClearRecentCounter2		(NSDictionary *recent);
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 void			DeleteRecentItems		(NSString *groupId);
 void			DeleteRecentItem		(NSDictionary *recent);

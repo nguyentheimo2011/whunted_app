@@ -373,7 +373,7 @@
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
             [user pinInBackground];
-            NSString *groupId = StartPrivateChat(user1, user2, wantData.itemID);
+            NSString *groupId = StartPrivateChat(user1, user2, wantData.itemID, wantData.itemName);
             [self actionChat:groupId];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);

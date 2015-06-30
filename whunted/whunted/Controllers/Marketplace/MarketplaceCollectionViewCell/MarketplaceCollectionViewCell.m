@@ -75,15 +75,10 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     _itemImageView.image = nil;
-    NSString *fileName = [NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID];
-    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *path = [documents stringByAppendingPathComponent:fileName];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (fileExists) {
-        [_itemImageView hnk_setImageFromFile:path];
-    } else {
-        [self downloadImageAndSaveLocally:path];
-    }
+    [_itemImageView hnk_setImage:nil withKey:[NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID]];
+    
+    if (!_itemImageView.image)
+        [self downloadItemImage];
 }
 
 #pragma mark - UI Handlers
@@ -224,7 +219,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) downloadImageAndSaveLocally: (NSString *) path
+- (void) downloadItemImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFRelation *picRelation = _wantData.itemPictureList;
@@ -234,9 +229,7 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2) {
                     UIImage *image = [UIImage imageWithData:data];
-                    NSData *data = UIImageJPEGRepresentation(image, 1);
-                    [data writeToFile:path atomically:YES];
-                    [_itemImageView setImage:image];
+                    [_itemImageView hnk_setImage:image withKey:[NSString stringWithFormat:@"item_%@.jpg", _wantData.itemID]];
                 } else {
                     NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                 }
