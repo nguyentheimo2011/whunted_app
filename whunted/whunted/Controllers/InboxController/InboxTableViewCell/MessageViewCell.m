@@ -15,6 +15,7 @@
 
 #import "AppConstant.h"
 #import "converter.h"
+#import "SystemCache.h"
 
 #import "MessageViewCell.h"
 
@@ -124,8 +125,8 @@
 - (void) setItemPicture: (NSString *) itemID
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *fileName = [NSString stringWithFormat:@"item_%@", itemID];
-    [itemImage hnk_setImage:nil withKey:fileName];
+    UIImage *image = (UIImage *) [[SystemCache sharedCache] objectForKey:itemID];
+    [itemImage setImage:image];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
