@@ -186,6 +186,7 @@
         PFFile *file = [PFUser currentUser][PF_USER_PICTURE];
         UIImage *image = [UIImage imageWithData:[file getData]];
         avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+        [self.collectionView reloadData];
     } else {
         PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
         [query whereKey:PF_USER_OBJECTID equalTo:senderId];
@@ -270,7 +271,7 @@
 	if (avatars[message.senderId] == nil)
 	{
 		[self loadAvatar:message.senderId];
-		return avatars[message.senderId];
+		return avatarImageBlank;
 	}
 	else return avatars[message.senderId];
 }
