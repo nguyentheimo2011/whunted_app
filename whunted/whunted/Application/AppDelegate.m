@@ -38,8 +38,6 @@
     
     [self setViewController];
     
-    [[SyncEngine sharedEngine] startSync];
-    
     return YES;
 }
 
@@ -72,6 +70,8 @@
     } else {
         MainViewController *mainVC = [[MainViewController alloc] init];
         [self.window setRootViewController:mainVC];
+        
+        [[SyncEngine sharedEngine] startSync];
     }
 }
 
