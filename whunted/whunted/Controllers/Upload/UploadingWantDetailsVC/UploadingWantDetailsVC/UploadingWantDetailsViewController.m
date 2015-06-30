@@ -226,9 +226,12 @@
         if (!self.wantData.demandedPrice)
             self.wantData.demandedPrice = @"0";
         if (!self.wantData.paymentMethod)
-            self.wantData.paymentMethod = @"Pay later";
+            self.wantData.paymentMethod = @"non-escrow";
         if (!self.wantData.meetingLocation)
             self.wantData.meetingLocation = @"";
+        
+        self.wantData.sellersNum = 0;
+        self.wantData.itemPicturesNum = [self.wantData.backupItemPictureList count];
         
         PFObject *pfObj = [self.wantData getPFObject];
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
