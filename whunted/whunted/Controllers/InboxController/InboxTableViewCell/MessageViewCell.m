@@ -125,7 +125,7 @@
 - (void) setItemPicture: (NSString *) itemID
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *image = (UIImage *) [[SystemCache sharedCache] objectForKey:itemID];
+    UIImage *image = (UIImage *) [[SystemCache sharedCache] imageForKey:itemID];
     [itemImage setImage:image];
 }
 

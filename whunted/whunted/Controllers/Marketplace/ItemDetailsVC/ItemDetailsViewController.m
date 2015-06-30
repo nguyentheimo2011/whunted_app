@@ -374,7 +374,7 @@
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
             [user pinInBackground];
-            [[SystemCache sharedCache] setObject:[itemImageList objectAtIndex:0] forKey:wantData.itemID];
+            [[SystemCache sharedCache] setImage:[itemImageList objectAtIndex:0] forKey:wantData.itemID];
             NSString *groupId = StartPrivateChat(user1, user2, wantData.itemID, wantData.itemName);
             [self actionChat:groupId];
         } else {

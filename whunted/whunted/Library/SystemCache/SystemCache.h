@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface SystemCache : NSCache
+@interface SystemCache : NSObject 
 
 + (SystemCache *) sharedCache;
+
+- (void) setImage: (UIImage *) image forKey: (NSString *) key;
+- (UIImage *) imageForKey: (NSString *) key;
 
 @end
