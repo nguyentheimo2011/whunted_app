@@ -182,29 +182,35 @@
 - (void)loadAvatar:(NSString *)senderId
 //------------------------------------------------------------------------------------------------------------------------------
 {
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID equalTo:senderId];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
-		{
-			if ([objects count] != 0)
-			{
-				PFUser *user = [objects firstObject];
-				PFFile *file = user[PF_USER_PICTURE];
-				[file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-				{
-					if (error == nil)
-					{
-						UIImage *image = [UIImage imageWithData:imageData];
-						avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
-						[self.collectionView reloadData];
-					}
-				}];
-			}
-		}
-		else NSLog(@"ChatView loadAvatar query error.");
-	}];
+    if ([senderId isEqualToString:[PFUser currentUser].objectId]) {
+        PFFile *file = [PFUser currentUser][PF_USER_PICTURE];
+        UIImage *image = [UIImage imageWithData:[file getData]];
+        avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+    } else {
+        PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+        [query whereKey:PF_USER_OBJECTID equalTo:senderId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             if (error == nil)
+             {
+                 if ([objects count] != 0)
+                 {
+                     PFUser *user = [objects firstObject];
+                     PFFile *file = user[PF_USER_PICTURE];
+                     [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
+                      {
+                          if (error == nil)
+                          {
+                              UIImage *image = [UIImage imageWithData:imageData];
+                              avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+                              [self.collectionView reloadData];
+                          }
+                      }];
+                 }
+             }
+             else NSLog(@"ChatView loadAvatar query error.");
+         }];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -264,7 +270,7 @@
 	if (avatars[message.senderId] == nil)
 	{
 		[self loadAvatar:message.senderId];
-		return avatarImageBlank;
+		return avatars[message.senderId];
 	}
 	else return avatars[message.senderId];
 }
