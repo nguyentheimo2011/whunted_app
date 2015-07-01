@@ -116,7 +116,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIImage *image = (UIImage *) [[PersistedCache sharedCache] imageForKey:itemID];
-    [itemImage setImage:image];
+    if (image)
+        [itemImage setImage:image];
+    else
+        [self downloadItemImageFromRemoteServer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -141,6 +144,37 @@
              }];
          }
      }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) downloadItemImageFromRemoteServer
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    [query whereKey:PF_USER_OBJECTID equalTo:_message[PF_ITEM_ID]];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            PFRelation *pictureRelation = obj[PF_ITEM_PICTURE_LIST];
+            [[pictureRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+                if (!error) {
+                    PFFile *firstPicture = firstObject[@"itemPicture"];
+                    [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                        if (!error_2) {
+                            UIImage *image = [UIImage imageWithData:data];
+                            [itemImage setImage:image];
+                            [[PersistedCache sharedCache] setImage:image forKey:_message[PF_ITEM_ID]];
+                        } else {
+                            NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                        }
+                    }];
+                } else {
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end
