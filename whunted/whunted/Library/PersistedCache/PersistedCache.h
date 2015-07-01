@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SystemCache : NSObject 
+@interface PersistedCache : NSObject
 
-+ (SystemCache *) sharedCache;
++ (PersistedCache *) sharedCache;
 
 - (void) setImage: (UIImage *) image forKey: (NSString *) key;
 - (UIImage *) imageForKey: (NSString *) key;

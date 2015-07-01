@@ -15,7 +15,7 @@
 
 #import "AppConstant.h"
 #import "converter.h"
-#import "SystemCache.h"
+#import "PersistedCache.h"
 
 #import "MessageViewCell.h"
 
@@ -83,9 +83,10 @@
 {
 	_message = message;
     
+    [imageUser hnk_setImage:nil withKey:_message[@"profileId"]];
+    
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
 	[query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
-    [query fromLocalDatastore];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
 		if (!error)
@@ -125,7 +126,7 @@
 - (void) setItemPicture: (NSString *) itemID
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *image = (UIImage *) [[SystemCache sharedCache] imageForKey:itemID];
+    UIImage *image = (UIImage *) [[PersistedCache sharedCache] imageForKey:itemID];
     [itemImage setImage:image];
 }
 

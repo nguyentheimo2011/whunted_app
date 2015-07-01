@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "SystemCache.h"
+#import "PersistedCache.h"
 #import "AppConstant.h"
 
-@implementation SystemCache
+@implementation PersistedCache
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (SystemCache *) sharedCache
++ (PersistedCache *) sharedCache
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    static SystemCache *sharedCache;    
+    static PersistedCache *sharedCache;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedCache = [[SystemCache alloc] init];
+        sharedCache = [[PersistedCache alloc] init];
     });
     
     return sharedCache;

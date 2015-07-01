@@ -124,7 +124,6 @@
 		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
 		E9B5CABF1B3BC2960004CDC9 /* user_profile_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */; };
 		E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */; };
-		E9B5CACB1B427F740004CDC9 /* SystemCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5CACA1B427F740004CDC9 /* SystemCache.m */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -170,6 +169,7 @@
 		E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456901B0F0DA500E8B55D /* view_icon.png */; };
 		E9E456941B0F20CE00E8B55D /* promote_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456931B0F20CE00E8B55D /* promote_icon.png */; };
 		E9E456961B0F25E400E8B55D /* sellers_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456951B0F25E400E8B55D /* sellers_icon.png */; };
+		E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22931B43A38D00395062 /* PersistedCache.m */; };
 		E9FB2E961B1F0E3800F8C435 /* SellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E951B1F0E3800F8C435 /* SellersOfferViewController.m */; };
 		E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E991B20481E00F8C435 /* WantData.m */; };
 		E9FB2E9E1B20485B00F8C435 /* SellersOfferData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E9D1B20485B00F8C435 /* SellersOfferData.m */; };
@@ -349,8 +349,6 @@
 		E9B5CABE1B3BC2960004CDC9 /* user_profile_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_profile_circle.png; path = "Resources/User Profile/user_profile_circle.png"; sourceTree = "<group>"; };
 		E9B5CAC41B41FC330004CDC9 /* SyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncEngine.h; path = Library/SyncEngine/SyncEngine.h; sourceTree = "<group>"; };
 		E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncEngine.m; path = Library/SyncEngine/SyncEngine.m; sourceTree = "<group>"; };
-		E9B5CAC91B427F740004CDC9 /* SystemCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemCache.h; path = Library/SystemCache/SystemCache.h; sourceTree = "<group>"; };
-		E9B5CACA1B427F740004CDC9 /* SystemCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemCache.m; path = Library/SystemCache/SystemCache.m; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -404,6 +402,8 @@
 		E9E456901B0F0DA500E8B55D /* view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_icon.png; path = Resources/WantSellCell/view_icon.png; sourceTree = "<group>"; };
 		E9E456931B0F20CE00E8B55D /* promote_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = promote_icon.png; path = Resources/WantSellCell/promote_icon.png; sourceTree = "<group>"; };
 		E9E456951B0F25E400E8B55D /* sellers_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sellers_icon.png; path = Resources/WantSellCell/sellers_icon.png; sourceTree = "<group>"; };
+		E9FB22921B43A38D00395062 /* PersistedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistedCache.h; path = Library/PersistedCache/PersistedCache.h; sourceTree = "<group>"; };
+		E9FB22931B43A38D00395062 /* PersistedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistedCache.m; path = Library/PersistedCache/PersistedCache.m; sourceTree = "<group>"; };
 		E9FB2E941B1F0E3800F8C435 /* SellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellersOfferViewController.h; path = Controllers/Marketplace/SellersOfferVC/SellersOfferViewController.h; sourceTree = "<group>"; };
 		E9FB2E951B1F0E3800F8C435 /* SellersOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellersOfferViewController.m; path = Controllers/Marketplace/SellersOfferVC/SellersOfferViewController.m; sourceTree = "<group>"; };
 		E9FB2E981B20481E00F8C435 /* WantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantData.h; path = Models/WantData/WantData.h; sourceTree = "<group>"; };
@@ -577,7 +577,7 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E9B5CAC81B427DE80004CDC9 /* SystemCache */,
+				E9B5CAC81B427DE80004CDC9 /* PersistedCache */,
 				E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */,
 				E916F4461B00AEE1005055E3 /* Utilities */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
@@ -1087,13 +1087,13 @@
 			name = SyncEngine;
 			sourceTree = "<group>";
 		};
-		E9B5CAC81B427DE80004CDC9 /* SystemCache */ = {
+		E9B5CAC81B427DE80004CDC9 /* PersistedCache */ = {
 			isa = PBXGroup;
 			children = (
-				E9B5CAC91B427F740004CDC9 /* SystemCache.h */,
-				E9B5CACA1B427F740004CDC9 /* SystemCache.m */,
+				E9FB22921B43A38D00395062 /* PersistedCache.h */,
+				E9FB22931B43A38D00395062 /* PersistedCache.m */,
 			);
-			name = SystemCache;
+			name = PersistedCache;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
@@ -1464,7 +1464,6 @@
 				E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
-				E9B5CACB1B427F740004CDC9 /* SystemCache.m in Sources */,
 				E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */,
 				E9A07C171B31623C00904DE9 /* common.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
@@ -1486,6 +1485,7 @@
 				E9A07C181B31623C00904DE9 /* image.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9A07C241B3165E300904DE9 /* emoji.m in Sources */,
+				E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
