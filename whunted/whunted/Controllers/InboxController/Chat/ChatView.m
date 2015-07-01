@@ -20,6 +20,8 @@
 #import "camera.h"
 #import "common.h"
 #import "recent.h"
+#import "PersistedCache.h"
+#import "TemporaryCache.h"
 
 #import "Incoming.h"
 #import "Outgoing.h"
@@ -178,33 +180,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([senderId isEqualToString:[PFUser currentUser].objectId]) {
-        PFFile *file = [PFUser currentUser][PF_USER_PICTURE];
-        UIImage *image = [UIImage imageWithData:[file getData]];
+        UIImage *image = [[PersistedCache sharedCache] imageForKey:senderId];
         avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
     } else {
-        PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-        [query whereKey:PF_USER_OBJECTID equalTo:senderId];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             if (error == nil)
-             {
-                 if ([objects count] != 0)
-                 {
-                     PFUser *user = [objects firstObject];
-                     PFFile *file = user[PF_USER_PICTURE];
-                     [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-                      {
-                          if (error == nil)
-                          {
-                              UIImage *image = [UIImage imageWithData:imageData];
-                              avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
-                              [self.collectionView reloadData];
-                          }
-                      }];
-                 }
-             }
-             else NSLog(@"ChatView loadAvatar query error.");
-         }];
+        UIImage *image = [[TemporaryCache sharedCache] objectForKey:senderId];
+        if (image)
+            avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+        else
+            [self downloadImageFromRemoteServer:senderId];
     }
 }
 
@@ -534,6 +517,35 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	return ([message.senderId isEqualToString:self.senderId] == YES);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) downloadImageFromRemoteServer: (NSString *) senderId
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:senderId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (error == nil)
+         {
+             if ([objects count] != 0)
+             {
+                 PFUser *user = [objects firstObject];
+                 PFFile *file = user[PF_USER_PICTURE];
+                 [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
+                  {
+                      if (error == nil)
+                      {
+                          UIImage *image = [UIImage imageWithData:imageData];
+                          avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+                          [self.collectionView reloadData];
+                      }
+                  }];
+             }
+         }
+         else NSLog(@"ChatView loadAvatar query error.");
+     }];
 }
 
 @end
