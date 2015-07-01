@@ -28,20 +28,20 @@
 - (void) setImage: (UIImage *) image forKey: (NSString *) key
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+    NSString* path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Documents/%@.jpg", key]];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"cached_%@.jpg", key];
-    NSString *imagePath = [documentsDirectory stringByAppendingString:fileName];
+    BOOL ok = [[NSFileManager defaultManager] createFileAtPath:path
+                                                      contents:nil attributes:nil];
     
-    if (![imageData writeToFile:imagePath atomically:NO])
+    if (!ok)
     {
-        NSLog((@"Failed to cache image data to disk"));
+        NSLog(@"Error creating file %@", path);
     }
     else
     {
-        NSLog(@"the cachedImagedPath is %@",imagePath);
+        NSFileHandle* myFileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
+        [myFileHandle writeData:UIImagePNGRepresentation(image)];
+        [myFileHandle closeFile];
     }
 }
 
@@ -49,15 +49,12 @@
 - (UIImage *) imageForKey: (NSString *) key
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"cached_%@.jpg", key];
-    NSString *imagePath = [documentsDirectory stringByAppendingString:fileName];
+    NSString* path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Documents/%@.jpg", key]];
     
-    NSData *data = [NSData dataWithContentsOfFile:imagePath];
-    UIImage *image = [UIImage imageWithData:data];
+    NSFileHandle* myFileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+    UIImage* loadedImage = [UIImage imageWithData:[myFileHandle readDataToEndOfFile]];
     
-    return image;
+    return loadedImage;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
