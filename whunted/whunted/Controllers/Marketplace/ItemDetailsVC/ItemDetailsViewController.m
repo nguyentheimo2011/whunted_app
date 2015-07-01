@@ -388,7 +388,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
-    [chatView setUser2:wantData.buyer];
+    [chatView setUser2ID:wantData.buyer.objectId];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

@@ -55,7 +55,7 @@
 
 @implementation ChatView
 
-@synthesize user2;
+@synthesize user2ID;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -71,7 +71,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.navigationItem.title = user2[PF_USER_USERNAME];
+	self.navigationItem.title = user2ID;
     [self customizeNavigationBar];
 	
 	items = [[NSMutableArray alloc] init];
