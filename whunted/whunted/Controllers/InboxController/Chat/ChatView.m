@@ -112,6 +112,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewWillDisappear:animated];
+    
+    DeleteRecentItems(groupId);
+    
 	if (self.isMovingFromParentViewController)
 	{
 		[firebase1 removeAllObservers];
@@ -123,15 +126,7 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) backButtonClickedEvent
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    DeleteRecentItems(groupId);
-    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
 }
 
 #pragma mark - Backend methods
