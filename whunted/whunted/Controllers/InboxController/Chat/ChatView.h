@@ -20,7 +20,7 @@
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong) NSString *user2ID;
+@property (nonatomic, strong) NSString *user2Username;
 
 - (id)initWith:(NSString *)groupId_;
 
