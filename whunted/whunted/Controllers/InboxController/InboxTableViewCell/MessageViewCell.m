@@ -16,6 +16,7 @@
 #import "AppConstant.h"
 #import "converter.h"
 #import "PersistedCache.h"
+#import "TemporaryCache.h"
 
 #import "MessageViewCell.h"
 
@@ -83,24 +84,12 @@
 {
 	_message = message;
     
-    [imageUser hnk_setImage:nil withKey:_message[@"profileId"]];
-    
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (!error)
-		{
-			PFUser *user = [objects firstObject];
-			PFFile *userPicture = user[PF_USER_PICTURE];
-            NSData *data = [userPicture getData];
-            if (data) {
-                [imageUser setImage:[UIImage imageWithData:data]];
-            } else {
-                [self getProfileImageFromRemoteServer];
-            }
-		}
-	}];
+    if ([[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]]) {
+        UIImage *image = [[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]];
+        [imageUser setImage:image];
+    } else {
+        [self getProfileImageFromRemoteServer];
+    }
 	
 	labelDescription.text = _message[@"description"];
     labelItemName.text = _message[PF_ITEM_NAME];
@@ -145,8 +134,9 @@
              
              [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                  if (!error) {
-                     [imageUser setImage:[UIImage imageWithData:data]];
-                     [user pinInBackground];
+                     UIImage *image = [UIImage imageWithData:data];
+                     [imageUser setImage:image];
+                     [[TemporaryCache sharedCache] setObject:image forKey:_message[@"profileId"]];
                  }
              }];
          }
