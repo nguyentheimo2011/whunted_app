@@ -48,6 +48,7 @@
     NSMutableDictionary *messageStatusDict;
 
 	JSQMessagesBubbleImage *bubbleImageOutgoing;
+    JSQMessagesBubbleImage *bubbleImageOutgoingSending;
 	JSQMessagesBubbleImage *bubbleImageIncoming;
 	JSQMessagesAvatarImage *avatarImageBlank;
 }
@@ -86,6 +87,7 @@
 	
 	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
+    bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
 	bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
     
     avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
@@ -258,7 +260,15 @@
 {
 	if ([self outgoing:messages[indexPath.item]])
 	{
-		return bubbleImageOutgoing;
+        NSString *key = (NSString *) items[indexPath.item][@"key"];
+        if ([messageStatusDict objectForKey:key]) {
+            BOOL isSuccessful = [messageStatusDict[key] boolValue];
+            if (!isSuccessful)
+                return bubbleImageOutgoingSending;
+            else
+                return bubbleImageOutgoing;
+        } else
+            return bubbleImageOutgoing;
 	}
 	else return bubbleImageIncoming;
 }
