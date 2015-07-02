@@ -95,11 +95,9 @@
     avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
     
 	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
-	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionDelete:)];
 	
 	UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
-	UIMenuItem *menuItemDelete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(actionDelete:)];
-	[UIMenuController sharedMenuController].menuItems = @[menuItemCopy, menuItemDelete];
+	[UIMenuController sharedMenuController].menuItems = @[menuItemCopy];
 	
 	firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
 	firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
@@ -386,11 +384,7 @@
 		NSDictionary *item = items[indexPath.item];
 		if ([item[@"type"] isEqualToString:@"text"]) return YES;
 	}
-	if (action == @selector(actionDelete:))
-	{
-		JSQMessage *message = messages[indexPath.item];
-		if ([self outgoing:message]) return YES;
-	}
+
 	return NO;
 }
 
@@ -400,7 +394,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	if (action == @selector(actionCopy:))		[self actionCopy:indexPath];
-	if (action == @selector(actionDelete:))		[self actionDelete:indexPath];
 }
 
 #pragma mark - JSQMessages collection view flow layout delegate
@@ -409,7 +402,7 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
 				   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
-{    
+{
     if (indexPath.item == 0)
     {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
@@ -517,13 +510,6 @@
 	RNGridMenu *gridMenu = [[RNGridMenu alloc] initWithItems:menuItems];
 	gridMenu.delegate = self;
 	[gridMenu showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)actionDelete:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-	ActionPremium(self);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
