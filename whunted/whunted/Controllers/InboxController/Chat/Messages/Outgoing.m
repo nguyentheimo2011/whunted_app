@@ -161,19 +161,24 @@
 
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)sendMessage:(NSMutableDictionary *)item
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
 	Firebase *reference = [firebase1 childByAutoId];
 	item[@"key"] = reference.key;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WILL_UPLOAD_MESSAGE object:item[@"key"]];
+    
 	[reference setValue:item withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
-		if (error != nil) NSLog(@"Outgoing sendMessage network error.");
+		if (error)
+            NSLog(@"Outgoing sendMessage network error.");
+        else
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:item[@"key"]];
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	SendPushNotification1(groupId, item[@"text"]);
 	UpdateRecentCounter1(groupId, 1, item[@"text"]);
 }

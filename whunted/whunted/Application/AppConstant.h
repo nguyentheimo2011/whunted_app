@@ -111,7 +111,8 @@
 #define     PF_WANT_DATA_CLASS                  @"WantedPost"
 
 //----------------------------------------------------------------------------------------------------------------------------
-
+#define     NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY    @"uploadMessageSuccessfullyNotification"
+#define     NOTIFICATION_WILL_UPLOAD_MESSAGE            @"willUploadMessageNotification"
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

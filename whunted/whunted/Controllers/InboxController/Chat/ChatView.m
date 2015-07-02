@@ -45,6 +45,7 @@
 	NSMutableArray *items;
 	NSMutableArray *messages;
 	NSMutableDictionary *avatars;
+    NSMutableDictionary *messageStatusDict;
 
 	JSQMessagesBubbleImage *bubbleImageOutgoing;
 	JSQMessagesBubbleImage *bubbleImageIncoming;
@@ -77,6 +78,7 @@
 	items = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
 	avatars = [[NSMutableDictionary alloc] init];
+    messageStatusDict = [[NSMutableDictionary alloc] init];
 	
 	PFUser *user = [PFUser currentUser];
 	self.senderId = user.objectId;
@@ -97,6 +99,9 @@
 	
 	firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
 	firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveWillUploadMessageNotification:) name:NOTIFICATION_WILL_UPLOAD_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUploadMessageSuccessfullyNotification:) name:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:nil];
 	
 	[self loadMessages];
 }
@@ -117,6 +122,8 @@
     
     DeleteRecentItems(groupId);
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 	if (self.isMovingFromParentViewController)
 	{
 		[firebase1 removeAllObservers];
@@ -129,6 +136,23 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) receiveWillUploadMessageNotification: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *messageID = (NSString *) notification.object;
+    messageStatusDict[messageID] = @NO;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) receiveUploadMessageSuccessfullyNotification: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *messageID = (NSString *) notification.object;
+    messageStatusDict[messageID] = @YES;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Backend methods
@@ -292,6 +316,12 @@
 	if ([self outgoing:messages[indexPath.item]])
 	{
 		NSDictionary *item = items[indexPath.item];
+        if ([messageStatusDict objectForKey:item[@"key"]]) {
+            BOOL isSuccessful = [messageStatusDict[item[@"key"]] boolValue];
+            if (!isSuccessful)
+                return [[NSAttributedString alloc] initWithString:@"Sending..."];
+        }
+        
 		return [[NSAttributedString alloc] initWithString:item[@"status"]];
 	}
 	else return nil;
