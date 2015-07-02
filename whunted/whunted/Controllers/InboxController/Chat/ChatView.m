@@ -10,6 +10,7 @@
 // THE SOFTWARE.
 
 #import <MediaPlayer/MediaPlayer.h>
+#import <JTImageButton.h>
 
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
@@ -53,6 +54,8 @@
     JSQMessagesBubbleImage *bubbleImageOutgoingSending;
 	JSQMessagesBubbleImage *bubbleImageIncoming;
 	JSQMessagesAvatarImage *avatarImageBlank;
+    
+    UIView *background;
 }
 @end
 //------------------------------------------------------------------------------------------------------------------------------
@@ -86,6 +89,8 @@
 	PFUser *user = [PFUser currentUser];
 	self.senderId = user.objectId;
 	self.senderDisplayName = user[PF_USER_USERNAME];
+    
+    [self addMakeOfferButton];
 	
 	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
@@ -138,6 +143,33 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addBackGroundForButtons
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat statusAndNavigationBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    background = [[UIView alloc] initWithFrame:CGRectMake(0, statusAndNavigationBarHeight, WINSIZE.width, 50)];
+    [background setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [background setAlpha:0.98];
+    [self.view addSubview:background];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addMakeOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addBackGroundForButtons];
+    
+    JTImageButton *makingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 10, WINSIZE.width * 0.8, 30)];
+    [makingOfferButton createTitle:@"Make Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
+    makingOfferButton.cornerRadius = 6.0;
+    makingOfferButton.borderWidth = 2.0;
+    makingOfferButton.borderColor = FLAT_BLUE_COLOR;
+    makingOfferButton.bgColor = FLAT_BLUE_COLOR;
+    makingOfferButton.titleColor = [UIColor whiteColor];
+    [background addSubview:makingOfferButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
