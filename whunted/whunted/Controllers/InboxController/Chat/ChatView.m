@@ -22,6 +22,8 @@
 #import "recent.h"
 #import "PersistedCache.h"
 #import "TemporaryCache.h"
+#import "Utilities.h"
+#import "converter.h"
 
 #import "Incoming.h"
 #import "Outgoing.h"
@@ -291,12 +293,21 @@
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	if (indexPath.item % 3 == 0)
+	if (indexPath.item == 0)
 	{
 		JSQMessage *message = messages[indexPath.item];
 		return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
-	}
-	else return nil;
+    } else {
+        NSDate *currMessageDate = String2Date(items[indexPath.item][@"date"]);
+        NSDate *prevMessageDate = String2Date(items[indexPath.item - 1][@"date"]);
+        NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
+        NSDate *prevMessageRoundDate = [Utilities getRoundMinuteDateFromDate:prevMessageDate];
+        int timePeriod = [currMessageRoundDate timeIntervalSinceDate:prevMessageRoundDate];
+        if (timePeriod > 0) {
+            return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:currMessageDate];
+        } else
+            return nil;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -398,12 +409,21 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
 				   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
-{
-	if (indexPath.item % 3 == 0)
-	{
-		return kJSQMessagesCollectionViewCellLabelHeightDefault;
-	}
-	else return 0;
+{    
+    if (indexPath.item == 0)
+    {
+        return kJSQMessagesCollectionViewCellLabelHeightDefault;
+    } else {
+        NSDate *currMessageDate = String2Date(items[indexPath.item][@"date"]);
+        NSDate *prevMessageDate = String2Date(items[indexPath.item - 1][@"date"]);
+        NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
+        NSDate *prevMessageRoundDate = [Utilities getRoundMinuteDateFromDate:prevMessageDate];
+        int timePeriod = [currMessageRoundDate timeIntervalSinceDate:prevMessageRoundDate];
+        if (timePeriod > 0) {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault;
+        } else
+            return 0;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

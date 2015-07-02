@@ -11,18 +11,20 @@
 
 @interface Utilities : NSObject
 
-+ (void) addBorderAndShadow: (UIView *) view;
-+ (void) setTopRoundedCorner: (UIView *) view;
-+ (void) setBottomRoundedCorner: (UIView *) view;
-+ (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize;
-+ (void) addGradientToButton: (UIButton *) button;
-+ (UIImage *)imageWithColor:(UIColor *)color;
++ (void)        addBorderAndShadow: (UIView *) view;
++ (void)        setTopRoundedCorner: (UIView *) view;
++ (void)        setBottomRoundedCorner: (UIView *) view;
++ (UIImage *)   resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize;
++ (void)        addGradientToButton: (UIButton *) button;
++ (UIImage *)   imageWithColor:(UIColor *)color;
 
-+ (void) postNotification: (NSString *) notification;
++ (void)        postNotification: (NSString *) notification;
 
-+ (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string;
-+ (BOOL) checkIfIsValidPrice: (NSString *) price;
-+ (NSString *) formatPriceText: (NSString *) originalPrice;
-+ (NSString *) removeLastDotCharacterIfNeeded: (NSString *) price;
++ (NSString *)  getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string;
++ (BOOL)        checkIfIsValidPrice: (NSString *) price;
++ (NSString *)  formatPriceText: (NSString *) originalPrice;
++ (NSString *)  removeLastDotCharacterIfNeeded: (NSString *) price;
+
++ (NSDate *)    getRoundMinuteDateFromDate: (NSDate *) date;
 
 @end

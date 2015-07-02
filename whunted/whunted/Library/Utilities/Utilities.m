@@ -180,4 +180,13 @@
         return price;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
++ (NSDate *) getRoundMinuteDateFromDate: (NSDate *) date
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date];
+    return [calendar dateFromComponents:comps];
+}
+
 @end
