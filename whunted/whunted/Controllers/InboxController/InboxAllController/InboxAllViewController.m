@@ -160,6 +160,8 @@
     NSDictionary *recent = _recentMessages[indexPath.row];
     ChatView *chatView = [[ChatView alloc] initWith:recent[@"groupId"]];
     [chatView setUser2Username:recent[@"description"]];
+    [chatView setSellerID:[(NSArray *) recent[@"members"] objectAtIndex:0]];
+    [chatView setBuyerID:[(NSArray *) recent[@"members"] objectAtIndex:1]];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

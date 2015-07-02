@@ -63,6 +63,8 @@
 @implementation ChatView
 
 @synthesize user2Username;
+@synthesize buyerID = _buyerID;
+@synthesize sellerID = _sellerID;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -170,6 +172,10 @@
     makingOfferButton.bgColor = FLAT_BLUE_COLOR;
     makingOfferButton.titleColor = [UIColor whiteColor];
     [background addSubview:makingOfferButton];
+    
+    // Only seller can offer at the beginning
+    if ([[PFUser currentUser].objectId isEqualToString:_buyerID])
+        [background setHidden:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

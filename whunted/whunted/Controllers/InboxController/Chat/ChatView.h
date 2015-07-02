@@ -16,11 +16,13 @@
 #import "JSQMessages.h"
 #import "RNGridMenu.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate>
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong) NSString *user2Username;
+@property (nonatomic, strong) NSString *buyerID;
+@property (nonatomic, strong) NSString *sellerID;
 
 - (id)initWith:(NSString *)groupId_;
 
