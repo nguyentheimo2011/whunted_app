@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    locationList = [NSArray arrayWithObjects:@"Changhua", @"Hualien", @"Magong", @"Taichung", @"Taipao", @"Taipei", @"Yilan", nil];
+    locationList = [NSArray arrayWithObjects:@"Changhua", @"Hualien", @"Magong", @"Taichung", @"Taipao", @"臺北", @"Yilan", nil];
     selectedIndex = [locationList indexOfObject:self.location];
 }
 
