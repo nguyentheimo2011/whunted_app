@@ -69,6 +69,8 @@
 		E963614E1B16C7F000EB9D35 /* marketplace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614B1B16C7F000EB9D35 /* marketplace@2x.png */; };
 		E963614F1B16C7F000EB9D35 /* marketplace@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614C1B16C7F000EB9D35 /* marketplace@3x.png */; };
 		E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E96361511B1815D400EB9D35 /* WantTableViewCell.m */; };
+		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
+		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
 		E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4891B07745A0027C5FA /* squareplus@1x.png */; };
 		E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48B1B07745A0027C5FA /* squareplus@3x.png */; };
 		E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48F1B07876C0027C5FA /* squareplus@2x.png */; };
@@ -263,6 +265,8 @@
 		E963614C1B16C7F000EB9D35 /* marketplace@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@3x.png"; path = "Resources/Tab Bar Icons/marketplace@3x.png"; sourceTree = "<group>"; };
 		E96361501B1815D400EB9D35 /* WantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantTableViewCell.h; path = Controllers/WantSell/MyWantTableViewCell/WantTableViewCell.h; sourceTree = "<group>"; };
 		E96361511B1815D400EB9D35 /* WantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WantTableViewCell.m; path = Controllers/WantSell/MyWantTableViewCell/WantTableViewCell.m; sourceTree = "<group>"; };
+		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
+		E97A95191B454072003796DD /* chat_pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_pictures.png; path = Resources/Chat/chat_pictures.png; sourceTree = "<group>"; };
 		E97CE4891B07745A0027C5FA /* squareplus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@1x.png"; path = "Resources/Want Details/squareplus@1x.png"; sourceTree = "<group>"; };
 		E97CE48B1B07745A0027C5FA /* squareplus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@3x.png"; path = "Resources/Want Details/squareplus@3x.png"; sourceTree = "<group>"; };
 		E97CE48F1B07876C0027C5FA /* squareplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@2x.png"; path = "Resources/Want Details/squareplus@2x.png"; sourceTree = "<group>"; };
@@ -671,6 +675,7 @@
 		E94D17D51AF8B68600E31B01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E97A95151B454061003796DD /* Chat */,
 				E9B5CAB31B3AA8240004CDC9 /* Fonts */,
 				E915F8191B3908CE00D0A2F8 /* pList-Files */,
 				E98113091B2155B200ECAA0C /* Transaction */,
@@ -857,6 +862,15 @@
 				E95CFA541B141EDE003755E3 /* facebook_login_button@3x.png */,
 			);
 			name = LoginSignup;
+			sourceTree = "<group>";
+		};
+		E97A95151B454061003796DD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E97A95171B454072003796DD /* chat_camera.png */,
+				E97A95191B454072003796DD /* chat_pictures.png */,
+			);
+			name = Chat;
 			sourceTree = "<group>";
 		};
 		E97CE49D1B09ECA00027C5FA /* ImageGetterPopupVC */ = {
@@ -1317,6 +1331,7 @@
 				E94D18141AF9CE8900E31B01 /* chat@3x.png in Resources */,
 				E97CE4B21B09EF330027C5FA /* NewsFeedTableViewCell.xib in Resources */,
 				E94D18121AF9CE8900E31B01 /* chat@1x.png in Resources */,
+				E97A951D1B454072003796DD /* chat_camera.png in Resources */,
 				E94D181D1AF9CE8900E31B01 /* profile@3x.png in Resources */,
 				E91A5A6E1B04C1E6008382E2 /* next@1x.png in Resources */,
 				E91A5A691B049A2D008382E2 /* square_dashed@2x.png in Resources */,
@@ -1345,6 +1360,7 @@
 				E9B8009A1B145481006D9133 /* background_image.jpg in Resources */,
 				E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */,
 				E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */,
+				E97A951F1B454072003796DD /* chat_pictures.png in Resources */,
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
 				E94D18131AF9CE8900E31B01 /* chat@2x.png in Resources */,
 				E9D504961B33F661008ABDE4 /* heart_white.png in Resources */,
