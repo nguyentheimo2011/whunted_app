@@ -353,7 +353,7 @@
 - (void) sellerOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    SellersOfferViewController *sellersOfferVC = [[SellersOfferViewController alloc] init];
+    BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
     sellersOfferVC.wantData = wantData;
     sellersOfferVC.delegate = self;
     
@@ -462,7 +462,7 @@
 #pragma mark - SellersOfferViewController delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) sellerOfferViewController:(SellersOfferViewController *)controller didOfferForItem:(PFObject *) object
+- (void) sellerOfferViewController:(BuyersOrSellersOfferViewController *)controller didOfferForItem:(PFObject *) object
 //------------------------------------------------------------------------------------------------------------------------------
 {
     offeredByCurrUser = YES;

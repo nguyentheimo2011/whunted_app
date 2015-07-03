@@ -7,7 +7,7 @@
 //
 
 #import "SellerListViewController.h"
-#import "SellersOfferData.h"
+#import "OfferData.h"
 #import "Utilities.h"
 
 @interface SellerListViewController ()
@@ -59,7 +59,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    SellersOfferData *offerData = [wantData.sellersOfferList objectAtIndex:indexPath.row];
+    OfferData *offerData = [wantData.sellersOfferList objectAtIndex:indexPath.row];
     [cell.sellerUsernameButton setTitle:offerData.sellerID forState:UIControlStateNormal];
     [cell.sellersOfferedPrice setText:offerData.offeredPrice];
     [cell.sellersOfferedDelivery setText:offerData.deliveryTime];
@@ -83,7 +83,7 @@
 
 #pragma mark - SellerListCell delegate mothods
 
-- (void) sellerListCell:(SellerListCell *)cell didAcceptOfferFromSeller:(SellersOfferData *)offerData
+- (void) sellerListCell:(SellerListCell *)cell didAcceptOfferFromSeller:(OfferData *)offerData
 {
     [wantData setIsDealClosed:YES];
     [[wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Haneke/UIImageView+Haneke.h>
 #import "WantData.h"
-#import "SellersOfferViewController.h"
+#import "BuyersOrSellersOfferViewController.h"
 
 @class ItemDetailsViewController;
 
@@ -19,7 +19,7 @@
 
 @end
 
-@interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, SellerOfferViewControllerDelegate>
+@interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate>
 
 @property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
 

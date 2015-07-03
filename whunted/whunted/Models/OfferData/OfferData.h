@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface SellersOfferData : NSObject
+@interface OfferData : NSObject
 
 @property (nonatomic, strong) NSString *objectID;
 @property (nonatomic, strong) NSString *itemID;

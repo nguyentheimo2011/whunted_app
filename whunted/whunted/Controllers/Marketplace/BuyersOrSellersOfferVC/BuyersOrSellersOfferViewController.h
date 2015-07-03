@@ -10,17 +10,17 @@
 #import <APNumberPad.h>
 #import "WantData.h"
 
-@class SellersOfferViewController;
+@class BuyersOrSellersOfferViewController;
 
-@protocol SellerOfferViewControllerDelegate <NSObject>
+@protocol BuyersOrSellerOfferDelegate <NSObject>
 
-- (void) sellerOfferViewController: (SellersOfferViewController *) controller didOfferForItem: (PFObject *) object;
+- (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOfferForItem: (PFObject *) object;
 
 @end
 
-@interface SellersOfferViewController : UIViewController <UITextFieldDelegate, APNumberPadDelegate>
+@interface BuyersOrSellersOfferViewController : UIViewController <UITextFieldDelegate, APNumberPadDelegate>
 
-@property (nonatomic, weak) id<SellerOfferViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<BuyersOrSellerOfferDelegate> delegate;
 
 @property (nonatomic, strong) WantData *wantData;
 

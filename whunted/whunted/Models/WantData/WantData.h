@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "SellersOfferData.h"
+#import "OfferData.h"
 
 @interface WantData : NSObject
 
@@ -36,7 +36,7 @@
 @property (nonatomic)         NSInteger         sellersNum;
 
 @property (nonatomic)         BOOL              isDealClosed;
-@property (nonatomic, strong) SellersOfferData  *acceptedOffer;
+@property (nonatomic, strong) OfferData         *acceptedOffer;
 
 - (id) initWithPFObject: (PFObject *) wantDataPFObject;
 - (PFObject *) getPFObject;

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "SellersOfferViewController.h"
+#import "BuyersOrSellersOfferViewController.h"
 #import "AppConstant.h"
-#import "SellersOfferData.h"
+#import "OfferData.h"
 #import "Utilities.h"
 
-@interface SellersOfferViewController ()
+@interface BuyersOrSellersOfferViewController ()
 
 @property (nonatomic, strong) UILabel *summaryLabel;
 @property (nonatomic, strong) UILabel *priceAskingLabel;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation SellersOfferViewController
+@implementation BuyersOrSellersOfferViewController
 {
     CGFloat startingYPos;
 }
@@ -191,7 +191,7 @@
 {
     [activityLogin startAnimating];
     
-    SellersOfferData *offerData = [[SellersOfferData alloc] init];
+    OfferData *offerData = [[OfferData alloc] init];
     offerData.sellerID = [[PFUser currentUser] objectId];
     offerData.itemID = wantData.itemID;
     offerData.offeredPrice = offeredPriceTextField.text;
@@ -209,7 +209,7 @@
         [activityLogin stopAnimating];
         
         if (!error) {
-            [delegate sellerOfferViewController:self didOfferForItem:[offerData getPFObjectWithClassName:@"OfferedWant"]];
+            [delegate buyersOrSellersOfferViewController:self didOfferForItem:[offerData getPFObjectWithClassName:@"OfferedWant"]];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);

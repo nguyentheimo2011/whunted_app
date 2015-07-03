@@ -9,7 +9,7 @@
 #import "MySellViewController.h"
 #import "HorizontalLineViewController.h"
 #import "WantData.h"
-#import "SellersOfferData.h"
+#import "OfferData.h"
 
 #import <Parse/Parse.h>
 
@@ -219,7 +219,7 @@
         if (!error) {
             NSMutableArray *offerDataList = [[NSMutableArray alloc] init];
             for (PFObject *obj in sellersOfferList) {
-                SellersOfferData *offerData = [[SellersOfferData alloc] initWithPFObject:obj];
+                OfferData *offerData = [[OfferData alloc] initWithPFObject:obj];
                 [offerDataList addObject:offerData];
             }
             wantData.sellersOfferList = [NSArray arrayWithArray:offerDataList];
