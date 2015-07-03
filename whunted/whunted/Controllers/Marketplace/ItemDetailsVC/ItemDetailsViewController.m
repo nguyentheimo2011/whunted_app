@@ -42,8 +42,8 @@
 @synthesize paymentMethodLabel;
 @synthesize sellersLabel;
 @synthesize secondBottomButton;
-@synthesize offeredByCurrUser;
-@synthesize offerPFObject;
+@synthesize offeredByMe;
+@synthesize myCurrOffer;
 @synthesize delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -337,7 +337,7 @@
         [self.view addSubview:secondBottomButton];
     } else {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        if (offeredByCurrUser)
+        if (offeredByMe)
             [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
         else
             [secondBottomButton setTitle:NSLocalizedString(@"Offer your price", nil) forState:UIControlStateNormal];
@@ -357,9 +357,9 @@
     sellersOfferVC.wantData = wantData;
     sellersOfferVC.delegate = self;
     
-    if (offerPFObject) {
-        sellersOfferVC.currOfferedPrice = offerPFObject[@"offeredPrice"];
-        sellersOfferVC.currOfferedDelivery = offerPFObject[@"deliveryTime"];
+    if (myCurrOffer) {
+        sellersOfferVC.currOfferedPrice = myCurrOffer.offeredPrice;
+        sellersOfferVC.currOfferedDelivery = myCurrOffer.deliveryTime;
     }
     
     [self.navigationController pushViewController:sellersOfferVC animated:YES];
@@ -462,11 +462,11 @@
 #pragma mark - SellersOfferViewController delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) sellerOfferViewController:(BuyersOrSellersOfferViewController *)controller didOfferForItem:(PFObject *) object
+- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOfferForItem:(PFObject *)object
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    offeredByCurrUser = YES;
-    offerPFObject = object;
+    offeredByMe = YES;
+    myCurrOffer = [[OfferData alloc] initWithPFObject:object];
     [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     [delegate itemDetailsViewController:self didCompleteOffer:YES];
 }

@@ -10,6 +10,7 @@
 #import <Haneke/UIImageView+Haneke.h>
 #import "WantData.h"
 #import "BuyersOrSellersOfferViewController.h"
+#import "OfferData.h"
 
 @class ItemDetailsViewController;
 
@@ -36,7 +37,7 @@
 @property (nonatomic, strong) UILabel               *paymentMethodLabel;
 @property (nonatomic, strong) UILabel               *sellersLabel;
 @property (nonatomic, strong) UIButton              *secondBottomButton;
-@property (nonatomic)         BOOL                  offeredByCurrUser;
-@property (nonatomic)         PFObject              *offerPFObject;
+@property (nonatomic)         BOOL                  offeredByMe;
+@property (nonatomic)         OfferData             *myCurrOffer;
 
 @end

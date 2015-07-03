@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 #import "MBProgressHUD.h"
 #import "SyncEngine.h"
+#import "OfferData.h"
 
 @interface MarketplaceViewController ()
 
@@ -147,11 +148,11 @@
     [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
         if (!error) {
             if (object) {
-                itemDetailsVC.offeredByCurrUser = YES;
-                itemDetailsVC.offerPFObject = object;
+                itemDetailsVC.offeredByMe = YES;
+                itemDetailsVC.myCurrOffer = [[OfferData alloc] initWithPFObject:object];
             }
             else
-                itemDetailsVC.offeredByCurrUser = NO;
+                itemDetailsVC.offeredByMe = NO;
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
