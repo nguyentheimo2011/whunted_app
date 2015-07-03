@@ -8,23 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import <APNumberPad.h>
-#import "WantData.h"
+#import "OfferData.h"
 
 @class BuyersOrSellersOfferViewController;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol BuyersOrSellerOfferDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOfferForItem: (PFObject *) object;
 
 @end
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @interface BuyersOrSellersOfferViewController : UIViewController <UITextFieldDelegate, APNumberPadDelegate>
+//-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, weak) id<BuyersOrSellerOfferDelegate> delegate;
+@property (nonatomic, weak)     id<BuyersOrSellerOfferDelegate> delegate;
 
-@property (nonatomic, strong) WantData *wantData;
-
-@property (nonatomic, strong) NSString *currOfferedPrice;
-@property (nonatomic, strong) NSString *currOfferedDelivery;
+@property (nonatomic, strong) OfferData *offerData;
+@property (nonatomic, strong) NSString  *buyerName;
+@property (nonatomic, strong) NSString  *originalDemandedPrice;
+@property (nonatomic)         BOOL      isEditingOffer;
 
 @end

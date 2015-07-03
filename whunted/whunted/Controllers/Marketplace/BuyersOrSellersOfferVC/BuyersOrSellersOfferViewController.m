@@ -28,17 +28,18 @@
     CGFloat startingYPos;
 }
 
-@synthesize wantData;
-@synthesize summaryLabel;
-@synthesize priceAskingLabel;
-@synthesize deliveryAskingLabel;
-@synthesize instructionLabel;
-@synthesize offeredPriceTextField;
-@synthesize offeredDeliveryTextField;
-@synthesize activityLogin;
-@synthesize delegate;
-@synthesize currOfferedPrice;
-@synthesize currOfferedDelivery;
+@synthesize offerData = _offerData;
+@synthesize buyerName = _buyerName;
+@synthesize originalDemandedPrice = _originalDemandedPrice;
+@synthesize isEditingOffer = _isEditingOffer;
+@synthesize summaryLabel = _summaryLabel;
+@synthesize priceAskingLabel = _priceAskingLabel;
+@synthesize deliveryAskingLabel = _deliveryAskingLabel;
+@synthesize instructionLabel = _instructionLabel;
+@synthesize offeredPriceTextField = _offeredPriceTextField;
+@synthesize offeredDeliveryTextField = _offeredDeliveryTextField;
+@synthesize activityLogin = _activityLogin;
+@synthesize delegate = _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -73,42 +74,42 @@
 - (void) addSummaryLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", wantData.buyer.objectId, NSLocalizedString(@"wants to buy at", nil), wantData.demandedPrice];
-    summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
-    summaryLabel.textAlignment = NSTextAlignmentCenter;
-    [summaryLabel setText:text];
-    [summaryLabel setTextColor:[UIColor grayColor]];
-    [summaryLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
-    [self.view addSubview:summaryLabel];
+    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _originalDemandedPrice];
+    _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
+    _summaryLabel.textAlignment = NSTextAlignmentCenter;
+    [_summaryLabel setText:text];
+    [_summaryLabel setTextColor:[UIColor grayColor]];
+    [_summaryLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [self.view addSubview:_summaryLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addPriceAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 45, WINSIZE.width - 40, 20)];
-    priceAskingLabel.textAlignment = NSTextAlignmentCenter;
-    [priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
-    [priceAskingLabel setTextColor:[UIColor grayColor]];
-    [priceAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
-    [self.view addSubview:priceAskingLabel];
+    _priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 45, WINSIZE.width - 40, 20)];
+    _priceAskingLabel.textAlignment = NSTextAlignmentCenter;
+    [_priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
+    [_priceAskingLabel setTextColor:[UIColor grayColor]];
+    [_priceAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [self.view addSubview:_priceAskingLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addOfferedPriceTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, startingYPos + 75, WINSIZE.width - 80, 60)];
-    offeredPriceTextField.minimumFontSize = 15;
-    [offeredPriceTextField setTextColor:[UIColor grayColor]];
-    [offeredPriceTextField setText:currOfferedPrice];
-    [offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
-    [offeredPriceTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:30]];
-    [offeredPriceTextField setPlaceholder:wantData.demandedPrice];
-    [offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-    offeredPriceTextField.delegate = self;
-    offeredPriceTextField.tag = 103;
-    offeredPriceTextField.inputView = ({
+    _offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, startingYPos + 75, WINSIZE.width - 80, 60)];
+    _offeredPriceTextField.minimumFontSize = 15;
+    [_offeredPriceTextField setText:_offerData.offeredPrice];
+    [_offeredPriceTextField setTextColor:[UIColor grayColor]];
+    [_offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
+    [_offeredPriceTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:30]];
+    [_offeredPriceTextField setPlaceholder:_originalDemandedPrice];
+    [_offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    _offeredPriceTextField.delegate = self;
+    _offeredPriceTextField.tag = 103;
+    _offeredPriceTextField.inputView = ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
         //
@@ -116,47 +117,47 @@
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad;
     });
-    [self.view addSubview:offeredPriceTextField];
+    [self.view addSubview:_offeredPriceTextField];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addDeliveryAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 140, WINSIZE.width - 40, 20)];
-    deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
-    [deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
-    [deliveryAskingLabel setTextColor:[UIColor grayColor]];
-    [deliveryAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
-    [self.view addSubview:deliveryAskingLabel];
+    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 140, WINSIZE.width - 40, 20)];
+    _deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
+    [_deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
+    [_deliveryAskingLabel setTextColor:[UIColor grayColor]];
+    [_deliveryAskingLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [self.view addSubview:_deliveryAskingLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addOfferedDeliveryTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, startingYPos + 175, WINSIZE.width - 120, 40)];
-    offeredDeliveryTextField.minimumFontSize = 15;
-    [offeredDeliveryTextField setTextColor:[UIColor grayColor]];
-    [offeredDeliveryTextField setText:currOfferedDelivery];
-    [offeredDeliveryTextField setTextAlignment:NSTextAlignmentCenter];
-    [offeredDeliveryTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:25]];
-    [offeredDeliveryTextField setPlaceholder:@"1 week"];
-    offeredDeliveryTextField.delegate = self;
-    [offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:offeredDeliveryTextField];
+    _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, startingYPos + 175, WINSIZE.width - 120, 40)];
+    _offeredDeliveryTextField.minimumFontSize = 15;
+    [_offeredDeliveryTextField setTextColor:[UIColor grayColor]];
+    [_offeredDeliveryTextField setText:_offerData.deliveryTime];
+    [_offeredDeliveryTextField setTextAlignment:NSTextAlignmentCenter];
+    [_offeredDeliveryTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:25]];
+    [_offeredDeliveryTextField setPlaceholder:@"1 week"];
+    _offeredDeliveryTextField.delegate = self;
+    [_offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    [self.view addSubview:_offeredDeliveryTextField];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addInstructionLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 230, WINSIZE.width - 40, 20)];
-    instructionLabel.textAlignment = NSTextAlignmentCenter;
-    [instructionLabel setText:@"Tap to change"];
-    [instructionLabel setTextColor:[UIColor grayColor]];
-    [instructionLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
-    [self.view addSubview:instructionLabel];
+    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 230, WINSIZE.width - 40, 20)];
+    _instructionLabel.textAlignment = NSTextAlignmentCenter;
+    [_instructionLabel setText:@"Tap to change"];
+    [_instructionLabel setTextColor:[UIColor grayColor]];
+    [_instructionLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [self.view addSubview:_instructionLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -171,8 +172,8 @@
 - (void) addActivityIndicatorView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    activityLogin = [[UIActivityIndicatorView alloc] init];
-    activityLogin.frame = CGRectMake(WINSIZE.width/2 - 25, WINSIZE.height/2 - 25, 50, 50);
+    _activityLogin = [[UIActivityIndicatorView alloc] init];
+    _activityLogin.frame = CGRectMake(WINSIZE.width/2 - 25, WINSIZE.height/2 - 25, 50, 50);
     [self.view addSubview:self.activityLogin];
 }
 
@@ -189,27 +190,24 @@
 - (void) submitButtonClickedHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [activityLogin startAnimating];
+    [_activityLogin startAnimating];
     
-    OfferData *offerData = [[OfferData alloc] init];
-    offerData.sellerID = [[PFUser currentUser] objectId];
-    offerData.itemID = wantData.itemID;
-    offerData.offeredPrice = offeredPriceTextField.text;
-    offerData.deliveryTime = offeredDeliveryTextField.text;
+    _offerData.offeredPrice = _offeredPriceTextField.text;
+    _offerData.deliveryTime = _offeredDeliveryTextField.text;
     
-    if (offerData.offeredPrice == nil) {
-        offerData.offeredPrice = wantData.demandedPrice;
+    if (_offerData.offeredPrice == nil) {
+        _offerData.offeredPrice = _originalDemandedPrice;
     }
     
-    if (offerData.deliveryTime == nil) {
-        offerData.deliveryTime = @"";
+    if (_offerData.deliveryTime == nil) {
+        _offerData.deliveryTime = @"";
     }
     
-    [[offerData getPFObjectWithClassName:@"OfferedWant"] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        [activityLogin stopAnimating];
+    [[_offerData getPFObjectWithClassName:@"OfferedWant"] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        [_activityLogin stopAnimating];
         
         if (!error) {
-            [delegate buyersOrSellersOfferViewController:self didOfferForItem:[offerData getPFObjectWithClassName:@"OfferedWant"]];
+            [_delegate buyersOrSellersOfferViewController:self didOfferForItem:[_offerData getPFObjectWithClassName:@"OfferedWant"]];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -268,7 +266,7 @@
 - (void) priceTextFieldDidChange
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [offeredPriceTextField setText:[Utilities formatPriceText:offeredPriceTextField.text]];
+    [_offeredPriceTextField setText:[Utilities formatPriceText:_offeredPriceTextField.text]];
 }
 
 #pragma mark - APNumberPad
@@ -277,8 +275,8 @@
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSRange range = {[[offeredPriceTextField text] length], 1};
-    if ([self textField:offeredPriceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
+    NSRange range = {[[_offeredPriceTextField text] length], 1};
+    if ([self textField:_offeredPriceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
         [textInput insertText:DOT_CHARACTER];
 }
 

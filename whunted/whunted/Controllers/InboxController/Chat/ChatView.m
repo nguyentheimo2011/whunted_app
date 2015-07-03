@@ -34,6 +34,8 @@
 
 #import "ChatView.h"
 
+#import "OfferData.h"
+
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
 {
@@ -65,6 +67,7 @@
 @synthesize user2Username;
 @synthesize buyerID = _buyerID;
 @synthesize sellerID = _sellerID;
+@synthesize itemID = _itemID;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -171,7 +174,7 @@
     makingOfferButton.borderColor = FLAT_BLUE_COLOR;
     makingOfferButton.bgColor = FLAT_BLUE_COLOR;
     makingOfferButton.titleColor = [UIColor whiteColor];
-    [makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEvent) forControlEvents:UIControlEventTouchUpInside];
+    [makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEventHanlder) forControlEvents:UIControlEventTouchUpInside];
     [background addSubview:makingOfferButton];
     
     // Only seller can offer at the beginning
@@ -199,10 +202,12 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) makingOfferButtonTapEvent
+- (void) makingOfferButtonTapEventHanlder
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    OfferData *offerData = [[OfferData alloc] init];
+    offerData.itemID = _itemID;
+//    offerData.buyerID = 
 }
 
 #pragma mark - Backend methods

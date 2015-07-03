@@ -54,6 +54,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFObject *pfObj = [PFObject objectWithClassName:className];
+    
+    if (_objectID)
+        pfObj.objectId = _objectID;
+    
     pfObj[PF_ITEM_ID] = _itemID;
     pfObj[PF_BUYER_ID] = _buyerID;
     pfObj[PF_SELLER_ID] = _sellerID;

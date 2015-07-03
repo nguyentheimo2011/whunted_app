@@ -354,12 +354,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
-    sellersOfferVC.wantData = wantData;
     sellersOfferVC.delegate = self;
     
     if (myCurrOffer) {
-        sellersOfferVC.currOfferedPrice = myCurrOffer.offeredPrice;
-        sellersOfferVC.currOfferedDelivery = myCurrOffer.deliveryTime;
+//        sellersOfferVC.currOfferedPrice = myCurrOffer.offeredPrice;
+//        sellersOfferVC.currOfferedDelivery = myCurrOffer.deliveryTime;
     }
     
     [self.navigationController pushViewController:sellersOfferVC animated:YES];

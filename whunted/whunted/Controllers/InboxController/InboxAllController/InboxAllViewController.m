@@ -162,6 +162,7 @@
     [chatView setUser2Username:recent[@"description"]];
     [chatView setSellerID:[(NSArray *) recent[@"members"] objectAtIndex:0]];
     [chatView setBuyerID:[(NSArray *) recent[@"members"] objectAtIndex:1]];
+    [chatView setItemID:recent[@"itemID"]];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

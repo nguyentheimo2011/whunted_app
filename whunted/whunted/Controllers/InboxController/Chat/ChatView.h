@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *user2Username;
 @property (nonatomic, strong) NSString *buyerID;
 @property (nonatomic, strong) NSString *sellerID;
+@property (nonatomic, strong) NSString *itemID;
 
 - (id)initWith:(NSString *)groupId_;
 
