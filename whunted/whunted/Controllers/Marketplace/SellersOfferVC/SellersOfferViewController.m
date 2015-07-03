@@ -40,9 +40,11 @@
 @synthesize currOfferedPrice;
 @synthesize currOfferedDelivery;
 
-- (void)viewDidLoad {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
     startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;;
@@ -57,13 +59,19 @@
     [self addActivityIndicatorView];
 }
 
-- (void)didReceiveMemoryWarning {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - UI Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addSummaryLabel
+//------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *text = [NSString stringWithFormat:@"%@ %@ %@", wantData.buyer.objectId, NSLocalizedString(@"wants to buy at", nil), wantData.demandedPrice];
     summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
@@ -74,7 +82,9 @@
     [self.view addSubview:summaryLabel];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addPriceAskingLabel
+//------------------------------------------------------------------------------------------------------------------------------
 {
     priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 45, WINSIZE.width - 40, 20)];
     priceAskingLabel.textAlignment = NSTextAlignmentCenter;
@@ -84,7 +94,9 @@
     [self.view addSubview:priceAskingLabel];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addOfferedPriceTextField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, startingYPos + 75, WINSIZE.width - 80, 60)];
     offeredPriceTextField.minimumFontSize = 15;
@@ -107,7 +119,9 @@
     [self.view addSubview:offeredPriceTextField];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addDeliveryAskingLabel
+//------------------------------------------------------------------------------------------------------------------------------
 {
     deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 140, WINSIZE.width - 40, 20)];
     deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
@@ -117,7 +131,9 @@
     [self.view addSubview:deliveryAskingLabel];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addOfferedDeliveryTextField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, startingYPos + 175, WINSIZE.width - 120, 40)];
     offeredDeliveryTextField.minimumFontSize = 15;
@@ -131,7 +147,9 @@
     [self.view addSubview:offeredDeliveryTextField];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addInstructionLabel
+//------------------------------------------------------------------------------------------------------------------------------
 {
     instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 230, WINSIZE.width - 40, 20)];
     instructionLabel.textAlignment = NSTextAlignmentCenter;
@@ -141,13 +159,17 @@
     [self.view addSubview:instructionLabel];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClickedHandler)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submitButtonClickedHandler)];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addActivityIndicatorView
+//------------------------------------------------------------------------------------------------------------------------------
 {
     activityLogin = [[UIActivityIndicatorView alloc] init];
     activityLogin.frame = CGRectMake(WINSIZE.width/2 - 25, WINSIZE.height/2 - 25, 50, 50);
@@ -155,12 +177,17 @@
 }
 
 #pragma mark - Event Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) cancelButtonClickedHandler
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) submitButtonClickedHandler
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [activityLogin startAnimating];
     
@@ -190,10 +217,12 @@
     }];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - TextField delegate methods
+
 //------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//------------------------------------------------------------------------------------------------------------------------------
+{
     // Prevent crashing undo bug – see note below.
     
     if (textField.tag == 103) {
@@ -213,7 +242,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidBeginEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (textField.tag == 103) {
         if ([textField.text length] == 0) {
@@ -223,7 +254,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidEndEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (textField.tag == 103) {
         NSString *text = [Utilities removeLastDotCharacterIfNeeded:textField.text];
@@ -231,15 +264,19 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) priceTextFieldDidChange
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [offeredPriceTextField setText:[Utilities formatPriceText:offeredPriceTextField.text]];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - APNumberPad
+
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput {
+- (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput
+//------------------------------------------------------------------------------------------------------------------------------
+{
     NSRange range = {[[offeredPriceTextField text] length], 1};
     if ([self textField:offeredPriceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
         [textInput insertText:DOT_CHARACTER];

@@ -342,7 +342,7 @@
         else
             [secondBottomButton setTitle:NSLocalizedString(@"Offer your price", nil) forState:UIControlStateNormal];
         [secondBottomButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
-        [secondBottomButton addTarget:self action:@selector(sellerOfferButtonClickedHandler) forControlEvents:UIControlEventTouchUpInside];
+        [secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:secondBottomButton];
     }
 }
@@ -350,7 +350,7 @@
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) sellerOfferButtonClickedHandler
+- (void) sellerOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     SellersOfferViewController *sellersOfferVC = [[SellersOfferViewController alloc] init];

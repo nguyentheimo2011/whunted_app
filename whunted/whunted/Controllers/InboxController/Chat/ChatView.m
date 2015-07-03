@@ -171,12 +171,15 @@
     makingOfferButton.borderColor = FLAT_BLUE_COLOR;
     makingOfferButton.bgColor = FLAT_BLUE_COLOR;
     makingOfferButton.titleColor = [UIColor whiteColor];
+    [makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEvent) forControlEvents:UIControlEventTouchUpInside];
     [background addSubview:makingOfferButton];
     
     // Only seller can offer at the beginning
     if ([[PFUser currentUser].objectId isEqualToString:_buyerID])
         [background setHidden:YES];
 }
+
+#pragma mark - Event Handling
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) receiveWillUploadMessageNotification: (NSNotification *) notification
@@ -193,6 +196,13 @@
     NSString *messageID = (NSString *) notification.object;
     messageStatusDict[messageID] = @YES;
     [self.collectionView reloadData];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) makingOfferButtonTapEvent
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 #pragma mark - Backend methods

@@ -75,7 +75,9 @@
 #define     PF_ITEM_ID                          @"itemID"
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_BUYER_ID                         @"buyerID"
 #define     PF_SELLER_ID                        @"sellerID"
+#define     PF_INITIATOR_ID                     @"initiatorID"
 #define     PF_OFFERED_PRICE                    @"offeredPrice"
 #define     PF_DELIVERY_TIME                    @"deliveryTime"
 

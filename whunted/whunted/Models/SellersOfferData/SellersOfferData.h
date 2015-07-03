@@ -12,12 +12,14 @@
 @interface SellersOfferData : NSObject
 
 @property (nonatomic, strong) NSString *objectID;
-@property (nonatomic, strong) NSString *sellerID;
 @property (nonatomic, strong) NSString *itemID;
+@property (nonatomic, strong) NSString *buyerID;
+@property (nonatomic, strong) NSString *sellerID;
+@property (nonatomic, strong) NSString *initiatorID;
 @property (nonatomic, strong) NSString *offeredPrice;
 @property (nonatomic, strong) NSString *deliveryTime;
 
-- (id) initWithPFObject: (PFObject *) pfObj;
-- (PFObject *) getPFObjectWithClassName: (NSString *) className;
+- (id)          initWithPFObject: (PFObject *) pfObj;
+- (PFObject *)  getPFObjectWithClassName: (NSString *) className;
 
 @end
