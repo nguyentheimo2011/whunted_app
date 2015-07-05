@@ -374,7 +374,13 @@
         if (!error) {
             [user pinInBackground];
             [[PersistedCache sharedCache] setImage:[itemImageList objectAtIndex:0] forKey:wantData.itemID];
-            NSString *groupId = StartPrivateChat(user1, user2, wantData.itemID, wantData.itemName);
+            
+            ChatAdditionalData *additionalData = [[ChatAdditionalData alloc] init];
+            additionalData.itemID = wantData.itemID;
+            additionalData.itemName = wantData.itemName;
+            additionalData.originalDemandedPrice = wantData.demandedPrice;
+            additionalData.buyerID = user2.objectId;
+            NSString *groupId = StartPrivateChat(user1, user2, additionalData);
             [self actionChat:groupId andBuyerID:user2.objectId];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -388,7 +394,6 @@
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
     [chatView setUser2Username:wantData.buyer[PF_USER_USERNAME]];
-    [chatView setBuyerID:buyerID];
     [chatView setSellerID:[PFUser currentUser].objectId];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];

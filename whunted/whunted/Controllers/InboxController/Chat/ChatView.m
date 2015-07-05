@@ -67,7 +67,7 @@
 @synthesize user2Username;
 @synthesize buyerID = _buyerID;
 @synthesize sellerID = _sellerID;
-@synthesize itemID = _itemID;
+@synthesize additionalData = _additionalData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_

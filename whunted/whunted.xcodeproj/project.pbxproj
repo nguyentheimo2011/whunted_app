@@ -73,6 +73,7 @@
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
 		E97A95241B4639D3003796DD /* OfferData.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95231B4639D3003796DD /* OfferData.m */; };
 		E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */; };
+		E97A952C1B490E3F003796DD /* ChatAdditionalData.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A952B1B490E3F003796DD /* ChatAdditionalData.m */; };
 		E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE4891B07745A0027C5FA /* squareplus@1x.png */; };
 		E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48B1B07745A0027C5FA /* squareplus@3x.png */; };
 		E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97CE48F1B07876C0027C5FA /* squareplus@2x.png */; };
@@ -271,6 +272,8 @@
 		E97A95231B4639D3003796DD /* OfferData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferData.m; path = Models/OfferData/OfferData.m; sourceTree = "<group>"; };
 		E97A95251B463BCF003796DD /* BuyersOrSellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyersOrSellersOfferViewController.h; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.h; sourceTree = "<group>"; };
 		E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyersOrSellersOfferViewController.m; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.m; sourceTree = "<group>"; };
+		E97A952A1B490E3F003796DD /* ChatAdditionalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatAdditionalData.h; path = Models/ChatAdditionalData/ChatAdditionalData.h; sourceTree = "<group>"; };
+		E97A952B1B490E3F003796DD /* ChatAdditionalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatAdditionalData.m; path = Models/ChatAdditionalData/ChatAdditionalData.m; sourceTree = "<group>"; };
 		E97CE4891B07745A0027C5FA /* squareplus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@1x.png"; path = "Resources/Want Details/squareplus@1x.png"; sourceTree = "<group>"; };
 		E97CE48B1B07745A0027C5FA /* squareplus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@3x.png"; path = "Resources/Want Details/squareplus@3x.png"; sourceTree = "<group>"; };
 		E97CE48F1B07876C0027C5FA /* squareplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "squareplus@2x.png"; path = "Resources/Want Details/squareplus@2x.png"; sourceTree = "<group>"; };
@@ -765,6 +768,7 @@
 		E94D183D1AF9FB2300E31B01 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E97A95281B490DBB003796DD /* ChatAdditionalData */,
 				E9FB2E9B1B20482500F8C435 /* OfferData */,
 				E9FB2E971B20480B00F8C435 /* WantData */,
 			);
@@ -871,6 +875,15 @@
 				E97A95191B454072003796DD /* chat_pictures.png */,
 			);
 			name = Chat;
+			sourceTree = "<group>";
+		};
+		E97A95281B490DBB003796DD /* ChatAdditionalData */ = {
+			isa = PBXGroup;
+			children = (
+				E97A952A1B490E3F003796DD /* ChatAdditionalData.h */,
+				E97A952B1B490E3F003796DD /* ChatAdditionalData.m */,
+			);
+			name = ChatAdditionalData;
 			sourceTree = "<group>";
 		};
 		E97CE49D1B09ECA00027C5FA /* ImageGetterPopupVC */ = {
@@ -1504,6 +1517,7 @@
 				E9A07C281B31660B00904DE9 /* push.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
+				E97A952C1B490E3F003796DD /* ChatAdditionalData.m in Sources */,
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
