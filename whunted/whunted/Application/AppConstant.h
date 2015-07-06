@@ -78,6 +78,7 @@
 #define     PF_BUYER_ID                         @"buyerID"
 #define     PF_SELLER_ID                        @"sellerID"
 #define     PF_INITIATOR_ID                     @"initiatorID"
+#define     PF_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
 #define     PF_OFFERED_PRICE                    @"offeredPrice"
 #define     PF_DELIVERY_TIME                    @"deliveryTime"
 

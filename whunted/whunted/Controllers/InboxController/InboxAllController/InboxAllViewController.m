@@ -160,9 +160,13 @@
     NSDictionary *recent = _recentMessages[indexPath.row];
     ChatView *chatView = [[ChatView alloc] initWith:recent[@"groupId"]];
     [chatView setUser2Username:recent[@"description"]];
-    [chatView setSellerID:[(NSArray *) recent[@"members"] objectAtIndex:0]];
-    [chatView setBuyerID:[(NSArray *) recent[@"members"] objectAtIndex:1]];
-    [chatView setItemID:recent[@"itemID"]];
+    
+    OfferData *offerData = [[OfferData alloc] init];
+    offerData.sellerID = [(NSArray *) recent[@"members"] objectAtIndex:0];
+    offerData.buyerID = [(NSArray *) recent[@"members"] objectAtIndex:1];
+    offerData.itemID = recent[@"itemID"];
+    [chatView setOfferData:offerData];
+    
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

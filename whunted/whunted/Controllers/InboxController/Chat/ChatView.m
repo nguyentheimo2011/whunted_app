@@ -65,9 +65,7 @@
 @implementation ChatView
 
 @synthesize user2Username;
-@synthesize buyerID = _buyerID;
-@synthesize sellerID = _sellerID;
-@synthesize additionalData = _additionalData;
+@synthesize offerData = _offerData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -178,7 +176,7 @@
     [background addSubview:makingOfferButton];
     
     // Only seller can offer at the beginning
-    if ([[PFUser currentUser].objectId isEqualToString:_buyerID])
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.buyerID])
         [background setHidden:YES];
 }
 
@@ -206,8 +204,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     OfferData *offerData = [[OfferData alloc] init];
-    offerData.itemID = _itemID;
-//    offerData.buyerID = 
+     
 }
 
 #pragma mark - Backend methods

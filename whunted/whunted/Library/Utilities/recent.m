@@ -20,24 +20,24 @@
 #import "recent.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
-NSString* StartPrivateChat(PFUser *user1, PFUser *user2, ChatAdditionalData *additionalData)
+NSString* StartPrivateChat(PFUser *user1, PFUser *user2, OfferData *offerData)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	NSString *id1 = user1.objectId;
 	NSString *id2 = user2.objectId;
 	
-	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", additionalData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", additionalData.itemID, id2, id1];
+	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id2, id1];
 	
 	NSArray *members = @[user1.objectId, user2.objectId];
 	
-	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2, additionalData);
-	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1, additionalData);
+	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2, offerData);
+	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1, offerData);
 	
 	return groupId;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, ChatAdditionalData *additionalData)
+void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -52,12 +52,12 @@ void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSStri
 				if ([recent[@"userId"] isEqualToString:user.objectId]) create = NO;
 			}
 		}
-		if (create) CreateRecentItem2(user, groupId, members, description, profile, additionalData);
+		if (create) CreateRecentItem2(user, groupId, members, description, profile, offerData);
 	}];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, ChatAdditionalData *additionalData)
+void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -68,7 +68,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	NSString *date = Date2String([NSDate date]);
 	
 	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
-                             @"lastUser":lastUser.objectId, @"lastMessage":@"", @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_ITEM_ID:additionalData.itemID, PF_ITEM_NAME:additionalData.itemName, PF_ITEM_DEMANDED_PRICE:additionalData.originalDemandedPrice};
+                             @"lastUser":lastUser.objectId, @"lastMessage":@"", @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ITEM_DEMANDED_PRICE:offerData.originalDemandedPrice};
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{

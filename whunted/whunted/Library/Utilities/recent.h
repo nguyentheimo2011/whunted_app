@@ -10,17 +10,17 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
-#import "ChatAdditionalData.h"
+#import "OfferData.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
-NSString*       StartPrivateChat        (PFUser *user1, PFUser *user2, ChatAdditionalData *additionalData);
+NSString*       StartPrivateChat        (PFUser *user1, PFUser *user2, OfferData *offerData);
 NSString*		StartMultipleChat		(NSMutableArray *users);
 
 void			StartGroupChat			(PFObject *group, NSMutableArray *users);
 
 //------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, ChatAdditionalData *additionalData);
-void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, ChatAdditionalData *additionalData);
+void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData);
+void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *lastMessage);
