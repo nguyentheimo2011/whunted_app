@@ -398,6 +398,7 @@
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
     [chatView setUser2Username:user2[PF_USER_USERNAME]];
+    [chatView setOfferData:offerData];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }

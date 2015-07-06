@@ -35,6 +35,7 @@
 #import "ChatView.h"
 
 #import "OfferData.h"
+#import "BuyersOrSellersOfferViewController.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -72,7 +73,7 @@
 
 @implementation ChatView
 
-@synthesize user2Username;
+@synthesize user2Username = _user2Username;
 @synthesize offerData = _offerData;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -89,7 +90,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.navigationItem.title = user2Username;
+	self.navigationItem.title = _user2Username;
     [self customizeNavigationBar];
 	
 	items = [[NSMutableArray alloc] init];
@@ -363,8 +364,16 @@
 - (void) makingOfferButtonTapEventHanlder
 //------------------------------------------------------------------------------------------------------------------------------
 {
-//    OfferData *offerData = [[OfferData alloc] init];
+    BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
+    [offerVC setOfferData:_offerData];
     
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) { // I am the seller
+        [offerVC setBuyerName:_user2Username];
+    } else { // I am the buyer
+        [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
+    }
+    
+    [self.navigationController pushViewController:offerVC animated:YES];
 }
 
 #pragma mark - Backend methods

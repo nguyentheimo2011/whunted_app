@@ -28,7 +28,6 @@
 
 @property (nonatomic, strong) OfferData *offerData;
 @property (nonatomic, strong) NSString  *buyerName;
-@property (nonatomic, strong) NSString  *originalDemandedPrice;
 @property (nonatomic)         BOOL      isEditingOffer;
 
 @end

@@ -30,7 +30,6 @@
 
 @synthesize offerData = _offerData;
 @synthesize buyerName = _buyerName;
-@synthesize originalDemandedPrice = _originalDemandedPrice;
 @synthesize isEditingOffer = _isEditingOffer;
 @synthesize summaryLabel = _summaryLabel;
 @synthesize priceAskingLabel = _priceAskingLabel;
@@ -74,7 +73,7 @@
 - (void) addSummaryLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _originalDemandedPrice];
+    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _offerData.originalDemandedPrice];
     _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
@@ -105,7 +104,7 @@
     [_offeredPriceTextField setTextColor:[UIColor grayColor]];
     [_offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
     [_offeredPriceTextField setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:30]];
-    [_offeredPriceTextField setPlaceholder:_originalDemandedPrice];
+    [_offeredPriceTextField setPlaceholder:_offerData.originalDemandedPrice];
     [_offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     _offeredPriceTextField.delegate = self;
     _offeredPriceTextField.tag = 103;
@@ -196,7 +195,7 @@
     _offerData.deliveryTime = _offeredDeliveryTextField.text;
     
     if (_offerData.offeredPrice == nil) {
-        _offerData.offeredPrice = _originalDemandedPrice;
+        _offerData.offeredPrice = _offerData.originalDemandedPrice;
     }
     
     if (_offerData.deliveryTime == nil) {
