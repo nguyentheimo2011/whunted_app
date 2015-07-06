@@ -93,6 +93,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_OFFER_STATUS_NOT_OFFERED         @"notOffered"
 #define     PF_OFFER_STATUS_OFFERED             @"offered"
+#define     PF_OFFER_STATUS_ACCEPTED            @"accepted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"

@@ -102,6 +102,7 @@
 	self.senderDisplayName = user[PF_USER_USERNAME];
     
     [self addTopButtons];
+    [self adjustButtonsVisibility];
 	
 	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
@@ -174,13 +175,71 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self addBackGroundForButtons];
-//    [self addMakingOfferButton];
-//    [self addLeavingFeedbackButton];
-//    [self addMakingAnotherOfferButton];
-//    [self addDecliningButton];
-//    [self addAcceptingButton];
+    [self addMakingOfferButton];
+    [self addLeavingFeedbackButton];
+    [self addMakingAnotherOfferButton];
+    [self addDecliningButton];
+    [self addAcceptingButton];
     [self addEdittingOfferButton];
     [self addCancellingButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) adjustButtonsVisibility
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_offerData.initiatorID.length > 0) {
+        if ([_offerData.offerStatus isEqualToString:PF_OFFER_STATUS_ACCEPTED]) {
+            // Offer was accepted
+            [_makingOfferButton setHidden:YES];
+            
+            [_leavingFeedbackButton setHidden:NO];
+            
+            [_makingAnotherOfferButton setHidden:YES];
+            [_decliningButton setHidden:YES];
+            [_acceptingButton setHidden:YES];
+            
+            [_edittingOfferButton setHidden:YES];
+            [_cancellingOfferButton setHidden:YES];
+        } else {
+            if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId]) {
+                // Offer is made by me
+                [_makingOfferButton setHidden:YES];
+                
+                [_leavingFeedbackButton setHidden:YES];
+                
+                [_makingAnotherOfferButton setHidden:YES];
+                [_decliningButton setHidden:YES];
+                [_acceptingButton setHidden:YES];
+                
+                [_edittingOfferButton setHidden:NO];
+                [_cancellingOfferButton setHidden:NO];
+            } else {
+                [_makingOfferButton setHidden:YES];
+                
+                [_leavingFeedbackButton setHidden:YES];
+                
+                [_makingAnotherOfferButton setHidden:NO];
+                [_decliningButton setHidden:NO];
+                [_acceptingButton setHidden:NO];
+                
+                [_edittingOfferButton setHidden:YES];
+                [_cancellingOfferButton setHidden:YES];
+            }
+        }
+    } else {
+        // No one has made any offers yet
+        [_makingOfferButton setHidden:NO];
+        
+        [_leavingFeedbackButton setHidden:YES];
+        
+        [_makingAnotherOfferButton setHidden:YES];
+        [_decliningButton setHidden:YES];
+        [_acceptingButton setHidden:YES];
+        
+        [_edittingOfferButton setHidden:YES];
+        [_cancellingOfferButton setHidden:YES];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
