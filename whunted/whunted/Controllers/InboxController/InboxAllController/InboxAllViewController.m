@@ -162,9 +162,16 @@
     [chatView setUser2Username:recent[@"description"]];
     
     OfferData *offerData = [[OfferData alloc] init];
+    offerData.itemID = recent[PF_ITEM_ID];
+    offerData.itemName = recent[PF_ITEM_NAME];
     offerData.sellerID = [(NSArray *) recent[@"members"] objectAtIndex:0];
     offerData.buyerID = [(NSArray *) recent[@"members"] objectAtIndex:1];
-    offerData.itemID = recent[@"itemID"];
+    offerData.initiatorID = recent[PF_INITIATOR_ID];
+    offerData.originalDemandedPrice = recent[PF_ORIGINAL_DEMANDED_PRICE];
+    offerData.offeredPrice = recent[PF_OFFERED_PRICE];
+    offerData.deliveryTime = recent[PF_DELIVERY_TIME];
+    offerData.offerStatus = recent[PF_OFFER_STATUS];
+    
     [chatView setOfferData:offerData];
     
     chatView.hidesBottomBarWhenPushed = YES;

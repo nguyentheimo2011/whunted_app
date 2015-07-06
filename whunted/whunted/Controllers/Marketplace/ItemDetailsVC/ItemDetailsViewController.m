@@ -42,8 +42,7 @@
 @synthesize paymentMethodLabel;
 @synthesize sellersLabel;
 @synthesize secondBottomButton;
-@synthesize offeredByMe;
-@synthesize myCurrOffer;
+@synthesize currOffer = _currOffer;
 @synthesize delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -337,7 +336,7 @@
         [self.view addSubview:secondBottomButton];
     } else {
         [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        if (offeredByMe)
+        if (_currOffer)
             [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
         else
             [secondBottomButton setTitle:NSLocalizedString(@"Offer your price", nil) forState:UIControlStateNormal];
@@ -356,11 +355,6 @@
     BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
     sellersOfferVC.delegate = self;
     
-    if (myCurrOffer) {
-//        sellersOfferVC.currOfferedPrice = myCurrOffer.offeredPrice;
-//        sellersOfferVC.currOfferedDelivery = myCurrOffer.deliveryTime;
-    }
-    
     [self.navigationController pushViewController:sellersOfferVC animated:YES];
 }
 
@@ -372,16 +366,26 @@
     PFUser *user2 = [wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
-            [user pinInBackground];
             [[PersistedCache sharedCache] setImage:[itemImageList objectAtIndex:0] forKey:wantData.itemID];
             
-            OfferData *offerData = [[OfferData alloc] init];
-            offerData.itemID = wantData.itemID;
-            offerData.itemName = wantData.itemName;
-            offerData.originalDemandedPrice = wantData.demandedPrice;
-            offerData.buyerID = user2.objectId;
-            NSString *groupId = StartPrivateChat(user1, user2, offerData);
-            [self actionChat:groupId andBuyerID:user2.objectId];
+            if (_currOffer) {
+                NSString *groupId = StartPrivateChat(user1, user2, _currOffer);
+                [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
+            } else {
+                OfferData *offerData = [[OfferData alloc] init];
+                offerData.itemID = wantData.itemID;
+                offerData.itemName = wantData.itemName;
+                offerData.originalDemandedPrice = wantData.demandedPrice;
+                offerData.buyerID = user2.objectId;
+                offerData.sellerID = user1.objectId;
+                offerData.initiatorID = @"";
+                offerData.offeredPrice = @"";
+                offerData.deliveryTime = @"";
+                offerData.offerStatus = PF_OFFER_STATUS_OFFERED;
+                
+                NSString *groupId = StartPrivateChat(user1, user2, offerData);
+                [self actionChat:groupId withUser2:user2 andOfferData:offerData];
+            }
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
@@ -389,11 +393,11 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)actionChat:(NSString *)groupId andBuyerID: (NSString *) buyerID
+- (void)actionChat:(NSString *)groupId withUser2: (PFUser *) user2 andOfferData: (OfferData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
-    [chatView setUser2Username:wantData.buyer[PF_USER_USERNAME]];
+    [chatView setUser2Username:user2[PF_USER_USERNAME]];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
 }
@@ -468,8 +472,7 @@
 - (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOfferForItem:(PFObject *)object
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    offeredByMe = YES;
-    myCurrOffer = [[OfferData alloc] initWithPFObject:object];
+    _currOffer = [[OfferData alloc] initWithPFObject:object];
     [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     [delegate itemDetailsViewController:self didCompleteOffer:YES];
 }

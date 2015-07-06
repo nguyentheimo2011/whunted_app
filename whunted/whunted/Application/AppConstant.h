@@ -81,6 +81,8 @@
 #define     PF_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
 #define     PF_OFFERED_PRICE                    @"offeredPrice"
 #define     PF_DELIVERY_TIME                    @"deliveryTime"
+#define     PF_OFFER_STATUS                     @"offerStatus"
+#define     PF_OFFER_STATUS_OFFERED             @"offered"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"

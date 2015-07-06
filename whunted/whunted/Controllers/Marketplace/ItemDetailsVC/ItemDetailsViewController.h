@@ -37,7 +37,6 @@
 @property (nonatomic, strong) UILabel               *paymentMethodLabel;
 @property (nonatomic, strong) UILabel               *sellersLabel;
 @property (nonatomic, strong) UIButton              *secondBottomButton;
-@property (nonatomic)         BOOL                  offeredByMe;
-@property (nonatomic)         OfferData             *myCurrOffer;
+@property (nonatomic)         OfferData             *currOffer;
 
 @end

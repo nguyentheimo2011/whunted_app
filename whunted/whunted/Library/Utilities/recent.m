@@ -68,7 +68,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	NSString *date = Date2String([NSDate date]);
 	
 	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
-                             @"lastUser":lastUser.objectId, @"lastMessage":@"", @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ITEM_DEMANDED_PRICE:offerData.originalDemandedPrice};
+                             @"lastUser":lastUser.objectId, @"lastMessage":@"", @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ITEM_DEMANDED_PRICE:offerData.originalDemandedPrice, PF_INITIATOR_ID:offerData.initiatorID, PF_OFFERED_PRICE:offerData.offeredPrice, PF_DELIVERY_TIME:offerData.deliveryTime, PF_OFFER_STATUS:offerData.offerStatus};
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{

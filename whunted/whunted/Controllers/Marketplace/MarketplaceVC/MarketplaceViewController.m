@@ -148,11 +148,8 @@
     [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
         if (!error) {
             if (object) {
-                itemDetailsVC.offeredByMe = YES;
-                itemDetailsVC.myCurrOffer = [[OfferData alloc] initWithPFObject:object];
+                itemDetailsVC.currOffer = [[OfferData alloc] initWithPFObject:object];
             }
-            else
-                itemDetailsVC.offeredByMe = NO;
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }

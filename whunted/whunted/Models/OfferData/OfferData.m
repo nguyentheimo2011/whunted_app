@@ -20,6 +20,7 @@
 @synthesize originalDemandedPrice = _originalDemandedPrice;
 @synthesize offeredPrice = _offeredPrice;
 @synthesize deliveryTime = _deliveryTime;
+@synthesize offerStatus = _offerStatus;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -48,6 +49,7 @@
         _originalDemandedPrice = pfObj[PF_ORIGINAL_DEMANDED_PRICE];
         _offeredPrice = pfObj[PF_OFFERED_PRICE];
         _deliveryTime = pfObj[PF_DELIVERY_TIME];
+        _offerStatus = pfObj[PF_OFFER_STATUS];
     }
     
     return self;
@@ -70,6 +72,7 @@
     pfObj[PF_ORIGINAL_DEMANDED_PRICE] = _originalDemandedPrice;
     pfObj[PF_OFFERED_PRICE] = _offeredPrice;
     pfObj[PF_DELIVERY_TIME] = _deliveryTime;
+    pfObj[PF_OFFER_STATUS] = _offerStatus;
     
     return pfObj;
 }
