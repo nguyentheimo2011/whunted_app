@@ -82,6 +82,9 @@
 #define     PF_OFFERED_PRICE                    @"offeredPrice"
 #define     PF_DELIVERY_TIME                    @"deliveryTime"
 #define     PF_OFFER_STATUS                     @"offerStatus"
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_OFFER_STATUS_NOT_OFFERED         @"notOffered"
 #define     PF_OFFER_STATUS_OFFERED             @"offered"
 
 //-----------------------------------------------------------------------------------------------------------------------------

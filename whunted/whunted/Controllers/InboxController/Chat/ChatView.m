@@ -157,6 +157,8 @@
     [background setBackgroundColor:LIGHTEST_GRAY_COLOR];
     [background setAlpha:0.98];
     [self.view addSubview:background];
+    
+    self.topContentAdditionalInset = 50;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
