@@ -10,6 +10,7 @@
 #import "AppConstant.h"
 #import "OfferData.h"
 #import "Utilities.h"
+#import "recent.h"
 
 @interface BuyersOrSellersOfferViewController ()
 
@@ -39,6 +40,7 @@
 @synthesize offeredDeliveryTextField = _offeredDeliveryTextField;
 @synthesize activityLogin = _activityLogin;
 @synthesize delegate = _delegate;
+@synthesize user2 = _user2;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -193,6 +195,8 @@
     
     _offerData.offeredPrice = _offeredPriceTextField.text;
     _offerData.deliveryTime = _offeredDeliveryTextField.text;
+    _offerData.initiatorID = [PFUser currentUser].objectId;
+    _offerData.offerStatus = PF_OFFER_STATUS_OFFERED;
     
     if (_offerData.offeredPrice == nil) {
         _offerData.offeredPrice = _offerData.originalDemandedPrice;
@@ -206,6 +210,17 @@
         [_activityLogin stopAnimating];
         
         if (!error) {
+            NSString *groupId;
+            if (_user2) {
+                groupId = StartPrivateChat([PFUser currentUser], _user2, _offerData);
+            } else {
+                NSString *id1 = _offerData.buyerID;
+                NSString *id2 = _offerData.sellerID;
+                
+                groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id2, id1];
+            }
+            
+            UpdateRecentOffer1(groupId, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
             [_delegate buyersOrSellersOfferViewController:self didOfferForItem:[_offerData getPFObjectWithClassName:PF_OFFER_CLASS]];
             [self.navigationController popViewControllerAnimated:YES];
         } else {

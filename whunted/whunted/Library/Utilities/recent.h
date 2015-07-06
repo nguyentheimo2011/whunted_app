@@ -27,6 +27,10 @@ void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *last
 void			UpdateRecentCounter2	(NSDictionary *recent, NSInteger amount, NSString *lastMessage);
 
 //------------------------------------------------------------------------------------------------------------------------------
+void            UpdateRecentOffer1      (NSString *groupId, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus);
+void            UpdateRecentOffer2      (NSDictionary *recent, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus);
+
+//------------------------------------------------------------------------------------------------------------------------------
 void			ClearRecentCounter1		(NSString *groupId);
 void			ClearRecentCounter2		(NSDictionary *recent);
 

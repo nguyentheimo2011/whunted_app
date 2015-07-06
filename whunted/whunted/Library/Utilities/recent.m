@@ -112,6 +112,40 @@ void UpdateRecentCounter2(NSDictionary *recent, NSInteger amount, NSString *last
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+void UpdateRecentOffer1(NSString *groupId, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
+    FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
+    [query observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
+     {
+         if (snapshot.value != [NSNull null])
+         {
+             for (NSDictionary *recent in [snapshot.value allValues])
+             {
+                 UpdateRecentOffer2(recent, initiatorID, offeredPrice, deliveryTime, offerStatus);
+             }
+         }
+     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+void UpdateRecentOffer2(NSDictionary *recent, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [PFUser currentUser];
+    NSString *date = Date2String([NSDate date]);
+    
+    Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
+    NSDictionary *values = @{@"lastUser":user.objectId, PF_INITIATOR_ID:user.objectId, PF_OFFERED_PRICE:offeredPrice, PF_DELIVERY_TIME:deliveryTime, PF_OFFER_STATUS:offerStatus, @"date":date};
+    [firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
+     {
+         if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");
+     }];
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------------
 void ClearRecentCounter1(NSString *groupId)
 //------------------------------------------------------------------------------------------------------------------------------
 {

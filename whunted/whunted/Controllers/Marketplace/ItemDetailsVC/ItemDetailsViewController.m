@@ -352,10 +352,34 @@
 - (void) sellerOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
-    sellersOfferVC.delegate = self;
-    
-    [self.navigationController pushViewController:sellersOfferVC animated:YES];
+    PFUser *user1 = [PFUser currentUser];
+    PFUser *user2 = [wantData buyer];
+    [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
+        if (!error) {
+            BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
+            sellersOfferVC.delegate = self;
+            sellersOfferVC.buyerName = user2[PF_USER_USERNAME];
+            sellersOfferVC.user2 = user2;
+            if (_currOffer) {
+                sellersOfferVC.offerData = _currOffer;
+            } else {
+                OfferData *offerData = [[OfferData alloc] init];
+                offerData.itemID = wantData.itemID;
+                offerData.itemName = wantData.itemName;
+                offerData.originalDemandedPrice = wantData.demandedPrice;
+                offerData.buyerID = user2.objectId;
+                offerData.sellerID = user1.objectId;
+                offerData.initiatorID = @"";
+                offerData.offeredPrice = @"";
+                offerData.deliveryTime = @"";
+                offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
+                sellersOfferVC.offerData = offerData;
+            }
+            [self.navigationController pushViewController:sellersOfferVC animated:YES];
+        } else {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

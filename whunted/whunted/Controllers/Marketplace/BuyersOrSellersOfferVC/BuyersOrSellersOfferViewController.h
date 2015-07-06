@@ -30,4 +30,6 @@
 @property (nonatomic, strong) NSString  *buyerName;
 @property (nonatomic)         BOOL      isEditingOffer;
 
+@property (nonatomic, strong) PFUser    *user2;
+
 @end
