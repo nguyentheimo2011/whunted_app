@@ -193,7 +193,7 @@
         [cell.sellersNumButton setTitle:@"0 seller" forState:UIControlStateNormal];
         cell.sellersNum = 0;
         [cell deactivateAcceptedStatusLabel];
-        PFQuery *query = [PFQuery queryWithClassName:@"OfferedWant"];
+        PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
         [query whereKey:@"itemID" equalTo:wantData.itemID];
         [query countObjectsInBackgroundWithBlock:^(int sellersNum, NSError *error) {
             NSString *text;
@@ -223,9 +223,9 @@
 {
     PFQuery *query;
     if (wantData.isDealClosed) {
-        query = [PFQuery queryWithClassName:@"AcceptedOffer"];
+        query = [PFQuery queryWithClassName:PF_ACCEPTED_OFFER_CLASS];
     } else {
-        query = [PFQuery queryWithClassName:@"OfferedWant"];
+        query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
     }
     
     [query whereKey:@"itemID" equalTo:wantData.itemID];

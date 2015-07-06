@@ -199,14 +199,14 @@
     }
     
     if (_offerData.deliveryTime == nil) {
-        _offerData.deliveryTime = @"";
+        _offerData.deliveryTime = @"1 week";
     }
     
-    [[_offerData getPFObjectWithClassName:@"OfferedWant"] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    [[_offerData getPFObjectWithClassName:PF_OFFER_CLASS] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         [_activityLogin stopAnimating];
         
         if (!error) {
-            [_delegate buyersOrSellersOfferViewController:self didOfferForItem:[_offerData getPFObjectWithClassName:@"OfferedWant"]];
+            [_delegate buyersOrSellersOfferViewController:self didOfferForItem:[_offerData getPFObjectWithClassName:PF_OFFER_CLASS]];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);

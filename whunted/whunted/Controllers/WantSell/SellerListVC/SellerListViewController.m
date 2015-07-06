@@ -9,6 +9,7 @@
 #import "SellerListViewController.h"
 #import "OfferData.h"
 #import "Utilities.h"
+#import "AppConstant.h"
 
 @interface SellerListViewController ()
 
@@ -93,7 +94,7 @@
             NSLog(@"Update unsuccessfully");
         }
         
-        PFObject *obj = [offerData getPFObjectWithClassName:@"AcceptedOffer"];
+        PFObject *obj = [offerData getPFObjectWithClassName:PF_ACCEPTED_OFFER_CLASS];
         [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"Upload to AcceptedOffer successfully");
