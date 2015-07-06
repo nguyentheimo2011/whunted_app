@@ -19,10 +19,10 @@
 "Choose category"       =           "選擇物品品類";
 "Item info"             =           "商品名稱";
 "What are you buying?"  =           "你要買什麼?";
-"Your price"            =           "你想開價";
+"Your price"            =           "商品預算";
 "Set a price"           =           "開個價";
 "Product origin"        =           "商品產地";
-"Location"              =           "你住哪裡";
+"Location"              =           "居住地";
 "Where to meet?"        =           "選擇交易地點?";
 "Request for Escrow?"   =           "第三方支付?";
 //------------------------------------------------------------------------------------------------------------------------------

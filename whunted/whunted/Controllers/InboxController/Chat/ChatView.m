@@ -57,7 +57,15 @@
 	JSQMessagesBubbleImage *bubbleImageIncoming;
 	JSQMessagesAvatarImage *avatarImageBlank;
     
-    UIView *background;
+    UIView *_background;
+    
+    JTImageButton *_makingOfferButton;
+    JTImageButton *_leavingFeedbackButton;
+    JTImageButton *_makingAnotherOfferButton;
+    JTImageButton *_acceptingButton;
+    JTImageButton *_decliningButton;
+    JTImageButton *_edittingOfferButton;
+    JTImageButton *_cancellingOfferButton;
 }
 @end
 //------------------------------------------------------------------------------------------------------------------------------
@@ -93,7 +101,7 @@
 	self.senderId = user.objectId;
 	self.senderDisplayName = user[PF_USER_USERNAME];
     
-    [self addMakeOfferButton];
+    [self addTopButtons];
 	
 	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
 	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
@@ -153,33 +161,124 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat statusAndNavigationBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-    background = [[UIView alloc] initWithFrame:CGRectMake(0, statusAndNavigationBarHeight, WINSIZE.width, 50)];
-    [background setBackgroundColor:LIGHTEST_GRAY_COLOR];
-    [background setAlpha:0.98];
-    [self.view addSubview:background];
+    _background = [[UIView alloc] initWithFrame:CGRectMake(0, statusAndNavigationBarHeight, WINSIZE.width, FLAT_BUTTON_HEIGHT + 10)];
+    [_background setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [_background setAlpha:0.98];
+    [self.view addSubview:_background];
     
-    self.topContentAdditionalInset = 50;
+    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 10;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addMakeOfferButton
+- (void) addTopButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self addBackGroundForButtons];
-    
-    JTImageButton *makingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 10, WINSIZE.width * 0.8, 30)];
-    [makingOfferButton createTitle:@"Make Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
-    makingOfferButton.cornerRadius = 6.0;
-    makingOfferButton.borderWidth = 2.0;
-    makingOfferButton.borderColor = FLAT_BLUE_COLOR;
-    makingOfferButton.bgColor = FLAT_BLUE_COLOR;
-    makingOfferButton.titleColor = [UIColor whiteColor];
-    [makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEventHanlder) forControlEvents:UIControlEventTouchUpInside];
-    [background addSubview:makingOfferButton];
-    
-    // Only seller can offer at the beginning
-    if ([[PFUser currentUser].objectId isEqualToString:_offerData.buyerID])
-        [background setHidden:YES];
+//    [self addMakingOfferButton];
+//    [self addLeavingFeedbackButton];
+//    [self addMakingAnotherOfferButton];
+//    [self addDecliningButton];
+//    [self addAcceptingButton];
+    [self addEdittingOfferButton];
+    [self addCancellingButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addMakingOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _makingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
+    [_makingOfferButton createTitle:@"Make Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _makingOfferButton.cornerRadius = 6.0;
+    _makingOfferButton.borderColor = FLAT_FRESH_RED_COLOR;
+    _makingOfferButton.bgColor = FLAT_BLUR_RED_COLOR;
+    _makingOfferButton.titleColor = [UIColor whiteColor];
+    [_makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEventHanlder) forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_makingOfferButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addLeavingFeedbackButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _leavingFeedbackButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
+    [_leavingFeedbackButton createTitle:@"Leave Feedback" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _leavingFeedbackButton.cornerRadius = 6.0;
+    _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR;
+    _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR;
+    _leavingFeedbackButton.titleColor = [UIColor whiteColor];
+    [_leavingFeedbackButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_leavingFeedbackButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addMakingAnotherOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.03, 5, WINSIZE.width * 0.46, FLAT_BUTTON_HEIGHT)];
+    [_makingAnotherOfferButton createTitle:@"Make another offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _makingAnotherOfferButton.cornerRadius = 6.0;
+    _makingAnotherOfferButton.borderColor = FLAT_BLUE_COLOR;
+    _makingAnotherOfferButton.bgColor = FLAT_BLUE_COLOR;
+    _makingAnotherOfferButton.titleColor = [UIColor whiteColor];
+    [_makingAnotherOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_makingAnotherOfferButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addDecliningButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _decliningButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.52, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
+    [_decliningButton createTitle:@"Decline" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _decliningButton.cornerRadius = 6.0;
+    _decliningButton.borderColor = FLAT_GRAY_COLOR;
+    _decliningButton.bgColor = FLAT_GRAY_COLOR;
+    _decliningButton.titleColor = [UIColor whiteColor];
+    [_decliningButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_decliningButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addAcceptingButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _acceptingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.76, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
+    [_acceptingButton createTitle:@"Accept" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _acceptingButton.cornerRadius = 6.0;
+    _acceptingButton.borderColor = FLAT_BLUR_RED_COLOR;
+    _acceptingButton.bgColor = FLAT_BLUR_RED_COLOR;
+    _acceptingButton.titleColor = [UIColor whiteColor];
+    [_acceptingButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_acceptingButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addEdittingOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _edittingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
+    [_edittingOfferButton createTitle:@"Edit Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _edittingOfferButton.cornerRadius = 6.0;
+    _edittingOfferButton.borderColor = FLAT_BLUE_COLOR;
+    _edittingOfferButton.bgColor = FLAT_BLUE_COLOR;
+    _edittingOfferButton.titleColor = [UIColor whiteColor];
+    [_edittingOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_edittingOfferButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addCancellingButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _cancellingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.525, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
+    [_cancellingOfferButton createTitle:@"Cancel Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _cancellingOfferButton.cornerRadius = 6.0;
+    _cancellingOfferButton.borderColor = FLAT_GRAY_COLOR;
+    _cancellingOfferButton.bgColor = FLAT_GRAY_COLOR;
+    _cancellingOfferButton.titleColor = [UIColor whiteColor];
+    [_cancellingOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_background addSubview:_cancellingOfferButton];
 }
 
 #pragma mark - Event Handling
@@ -205,7 +304,7 @@
 - (void) makingOfferButtonTapEventHanlder
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    OfferData *offerData = [[OfferData alloc] init];
+//    OfferData *offerData = [[OfferData alloc] init];
     
 }
 
