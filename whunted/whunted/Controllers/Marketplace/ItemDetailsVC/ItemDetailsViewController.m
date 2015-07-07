@@ -499,7 +499,17 @@
 {
     _currOffer = offer;
     [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
-    [delegate itemDetailsViewController:self didCompleteOffer:YES];
+    
+    NSString *id1 = [PFUser currentUser].objectId;
+    NSString *id2 = [wantData buyer].objectId;
+    NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offer.itemID, id2, id1];
+    ChatView *chatView = [[ChatView alloc] initWith:groupId];
+    [chatView setUser2Username:wantData.buyer[PF_USER_USERNAME]];
+    [chatView setOfferData:offer];
+    NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
+    [chatView messageSend:message Video:nil Picture:nil Audio:nil];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 

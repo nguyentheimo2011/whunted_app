@@ -203,12 +203,11 @@
                 groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id2, id1];
             }
             
-            // Update recent message with new offer details
-            UpdateRecentOffer1(groupId, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
-            
+            [self.navigationController popViewControllerAnimated:YES];
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             
-            [self.navigationController popViewControllerAnimated:YES];
+            // Update recent message with new offer details
+            UpdateRecentOffer1(groupId, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

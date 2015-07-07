@@ -142,8 +142,8 @@
     [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
-    if (![SyncEngine sharedEngine].syncInProgess)
-        [sQuery fromPinWithName:PF_OFFER_CLASS];
+//    if (![SyncEngine sharedEngine].syncInProgess)
+//        [sQuery fromPinWithName:PF_OFFER_CLASS];
     
     [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
         if (!error) {
@@ -179,11 +179,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------------
+
 #pragma mark - Backend Handler
-//------------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveWantDataList

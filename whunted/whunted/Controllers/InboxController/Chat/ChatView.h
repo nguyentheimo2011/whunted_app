@@ -28,4 +28,6 @@
 
 - (id)initWith:(NSString *)groupId_;
 
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio;
+
 @end
