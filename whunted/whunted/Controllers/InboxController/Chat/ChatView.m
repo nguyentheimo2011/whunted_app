@@ -278,7 +278,7 @@
     _makingAnotherOfferButton.borderColor = FLAT_BLUE_COLOR;
     _makingAnotherOfferButton.bgColor = FLAT_BLUE_COLOR;
     _makingAnotherOfferButton.titleColor = [UIColor whiteColor];
-    [_makingAnotherOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_makingAnotherOfferButton addTarget:self action:@selector(makingAnotherOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_makingAnotherOfferButton];
 }
 
@@ -292,7 +292,7 @@
     _decliningButton.borderColor = FLAT_GRAY_COLOR;
     _decliningButton.bgColor = FLAT_GRAY_COLOR;
     _decliningButton.titleColor = [UIColor whiteColor];
-    [_decliningButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_decliningButton addTarget:self action:@selector(decliningOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_decliningButton];
 }
 
@@ -306,7 +306,7 @@
     _acceptingButton.borderColor = FLAT_BLUR_RED_COLOR;
     _acceptingButton.bgColor = FLAT_BLUR_RED_COLOR;
     _acceptingButton.titleColor = [UIColor whiteColor];
-    [_acceptingButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_acceptingButton addTarget:self action:@selector(acceptingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_acceptingButton];
 }
 
@@ -419,6 +419,64 @@
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n Cancel Offer \n"];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        
+        [self messageSend:message Video:nil Picture:nil Audio:nil];
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) makingAnotherOfferButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
+    [offerVC setOfferData:_offerData];
+    [offerVC setDelegate:self];
+    
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+        // current user is the seller
+        [offerVC setBuyerName:_user2Username];
+    } else {
+        // current user is the buyer
+        [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
+    }
+    
+    [self.navigationController pushViewController:offerVC animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) decliningOfferButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        _offerData.objectID = nil;
+        _offerData.initiatorID = @"";
+        _offerData.offeredPrice = @"";
+        _offerData.deliveryTime = @"";
+        _offerData.offerStatus = @"";
+        
+        [self adjustButtonsVisibility];
+        
+        // Update recent message
+        NSString *message = [NSString stringWithFormat:@"\n Decline Offer \n"];
+        UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        
+        [self messageSend:message Video:nil Picture:nil Audio:nil];
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) acceptingOfferButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _offerData.offerStatus = PF_OFFER_STATUS_ACCEPTED;
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self adjustButtonsVisibility];
+        
+        // Update recent message
+        NSString *message = [NSString stringWithFormat:@"\n Accept Offer \n"];
+        UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil];
     }];
