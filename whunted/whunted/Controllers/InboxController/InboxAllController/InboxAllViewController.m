@@ -162,6 +162,7 @@
     [chatView setUser2Username:recent[@"description"]];
     
     OfferData *offerData = [[OfferData alloc] init];
+    offerData.objectID = recent[PF_OFFER_ID];
     offerData.itemID = recent[PF_ITEM_ID];
     offerData.itemName = recent[PF_ITEM_NAME];
     offerData.sellerID = [(NSArray *) recent[@"members"] objectAtIndex:0];

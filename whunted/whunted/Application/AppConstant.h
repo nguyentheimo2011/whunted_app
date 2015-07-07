@@ -82,6 +82,7 @@
 #define     PF_ITEM_ID                          @"itemID"
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_OFFER_ID                         @"offerID"
 #define     PF_BUYER_ID                         @"buyerID"
 #define     PF_SELLER_ID                        @"sellerID"
 #define     PF_INITIATOR_ID                     @"initiatorID"

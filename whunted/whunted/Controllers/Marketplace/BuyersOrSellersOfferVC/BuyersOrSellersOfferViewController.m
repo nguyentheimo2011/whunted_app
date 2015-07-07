@@ -191,8 +191,11 @@
         _offerData.deliveryTime = @"1 week";
     }
     
-    [[_offerData getPFObjectWithClassName:PF_OFFER_CLASS] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    [ offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error) {
+            [_offerData setObjectID:offerObj.objectId];
+            
             NSString *groupId;
             if (_user2) {
                 groupId = StartPrivateChat([PFUser currentUser], _user2, _offerData);
@@ -208,7 +211,7 @@
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             
             // Update recent message with new offer details
-            UpdateRecentOffer1(groupId, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
+            UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

@@ -69,7 +69,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offerData.offeredPrice, offerData.deliveryTime];
 	
 	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
-                             @"lastUser":lastUser.objectId, @"lastMessage":message, @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, PF_INITIATOR_ID:offerData.initiatorID, PF_OFFERED_PRICE:offerData.offeredPrice, PF_DELIVERY_TIME:offerData.deliveryTime, PF_OFFER_STATUS:offerData.offerStatus};
+                             @"lastUser":lastUser.objectId, @"lastMessage":message, @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_OFFER_ID:@"", PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, PF_INITIATOR_ID:offerData.initiatorID, PF_OFFERED_PRICE:offerData.offeredPrice, PF_DELIVERY_TIME:offerData.deliveryTime, PF_OFFER_STATUS:offerData.offerStatus};
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
@@ -113,7 +113,7 @@ void UpdateRecentCounter2(NSDictionary *recent, NSInteger amount, NSString *last
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void UpdateRecentOffer1(NSString *groupId, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
+void UpdateRecentOffer1(NSString *groupId, NSString *offerID, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
 //------------------------------------------------------------------------------------------------------------------------------
 {
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -124,14 +124,14 @@ void UpdateRecentOffer1(NSString *groupId, NSString *initiatorID, NSString *offe
          {
              for (NSDictionary *recent in [snapshot.value allValues])
              {
-                 UpdateRecentOffer2(recent, initiatorID, offeredPrice, deliveryTime, offerStatus);
+                 UpdateRecentOffer2(recent, offerID, initiatorID, offeredPrice, deliveryTime, offerStatus);
              }
          }
      }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void UpdateRecentOffer2(NSDictionary *recent, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
+void UpdateRecentOffer2(NSDictionary *recent, NSString *offerID, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus)
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *user = [PFUser currentUser];
@@ -139,7 +139,7 @@ void UpdateRecentOffer2(NSDictionary *recent, NSString *initiatorID, NSString *o
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offeredPrice, deliveryTime];
     
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
-    NSDictionary *values = @{@"lastUser":user.objectId, @"lastMessage":message, PF_INITIATOR_ID:user.objectId, PF_OFFERED_PRICE:offeredPrice, PF_DELIVERY_TIME:deliveryTime, PF_OFFER_STATUS:offerStatus, @"date":date};
+    NSDictionary *values = @{@"lastUser":user.objectId, @"lastMessage":message, PF_OFFER_ID:offerID, PF_INITIATOR_ID:user.objectId, PF_OFFERED_PRICE:offeredPrice, PF_DELIVERY_TIME:deliveryTime, PF_OFFER_STATUS:offerStatus, @"date":date};
     [firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
      {
          if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");

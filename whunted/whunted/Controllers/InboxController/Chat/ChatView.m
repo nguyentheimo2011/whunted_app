@@ -320,7 +320,7 @@
     _edittingOfferButton.borderColor = FLAT_BLUE_COLOR;
     _edittingOfferButton.bgColor = FLAT_BLUE_COLOR;
     _edittingOfferButton.titleColor = [UIColor whiteColor];
-    [_edittingOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_edittingOfferButton addTarget:self action:@selector(edittingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_edittingOfferButton];
 }
 
@@ -366,6 +366,25 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) makingOfferButtonTapEventHanlder
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
+    [offerVC setOfferData:_offerData];
+    [offerVC setDelegate:self];
+    
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+        // current user is the seller
+        [offerVC setBuyerName:_user2Username];
+    } else {
+        // current user is the buyer
+        [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
+    }
+    
+    [self.navigationController pushViewController:offerVC animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) edittingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
@@ -790,6 +809,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self adjustButtonsVisibility];
+    _offerData = offer;
     
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
     [self messageSend:message Video:nil Picture:nil Audio:nil];
