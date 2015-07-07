@@ -139,8 +139,6 @@
 {
 	[super viewWillDisappear:animated];
     
-    DeleteRecentItems(groupId);
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 	if (self.isMovingFromParentViewController)
@@ -154,7 +152,7 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapEventHandler)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -357,6 +355,13 @@
     NSString *messageID = (NSString *) notification.object;
     messageStatusDict[messageID] = @YES;
     [self.collectionView reloadData];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) backButtonTapEventHandler
+{
+    DeleteRecentItems(groupId);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

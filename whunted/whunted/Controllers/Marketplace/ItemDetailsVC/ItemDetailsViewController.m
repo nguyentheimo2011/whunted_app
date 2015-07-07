@@ -375,6 +375,7 @@
                 offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
                 sellersOfferVC.offerData = offerData;
             }
+            
             [self.navigationController pushViewController:sellersOfferVC animated:YES];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);

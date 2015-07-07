@@ -204,6 +204,7 @@
             }
             
             [self.navigationController popViewControllerAnimated:YES];
+            
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             
             // Update recent message with new offer details
