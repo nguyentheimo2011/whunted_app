@@ -314,12 +314,18 @@
 - (void) addChatButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIButton *chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 40, WINSIZE.width/2, 40)];
-    [chatButton setBackgroundColor:[UIColor grayColor]];
-    [chatButton setTitle:NSLocalizedString(@"Chat", nil) forState:UIControlStateNormal];
-    [chatButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+    [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [self.view addSubview:backgroundView];
+    
+    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 40)];
+    [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
+    chatButton.cornerRadius = 0;
+    chatButton.borderColor = [UIColor grayColor];
+    chatButton.bgColor = [UIColor grayColor];
+    chatButton.titleColor = [UIColor whiteColor];
     [chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:chatButton];
+    [backgroundView addSubview:chatButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

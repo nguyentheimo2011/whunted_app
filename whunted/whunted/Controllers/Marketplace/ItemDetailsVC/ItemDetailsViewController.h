@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Haneke/UIImageView+Haneke.h>
+#import <JTImageButton.h>
 #import "WantData.h"
 #import "BuyersOrSellersOfferViewController.h"
 #import "OfferData.h"
