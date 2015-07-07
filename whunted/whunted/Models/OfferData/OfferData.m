@@ -61,7 +61,7 @@
 {
     PFObject *pfObj = [PFObject objectWithClassName:className];
     
-    if (_objectID)
+    if (_objectID && _objectID.length > 0)
         pfObj.objectId = _objectID;
     
     pfObj[PF_ITEM_ID] = _itemID;
