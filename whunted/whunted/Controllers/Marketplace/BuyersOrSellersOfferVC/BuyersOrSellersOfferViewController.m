@@ -20,7 +20,6 @@
 @property (nonatomic, strong) UILabel *instructionLabel;
 @property (nonatomic, strong) UITextField *offeredPriceTextField;
 @property (nonatomic, strong) UITextField *offeredDeliveryTextField;
-@property (nonatomic, strong) UIActivityIndicatorView *activityLogin;
 
 @end
 
@@ -38,7 +37,6 @@
 @synthesize instructionLabel = _instructionLabel;
 @synthesize offeredPriceTextField = _offeredPriceTextField;
 @synthesize offeredDeliveryTextField = _offeredDeliveryTextField;
-@synthesize activityLogin = _activityLogin;
 @synthesize delegate = _delegate;
 @synthesize user2 = _user2;
 
@@ -58,7 +56,6 @@
     [self addOfferedDeliveryTextField];
     [self addInstructionLabel];
     [self customizeNavigationBar];
-    [self addActivityIndicatorView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -113,7 +110,6 @@
     _offeredPriceTextField.inputView = ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
-        //
         [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad;
@@ -169,15 +165,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submitButtonClickedHandler)];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addActivityIndicatorView
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _activityLogin = [[UIActivityIndicatorView alloc] init];
-    _activityLogin.frame = CGRectMake(WINSIZE.width/2 - 25, WINSIZE.height/2 - 25, 50, 50);
-    [self.view addSubview:self.activityLogin];
-}
-
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -191,24 +178,20 @@
 - (void) submitButtonClickedHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_activityLogin startAnimating];
-    
     _offerData.offeredPrice = _offeredPriceTextField.text;
     _offerData.deliveryTime = _offeredDeliveryTextField.text;
     _offerData.initiatorID = [PFUser currentUser].objectId;
     _offerData.offerStatus = PF_OFFER_STATUS_OFFERED;
     
-    if (_offerData.offeredPrice == nil) {
+    if (_offerData.offeredPrice == nil || _offerData.offeredPrice.length == 0) {
         _offerData.offeredPrice = _offerData.originalDemandedPrice;
     }
     
-    if (_offerData.deliveryTime == nil) {
+    if (_offerData.deliveryTime == nil || _offerData.deliveryTime.length == 0) {
         _offerData.deliveryTime = @"1 week";
     }
     
     [[_offerData getPFObjectWithClassName:PF_OFFER_CLASS] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        [_activityLogin stopAnimating];
-        
         if (!error) {
             NSString *groupId;
             if (_user2) {
@@ -220,8 +203,11 @@
                 groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id2, id1];
             }
             
+            // Update recent message with new offer details
             UpdateRecentOffer1(groupId, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
-            [_delegate buyersOrSellersOfferViewController:self didOfferForItem:[_offerData getPFObjectWithClassName:PF_OFFER_CLASS]];
+            
+            [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
+            
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);

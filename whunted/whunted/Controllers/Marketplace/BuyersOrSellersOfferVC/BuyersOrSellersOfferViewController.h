@@ -16,7 +16,7 @@
 @protocol BuyersOrSellerOfferDelegate <NSObject>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-- (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOfferForItem: (PFObject *) object;
+- (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOffer: (OfferData *) offer;
 
 @end
 

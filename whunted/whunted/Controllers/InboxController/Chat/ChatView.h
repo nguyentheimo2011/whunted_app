@@ -17,9 +17,10 @@
 #import "RNGridMenu.h"
 
 #import "OfferData.h"
+#import "BuyersOrSellersOfferViewController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate>
+@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong) NSString *user2Username;

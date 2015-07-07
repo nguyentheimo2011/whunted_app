@@ -35,7 +35,6 @@
 #import "ChatView.h"
 
 #import "OfferData.h"
-#import "BuyersOrSellersOfferViewController.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -366,10 +365,13 @@
 {
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
     [offerVC setOfferData:_offerData];
+    [offerVC setDelegate:self];
     
-    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) { // I am the seller
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+        // current user is the seller
         [offerVC setBuyerName:_user2Username];
-    } else { // I am the buyer
+    } else {
+        // current user is the buyer
         [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
     }
     
@@ -775,6 +777,17 @@
 {
 	return ([message.senderId isEqualToString:self.senderId] == YES);
 }
+
+#pragma mark - Delegation methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(OfferData *)offer
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self adjustButtonsVisibility];
+}
+
+#pragma mark - Backend methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) downloadImageFromRemoteServer: (NSString *) senderId

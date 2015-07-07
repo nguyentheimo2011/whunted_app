@@ -494,10 +494,10 @@
 #pragma mark - SellersOfferViewController delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOfferForItem:(PFObject *)object
+- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(OfferData *)offer
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currOffer = [[OfferData alloc] initWithPFObject:object];
+    _currOffer = offer;
     [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     [delegate itemDetailsViewController:self didCompleteOffer:YES];
 }
