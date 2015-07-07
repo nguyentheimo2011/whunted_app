@@ -785,6 +785,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self adjustButtonsVisibility];
+    
+    NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
+    [self messageSend:message Video:nil Picture:nil Audio:nil];
 }
 
 #pragma mark - Backend methods
