@@ -130,7 +130,7 @@
             
             [self userDidTryToLogin];
             [self addDataToUser];
-            [[SyncEngine sharedEngine] startSync];
+//            [[SyncEngine sharedEngine] startSync];
             [self presentMainViewController];
         }
     }];

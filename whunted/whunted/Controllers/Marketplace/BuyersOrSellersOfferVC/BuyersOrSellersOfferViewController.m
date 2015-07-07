@@ -211,7 +211,8 @@
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             
             // Update recent message with new offer details
-            UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus);
+            NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", _offerData.offeredPrice, _offerData.deliveryTime];
+            UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

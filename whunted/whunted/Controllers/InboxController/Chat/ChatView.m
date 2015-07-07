@@ -334,7 +334,7 @@
     _cancellingOfferButton.borderColor = FLAT_GRAY_COLOR;
     _cancellingOfferButton.bgColor = FLAT_GRAY_COLOR;
     _cancellingOfferButton.titleColor = [UIColor whiteColor];
-    [_cancellingOfferButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_cancellingOfferButton addTarget:self action:@selector(cancellingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_cancellingOfferButton];
 }
 
@@ -400,6 +400,28 @@
     }
     
     [self.navigationController pushViewController:offerVC animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cancellingOfferButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        _offerData.objectID = nil;
+        _offerData.initiatorID = @"";
+        _offerData.offeredPrice = @"";
+        _offerData.deliveryTime = @"";
+        _offerData.offerStatus = @"";
+        
+        [self adjustButtonsVisibility];
+        
+        // Update recent message
+        NSString *message = [NSString stringWithFormat:@"\n Cancel Offer \n"];
+        UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        
+        [self messageSend:message Video:nil Picture:nil Audio:nil];
+    }];
 }
 
 #pragma mark - Backend methods

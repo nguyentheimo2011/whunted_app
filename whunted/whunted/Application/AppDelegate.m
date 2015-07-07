@@ -71,7 +71,7 @@
         MainViewController *mainVC = [[MainViewController alloc] init];
         [self.window setRootViewController:mainVC];
         
-        [[SyncEngine sharedEngine] startSync];
+//        [[SyncEngine sharedEngine] startSync];
     }
 }
 
