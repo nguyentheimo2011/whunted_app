@@ -10,13 +10,17 @@
 
 @class UserProfileViewController;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol UserProfileViewControllerDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) userProfileViewController: (UserProfileViewController *) controller didPressLogout: (BOOL) pressed;
 
 @end
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @interface UserProfileViewController : UIViewController
+//-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
 

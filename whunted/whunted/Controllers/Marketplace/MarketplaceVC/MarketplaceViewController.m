@@ -52,6 +52,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
 }
 
 #pragma mark - UI Handlers

@@ -17,7 +17,8 @@
 
 @synthesize itemImageView;
 
-- (id) init {
+- (id) init
+{
     self = [super init];
     if (self != nil) {
         [self addItemImageView];
@@ -26,14 +27,15 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"ItemImageViewController didReceiveMemoryWarning");
 }
 
 #pragma mark - UI Handlers

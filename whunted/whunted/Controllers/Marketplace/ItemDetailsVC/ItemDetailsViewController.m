@@ -80,6 +80,12 @@
     [self addOfferButton];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    NSLog(@"ItemDetailsViewController didReceiveMemoryWarning");
+}
+
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
