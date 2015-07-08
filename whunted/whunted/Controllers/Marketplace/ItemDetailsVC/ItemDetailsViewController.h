@@ -37,7 +37,7 @@
 @property (nonatomic, strong) UILabel               *productOriginLabel;
 @property (nonatomic, strong) UILabel               *paymentMethodLabel;
 @property (nonatomic, strong) UILabel               *sellersLabel;
-@property (nonatomic, strong) UIButton              *secondBottomButton;
+@property (nonatomic, strong) JTImageButton         *secondBottomButton;
 @property (nonatomic)         OfferData             *currOffer;
 
 @end

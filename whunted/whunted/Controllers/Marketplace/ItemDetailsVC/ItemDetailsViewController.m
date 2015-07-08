@@ -41,8 +41,8 @@
 @synthesize productOriginLabel;
 @synthesize paymentMethodLabel;
 @synthesize sellersLabel;
-@synthesize secondBottomButton;
-@synthesize currOffer = _currOffer;
+@synthesize secondBottomButton  =   _secondBottomButton;
+@synthesize currOffer           =   _currOffer;
 @synthesize delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -332,23 +332,29 @@
 - (void) addOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+    [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [self.view addSubview:backgroundView];
+    
     PFUser *curUser = [PFUser currentUser];
-    secondBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+    _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 40)];
+    _secondBottomButton.borderColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
+    _secondBottomButton.bgColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
+    _secondBottomButton.titleColor = [UIColor whiteColor];
     
     if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
-        [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
-        [secondBottomButton setTitle:NSLocalizedString(@"Promote your post", nil) forState:UIControlStateNormal];
-        [secondBottomButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
-        [self.view addSubview:secondBottomButton];
+        [_secondBottomButton createTitle:NSLocalizedString(@"Promote your post", nil) withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+        _secondBottomButton.cornerRadius = 0;
+        [backgroundView addSubview:_secondBottomButton];
     } else {
-        [secondBottomButton setBackgroundColor:[UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0]];
         if (_currOffer)
-            [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
+            [_secondBottomButton createTitle:NSLocalizedString(@"Change your offer", nil) withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
         else
-            [secondBottomButton setTitle:NSLocalizedString(@"Offer your price", nil) forState:UIControlStateNormal];
-        [secondBottomButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
-        [secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:secondBottomButton];
+            [_secondBottomButton createTitle:NSLocalizedString(@"Offer your price", nil) withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+        
+        [_secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+        _secondBottomButton.cornerRadius = 0;
+        [backgroundView addSubview:_secondBottomButton];
     }
 }
 
@@ -505,7 +511,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currOffer = offer;
-    [secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
+    [_secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     
     NSString *id1 = [PFUser currentUser].objectId;
     NSString *id2 = [wantData buyer].objectId;
