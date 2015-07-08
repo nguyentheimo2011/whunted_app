@@ -12,6 +12,7 @@
 #import "ChatView.h"
 #import "recent.h"
 #import "PersistedCache.h"
+#import <MBProgressHUD.h>
 
 @interface ItemDetailsViewController ()
 
@@ -314,11 +315,11 @@
 - (void) addChatButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 45, WINSIZE.width/2, 45)];
     [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
     [self.view addSubview:backgroundView];
     
-    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 40)];
+    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
     [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
     chatButton.cornerRadius = 0;
     chatButton.borderColor = [UIColor grayColor];
@@ -332,12 +333,12 @@
 - (void) addOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 40, WINSIZE.width/2, 40)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 45, WINSIZE.width/2, 45)];
     [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
     [self.view addSubview:backgroundView];
     
     PFUser *curUser = [PFUser currentUser];
-    _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 40)];
+    _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
     _secondBottomButton.borderColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
     _secondBottomButton.bgColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
     _secondBottomButton.titleColor = [UIColor whiteColor];
@@ -364,6 +365,8 @@
 - (void) sellerOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     PFUser *user1 = [PFUser currentUser];
     PFUser *user2 = [wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
@@ -388,6 +391,8 @@
                 sellersOfferVC.offerData = offerData;
             }
             
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [self.navigationController pushViewController:sellersOfferVC animated:YES];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -399,6 +404,7 @@
 - (void) chatButtonClickedEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user1 = [PFUser currentUser];
     PFUser *user2 = [wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
@@ -426,6 +432,7 @@
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
