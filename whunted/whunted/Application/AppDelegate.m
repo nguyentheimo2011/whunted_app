@@ -14,6 +14,7 @@
 #import "MainViewController.h"
 #import "LoginSignupViewController.h"
 #import "Utilities.h"
+#import "AppConstant.h"
 #import "SyncEngine.h"
 
 @interface AppDelegate ()
@@ -36,6 +37,7 @@
     [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
+    [self customizeUI];
     [self setViewController];
     
     return YES;
@@ -73,6 +75,21 @@
         
 //        [[SyncEngine sharedEngine] startSync];
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor whiteColor];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+       NSFontAttributeName:[UIFont fontWithName:REGULAR_FONT_NAME size:16]
+       }
+     forState:UIControlStateNormal];
 }
 
 @end

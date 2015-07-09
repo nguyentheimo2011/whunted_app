@@ -28,7 +28,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [self customizeView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -39,7 +39,24 @@
     NSLog(@"UserProfileViewController didReceiveMemoryWarning");
 }
 
+#pragma mark - UI
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
+    [titleLabel sizeToFit];
+    self.navigationItem.titleView = titleLabel;
+}
 
 #pragma mark - Event Handlers
 
