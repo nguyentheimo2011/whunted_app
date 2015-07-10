@@ -26,5 +26,6 @@
 + (NSString *)  removeLastDotCharacterIfNeeded: (NSString *) price;
 
 + (NSDate *)    getRoundMinuteDateFromDate: (NSDate *) date;
++ (CGFloat)     getStatusBarHeight;
 
 @end
