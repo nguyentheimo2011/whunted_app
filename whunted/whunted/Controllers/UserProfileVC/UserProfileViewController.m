@@ -27,6 +27,10 @@
     UIScrollView    *_scrollView;
     UIView          *_topRightView;
     
+    UILabel         *_positiveFeedbackLabel;
+    UILabel         *_mehFeedbackLabel;
+    UILabel         *_negativeFeedbackLabel;
+    
     CGFloat         _statusAndNavBarHeight;
     CGFloat         _tabBarHeight;
 }
@@ -148,6 +152,48 @@
     backgroundView.layer.cornerRadius = 4;
     backgroundView.clipsToBounds = YES;
     [_topRightView addSubview:backgroundView];
+    
+    [self addSmilingViewToBackground:backgroundView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addSmilingViewToBackground: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
+    CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconHeight * 3, kIconHeight)];
+    
+    UIImage *smilingFaceImage = [UIImage imageNamed:@"smiling_face.png"];
+    UIImageView *smilingFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kIconHeight, kIconHeight)];
+    [smilingFaceImageView setImage:smilingFaceImage];
+    [containerView addSubview:smilingFaceImageView];
+    
+    _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
+    _positiveFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _positiveFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _positiveFeedbackLabel.text = @"0";
+    [containerView addSubview:_positiveFeedbackLabel];
+    
+    [backgroundView addSubview:containerView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addMehViewToBackground: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addSadViewToBackground: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 #pragma mark - Event Handlers
