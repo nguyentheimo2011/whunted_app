@@ -154,6 +154,9 @@
     [_topRightView addSubview:backgroundView];
     
     [self addSmilingViewToBackground:backgroundView];
+    [self addMehViewToBackground:backgroundView];
+    [self addSadViewToBackground:backgroundView];
+    [self addNextSignToBackground:backgroundView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -186,14 +189,71 @@
 - (void) addMehViewToBackground: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
+    CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
+    
+    UIImage *mehFaceImage = [UIImage imageNamed:@"meh_face.png"];
+    UIImageView *mehFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kIconHeight, kIconHeight)];
+    [mehFaceImageView setImage:mehFaceImage];
+    [containerView addSubview:mehFaceImageView];
+    
+    _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
+    _mehFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _mehFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _mehFeedbackLabel.text = @"0";
+    [containerView addSubview:_mehFeedbackLabel];
+    
+    [backgroundView addSubview:containerView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSadViewToBackground: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
+    CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + 2 * kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
+    
+    UIImage *sadFaceImage = [UIImage imageNamed:@"sad_face.png"];
+    UIImageView *sadFaceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kIconHeight, kIconHeight)];
+    [sadFaceImageView setImage:sadFaceImage];
+    [containerView addSubview:sadFaceImageView];
+    
+    _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
+    _negativeFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _negativeFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _negativeFeedbackLabel.text = @"0";
+    [containerView addSubview:_negativeFeedbackLabel];
+    
+    [backgroundView addSubview:containerView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addNextSignToBackground: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
+    CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.6;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.025;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.2;
+    CGFloat kXPos = kBackgroundWidth - kIconLeftMargin - kIconHeight;
+    
+    UIImage *nextSignImage = [UIImage imageNamed:@"move_to_next_icon.png"];
+    UIImageView *nextSignImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kXPos, kIconTopMargin, kIconHeight, kIconHeight)];
+    [nextSignImageView setImage:nextSignImage];
+    [backgroundView addSubview:nextSignImageView];
 }
 
 #pragma mark - Event Handlers
