@@ -12,6 +12,8 @@
 
 #import <Parse/Parse.h>
 
+#define kTopMargin      WINSIZE.width / 30.0
+
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface UserProfileViewController ()
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -27,9 +29,6 @@
     
     CGFloat         _statusAndNavBarHeight;
     CGFloat         _tabBarHeight;
-    
-    CGFloat         _kLabelHeight;
-    CGFloat         _kTopMargin;
 }
 
 @synthesize delegate = _delegate;
@@ -41,10 +40,7 @@
     [super viewDidLoad];
     [self customizeView];
     [self addScrollView];
-    [self addProfileImage];
-    [self addUserFullNameLabel];
-    [self addCountryLabel];
-    [self addRatingView];
+    [self addProfileImage_Name_Country_Rating];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -87,6 +83,16 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) addProfileImage_Name_Country_Rating
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addProfileImage];
+    [self addUserFullNameLabel];
+    [self addCountryLabel];
+    [self addRatingView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addProfileImage
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -110,9 +116,8 @@
     _topRightView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.3, 0, WINSIZE.width * 0.7, WINSIZE.width * 0.3)];
     [_scrollView addSubview:_topRightView];
     
-    _kLabelHeight = 20;
-    _kTopMargin = (WINSIZE.width * 0.3 - 75) / 2;
-    UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _kTopMargin, WINSIZE.width * 0.5, _kLabelHeight)];
+    CGFloat const kLabelHeight = WINSIZE.width / 16.0;
+    UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
     userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
     userFullNameLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:18];
     userFullNameLabel.textColor = [UIColor blackColor];
@@ -123,7 +128,8 @@
 - (void) addCountryLabel
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _kTopMargin + _kLabelHeight, WINSIZE.width * 0.5, _kLabelHeight)];
+    CGFloat const kLabelHeight = WINSIZE.width / 16.0;
+    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
     countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
     countryLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
     countryLabel.textColor = [UIColor grayColor];
@@ -134,8 +140,10 @@
 - (void) addRatingView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat backgroundHeight = 25;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, _kTopMargin + 2 * _kLabelHeight + 10, WINSIZE.width * 0.6, backgroundHeight)];
+    CGFloat const kLabelHeight = WINSIZE.width / 16.0;
+    CGFloat const kWhiteSpaceWidth = WINSIZE.width / 32.0;
+    CGFloat const kBackgroundHeight = WINSIZE.width * 0.3 - 2 * kTopMargin - 2 * kLabelHeight - kWhiteSpaceWidth;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 2 * kLabelHeight + kWhiteSpaceWidth, WINSIZE.width * 0.6, kBackgroundHeight)];
     [backgroundView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     backgroundView.layer.cornerRadius = 4;
     backgroundView.clipsToBounds = YES;
