@@ -11,6 +11,7 @@
 #import "PersistedCache.h"
 
 #import <Parse/Parse.h>
+#import <JTImageButton.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
 
@@ -31,6 +32,10 @@
     UILabel         *_mehFeedbackLabel;
     UILabel         *_negativeFeedbackLabel;
     
+    JTImageButton   *_followerButton;
+    JTImageButton   *_followingButton;
+    JTImageButton   *_preferencesButton;
+    
     CGFloat         _statusAndNavBarHeight;
     CGFloat         _tabBarHeight;
 }
@@ -45,6 +50,7 @@
     [self customizeView];
     [self addScrollView];
     [self addProfileImage_Name_Country_Rating];
+    [self addFollower_Following_PreferencesButtons];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -254,6 +260,78 @@
     UIImageView *nextSignImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kXPos, kIconTopMargin, kIconHeight, kIconHeight)];
     [nextSignImageView setImage:nextSignImage];
     [backgroundView addSubview:nextSignImageView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addFollower_Following_PreferencesButtons
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kYPos = WINSIZE.width * 0.3;
+    CGFloat const kBackgroundWidth = 80;
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, WINSIZE.width, kBackgroundWidth)];
+    [_scrollView addSubview:backgroundView];
+    
+    [self addFollowerButton:backgroundView];
+    [self addFollowingButton:backgroundView];
+    [self addPreferencesButton:backgroundView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addFollowerButton: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonHeight = 60;
+    CGFloat const kButtonLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+    
+    _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
+    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    _followerButton.bgColor = BACKGROUND_GRAY_COLOR;
+    _followerButton.borderColor = BACKGROUND_GRAY_COLOR;
+    _followerButton.titleColor = [UIColor blackColor];
+    _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _followerButton.cornerRadius = 10.0;
+    [backgroundView addSubview:_followerButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addFollowingButton: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonHeight = 60;
+    CGFloat const kButtonXPos = 2 * WINSIZE.width / 28.0 + WINSIZE.width / 3.5;
+    CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+    
+    _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
+    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    _followingButton.bgColor = BACKGROUND_GRAY_COLOR;
+    _followingButton.borderColor = BACKGROUND_GRAY_COLOR;
+    _followingButton.titleColor = [UIColor blackColor];
+    _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _followingButton.cornerRadius = 10.0;
+    [backgroundView addSubview:_followingButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addPreferencesButton: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonHeight = 60;
+    CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.5;
+    CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+    
+    _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
+    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    _preferencesButton.bgColor = BACKGROUND_GRAY_COLOR;
+    _preferencesButton.borderColor = BACKGROUND_GRAY_COLOR;
+    _preferencesButton.titleColor = [UIColor blackColor];
+    _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _preferencesButton.cornerRadius = 10.0;
+    [backgroundView addSubview:_preferencesButton];
 }
 
 #pragma mark - Event Handlers
