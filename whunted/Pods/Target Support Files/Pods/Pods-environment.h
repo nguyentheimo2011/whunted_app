@@ -78,6 +78,12 @@
 #define COCOAPODS_VERSION_MINOR_Firebase 3
 #define COCOAPODS_VERSION_PATCH_Firebase 1
 
+// HMSegmentedControl
+#define COCOAPODS_POD_AVAILABLE_HMSegmentedControl
+#define COCOAPODS_VERSION_MAJOR_HMSegmentedControl 1
+#define COCOAPODS_VERSION_MINOR_HMSegmentedControl 5
+#define COCOAPODS_VERSION_PATCH_HMSegmentedControl 2
+
 // Haneke
 #define COCOAPODS_POD_AVAILABLE_Haneke
 #define COCOAPODS_VERSION_MAJOR_Haneke 1
