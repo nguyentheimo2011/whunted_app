@@ -69,7 +69,7 @@
 #define     PF_USER_AREA_ADDRESS                @"areaAddress"          //  String
 #define     PF_USER_COUNTRY                     @"country"              //  String
 #define     PF_USER_DESCRIPTION                 @"userDescription"      //  String
-#define     PF_USER_FACEBOOK_VERIFIED                @"facebookVerified"     //  Boolean
+#define     PF_USER_FACEBOOK_VERIFIED           @"facebookVerified"     //  Boolean
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_ITEM_NAME                        @"itemName"

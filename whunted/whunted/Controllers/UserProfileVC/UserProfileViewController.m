@@ -346,6 +346,7 @@
 {
     [self addJoiningDate];
     [self addVerificationInfo];
+    [self addUserDescription];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -419,6 +420,28 @@
     }
     
     _currHeight += kBackgroundTopMargin + kBackgroundHeight;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addUserDescription
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
+    CGFloat const kYPos = _currHeight + kLabelTopMargin;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
+    CGFloat const kMaxNumOfLines = 40;
+    
+    UILabel *userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
+    userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
+    userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    userDescriptionLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    userDescriptionLabel.numberOfLines = kMaxNumOfLines;
+    [userDescriptionLabel sizeToFit];
+    [_scrollView addSubview:userDescriptionLabel];
+    
+    _currHeight += kLabelTopMargin + userDescriptionLabel.frame.size.height;
 }
 
 #pragma mark - Event Handlers
