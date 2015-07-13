@@ -206,6 +206,8 @@
                 user[@"dob"] = [dateFormatter dateFromString:dob];
             }
             
+            user[PF_USER_FACEBOOK_VERIFIED] = @YES;
+            
             [user saveInBackground];
             
             // retrieve and save profile picture

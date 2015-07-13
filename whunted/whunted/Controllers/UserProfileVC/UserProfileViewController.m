@@ -345,6 +345,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self addJoiningDate];
+    [self addVerificationInfo];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -362,9 +363,34 @@
     CGFloat const kLabelHeight = 20;
     UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
     joiningDateLabel.text = [NSString stringWithFormat:@"Joined on %ld/%ld/%ld", (long)components.day, (long)components.month, (long)components.year];
-    joiningDateLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    joiningDateLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:joiningDateLabel];
+    
+    _currHeight += kLabelTopMargin + kLabelHeight;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addVerificationInfo
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kBackgroundLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kBackgroundTopMargin = WINSIZE.height / 96.0;
+    CGFloat const kYPos = _currHeight + kBackgroundTopMargin;
+    CGFloat const kBackgroundWidth = WINSIZE.width - 2 * kBackgroundLeftMargin;
+    CGFloat const kBackgroundHeight = 20;
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(kBackgroundLeftMargin, kYPos, kBackgroundWidth, kBackgroundHeight)];
+    [_scrollView addSubview:backgroundView];
+    
+    UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
+    verifiedLabel.text = @"Verified";
+    verifiedLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [verifiedLabel sizeToFit];
+    [backgroundView addSubview:verifiedLabel];
+    
+    _currHeight += kBackgroundTopMargin + kBackgroundHeight;
 }
 
 #pragma mark - Event Handlers
