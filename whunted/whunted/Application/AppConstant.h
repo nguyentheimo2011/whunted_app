@@ -29,6 +29,9 @@
 #define     FLAT_FRESH_RED_COLOR                [UIColor colorWithRed:233/255.0f green:0/255.0f blue:19/255.0f alpha:1.0f]
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
 #define     FLAT_BUTTON_HEIGHT                  35
 
@@ -65,6 +68,7 @@
 #define		PF_USER_PICTURE						@"profilePicture"		//	File
 #define     PF_USER_AREA_ADDRESS                @"areaAddress"          //  String
 #define     PF_USER_COUNTRY                     @"country"              //  String
+#define     PF_USER_DESCRIPTION                 @"userDescription"      //  String
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_ITEM_NAME                        @"itemName"

@@ -38,6 +38,7 @@
     
     CGFloat         _statusAndNavBarHeight;
     CGFloat         _tabBarHeight;
+    CGFloat         _currHeight;
 }
 
 @synthesize delegate = _delegate;
@@ -51,6 +52,7 @@
     [self addScrollView];
     [self addProfileImage_Name_Country_Rating];
     [self addFollower_Following_PreferencesButtons];
+    [self addDate_Verification_DescriptionLabels];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -100,6 +102,8 @@
     [self addUserFullNameLabel];
     [self addCountryLabel];
     [self addRatingView];
+    
+    _currHeight = WINSIZE.width * 0.3;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -142,7 +146,7 @@
     UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
     countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
     countryLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
-    countryLabel.textColor = [UIColor grayColor];
+    countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:countryLabel];
 }
 
@@ -184,7 +188,7 @@
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _positiveFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _positiveFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
     
@@ -211,7 +215,7 @@
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _mehFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _mehFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
     
@@ -238,7 +242,7 @@
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _negativeFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _negativeFeedbackLabel.textColor = [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0];
+    _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
     
@@ -267,14 +271,16 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kYPos = WINSIZE.width * 0.3;
-    CGFloat const kBackgroundWidth = 80;
+    CGFloat const kBackgroundHeight = 80;
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, WINSIZE.width, kBackgroundWidth)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, WINSIZE.width, kBackgroundHeight)];
     [_scrollView addSubview:backgroundView];
     
     [self addFollowerButton:backgroundView];
     [self addFollowingButton:backgroundView];
     [self addPreferencesButton:backgroundView];
+    
+    _currHeight += kBackgroundHeight;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -290,7 +296,7 @@
     [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
     _followerButton.bgColor = BACKGROUND_GRAY_COLOR;
     _followerButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _followerButton.titleColor = [UIColor blackColor];
+    _followerButton.titleColor = TEXT_COLOR_DARK_GRAY;
     _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followerButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followerButton];
@@ -309,7 +315,7 @@
     [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
     _followingButton.bgColor = BACKGROUND_GRAY_COLOR;
     _followingButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _followingButton.titleColor = [UIColor blackColor];
+    _followingButton.titleColor = TEXT_COLOR_DARK_GRAY;
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followingButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followingButton];
@@ -328,10 +334,37 @@
     [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
     _preferencesButton.bgColor = BACKGROUND_GRAY_COLOR;
     _preferencesButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _preferencesButton.titleColor = [UIColor blackColor];
+    _preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _preferencesButton.cornerRadius = 10.0;
     [backgroundView addSubview:_preferencesButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addDate_Verification_DescriptionLabels
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addJoiningDate];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addJoiningDate
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDate *joiningDate = [PFUser currentUser].createdAt;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:joiningDate];
+    
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 48.0;
+    CGFloat const kYPos = _currHeight + kLabelTopMargin;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
+    CGFloat const kLabelHeight = 20;
+    UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
+    joiningDateLabel.text = [NSString stringWithFormat:@"Joined on %ld/%ld/%ld", (long)components.day, (long)components.month, (long)components.year];
+    joiningDateLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_scrollView addSubview:joiningDateLabel];
 }
 
 #pragma mark - Event Handlers
