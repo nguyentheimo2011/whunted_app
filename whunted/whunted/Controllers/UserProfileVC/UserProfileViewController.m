@@ -390,6 +390,34 @@
     [verifiedLabel sizeToFit];
     [backgroundView addSubview:verifiedLabel];
     
+    BOOL facebookVerified = [PFUser currentUser][PF_USER_FACEBOOK_VERIFIED];
+    if (facebookVerified) {
+        UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
+        
+        CGFloat const kImageWith = 16;
+        CGFloat const kImageLeftMargin = verifiedLabel.frame.size.width + 8;
+        
+        UIImageView *fbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, 2, kImageWith, kImageWith)];
+        [fbImageView setImage:fbImage];
+        [backgroundView addSubview:fbImageView];
+    }
+    
+    BOOL emailVerified = [PFUser currentUser][PF_USER_EMAIL_VERIFICATION];
+    if (emailVerified) {
+        UIImage *emailImage = [UIImage imageNamed:@"email_verification.png"];
+        
+        CGFloat const kImageWith = 20;
+        CGFloat kImageLeftMargin;
+        if (facebookVerified)
+            kImageLeftMargin = verifiedLabel.frame.size.width + 2 * 8 + kImageWith;
+        else
+            kImageLeftMargin = verifiedLabel.frame.size.width + 8;
+        
+        UIImageView *emailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, 0, kImageWith, kImageWith)];
+        [emailImageView setImage:emailImage];
+        [backgroundView addSubview:emailImageView];
+    }
+    
     _currHeight += kBackgroundTopMargin + kBackgroundHeight;
 }
 
