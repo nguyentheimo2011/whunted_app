@@ -111,6 +111,8 @@
 {
     [self addProfileImage];
     [self addUserFullNameLabel];
+    [self addEditButton];
+    [self addSettingButton];
     [self addCountryLabel];
     [self addRatingView];
     
@@ -147,6 +149,32 @@
     userFullNameLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:18];
     userFullNameLabel.textColor = [UIColor blackColor];
     [_topRightView addSubview:userFullNameLabel];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addEditButton
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonXPos = WINSIZE.width * 0.5 + 5;
+    CGFloat const kButtonWidth = 25;
+    
+    JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
+    [editButton createTitle:nil withIcon:[UIImage imageNamed:@"edit_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
+    editButton.borderColor = [UIColor whiteColor];
+    [_topRightView addSubview:editButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addSettingButton
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonXPos = WINSIZE.width * 0.5 + 3 * WINSIZE.width / 30.0;
+    CGFloat const kButtonWidth = 25;
+    
+    JTImageButton *settingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
+    [settingButton createTitle:nil withIcon:[UIImage imageNamed:@"setting_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
+    settingButton.borderColor = [UIColor whiteColor];
+    [_topRightView addSubview:settingButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
