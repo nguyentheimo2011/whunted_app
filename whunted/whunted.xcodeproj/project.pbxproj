@@ -183,6 +183,7 @@
 		E9D433051B550EC200530492 /* setting_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432FF1B550EC200530492 /* setting_icon@1x.png */; };
 		E9D433061B550EC200530492 /* setting_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433001B550EC200530492 /* setting_icon@2x.png */; };
 		E9D433071B550EC200530492 /* setting_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433011B550EC200530492 /* setting_icon@3x.png */; };
+		E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330A1B55167200530492 /* PreferenceViewController.m */; };
 		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
 		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
 		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
@@ -444,6 +445,8 @@
 		E9D432FF1B550EC200530492 /* setting_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon@1x.png"; path = "Resources/User Profile/setting_icon@1x.png"; sourceTree = "<group>"; };
 		E9D433001B550EC200530492 /* setting_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon@2x.png"; path = "Resources/User Profile/setting_icon@2x.png"; sourceTree = "<group>"; };
 		E9D433011B550EC200530492 /* setting_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon@3x.png"; path = "Resources/User Profile/setting_icon@3x.png"; sourceTree = "<group>"; };
+		E9D433091B55167200530492 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceViewController.h; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.h; sourceTree = "<group>"; };
+		E9D4330A1B55167200530492 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceViewController.m; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.m; sourceTree = "<group>"; };
 		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
 		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
 		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1063,6 +1066,7 @@
 			children = (
 				E9D432F51B54F2E800530492 /* UserProfile */,
 				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
+				E9D433081B55162200530492 /* PreferenceVC */,
 			);
 			name = UserProfileVC;
 			sourceTree = "<group>";
@@ -1220,6 +1224,15 @@
 				E9D432F71B54F32500530492 /* UserProfileViewController.m */,
 			);
 			name = UserProfile;
+			sourceTree = "<group>";
+		};
+		E9D433081B55162200530492 /* PreferenceVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D433091B55167200530492 /* PreferenceViewController.h */,
+				E9D4330A1B55167200530492 /* PreferenceViewController.m */,
+			);
+			name = PreferenceVC;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
@@ -1614,6 +1627,7 @@
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */,
+				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,

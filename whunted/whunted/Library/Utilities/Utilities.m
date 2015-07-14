@@ -196,4 +196,19 @@
     return [UIApplication sharedApplication].statusBarFrame.size.height;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = [NSString stringWithFormat:@"%@", title];
+    [titleLabel sizeToFit];
+    viewController.navigationItem.titleView = titleLabel;
+}
+
 @end

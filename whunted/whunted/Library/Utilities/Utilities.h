@@ -28,4 +28,8 @@
 + (NSDate *)    getRoundMinuteDateFromDate: (NSDate *) date;
 + (CGFloat)     getStatusBarHeight;
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void)        customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController;
+//------------------------------------------------------------------------------------------------------------------------------
+
 @end

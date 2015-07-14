@@ -10,6 +10,8 @@
 #import "AppConstant.h"
 #import "PersistedCache.h"
 #import "HistoryCollectionViewCell.h"
+#import "PreferenceViewController.h"
+#import "Utilities.h"
 
 #import <Parse/Parse.h>
 #import <JTImageButton.h>
@@ -82,15 +84,8 @@
 {
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
-    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
-    [titleLabel sizeToFit];
-    self.navigationItem.titleView = titleLabel;
+    NSString *tittle = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
+    [Utilities customizeTitleLabel:tittle forViewController:self];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -376,6 +371,7 @@
     _preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _preferencesButton.cornerRadius = 10.0;
+    [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:_preferencesButton];
 }
 
@@ -681,6 +677,14 @@
         [listGridViewControl createTitle:@"" withIcon:[UIImage imageNamed:@"grid_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
         listGridViewControl.tag = 0;
     }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) preferencesButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PreferenceViewController *preferenceVC = [[PreferenceViewController alloc] init];
+    [self.navigationController pushViewController:preferenceVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
