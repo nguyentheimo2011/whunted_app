@@ -538,7 +538,6 @@
     [_scrollView addSubview:rightLine];
     
     _currHeight += kLabelTopMargin + kLabelHeight;
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -547,7 +546,7 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCollectionViewHeight = WINSIZE.width / 2.0 + 110;
+    CGFloat const kCollectionViewHeight = 5 * (WINSIZE.width / 2.0 + 110);
     CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
