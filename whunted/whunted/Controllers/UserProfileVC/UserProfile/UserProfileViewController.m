@@ -458,7 +458,7 @@
 - (void) addControls
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self addListGridViewControl];
+//    [self addListGridViewControl];
     [self addSegmentedControl];
 }
 
