@@ -290,13 +290,13 @@
 - (void) addFollowerButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonWidth = WINSIZE.width / 3.6;
     CGFloat const kButtonHeight = 60;
     CGFloat const kButtonLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     _followerButton.bgColor = BACKGROUND_GRAY_COLOR;
     _followerButton.borderColor = BACKGROUND_GRAY_COLOR;
     _followerButton.titleColor = TEXT_COLOR_DARK_GRAY;
@@ -309,13 +309,13 @@
 - (void) addFollowingButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonWidth = WINSIZE.width / 3.6;
     CGFloat const kButtonHeight = 60;
-    CGFloat const kButtonXPos = 2 * WINSIZE.width / 28.0 + WINSIZE.width / 3.5;
+    CGFloat const kButtonXPos = 2 * WINSIZE.width / 28.0 + WINSIZE.width / 3.6;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     _followingButton.bgColor = BACKGROUND_GRAY_COLOR;
     _followingButton.borderColor = BACKGROUND_GRAY_COLOR;
     _followingButton.titleColor = TEXT_COLOR_DARK_GRAY;
@@ -328,13 +328,13 @@
 - (void) addPreferencesButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width / 3.5;
+    CGFloat const kButtonWidth = WINSIZE.width * (6/7.0 - 2/3.6);
     CGFloat const kButtonHeight = 60;
-    CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.5;
+    CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.6;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:17] iconOffsetY:0];
+    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     _preferencesButton.bgColor = BACKGROUND_GRAY_COLOR;
     _preferencesButton.borderColor = BACKGROUND_GRAY_COLOR;
     _preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
