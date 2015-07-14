@@ -33,6 +33,8 @@
     UILabel         *_mehFeedbackLabel;
     UILabel         *_negativeFeedbackLabel;
     
+    UILabel         *_totalListingsNumLabel;
+    
     JTImageButton   *_followerButton;
     JTImageButton   *_followingButton;
     JTImageButton   *_preferencesButton;
@@ -56,6 +58,7 @@
     [self addDate_Verification_DescriptionLabels];
     [self addUserDescription];
     [self addControls];
+    [self addTotalListingsNumLabel];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -393,7 +396,7 @@
     [verifiedLabel sizeToFit];
     [backgroundView addSubview:verifiedLabel];
     
-    BOOL facebookVerified = [PFUser currentUser][PF_USER_FACEBOOK_VERIFIED];
+    BOOL facebookVerified = (BOOL) [PFUser currentUser][PF_USER_FACEBOOK_VERIFIED];
     if (facebookVerified) {
         UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
         
@@ -405,7 +408,7 @@
         [backgroundView addSubview:fbImageView];
     }
     
-    BOOL emailVerified = [PFUser currentUser][PF_USER_EMAIL_VERIFICATION];
+    BOOL emailVerified = (BOOL) [PFUser currentUser][PF_USER_EMAIL_VERIFICATION];
     if (emailVerified) {
         UIImage *emailImage = [UIImage imageNamed:@"email_verification.png"];
         
@@ -484,14 +487,51 @@
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
     segmentedControl.sectionTitles = @[@"Bought", @"Sold"];
+    
     segmentedControl.selectedSegmentIndex = 0;
     segmentedControl.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-    segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:LIGHT_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    [segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
     [_scrollView addSubview:segmentedControl];
+    
+    _currHeight += kControlTopMargin + kControlHeight;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addTotalListingsNumLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _totalListingsNumLabel = [[UILabel alloc] init];
+    _totalListingsNumLabel.text = @"0 Listings";
+    _totalListingsNumLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _totalListingsNumLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_totalListingsNumLabel sizeToFit];
+    
+    CGFloat const kLabelWidth = _totalListingsNumLabel.frame.size.width;
+    CGFloat const kLabelHeight = _totalListingsNumLabel.frame.size.height;
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 48.0;
+    CGFloat const kLabelYPos = _currHeight + kLabelTopMargin;
+    _totalListingsNumLabel.frame = CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight);
+    [_scrollView addSubview:_totalListingsNumLabel];
+    
+    // add two horizontal lines beside the total listing label
+    CGFloat const kFirstLineLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLineWidth = kLabelLeftMargin - 5 - kFirstLineLeftMargin;
+    CGFloat const kLineYPos = kLabelYPos + kLabelHeight / 2.0;
+    CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
+    
+    UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
+    leftLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:leftLine];
+    
+    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
+    rightLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:rightLine];
 }
 
 #pragma mark - Event Handlers
@@ -510,6 +550,13 @@
         [listGridViewControl createTitle:@"" withIcon:[UIImage imageNamed:@"grid_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
         listGridViewControl.tag = 0;
     }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) segmentedControlSwitchEventHandler: (HMSegmentedControl *) segmentedControl
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+//    NSLog(@"segmentedControlSwitchEventHandler %d", segmentedControl.selectedSegmentIndex);
 }
 
 @end
