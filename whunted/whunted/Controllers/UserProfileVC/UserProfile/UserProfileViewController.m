@@ -63,6 +63,7 @@
     [self addControls];
     [self addTotalListingsNumLabel];
     [self addHistoryCollectionView];
+    [self addAllDisplayedLabel];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -559,6 +560,27 @@
     [_scrollView addSubview:_historyCollectionView];
     
     _currHeight += kCollectionViewHeight + kCollectionTopMargin;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addAllDisplayedLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *allDisplayedLabel = [[UILabel alloc] init];
+    allDisplayedLabel.text = @"All displayed";
+    allDisplayedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    allDisplayedLabel.textColor = LIGHT_GRAY_COLOR;
+    [allDisplayedLabel sizeToFit];
+    
+    CGFloat const kLabelWidth = allDisplayedLabel.frame.size.width;
+    CGFloat const kLabelHeight = allDisplayedLabel.frame.size.height;
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 24.0;
+    CGFloat const kYPos = _currHeight + kLabelTopMargin;
+    allDisplayedLabel.frame = CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight);
+    [_scrollView addSubview:allDisplayedLabel];
+    
+    _currHeight +=  2 * kLabelTopMargin + kLabelHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
