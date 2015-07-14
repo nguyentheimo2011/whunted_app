@@ -169,8 +169,9 @@
 - (void) addSellerNumButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 100;
-    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, yPos, _cellWidth/2, 25)];
+    CGFloat const kXPos = _cellWidth/2;
+    CGFloat const kYPos = _cellWidth + 100;
+    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
     [_sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
     [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
     _sellerNumButton.titleLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
@@ -181,9 +182,9 @@
 - (void) addLikeButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat xPos = _cellWidth/2;
-    CGFloat yPos = _cellWidth + 100;
-    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(xPos, yPos, _cellWidth/2, 25)];
+    CGFloat const kXPos = 0;
+    CGFloat const kYPos = _cellWidth + 100;
+    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
     [_likeButton setBackgroundColor:LIGHT_GRAY_COLOR];
     [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
