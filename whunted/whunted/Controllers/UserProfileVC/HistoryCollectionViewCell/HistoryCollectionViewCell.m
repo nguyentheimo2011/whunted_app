@@ -11,20 +11,20 @@
 
 @implementation HistoryCollectionViewCell
 {
-    CGFloat _cellWidth;
-    CGFloat _cellHeight;
-    BOOL _likedByMe;
-    NSInteger _likesNum;
+    CGFloat     _cellWidth;
+    CGFloat     _cellHeight;
+    BOOL        _likedByMe;
+    NSInteger   _likesNum;
     UIImageView *_likeImageView;
-    UILabel *_likesNumLabel;
+    UILabel     *_likesNumLabel;
 }
 
-@synthesize itemNameLabel = _itemNameLabel;
-@synthesize demandedPriceLabel = _demandedPriceLabel;
-@synthesize sellerNumButton = _sellerNumButton;
-@synthesize likeButton = _likeButton;
-@synthesize itemImageView = _itemImageView;
-@synthesize wantData = _wantData;
+@synthesize itemNameLabel       =       _itemNameLabel;
+@synthesize demandedPriceLabel  =       _demandedPriceLabel;
+@synthesize sellerNumButton     =       _sellerNumButton;
+@synthesize likeButton          =       _likeButton;
+@synthesize itemImageView       =       _itemImageView;
+@synthesize wantData            =       _wantData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -80,7 +80,7 @@
 - (void) customizeCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
+    [self setBackgroundColor:LIGHTEST_GRAY_COLOR];
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     _cellWidth = self.frame.size.width;
@@ -92,7 +92,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
-    [_itemImageView setBackgroundColor:LIGHT_GRAY_COLOR];
+    [_itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
     [self addSubview:_itemImageView];
     [_itemImageView hnk_cancelSetImage];
     _itemImageView.image = nil;
@@ -126,8 +126,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kXPos = _cellWidth/2;
-    CGFloat const kYPos = _cellWidth + 100;
-    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
+    CGFloat const kYPos = _cellWidth + 60;
+    CGFloat const kButtonHeight = 25;
+    
+    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, kButtonHeight)];
     [_sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
     [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
     _sellerNumButton.titleLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
@@ -139,10 +141,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kXPos = 0;
-    CGFloat const kYPos = _cellWidth + 100;
-    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
+    CGFloat const kYPos = _cellWidth + 60;
+    CGFloat const kButtonHeight = 25;
+    
+    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, kButtonHeight)];
     [_likeButton setBackgroundColor:LIGHT_GRAY_COLOR];
-    [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
     
     _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, -1.5, 28, 28)];
@@ -156,24 +159,7 @@
     [_likeButton addSubview:_likesNumLabel];
 }
 
-#pragma mark - Event Handlers
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) likeButtonClickedEvent
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (_likedByMe) {
-        _likedByMe = NO;
-        _likesNum -= 1;
-        [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
-        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    } else {
-        _likedByMe = YES;
-        _likesNum += 1;
-        [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
-        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    }
-}
+#pragma mark - Backend
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) downloadItemImage

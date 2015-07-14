@@ -79,7 +79,7 @@
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -546,12 +546,15 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCollectionViewHeight = 5 * (WINSIZE.width / 2.0 + 110);
+    CGFloat const kCellHeight = WINSIZE.width/2.0 + 70;
+    CGFloat const kYDistanceBetweenCell = 20;
+    CGFloat const kCollectionViewHeight = 5 * kCellHeight + 4 * kYDistanceBetweenCell;
     CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     _historyCollectionView.dataSource = self;
     _historyCollectionView.delegate = self;
+    _historyCollectionView.backgroundColor = [UIColor whiteColor];
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_scrollView addSubview:_historyCollectionView];
     
@@ -585,7 +588,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return CGSizeMake(WINSIZE.width/2-15, WINSIZE.width/2 + 110);
+    CGFloat const kCellWidth = WINSIZE.width/2.0 - 15;
+    CGFloat const kCellHeight = kCellWidth + 85;
+    
+    return CGSizeMake(kCellWidth, kCellHeight);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

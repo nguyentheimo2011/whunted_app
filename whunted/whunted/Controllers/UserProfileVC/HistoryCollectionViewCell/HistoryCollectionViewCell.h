@@ -12,13 +12,13 @@
 
 @interface HistoryCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UILabel *itemNameLabel;
-@property (nonatomic, strong) UILabel *demandedPriceLabel;
-@property (nonatomic, strong) UIButton *sellerNumButton;
-@property (nonatomic, strong) UIButton *likeButton;
-@property (nonatomic, strong) UIImageView *itemImageView;
+@property (nonatomic, strong) UILabel       *itemNameLabel;
+@property (nonatomic, strong) UILabel       *demandedPriceLabel;
+@property (nonatomic, strong) UIButton      *sellerNumButton;
+@property (nonatomic, strong) UIButton      *likeButton;
+@property (nonatomic, strong) UIImageView   *itemImageView;
 
-@property (nonatomic, strong) WantData *wantData;
+@property (nonatomic, strong) WantData      *wantData;
 
 - (void) initCell;
 
