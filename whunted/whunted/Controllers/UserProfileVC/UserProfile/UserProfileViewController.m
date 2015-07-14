@@ -9,7 +9,7 @@
 #import "UserProfileViewController.h"
 #import "AppConstant.h"
 #import "PersistedCache.h"
-#import "MarketplaceCollectionViewCell.h"
+#import "HistoryCollectionViewCell.h"
 
 #import <Parse/Parse.h>
 #import <JTImageButton.h>
@@ -552,7 +552,7 @@
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     _historyCollectionView.dataSource = self;
     _historyCollectionView.delegate = self;
-    [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
+    [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_scrollView addSubview:_historyCollectionView];
     
     _currHeight += kCollectionViewHeight + kCollectionTopMargin;
@@ -572,7 +572,7 @@
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+    HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
     
     if (cell.itemImageView == nil) {
         [cell initCell];

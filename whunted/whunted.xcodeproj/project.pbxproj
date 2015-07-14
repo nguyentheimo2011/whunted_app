@@ -104,7 +104,6 @@
 		E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113191B21EB6C00ECAA0C /* SellerListViewController.m */; };
 		E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E981131C1B21EB7D00ECAA0C /* SellerListCell.m */; };
 		E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113201B24B85F00ECAA0C /* SellTableViewCell.m */; };
-		E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113261B25898C00ECAA0C /* UserProfileViewController.m */; };
 		E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE41B3009D800904DE9 /* libicucore.dylib */; };
 		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
 		E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */; };
@@ -176,6 +175,8 @@
 		E9D432F11B53C89400530492 /* list_view_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432EB1B53C89400530492 /* list_view_icon@1x.png */; };
 		E9D432F21B53C89400530492 /* list_view_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432EC1B53C89400530492 /* list_view_icon@2x.png */; };
 		E9D432F31B53C89400530492 /* list_view_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432ED1B53C89400530492 /* list_view_icon@3x.png */; };
+		E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D432F71B54F32500530492 /* UserProfileViewController.m */; };
+		E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */; };
 		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
 		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
 		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
@@ -330,8 +331,6 @@
 		E981131C1B21EB7D00ECAA0C /* SellerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellerListCell.m; path = Controllers/WantSell/SellerListCell/SellerListCell.m; sourceTree = "<group>"; };
 		E981131F1B24B85F00ECAA0C /* SellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellTableViewCell.h; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.h; sourceTree = "<group>"; };
 		E98113201B24B85F00ECAA0C /* SellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellTableViewCell.m; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.m; sourceTree = "<group>"; };
-		E98113251B25898C00ECAA0C /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = Controllers/UserProfileVC/UserProfileViewController.h; sourceTree = "<group>"; };
-		E98113261B25898C00ECAA0C /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfileViewController.m; sourceTree = "<group>"; };
 		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
 		E9A07BE41B3009D800904DE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		E9A07BE61B3009F500904DE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -429,6 +428,10 @@
 		E9D432EB1B53C89400530492 /* list_view_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_view_icon@1x.png"; path = "Resources/User Profile/list_view_icon@1x.png"; sourceTree = "<group>"; };
 		E9D432EC1B53C89400530492 /* list_view_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_view_icon@2x.png"; path = "Resources/User Profile/list_view_icon@2x.png"; sourceTree = "<group>"; };
 		E9D432ED1B53C89400530492 /* list_view_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_view_icon@3x.png"; path = "Resources/User Profile/list_view_icon@3x.png"; sourceTree = "<group>"; };
+		E9D432F61B54F32500530492 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = Controllers/UserProfileVC/UserProfile/UserProfileViewController.h; sourceTree = "<group>"; };
+		E9D432F71B54F32500530492 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfile/UserProfileViewController.m; sourceTree = "<group>"; };
+		E9D432F91B54F38A00530492 /* HistoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryCollectionViewCell.h; path = Controllers/UserProfileVC/HistoryCollectionViewCell/HistoryCollectionViewCell.h; sourceTree = "<group>"; };
+		E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryCollectionViewCell.m; path = Controllers/UserProfileVC/HistoryCollectionViewCell/HistoryCollectionViewCell.m; sourceTree = "<group>"; };
 		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
 		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
 		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1040,8 +1043,8 @@
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
 			isa = PBXGroup;
 			children = (
-				E98113251B25898C00ECAA0C /* UserProfileViewController.h */,
-				E98113261B25898C00ECAA0C /* UserProfileViewController.m */,
+				E9D432F51B54F2E800530492 /* UserProfile */,
+				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
 			);
 			name = UserProfileVC;
 			sourceTree = "<group>";
@@ -1181,6 +1184,24 @@
 				E9FB22931B43A38D00395062 /* PersistedCache.m */,
 			);
 			name = PersistedCache;
+			sourceTree = "<group>";
+		};
+		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9D432F91B54F38A00530492 /* HistoryCollectionViewCell.h */,
+				E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */,
+			);
+			name = HistoryCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		E9D432F51B54F2E800530492 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E9D432F61B54F32500530492 /* UserProfileViewController.h */,
+				E9D432F71B54F32500530492 /* UserProfileViewController.m */,
+			);
+			name = UserProfile;
 			sourceTree = "<group>";
 		};
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
@@ -1559,13 +1580,13 @@
 				E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */,
 				E9A07C1C1B3162AE00904DE9 /* recent.m in Sources */,
 				E9A07C191B31623C00904DE9 /* video.m in Sources */,
+				E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */,
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
-				E98113271B25898C00ECAA0C /* UserProfileViewController.m in Sources */,
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */,
@@ -1592,6 +1613,7 @@
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E97CE4AC1B09EF230027C5FA /* NewsFeedViewController.m in Sources */,
+				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */,
 				E9A07C281B31660B00904DE9 /* push.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
