@@ -9,6 +9,7 @@
 #import "UserProfileViewController.h"
 #import "AppConstant.h"
 #import "PersistedCache.h"
+#import "MarketplaceCollectionViewCell.h"
 
 #import <Parse/Parse.h>
 #import <JTImageButton.h>
@@ -26,22 +27,24 @@
 @implementation UserProfileViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UIScrollView    *_scrollView;
-    UIView          *_topRightView;
+    UIScrollView        *_scrollView;
+    UIView              *_topRightView;
     
-    UILabel         *_positiveFeedbackLabel;
-    UILabel         *_mehFeedbackLabel;
-    UILabel         *_negativeFeedbackLabel;
+    UILabel             *_positiveFeedbackLabel;
+    UILabel             *_mehFeedbackLabel;
+    UILabel             *_negativeFeedbackLabel;
     
-    UILabel         *_totalListingsNumLabel;
+    UILabel             *_totalListingsNumLabel;
     
-    JTImageButton   *_followerButton;
-    JTImageButton   *_followingButton;
-    JTImageButton   *_preferencesButton;
+    JTImageButton       *_followerButton;
+    JTImageButton       *_followingButton;
+    JTImageButton       *_preferencesButton;
     
-    CGFloat         _statusAndNavBarHeight;
-    CGFloat         _tabBarHeight;
-    CGFloat         _currHeight;
+    UICollectionView    *_historyCollectionView;
+    
+    CGFloat             _statusAndNavBarHeight;
+    CGFloat             _tabBarHeight;
+    CGFloat             _currHeight;
 }
 
 @synthesize delegate = _delegate;
@@ -59,6 +62,7 @@
     [self addUserDescription];
     [self addControls];
     [self addTotalListingsNumLabel];
+    [self addHistoryCollectionView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -533,8 +537,77 @@
     rightLine.backgroundColor = LIGHT_GRAY_COLOR;
     [_scrollView addSubview:rightLine];
     
-    _currHeight += kLabelTopMargin + kLabelWidth;
+    _currHeight += kLabelTopMargin + kLabelHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addHistoryCollectionView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    CGFloat const kCollectionViewHeight = WINSIZE.width / 2.0 + 110;
+    CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
+    CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
+    _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
+    _historyCollectionView.dataSource = self;
+    _historyCollectionView.delegate = self;
+    [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
+    [_scrollView addSubview:_historyCollectionView];
+    
+    _currHeight += kCollectionViewHeight + kCollectionTopMargin;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
+}
+
+#pragma mark - CollectionView datasource methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return 10;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+    
+    if (cell.itemImageView == nil) {
+        [cell initCell];
+    }
+    
+    return cell;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return CGSizeMake(WINSIZE.width/2-15, WINSIZE.width/2 + 110);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return 10.0;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return 15.0;
 }
 
 #pragma mark - Event Handlers

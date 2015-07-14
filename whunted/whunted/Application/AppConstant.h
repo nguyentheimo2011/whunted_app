@@ -12,6 +12,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
 #define     DARK_BLUE_COLOR                     [UIColor colorWithRed:52.0/255 green:68.0/255 blue:105.0/255 alpha:1.0]
+#define     BRIGHT_BLUE_COLOR                   [UIColor colorWithRed:30.0/255 green:181.0/255 blue:236.0/255 alpha:1.0]
+
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
 #define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
 #define     LIGHTEST_GRAY_COLOR                 [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
