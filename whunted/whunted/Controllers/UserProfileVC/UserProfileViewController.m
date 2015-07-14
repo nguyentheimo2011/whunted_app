@@ -532,6 +532,9 @@
     UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
     rightLine.backgroundColor = LIGHT_GRAY_COLOR;
     [_scrollView addSubview:rightLine];
+    
+    _currHeight += kLabelTopMargin + kLabelWidth;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
 #pragma mark - Event Handlers
