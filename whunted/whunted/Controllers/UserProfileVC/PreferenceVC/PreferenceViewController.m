@@ -14,7 +14,7 @@
 #define kResidingCountryTag         1
 
 #define kMaximumLines               10
-#define kLeftRightMargin            20
+#define kLeftRightMargin            30
 
 #define kAddedTopBottomSpace        10
 
@@ -105,7 +105,6 @@
     _travellingToCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
     _travellingToCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _travellingToCell.textLabel.numberOfLines = kMaximumLines;
-    [_travellingToCell.textLabel sizeToFit];
     _travellingToCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -122,6 +121,8 @@
     else
         _residingCountryCel.textLabel.text = @"E.g. Taiwan";
     _residingCountryCel.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    _residingCountryCel.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _residingCountryCel.textLabel.numberOfLines = kMaximumLines;
     _residingCountryCel.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -208,9 +209,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (indexPath.section == 0) {
-        return [self heightForLabelWithText:_travellingToCell.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - kLeftRightMargin] + kAddedTopBottomSpace;
+        return [self heightForLabelWithText:_travellingToCell.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - 2 * kLeftRightMargin] + kAddedTopBottomSpace;
     } else if (indexPath.section == 1) {
-        return [self heightForLabelWithText:_residingCountryCel.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - kLeftRightMargin] + kAddedTopBottomSpace;
+        return [self heightForLabelWithText:_residingCountryCel.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - 2 * kLeftRightMargin] + kAddedTopBottomSpace;
     } else
         return 60.0f;
 }
@@ -218,6 +219,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *) tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
@@ -253,10 +260,24 @@
         
         _travellingToCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kTravellingToCountryList];
         NSString *text = [_travellingToCountryList componentsJoinedByString:@", "];
+        if (text.length > 0)
+            _travellingToCell.textLabel.text = text;
+        else
+            _travellingToCell.textLabel.text = @"E.g. USA, Germany";
         
+        [_preferenceTableView reloadData];
     } else if (controller.tag == kResidingCountryTag) {
         _residingCountryList = [NSArray arrayWithArray:countries];
         [[NSUserDefaults standardUserDefaults] setObject:_residingCountryList forKey:kResidingCountryList];
+        
+        _residingCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kResidingCountryList];
+        NSString *text = [_residingCountryList componentsJoinedByString:@", "];
+        if (text.length > 0)
+            _residingCountryCel.textLabel.text = text;
+        else
+            _residingCountryCel.textLabel.text = @"E.g. Taiwan";
+        
+        [_preferenceTableView reloadData];
     }
 }
 
