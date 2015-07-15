@@ -55,6 +55,7 @@
     _preferenceTableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _preferenceTableView.delegate = self;
     _preferenceTableView.dataSource = self;
+    _preferenceTableView.backgroundColor = LIGHTEST_GRAY_COLOR;
     [self.view addSubview:_preferenceTableView];
 }
 
@@ -105,7 +106,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 1.0f;
+    return 0.01f;
 }
 
 @end
