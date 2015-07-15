@@ -6,28 +6,28 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "ProductOriginTableViewController.h"
+#import "CountryTableViewController.h"
 
-@interface ProductOriginTableViewController ()
+@interface CountryTableViewController ()
 
 @end
 
-@implementation ProductOriginTableViewController
+@implementation CountryTableViewController
 {
     NSArray             *_fullCountryList;
 }
 
-@synthesize selectedOrigins;
+@synthesize selectedCountries = _selectedCountries;
 @synthesize delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (id) initWithSelectedOrigins: (NSArray *) origins
+- (id) initWithSelectedCountries: (NSArray *) origins
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     
     if (self != nil) {
-        selectedOrigins = [NSArray arrayWithArray:origins];
+        _selectedCountries = [NSArray arrayWithArray:origins];
         [self getCountryList];
         [self customizeNavigationBar];
     }
@@ -93,7 +93,7 @@
     cell.textLabel.text = [_fullCountryList objectAtIndex:indexPath.row];
     
     NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
-    if ([selectedOrigins containsObject:country]) {
+    if ([_selectedCountries containsObject:country]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -107,16 +107,16 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
-    if ([selectedOrigins containsObject:country]) {
-        NSMutableArray *_selectedCountries = [NSMutableArray arrayWithArray:selectedOrigins];
-        [_selectedCountries removeObject:country];
-        selectedOrigins = [NSArray arrayWithArray:_selectedCountries];
+    if ([_selectedCountries containsObject:country]) {
+        NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
+        [countries removeObject:country];
+        _selectedCountries = [NSArray arrayWithArray:countries];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
-        NSMutableArray *_selectedCountries = [NSMutableArray arrayWithArray:selectedOrigins];
-        [_selectedCountries addObject:country];
-        selectedOrigins = [NSArray arrayWithArray:_selectedCountries];
+        NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
+        [countries addObject:country];
+        _selectedCountries = [NSArray arrayWithArray:countries];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -129,7 +129,7 @@
 - (void) completeChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [delegate productOriginTableView:self didCompleteChoosingOrigins:selectedOrigins];
+    [delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

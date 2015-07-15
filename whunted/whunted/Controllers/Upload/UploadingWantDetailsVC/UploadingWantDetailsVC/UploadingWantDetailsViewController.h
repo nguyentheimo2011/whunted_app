@@ -11,7 +11,7 @@
 #import "CategoryTableViewController.h"
 #import "LocationTableViewController.h"
 #import "ItemInfoTableViewController.h"
-#import "ProductOriginTableViewController.h"
+#import "CountryTableViewController.h"
 #import "WantData.h"
 
 @class UploadingWantDetailsViewController;
@@ -23,7 +23,7 @@
 
 @end
 
-@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, ProductOriginTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
+@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, CountryTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 

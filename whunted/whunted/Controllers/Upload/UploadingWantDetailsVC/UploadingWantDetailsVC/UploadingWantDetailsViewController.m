@@ -441,7 +441,7 @@
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 2) {
-            ProductOriginTableViewController *productTableVC = [[ProductOriginTableViewController alloc] initWithSelectedOrigins:wantData.productOriginList];
+            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:wantData.productOriginList];
             productTableVC.delegate = self;
             [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
@@ -574,7 +574,7 @@
 #pragma mark - ProductOriginTableViewDelegate
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) productOriginTableView:(ProductOriginTableViewController *)controller didCompleteChoosingOrigins:(NSArray *)countries
+- (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingCountries:(NSArray *)countries
 //------------------------------------------------------------------------------------------------------------------------------
 {
     wantData.productOriginList = [NSArray arrayWithArray:countries];

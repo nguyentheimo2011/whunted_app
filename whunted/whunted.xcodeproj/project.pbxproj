@@ -10,7 +10,6 @@
 		64AE23510F482E5A1A10D7E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A02F6CD541644ABF1CD6C53B /* libPods.a */; };
 		E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */; };
 		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
-		E915F81F1B3916F000D0A2F8 /* ProductOriginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */; };
 		E915F8231B39587700D0A2F8 /* info_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F8201B39587700D0A2F8 /* info_icon.png */; };
 		E915F8241B39587700D0A2F8 /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F8211B39587700D0A2F8 /* location_icon.png */; };
 		E915F8251B39587700D0A2F8 /* pricetag_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F8221B39587700D0A2F8 /* pricetag_icon.png */; };
@@ -184,6 +183,7 @@
 		E9D433061B550EC200530492 /* setting_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433001B550EC200530492 /* setting_icon@2x.png */; };
 		E9D433071B550EC200530492 /* setting_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433011B550EC200530492 /* setting_icon@3x.png */; };
 		E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330A1B55167200530492 /* PreferenceViewController.m */; };
+		E9D4330E1B56247E00530492 /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330D1B56247E00530492 /* CountryTableViewController.m */; };
 		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
 		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
 		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
@@ -225,8 +225,6 @@
 		E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriceOptionViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.h; sourceTree = "<group>"; };
 		E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriceOptionViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.m; sourceTree = "<group>"; };
 		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
-		E915F81D1B3916F000D0A2F8 /* ProductOriginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductOriginTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/ProductOriginTableViewController.h; sourceTree = "<group>"; };
-		E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductOriginTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/ProductOriginTableViewController.m; sourceTree = "<group>"; };
 		E915F8201B39587700D0A2F8 /* info_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = info_icon.png; path = "Resources/Want Details/info_icon.png"; sourceTree = "<group>"; };
 		E915F8211B39587700D0A2F8 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = location_icon.png; path = "Resources/Want Details/location_icon.png"; sourceTree = "<group>"; };
 		E915F8221B39587700D0A2F8 /* pricetag_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pricetag_icon.png; path = "Resources/Want Details/pricetag_icon.png"; sourceTree = "<group>"; };
@@ -447,6 +445,8 @@
 		E9D433011B550EC200530492 /* setting_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon@3x.png"; path = "Resources/User Profile/setting_icon@3x.png"; sourceTree = "<group>"; };
 		E9D433091B55167200530492 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceViewController.h; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.h; sourceTree = "<group>"; };
 		E9D4330A1B55167200530492 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceViewController.m; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.m; sourceTree = "<group>"; };
+		E9D4330C1B56247E00530492 /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/CountryTableViewController.h; sourceTree = "<group>"; };
+		E9D4330D1B56247E00530492 /* CountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/CountryTableViewController.m; sourceTree = "<group>"; };
 		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
 		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
 		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -582,8 +582,8 @@
 		E915F81C1B39162B00D0A2F8 /* ProductOriginTable */ = {
 			isa = PBXGroup;
 			children = (
-				E915F81D1B3916F000D0A2F8 /* ProductOriginTableViewController.h */,
-				E915F81E1B3916F000D0A2F8 /* ProductOriginTableViewController.m */,
+				E9D4330C1B56247E00530492 /* CountryTableViewController.h */,
+				E9D4330D1B56247E00530492 /* CountryTableViewController.m */,
 			);
 			name = ProductOriginTable;
 			sourceTree = "<group>";
@@ -1632,6 +1632,7 @@
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
+				E9D4330E1B56247E00530492 /* CountryTableViewController.m in Sources */,
 				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
@@ -1659,7 +1660,6 @@
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
-				E915F81F1B3916F000D0A2F8 /* ProductOriginTableViewController.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
