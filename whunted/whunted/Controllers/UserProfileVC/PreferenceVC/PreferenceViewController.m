@@ -250,6 +250,10 @@
     if (controller.tag == kTravellingToTag) {
         _travellingToCountryList = [NSArray arrayWithArray:countries];
         [[NSUserDefaults standardUserDefaults] setObject:_travellingToCountryList forKey:kTravellingToCountryList];
+        
+        _travellingToCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kTravellingToCountryList];
+        NSString *text = [_travellingToCountryList componentsJoinedByString:@", "];
+        
     } else if (controller.tag == kResidingCountryTag) {
         _residingCountryList = [NSArray arrayWithArray:countries];
         [[NSUserDefaults standardUserDefaults] setObject:_residingCountryList forKey:kResidingCountryList];
