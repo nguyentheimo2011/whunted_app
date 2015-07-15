@@ -10,8 +10,8 @@
 #define whunted_AppConstant_h
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:5.0/255 green:62.0/255 blue:139.0/255 alpha:1.0]
-#define     DARK_BLUE_COLOR                     [UIColor colorWithRed:5.0/255 green:62.0/255 blue:139.0/255 alpha:1.0]
+#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:36.0/255 green:59.0/255 blue:100.0/255 alpha:1.0]
+#define     DARK_BLUE_COLOR                     [UIColor colorWithRed:52.0/255 green:68.0/255 blue:105.0/255 alpha:1.0]
 #define     BRIGHT_BLUE_COLOR                   [UIColor colorWithRed:30.0/255 green:181.0/255 blue:236.0/255 alpha:1.0]
 
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
