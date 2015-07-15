@@ -95,10 +95,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _travellingToCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kTravellingToCountryList];
-    
+    NSString *text = [_travellingToCountryList componentsJoinedByString:@", "];
     
     _travellingToCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TravellingTo"];
-    _travellingToCell.textLabel.text = @"E.g. USA, Germany";
+    if (text.length > 0)
+        _travellingToCell.textLabel.text = text;
+    else
+        _travellingToCell.textLabel.text = @"E.g. USA, Germany";
     _travellingToCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
     _travellingToCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _travellingToCell.textLabel.numberOfLines = kMaximumLines;
@@ -110,12 +113,16 @@
 - (void) initResidingCountryCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _residingCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kResidingCountryList];
+    NSString *text = [_residingCountryList componentsJoinedByString:@", "];
+    
     _residingCountryCel = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ResidingCountry"];
-    _residingCountryCel.textLabel.text = @"E.g. Taiwan";
+    if (text.length > 0)
+        _residingCountryCel.textLabel.text = text;
+    else
+        _residingCountryCel.textLabel.text = @"E.g. Taiwan";
     _residingCountryCel.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
     _residingCountryCel.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    _residingCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kResidingCountryList];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
