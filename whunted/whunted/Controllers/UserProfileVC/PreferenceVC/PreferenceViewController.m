@@ -22,6 +22,9 @@
     UITableViewCell *_residingCountryCel;
     UITableViewCell *_buyingHashTagCell;
     UITableViewCell *_sellingHashTagCell;
+    
+    NSMutableArray  *_travellingToCountryList;
+    NSMutableArray  *_residingCountryList;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -173,5 +176,13 @@
 {
     return 40.0f;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
 
 @end
