@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+#import "CountryTableViewController.h"
+
+@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CountryTableViewDelegate>
 
 @end

@@ -51,6 +51,8 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingOrigins)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(completeChoosingOrigins)];
+    
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 #pragma mark - Data Handler

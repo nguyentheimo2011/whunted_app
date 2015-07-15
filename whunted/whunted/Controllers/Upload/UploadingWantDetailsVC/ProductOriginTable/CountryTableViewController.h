@@ -18,9 +18,11 @@
 
 @interface CountryTableViewController : UITableViewController
 
-@property (nonatomic, weak) id<CountryTableViewDelegate> delegate;
+@property (nonatomic, weak)     id<CountryTableViewDelegate> delegate;
 
-@property (nonatomic, strong) NSArray *selectedCountries;
+@property (nonatomic, strong)   NSArray     *selectedCountries;
+
+@property (nonatomic)           NSInteger   tag;
 
 - (id) initWithSelectedCountries: (NSArray *) countries;
 

@@ -10,6 +10,17 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
+#define kTravellingToTag            0
+#define kResidingCountryTag         1
+
+#define kMaximumLines               10
+#define kLeftRightMargin            20
+
+#define kAddedTopBottomSpace        10
+
+#define kTravellingToCountryList    @"travellingToCountryList"
+#define kResidingCountryList        @"residingCountryList"
+
 @interface PreferenceViewController ()
 
 @end
@@ -23,8 +34,8 @@
     UITableViewCell *_buyingHashTagCell;
     UITableViewCell *_sellingHashTagCell;
     
-    NSMutableArray  *_travellingToCountryList;
-    NSMutableArray  *_residingCountryList;
+    NSArray         *_travellingToCountryList;
+    NSArray         *_residingCountryList;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -83,9 +94,15 @@
 - (void) initTravellingToCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _travellingToCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kTravellingToCountryList];
+    
+    
     _travellingToCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"TravellingTo"];
     _travellingToCell.textLabel.text = @"E.g. USA, Germany";
-    _travellingToCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _travellingToCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    _travellingToCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _travellingToCell.textLabel.numberOfLines = kMaximumLines;
+    [_travellingToCell.textLabel sizeToFit];
     _travellingToCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -95,8 +112,10 @@
 {
     _residingCountryCel = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ResidingCountry"];
     _residingCountryCel.textLabel.text = @"E.g. Taiwan";
-    _residingCountryCel.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _residingCountryCel.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
     _residingCountryCel.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    _residingCountryList = [[NSUserDefaults standardUserDefaults] objectForKey:kResidingCountryList];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -178,11 +197,75 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (indexPath.section == 0) {
+        return [self heightForLabelWithText:_travellingToCell.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - kLeftRightMargin] + kAddedTopBottomSpace;
+    } else if (indexPath.section == 1) {
+        return [self heightForLabelWithText:_residingCountryCel.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - kLeftRightMargin] + kAddedTopBottomSpace;
+    } else
+        return 60.0f;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (indexPath.section == 0) {
+        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_travellingToCountryList];
+        countryVC.delegate = self;
+        countryVC.tag = kTravellingToTag;
+        [self.navigationController pushViewController:countryVC animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else if (indexPath.section == 1) {
+        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_residingCountryList];
+        countryVC.delegate = self;
+        countryVC.tag = kResidingCountryTag;
+        [self.navigationController pushViewController:countryVC animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+#pragma mark - Delegate Methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingCountries:(NSArray *)countries
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (controller.tag == kTravellingToTag) {
+        _travellingToCountryList = [NSArray arrayWithArray:countries];
+        [[NSUserDefaults standardUserDefaults] setObject:_travellingToCountryList forKey:kTravellingToCountryList];
+    } else if (controller.tag == kResidingCountryTag) {
+        _residingCountryList = [NSArray arrayWithArray:countries];
+        [[NSUserDefaults standardUserDefaults] setObject:_residingCountryList forKey:kResidingCountryList];
+    }
+}
+
+#pragma mark - helper functions
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) heightForLabelWithText: (NSString *) text withFont: (UIFont *) font andWidth: (CGFloat) width
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+    label.text = text;
+    label.font = font;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.numberOfLines = kMaximumLines;
+    [label sizeToFit];
+    
+    return label.frame.size.height;
+}
+
+
 
 
 @end
