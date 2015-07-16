@@ -177,7 +177,7 @@
 {
     self.escrowRequestCell = [[UITableViewCell alloc] init];
     self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow?", nil);
+    self.escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow", nil);
     escrowSwitch = [[UISwitch alloc] init];
     [escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
     self.escrowRequestCell.accessoryView = escrowSwitch;
