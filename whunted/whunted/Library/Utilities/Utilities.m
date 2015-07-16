@@ -211,4 +211,20 @@
     viewController.navigationItem.titleView = titleLabel;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) widthOfText: (NSString *) text withFont: (UIFont *) font andMaxWidth: (CGFloat) maxWidth
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text = text;
+    label.font = font;
+    [label sizeToFit];
+    CGFloat currWidth = label.frame.size.width;
+    
+    if (currWidth >= maxWidth)
+        return maxWidth;
+    else
+        return currWidth;
+}
+
 @end

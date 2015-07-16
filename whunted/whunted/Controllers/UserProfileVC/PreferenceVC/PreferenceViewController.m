@@ -174,6 +174,8 @@
     hashtagContainer.layer.cornerRadius = 10.0f;
     hashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_buyingHashTagCell addSubview:hashtagContainer];
+    
+    [hashtagContainer addSubview:[self createHashtagViewWithText:@"gucci"]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -182,6 +184,51 @@
 {
     _sellingHashTagCell = [[UITableViewCell alloc] init];
     _sellingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (UIView *) createHashtagViewWithText: (NSString *) hashtag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text = hashtag;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    label.backgroundColor = VIVID_SKY_BLUE_COLOR;
+    [label sizeToFit];
+    
+    CGFloat const kLabelWidth = label.frame.size.width + 10.0f;
+    CGFloat const kLabelHeight = label.frame.size.height + 2.0f;
+    CGFloat const kLabelTopMargin = 10.0f;
+    CGFloat const kLabelLeftMargin = 10.0f;
+    label.frame = CGRectMake(0, 0, kLabelWidth, kLabelHeight);
+    
+    CGFloat const kButtonWidth = 15.0f;
+    CGFloat const kButtonHeight = kLabelHeight;
+    JTImageButton *deletionButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kLabelWidth, 0, kButtonWidth, kButtonHeight)];
+    [deletionButton createTitle:@"x" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    deletionButton.titleColor = [UIColor whiteColor];
+    deletionButton.borderColor = RED_ORAGNE_COLOR;
+    deletionButton.bgColor = RED_ORAGNE_COLOR;
+    deletionButton.cornerRadius = 0.0f;
+    [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth + kButtonWidth, kLabelHeight)];
+    container.layer.cornerRadius = 5.0f;
+    container.clipsToBounds = YES;
+    
+    // add gradient to label
+    CAGradientLayer *gradLayer=[CAGradientLayer layer];
+    gradLayer.frame = container.layer.bounds;
+    [gradLayer setColors:[NSArray arrayWithObjects:(id)([UIColor redColor].CGColor), (id)([UIColor cyanColor].CGColor),nil]];
+    gradLayer.endPoint=CGPointMake(1.0, 0.0);
+    [container.layer addSublayer:gradLayer];
+    
+    [container addSubview:label];
+    [container addSubview:deletionButton];
+    
+    return container;
 }
 
 #pragma mark - UITableView Datasource methods
@@ -323,7 +370,16 @@
     }
 }
 
-#pragma mark - helper functions
+#pragma mark - Event Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) deletionButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+#pragma mark - Helper functions
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) heightForLabelWithText: (NSString *) text withFont: (UIFont *) font andWidth: (CGFloat) width
@@ -338,8 +394,5 @@
     
     return label.frame.size.height;
 }
-
-
-
 
 @end
