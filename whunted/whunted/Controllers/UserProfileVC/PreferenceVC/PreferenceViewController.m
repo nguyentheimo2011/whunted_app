@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
+#import <JTImageButton.h>
+
 #define kTravellingToTag            0
 #define kResidingCountryTag         1
 
@@ -132,6 +134,46 @@
 {
     _buyingHashTagCell = [[UITableViewCell alloc] init];
     _buyingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat const kTextFieldHeight = 35.0f;
+    CGFloat const kTextFieldWidth = WINSIZE.width * 0.92;
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kTextFieldTopMargin = 10.0f;
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
+    textField.backgroundColor = LIGHTEST_GRAY_COLOR;
+    textField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
+    textField.layer.cornerRadius = 10.0f;
+    [_buyingHashTagCell addSubview:textField];
+    
+    // Add left padding
+    CGFloat const kTextFieldLeftPadding = 10.0f;
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kTextFieldLeftPadding, kTextFieldHeight)];
+    textField.leftView = paddingView;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    
+    // Add button to the right of the text field
+    CGFloat const kButtonWidth = WINSIZE.width * 0.15;
+    CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
+    JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
+    [rightButton createTitle:@"Add" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    rightButton.cornerRadius = 10.0f;
+    rightButton.bgColor = CLASSY_BLUE_COLOR;
+    rightButton.borderColor = CLASSY_BLUE_COLOR;
+    rightButton.titleColor = [UIColor whiteColor];
+    textField.rightView = rightButton;
+    textField.rightViewMode = UITextFieldViewModeAlways;
+    
+    // Add hashtag container
+    CGFloat const kContainerTopMargin = 2.5f;
+    CGFloat const kYPos = kTextFieldHeight + 2 * kTextFieldTopMargin + kContainerTopMargin;
+    CGFloat const kContainerHeight = 80.0f;
+    
+    UIScrollView *hashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
+    hashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
+    hashtagContainer.layer.cornerRadius = 10.0f;
+    hashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
+    [_buyingHashTagCell addSubview:hashtagContainer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -213,7 +255,7 @@
     } else if (indexPath.section == 1) {
         return [self heightForLabelWithText:_residingCountryCel.textLabel.text withFont:_travellingToCell.textLabel.font andWidth:WINSIZE.width - 2 * kLeftRightMargin] + kAddedTopBottomSpace;
     } else
-        return 60.0f;
+        return 150.0f;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
