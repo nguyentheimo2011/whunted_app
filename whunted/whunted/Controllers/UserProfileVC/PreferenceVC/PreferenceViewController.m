@@ -46,6 +46,8 @@
     
     NSMutableArray  *_buyingPreferenceHashtagList;
     NSMutableArray  *_sellingPreferenceHashtagList;
+    
+    CGRect          _lastHashtagFrame;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -214,8 +216,6 @@
     
     CGFloat const kLabelWidth = label.frame.size.width + 10.0f;
     CGFloat const kLabelHeight = label.frame.size.height + 2.0f;
-    CGFloat const kLabelTopMargin = 10.0f;
-    CGFloat const kLabelLeftMargin = 10.0f;
     label.frame = CGRectMake(0, 0, kLabelWidth, kLabelHeight);
     
     CGFloat const kButtonWidth = 15.0f;
@@ -229,7 +229,7 @@
     deletionButton.tag = tag;
     [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *hashTagContainer = [[UIView alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth + kButtonWidth, kLabelHeight)];
+    UIView *hashTagContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLabelWidth + kButtonWidth, kLabelHeight)];
     hashTagContainer.layer.cornerRadius = 5.0f;
     hashTagContainer.clipsToBounds = YES;
     
@@ -251,13 +251,44 @@
 - (void) addANewHashtagForBuying: (NSString *) hashtag
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_buyingPreferenceHashtagList addObject:hashtag];
-    
     UIView *hashtagView = [self createHashtagViewWithText:hashtag withTag:[_buyingPreferenceHashtagList count]];
-    
+    CGSize hashtagViewSize = hashtagView.frame.size;
+    CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
+    hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
     [_buyingHashtagContainer addSubview:hashtagView];
+    
+    _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+    
+    [_buyingPreferenceHashtagList addObject:hashtag];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGPoint) calculatePositionForHashtagView: (UIView *) hashtagView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelTopMargin = 10.0f;
+    CGFloat const kLabelBottomMargin = 10.0f;
+    CGFloat const kLabelLeftMargin = 10.0f;
+    CGFloat const kLabelRightMargin = 2.0f;
+    
+    NSUInteger lastTag = [_buyingPreferenceHashtagList count];
+    
+    if (lastTag == 0) {
+        return CGPointMake(kLabelLeftMargin, kLabelTopMargin);
+    } else {
+        CGSize hashtagViewSize = hashtagView.frame.size;
+        CGSize hashtagContainerSize = _buyingHashtagContainer.frame.size;
+        CGFloat nextXPos = _lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin + hashtagViewSize.width + kLabelRightMargin;
+        if (nextXPos > hashtagContainerSize.width) {
+            CGFloat newContainerHeight = _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin + hashtagViewSize.height + kLabelBottomMargin;
+            [_buyingHashtagContainer setContentSize:CGSizeMake(hashtagContainerSize.width, newContainerHeight)];
+            [Utilities scrollToBottom:_buyingHashtagContainer];
+            return CGPointMake(kLabelLeftMargin, _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin);
+        } else {
+            return CGPointMake(_lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin, _lastHashtagFrame.origin.y);
+        }
+    }
+}
 
 #pragma mark - UITableView Datasource methods
 

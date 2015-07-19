@@ -227,4 +227,12 @@
         return currWidth;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) scrollToBottom:(UIScrollView *)scrollView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGPoint bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
+    [scrollView setContentOffset:bottomOffset animated:YES];
+}
+
 @end
