@@ -259,15 +259,15 @@
 - (void) addANewHashtagForBuying: (NSString *) hashtag
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *hashtagView = [self createHashtagViewWithText:hashtag withTag:[_buyingPreferenceHashtagList count]];
+    UIView *hashtagView = [self createHashtagViewWithText:hashtag withTag:[_buyingPreferenceHashtagList count] + 1];
     CGSize hashtagViewSize = hashtagView.frame.size;
     CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
     hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
     [_buyingHashtagContainer addSubview:hashtagView];
     
-    _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
-    
     [_buyingPreferenceHashtagList addObject:hashtag];
+    
+    _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
