@@ -92,8 +92,6 @@
     [self.view addSubview:_preferenceTableView];
 }
 
-
-
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCells
 //------------------------------------------------------------------------------------------------------------------------------
@@ -479,8 +477,20 @@
 - (void) deletionButtonTapEventHandler: (UIButton *) button
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *view = [_buyingHashtagContainer viewWithTag:button.tag];
-    [view removeFromSuperview];
+    for (int i=1; i <= _buyingPreferenceHashtagList.count; i++) {
+        UIView *view = [_buyingHashtagContainer viewWithTag:i];
+        [view removeFromSuperview];
+    }
+    
+    [_buyingPreferenceHashtagList removeObjectAtIndex:button.tag - 1];
+    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_buyingPreferenceHashtagList];
+    _buyingPreferenceHashtagList = [NSMutableArray array];
+    
+    [_buyingHashtagContainer setContentSize:_buyingHashtagContainer.frame.size];
+    
+    for (int i=0; i < tempArray.count; i++) {
+        [self addANewHashtagForBuying:[tempArray objectAtIndex:i]];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
