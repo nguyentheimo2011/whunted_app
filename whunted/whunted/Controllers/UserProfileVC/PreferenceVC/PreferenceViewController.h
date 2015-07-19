@@ -10,6 +10,6 @@
 
 #import "CountryTableViewController.h"
 
-@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CountryTableViewDelegate>
+@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, CountryTableViewDelegate>
 
 @end

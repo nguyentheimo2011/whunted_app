@@ -20,8 +20,10 @@
 
 #define kAddedTopBottomSpace        10
 
-#define kTravellingToCountryList    @"travellingToCountryList"
-#define kResidingCountryList        @"residingCountryList"
+#define kTravellingToCountryList        @"travellingToCountryList"
+#define kResidingCountryList            @"residingCountryList"
+#define kBuyingPreferenceHashtagList    @"buyingPreferenceHashtagList"
+#define kSellingPreferenceHashtagList   @"sellingPreferenceHashtagList"
 
 @interface PreferenceViewController ()
 
@@ -36,8 +38,14 @@
     UITableViewCell *_buyingHashTagCell;
     UITableViewCell *_sellingHashTagCell;
     
+    UITextField     *_buyingHashtagTextField;
+    UIScrollView    *_buyingHashtagContainer;
+    
     NSArray         *_travellingToCountryList;
     NSArray         *_residingCountryList;
+    
+    NSMutableArray  *_buyingPreferenceHashtagList;
+    NSMutableArray  *_sellingPreferenceHashtagList;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -82,14 +90,19 @@
     [self.view addSubview:_preferenceTableView];
 }
 
+
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCells
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _buyingPreferenceHashtagList = [NSMutableArray array];
+    _sellingPreferenceHashtagList = [NSMutableArray array];
+    
     [self initTravellingToCell];
     [self initResidingCountryCell];
-    [self initBuyingHashTagCell];
-    [self initSellingHashTagCell];
+    [self initBuyingHashtagCell];
+    [self initSellingHashtagCell];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -129,7 +142,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) initBuyingHashTagCell
+- (void) initBuyingHashtagCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _buyingHashTagCell = [[UITableViewCell alloc] init];
@@ -140,17 +153,19 @@
     CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.04;
     CGFloat const kTextFieldTopMargin = 10.0f;
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    textField.backgroundColor = LIGHTEST_GRAY_COLOR;
-    textField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
-    textField.layer.cornerRadius = 10.0f;
-    [_buyingHashTagCell addSubview:textField];
+    _buyingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
+    _buyingHashtagTextField.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
+    _buyingHashtagTextField.layer.cornerRadius = 10.0f;
+    _buyingHashtagTextField.returnKeyType = UIReturnKeyDone;
+    _buyingHashtagTextField.delegate = self;
+    [_buyingHashTagCell addSubview:_buyingHashtagTextField];
     
     // Add left padding
     CGFloat const kTextFieldLeftPadding = 10.0f;
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kTextFieldLeftPadding, kTextFieldHeight)];
-    textField.leftView = paddingView;
-    textField.leftViewMode = UITextFieldViewModeAlways;
+    _buyingHashtagTextField.leftView = paddingView;
+    _buyingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
     
     // Add button to the right of the text field
     CGFloat const kButtonWidth = WINSIZE.width * 0.15;
@@ -161,25 +176,26 @@
     rightButton.bgColor = CLASSY_BLUE_COLOR;
     rightButton.borderColor = CLASSY_BLUE_COLOR;
     rightButton.titleColor = [UIColor whiteColor];
-    textField.rightView = rightButton;
-    textField.rightViewMode = UITextFieldViewModeAlways;
+    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    _buyingHashtagTextField.rightView = rightButton;
+    _buyingHashtagTextField.rightViewMode = UITextFieldViewModeAlways;
     
     // Add hashtag container
     CGFloat const kContainerTopMargin = 2.5f;
     CGFloat const kYPos = kTextFieldHeight + 2 * kTextFieldTopMargin + kContainerTopMargin;
     CGFloat const kContainerHeight = 80.0f;
     
-    UIScrollView *hashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
-    hashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
-    hashtagContainer.layer.cornerRadius = 10.0f;
-    hashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
-    [_buyingHashTagCell addSubview:hashtagContainer];
+    _buyingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
+    _buyingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _buyingHashtagContainer.layer.cornerRadius = 10.0f;
+    _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
+    [_buyingHashTagCell addSubview:_buyingHashtagContainer];
     
-    [hashtagContainer addSubview:[self createHashtagViewWithText:@"gucci"]];
+    [_buyingHashtagContainer addSubview:[self createHashtagViewWithText:@"gucci"]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) initSellingHashTagCell
+- (void) initSellingHashtagCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _sellingHashTagCell = [[UITableViewCell alloc] init];
@@ -214,22 +230,36 @@
     deletionButton.cornerRadius = 0.0f;
     [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth + kButtonWidth, kLabelHeight)];
-    container.layer.cornerRadius = 5.0f;
-    container.clipsToBounds = YES;
+    UIView *hashTagContainer = [[UIView alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth + kButtonWidth, kLabelHeight)];
+    hashTagContainer.layer.cornerRadius = 5.0f;
+    hashTagContainer.clipsToBounds = YES;
     
     // add gradient to label
     CAGradientLayer *gradLayer=[CAGradientLayer layer];
-    gradLayer.frame = container.layer.bounds;
+    gradLayer.frame = hashTagContainer.layer.bounds;
     [gradLayer setColors:[NSArray arrayWithObjects:(id)([UIColor redColor].CGColor), (id)([UIColor cyanColor].CGColor),nil]];
     gradLayer.endPoint=CGPointMake(1.0, 0.0);
-    [container.layer addSublayer:gradLayer];
+    [hashTagContainer.layer addSublayer:gradLayer];
     
-    [container addSubview:label];
-    [container addSubview:deletionButton];
+    [hashTagContainer addSubview:label];
+    [hashTagContainer addSubview:deletionButton];
+    [_buyingPreferenceHashtagList addObject:hashTagContainer];
     
-    return container;
+    return hashTagContainer;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addANewHashtagForBuying: (NSString *) hashtag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_buyingPreferenceHashtagList addObject:hashtag];
+    
+    UIView *hashtagView = [self createHashtagViewWithText:hashtag];
+    hashtagView.tag = [_buyingPreferenceHashtagList count];
+    
+    [_buyingHashtagContainer addSubview:hashtagView];
+}
+
 
 #pragma mark - UITableView Datasource methods
 
@@ -314,6 +344,7 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *) tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
@@ -370,13 +401,40 @@
     }
 }
 
+#pragma mark - UITextField Delegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{    
+    [textField resignFirstResponder];
+    
+    if (textField.text.length > 0) {
+        [self addANewHashtagForBuying:textField.text];
+        textField.text = @"";
+    }
+    
+    return YES;
+}
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) deletionButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    UIView *view = [_buyingPreferenceHashtagList objectAtIndex:0];
+    [view removeFromSuperview];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) hashtagAddingButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_buyingHashtagTextField.text.length > 0) {
+        [self addANewHashtagForBuying:_buyingHashtagTextField.text];
+        _buyingHashtagTextField.text = @"";
+    }
 }
 
 #pragma mark - Helper functions
