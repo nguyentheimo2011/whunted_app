@@ -417,6 +417,23 @@
     return YES;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *kWhiteSpace = @" ";
+    if ([string isEqualToString:kWhiteSpace]) {
+        if (textField.text.length > 0) {
+            [self addANewHashtagForBuying:textField.text];
+            textField.text = @"";
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
