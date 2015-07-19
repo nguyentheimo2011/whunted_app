@@ -190,8 +190,6 @@
     _buyingHashtagContainer.layer.cornerRadius = 10.0f;
     _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_buyingHashTagCell addSubview:_buyingHashtagContainer];
-    
-    [_buyingHashtagContainer addSubview:[self createHashtagViewWithText:@"gucci"]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -203,7 +201,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (UIView *) createHashtagViewWithText: (NSString *) hashtag
+- (UIView *) createHashtagViewWithText: (NSString *) hashtag withTag: (NSInteger) tag
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *label = [[UILabel alloc] init];
@@ -228,7 +226,8 @@
     deletionButton.borderColor = RED_ORAGNE_COLOR;
     deletionButton.bgColor = RED_ORAGNE_COLOR;
     deletionButton.cornerRadius = 0.0f;
-    [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    deletionButton.tag = tag;
+    [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *hashTagContainer = [[UIView alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth + kButtonWidth, kLabelHeight)];
     hashTagContainer.layer.cornerRadius = 5.0f;
@@ -243,7 +242,7 @@
     
     [hashTagContainer addSubview:label];
     [hashTagContainer addSubview:deletionButton];
-    [_buyingPreferenceHashtagList addObject:hashTagContainer];
+    hashTagContainer.tag = tag;
     
     return hashTagContainer;
 }
@@ -254,8 +253,7 @@
 {
     [_buyingPreferenceHashtagList addObject:hashtag];
     
-    UIView *hashtagView = [self createHashtagViewWithText:hashtag];
-    hashtagView.tag = [_buyingPreferenceHashtagList count];
+    UIView *hashtagView = [self createHashtagViewWithText:hashtag withTag:[_buyingPreferenceHashtagList count]];
     
     [_buyingHashtagContainer addSubview:hashtagView];
 }
@@ -437,10 +435,10 @@
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) deletionButtonTapEventHandler
+- (void) deletionButtonTapEventHandler: (UIButton *) button
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *view = [_buyingPreferenceHashtagList objectAtIndex:0];
+    UIView *view = [_buyingHashtagContainer viewWithTag:button.tag];
     [view removeFromSuperview];
 }
 
