@@ -214,12 +214,20 @@
     label.backgroundColor = VIVID_SKY_BLUE_COLOR;
     [label sizeToFit];
     
-    CGFloat const kLabelWidth = label.frame.size.width + 10.0f;
+    CGFloat kLabelWidth = label.frame.size.width + 10.0f;
     CGFloat const kLabelHeight = label.frame.size.height + 2.0f;
-    label.frame = CGRectMake(0, 0, kLabelWidth, kLabelHeight);
-    
+    CGFloat const kLabelLeftMargin = 10.0f;
     CGFloat const kButtonWidth = 15.0f;
     CGFloat const kButtonHeight = kLabelHeight;
+    CGFloat const kHashtagContainerWidth = _buyingHashtagContainer.frame.size.width;
+    
+    if (kLabelWidth < kHashtagContainerWidth - 2 * kLabelLeftMargin - kButtonHeight)
+        label.frame = CGRectMake(0, 0, kLabelWidth, kLabelHeight);
+    else {
+        kLabelWidth = kHashtagContainerWidth - 2 * kLabelLeftMargin - kButtonHeight;
+        label.frame = CGRectMake(0, 0, kLabelWidth, kLabelHeight);
+    }
+    
     JTImageButton *deletionButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kLabelWidth, 0, kButtonWidth, kButtonHeight)];
     [deletionButton createTitle:@"x" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     deletionButton.titleColor = [UIColor whiteColor];
@@ -281,8 +289,10 @@
         CGFloat nextXPos = _lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin + hashtagViewSize.width + kLabelRightMargin;
         if (nextXPos > hashtagContainerSize.width) {
             CGFloat newContainerHeight = _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin + hashtagViewSize.height + kLabelBottomMargin;
-            [_buyingHashtagContainer setContentSize:CGSizeMake(hashtagContainerSize.width, newContainerHeight)];
-            [Utilities scrollToBottom:_buyingHashtagContainer];
+            if (newContainerHeight > hashtagContainerSize.height) {
+                [_buyingHashtagContainer setContentSize:CGSizeMake(hashtagContainerSize.width, newContainerHeight)];
+                [Utilities scrollToBottom:_buyingHashtagContainer];
+            }
             return CGPointMake(kLabelLeftMargin, _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin);
         } else {
             return CGPointMake(_lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin, _lastHashtagFrame.origin.y);
