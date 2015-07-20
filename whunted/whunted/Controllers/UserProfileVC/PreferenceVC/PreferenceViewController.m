@@ -13,6 +13,7 @@
 #import "AppConstant.h"
 
 #import <JTImageButton.h>
+#import "IGLDropDownMenu.h"
 
 #define kTravellingToTag            0
 #define kResidingCountryTag         1
@@ -152,9 +153,10 @@
     _buyingHashTagCell = [[UITableViewCell alloc] init];
     _buyingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    // add text field
     CGFloat const kTextFieldHeight = 35.0f;
     CGFloat const kTextFieldWidth = WINSIZE.width * 0.92;
-    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.2;
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _buyingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
@@ -168,9 +170,9 @@
     [_buyingHashTagCell addSubview:_buyingHashtagTextField];
     
     // Add left padding
-    CGFloat const kTextFieldLeftPadding = 10.0f;
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kTextFieldLeftPadding, kTextFieldHeight)];
-    _buyingHashtagTextField.leftView = paddingView;
+    CGFloat const kLeftPaddingWidth = 10.0f;
+    UIView *leftPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLeftPaddingWidth, kTextFieldHeight)];
+    _buyingHashtagTextField.leftView = leftPadding;
     _buyingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
     
     // Add button to the right of the text field
@@ -196,6 +198,35 @@
     _buyingHashtagContainer.layer.cornerRadius = 10.0f;
     _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_buyingHashTagCell addSubview:_buyingHashtagContainer];
+    
+    // Add drop down list of brand and model
+    NSArray *dataArray = @[@{@"title":@"Brand"},
+                           @{@"title":@"Model"}];
+    NSMutableArray *dropdownItems = [[NSMutableArray alloc] init];
+    for (int i = 0; i < dataArray.count; i++) {
+        NSDictionary *dict = dataArray[i];
+        
+        IGLDropDownItem *item = [[IGLDropDownItem alloc] init];
+        [item setTextFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+        [item setText:dict[@"title"]];
+        [dropdownItems addObject:item];
+    }
+    
+    CGFloat const kDropDownMenuLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.14;
+    
+    IGLDropDownMenu *dropDownMenu = [[IGLDropDownMenu alloc] init];
+    dropDownMenu.menuText = @"Select";
+    dropDownMenu.dropDownItems = dropdownItems;
+    dropDownMenu.paddingLeft = 2.0f;
+    dropDownMenu.menuButton.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    [dropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
+    
+    dropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
+    dropDownMenu.flipWhenToggleView = YES;
+    [dropDownMenu reloadView];
+    
+    [_buyingHashTagCell addSubview:dropDownMenu];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -211,7 +242,6 @@
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _sellingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _sellingHashtagTextField.backgroundColor = LIGHTEST_GRAY_COLOR;
     _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
     _sellingHashtagTextField.layer.cornerRadius = 10.0f;
     _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
