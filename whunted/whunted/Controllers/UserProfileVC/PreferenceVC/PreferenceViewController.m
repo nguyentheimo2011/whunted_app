@@ -155,7 +155,7 @@
     
     // add text field
     CGFloat const kTextFieldHeight = 35.0f;
-    CGFloat const kTextFieldWidth = WINSIZE.width * 0.92;
+    CGFloat const kTextFieldWidth = WINSIZE.width * 0.76;
     CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.2;
     CGFloat const kTextFieldTopMargin = 10.0f;
     
@@ -190,10 +190,12 @@
     
     // Add hashtag container
     CGFloat const kContainerTopMargin = 2.5f;
+    CGFloat const kContainerLeftMargin = WINSIZE.width * 0.04;
     CGFloat const kYPos = kTextFieldHeight + 2 * kTextFieldTopMargin + kContainerTopMargin;
     CGFloat const kContainerHeight = 80.0f;
+    CGFloat const kContainerWidth = WINSIZE.width * 0.92;
     
-    _buyingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
+    _buyingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
     _buyingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
     _buyingHashtagContainer.layer.cornerRadius = 10.0f;
     _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
