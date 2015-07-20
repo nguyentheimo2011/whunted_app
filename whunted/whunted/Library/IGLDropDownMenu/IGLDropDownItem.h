@@ -17,10 +17,10 @@
 
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
-@property (nonatomic, strong) UIFont *textFont;
-
 @property (nonatomic, assign) CGFloat paddingLeft;
 
 - (id)copyWithZone:(NSZone *)zone;
+
+- (void)setText:(NSString *)text withFont: (UIFont *) font;
 
 @end

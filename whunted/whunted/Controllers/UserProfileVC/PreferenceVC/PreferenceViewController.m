@@ -207,8 +207,7 @@
         NSDictionary *dict = dataArray[i];
         
         IGLDropDownItem *item = [[IGLDropDownItem alloc] init];
-        [item setTextFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
-        [item setText:dict[@"title"]];
+        [item setText:dict[@"title"] withFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
         [dropdownItems addObject:item];
     }
     
@@ -216,10 +215,10 @@
     CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.14;
     
     IGLDropDownMenu *dropDownMenu = [[IGLDropDownMenu alloc] init];
+    dropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
     dropDownMenu.menuText = @"Select";
     dropDownMenu.dropDownItems = dropdownItems;
     dropDownMenu.paddingLeft = 2.0f;
-    dropDownMenu.menuButton.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
     [dropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
     
     dropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;

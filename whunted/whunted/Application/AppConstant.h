@@ -136,6 +136,7 @@
 #define     REGULAR_FONT_NAME                   @"Montserrat-Regular"
 #define     LIGHT_FONT_NAME                     @"Montserrat-Light"
 #define     BOLD_FONT_NAME                      @"Montserrat-Bold"
+#define     DEFAULT_FONT                        [UIFont fontWithName:LIGHT_FONT_NAME size:16]
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     SYNC_IN_PROGRESS                    @"syncInProgess"

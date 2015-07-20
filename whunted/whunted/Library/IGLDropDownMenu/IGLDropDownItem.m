@@ -7,6 +7,7 @@
 //
 
 #import "IGLDropDownItem.h"
+#import "AppConstant.h"
 
 @interface IGLDropDownItem ()
 
@@ -110,11 +111,18 @@
     _object = object;
 }
 
-- (void)setText:(NSString *)text
+- (void)setText:(NSString *)text withFont: (UIFont *) font
 {
     _text = text;
     self.textLabel.text = self.text;
-    self.textLabel.font = self.textFont;
+    self.textLabel.font = font;
+}
+
+- (void) setText:(NSString *)text
+{
+    _text = text;
+    self.textLabel.text = self.text;
+    self.textLabel.font = DEFAULT_FONT;
 }
 
 - (id)copyWithZone:(NSZone *)zone

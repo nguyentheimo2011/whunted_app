@@ -130,6 +130,7 @@
     
     self.menuButton.iconImage = self.menuIconImage;
     self.menuButton.text = self.menuText;
+    self.menuButton.textLabel.font = self.textFont;
     self.menuButton.paddingLeft = self.paddingLeft;
     [self.menuButton setFrame:CGRectMake(self.offsetX + 0, 0, self.itemSize.width, self.itemSize.height)];
     switch (self.direction) {
