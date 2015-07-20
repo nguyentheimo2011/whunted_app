@@ -61,6 +61,8 @@
     self.bgView.layer.shadowOffset = CGSizeMake(0, 0);
     self.bgView.layer.shadowOpacity = 0.2;
     self.bgView.layer.shouldRasterize = YES;
+    self.bgView.backgroundColor = TEA_ROSE_COLOR;
+    self.bgView.layer.cornerRadius = 10.0f;
     [self.bgView setFrame:self.bounds];
     [self addSubview:self.bgView];
     
@@ -70,7 +72,7 @@
     
     self.textLabel = [[UILabel alloc] init];
     self.textLabel.numberOfLines = 1;
-    self.textLabel.textColor = [UIColor grayColor];
+    self.textLabel.textColor = [UIColor whiteColor];
     [self addSubview:self.textLabel];
     
     [self updateLayout];
@@ -123,6 +125,13 @@
     _text = text;
     self.textLabel.text = self.text;
     self.textLabel.font = DEFAULT_FONT;
+    
+    if ([text isEqualToString:kItemDetailSelect])
+        self.bgView.backgroundColor = TEA_ROSE_COLOR;
+    else if ([text isEqualToString:kItemDetailBrand])
+        self.bgView.backgroundColor = VIVID_SKY_BLUE_COLOR;
+    else
+        self.bgView.backgroundColor = TEA_ROSE_COLOR;
 }
 
 - (id)copyWithZone:(NSZone *)zone

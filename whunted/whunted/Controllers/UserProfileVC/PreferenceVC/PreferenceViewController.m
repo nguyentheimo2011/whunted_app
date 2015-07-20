@@ -200,8 +200,8 @@
     [_buyingHashTagCell addSubview:_buyingHashtagContainer];
     
     // Add drop down list of brand and model
-    NSArray *dataArray = @[@{@"title":@"Brand"},
-                           @{@"title":@"Model"}];
+    NSArray *dataArray = @[@{@"title":NSLocalizedString(kItemDetailBrand, nil)},
+                           @{@"title":NSLocalizedString(kItemDetailModel, nil)}];
     NSMutableArray *dropdownItems = [[NSMutableArray alloc] init];
     for (int i = 0; i < dataArray.count; i++) {
         NSDictionary *dict = dataArray[i];
@@ -216,7 +216,7 @@
     
     IGLDropDownMenu *dropDownMenu = [[IGLDropDownMenu alloc] init];
     dropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
-    dropDownMenu.menuText = @"Select";
+    dropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
     dropDownMenu.dropDownItems = dropdownItems;
     dropDownMenu.paddingLeft = 2.0f;
     [dropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];

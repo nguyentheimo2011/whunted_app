@@ -17,6 +17,7 @@
 #define     VIVID_SKY_BLUE_COLOR                [UIColor colorWithRed:0.0/255 green:204.0/255 blue:255.0/255 alpha:1.0]
 #define     PICTON_BLUE_COLOR                   [UIColor colorWithRed:69.0/255 green:177.0/255 blue:232.0/255 alpha:1.0]
 #define     COLUMBIA_BLUE_COLOR                 [UIColor colorWithRed:155.0/255 green:221.0/255 blue:255.0/255 alpha:1.0]
+#define     STAR_COMMAND_BLUE                   [UIColor colorWithRed:0.0/255 green:123.0/255 blue:184.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     RED_ORAGNE_COLOR                    [UIColor colorWithRed:255.0/255 green:83.0/255 blue:73.0/255 alpha:1.0]
@@ -56,6 +57,11 @@
 #define     ITEM_LOCATION_KEY                   @"location"
 #define     ITEM_ESCROW_OPTION_KEY              @"escrowOption"
 #define     ITEM_SECONDHAND_OPTION              @"secondHandOption"
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     kItemDetailSelect                   @"Select"
+#define     kItemDetailBrand                    @"Brand"
+#define     kItemDetailModel                    @"Model"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ACCEPTABLE_CHARECTERS               @"0123456789."
