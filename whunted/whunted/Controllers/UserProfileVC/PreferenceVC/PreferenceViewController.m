@@ -39,7 +39,9 @@
     UITableViewCell *_sellingHashTagCell;
     
     UITextField     *_buyingHashtagTextField;
+    UITextField     *_sellingHashtagTextField;
     UIScrollView    *_buyingHashtagContainer;
+    UIScrollView    *_sellingHashtagContainer;
     
     NSArray         *_travellingToCountryList;
     NSArray         *_residingCountryList;
@@ -198,6 +200,49 @@
 {
     _sellingHashTagCell = [[UITableViewCell alloc] init];
     _sellingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat const kTextFieldHeight = 35.0f;
+    CGFloat const kTextFieldWidth = WINSIZE.width * 0.92;
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kTextFieldTopMargin = 10.0f;
+    
+    _sellingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
+    _sellingHashtagTextField.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
+    _sellingHashtagTextField.layer.cornerRadius = 10.0f;
+    _sellingHashtagTextField.returnKeyType = UIReturnKeyDone;
+    _sellingHashtagTextField.delegate = self;
+    [_sellingHashTagCell addSubview:_sellingHashtagTextField];
+    
+    // Add left padding
+    CGFloat const kTextFieldLeftPadding = 10.0f;
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kTextFieldLeftPadding, kTextFieldHeight)];
+    _sellingHashtagTextField.leftView = paddingView;
+    _sellingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    // Add button to the right of the text field
+    CGFloat const kButtonWidth = WINSIZE.width * 0.15;
+    CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
+    JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
+    [rightButton createTitle:@"Add" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    rightButton.cornerRadius = 10.0f;
+    rightButton.bgColor = CLASSY_BLUE_COLOR;
+    rightButton.borderColor = CLASSY_BLUE_COLOR;
+    rightButton.titleColor = [UIColor whiteColor];
+    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    _sellingHashtagTextField.rightView = rightButton;
+    _sellingHashtagTextField.rightViewMode = UITextFieldViewModeAlways;
+    
+    // Add hashtag container
+    CGFloat const kContainerTopMargin = 2.5f;
+    CGFloat const kYPos = kTextFieldHeight + 2 * kTextFieldTopMargin + kContainerTopMargin;
+    CGFloat const kContainerHeight = 80.0f;
+    
+    _sellingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
+    _sellingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _sellingHashtagContainer.layer.cornerRadius = 10.0f;
+    _sellingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
+    [_sellingHashTagCell addSubview:_sellingHashtagContainer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
