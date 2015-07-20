@@ -15,4 +15,6 @@
 @property (nonatomic, strong)   NSString    *hashtagText;
 @property (nonatomic)           HashtagType hashtagType;
 
+- (id) initWithText: (NSString *) text andType: (HashtagType) type;
+
 @end

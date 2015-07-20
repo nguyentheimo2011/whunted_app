@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "PreferenceViewController.h"
+#import "HashtagData.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 

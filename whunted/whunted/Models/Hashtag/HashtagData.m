@@ -10,4 +10,20 @@
 
 @implementation HashtagData
 
+@synthesize hashtagText = _hashtagText;
+@synthesize hashtagType = _hashtagType;
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (id) initWithText: (NSString *) text andType: (HashtagType) type
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _hashtagText = text;
+        _hashtagType = type;
+    }
+    
+    return self;
+}
+
 @end
