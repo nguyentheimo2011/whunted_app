@@ -46,6 +46,9 @@
     UIScrollView    *_buyingHashtagContainer;
     UIScrollView    *_sellingHashtagContainer;
     
+    IGLDropDownMenu *_buyingDropDownMenu;
+    IGLDropDownMenu *_sellingDropDownMenu;
+    
     NSArray         *_travellingToCountryList;
     NSArray         *_residingCountryList;
     
@@ -216,18 +219,18 @@
     CGFloat const kDropDownMenuLeftMargin = WINSIZE.width * 0.04;
     CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.14;
     
-    IGLDropDownMenu *dropDownMenu = [[IGLDropDownMenu alloc] init];
-    dropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
-    dropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
-    dropDownMenu.dropDownItems = dropdownItems;
-    dropDownMenu.paddingLeft = 2.0f;
-    [dropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
+    _buyingDropDownMenu = [[IGLDropDownMenu alloc] init];
+    _buyingDropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _buyingDropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
+    _buyingDropDownMenu.dropDownItems = dropdownItems;
+    _buyingDropDownMenu.paddingLeft = 2.0f;
+    [_buyingDropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
     
-    dropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
-    dropDownMenu.flipWhenToggleView = YES;
-    [dropDownMenu reloadView];
+    _buyingDropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
+    _buyingDropDownMenu.flipWhenToggleView = YES;
+    [_buyingDropDownMenu reloadView];
     
-    [_buyingHashTagCell addSubview:dropDownMenu];
+    [_buyingHashTagCell addSubview:_buyingDropDownMenu];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

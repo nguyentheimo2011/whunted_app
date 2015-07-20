@@ -163,4 +163,10 @@ typedef enum {
     ImageURL
 } ImageGettingMethod;
 
+//----------------------------------------------------------------------------------------------------------------------------
+typedef enum {
+    BrandHashtagType,
+    ModelHashtagType
+} HashtagType;
+
 #endif

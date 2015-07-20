@@ -206,6 +206,7 @@
 		E9E456961B0F25E400E8B55D /* sellers_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456951B0F25E400E8B55D /* sellers_icon.png */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
 		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
+		E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9391B5D203800815D56 /* HashtagData.m */; };
 		E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22931B43A38D00395062 /* PersistedCache.m */; };
 		E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22971B43A62000395062 /* TemporaryCache.m */; };
 		E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E991B20481E00F8C435 /* WantData.m */; };
@@ -481,6 +482,8 @@
 		E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownItem.m; path = Library/IGLDropDownMenu/IGLDropDownItem.m; sourceTree = "<group>"; };
 		E9EEB9331B5CBA1F00815D56 /* IGLDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownMenu.h; path = Library/IGLDropDownMenu/IGLDropDownMenu.h; sourceTree = "<group>"; };
 		E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownMenu.m; path = Library/IGLDropDownMenu/IGLDropDownMenu.m; sourceTree = "<group>"; };
+		E9EEB9381B5D203800815D56 /* HashtagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashtagData.h; path = Models/Hashtag/HashtagData.h; sourceTree = "<group>"; };
+		E9EEB9391B5D203800815D56 /* HashtagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HashtagData.m; path = Models/Hashtag/HashtagData.m; sourceTree = "<group>"; };
 		E9FB22921B43A38D00395062 /* PersistedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistedCache.h; path = Library/PersistedCache/PersistedCache.h; sourceTree = "<group>"; };
 		E9FB22931B43A38D00395062 /* PersistedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistedCache.m; path = Library/PersistedCache/PersistedCache.m; sourceTree = "<group>"; };
 		E9FB22961B43A62000395062 /* TemporaryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemporaryCache.h; path = Library/TemporaryCache/TemporaryCache.h; sourceTree = "<group>"; };
@@ -836,6 +839,7 @@
 		E94D183D1AF9FB2300E31B01 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9EEB9371B5D1FE400815D56 /* Hashtag */,
 				E9FB2E9B1B20482500F8C435 /* OfferData */,
 				E9FB2E971B20480B00F8C435 /* WantData */,
 			);
@@ -1342,6 +1346,15 @@
 			name = IGLDropdownMenu;
 			sourceTree = "<group>";
 		};
+		E9EEB9371B5D1FE400815D56 /* Hashtag */ = {
+			isa = PBXGroup;
+			children = (
+				E9EEB9381B5D203800815D56 /* HashtagData.h */,
+				E9EEB9391B5D203800815D56 /* HashtagData.m */,
+			);
+			name = Hashtag;
+			sourceTree = "<group>";
+		};
 		E9FB22951B43A5E300395062 /* TemporaryCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -1676,6 +1689,7 @@
 				E9A07C281B31660B00904DE9 /* push.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
+				E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */,
 				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
