@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "PreferenceViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
@@ -156,9 +158,11 @@
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _buyingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _buyingHashtagTextField.backgroundColor = LIGHTEST_GRAY_COLOR;
     _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
     _buyingHashtagTextField.layer.cornerRadius = 10.0f;
+    _buyingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
+    _buyingHashtagTextField.layer.borderWidth = 1.0f;
+    _buyingHashtagTextField.layer.masksToBounds = YES;
     _buyingHashtagTextField.returnKeyType = UIReturnKeyDone;
     _buyingHashtagTextField.delegate = self;
     [_buyingHashTagCell addSubview:_buyingHashtagTextField];
@@ -170,13 +174,13 @@
     _buyingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
     
     // Add button to the right of the text field
-    CGFloat const kButtonWidth = WINSIZE.width * 0.15;
+    CGFloat const kButtonWidth = WINSIZE.width * 0.12;
     CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
     JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
-    [rightButton createTitle:@"Add" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:20] iconOffsetY:0];
     rightButton.cornerRadius = 10.0f;
-    rightButton.bgColor = CLASSY_BLUE_COLOR;
-    rightButton.borderColor = CLASSY_BLUE_COLOR;
+    rightButton.bgColor = PICTON_BLUE_COLOR;
+    rightButton.borderColor = PICTON_BLUE_COLOR;
     rightButton.titleColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     _buyingHashtagTextField.rightView = rightButton;
@@ -210,6 +214,8 @@
     _sellingHashtagTextField.backgroundColor = LIGHTEST_GRAY_COLOR;
     _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
     _sellingHashtagTextField.layer.cornerRadius = 10.0f;
+    _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
+    _sellingHashtagTextField.layer.borderWidth = 1.0f;
     _sellingHashtagTextField.returnKeyType = UIReturnKeyDone;
     _sellingHashtagTextField.delegate = self;
     [_sellingHashTagCell addSubview:_sellingHashtagTextField];
@@ -221,13 +227,13 @@
     _sellingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
     
     // Add button to the right of the text field
-    CGFloat const kButtonWidth = WINSIZE.width * 0.15;
+    CGFloat const kButtonWidth = WINSIZE.width * 0.12;
     CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
     JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
-    [rightButton createTitle:@"Add" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:20] iconOffsetY:0];
     rightButton.cornerRadius = 10.0f;
-    rightButton.bgColor = CLASSY_BLUE_COLOR;
-    rightButton.borderColor = CLASSY_BLUE_COLOR;
+    rightButton.bgColor = PICTON_BLUE_COLOR;
+    rightButton.borderColor = PICTON_BLUE_COLOR;
     rightButton.titleColor = [UIColor whiteColor];
     [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     _sellingHashtagTextField.rightView = rightButton;
