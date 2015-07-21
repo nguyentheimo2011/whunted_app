@@ -25,6 +25,8 @@
 
 #define kBuyingDropDownMenuTag      101
 #define kSellingDropDownMenuTag     102
+#define kBuyingTextField            103
+#define kSellingTextField           104
 
 #define kTravellingToCountryList        @"travellingToCountryList"
 #define kResidingCountryList            @"residingCountryList"
@@ -551,6 +553,19 @@
 }
 
 #pragma mark - UITextField Delegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (_buyingDropDownMenu.isExpanding) {
+        if (_buyingDropDownMenu.selectedIndex >= 0)
+            [_buyingDropDownMenu selectItemAtIndex:_buyingDropDownMenu.selectedIndex];
+        else
+            [_buyingDropDownMenu reloadView];
+    }
+    
+    return YES;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
