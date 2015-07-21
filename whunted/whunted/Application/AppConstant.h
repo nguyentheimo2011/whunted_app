@@ -45,7 +45,8 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
-#define     FLAT_BUTTON_HEIGHT                  35
+#define     FLAT_BUTTON_HEIGHT                  35.0f
+#define      kOFFSET_FOR_KEYBOARD               80.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ITEM_NAME_KEY                       @"itemName"
