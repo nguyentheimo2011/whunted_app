@@ -14,7 +14,6 @@
 #import "AppConstant.h"
 
 #import <JTImageButton.h>
-#import "IGLDropDownMenu.h"
 
 #define kTravellingToTag            0
 #define kResidingCountryTag         1
@@ -23,6 +22,9 @@
 #define kLeftRightMargin            30
 
 #define kAddedTopBottomSpace        10
+
+#define kBuyingDropDownMenuTag      101
+#define kSellingDropDownMenuTag     102
 
 #define kTravellingToCountryList        @"travellingToCountryList"
 #define kResidingCountryList            @"residingCountryList"
@@ -159,12 +161,13 @@
     
     // add text field
     CGFloat const kTextFieldHeight = 35.0f;
-    CGFloat const kTextFieldWidth = WINSIZE.width * 0.76;
-    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.2;
+    CGFloat const kTextFieldWidth = WINSIZE.width * 0.72;
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.24;
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _buyingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
+    _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand or model", nil);
+    _buyingHashtagTextField.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
     _buyingHashtagTextField.layer.cornerRadius = 10.0f;
     _buyingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _buyingHashtagTextField.layer.borderWidth = 1.0f;
@@ -218,17 +221,19 @@
     }
     
     CGFloat const kDropDownMenuLeftMargin = WINSIZE.width * 0.04;
-    CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.14;
+    CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.18;
     
     _buyingDropDownMenu = [[IGLDropDownMenu alloc] init];
     _buyingDropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
     _buyingDropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
     _buyingDropDownMenu.dropDownItems = dropdownItems;
-    _buyingDropDownMenu.paddingLeft = 2.0f;
+    _buyingDropDownMenu.paddingLeft = (kDropDownMenuWidth - [Utilities widthOfText:kItemDetailSelect withFont:DEFAULT_FONT andMaxWidth:WINSIZE.width])/2;
     [_buyingDropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
     
     _buyingDropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
     _buyingDropDownMenu.flipWhenToggleView = YES;
+    _buyingDropDownMenu.tag = kBuyingDropDownMenuTag;
+    _buyingDropDownMenu.delegate = self;
     [_buyingDropDownMenu reloadView];
     
     [_buyingHashTagCell addSubview:_buyingDropDownMenu];
@@ -247,7 +252,8 @@
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _sellingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag", nil);
+    _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag E.g. Apple", nil);
+    _sellingHashtagTextField.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
     _sellingHashtagTextField.layer.cornerRadius = 10.0f;
     _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _sellingHashtagTextField.layer.borderWidth = 1.0f;
@@ -443,9 +449,9 @@
     else if (section == 1)
         return NSLocalizedString(@"Where are you residing at?", nil);
     else if (section == 2)
-        return NSLocalizedString(@"What do you like to buy?", nil);
+        return NSLocalizedString(@"What would you like to buy?", nil);
     else if (section == 3)
-        return NSLocalizedString(@"What do you like to sell?", nil);
+        return NSLocalizedString(@"What would you like to sell?", nil);
     else
         return @"";
 }
@@ -565,7 +571,8 @@
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *kWhiteSpace = @" ";
+    // splitting by white space
+    /*NSString *kWhiteSpace = @" ";
     if ([string isEqualToString:kWhiteSpace]) {
         if (textField.text.length > 0) {
             BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
@@ -574,9 +581,27 @@
         }
         
         return NO;
-    }
+    }*/
     
     return YES;
+}
+
+#pragma markr - IGLDropDownMenuDelegate
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) dropDownMenu:(IGLDropDownMenu *)dropDownMenu selectedItemAtIndex:(NSInteger)index
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSInteger const kHashtagTypeBrandIndex = 0;
+    NSInteger const kHashtagTypeModelIndex = 1;
+    
+    if (dropDownMenu.tag == kBuyingDropDownMenuTag) {
+        if (index == kHashtagTypeBrandIndex) {
+            _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand E.g. Gucci", nil);
+        } else if (index == kHashtagTypeModelIndex) {
+            _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter model E.g. iPhone", nil);
+        }
+    }
 }
 
 #pragma mark - Event Handlers

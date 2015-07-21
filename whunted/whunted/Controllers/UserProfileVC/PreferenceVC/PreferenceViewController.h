@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "CountryTableViewController.h"
+#import "IGLDropDownMenu.h"
 
-@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, CountryTableViewDelegate>
+@interface PreferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, CountryTableViewDelegate, IGLDropDownMenuDelegate>
 
 @end
