@@ -165,8 +165,9 @@ typedef enum {
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
-    BrandHashtagType,
-    ModelHashtagType
+    HashtagTypeBrand,
+    HashtagTypeModel,
+    HashtagTypeNone
 } HashtagType;
 
 #endif

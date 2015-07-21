@@ -287,15 +287,19 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (UIView *) createHashtagViewWithText: (NSString *) hashtag withTag: (NSInteger) tag
+- (UIView *) createHashtagViewWithHashtagData: (HashtagData *) data withTag: (NSInteger) tag
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *label = [[UILabel alloc] init];
-    label.text = hashtag;
+    label.text = data.hashtagText;
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
-    label.backgroundColor = VIVID_SKY_BLUE_COLOR;
+    
+    if (data.hashtagType == HashtagTypeBrand)
+        label.backgroundColor = VIVID_SKY_BLUE_COLOR;
+    else
+        label.backgroundColor = TEA_ROSE_COLOR;
     [label sizeToFit];
     
     CGFloat kLabelWidth = label.frame.size.width + 10.0f;
@@ -340,18 +344,26 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addANewHashtagForBuying: (NSString *) hashtag
+- (void) addANewHashtagForBuying: (NSString *) hashtagText
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *hashtagView = [self createHashtagViewWithText:hashtag withTag:[_buyingPreferenceHashtagList count] + 1];
-    CGSize hashtagViewSize = hashtagView.frame.size;
-    CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
-    hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
-    [_buyingHashtagContainer addSubview:hashtagView];
-    
-    [_buyingPreferenceHashtagList addObject:hashtag];
-    
-    _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+    HashtagType selectedHashtagType = [self getBuyingHashtagType];
+    if (selectedHashtagType == HashtagTypeNone) {
+        // Present an alert view
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please select a hashtag type", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
+        HashtagData *hashtagData = [[HashtagData alloc] initWithText:hashtagText andType:selectedHashtagType];
+        UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_buyingPreferenceHashtagList count] + 1];
+        CGSize hashtagViewSize = hashtagView.frame.size;
+        CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
+        hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+        [_buyingHashtagContainer addSubview:hashtagView];
+        
+        [_buyingPreferenceHashtagList addObject:hashtagData];
+        
+        _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -603,6 +615,21 @@
     [label sizeToFit];
     
     return label.frame.size.height;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (HashtagType) getBuyingHashtagType
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSInteger const kHashtagTypeBrandIndex = 0;
+    NSInteger const kHashtagTypeModelIndex = 1;
+    
+    if (_buyingDropDownMenu.selectedIndex == kHashtagTypeBrandIndex)
+        return HashtagTypeBrand;
+    else if (_buyingDropDownMenu.selectedIndex == kHashtagTypeModelIndex)
+        return HashtagTypeModel;
+    else
+        return HashtagTypeNone;
 }
 
 @end
