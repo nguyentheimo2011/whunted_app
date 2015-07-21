@@ -27,6 +27,10 @@
 #define kSellingDropDownMenuTag     102
 #define kBuyingTextFieldTag         103
 #define kSellingTextFieldTag        104
+#define kBuyingAddingButtonTag      105
+#define kSellingAddingButtonTag     106
+#define kBuyingDeletionButtonTag    107
+#define kSellingDeletionButtonTag   108
 
 #define kTravellingToCountryList        @"travellingToCountryList"
 #define kResidingCountryList            @"residingCountryList"
@@ -60,7 +64,8 @@
     NSMutableArray  *_buyingPreferenceHashtagList;
     NSMutableArray  *_sellingPreferenceHashtagList;
     
-    CGRect          _lastHashtagFrame;
+    CGRect          _lastBuyingHashtagFrame;
+    CGRect          _lastSellingHashtagFrame;
     
     BOOL            _isExpandingContentSize;
     NSInteger       _currTextFieldTag;
@@ -248,7 +253,8 @@
     rightButton.bgColor = PICTON_BLUE_COLOR;
     rightButton.borderColor = PICTON_BLUE_COLOR;
     rightButton.titleColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    rightButton.tag = kBuyingAddingButtonTag;
+    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
     _buyingHashtagTextField.rightView = rightButton;
     _buyingHashtagTextField.rightViewMode = UITextFieldViewModeAlways;
     
@@ -339,7 +345,8 @@
     rightButton.bgColor = PICTON_BLUE_COLOR;
     rightButton.borderColor = PICTON_BLUE_COLOR;
     rightButton.titleColor = [UIColor whiteColor];
-    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    rightButton.tag = kSellingAddingButtonTag;
+    [rightButton addTarget:self action:@selector(hashtagAddingButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
     _sellingHashtagTextField.rightView = rightButton;
     _sellingHashtagTextField.rightViewMode = UITextFieldViewModeAlways;
     
@@ -380,7 +387,7 @@
     
     _sellingDropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
     _sellingDropDownMenu.flipWhenToggleView = YES;
-    _sellingDropDownMenu.tag = kSellingTextFieldTag;
+    _sellingDropDownMenu.tag = kSellingDropDownMenuTag;
     _sellingDropDownMenu.delegate = self;
     [_sellingDropDownMenu reloadView];
     
@@ -388,7 +395,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (UIView *) createHashtagViewWithHashtagData: (HashtagData *) data withTag: (NSInteger) tag
+- (UIView *) createHashtagViewWithHashtagData: (HashtagData *) data withTag: (NSInteger) tag withType: (NSInteger) buyingOrSellingTag
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *label = [[UILabel alloc] init];
@@ -424,6 +431,7 @@
     deletionButton.bgColor = RED_ORAGNE_COLOR;
     deletionButton.cornerRadius = 0.0f;
     deletionButton.tag = tag;
+    deletionButton.titleLabel.tag = buyingOrSellingTag;
     [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *hashTagContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLabelWidth + kButtonWidth, kLabelHeight)];
@@ -461,22 +469,53 @@
         return NO;
     } else {
         HashtagData *hashtagData = [[HashtagData alloc] initWithText:data.hashtagText andType:selectedHashtagType];
-        UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_buyingPreferenceHashtagList count] + 1];
+        UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_buyingPreferenceHashtagList count] + 1 withType:kBuyingDeletionButtonTag];
         CGSize hashtagViewSize = hashtagView.frame.size;
-        CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
+        CGPoint hashtagViewPos = [self calculatePositionForBuyingHashtagView:hashtagView];
         hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
         [_buyingHashtagContainer addSubview:hashtagView];
         
         [_buyingPreferenceHashtagList addObject:hashtagData];
         
-        _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+        _lastBuyingHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
         
         return YES;
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (CGPoint) calculatePositionForHashtagView: (UIView *) hashtagView
+- (BOOL) addANewHashtagForSelling: (HashtagData *) data
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    HashtagType selectedHashtagType = data.hashtagType;
+    if (selectedHashtagType == HashtagTypeNone) {
+        selectedHashtagType = [self getSellingHashtagType];
+    }
+    
+    if (selectedHashtagType == HashtagTypeNone) {
+        // Present an alert view
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please select a hashtag type", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        
+        return NO;
+    } else {
+        HashtagData *hashtagData = [[HashtagData alloc] initWithText:data.hashtagText andType:selectedHashtagType];
+        UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_sellingPreferenceHashtagList count] + 1 withType:kSellingDeletionButtonTag];
+        CGSize hashtagViewSize = hashtagView.frame.size;
+        CGPoint hashtagViewPos = [self calculatePositionForSellingHashtagView:hashtagView];
+        hashtagView.frame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+        [_sellingHashtagContainer addSubview:hashtagView];
+        
+        [_sellingPreferenceHashtagList addObject:hashtagData];
+        
+        _lastSellingHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+        
+        return YES;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGPoint) calculatePositionForBuyingHashtagView: (UIView *) hashtagView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelTopMargin = 10.0f;
@@ -491,16 +530,46 @@
     } else {
         CGSize hashtagViewSize = hashtagView.frame.size;
         CGSize hashtagContainerSize = _buyingHashtagContainer.frame.size;
-        CGFloat nextXPos = _lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin + hashtagViewSize.width + kLabelRightMargin;
+        CGFloat nextXPos = _lastBuyingHashtagFrame.origin.x + _lastBuyingHashtagFrame.size.width + kLabelLeftMargin + hashtagViewSize.width + kLabelRightMargin;
         if (nextXPos > hashtagContainerSize.width) {
-            CGFloat newContainerHeight = _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin + hashtagViewSize.height + kLabelBottomMargin;
+            CGFloat newContainerHeight = _lastBuyingHashtagFrame.origin.y + _lastBuyingHashtagFrame.size.height + kLabelTopMargin + hashtagViewSize.height + kLabelBottomMargin;
             if (newContainerHeight > hashtagContainerSize.height) {
                 [_buyingHashtagContainer setContentSize:CGSizeMake(hashtagContainerSize.width, newContainerHeight)];
                 [Utilities scrollToBottom:_buyingHashtagContainer];
             }
-            return CGPointMake(kLabelLeftMargin, _lastHashtagFrame.origin.y + _lastHashtagFrame.size.height + kLabelTopMargin);
+            return CGPointMake(kLabelLeftMargin, _lastBuyingHashtagFrame.origin.y + _lastBuyingHashtagFrame.size.height + kLabelTopMargin);
         } else {
-            return CGPointMake(_lastHashtagFrame.origin.x + _lastHashtagFrame.size.width + kLabelLeftMargin, _lastHashtagFrame.origin.y);
+            return CGPointMake(_lastBuyingHashtagFrame.origin.x + _lastBuyingHashtagFrame.size.width + kLabelLeftMargin, _lastBuyingHashtagFrame.origin.y);
+        }
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (CGPoint) calculatePositionForSellingHashtagView: (UIView *) hashtagView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelTopMargin = 10.0f;
+    CGFloat const kLabelBottomMargin = 10.0f;
+    CGFloat const kLabelLeftMargin = 10.0f;
+    CGFloat const kLabelRightMargin = 2.0f;
+    
+    NSUInteger lastTag = [_sellingPreferenceHashtagList count];
+    
+    if (lastTag == 0) {
+        return CGPointMake(kLabelLeftMargin, kLabelTopMargin);
+    } else {
+        CGSize hashtagViewSize = hashtagView.frame.size;
+        CGSize hashtagContainerSize = _sellingHashtagContainer.frame.size;
+        CGFloat nextXPos = _lastSellingHashtagFrame.origin.x + _lastSellingHashtagFrame.size.width + kLabelLeftMargin + hashtagViewSize.width + kLabelRightMargin;
+        if (nextXPos > hashtagContainerSize.width) {
+            CGFloat newContainerHeight = _lastSellingHashtagFrame.origin.y + _lastSellingHashtagFrame.size.height + kLabelTopMargin + hashtagViewSize.height + kLabelBottomMargin;
+            if (newContainerHeight > hashtagContainerSize.height) {
+                [_sellingHashtagContainer setContentSize:CGSizeMake(hashtagContainerSize.width, newContainerHeight)];
+                [Utilities scrollToBottom:_sellingHashtagContainer];
+            }
+            return CGPointMake(kLabelLeftMargin, _lastSellingHashtagFrame.origin.y + _lastSellingHashtagFrame.size.height + kLabelTopMargin);
+        } else {
+            return CGPointMake(_lastSellingHashtagFrame.origin.x + _lastSellingHashtagFrame.size.width + kLabelLeftMargin, _lastSellingHashtagFrame.origin.y);
         }
     }
 }
@@ -671,10 +740,18 @@
 {    
     [textField resignFirstResponder];
     
-    if (textField.text.length > 0) {
-        BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
-        if (isAdded)
-            textField.text = @"";
+    if (textField.tag == kBuyingTextFieldTag) {
+        if (textField.text.length > 0) {
+            BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
+            if (isAdded)
+                textField.text = @"";
+        }
+    } else if (textField.tag == kSellingTextFieldTag) {
+        if (textField.text.length > 0) {
+            BOOL isAdded = [self addANewHashtagForSelling:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
+            if (isAdded)
+                textField.text = @"";
+        }
     }
     
     return YES;
@@ -761,6 +838,12 @@
         } else if (index == kHashtagTypeModelIndex) {
             _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter model E.g. iPhone", nil);
         }
+    } else if (dropDownMenu.tag == kSellingDropDownMenuTag) {
+        if (index == kHashtagTypeBrandIndex) {
+            _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand E.g. Gucci", nil);
+        } else if (index == kHashtagTypeModelIndex) {
+            _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter model E.g. iPhone", nil);
+        }
     }
 }
 
@@ -770,32 +853,59 @@
 - (void) deletionButtonTapEventHandler: (UIButton *) button
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    for (int i=1; i <= _buyingPreferenceHashtagList.count; i++) {
-        UIView *view = [_buyingHashtagContainer viewWithTag:i];
-        [view removeFromSuperview];
-    }
-    
-    [_buyingPreferenceHashtagList removeObjectAtIndex:button.tag - 1];
-    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_buyingPreferenceHashtagList];
-    _buyingPreferenceHashtagList = [NSMutableArray array];
-    
-    [_buyingHashtagContainer setContentSize:_buyingHashtagContainer.frame.size];
-    
-    for (int i=0; i < tempArray.count; i++) {
-        HashtagData *data = [tempArray objectAtIndex:i];
-        [self addANewHashtagForBuying:data];
+    if (button.titleLabel.tag == kBuyingDeletionButtonTag) {
+        for (int i=1; i <= _buyingPreferenceHashtagList.count; i++) {
+            UIView *view = [_buyingHashtagContainer viewWithTag:i];
+            [view removeFromSuperview];
+        }
+        
+        [_buyingPreferenceHashtagList removeObjectAtIndex:button.tag - 1];
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_buyingPreferenceHashtagList];
+        _buyingPreferenceHashtagList = [NSMutableArray array];
+        
+        [_buyingHashtagContainer setContentSize:_buyingHashtagContainer.frame.size];
+        
+        for (int i=0; i < tempArray.count; i++) {
+            HashtagData *data = [tempArray objectAtIndex:i];
+            [self addANewHashtagForBuying:data];
+        }
+    } else if (button.titleLabel.tag == kSellingDeletionButtonTag) {
+        for (int i=1; i <= _sellingPreferenceHashtagList.count; i++) {
+            UIView *view = [_sellingHashtagContainer viewWithTag:i];
+            [view removeFromSuperview];
+        }
+        
+        [_sellingPreferenceHashtagList removeObjectAtIndex:button.tag - 1];
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_sellingPreferenceHashtagList];
+        _sellingPreferenceHashtagList = [NSMutableArray array];
+        
+        [_sellingHashtagContainer setContentSize:_sellingHashtagContainer.frame.size];
+        
+        for (int i=0; i < tempArray.count; i++) {
+            HashtagData *data = [tempArray objectAtIndex:i];
+            [self addANewHashtagForSelling:data];
+        }
     }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) hashtagAddingButtonTapEventHandler
+- (void) hashtagAddingButtonTapEventHandler: (UIButton *) button
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_buyingHashtagTextField.text.length > 0) {
-        BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:_buyingHashtagTextField.text andType:HashtagTypeNone]];
-        if (isAdded)
-            _buyingHashtagTextField.text = @"";
+    if (button.tag == kBuyingAddingButtonTag) {
+        if (_buyingHashtagTextField.text.length > 0) {
+            BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:_buyingHashtagTextField.text andType:HashtagTypeNone]];
+            if (isAdded)
+                _buyingHashtagTextField.text = @"";
+        }
+    } else if (button.tag == kSellingAddingButtonTag) {
+        if (_sellingHashtagTextField.text.length > 0) {
+            BOOL isAdded = [self addANewHashtagForSelling:[[HashtagData alloc] initWithText:_sellingHashtagTextField.text andType:HashtagTypeNone]];
+            if (isAdded)
+                _sellingHashtagTextField.text = @"";
+        }
     }
+    
 }
 
 #pragma mark - Helper functions
@@ -824,6 +934,21 @@
     if (_buyingDropDownMenu.selectedIndex == kHashtagTypeBrandIndex)
         return HashtagTypeBrand;
     else if (_buyingDropDownMenu.selectedIndex == kHashtagTypeModelIndex)
+        return HashtagTypeModel;
+    else
+        return HashtagTypeNone;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (HashtagType) getSellingHashtagType
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSInteger const kHashtagTypeBrandIndex = 0;
+    NSInteger const kHashtagTypeModelIndex = 1;
+    
+    if (_sellingDropDownMenu.selectedIndex == kHashtagTypeBrandIndex)
+        return HashtagTypeBrand;
+    else if (_sellingDropDownMenu.selectedIndex == kHashtagTypeModelIndex)
         return HashtagTypeModel;
     else
         return HashtagTypeNone;
