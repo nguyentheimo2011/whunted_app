@@ -303,26 +303,31 @@
     _sellingHashTagCell = [[UITableViewCell alloc] init];
     _sellingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    _sellingHashTagCell = [[UITableViewCell alloc] init];
+    _sellingHashTagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // add text field
     CGFloat const kTextFieldHeight = 35.0f;
-    CGFloat const kTextFieldWidth = WINSIZE.width * 0.92;
-    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kTextFieldWidth = WINSIZE.width * 0.72;
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width * 0.24;
     CGFloat const kTextFieldTopMargin = 10.0f;
     
     _sellingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter a new hashtag E.g. Apple", nil);
+    _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand or model", nil);
     _sellingHashtagTextField.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
     _sellingHashtagTextField.layer.cornerRadius = 10.0f;
     _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _sellingHashtagTextField.layer.borderWidth = 1.0f;
+    _sellingHashtagTextField.layer.masksToBounds = YES;
     _sellingHashtagTextField.returnKeyType = UIReturnKeyDone;
     _sellingHashtagTextField.tag = kSellingTextFieldTag;
     _sellingHashtagTextField.delegate = self;
     [_sellingHashTagCell addSubview:_sellingHashtagTextField];
     
     // Add left padding
-    CGFloat const kTextFieldLeftPadding = 10.0f;
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kTextFieldLeftPadding, kTextFieldHeight)];
-    _sellingHashtagTextField.leftView = paddingView;
+    CGFloat const kLeftPaddingWidth = 10.0f;
+    UIView *leftPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLeftPaddingWidth, kTextFieldHeight)];
+    _sellingHashtagTextField.leftView = leftPadding;
     _sellingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
     
     // Add button to the right of the text field
@@ -340,14 +345,46 @@
     
     // Add hashtag container
     CGFloat const kContainerTopMargin = 2.5f;
+    CGFloat const kContainerLeftMargin = WINSIZE.width * 0.04;
     CGFloat const kYPos = kTextFieldHeight + 2 * kTextFieldTopMargin + kContainerTopMargin;
     CGFloat const kContainerHeight = 80.0f;
+    CGFloat const kContainerWidth = WINSIZE.width * 0.92;
     
-    _sellingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kYPos, kTextFieldWidth, kContainerHeight)];
+    _sellingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
     _sellingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
     _sellingHashtagContainer.layer.cornerRadius = 10.0f;
     _sellingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_sellingHashTagCell addSubview:_sellingHashtagContainer];
+    
+    // Add drop down list of brand and model
+    NSArray *dataArray = @[@{@"title":NSLocalizedString(kItemDetailBrand, nil)},
+                           @{@"title":NSLocalizedString(kItemDetailModel, nil)}];
+    NSMutableArray *dropdownItems = [[NSMutableArray alloc] init];
+    for (int i = 0; i < dataArray.count; i++) {
+        NSDictionary *dict = dataArray[i];
+        
+        IGLDropDownItem *item = [[IGLDropDownItem alloc] init];
+        [item setText:dict[@"title"] withFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+        [dropdownItems addObject:item];
+    }
+    
+    CGFloat const kDropDownMenuLeftMargin = WINSIZE.width * 0.04;
+    CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.18;
+    
+    _sellingDropDownMenu = [[IGLDropDownMenu alloc] init];
+    _sellingDropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _sellingDropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
+    _sellingDropDownMenu.dropDownItems = dropdownItems;
+    _sellingDropDownMenu.paddingLeft = (kDropDownMenuWidth - [Utilities widthOfText:kItemDetailSelect withFont:DEFAULT_FONT andMaxWidth:WINSIZE.width])/2;
+    [_sellingDropDownMenu setFrame:CGRectMake(kDropDownMenuLeftMargin, kTextFieldTopMargin, kDropDownMenuWidth, kTextFieldHeight)];
+    
+    _sellingDropDownMenu.type = IGLDropDownMenuTypeSlidingInBoth;
+    _sellingDropDownMenu.flipWhenToggleView = YES;
+    _sellingDropDownMenu.tag = kSellingTextFieldTag;
+    _sellingDropDownMenu.delegate = self;
+    [_sellingDropDownMenu reloadView];
+    
+    [_sellingHashTagCell addSubview:_sellingDropDownMenu];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
