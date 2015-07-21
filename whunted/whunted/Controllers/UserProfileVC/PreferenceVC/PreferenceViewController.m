@@ -344,10 +344,14 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (BOOL) addANewHashtagForBuying: (NSString *) hashtagText
+- (BOOL) addANewHashtagForBuying: (HashtagData *) data
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    HashtagType selectedHashtagType = [self getBuyingHashtagType];
+    HashtagType selectedHashtagType = data.hashtagType;
+    if (selectedHashtagType == HashtagTypeNone) {
+        selectedHashtagType = [self getBuyingHashtagType];
+    }
+    
     if (selectedHashtagType == HashtagTypeNone) {
         // Present an alert view
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please select a hashtag type", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -355,7 +359,7 @@
         
         return NO;
     } else {
-        HashtagData *hashtagData = [[HashtagData alloc] initWithText:hashtagText andType:selectedHashtagType];
+        HashtagData *hashtagData = [[HashtagData alloc] initWithText:data.hashtagText andType:selectedHashtagType];
         UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_buyingPreferenceHashtagList count] + 1];
         CGSize hashtagViewSize = hashtagView.frame.size;
         CGPoint hashtagViewPos = [self calculatePositionForHashtagView:hashtagView];
@@ -549,7 +553,7 @@
     [textField resignFirstResponder];
     
     if (textField.text.length > 0) {
-        BOOL isAdded = [self addANewHashtagForBuying:textField.text];
+        BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
         if (isAdded)
             textField.text = @"";
     }
@@ -564,7 +568,7 @@
     NSString *kWhiteSpace = @" ";
     if ([string isEqualToString:kWhiteSpace]) {
         if (textField.text.length > 0) {
-            BOOL isAdded = [self addANewHashtagForBuying:textField.text];
+            BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:textField.text andType:HashtagTypeNone]];
             if (isAdded)
                 textField.text = @"";
         }
@@ -593,7 +597,8 @@
     [_buyingHashtagContainer setContentSize:_buyingHashtagContainer.frame.size];
     
     for (int i=0; i < tempArray.count; i++) {
-        [self addANewHashtagForBuying:[tempArray objectAtIndex:i]];
+        HashtagData *data = [tempArray objectAtIndex:i];
+        [self addANewHashtagForBuying:data];
     }
 }
 
@@ -602,7 +607,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (_buyingHashtagTextField.text.length > 0) {
-        BOOL isAdded = [self addANewHashtagForBuying:_buyingHashtagTextField.text];
+        BOOL isAdded = [self addANewHashtagForBuying:[[HashtagData alloc] initWithText:_buyingHashtagTextField.text andType:HashtagTypeNone]];
         if (isAdded)
             _buyingHashtagTextField.text = @"";
     }
