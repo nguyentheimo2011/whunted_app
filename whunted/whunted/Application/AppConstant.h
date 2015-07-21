@@ -27,6 +27,7 @@
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
 #define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
 #define     LIGHTEST_GRAY_COLOR                 [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
+#define     WHITE_GRAY_COLOR                    [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
 #define     BACKGROUND_GRAY_COLOR               [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
 #define		COLOR_OUTGOING						[UIColor colorWithRed:0.0/255 green:122.0/255 blue:255.0/255 alpha:1.0]
 #define     COLOR_OUTGOING_SENDING              [UIColor colorWithRed:204.0/255 green:229.0/255 blue:255.0/255 alpha:1.0]
@@ -46,7 +47,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
 #define     FLAT_BUTTON_HEIGHT                  35.0f
-#define      kOFFSET_FOR_KEYBOARD               80.0f
+#define      kOFFSET_FOR_KEYBOARD               200.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ITEM_NAME_KEY                       @"itemName"

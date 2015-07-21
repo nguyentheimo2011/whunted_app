@@ -25,8 +25,8 @@
 
 #define kBuyingDropDownMenuTag      101
 #define kSellingDropDownMenuTag     102
-#define kBuyingTextField            103
-#define kSellingTextField           104
+#define kBuyingTextFieldTag         103
+#define kSellingTextFieldTag        104
 
 #define kTravellingToCountryList        @"travellingToCountryList"
 #define kResidingCountryList            @"residingCountryList"
@@ -61,6 +61,9 @@
     NSMutableArray  *_sellingPreferenceHashtagList;
     
     CGRect          _lastHashtagFrame;
+    
+    BOOL            _isExpandingContentSize;
+    NSInteger       _currTextFieldTag;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -151,7 +154,7 @@
     _preferenceTableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _preferenceTableView.delegate = self;
     _preferenceTableView.dataSource = self;
-    _preferenceTableView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _preferenceTableView.backgroundColor = WHITE_GRAY_COLOR;
     [self.view addSubview:_preferenceTableView];
 }
 
@@ -161,6 +164,7 @@
 {
     _buyingPreferenceHashtagList = [NSMutableArray array];
     _sellingPreferenceHashtagList = [NSMutableArray array];
+    _isExpandingContentSize = NO;
     
     [self initTravellingToCell];
     [self initResidingCountryCell];
@@ -225,6 +229,7 @@
     _buyingHashtagTextField.layer.borderWidth = 1.0f;
     _buyingHashtagTextField.layer.masksToBounds = YES;
     _buyingHashtagTextField.returnKeyType = UIReturnKeyDone;
+    _buyingHashtagTextField.tag = kBuyingTextFieldTag;
     _buyingHashtagTextField.delegate = self;
     [_buyingHashTagCell addSubview:_buyingHashtagTextField];
     
@@ -310,6 +315,7 @@
     _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _sellingHashtagTextField.layer.borderWidth = 1.0f;
     _sellingHashtagTextField.returnKeyType = UIReturnKeyDone;
+    _sellingHashtagTextField.tag = kSellingTextFieldTag;
     _sellingHashtagTextField.delegate = self;
     [_sellingHashTagCell addSubview:_sellingHashtagTextField];
     
@@ -606,12 +612,17 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_buyingDropDownMenu.isExpanding) {
-        if (_buyingDropDownMenu.selectedIndex >= 0)
-            [_buyingDropDownMenu selectItemAtIndex:_buyingDropDownMenu.selectedIndex];
-        else
-            [_buyingDropDownMenu reloadView];
+    _currTextFieldTag = textField.tag;
+    
+    if (textField.tag == kSellingTextFieldTag) {
+        if (_buyingDropDownMenu.isExpanding) {
+            if (_buyingDropDownMenu.selectedIndex >= 0)
+                [_buyingDropDownMenu selectItemAtIndex:_buyingDropDownMenu.selectedIndex];
+            else
+                [_buyingDropDownMenu reloadView];
+        }
     }
     
     return YES;
@@ -655,29 +666,14 @@
 -(void) keyboardWillShow
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+    [self setViewMovedUp:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 -(void) keyboardWillHide
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+    [self setViewMovedUp:NO];
 }
 
 //method to move the view up/down whenever the keyboard is shown/dismissed
@@ -688,21 +684,27 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     
-    CGRect rect = self.view.frame;
-    if (movedUp)
-    {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    CGSize contentSize = _preferenceTableView.contentSize;
+    
+    if (movedUp) {
+        if (!_isExpandingContentSize) {
+            contentSize.height += kOFFSET_FOR_KEYBOARD;
+            [_preferenceTableView setContentSize:contentSize];
+            _isExpandingContentSize = YES;
+            
+            if (_currTextFieldTag == kBuyingTextFieldTag) {
+                CGPoint contentOffset = CGPointMake(0, 80);
+                [_preferenceTableView setContentOffset:contentOffset animated:YES];
+            } else {
+                CGPoint bottomOffset = CGPointMake(0, _preferenceTableView.contentSize.height - _preferenceTableView.bounds.size.height + 35);
+                [_preferenceTableView setContentOffset:bottomOffset animated:YES];
+            }
+        }
+    } else {
+        contentSize.height -= kOFFSET_FOR_KEYBOARD;
+        [_preferenceTableView setContentSize:contentSize];
+        _isExpandingContentSize = NO;
     }
-    else
-    {
-        // revert back to the normal state.
-        rect.origin.y += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-    }
-    self.view.frame = rect;
     
     [UIView commitAnimations];
 }
