@@ -344,7 +344,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addANewHashtagForBuying: (NSString *) hashtagText
+- (BOOL) addANewHashtagForBuying: (NSString *) hashtagText
 //------------------------------------------------------------------------------------------------------------------------------
 {
     HashtagType selectedHashtagType = [self getBuyingHashtagType];
@@ -352,6 +352,8 @@
         // Present an alert view
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please select a hashtag type", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
+        
+        return NO;
     } else {
         HashtagData *hashtagData = [[HashtagData alloc] initWithText:hashtagText andType:selectedHashtagType];
         UIView *hashtagView = [self createHashtagViewWithHashtagData:hashtagData withTag:[_buyingPreferenceHashtagList count] + 1];
@@ -363,6 +365,8 @@
         [_buyingPreferenceHashtagList addObject:hashtagData];
         
         _lastHashtagFrame = CGRectMake(hashtagViewPos.x, hashtagViewPos.y, hashtagViewSize.width, hashtagViewSize.height);
+        
+        return YES;
     }
 }
 
@@ -545,8 +549,9 @@
     [textField resignFirstResponder];
     
     if (textField.text.length > 0) {
-        [self addANewHashtagForBuying:textField.text];
-        textField.text = @"";
+        BOOL isAdded = [self addANewHashtagForBuying:textField.text];
+        if (isAdded)
+            textField.text = @"";
     }
     
     return YES;
@@ -559,8 +564,9 @@
     NSString *kWhiteSpace = @" ";
     if ([string isEqualToString:kWhiteSpace]) {
         if (textField.text.length > 0) {
-            [self addANewHashtagForBuying:textField.text];
-            textField.text = @"";
+            BOOL isAdded = [self addANewHashtagForBuying:textField.text];
+            if (isAdded)
+                textField.text = @"";
         }
         
         return NO;
@@ -596,8 +602,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (_buyingHashtagTextField.text.length > 0) {
-        [self addANewHashtagForBuying:_buyingHashtagTextField.text];
-        _buyingHashtagTextField.text = @"";
+        BOOL isAdded = [self addANewHashtagForBuying:_buyingHashtagTextField.text];
+        if (isAdded)
+            _buyingHashtagTextField.text = @"";
     }
 }
 
