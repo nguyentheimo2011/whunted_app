@@ -16,5 +16,11 @@
 @property (nonatomic)           HashtagType hashtagType;
 
 - (id) initWithText: (NSString *) text andType: (HashtagType) type;
+- (id) initWithDict: (NSDictionary *) dict;
+
+- (NSDictionary *) toDict;
+
+- (NSString *)  hashtagTypeToText: (HashtagType) type;
+- (HashtagType) textToHashtagType: (NSString *) text;
 
 @end

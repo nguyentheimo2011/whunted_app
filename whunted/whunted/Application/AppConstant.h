@@ -64,6 +64,8 @@
 #define     kItemDetailSelect                   @"Select"
 #define     kItemDetailBrand                    @"Brand"
 #define     kItemDetailModel                    @"Model"
+#define     kHashtagTypeBrand                   @"HashtagTypeBrand"
+#define     kHashtagTypeModel                   @"HashtagTypeModel"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ACCEPTABLE_CHARECTERS               @"0123456789."

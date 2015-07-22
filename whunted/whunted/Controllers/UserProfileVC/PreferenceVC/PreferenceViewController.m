@@ -87,6 +87,8 @@
     [super viewWillDisappear:animated];
     
     [self deregisterNotification];
+    
+    [self saveData];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +96,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [self initData];
     
     [self customizeUI];
     [self addPreferenceTableView];
@@ -138,6 +142,32 @@
                                                   object:nil];
 }
 
+#pragma mark - Data Initialization
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _buyingPreferenceHashtagList = [NSMutableArray array];
+    _sellingPreferenceHashtagList = [NSMutableArray array];
+    _isExpandingContentSize = NO;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) saveData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableArray *tempBuyingList = [[NSMutableArray alloc] init];
+    for (HashtagData *hashtagData in _buyingPreferenceHashtagList)
+        [tempBuyingList addObject:[hashtagData toDict]];
+    [[NSUserDefaults standardUserDefaults] setObject:tempBuyingList forKey:kBuyingPreferenceHashtagList];
+    
+    NSMutableArray *tempSellingList = [[NSMutableArray alloc] init];
+    for (HashtagData *hashtagData in _sellingPreferenceHashtagList)
+        [tempSellingList addObject:[hashtagData toDict]];
+    [[NSUserDefaults standardUserDefaults] setObject:tempSellingList forKey:kSellingPreferenceHashtagList];
+}
+
 #pragma mark - UI
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -167,10 +197,6 @@
 - (void) initCells
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _buyingPreferenceHashtagList = [NSMutableArray array];
-    _sellingPreferenceHashtagList = [NSMutableArray array];
-    _isExpandingContentSize = NO;
-    
     [self initTravellingToCell];
     [self initResidingCountryCell];
     [self initBuyingHashtagCell];
@@ -300,6 +326,17 @@
     [_buyingDropDownMenu reloadView];
     
     [_buyingHashTagCell addSubview:_buyingDropDownMenu];
+    
+    // add current hashtag to hashtag container
+    NSArray *tempBuyingDictList = [[NSUserDefaults standardUserDefaults] objectForKey:kBuyingPreferenceHashtagList];
+    NSMutableArray *tempBuyingDataList = [NSMutableArray array];
+    for (NSDictionary *dict in tempBuyingDictList)
+        [tempBuyingDataList addObject:[[HashtagData alloc] initWithDict:dict]];
+    
+    for (int i=0; i < tempBuyingDataList.count; i++) {
+        HashtagData *data = [tempBuyingDataList objectAtIndex:i];
+        [self addANewHashtagForBuying:data];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -392,6 +429,17 @@
     [_sellingDropDownMenu reloadView];
     
     [_sellingHashTagCell addSubview:_sellingDropDownMenu];
+    
+    // add current hashtag to hashtag container
+    NSArray *tempSellingDictList = [[NSUserDefaults standardUserDefaults] objectForKey:kSellingPreferenceHashtagList];
+    NSMutableArray *tempSellingDataList = [NSMutableArray array];
+    for (NSDictionary *dict in tempSellingDictList)
+        [tempSellingDataList addObject:[[HashtagData alloc] initWithDict:dict]];
+    
+    for (int i=0; i < tempSellingDataList.count; i++) {
+        HashtagData *data = [tempSellingDataList objectAtIndex:i];
+        [self addANewHashtagForSelling:data];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -722,13 +770,18 @@
 {
     _currTextFieldTag = textField.tag;
     
-    if (textField.tag == kSellingTextFieldTag) {
-        if (_buyingDropDownMenu.isExpanding) {
-            if (_buyingDropDownMenu.selectedIndex >= 0)
-                [_buyingDropDownMenu selectItemAtIndex:_buyingDropDownMenu.selectedIndex];
-            else
-                [_buyingDropDownMenu reloadView];
-        }
+    if (_buyingDropDownMenu.isExpanding) {
+        if (_buyingDropDownMenu.selectedIndex >= 0)
+            [_buyingDropDownMenu selectItemAtIndex:_buyingDropDownMenu.selectedIndex];
+        else
+            [_buyingDropDownMenu reloadView];
+    }
+    
+    if (_sellingDropDownMenu.isExpanding) {
+        if (_sellingDropDownMenu.selectedIndex >= 0)
+            [_sellingDropDownMenu selectItemAtIndex:_sellingDropDownMenu.selectedIndex];
+        else
+            [_sellingDropDownMenu reloadView];
     }
     
     return YES;
