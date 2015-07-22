@@ -328,9 +328,12 @@
     
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    
+    // TODO: colors are likely to change
     _followerButton.bgColor = PICTON_BLUE_COLOR;
     _followerButton.borderColor = PICTON_BLUE_COLOR;
     _followerButton.titleColor = [UIColor whiteColor];
+    
     _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followerButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followerButton];
@@ -347,9 +350,12 @@
     
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    
+    // TODO: colors are likely to change
     _followingButton.bgColor = JASMINE_YELLOW_COLOR;
     _followingButton.borderColor = JASMINE_YELLOW_COLOR;
     _followingButton.titleColor = [UIColor whiteColor];
+    
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followingButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followingButton];
@@ -366,9 +372,12 @@
     
     _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    
+    // TODO: colors are likely to change
     _preferencesButton.bgColor = TEA_ROSE_COLOR;
     _preferencesButton.borderColor = TEA_ROSE_COLOR;
     _preferencesButton.titleColor = [UIColor whiteColor];
+    
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _preferencesButton.cornerRadius = 10.0;
     [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
@@ -518,13 +527,18 @@
     segmentedControl.sectionTitles = @[@"Bought", @"Sold"];
     
     segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    
+    /// TODO: colors are likely to change
     segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:LIGHT_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    segmentedControl.backgroundColor = PICTON_BLUE_COLOR;
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1];
+    segmentedControl.selectionIndicatorColor = DARK_BLUE_COLOR;
+    
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
     [segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.layer.cornerRadius = 5.0f;
+    
     [_scrollView addSubview:segmentedControl];
     
     _currHeight += kControlTopMargin + kControlHeight;
