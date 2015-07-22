@@ -18,10 +18,16 @@
 #define     PICTON_BLUE_COLOR                   [UIColor colorWithRed:69.0/255 green:177.0/255 blue:232.0/255 alpha:1.0]
 #define     COLUMBIA_BLUE_COLOR                 [UIColor colorWithRed:155.0/255 green:221.0/255 blue:255.0/255 alpha:1.0]
 #define     STAR_COMMAND_BLUE                   [UIColor colorWithRed:0.0/255 green:123.0/255 blue:184.0/255 alpha:1.0]
+#define     TUFTS_BLUE_COLOR                    [UIColor colorWithRed:65.0/255 green:125.0/255 blue:193.0/255 alpha:1.0]
+#define     CYAN_COLOR                          [UIColor colorWithRed:0.0/255 green:183.0/255 blue:235.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     RED_ORAGNE_COLOR                    [UIColor colorWithRed:255.0/255 green:83.0/255 blue:73.0/255 alpha:1.0]
 #define     TEA_ROSE_COLOR                      [UIColor colorWithRed:248.0/255 green:131.0/255 blue:121.0/255 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     JASMINE_YELLOW_COLOR                [UIColor colorWithRed:248.0/255 green:222.0/255 blue:126.0/255 alpha:1.0]
+#define     GOLDEN_YELLOW_COLOR                 [UIColor colorWithRed:255.0/255 green:223.0/255 blue:0.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]

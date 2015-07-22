@@ -192,8 +192,8 @@
     CGFloat const kWhiteSpaceWidth = WINSIZE.width / 32.0;
     CGFloat const kBackgroundHeight = WINSIZE.width * 0.3 - 2 * kTopMargin - 2 * kLabelHeight - kWhiteSpaceWidth;
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 2 * kLabelHeight + kWhiteSpaceWidth, WINSIZE.width * 0.6, kBackgroundHeight)];
-    [backgroundView setBackgroundColor:BACKGROUND_GRAY_COLOR];
-    backgroundView.layer.cornerRadius = 4;
+    [backgroundView setBackgroundColor:CYAN_COLOR];
+    backgroundView.layer.cornerRadius = 6.0f;
     backgroundView.clipsToBounds = YES;
     [_topRightView addSubview:backgroundView];
     
@@ -222,7 +222,7 @@
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _positiveFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _positiveFeedbackLabel.textColor = [UIColor whiteColor];
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
     
@@ -249,7 +249,7 @@
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _mehFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _mehFeedbackLabel.textColor = [UIColor whiteColor];
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
     
@@ -276,7 +276,7 @@
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _negativeFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _negativeFeedbackLabel.textColor = [UIColor whiteColor];
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
     
@@ -328,9 +328,9 @@
     
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
-    _followerButton.bgColor = BACKGROUND_GRAY_COLOR;
-    _followerButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _followerButton.titleColor = TEXT_COLOR_DARK_GRAY;
+    _followerButton.bgColor = PICTON_BLUE_COLOR;
+    _followerButton.borderColor = PICTON_BLUE_COLOR;
+    _followerButton.titleColor = [UIColor whiteColor];
     _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followerButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followerButton];
@@ -347,9 +347,9 @@
     
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
-    _followingButton.bgColor = BACKGROUND_GRAY_COLOR;
-    _followingButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _followingButton.titleColor = TEXT_COLOR_DARK_GRAY;
+    _followingButton.bgColor = JASMINE_YELLOW_COLOR;
+    _followingButton.borderColor = JASMINE_YELLOW_COLOR;
+    _followingButton.titleColor = [UIColor whiteColor];
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _followingButton.cornerRadius = 10.0;
     [backgroundView addSubview:_followingButton];
@@ -366,9 +366,9 @@
     
     _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
     [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
-    _preferencesButton.bgColor = BACKGROUND_GRAY_COLOR;
-    _preferencesButton.borderColor = BACKGROUND_GRAY_COLOR;
-    _preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
+    _preferencesButton.bgColor = TEA_ROSE_COLOR;
+    _preferencesButton.borderColor = TEA_ROSE_COLOR;
+    _preferencesButton.titleColor = [UIColor whiteColor];
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _preferencesButton.cornerRadius = 10.0;
     [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
