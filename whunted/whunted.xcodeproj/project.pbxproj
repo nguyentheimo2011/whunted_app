@@ -162,6 +162,7 @@
 		E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A01B16B5BC006D9133 /* app_icon@1x.png */; };
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
+		E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */; };
 		E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DC1B536D0500530492 /* fb_verification@1x.png */; };
 		E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DD1B536D0500530492 /* fb_verification@2x.png */; };
 		E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DE1B536D0500530492 /* fb_verification@3x.png */; };
@@ -424,6 +425,8 @@
 		E9B800A01B16B5BC006D9133 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@1x.png"; path = "Resources/App Icons/App Icon/app_icon@1x.png"; sourceTree = "<group>"; };
 		E9B800A11B16B5BC006D9133 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/App Icons/App Icon/app_icon@2x.png"; sourceTree = "<group>"; };
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
+		E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProfileViewController.h; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.h; sourceTree = "<group>"; };
+		E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProfileViewController.m; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.m; sourceTree = "<group>"; };
 		E9D432DC1B536D0500530492 /* fb_verification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@1x.png"; path = "Resources/User Profile/fb_verification@1x.png"; sourceTree = "<group>"; };
 		E9D432DD1B536D0500530492 /* fb_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@2x.png"; path = "Resources/User Profile/fb_verification@2x.png"; sourceTree = "<group>"; };
 		E9D432DE1B536D0500530492 /* fb_verification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@3x.png"; path = "Resources/User Profile/fb_verification@3x.png"; sourceTree = "<group>"; };
@@ -1075,6 +1078,7 @@
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */,
 				E9D432F51B54F2E800530492 /* UserProfile */,
 				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
 				E9D433081B55162200530492 /* PreferenceVC */,
@@ -1217,6 +1221,15 @@
 				E9FB22931B43A38D00395062 /* PersistedCache.m */,
 			);
 			name = PersistedCache;
+			sourceTree = "<group>";
+		};
+		E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */,
+				E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */,
+			);
+			name = EditProfileVC;
 			sourceTree = "<group>";
 		};
 		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
@@ -1648,6 +1661,7 @@
 				E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */,
 				E9A07C1C1B3162AE00904DE9 /* recent.m in Sources */,
 				E9A07C191B31623C00904DE9 /* video.m in Sources */,
+				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
 				E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */,
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,

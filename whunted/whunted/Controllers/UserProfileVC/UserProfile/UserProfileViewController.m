@@ -11,6 +11,7 @@
 #import "PersistedCache.h"
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
+#import "EditProfileViewController.h"
 #import "Utilities.h"
 
 #import <Parse/Parse.h>
@@ -84,8 +85,8 @@
 {
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    NSString *tittle = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
-    [Utilities customizeTitleLabel:tittle forViewController:self];
+    NSString *title = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
+    [Utilities customizeTitleLabel:title forViewController:self];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -156,6 +157,7 @@
     JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
     [editButton createTitle:nil withIcon:[UIImage imageNamed:@"edit_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
     editButton.borderColor = [UIColor whiteColor];
+    [editButton addTarget:self action:@selector(editingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_topRightView addSubview:editButton];
 }
 
@@ -706,6 +708,14 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 //    NSLog(@"segmentedControlSwitchEventHandler %d", segmentedControl.selectedSegmentIndex);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editingButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] init];
+    [self.navigationController pushViewController:editProfileVC animated:YES];
 }
 
 @end
