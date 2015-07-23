@@ -18,7 +18,10 @@
 #define kTableNarrowHeaderFooterHeightRatio     0.025
 #define kTableMediumHeaderFooterHeightRatio     0.04
 
-#define kAverageCellHeight                      35
+#define kAverageCellHeight                      40
+
+#define kTitleFontSize                          15
+#define kDetailFontSize                         15
 
 @interface EditProfileViewController ()
 
@@ -33,7 +36,7 @@
     UITableViewCell *_lastNameCell;
     UITableViewCell *_myCityCell;
     UITableViewCell *_bioCell;
-    UITableViewCell *_photoCell;
+    UITableViewCell *_userPhotoCell;
     
     UITableViewCell *_passwordChangingCell;
     UITableViewCell *_emailCell;
@@ -84,6 +87,9 @@
     NSString *title = NSLocalizedString(@"Edit Profile", nil);
     [Utilities customizeTitleLabel:title forViewController:self];
     
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:TEXT_COLOR_DARK_GRAY];
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelBarButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneBarButtonTapEventHandler)];
@@ -97,6 +103,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    _tableView.backgroundColor = LIGHTEST_GRAY_COLOR;
     [self.view addSubview:_tableView];
     
     [self initCells];
@@ -107,6 +114,16 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [self initUsernameCell];
+    [self initFirstNameCell];
+    [self initLastNameCell];
+    [self initMyCityCell];
+    [self initBioCell];
+    [self initUserPhotoCell];
+    [self initPasswordChangingCell];
+    [self initEmailCell];
+    [self initMobileCell];
+    [self initGenderCell];
+    [self initBirthdayCell];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -115,15 +132,137 @@
 {
     _usernameCell = [[UITableViewCell alloc] init];
     _usernameCell.textLabel.text = NSLocalizedString(@"Username", nil);
-    _usernameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _usernameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
     
     UITextField *usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [usernameTextField setTextAlignment:NSTextAlignmentLeft];
-    usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:15]}];
+    usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
     usernameTextField.delegate = self;
     
     _usernameCell.accessoryView = usernameTextField;
     _usernameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initFirstNameCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _firstNameCell = [[UITableViewCell alloc] init];
+    _firstNameCell.textLabel.text = NSLocalizedString(@"First Name", nil);
+    _firstNameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    
+    UITextField *firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    [firstNameTextField setTextAlignment:NSTextAlignmentLeft];
+    firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    firstNameTextField.delegate = self;
+    
+    _firstNameCell.accessoryView = firstNameTextField;
+    _firstNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initLastNameCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _lastNameCell = [[UITableViewCell alloc] init];
+    _lastNameCell.textLabel.text = NSLocalizedString(@"Last Name", nil);
+    _lastNameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    
+    UITextField *lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    [lastNameTextField setTextAlignment:NSTextAlignmentLeft];
+    lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    lastNameTextField.delegate = self;
+    
+    _lastNameCell.accessoryView = lastNameTextField;
+    _lastNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initMyCityCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _myCityCell = [[UITableViewCell alloc] init];
+    _myCityCell.textLabel.text = NSLocalizedString(@"My City", nil);
+    _myCityCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initBioCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _bioCell = [[UITableViewCell alloc] init];
+    _bioCell.textLabel.text = NSLocalizedString(@"Biography", nil);
+    _bioCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initUserPhotoCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _userPhotoCell = [[UITableViewCell alloc] init];
+    _userPhotoCell.textLabel.text = NSLocalizedString(@"Photo", nil);
+    _userPhotoCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initPasswordChangingCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _passwordChangingCell = [[UITableViewCell alloc] init];
+    _passwordChangingCell.textLabel.text = NSLocalizedString(@"Change Password", nil);
+    _passwordChangingCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initEmailCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _emailCell = [[UITableViewCell alloc] init];
+    _emailCell.textLabel.text = NSLocalizedString(@"Email", nil);
+    _emailCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    
+    UITextField *emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    [emailTextField setTextAlignment:NSTextAlignmentLeft];
+    emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    emailTextField.delegate = self;
+    
+    _emailCell.accessoryView = emailTextField;
+    _emailCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initMobileCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _mobileCell = [[UITableViewCell alloc] init];
+    _mobileCell.textLabel.text = NSLocalizedString(@"Mobile", nil);
+    _mobileCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    
+    UITextField *mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    [mobileTextField setTextAlignment:NSTextAlignmentLeft];
+    mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    mobileTextField.delegate = self;
+    
+    _mobileCell.accessoryView = mobileTextField;
+    _mobileCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initGenderCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _genderCell = [[UITableViewCell alloc] init];
+    _genderCell.textLabel.text = NSLocalizedString(@"Gender", nil);
+    _genderCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) initBirthdayCell
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    _birthdayCell = [[UITableViewCell alloc] init];
+    _birthdayCell.textLabel.text = NSLocalizedString(@"Birthday", nil);
+    _birthdayCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
 }
 
 #pragma mark - Event Handlers
@@ -194,12 +333,46 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             return _usernameCell;
-        } else {
-            return [[UITableViewCell alloc] init];
+        } else if (indexPath.row == 1) {
+            return _firstNameCell;
+        } else if (indexPath.row == 2) {
+            return _lastNameCell;
+        } else if (indexPath.row == 3) {
+            return _myCityCell;
+        } else if (indexPath.row == 4) {
+            return _bioCell;
+        } else if (indexPath.row == 5) {
+            return _userPhotoCell;
         }
-    } else {
-        return [[UITableViewCell alloc] init];
+    } else if (indexPath.section == 1) {
+        return _passwordChangingCell;
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            return _emailCell;
+        } else if (indexPath.row == 1) {
+            return _mobileCell;
+        } else if (indexPath.row == 2) {
+            return _genderCell;
+        } else if (indexPath.row == 3) {
+            return _birthdayCell;
+        }
     }
+    
+    return nil;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    if (section == 0)
+        return @"Public Profile";
+    else if (section == 1)
+        return @"";
+    else if (section == 2)
+        return @"Private Profile";
+    else
+        return nil;
 }
 
 #pragma mark - UITableView Delegate methods
@@ -243,6 +416,20 @@
     } else {
         return 0.0f;
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *) tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    view.tintColor = LIGHTEST_GRAY_COLOR;
 }
 
 @end
