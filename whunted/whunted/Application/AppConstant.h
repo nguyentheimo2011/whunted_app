@@ -49,6 +49,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0]
+#define     PLACEHOLDER_TEXT_COLOR              [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
