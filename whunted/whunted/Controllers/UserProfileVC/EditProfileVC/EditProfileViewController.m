@@ -11,6 +11,8 @@
 #import "AppConstant.h"
 
 #define kCancelButtonAlertViewTag               101
+#define kEmailTextFieldTag                      102
+#define kMobileTextFieldTag                     103
 
 #define kTextFieldHeight                        30
 #define kTextFieldWidthRatio                    0.6
@@ -22,6 +24,8 @@
 
 #define kTitleFontSize                          15
 #define kDetailFontSize                         15
+
+#define kOffsetForKeyboard                      100
 
 @interface EditProfileViewController ()
 
@@ -45,6 +49,25 @@
     UITableViewCell *_birthdayCell;
     
     BOOL            _isProfileModfified;
+    BOOL            _isExpandingContentSize;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [self registerNotification];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillDisappear:(BOOL)animated
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillDisappear:animated];
+    
+    [self deregisterNotification];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -75,6 +98,37 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     _isProfileModfified = NO;
+    _isExpandingContentSize = NO;
+}
+
+#pragma mark - Notification Registration
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) registerNotification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) deregisterNotification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 #pragma mark - UI
@@ -224,6 +278,7 @@
     UITextField *emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [emailTextField setTextAlignment:NSTextAlignmentLeft];
     emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    emailTextField.tag = kEmailTextFieldTag;
     emailTextField.delegate = self;
     
     _emailCell.accessoryView = emailTextField;
@@ -241,6 +296,7 @@
     UITextField *mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [mobileTextField setTextAlignment:NSTextAlignmentLeft];
     mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    mobileTextField.tag = kMobileTextFieldTag;
     mobileTextField.delegate = self;
     
     _mobileCell.accessoryView = mobileTextField;
@@ -430,6 +486,76 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+#pragma mark - UITextField Delegate
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{
+//    if (textField.tag == kEmailTextFieldTag || textField.tag == kMobileTextFieldTag) {
+//        // move the content up when keyboard appears
+//        CGPoint bottomOffset = CGPointMake(0, kOffsetForKeyboard);
+//        [_tableView setContentOffset:bottomOffset animated:YES];
+//    }
+    
+    return YES;
+}
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+-(void) keyboardWillShow: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
+    
+    [self setViewMovedUp:YES withKeyboardHeight:keyboardFrame.size.height];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+-(void) keyboardWillHide: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
+    
+    [self setViewMovedUp:NO withKeyboardHeight:keyboardFrame.size.height];
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+//------------------------------------------------------------------------------------------------------------------------------
+-(void)setViewMovedUp:(BOOL)movedUp withKeyboardHeight: (CGFloat) keyboardHeight
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGSize contentSize = _tableView.contentSize;
+    CGFloat bottomTabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat addedHeight = keyboardHeight - bottomTabBarHeight;
+    
+    if (movedUp) {
+        if (!_isExpandingContentSize) {
+            contentSize.height += addedHeight;
+            [_tableView setContentSize:contentSize];
+            _isExpandingContentSize = YES;
+            
+            [Utilities scrollToBottom:_tableView];
+        }
+    } else {
+        if (_isExpandingContentSize) {
+            contentSize.height -= addedHeight;
+            [_tableView setContentSize:contentSize];
+            _isExpandingContentSize = NO;
+        }
+    }
+    
+    [UIView commitAnimations];
 }
 
 @end
