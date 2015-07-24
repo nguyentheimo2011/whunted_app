@@ -494,11 +494,6 @@
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-//    if (textField.tag == kEmailTextFieldTag || textField.tag == kMobileTextFieldTag) {
-//        // move the content up when keyboard appears
-//        CGPoint bottomOffset = CGPointMake(0, kOffsetForKeyboard);
-//        [_tableView setContentOffset:bottomOffset animated:YES];
-//    }
     
     return YES;
 }

@@ -194,7 +194,10 @@
     CGFloat const kWhiteSpaceWidth = WINSIZE.width / 32.0;
     CGFloat const kBackgroundHeight = WINSIZE.width * 0.3 - 2 * kTopMargin - 2 * kLabelHeight - kWhiteSpaceWidth;
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 2 * kLabelHeight + kWhiteSpaceWidth, WINSIZE.width * 0.6, kBackgroundHeight)];
-    [backgroundView setBackgroundColor:CYAN_COLOR];
+    
+    // TODO: color is likely to change later
+    [backgroundView setBackgroundColor:PICTON_BLUE_COLOR];
+    
     backgroundView.layer.cornerRadius = 6.0f;
     backgroundView.clipsToBounds = YES;
     [_topRightView addSubview:backgroundView];
@@ -354,8 +357,8 @@
     [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _followingButton.bgColor = JASMINE_YELLOW_COLOR;
-    _followingButton.borderColor = JASMINE_YELLOW_COLOR;
+    _followingButton.bgColor = PICTON_BLUE_COLOR;
+    _followingButton.borderColor = PICTON_BLUE_COLOR;
     _followingButton.titleColor = [UIColor whiteColor];
     
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -376,8 +379,8 @@
     [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _preferencesButton.bgColor = TEA_ROSE_COLOR;
-    _preferencesButton.borderColor = TEA_ROSE_COLOR;
+    _preferencesButton.bgColor = PICTON_BLUE_COLOR;
+    _preferencesButton.borderColor = PICTON_BLUE_COLOR;
     _preferencesButton.titleColor = [UIColor whiteColor];
     
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
