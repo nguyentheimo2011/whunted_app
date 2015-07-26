@@ -12,7 +12,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     MAIN_BLUE_COLOR                     [UIColor colorWithRed:0.0/255 green:104.0/255 blue:189.0/255 alpha:1.0]
 #define     DARK_BLUE_COLOR                     [UIColor colorWithRed:0.0/255 green:124.0/255 blue:220.0/255 alpha:1.0]
-#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:0.0/255 green:43.0/255 blue:79.0/255 alpha:1.0]
+#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:0.0/255 green:64.0/255 blue:115.0/255 alpha:1.0]
 #define     LIGHT_BLUE_COLOR                    [UIColor colorWithRed:33.0/255 green:154.0/255 blue:255.0/255 alpha:1.0]
 #define     LIGHTEST_BLUE_COLOR                 [UIColor colorWithRed:80.0/255 green:176.0/255 blue:255.0/255 alpha:1.0]
 
@@ -63,7 +63,7 @@
 #define     FLAT_FRESH_RED_COLOR                [UIColor colorWithRed:233/255.0f green:0/255.0f blue:19/255.0f alpha:1.0f]
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:84/255.0 green:84/255.0 blue:84/255.0 alpha:1.0]
+#define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1.0]
 #define     PLACEHOLDER_TEXT_COLOR              [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------

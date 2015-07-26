@@ -227,8 +227,8 @@
     [containerView addSubview:smilingFaceImageView];
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _positiveFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
-    _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _positiveFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _positiveFeedbackLabel.textColor = DARKER_BLUE_COLOR;
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
     
@@ -254,8 +254,8 @@
     [containerView addSubview:mehFaceImageView];
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _mehFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
-    _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _mehFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _mehFeedbackLabel.textColor = DARKER_BLUE_COLOR;
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
     
@@ -281,8 +281,8 @@
     [containerView addSubview:sadFaceImageView];
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _negativeFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
-    _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _negativeFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _negativeFeedbackLabel.textColor = DARKER_BLUE_COLOR;
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
     
