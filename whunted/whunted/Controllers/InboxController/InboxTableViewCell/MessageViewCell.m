@@ -54,13 +54,13 @@
     imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
     imageUser.layer.masksToBounds = YES;
     
-    [labelDescription setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [labelDescription setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [labelItemName setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     
-    [labelLastMessage setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [labelLastMessage setTextColor:[UIColor blackColor]];
     
-    [labelElapsed setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:12]];
+    [labelElapsed setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:12]];
     
     [labelTransactionStatus setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
     [labelTransactionStatus setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
@@ -70,7 +70,7 @@
     labelTransactionStatus.layer.masksToBounds = YES;
     [labelTransactionStatus setHidden:NO];
     
-    [labelOfferedPrice setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:13]];
+    [labelOfferedPrice setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
     [labelOfferedPrice setHidden:NO];
     
     [itemImage setImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -104,7 +104,7 @@
 	int counter = [_message[@"counter"] intValue];
     if (counter == 0) {
         [labelLastMessage setTextColor:[UIColor grayColor]];
-        [labelLastMessage setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+        [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     } else {
         [labelLastMessage setTextColor:[UIColor blackColor]];
         [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];

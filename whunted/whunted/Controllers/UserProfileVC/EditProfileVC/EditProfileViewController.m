@@ -186,11 +186,11 @@
 {
     _usernameCell = [[UITableViewCell alloc] init];
     _usernameCell.textLabel.text = NSLocalizedString(@"Username", nil);
-    _usernameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _usernameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [usernameTextField setTextAlignment:NSTextAlignmentLeft];
-    usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     usernameTextField.delegate = self;
     
     _usernameCell.accessoryView = usernameTextField;
@@ -203,11 +203,11 @@
 {
     _firstNameCell = [[UITableViewCell alloc] init];
     _firstNameCell.textLabel.text = NSLocalizedString(@"First Name", nil);
-    _firstNameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _firstNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [firstNameTextField setTextAlignment:NSTextAlignmentLeft];
-    firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     firstNameTextField.delegate = self;
     
     _firstNameCell.accessoryView = firstNameTextField;
@@ -220,11 +220,11 @@
 {
     _lastNameCell = [[UITableViewCell alloc] init];
     _lastNameCell.textLabel.text = NSLocalizedString(@"Last Name", nil);
-    _lastNameCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _lastNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [lastNameTextField setTextAlignment:NSTextAlignmentLeft];
-    lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     lastNameTextField.delegate = self;
     
     _lastNameCell.accessoryView = lastNameTextField;
@@ -237,7 +237,7 @@
 {
     _myCityCell = [[UITableViewCell alloc] init];
     _myCityCell.textLabel.text = NSLocalizedString(@"My City", nil);
-    _myCityCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _myCityCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@
 {
     _bioCell = [[UITableViewCell alloc] init];
     _bioCell.textLabel.text = NSLocalizedString(@"Biography", nil);
-    _bioCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _bioCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -255,7 +255,7 @@
 {
     _userPhotoCell = [[UITableViewCell alloc] init];
     _userPhotoCell.textLabel.text = NSLocalizedString(@"Photo", nil);
-    _userPhotoCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _userPhotoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -264,7 +264,7 @@
 {
     _passwordChangingCell = [[UITableViewCell alloc] init];
     _passwordChangingCell.textLabel.text = NSLocalizedString(@"Change Password", nil);
-    _passwordChangingCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _passwordChangingCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -273,11 +273,11 @@
 {
     _emailCell = [[UITableViewCell alloc] init];
     _emailCell.textLabel.text = NSLocalizedString(@"Email", nil);
-    _emailCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _emailCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [emailTextField setTextAlignment:NSTextAlignmentLeft];
-    emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     emailTextField.tag = kEmailTextFieldTag;
     emailTextField.delegate = self;
     
@@ -291,11 +291,11 @@
 {
     _mobileCell = [[UITableViewCell alloc] init];
     _mobileCell.textLabel.text = NSLocalizedString(@"Mobile", nil);
-    _mobileCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _mobileCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [mobileTextField setTextAlignment:NSTextAlignmentLeft];
-    mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:kDetailFontSize]}];
+    mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     mobileTextField.tag = kMobileTextFieldTag;
     mobileTextField.delegate = self;
     
@@ -309,7 +309,7 @@
 {
     _genderCell = [[UITableViewCell alloc] init];
     _genderCell.textLabel.text = NSLocalizedString(@"Gender", nil);
-    _genderCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _genderCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -318,7 +318,7 @@
 {
     _birthdayCell = [[UITableViewCell alloc] init];
     _birthdayCell.textLabel.text = NSLocalizedString(@"Birthday", nil);
-    _birthdayCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:kTitleFontSize];
+    _birthdayCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
 }
 
 #pragma mark - Event Handlers

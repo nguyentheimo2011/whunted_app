@@ -60,7 +60,7 @@
     sellerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(95, 10, 120, 20)];
     [sellerUsernameButton setTitle:@"seller " forState:UIControlStateNormal];
     [sellerUsernameButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [sellerUsernameButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [sellerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     sellerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self addSubview:sellerUsernameButton];
 }
@@ -70,7 +70,7 @@
     sellersOfferedPrice = [[UILabel alloc] initWithFrame:CGRectMake(95, 30, 100, 20)];
     [sellersOfferedPrice setText:@"$90"];
     [sellersOfferedPrice setTextColor:[UIColor grayColor]];
-    [sellersOfferedPrice setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [sellersOfferedPrice setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [self addSubview:sellersOfferedPrice];
 }
 
@@ -79,7 +79,7 @@
     sellersOfferedDelivery = [[UILabel alloc] initWithFrame:CGRectMake(95, 50, 120, 20)];
     [sellersOfferedDelivery setText:@"Delivery: 2 weeks"];
     [sellersOfferedDelivery setTextColor:[UIColor grayColor]];
-    [sellersOfferedDelivery setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:14]];
+    [sellersOfferedDelivery setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [self addSubview:sellersOfferedDelivery];
 }
 

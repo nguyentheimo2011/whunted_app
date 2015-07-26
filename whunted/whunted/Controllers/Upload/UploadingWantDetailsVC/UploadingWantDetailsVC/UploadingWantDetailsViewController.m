@@ -106,7 +106,7 @@
     self.categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
     self.categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
-    self.categoryCell.detailTextLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    self.categoryCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@
     self.itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
     self.itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
-    self.itemInfoCell.detailTextLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    self.itemInfoCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@
     self.productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
     self.productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
-    self.productOriginCell.detailTextLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    self.productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@
     priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [priceTextField setTextAlignment:NSTextAlignmentRight];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
-    priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:15]}];
+    priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     priceTextField.delegate = self;
     priceTextField.tag = 102;
     priceTextField.inputView = ({
@@ -169,7 +169,7 @@
     self.locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
     self.locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
-    self.locationCell.detailTextLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    self.locationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

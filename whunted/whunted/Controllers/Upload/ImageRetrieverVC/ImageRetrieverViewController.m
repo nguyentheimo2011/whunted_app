@@ -79,7 +79,7 @@
     UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, WINSIZE.width - 30, 25)];
     [instructionLabel setText:@"Paste image link here"];
     [instructionLabel setTextColor:[UIColor grayColor]];
-    [instructionLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    [instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_scrollView addSubview:instructionLabel];
 }
 
@@ -88,7 +88,7 @@
     _imageLinkTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, WINSIZE.width - 30, 55)];
     [_imageLinkTextView setBackgroundColor:[UIColor whiteColor]];
     [_imageLinkTextView setTextColor:[UIColor grayColor]];
-    [_imageLinkTextView setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    [_imageLinkTextView setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_imageLinkTextView setReturnKeyType:UIReturnKeyDone];
     _imageLinkTextView.layer.cornerRadius = 6.0;
     _imageLinkTextView.delegate = self;
@@ -111,7 +111,7 @@
     [proceedToEditButton setTitle:@"Proceed to edit" forState:UIControlStateNormal];
     [proceedToEditButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [proceedToEditButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [proceedToEditButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    [proceedToEditButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [proceedToEditButton setBackgroundImage:[Utilities imageWithColor:normalColor] forState:UIControlStateNormal];
     [proceedToEditButton setBackgroundImage:[Utilities imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
     proceedToEditButton.layer.cornerRadius = 5.0;
@@ -128,7 +128,7 @@
     [doneButton setTitle:@"Done" forState:UIControlStateNormal];
     [doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [doneButton.titleLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    [doneButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [doneButton setBackgroundImage:[Utilities imageWithColor:normalColor] forState:UIControlStateNormal];
     [doneButton setBackgroundImage:[Utilities imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
     doneButton.layer.cornerRadius = 5.0;

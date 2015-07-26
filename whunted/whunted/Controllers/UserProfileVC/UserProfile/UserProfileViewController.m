@@ -142,7 +142,7 @@
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
     userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
-    userFullNameLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:18];
+    userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:18];
     userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:userFullNameLabel];
 }
@@ -181,7 +181,7 @@
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
     countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
-    countryLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:countryLabel];
 }
@@ -226,7 +226,7 @@
     [containerView addSubview:smilingFaceImageView];
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _positiveFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _positiveFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
     _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
@@ -253,7 +253,7 @@
     [containerView addSubview:mehFaceImageView];
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _mehFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _mehFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
     _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
@@ -280,7 +280,7 @@
     [containerView addSubview:sadFaceImageView];
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _negativeFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
+    _negativeFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
     _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
@@ -332,11 +332,11 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _followerButton.bgColor = PICTON_BLUE_COLOR;
-    _followerButton.borderColor = PICTON_BLUE_COLOR;
+    _followerButton.bgColor = LIGHTEST_BLUE_COLOR;
+    _followerButton.borderColor = LIGHTEST_BLUE_COLOR;
     _followerButton.titleColor = [UIColor whiteColor];
     
     _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -354,11 +354,11 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _followingButton.bgColor = PICTON_BLUE_COLOR;
-    _followingButton.borderColor = PICTON_BLUE_COLOR;
+    _followingButton.bgColor = LIGHTEST_BLUE_COLOR;
+    _followingButton.borderColor = LIGHTEST_BLUE_COLOR;
     _followingButton.titleColor = [UIColor whiteColor];
     
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -376,11 +376,11 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _preferencesButton.bgColor = PICTON_BLUE_COLOR;
-    _preferencesButton.borderColor = PICTON_BLUE_COLOR;
+    _preferencesButton.bgColor = LIGHTEST_BLUE_COLOR;
+    _preferencesButton.borderColor = LIGHTEST_BLUE_COLOR;
     _preferencesButton.titleColor = [UIColor whiteColor];
     
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -412,7 +412,7 @@
     CGFloat const kLabelHeight = 20;
     UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
     joiningDateLabel.text = [NSString stringWithFormat:@"Joined on %ld/%ld/%ld", (long)components.day, (long)components.month, (long)components.year];
-    joiningDateLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:joiningDateLabel];
     
@@ -434,7 +434,7 @@
     
     UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
     verifiedLabel.text = @"Verified";
-    verifiedLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
     [backgroundView addSubview:verifiedLabel];
@@ -483,7 +483,7 @@
     UILabel *userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
     userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
     userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    userDescriptionLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     userDescriptionLabel.numberOfLines = kMaxNumOfLines;
     [userDescriptionLabel sizeToFit];
@@ -534,7 +534,7 @@
     segmentedControl.selectedSegmentIndex = 0;
     
     /// TODO: colors are likely to change
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:LIGHT_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
     segmentedControl.backgroundColor = PICTON_BLUE_COLOR;
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
@@ -555,7 +555,7 @@
 {
     _totalListingsNumLabel = [[UILabel alloc] init];
     _totalListingsNumLabel.text = @"0 Listings";
-    _totalListingsNumLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _totalListingsNumLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     _totalListingsNumLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_totalListingsNumLabel sizeToFit];
     

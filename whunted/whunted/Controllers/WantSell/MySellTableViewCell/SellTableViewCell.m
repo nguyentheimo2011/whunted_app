@@ -113,7 +113,7 @@
     itemNameLabel.frame = CGRectMake(10, yPos, itemImageWidth, 20);
     [itemNameLabel setText:@"Item Name"];
     [itemNameLabel setTextColor:[UIColor grayColor]];
-    [itemNameLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:17]];
+    [itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
     [self addSubview:itemNameLabel];
 }
 
@@ -124,7 +124,7 @@
     lowestOfferedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
     [lowestOfferedPriceLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [lowestOfferedPriceLabel setTextColor:[UIColor grayColor]];
-    [lowestOfferedPriceLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [lowestOfferedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     [self addSubview:lowestOfferedPriceLabel];
 }
 
@@ -135,7 +135,7 @@
     yourOfferLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, yPos, 200, 15)];
     [yourOfferLabel setText:[NSString stringWithFormat:@"%@: TWD90", NSLocalizedString(@"Lowest offer", nil)]];
     [yourOfferLabel setTextColor:[UIColor grayColor]];
-    [yourOfferLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:15]];
+    [yourOfferLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     [self addSubview:yourOfferLabel];
 }
 

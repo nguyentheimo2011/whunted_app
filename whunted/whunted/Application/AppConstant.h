@@ -164,10 +164,11 @@
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NORMAL_FONT_SIZE                    16
 #define     NORMAL_FONT                         [UIFont systemFontOfSize:16]
+#define     LIGHT_FONT_NAME                     @"SourceSansPro-Light"
 #define     REGULAR_FONT_NAME                   @"SourceSansPro-Regular"
-#define     LIGHT_FONT_NAME                     @"SourceSansPro-Regular"
+#define     SEMIBOLD_FONT_NAME                  @"SourceSansPro-Semibold"
 #define     BOLD_FONT_NAME                      @"SourceSansPro-Bold"
-#define     DEFAULT_FONT                        [UIFont fontWithName:LIGHT_FONT_NAME size:16]
+#define     DEFAULT_FONT                        [UIFont fontWithName:REGULAR_FONT_NAME size:16]
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     SYNC_IN_PROGRESS                    @"syncInProgess"

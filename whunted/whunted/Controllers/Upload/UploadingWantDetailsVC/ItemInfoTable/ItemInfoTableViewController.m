@@ -69,7 +69,7 @@
     itemNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 5, WINSIZE.width-15, 30)];
     itemNameTextField.text = [self.itemInfoDict objectForKey:ITEM_NAME_KEY];
     UIColor *color = [UIColor colorWithRed:130/255.0 green:130/255.0 blue:130/255.0 alpha:0.8];
-    itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:LIGHT_FONT_NAME size:17]}];
+    itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:17]}];
     itemNameTextField.delegate = self;
     [self.itemNameCell addSubview:itemNameTextField];
 }
@@ -83,7 +83,7 @@
     
     descriptionTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, WINSIZE.width, WINSIZE.height * 0.3)];
     descriptionTextView.text = [self.itemInfoDict objectForKey:ITEM_DESC_KEY];
-    descriptionTextView.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    descriptionTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     descriptionTextView.placeholder = NSLocalizedString(@"Describe more about the item that you want. \nE.g. Size, condition, color, etc.", nil);
     [self.descriptionCell addSubview:descriptionTextView];
 }
@@ -97,7 +97,7 @@
     
     hashTagTextView = [[SZTextView alloc] initWithFrame:CGRectMake(10, 0, WINSIZE.width, WINSIZE.height/6)];
     hashTagTextView.text = [self.itemInfoDict objectForKey:ITEM_HASH_TAG_KEY];
-    hashTagTextView.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    hashTagTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     hashTagTextView.placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc.", nil);
     [self.hashtagCell addSubview:hashTagTextView];
 }
@@ -111,7 +111,7 @@
     
     UILabel *secondHandLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, WINSIZE.width * 0.6, 25)];
     [secondHandLabel setText:@"Allow second-hand item?"];
-    [secondHandLabel setFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+    [secondHandLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [secondHandLabel setTextColor:[UIColor blackColor]];
     [_secondHandOptionCell addSubview:secondHandLabel];
     

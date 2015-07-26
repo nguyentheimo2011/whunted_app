@@ -215,7 +215,7 @@
         _travellingToCell.textLabel.text = text;
     else
         _travellingToCell.textLabel.text = @"E.g. USA, Germany";
-    _travellingToCell.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    _travellingToCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     _travellingToCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _travellingToCell.textLabel.numberOfLines = kMaximumLines;
     _travellingToCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -233,7 +233,7 @@
         _residingCountryCel.textLabel.text = text;
     else
         _residingCountryCel.textLabel.text = @"E.g. Taiwan";
-    _residingCountryCel.textLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:17];
+    _residingCountryCel.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     _residingCountryCel.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _residingCountryCel.textLabel.numberOfLines = kMaximumLines;
     _residingCountryCel.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -254,7 +254,7 @@
     
     _buyingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
     _buyingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand or model", nil);
-    _buyingHashtagTextField.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    _buyingHashtagTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     _buyingHashtagTextField.layer.cornerRadius = 10.0f;
     _buyingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _buyingHashtagTextField.layer.borderWidth = 1.0f;
@@ -274,7 +274,7 @@
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;
     CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
     JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
-    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:20] iconOffsetY:0];
+    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:20] iconOffsetY:0];
     rightButton.cornerRadius = 10.0f;
     rightButton.bgColor = PICTON_BLUE_COLOR;
     rightButton.borderColor = PICTON_BLUE_COLOR;
@@ -305,7 +305,7 @@
         NSDictionary *dict = dataArray[i];
         
         IGLDropDownItem *item = [[IGLDropDownItem alloc] init];
-        [item setText:dict[@"title"] withFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+        [item setText:dict[@"title"] withFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
         [dropdownItems addObject:item];
     }
     
@@ -313,7 +313,7 @@
     CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.18;
     
     _buyingDropDownMenu = [[IGLDropDownMenu alloc] init];
-    _buyingDropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _buyingDropDownMenu.textFont = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     _buyingDropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
     _buyingDropDownMenu.dropDownItems = dropdownItems;
     _buyingDropDownMenu.paddingLeft = (kDropDownMenuWidth - [Utilities widthOfText:kItemDetailSelect withFont:DEFAULT_FONT andMaxWidth:WINSIZE.width])/2;
@@ -357,7 +357,7 @@
     
     _sellingHashtagTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
     _sellingHashtagTextField.placeholder = NSLocalizedString(@"Enter brand or model", nil);
-    _sellingHashtagTextField.font = [UIFont fontWithName:LIGHT_FONT_NAME size:15];
+    _sellingHashtagTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     _sellingHashtagTextField.layer.cornerRadius = 10.0f;
     _sellingHashtagTextField.layer.borderColor = [COLUMBIA_BLUE_COLOR CGColor];
     _sellingHashtagTextField.layer.borderWidth = 1.0f;
@@ -377,7 +377,7 @@
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;
     CGFloat const kXPos = kTextFieldWidth - kButtonWidth;
     JTImageButton *rightButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kXPos, 0, kButtonWidth, kTextFieldHeight)];
-    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:20] iconOffsetY:0];
+    [rightButton createTitle:@" + " withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:20] iconOffsetY:0];
     rightButton.cornerRadius = 10.0f;
     rightButton.bgColor = PICTON_BLUE_COLOR;
     rightButton.borderColor = PICTON_BLUE_COLOR;
@@ -408,7 +408,7 @@
         NSDictionary *dict = dataArray[i];
         
         IGLDropDownItem *item = [[IGLDropDownItem alloc] init];
-        [item setText:dict[@"title"] withFont:[UIFont fontWithName:LIGHT_FONT_NAME size:16]];
+        [item setText:dict[@"title"] withFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
         [dropdownItems addObject:item];
     }
     
@@ -416,7 +416,7 @@
     CGFloat const kDropDownMenuWidth = WINSIZE.width * 0.18;
     
     _sellingDropDownMenu = [[IGLDropDownMenu alloc] init];
-    _sellingDropDownMenu.textFont = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    _sellingDropDownMenu.textFont = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     _sellingDropDownMenu.menuText = NSLocalizedString(kItemDetailSelect, nil);
     _sellingDropDownMenu.dropDownItems = dropdownItems;
     _sellingDropDownMenu.paddingLeft = (kDropDownMenuWidth - [Utilities widthOfText:kItemDetailSelect withFont:DEFAULT_FONT andMaxWidth:WINSIZE.width])/2;
@@ -450,7 +450,7 @@
     label.text = data.hashtagText;
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:LIGHT_FONT_NAME size:16];
+    label.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     
     if (data.hashtagType == HashtagTypeBrand)
         label.backgroundColor = VIVID_SKY_BLUE_COLOR;
@@ -473,7 +473,7 @@
     }
     
     JTImageButton *deletionButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kLabelWidth, 0, kButtonWidth, kButtonHeight)];
-    [deletionButton createTitle:@"x" withIcon:nil font:[UIFont fontWithName:LIGHT_FONT_NAME size:16] iconOffsetY:0];
+    [deletionButton createTitle:@"x" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     deletionButton.titleColor = [UIColor whiteColor];
     deletionButton.borderColor = RED_ORAGNE_COLOR;
     deletionButton.bgColor = RED_ORAGNE_COLOR;
