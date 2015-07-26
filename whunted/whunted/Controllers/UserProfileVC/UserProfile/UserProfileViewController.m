@@ -226,7 +226,7 @@
     [containerView addSubview:smilingFaceImageView];
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _positiveFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _positiveFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
     _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
@@ -253,7 +253,7 @@
     [containerView addSubview:mehFaceImageView];
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _mehFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _mehFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
     _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
@@ -280,7 +280,7 @@
     [containerView addSubview:sadFaceImageView];
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
-    _negativeFeedbackLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:20];
+    _negativeFeedbackLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:20];
     _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
@@ -332,7 +332,7 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
     _followerButton.bgColor = LIGHTEST_BLUE_COLOR;
@@ -354,7 +354,7 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
     _followingButton.bgColor = LIGHTEST_BLUE_COLOR;
@@ -376,7 +376,7 @@
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
     _preferencesButton.bgColor = LIGHTEST_BLUE_COLOR;
@@ -534,8 +534,8 @@
     segmentedControl.selectedSegmentIndex = 0;
     
     /// TODO: colors are likely to change
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
-    segmentedControl.backgroundColor = PICTON_BLUE_COLOR;
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    segmentedControl.backgroundColor = LIGHTEST_BLUE_COLOR;
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
     
