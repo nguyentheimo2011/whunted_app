@@ -61,6 +61,7 @@
     [self addScrollView];
     [self addProfileImage_Name_Country_Rating];
     [self addFollower_Following_PreferencesButtons];
+    [self addSaperatorLineAndInfoLabel];
     [self addDate_Verification_DescriptionLabels];
     [self addUserDescription];
     [self addControls];
@@ -335,8 +336,8 @@
     [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _followerButton.bgColor = LIGHTEST_BLUE_COLOR;
-    _followerButton.borderColor = LIGHTEST_BLUE_COLOR;
+    _followerButton.bgColor = DARK_BLUE_COLOR;
+    _followerButton.borderColor = DARK_BLUE_COLOR;
     _followerButton.titleColor = [UIColor whiteColor];
     
     _followerButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -357,8 +358,8 @@
     [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _followingButton.bgColor = LIGHTEST_BLUE_COLOR;
-    _followingButton.borderColor = LIGHTEST_BLUE_COLOR;
+    _followingButton.bgColor = DARK_BLUE_COLOR;
+    _followingButton.borderColor = DARK_BLUE_COLOR;
     _followingButton.titleColor = [UIColor whiteColor];
     
     _followingButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -379,14 +380,49 @@
     [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    _preferencesButton.bgColor = LIGHTEST_BLUE_COLOR;
-    _preferencesButton.borderColor = LIGHTEST_BLUE_COLOR;
+    _preferencesButton.bgColor = DARK_BLUE_COLOR;
+    _preferencesButton.borderColor = DARK_BLUE_COLOR;
     _preferencesButton.titleColor = [UIColor whiteColor];
     
     _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _preferencesButton.cornerRadius = 10.0;
     [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:_preferencesButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addSaperatorLineAndInfoLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *infoLabel = [[UILabel alloc] init];
+    infoLabel.text = @"Info";
+    infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
+    infoLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [infoLabel sizeToFit];
+    
+    CGFloat const kLabelWidth = infoLabel.frame.size.width;
+    CGFloat const kLabelHeight = infoLabel.frame.size.height;
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
+    CGFloat const kLabelYPos = _currHeight + kLabelTopMargin;
+    infoLabel.frame = CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight);
+    [_scrollView addSubview:infoLabel];
+    
+    // add two horizontal lines beside the total listing label
+    CGFloat const kFirstLineLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLineWidth = kLabelLeftMargin - 5 - kFirstLineLeftMargin;
+    CGFloat const kLineYPos = kLabelYPos + kLabelHeight / 2.0;
+    CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
+    
+    UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
+    leftLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:leftLine];
+    
+    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
+    rightLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:rightLine];
+    
+    _currHeight += kLabelTopMargin + kLabelHeight;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -406,13 +442,13 @@
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:joiningDate];
     
     CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kLabelTopMargin = WINSIZE.height / 48.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
     CGFloat const kYPos = _currHeight + kLabelTopMargin;
     CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
     CGFloat const kLabelHeight = 20;
     UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
     joiningDateLabel.text = [NSString stringWithFormat:@"Joined on %ld/%ld/%ld", (long)components.day, (long)components.month, (long)components.year];
-    joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:joiningDateLabel];
     
@@ -424,7 +460,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kBackgroundLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kBackgroundTopMargin = WINSIZE.height / 96.0;
+    CGFloat const kBackgroundTopMargin = WINSIZE.height / 192.0;
     CGFloat const kYPos = _currHeight + kBackgroundTopMargin;
     CGFloat const kBackgroundWidth = WINSIZE.width - 2 * kBackgroundLeftMargin;
     CGFloat const kBackgroundHeight = 20;
@@ -434,7 +470,7 @@
     
     UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
     verifiedLabel.text = @"Verified";
-    verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
     [backgroundView addSubview:verifiedLabel];
@@ -475,7 +511,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 192.0;
     CGFloat const kYPos = _currHeight + kLabelTopMargin;
     CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
     CGFloat const kMaxNumOfLines = 40;
@@ -483,7 +519,7 @@
     UILabel *userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
     userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
     userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     userDescriptionLabel.numberOfLines = kMaxNumOfLines;
     [userDescriptionLabel sizeToFit];
@@ -522,11 +558,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kControlLeftMargin = WINSIZE.width / 4.0;
-    CGFloat const kControlTopMargin = WINSIZE.height / 24.0;
+    CGFloat const kControlTopMargin = WINSIZE.height / 36.0;
     CGFloat const kYPos = _currHeight + kControlTopMargin;
     CGFloat const kControlWidth = WINSIZE.width / 2.0;
     CGFloat const kControlHeight = 35;
-    
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
     segmentedControl.sectionTitles = @[@"Bought", @"Sold"];
@@ -535,7 +570,7 @@
     
     /// TODO: colors are likely to change
     segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
-    segmentedControl.backgroundColor = LIGHTEST_BLUE_COLOR;
+    segmentedControl.backgroundColor = DARK_BLUE_COLOR;
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
     
@@ -555,7 +590,7 @@
 {
     _totalListingsNumLabel = [[UILabel alloc] init];
     _totalListingsNumLabel.text = @"0 Listings";
-    _totalListingsNumLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    _totalListingsNumLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
     _totalListingsNumLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_totalListingsNumLabel sizeToFit];
     
