@@ -164,9 +164,9 @@
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NORMAL_FONT_SIZE                    16
 #define     NORMAL_FONT                         [UIFont systemFontOfSize:16]
-#define     REGULAR_FONT_NAME                   @"Montserrat-Regular"
-#define     LIGHT_FONT_NAME                     @"Montserrat-Light"
-#define     BOLD_FONT_NAME                      @"Montserrat-Bold"
+#define     REGULAR_FONT_NAME                   @"SourceSansPro-Regular"
+#define     LIGHT_FONT_NAME                     @"SourceSansPro-Regular"
+#define     BOLD_FONT_NAME                      @"SourceSansPro-Bold"
 #define     DEFAULT_FONT                        [UIFont fontWithName:LIGHT_FONT_NAME size:16]
 
 //----------------------------------------------------------------------------------------------------------------------------

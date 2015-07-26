@@ -166,6 +166,12 @@
 		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
 		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
 		E9D264A71B62295D00CBEAFF /* CountryAndCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */; };
+		E9D264AF1B64ACB300CBEAFF /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */; };
+		E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */; };
+		E9D264B11B64ACB300CBEAFF /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */; };
+		E9D264B21B64ACB300CBEAFF /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */; };
+		E9D264B31B64ACB300CBEAFF /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */; };
+		E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */; };
 		E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DC1B536D0500530492 /* fb_verification@1x.png */; };
 		E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DD1B536D0500530492 /* fb_verification@2x.png */; };
 		E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DE1B536D0500530492 /* fb_verification@3x.png */; };
@@ -434,6 +440,12 @@
 		E9D264A31B6226E500CBEAFF /* ResidingCountryTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResidingCountryTableVC.h; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.h; sourceTree = "<group>"; };
 		E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResidingCountryTableVC.m; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.m; sourceTree = "<group>"; };
 		E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryAndCityList.plist; path = "Resources/pList-Files/CountryAndCityList.plist"; sourceTree = "<group>"; };
+		E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
+		E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-ExtraLight.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-ExtraLight.otf"; sourceTree = "<group>"; };
+		E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-It.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-It.otf"; sourceTree = "<group>"; };
+		E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Light.otf"; sourceTree = "<group>"; };
+		E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
+		E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Semibold.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		E9D432DC1B536D0500530492 /* fb_verification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@1x.png"; path = "Resources/User Profile/fb_verification@1x.png"; sourceTree = "<group>"; };
 		E9D432DD1B536D0500530492 /* fb_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@2x.png"; path = "Resources/User Profile/fb_verification@2x.png"; sourceTree = "<group>"; };
 		E9D432DE1B536D0500530492 /* fb_verification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@3x.png"; path = "Resources/User Profile/fb_verification@3x.png"; sourceTree = "<group>"; };
@@ -1205,6 +1217,7 @@
 		E9B5CAB31B3AA8240004CDC9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E9D264A81B64AC9B00CBEAFF /* SourceSanPro */,
 				E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */,
 				E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */,
 				E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */,
@@ -1246,6 +1259,19 @@
 				E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */,
 			);
 			name = ResidingCountryTableVC;
+			sourceTree = "<group>";
+		};
+		E9D264A81B64AC9B00CBEAFF /* SourceSanPro */ = {
+			isa = PBXGroup;
+			children = (
+				E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */,
+				E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */,
+				E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */,
+				E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */,
+				E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */,
+				E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */,
+			);
+			name = SourceSanPro;
 			sourceTree = "<group>";
 		};
 		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
@@ -1524,6 +1550,7 @@
 				E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */,
 				E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */,
 				E91A5A701B04C1E6008382E2 /* next@3x.png in Resources */,
+				E9D264B31B64ACB300CBEAFF /* SourceSansPro-Regular.otf in Resources */,
 				E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */,
 				E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */,
 				E916F45C1B01EC57005055E3 /* camera@3x.png in Resources */,
@@ -1538,7 +1565,9 @@
 				E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */,
 				E94D181C1AF9CE8900E31B01 /* profile@2x.png in Resources */,
 				E94D181A1AF9CE8900E31B01 /* newsfeed@3x.png in Resources */,
+				E9D264AF1B64ACB300CBEAFF /* SourceSansPro-Bold.otf in Resources */,
 				E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */,
+				E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */,
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
 				E9E456841B0DE8E100E8B55D /* HorizontalLineViewController.xib in Resources */,
 				E97A95491B528F18003796DD /* move_to_next_icon@2x.png in Resources */,
@@ -1547,9 +1576,11 @@
 				E97A95481B528F18003796DD /* move_to_next_icon@1x.png in Resources */,
 				E915F82D1B3A6EE400D0A2F8 /* want_icon@3x copy.png in Resources */,
 				E9D433051B550EC200530492 /* setting_icon@1x.png in Resources */,
+				E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */,
 				E9B8009A1B145481006D9133 /* background_image.jpg in Resources */,
 				E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */,
 				E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */,
+				E9D264B11B64ACB300CBEAFF /* SourceSansPro-It.otf in Resources */,
 				E97A951F1B454072003796DD /* chat_pictures.png in Resources */,
 				E9D433071B550EC200530492 /* setting_icon@3x.png in Resources */,
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
@@ -1604,6 +1635,7 @@
 				E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */,
 				E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */,
 				E94D18181AF9CE8900E31B01 /* newsfeed@1x.png in Resources */,
+				E9D264B21B64ACB300CBEAFF /* SourceSansPro-Light.otf in Resources */,
 				E94D18161AF9CE8900E31B01 /* filter@2x.png in Resources */,
 				E94D181F1AF9CE8900E31B01 /* search@2x.png in Resources */,
 				E9D433021B550EC200530492 /* edit_icon@1x.png in Resources */,
