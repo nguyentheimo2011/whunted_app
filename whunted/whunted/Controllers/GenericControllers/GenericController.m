@@ -145,7 +145,7 @@
 
 - (void) customizeTarBarAppearance
 {
-    [[UITabBar appearance] setTintColor:DARKER_BLUE_COLOR];
+    [[UITabBar appearance] setTintColor:MAIN_BLUE_COLOR];
 }
 
 #pragma mark - ImageRetrieverDekegate methods

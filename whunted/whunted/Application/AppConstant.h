@@ -10,8 +10,22 @@
 #define whunted_AppConstant_h
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     DARKER_BLUE_COLOR                   [UIColor colorWithRed:0.0/255 green:104.0/255 blue:189.0/255 alpha:1.0]
-#define     DARK_BLUE_COLOR                     DARKER_BLUE_COLOR
+#define     MAIN_BLUE_COLOR                     [UIColor colorWithRed:0.0/255 green:104.0/255 blue:189.0/255 alpha:1.0]
+#define     DARK_BLUE_COLOR                     [UIColor colorWithRed:0.0/255 green:43.0/255 blue:79.0/255 alpha:1.0]
+#define     LIGHT_BLUE_COLOR                    [UIColor colorWithRed:33.0/255 green:154.0/255 blue:255.0/255 alpha:1.0]
+#define     LIGHTEST_BLUE_COLOR                 [UIColor colorWithRed:80.0/255 green:176.0/255 blue:255.0/255 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     MAIN_ORANGE_COLOR                   [UIColor colorWithRed:255.0/255 green:76.0/255 blue:0.0/255 alpha:1.0]
+#define     LIGHTEST_ORANGE_COLOR               [UIColor colorWithRed:255.0/255 green:123.0/255 blue:67.0/255 alpha:1.0]
+#define     LIGHT_ORANGE_COLOR                  [UIColor colorWithRed:255.0/255 green:88.0/255 blue:17.0/255 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     MAIN_YELLOW_COLOR                   [UIColor colorWithRed:255.0/255 green:192.0/255 blue:0.0/255 alpha:1.0]
+#define     LIGHTEST_YELLOW_COLOR               [UIColor colorWithRed:255.0/255 green:209.0/255 blue:67.0/255 alpha:1.0]
+#define     LIGHT_YELLOW_COLOR                  [UIColor colorWithRed:255.0/255 green:197.0/255 blue:17.0/255 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
 #define     BRIGHT_BLUE_COLOR                   [UIColor colorWithRed:30.0/255 green:181.0/255 blue:236.0/255 alpha:1.0]
 #define     CLASSY_BLUE_COLOR                   [UIColor colorWithRed:70.0/255 green:130.0/255 blue:180.0/255 alpha:1.0]
 #define     VIVID_SKY_BLUE_COLOR                [UIColor colorWithRed:0.0/255 green:204.0/255 blue:255.0/255 alpha:1.0]

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Taiwan</key>
+	<array>
+		<string>Kaohsiung City</string>
+		<string>New Taipei City</string>
+		<string>Taichung City</string>
+		<string>Tainan City</string>
+		<string>Taipei City</string>
+		<string>Taoyuan City</string>
+		<string>Chiayi City</string>
+		<string>Hsinchu City</string>
+		<string>Keelung City</string>
+		<string>Changhua County</string>
+		<string>Chiayi County</string>
+		<string>Hsinchu County</string>
+		<string>Hualien County</string>
+		<string>Kinmen County</string>
+		<string>Lienchiang County</string>
+		<string>Miaoli County</string>
+		<string>Nantou County</string>
+		<string>Penghu County</string>
+		<string>Pingtung County</string>
+		<string>Taitung County</string>
+		<string>Yilan County</string>
+		<string>Yunlin County</string>
+	</array>
+</dict>
+</plist>

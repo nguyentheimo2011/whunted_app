@@ -84,7 +84,7 @@
 
 - (void) customizeNavigationBar
 {
-    [[UINavigationBar appearance] setBarTintColor:DARKER_BLUE_COLOR];
+    [[UINavigationBar appearance] setBarTintColor:MAIN_BLUE_COLOR];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 }
 

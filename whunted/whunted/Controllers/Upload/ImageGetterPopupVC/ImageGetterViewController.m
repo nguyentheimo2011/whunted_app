@@ -39,7 +39,7 @@
 
 - (void) customizeUI
 {
-    [self.titleView setBackgroundColor:DARK_BLUE_COLOR];
+    [self.titleView setBackgroundColor:MAIN_BLUE_COLOR];
     [self.firstTitleLabel setText:NSLocalizedString(@"Tell people what you want to buy", nil)];
     [self.firstTitleLabel setTextColor:[UIColor whiteColor]];
     [self.secondTitleLabel setText:NSLocalizedString(@"Choose a way to upload your photo", nil)];

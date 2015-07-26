@@ -163,6 +163,9 @@
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
 		E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */; };
+		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
+		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
+		E9D264A71B62295D00CBEAFF /* CountryAndCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */; };
 		E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DC1B536D0500530492 /* fb_verification@1x.png */; };
 		E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DD1B536D0500530492 /* fb_verification@2x.png */; };
 		E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DE1B536D0500530492 /* fb_verification@3x.png */; };
@@ -184,7 +187,6 @@
 		E9D433061B550EC200530492 /* setting_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433001B550EC200530492 /* setting_icon@2x.png */; };
 		E9D433071B550EC200530492 /* setting_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433011B550EC200530492 /* setting_icon@3x.png */; };
 		E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330A1B55167200530492 /* PreferenceViewController.m */; };
-		E9D4330E1B56247E00530492 /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330D1B56247E00530492 /* CountryTableViewController.m */; };
 		E9D504951B33F661008ABDE4 /* heart_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504931B33F661008ABDE4 /* heart_red.png */; };
 		E9D504961B33F661008ABDE4 /* heart_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D504941B33F661008ABDE4 /* heart_white.png */; };
 		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
@@ -427,6 +429,11 @@
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
 		E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProfileViewController.h; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.h; sourceTree = "<group>"; };
 		E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProfileViewController.m; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.m; sourceTree = "<group>"; };
+		E9D2649F1B62268500CBEAFF /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/CountryTableVC/CountryTableViewController.h; sourceTree = "<group>"; };
+		E9D264A01B62268500CBEAFF /* CountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/CountryTableVC/CountryTableViewController.m; sourceTree = "<group>"; };
+		E9D264A31B6226E500CBEAFF /* ResidingCountryTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResidingCountryTableVC.h; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.h; sourceTree = "<group>"; };
+		E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResidingCountryTableVC.m; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.m; sourceTree = "<group>"; };
+		E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryAndCityList.plist; path = "Resources/pList-Files/CountryAndCityList.plist"; sourceTree = "<group>"; };
 		E9D432DC1B536D0500530492 /* fb_verification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@1x.png"; path = "Resources/User Profile/fb_verification@1x.png"; sourceTree = "<group>"; };
 		E9D432DD1B536D0500530492 /* fb_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@2x.png"; path = "Resources/User Profile/fb_verification@2x.png"; sourceTree = "<group>"; };
 		E9D432DE1B536D0500530492 /* fb_verification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@3x.png"; path = "Resources/User Profile/fb_verification@3x.png"; sourceTree = "<group>"; };
@@ -451,8 +458,6 @@
 		E9D433011B550EC200530492 /* setting_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting_icon@3x.png"; path = "Resources/User Profile/setting_icon@3x.png"; sourceTree = "<group>"; };
 		E9D433091B55167200530492 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceViewController.h; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.h; sourceTree = "<group>"; };
 		E9D4330A1B55167200530492 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceViewController.m; path = Controllers/UserProfileVC/PreferenceVC/PreferenceViewController.m; sourceTree = "<group>"; };
-		E9D4330C1B56247E00530492 /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/CountryTableViewController.h; sourceTree = "<group>"; };
-		E9D4330D1B56247E00530492 /* CountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ProductOriginTable/CountryTableViewController.m; sourceTree = "<group>"; };
 		E9D504931B33F661008ABDE4 /* heart_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_red.png; path = Resources/WantSellCell/heart_red.png; sourceTree = "<group>"; };
 		E9D504941B33F661008ABDE4 /* heart_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_white.png; path = Resources/WantSellCell/heart_white.png; sourceTree = "<group>"; };
 		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -587,17 +592,18 @@
 			isa = PBXGroup;
 			children = (
 				E915F81A1B39090D00D0A2F8 /* CountryNames.plist */,
+				E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */,
 			);
 			name = "pList-Files";
 			sourceTree = "<group>";
 		};
-		E915F81C1B39162B00D0A2F8 /* ProductOriginTable */ = {
+		E915F81C1B39162B00D0A2F8 /* CountryTableVC */ = {
 			isa = PBXGroup;
 			children = (
-				E9D4330C1B56247E00530492 /* CountryTableViewController.h */,
-				E9D4330D1B56247E00530492 /* CountryTableViewController.m */,
+				E9D2649F1B62268500CBEAFF /* CountryTableViewController.h */,
+				E9D264A01B62268500CBEAFF /* CountryTableViewController.m */,
 			);
-			name = ProductOriginTable;
+			name = CountryTableVC;
 			sourceTree = "<group>";
 		};
 		E916F4421B00A95F005055E3 /* Main Controller */ = {
@@ -966,7 +972,7 @@
 			children = (
 				E9A639241B2813730085C54F /* UploadingWantDetailsVC */,
 				E9A639231B2813670085C54F /* CategoryTable */,
-				E915F81C1B39162B00D0A2F8 /* ProductOriginTable */,
+				E915F81C1B39162B00D0A2F8 /* CountryTableVC */,
 				E9A639221B2813550085C54F /* ItemInfoTable */,
 				E9A639211B2813450085C54F /* LocationTable */,
 				E915F8151B38024900D0A2F8 /* PriceOptionVC */,
@@ -1078,6 +1084,7 @@
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9D264A21B6226A700CBEAFF /* ResidingCountryTableVC */,
 				E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */,
 				E9D432F51B54F2E800530492 /* UserProfile */,
 				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
@@ -1230,6 +1237,15 @@
 				E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */,
 			);
 			name = EditProfileVC;
+			sourceTree = "<group>";
+		};
+		E9D264A21B6226A700CBEAFF /* ResidingCountryTableVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D264A31B6226E500CBEAFF /* ResidingCountryTableVC.h */,
+				E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */,
+			);
+			name = ResidingCountryTableVC;
 			sourceTree = "<group>";
 		};
 		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
@@ -1548,6 +1564,7 @@
 				E97A95431B528973003796DD /* sad_face@2x.png in Resources */,
 				E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */,
 				E915F8251B39587700D0A2F8 /* pricetag_icon.png in Resources */,
+				E9D264A71B62295D00CBEAFF /* CountryAndCityList.plist in Resources */,
 				E94D18201AF9CE8900E31B01 /* search@3x.png in Resources */,
 				E915F8241B39587700D0A2F8 /* location_icon.png in Resources */,
 				E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */,
@@ -1659,6 +1676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */,
+				E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */,
 				E9A07C1C1B3162AE00904DE9 /* recent.m in Sources */,
 				E9A07C191B31623C00904DE9 /* video.m in Sources */,
 				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
@@ -1672,12 +1690,12 @@
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */,
+				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
-				E9D4330E1B56247E00530492 /* CountryTableViewController.m in Sources */,
 				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,

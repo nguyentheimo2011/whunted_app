@@ -537,7 +537,7 @@
     segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:LIGHT_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
     segmentedControl.backgroundColor = PICTON_BLUE_COLOR;
     segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    segmentedControl.selectionIndicatorColor = DARK_BLUE_COLOR;
+    segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
     
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
