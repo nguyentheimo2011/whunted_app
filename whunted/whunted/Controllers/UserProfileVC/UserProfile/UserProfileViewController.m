@@ -143,7 +143,7 @@
     UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
     userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
     userFullNameLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:18];
-    userFullNameLabel.textColor = [UIColor blackColor];
+    userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:userFullNameLabel];
 }
 
@@ -196,7 +196,7 @@
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 2 * kLabelHeight + kWhiteSpaceWidth, WINSIZE.width * 0.6, kBackgroundHeight)];
     
     // TODO: color is likely to change later
-    [backgroundView setBackgroundColor:PICTON_BLUE_COLOR];
+    [backgroundView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     
     backgroundView.layer.cornerRadius = 6.0f;
     backgroundView.clipsToBounds = YES;
@@ -227,7 +227,7 @@
     
     _positiveFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _positiveFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _positiveFeedbackLabel.textColor = [UIColor whiteColor];
+    _positiveFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _positiveFeedbackLabel.text = @"0";
     [containerView addSubview:_positiveFeedbackLabel];
     
@@ -254,7 +254,7 @@
     
     _mehFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _mehFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _mehFeedbackLabel.textColor = [UIColor whiteColor];
+    _mehFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _mehFeedbackLabel.text = @"0";
     [containerView addSubview:_mehFeedbackLabel];
     
@@ -281,7 +281,7 @@
     
     _negativeFeedbackLabel = [[UILabel alloc] initWithFrame:CGRectMake(kIconHeight + 5, 0, kIconHeight * 2 -5, kIconHeight)];
     _negativeFeedbackLabel.font = [UIFont fontWithName:LIGHT_FONT_NAME size:20];
-    _negativeFeedbackLabel.textColor = [UIColor whiteColor];
+    _negativeFeedbackLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _negativeFeedbackLabel.text = @"0";
     [containerView addSubview:_negativeFeedbackLabel];
     
