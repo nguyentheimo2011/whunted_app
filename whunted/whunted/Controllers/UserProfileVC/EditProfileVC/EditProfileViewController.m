@@ -10,6 +10,7 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 #import <SZTextView.h>
+#import <MMPickerView.h>
 
 #define kCancelButtonAlertViewTag               101
 #define kEmailTextFieldTag                      102
@@ -52,6 +53,7 @@
     UITableViewCell *_birthdayCell;
     
     UILabel         *_myCityLabel;
+    UILabel         *_genderLabel;
     SZTextView      *_myBioTextView;
     UIImageView     *_userProfileImageView;
     
@@ -59,6 +61,19 @@
     BOOL            _isExpandingContentSize;
     
     NSInteger       _currTextFieldTag;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (id) init
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    
+    return self;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -366,6 +381,13 @@
     _genderCell = [[UITableViewCell alloc] init];
     _genderCell.textLabel.text = NSLocalizedString(@"Gender", nil);
     _genderCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    
+    _genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
+    _genderLabel.text = USER_PROFILE_GENDER_SELECT;
+    _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    _genderLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    
+    [_genderCell addSubview:_genderLabel];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -558,10 +580,42 @@
             ResidingCountryTableVC *countryTableVC = [[ResidingCountryTableVC alloc] init];
             countryTableVC.delegate = self;
             [self.navigationController pushViewController:countryTableVC animated:YES];
+        }
+    } else if (indexPath.section == 1) {
+        
+    } else if (indexPath.section == 2) {
+        if (indexPath.row == 2) {
+            [self presentGenderPicker];
+        } else if (indexPath.row == 3) {
             
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) presentGenderPicker
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSArray *genders = @[USER_PROFILE_GENDER_NONE, USER_PROFILE_GENDER_MALE, USER_PROFILE_GENDER_FEMALE];
+    NSString *selectedGender = USER_PROFILE_GENDER_NONE;
+    
+    [MMPickerView showPickerViewInView:self.view
+                           withStrings:genders
+                           withOptions:@{MMbackgroundColor: [UIColor whiteColor],
+                                         MMtextColor: [UIColor blackColor],
+                                         MMtoolbarColor: [UIColor whiteColor],
+                                         MMbuttonColor: LIGHT_BLUE_COLOR,
+                                         MMfont: [UIFont systemFontOfSize:18],
+                                         MMvalueY: @5,
+                                         MMselectedObject:selectedGender}
+                            completion:^(NSString *selectedString) {
+                                if ([selectedString isEqualToString:USER_PROFILE_GENDER_NONE])
+                                    _genderLabel.text = USER_PROFILE_GENDER_SELECT;
+                                else
+                                    _genderLabel.text = selectedString;
+                            }];
 }
 
 #pragma mark - UITextField Delegate
