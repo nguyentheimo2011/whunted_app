@@ -65,14 +65,16 @@
     NSInteger       _currTextFieldTag;
 }
 
+@synthesize userData = _userData;
+
 //--------------------------------------------------------------------------------------------------------------------------------
-- (id) init
+- (id) initWithUserData:(UserData *)userData
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     
     if (self) {
-        
+        _userData = userData;
     }
     
     return self;
@@ -215,6 +217,7 @@
     _usernameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    usernameTextField.text = _userData.username;
     [usernameTextField setTextAlignment:NSTextAlignmentLeft];
     usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     usernameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
@@ -233,6 +236,7 @@
     _firstNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    firstNameTextField.text = _userData.firstName;
     [firstNameTextField setTextAlignment:NSTextAlignmentLeft];
     firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     firstNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
@@ -251,6 +255,7 @@
     _lastNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    lastNameTextField.text = _userData.lastName;
     [lastNameTextField setTextAlignment:NSTextAlignmentLeft];
     lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     lastNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
@@ -270,9 +275,14 @@
     _myCityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     _myCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
-    _myCityLabel.text = USER_PROFILE_SELECT_CITY;
-    _myCityLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    _myCityLabel.text = _userData.residingCity;
+    _myCityLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _myCityLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    
+    if (!_myCityLabel.text || _myCityLabel.text.length == 0) {
+        _myCityLabel.text = USER_PROFILE_SELECT_CITY;
+        _myCityLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    }
     
     [_myCityCell addSubview:_myCityLabel];
 }
@@ -290,8 +300,10 @@
     _myBioTextView.layer.borderWidth = 1.0f;
     _myBioTextView.layer.borderColor = [PLACEHOLDER_TEXT_COLOR CGColor];
     _myBioTextView.layer.cornerRadius = 10.0f;
+    _myBioTextView.text = _userData.userDescription;
     _myBioTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     _myBioTextView.placeholder = USER_PROFILE_BIO_PLACEHOLDER;
+    [_myBioTextView setContentInset:UIEdgeInsetsMake(-5, 0, 0, 0)];
     
     _bioCell.accessoryView = _myBioTextView;
 }
@@ -313,6 +325,7 @@
     _userProfileImageView.layer.cornerRadius = kImageHeight/2;
     _userProfileImageView.clipsToBounds = YES;
     _userProfileImageView.backgroundColor = PICTON_BLUE_COLOR;
+    [_userProfileImageView setImage:_userData.profileImage];
     [imageContainer addSubview:_userProfileImageView];
     
     UILabel *tapToChangeLabel = [[UILabel alloc] init];
@@ -349,6 +362,7 @@
     _emailCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    emailTextField.text = _userData.emailAddress;
     [emailTextField setTextAlignment:NSTextAlignmentLeft];
     emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     emailTextField.tag = kEmailTextFieldTag;
@@ -367,6 +381,7 @@
     _mobileCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     UITextField *mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    mobileTextField.text = _userData.phoneNumber;
     [mobileTextField setTextAlignment:NSTextAlignmentLeft];
     mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     mobileTextField.tag = kMobileTextFieldTag;
@@ -385,9 +400,14 @@
     _genderCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     _genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
-    _genderLabel.text = USER_PROFILE_GENDER_SELECT;
-    _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    _genderLabel.text = _userData.gender;
+    _genderLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _genderLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    
+    if (!_genderLabel.text || _genderLabel.text.length == 0) {
+        _genderLabel.text = USER_PROFILE_GENDER_SELECT;
+        _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    }
     
     [_genderCell addSubview:_genderLabel];
 }
@@ -401,10 +421,12 @@
     _birthdayCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
-    _birthdayLabel.text = @"";
+//    _birthdayLabel.text = _userData.dateOfBirth;
+    _birthdayLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _birthdayLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     
     [_birthdayCell addSubview:_birthdayLabel];
+    _birthdayCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark - Event Handlers

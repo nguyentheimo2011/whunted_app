@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ResidingCountryTableVC.h"
+#import "UserData.h"
 
 @interface EditProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UITextFieldDelegate, ResidingCityDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, strong) UserData *userData;
+
+- (id) initWithUserData: (UserData *) userData;
 
 @end

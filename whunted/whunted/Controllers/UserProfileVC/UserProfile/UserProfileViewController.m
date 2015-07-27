@@ -752,7 +752,8 @@
 - (void) editingButtonTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] init];
+    UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
+    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
     [self.navigationController pushViewController:editProfileVC animated:YES];
 }
 

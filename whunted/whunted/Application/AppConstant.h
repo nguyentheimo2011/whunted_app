@@ -110,8 +110,10 @@
 #define     PF_USER_DOB                         @"dob"                  //  Date
 #define		PF_USER_PICTURE						@"profilePicture"		//	File
 #define     PF_USER_AREA_ADDRESS                @"areaAddress"          //  String
+#define     PF_USER_CITY                        @"city"
 #define     PF_USER_COUNTRY                     @"country"              //  String
 #define     PF_USER_DESCRIPTION                 @"userDescription"      //  String
+#define     PF_USER_PHONE_NUMBER                @"phoneNumber"          //  String
 #define     PF_USER_FACEBOOK_VERIFIED           @"facebookVerified"     //  Boolean
 
 //-----------------------------------------------------------------------------------------------------------------------------
