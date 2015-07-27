@@ -9,6 +9,7 @@
 #import "UserData.h"
 #import "AppConstant.h"
 #import "PersistedCache.h"
+#import "Utilities.h"
 
 @implementation UserData
 
@@ -41,7 +42,7 @@
         _emailAddress = user[PF_USER_EMAIL];
         _phoneNumber = user[PF_USER_PHONE_NUMBER];
         _gender = user[PF_USER_GENDER];
-        _dateOfBirth = user[PF_USER_DOB];
+        _dateOfBirth = [Utilities commonlyFormattedStringFromDate:user[PF_USER_DOB]];
         _residingCity = user[PF_USER_CITY];
         _residingCountry = user[PF_USER_COUNTRY];
         _userDescription = user[PF_USER_DESCRIPTION];

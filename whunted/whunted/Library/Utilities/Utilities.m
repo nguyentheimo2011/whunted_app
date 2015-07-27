@@ -11,7 +11,9 @@
 
 @implementation Utilities
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (void) addBorderAndShadow: (UIView *) view
+//------------------------------------------------------------------------------------------------------------------------------
 {
     // border radius
     [view.layer setCornerRadius:10.0f];
@@ -28,7 +30,9 @@
     [view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (void) setTopRoundedCorner:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
@@ -41,7 +45,9 @@
     view.layer.mask = maskLayer;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (void) setBottomRoundedCorner: (UIView *) view
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
@@ -54,7 +60,9 @@
     view.layer.mask = maskLayer;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize
+//------------------------------------------------------------------------------------------------------------------------------s
 {
     CGFloat wRatio = newSize.width * 1.0 / originalImage.size.width;
     CGFloat hRatio = newSize.height * 1.0 / originalImage.size.height;
@@ -73,7 +81,9 @@
     return newImage;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (void) addGradientToButton:(UIButton *)button
+//------------------------------------------------------------------------------------------------------------------------------
 {
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = button.layer.bounds;
@@ -92,7 +102,9 @@
     [button.layer addSublayer:gradientLayer];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (UIImage *)imageWithColor:(UIColor *)color
+//------------------------------------------------------------------------------------------------------------------------------
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
@@ -107,12 +119,16 @@
     return image;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (void) postNotification: (NSString *) notification
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (BOOL) checkIfIsValidPrice: (NSString *) price
+//------------------------------------------------------------------------------------------------------------------------------
 {
     NSRange range = [price rangeOfString:DOT_CHARACTER];
     if (range.location == NSNotFound)
@@ -130,7 +146,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) formatPriceText: (NSString *) originalPrice
+//------------------------------------------------------------------------------------------------------------------------------
 {
     originalPrice = [originalPrice substringFromIndex:TAIWAN_CURRENCY.length];
     originalPrice = [originalPrice stringByReplacingOccurrencesOfString:COMMA_CHARACTER withString:@""];
@@ -155,7 +173,9 @@
     return [TAIWAN_CURRENCY stringByAppendingString:[formattedIntegerPrice stringByAppendingString:fractional]];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (range.location == [originalText length]) {
         return [originalText stringByAppendingString:string];
@@ -172,7 +192,9 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) removeLastDotCharacterIfNeeded:(NSString *)price
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if ([price characterAtIndex:[price length]-1] == '.')
         return [price substringToIndex:[price length]-1];
@@ -233,6 +255,15 @@
 {
     CGPoint bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
     [scrollView setContentOffset:bottomOffset animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) commonlyFormattedStringFromDate: (NSDate *) date
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    return [formatter stringFromDate:date];
 }
 
 @end

@@ -421,7 +421,7 @@
     _birthdayCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
     _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
-//    _birthdayLabel.text = _userData.dateOfBirth;
+    _birthdayLabel.text = _userData.dateOfBirth;
     _birthdayLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _birthdayLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     
@@ -653,9 +653,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     AIDatePickerController *datePickerViewController = [AIDatePickerController pickerWithDate:[NSDate date] selectedBlock:^(NSDate *selectedDate) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd/MM/yyyy"];
-        NSString *string = [formatter stringFromDate:selectedDate];
+        NSString *string = [Utilities commonlyFormattedStringFromDate:selectedDate];
         _birthdayLabel.text = string;
         
         [self dismissViewControllerAnimated:YES completion:nil];
