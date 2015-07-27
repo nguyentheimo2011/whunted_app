@@ -9,6 +9,7 @@
 #import "EditProfileViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
+#import "AIDatePickerController.h"
 #import <SZTextView.h>
 #import <MMPickerView.h>
 
@@ -54,6 +55,7 @@
     
     UILabel         *_myCityLabel;
     UILabel         *_genderLabel;
+    UILabel         *_birthdayLabel;
     SZTextView      *_myBioTextView;
     UIImageView     *_userProfileImageView;
     
@@ -397,6 +399,12 @@
     _birthdayCell = [[UITableViewCell alloc] init];
     _birthdayCell.textLabel.text = NSLocalizedString(@"Birthday", nil);
     _birthdayCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    
+    _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
+    _birthdayLabel.text = @"";
+    _birthdayLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    
+    [_birthdayCell addSubview:_birthdayLabel];
 }
 
 #pragma mark - Event Handlers
@@ -587,7 +595,7 @@
         if (indexPath.row == 2) {
             [self presentGenderPicker];
         } else if (indexPath.row == 3) {
-            
+            [self presentDatePicker];
         }
     }
     
@@ -616,6 +624,24 @@
                                 else
                                     _genderLabel.text = selectedString;
                             }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) presentDatePicker
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    AIDatePickerController *datePickerViewController = [AIDatePickerController pickerWithDate:[NSDate date] selectedBlock:^(NSDate *selectedDate) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"dd/MM/yyyy"];
+        NSString *string = [formatter stringFromDate:selectedDate];
+        _birthdayLabel.text = string;
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } cancelBlock:^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [self presentViewController:datePickerViewController animated:YES completion:nil];
 }
 
 #pragma mark - UITextField Delegate

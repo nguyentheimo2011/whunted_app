@@ -173,6 +173,7 @@
 		E9D264B31B64ACB300CBEAFF /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */; };
 		E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */; };
 		E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264B71B65E7DA00CBEAFF /* ResidingCityTableVC.m */; };
+		E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */; };
 		E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DC1B536D0500530492 /* fb_verification@1x.png */; };
 		E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DD1B536D0500530492 /* fb_verification@2x.png */; };
 		E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DE1B536D0500530492 /* fb_verification@3x.png */; };
@@ -449,6 +450,8 @@
 		E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Semibold.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		E9D264B61B65E7DA00CBEAFF /* ResidingCityTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResidingCityTableVC.h; path = Controllers/UserProfileVC/ResidingCityTableVC/ResidingCityTableVC.h; sourceTree = "<group>"; };
 		E9D264B71B65E7DA00CBEAFF /* ResidingCityTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResidingCityTableVC.m; path = Controllers/UserProfileVC/ResidingCityTableVC/ResidingCityTableVC.m; sourceTree = "<group>"; };
+		E9D264BA1B66399900CBEAFF /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIDatePickerController.h; path = Library/AIDatePickerController/AIDatePickerController.h; sourceTree = "<group>"; };
+		E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIDatePickerController.m; path = Library/AIDatePickerController/AIDatePickerController.m; sourceTree = "<group>"; };
 		E9D432DC1B536D0500530492 /* fb_verification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@1x.png"; path = "Resources/User Profile/fb_verification@1x.png"; sourceTree = "<group>"; };
 		E9D432DD1B536D0500530492 /* fb_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@2x.png"; path = "Resources/User Profile/fb_verification@2x.png"; sourceTree = "<group>"; };
 		E9D432DE1B536D0500530492 /* fb_verification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@3x.png"; path = "Resources/User Profile/fb_verification@3x.png"; sourceTree = "<group>"; };
@@ -681,6 +684,7 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
 				E9B5CAC81B427DE80004CDC9 /* PersistedCache */,
 				E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */,
@@ -1287,6 +1291,15 @@
 			name = ResidingCityTableVC;
 			sourceTree = "<group>";
 		};
+		E9D264B91B66398A00CBEAFF /* AIDatePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				E9D264BA1B66399900CBEAFF /* AIDatePickerController.h */,
+				E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */,
+			);
+			name = AIDatePickerController;
+			sourceTree = "<group>";
+		};
 		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1775,6 +1788,7 @@
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
+				E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9A07C181B31623C00904DE9 /* image.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
