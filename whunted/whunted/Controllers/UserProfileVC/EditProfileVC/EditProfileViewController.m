@@ -9,6 +9,7 @@
 #import "EditProfileViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
+#import <SZTextView.h>
 
 #define kCancelButtonAlertViewTag               101
 #define kEmailTextFieldTag                      102
@@ -49,6 +50,7 @@
     UITableViewCell *_birthdayCell;
     
     UILabel         *_myCityLabel;
+    SZTextView      *_myBioTextView;
     
     BOOL            _isProfileModfified;
     BOOL            _isExpandingContentSize;
@@ -262,6 +264,15 @@
     _bioCell = [[UITableViewCell alloc] init];
     _bioCell.textLabel.text = NSLocalizedString(@"Biography", nil);
     _bioCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    
+    _myBioTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, 3 * kTextFieldHeight)];
+    _myBioTextView.layer.borderWidth = 1.0f;
+    _myBioTextView.layer.borderColor = [PLACEHOLDER_TEXT_COLOR CGColor];
+    _myBioTextView.layer.cornerRadius = 10.0f;
+    _myBioTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    _myBioTextView.placeholder = USER_PROFILE_BIO_PLACEHOLDER;
+    
+    _bioCell.accessoryView = _myBioTextView;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -479,7 +490,10 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (indexPath.section == 0) {
-        return kAverageCellHeight;
+        if (indexPath.row == 4)
+            return 3 * kTextFieldHeight + 15;
+        else
+            return kAverageCellHeight;
     } else if (indexPath.section == 1) {
         return kAverageCellHeight;
     } else if (indexPath.section == 2) {
