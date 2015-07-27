@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResidingCityTableVC.h"
 
 @interface ResidingCountryTableVC : UITableViewController
 
-
+@property (nonatomic) id<ResidingCityDelegate> delegate;
 
 @end

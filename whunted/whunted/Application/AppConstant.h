@@ -184,6 +184,11 @@
 #define     NOTIFICATION_WILL_UPLOAD_MESSAGE            @"willUploadMessageNotification"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     USER_PROFILE_SELECT_CITY                    @"Select city"
+#define     USER_PROFILE_USER_COUNTRY                   @"userCountry"
+#define     USER_PROFILE_USER_CITY                      @"userCity"
+
+//----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
     PhotoLibrary,
     Camera,

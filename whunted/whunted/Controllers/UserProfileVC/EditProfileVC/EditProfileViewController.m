@@ -22,8 +22,8 @@
 
 #define kAverageCellHeight                      40
 
-#define kTitleFontSize                          15
-#define kDetailFontSize                         15
+#define kTitleFontSize                          16
+#define kDetailFontSize                         16
 
 #define kOffsetForKeyboard                      100
 
@@ -47,6 +47,8 @@
     UITableViewCell *_mobileCell;
     UITableViewCell *_genderCell;
     UITableViewCell *_birthdayCell;
+    
+    UILabel         *_myCityLabel;
     
     BOOL            _isProfileModfified;
     BOOL            _isExpandingContentSize;
@@ -193,6 +195,7 @@
     UITextField *usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [usernameTextField setTextAlignment:NSTextAlignmentLeft];
     usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    usernameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
     usernameTextField.delegate = self;
     
     _usernameCell.accessoryView = usernameTextField;
@@ -210,6 +213,7 @@
     UITextField *firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [firstNameTextField setTextAlignment:NSTextAlignmentLeft];
     firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    firstNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
     firstNameTextField.delegate = self;
     
     _firstNameCell.accessoryView = firstNameTextField;
@@ -227,6 +231,7 @@
     UITextField *lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     [lastNameTextField setTextAlignment:NSTextAlignmentLeft];
     lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    lastNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
     lastNameTextField.delegate = self;
     
     _lastNameCell.accessoryView = lastNameTextField;
@@ -240,6 +245,14 @@
     _myCityCell = [[UITableViewCell alloc] init];
     _myCityCell.textLabel.text = NSLocalizedString(@"My City", nil);
     _myCityCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _myCityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    _myCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
+    _myCityLabel.text = USER_PROFILE_SELECT_CITY;
+    _myCityLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    _myCityLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    
+    [_myCityCell addSubview:_myCityLabel];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -490,6 +503,19 @@
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (indexPath.row == 3) {
+        ResidingCountryTableVC *countryTableVC = [[ResidingCountryTableVC alloc] init];
+        countryTableVC.delegate = self;
+        [self.navigationController pushViewController:countryTableVC animated:YES];
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
 #pragma mark - UITextField Delegate
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -565,6 +591,17 @@
     }
     
     [UIView commitAnimations];
+}
+
+#pragma mark - ResidingCityDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) residingCity:(ResidingCityTableVC *)controller didSelectCity:(NSDictionary *)countryCity
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *countryName = [countryCity objectForKey:USER_PROFILE_USER_COUNTRY];
+    NSString *cityName = [countryCity objectForKey:USER_PROFILE_USER_CITY];
+    _myCityLabel.text = [NSString stringWithFormat:@"%@, %@", cityName, countryName];
 }
 
 @end
