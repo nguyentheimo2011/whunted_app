@@ -50,6 +50,8 @@
     
     BOOL            _isProfileModfified;
     BOOL            _isExpandingContentSize;
+    
+    NSInteger       _currTextFieldTag;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -495,6 +497,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     
+    if (textField.tag == kEmailTextFieldTag)
+        _currTextFieldTag = kEmailTextFieldTag;
+    else if (textField.tag == kMobileTextFieldTag)
+        _currTextFieldTag = kMobileTextFieldTag;
+    else
+        _currTextFieldTag = 0;
+    
     return YES;
 }
 
@@ -504,11 +513,15 @@
 -(void) keyboardWillShow: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSDictionary* keyboardInfo = [notification userInfo];
-    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
+        NSDictionary* keyboardInfo = [notification userInfo];
+        NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+        CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
     
-    [self setViewMovedUp:YES withKeyboardHeight:keyboardFrame.size.height];
+    if (_currTextFieldTag == kEmailTextFieldTag || _currTextFieldTag == kMobileTextFieldTag) {
+        [self setViewMovedUp:YES scrollDown:YES withKeyboardHeight:keyboardFrame.size.height];
+    } else {
+        [self setViewMovedUp:YES scrollDown:NO withKeyboardHeight:keyboardFrame.size.height];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -519,12 +532,12 @@
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
     
-    [self setViewMovedUp:NO withKeyboardHeight:keyboardFrame.size.height];
+    [self setViewMovedUp:NO scrollDown:NO withKeyboardHeight:keyboardFrame.size.height];
 }
 
 //method to move the view up/down whenever the keyboard is shown/dismissed
 //------------------------------------------------------------------------------------------------------------------------------
--(void)setViewMovedUp:(BOOL)movedUp withKeyboardHeight: (CGFloat) keyboardHeight
+-(void)setViewMovedUp:(BOOL)movedUp scrollDown: (BOOL) scrollDown withKeyboardHeight: (CGFloat) keyboardHeight
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [UIView beginAnimations:nil context:NULL];
@@ -540,7 +553,8 @@
             [_tableView setContentSize:contentSize];
             _isExpandingContentSize = YES;
             
-            [Utilities scrollToBottom:_tableView];
+            if (scrollDown)
+                [Utilities scrollToBottom:_tableView];
         }
     } else {
         if (_isExpandingContentSize) {
