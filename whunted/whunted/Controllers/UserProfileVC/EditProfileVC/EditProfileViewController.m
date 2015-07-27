@@ -267,6 +267,7 @@
     _bioCell = [[UITableViewCell alloc] init];
     _bioCell.textLabel.text = NSLocalizedString(@"Biography", nil);
     _bioCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _bioCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _myBioTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, 3 * kTextFieldHeight)];
     _myBioTextView.layer.borderWidth = 1.0f;
@@ -285,6 +286,7 @@
     _userPhotoCell = [[UITableViewCell alloc] init];
     _userPhotoCell.textLabel.text = NSLocalizedString(@"Photo", nil);
     _userPhotoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _userPhotoCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIView *imageContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kUserPhotoHeightRatio * kTextFieldHeight)];
     
@@ -318,6 +320,7 @@
     _passwordChangingCell = [[UITableViewCell alloc] init];
     _passwordChangingCell.textLabel.text = NSLocalizedString(@"Change Password", nil);
     _passwordChangingCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _passwordChangingCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -550,12 +553,14 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.row == 3) {
-        ResidingCountryTableVC *countryTableVC = [[ResidingCountryTableVC alloc] init];
-        countryTableVC.delegate = self;
-        [self.navigationController pushViewController:countryTableVC animated:YES];
-        
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 3) {
+            ResidingCountryTableVC *countryTableVC = [[ResidingCountryTableVC alloc] init];
+            countryTableVC.delegate = self;
+            [self.navigationController pushViewController:countryTableVC animated:YES];
+            
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
     }
 }
 
