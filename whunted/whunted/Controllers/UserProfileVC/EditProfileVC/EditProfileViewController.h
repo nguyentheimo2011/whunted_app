@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ResidingCountryTableVC.h"
 
-@interface EditProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UITextFieldDelegate, ResidingCityDelegate>
+@interface EditProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UITextFieldDelegate, ResidingCityDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

@@ -21,7 +21,9 @@
     NSUInteger currButtonIndex;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -30,12 +32,16 @@
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self addBarItems];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addBarItems
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     UIImage *searchImage = [UIImage imageNamed:@"search.png"];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
@@ -65,7 +71,9 @@
 
 #pragma mark - Event Handlers
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) showImageGettingOptionPopup
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
     imageGetterVC.delegate = self;
@@ -74,14 +82,18 @@
     [popup show];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) userProfileButtonClickedEvent
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
     userProfileVC.delegate = self;
     [self.navigationController pushViewController:userProfileVC animated:YES];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) openInbox
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     InboxAllViewController *inboxVC = [[InboxAllViewController alloc] init];
     [self.navigationController pushViewController:inboxVC animated:YES];
@@ -89,20 +101,27 @@
 
 #pragma mark - Upload Want Details View Controller delegate methods
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     currButtonIndex = buttonIndex;
     [self showImageGettingOptionPopup];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.delegate genericController:self shouldUpdateDataAt:0];
     [self.delegate genericController:self shouldUpdateDataAt:2];
 }
 
 #pragma mark - Image Getter View Controller delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     if (popup != nil) {
         [popup dismiss:YES];
@@ -131,31 +150,43 @@
 
 #pragma mark - Image Picker Controller delegate methods
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [self sendImageToUploadingWantDetailsVC:chosenImage];
     
     [picker dismissViewControllerAnimated:NO completion:NULL];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeTarBarAppearance
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [[UITabBar appearance] setTintColor:MAIN_BLUE_COLOR];
 }
 
-#pragma mark - ImageRetrieverDekegate methods
+#pragma mark - ImageRetrieverDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:NO];
     [self sendImageToUploadingWantDetailsVC:image];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
     editor.delegate = self;
@@ -166,7 +197,9 @@
 
 #pragma mark - CLImageEditorDelegate methods
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:NO];
     UIViewController *topVC = [self.navigationController topViewController];
@@ -183,7 +216,10 @@
 }
 
 #pragma mark - UserProfileViewController Delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) userProfileViewController:(UserProfileViewController *)controller didPressLogout:(BOOL)pressed
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [PFUser logOut];
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -191,7 +227,10 @@
 }
 
 #pragma mark - Methods for overridding by inherited class
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) pushViewController: (UIViewController *) controller
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     
 }

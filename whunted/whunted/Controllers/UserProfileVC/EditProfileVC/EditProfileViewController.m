@@ -18,6 +18,8 @@
 #define kTextFieldHeight                        30
 #define kTextFieldWidthRatio                    0.6
 
+#define kUserPhotoHeightRatio                   2.5
+
 #define kTableNarrowHeaderFooterHeightRatio     0.025
 #define kTableMediumHeaderFooterHeightRatio     0.04
 
@@ -51,6 +53,7 @@
     
     UILabel         *_myCityLabel;
     SZTextView      *_myBioTextView;
+    UIImageView     *_userProfileImageView;
     
     BOOL            _isProfileModfified;
     BOOL            _isExpandingContentSize;
@@ -282,6 +285,30 @@
     _userPhotoCell = [[UITableViewCell alloc] init];
     _userPhotoCell.textLabel.text = NSLocalizedString(@"Photo", nil);
     _userPhotoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    
+    UIView *imageContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kUserPhotoHeightRatio * kTextFieldHeight)];
+    
+    CGFloat kImageHeight = 2 * kTextFieldHeight;
+    CGFloat kTopMargin = 0.25 * kTextFieldHeight;
+    _userProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kTopMargin, kImageHeight, kImageHeight)];
+    _userProfileImageView.layer.cornerRadius = kImageHeight/2;
+    _userProfileImageView.clipsToBounds = YES;
+    _userProfileImageView.backgroundColor = PICTON_BLUE_COLOR;
+    [imageContainer addSubview:_userProfileImageView];
+    
+    UILabel *tapToChangeLabel = [[UILabel alloc] init];
+    tapToChangeLabel.text = @"Tap to change";
+    tapToChangeLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    tapToChangeLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+    [tapToChangeLabel sizeToFit];
+    tapToChangeLabel.frame = CGRectMake(kImageHeight + 10, 10, tapToChangeLabel.frame.size.width, tapToChangeLabel.frame.size.height);
+    [imageContainer addSubview:tapToChangeLabel];
+    
+    // add gesture reconizer to image container
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeUserProfileImage)];
+    [imageContainer addGestureRecognizer:singleTap];
+    
+    _userPhotoCell.accessoryView = imageContainer;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -491,7 +518,9 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 4)
-            return 3 * kTextFieldHeight + 15;
+            return 3 * kTextFieldHeight + 20;
+        else if (indexPath.row == 5)
+            return kUserPhotoHeightRatio * kTextFieldHeight + 5;
         else
             return kAverageCellHeight;
     } else if (indexPath.section == 1) {
@@ -607,6 +636,18 @@
     [UIView commitAnimations];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) changeUserProfileImage
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
 #pragma mark - ResidingCityDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -616,6 +657,18 @@
     NSString *countryName = [countryCity objectForKey:USER_PROFILE_USER_COUNTRY];
     NSString *cityName = [countryCity objectForKey:USER_PROFILE_USER_CITY];
     _myCityLabel.text = [NSString stringWithFormat:@"%@, %@", cityName, countryName];
+}
+
+#pragma mark - UIImagePickerControllerDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    [_userProfileImageView setImage:chosenImage];
+    
+    [picker dismissViewControllerAnimated:NO completion:NULL];
 }
 
 @end
