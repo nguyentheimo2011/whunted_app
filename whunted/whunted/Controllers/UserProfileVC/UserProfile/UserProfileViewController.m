@@ -143,7 +143,7 @@
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
     userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
-    userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:18];
+    userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:userFullNameLabel];
 }
@@ -182,7 +182,7 @@
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
     countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
-    countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
+    countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:countryLabel];
 }

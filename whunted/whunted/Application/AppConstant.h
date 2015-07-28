@@ -164,14 +164,21 @@
 #define     DOT_CHARACTER                       @"."
 #define     COMMA_CHARACTER                     @","
 
+
+#pragma mark - Font
+
 //----------------------------------------------------------------------------------------------------------------------------
-#define     NORMAL_FONT_SIZE                    16
-#define     NORMAL_FONT                         [UIFont systemFontOfSize:16]
 #define     LIGHT_FONT_NAME                     @"SourceSansPro-Light"
 #define     REGULAR_FONT_NAME                   @"SourceSansPro-Regular"
 #define     SEMIBOLD_FONT_NAME                  @"SourceSansPro-Semibold"
 #define     BOLD_FONT_NAME                      @"SourceSansPro-Bold"
-#define     DEFAULT_FONT                        [UIFont fontWithName:REGULAR_FONT_NAME size:16]
+
+#define     DEFAULT_FONT_SIZE                   17
+#define     BIG_FONT_SIZE                       18
+#define     SMALL_FONT_SIZE                     16
+#define     DEFAULT_FONT                        [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]
+
+//----------------------------------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     SYNC_IN_PROGRESS                    @"syncInProgess"

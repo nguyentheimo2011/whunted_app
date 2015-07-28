@@ -147,7 +147,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *placeHolderText = @"listed 3 hours ago by";
-    CGSize expectedSize = [placeHolderText sizeWithAttributes:@{NSFontAttributeName: NORMAL_FONT}];
+    CGSize expectedSize = [placeHolderText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
     
     postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _nextYPos, expectedSize.width, expectedSize.height)];
     [postedTimestampLabel setText:placeHolderText];
@@ -228,7 +228,7 @@
     _nextXPos = 40;
     _nextYPos += 3;
     
-    CGSize expectedSize = [wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: NORMAL_FONT}];
+    CGSize expectedSize = [wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
     itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
     [itemDescLabel setText:wantData.itemDesc];
     [itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
@@ -254,10 +254,10 @@
     _nextYPos += 3;
     
     NSString *productOriginText = [wantData.productOriginList componentsJoinedByString:@", "];
-    CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: NORMAL_FONT}];
+    CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
     productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
     [productOriginLabel setText:productOriginText];
-    [productOriginLabel setFont:NORMAL_FONT];
+    [productOriginLabel setFont:DEFAULT_FONT];
     [productOriginLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:productOriginLabel];
     
@@ -285,7 +285,7 @@
     }
     paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
     [paymentMethodLabel setText:paymentMethodText];
-    [paymentMethodLabel setFont:NORMAL_FONT];
+    [paymentMethodLabel setFont:DEFAULT_FONT];
     [paymentMethodLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:paymentMethodLabel];
     
@@ -308,7 +308,7 @@
     NSString *sellersText = @"2 sellers";
     sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
     [sellersLabel setText:sellersText];
-    [sellersLabel setFont:NORMAL_FONT];
+    [sellersLabel setFont:DEFAULT_FONT];
     [sellersLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:sellersLabel];
     

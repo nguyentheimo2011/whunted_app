@@ -231,6 +231,7 @@
     [_usernameTextField setTextAlignment:NSTextAlignmentLeft];
     _usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     _usernameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _usernameTextField.returnKeyType = UIReturnKeyDone;
     _usernameTextField.delegate = self;
     
     _usernameCell.accessoryView = _usernameTextField;
@@ -250,6 +251,7 @@
     [_firstNameTextField setTextAlignment:NSTextAlignmentLeft];
     _firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     _firstNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _firstNameTextField.returnKeyType = UIReturnKeyDone;
     _firstNameTextField.delegate = self;
     
     _firstNameCell.accessoryView = _firstNameTextField;
@@ -269,6 +271,7 @@
     [_lastNameTextField setTextAlignment:NSTextAlignmentLeft];
     _lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     _lastNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _lastNameTextField.returnKeyType = UIReturnKeyDone;
     _lastNameTextField.delegate = self;
     
     _lastNameCell.accessoryView = _lastNameTextField;
@@ -374,8 +377,10 @@
     _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _emailTextField.text = _userData.emailAddress;
     [_emailTextField setTextAlignment:NSTextAlignmentLeft];
+    _emailTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
     _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     _emailTextField.tag = kEmailTextFieldTag;
+    _emailTextField.returnKeyType = UIReturnKeyDone;
     _emailTextField.delegate = self;
     
     _emailCell.accessoryView = _emailTextField;
@@ -393,8 +398,11 @@
     _mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _mobileTextField.text = _userData.phoneNumber;
     [_mobileTextField setTextAlignment:NSTextAlignmentLeft];
+    _mobileTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
     _mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
     _mobileTextField.tag = kMobileTextFieldTag;
+    _mobileTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    _mobileTextField.returnKeyType = UIReturnKeyDone;
     _mobileTextField.delegate = self;
     
     _mobileCell.accessoryView = _mobileTextField;
@@ -610,6 +618,14 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // hide keyboard
+    [_usernameTextField resignFirstResponder];
+    [_firstNameTextField resignFirstResponder];
+    [_lastNameTextField resignFirstResponder];
+    [_myBioTextView resignFirstResponder];
+    [_emailTextField resignFirstResponder];
+    [_mobileTextField resignFirstResponder];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -669,6 +685,15 @@
     return YES;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+   
 #pragma mark - Event Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -690,6 +715,8 @@
 -(void) keyboardWillHide: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _currTextFieldTag = 0;
+    
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
