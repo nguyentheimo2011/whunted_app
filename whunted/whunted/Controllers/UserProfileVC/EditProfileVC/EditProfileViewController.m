@@ -12,6 +12,7 @@
 #import "AIDatePickerController.h"
 #import <SZTextView.h>
 #import <MMPickerView.h>
+#import <MBProgressHUD.h>
 
 #define kCancelButtonAlertViewTag               101
 #define kEmailTextFieldTag                      102
@@ -53,6 +54,12 @@
     UITableViewCell *_genderCell;
     UITableViewCell *_birthdayCell;
     
+    UITextField     *_usernameTextField;
+    UITextField     *_firstNameTextField;
+    UITextField     *_lastNameTextField;
+    UITextField     *_emailTextField;
+    UITextField     *_mobileTextField;
+    
     UILabel         *_myCityLabel;
     UILabel         *_genderLabel;
     UILabel         *_birthdayLabel;
@@ -61,6 +68,9 @@
     
     BOOL            _isProfileModfified;
     BOOL            _isExpandingContentSize;
+    
+    NSString        *_newCity;
+    NSString        *_newCountry;
     
     NSInteger       _currTextFieldTag;
 }
@@ -216,14 +226,14 @@
     _usernameCell.textLabel.text = NSLocalizedString(@"Username", nil);
     _usernameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
-    UITextField *usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
-    usernameTextField.text = _userData.username;
-    [usernameTextField setTextAlignment:NSTextAlignmentLeft];
-    usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
-    usernameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
-    usernameTextField.delegate = self;
+     _usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    _usernameTextField.text = _userData.username;
+    [_usernameTextField setTextAlignment:NSTextAlignmentLeft];
+    _usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your username", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    _usernameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _usernameTextField.delegate = self;
     
-    _usernameCell.accessoryView = usernameTextField;
+    _usernameCell.accessoryView = _usernameTextField;
     _usernameCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -235,14 +245,14 @@
     _firstNameCell.textLabel.text = NSLocalizedString(@"First Name", nil);
     _firstNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
-    UITextField *firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
-    firstNameTextField.text = _userData.firstName;
-    [firstNameTextField setTextAlignment:NSTextAlignmentLeft];
-    firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
-    firstNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
-    firstNameTextField.delegate = self;
+    _firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    _firstNameTextField.text = _userData.firstName;
+    [_firstNameTextField setTextAlignment:NSTextAlignmentLeft];
+    _firstNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your first name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    _firstNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _firstNameTextField.delegate = self;
     
-    _firstNameCell.accessoryView = firstNameTextField;
+    _firstNameCell.accessoryView = _firstNameTextField;
     _firstNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -254,14 +264,14 @@
     _lastNameCell.textLabel.text = NSLocalizedString(@"Last Name", nil);
     _lastNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
-    UITextField *lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
-    lastNameTextField.text = _userData.lastName;
-    [lastNameTextField setTextAlignment:NSTextAlignmentLeft];
-    lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
-    lastNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
-    lastNameTextField.delegate = self;
+    _lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    _lastNameTextField.text = _userData.lastName;
+    [_lastNameTextField setTextAlignment:NSTextAlignmentLeft];
+    _lastNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your last name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    _lastNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize];
+    _lastNameTextField.delegate = self;
     
-    _lastNameCell.accessoryView = lastNameTextField;
+    _lastNameCell.accessoryView = _lastNameTextField;
     _lastNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -361,14 +371,14 @@
     _emailCell.textLabel.text = NSLocalizedString(@"Email", nil);
     _emailCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
-    UITextField *emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
-    emailTextField.text = _userData.emailAddress;
-    [emailTextField setTextAlignment:NSTextAlignmentLeft];
-    emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
-    emailTextField.tag = kEmailTextFieldTag;
-    emailTextField.delegate = self;
+    _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    _emailTextField.text = _userData.emailAddress;
+    [_emailTextField setTextAlignment:NSTextAlignmentLeft];
+    _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your email", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    _emailTextField.tag = kEmailTextFieldTag;
+    _emailTextField.delegate = self;
     
-    _emailCell.accessoryView = emailTextField;
+    _emailCell.accessoryView = _emailTextField;
     _emailCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -380,14 +390,14 @@
     _mobileCell.textLabel.text = NSLocalizedString(@"Mobile", nil);
     _mobileCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
     
-    UITextField *mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
-    mobileTextField.text = _userData.phoneNumber;
-    [mobileTextField setTextAlignment:NSTextAlignmentLeft];
-    mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
-    mobileTextField.tag = kMobileTextFieldTag;
-    mobileTextField.delegate = self;
+    _mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
+    _mobileTextField.text = _userData.phoneNumber;
+    [_mobileTextField setTextAlignment:NSTextAlignmentLeft];
+    _mobileTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"your mobile number", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:kDetailFontSize]}];
+    _mobileTextField.tag = kMobileTextFieldTag;
+    _mobileTextField.delegate = self;
     
-    _mobileCell.accessoryView = mobileTextField;
+    _mobileCell.accessoryView = _mobileTextField;
     _mobileCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -427,28 +437,6 @@
     
     [_birthdayCell addSubview:_birthdayLabel];
     _birthdayCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-}
-
-#pragma mark - Event Handlers
-
-//--------------------------------------------------------------------------------------------------------------------------------
-- (void) cancelBarButtonTapEventHandler
-//--------------------------------------------------------------------------------------------------------------------------------
-{
-    if (_isProfileModfified) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard changes to your edits?", nil) message:NSLocalizedString(@"Changes will not be saved.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure", nil), nil];
-        alertView.tag = kCancelButtonAlertViewTag;
-        [alertView show];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------
-- (void) doneBarButtonTapEventHandler
-//--------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIAlertView Delegate methods
@@ -741,6 +729,67 @@
     [UIView commitAnimations];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) cancelBarButtonTapEventHandler
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_isProfileModfified) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard changes to your edits?", nil) message:NSLocalizedString(@"Changes will not be saved.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure", nil), nil];
+        alertView.tag = kCancelButtonAlertViewTag;
+        [alertView show];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) doneBarButtonTapEventHandler
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    // Save new changes
+    
+    PFUser *currUser = [PFUser currentUser];
+    
+    if (![_usernameTextField.text isEqualToString:_userData.username])
+        currUser[PF_USER_USERNAME] = _usernameTextField.text;
+    
+    if (![_firstNameTextField.text isEqualToString:_userData.firstName])
+        currUser[PF_USER_FIRSTNAME] = _firstNameTextField.text;
+    
+    if (![_lastNameTextField.text isEqualToString:_userData.lastName])
+        currUser[PF_USER_LASTNAME] = _lastNameTextField.text;
+    
+    if (_newCity && ![_newCity isEqualToString:_userData.residingCity])
+        currUser[PF_USER_CITY] = _newCity;
+    
+    if (_newCountry && ![_newCountry isEqualToString:_userData.residingCountry])
+        currUser[PF_USER_COUNTRY] = _newCountry;
+    
+    if (![_myBioTextView.text isEqualToString:_userData.description])
+        currUser[PF_USER_DESCRIPTION] = _myBioTextView.text;
+    
+    if (![_userProfileImageView.image isEqual:_userData.profileImage]) {
+        NSData *imageData = UIImagePNGRepresentation(_userProfileImageView.image);
+        currUser[PF_USER_PICTURE] = [PFFile fileWithData:imageData];
+    }
+    
+    if (![_emailTextField.text isEqualToString:_userData.emailAddress])
+        currUser[PF_USER_EMAIL] = _emailTextField.text;
+    
+    if (![_mobileTextField.text isEqualToString:_userData.phoneNumber])
+        currUser[PF_USER_PHONE_NUMBER] = _mobileTextField.text;
+    
+    if (![_genderLabel.text isEqualToString:_userData.gender])
+        currUser[PF_USER_GENDER] = _genderLabel.text;
+    
+    if (![_birthdayLabel.text isEqualToString:_userData.dateOfBirth])
+        currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
+    
+    [currUser saveInBackground];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) changeUserProfileImage
 //------------------------------------------------------------------------------------------------------------------------------
@@ -759,9 +808,9 @@
 - (void) residingCity:(ResidingCityTableVC *)controller didSelectCity:(NSDictionary *)countryCity
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *countryName = [countryCity objectForKey:USER_PROFILE_USER_COUNTRY];
-    NSString *cityName = [countryCity objectForKey:USER_PROFILE_USER_CITY];
-    _myCityLabel.text = [NSString stringWithFormat:@"%@, %@", cityName, countryName];
+    _newCountry = [countryCity objectForKey:USER_PROFILE_USER_COUNTRY];
+    _newCity = [countryCity objectForKey:USER_PROFILE_USER_CITY];
+    _myCityLabel.text = [NSString stringWithFormat:@"%@, %@", _newCity, _newCountry];
 }
 
 #pragma mark - UIImagePickerControllerDelegate methods

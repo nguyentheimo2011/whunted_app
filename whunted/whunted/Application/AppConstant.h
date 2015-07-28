@@ -192,8 +192,8 @@
 #define     USER_PROFILE_USER_CITY                      @"userCity"
 #define     USER_PROFILE_GENDER_SELECT                  @"Select gender"
 #define     USER_PROFILE_GENDER_NONE                    @"--"
-#define     USER_PROFILE_GENDER_MALE                    @"Male"
-#define     USER_PROFILE_GENDER_FEMALE                  @"Female"
+#define     USER_PROFILE_GENDER_MALE                    @"male"
+#define     USER_PROFILE_GENDER_FEMALE                  @"female"
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

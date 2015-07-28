@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 #import "SyncEngine.h"
 #import "PersistedCache.h"
+#import "Utilities.h"
 
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
@@ -188,7 +189,7 @@
             
             NSString *location = userData[@"location"][@"name"];
             if (location) {
-                NSArray *addresses = [self extractCountry:location];
+                NSArray *addresses = [Utilities extractCountry:location];
                 if (addresses[0]) {
                     user[@"city"] = addresses[0];
                 }
@@ -255,26 +256,6 @@
     NSRange atCharRange = [email rangeOfString:@"@"];
     NSString *username = [email substringToIndex:atCharRange.location];
     return username;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *) extractCountry: (NSString *) location
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
-    NSString *specificAddress;
-    NSString *country;
-    
-    if (commaSignRange.location >= location.length)
-    {
-        specificAddress = @"";
-        country = location;
-    } else {
-        specificAddress = [location substringToIndex:commaSignRange.location];
-        country = [location substringFromIndex:commaSignRange.location + 1];
-    }
-    
-    return [NSArray arrayWithObjects:specificAddress, country, nil];
 }
 
 @end

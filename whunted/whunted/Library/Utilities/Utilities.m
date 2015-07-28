@@ -266,4 +266,35 @@
     return [formatter stringFromDate:date];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) extractCountry: (NSString *) location
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
+    NSString *specificAddress;
+    NSString *country;
+    
+    if (commaSignRange.location >= location.length)
+    {
+        specificAddress = @"";
+        country = location;
+    } else {
+        specificAddress = [location substringToIndex:commaSignRange.location];
+        country = [location substringFromIndex:commaSignRange.location + 1];
+    }
+    
+    return [NSArray arrayWithObjects:specificAddress, country, nil];
+}
+
+#pragma mark - Date Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSDate *) dateFromCommonlyFormattedString: (NSString *) string;
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    return [formatter dateFromString:string];
+}
+
 @end
