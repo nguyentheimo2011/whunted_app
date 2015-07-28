@@ -634,6 +634,8 @@
 {
     NSArray *genders = @[USER_PROFILE_GENDER_NONE, USER_PROFILE_GENDER_MALE, USER_PROFILE_GENDER_FEMALE];
     NSString *selectedGender = USER_PROFILE_GENDER_NONE;
+    if (_genderLabel.text && ![_genderLabel.text isEqualToString:USER_PROFILE_GENDER_SELECT])
+        selectedGender = _genderLabel.text;
     
     [MMPickerView showPickerViewInView:self.view
                            withStrings:genders
@@ -645,10 +647,14 @@
                                          MMvalueY: @5,
                                          MMselectedObject:selectedGender}
                             completion:^(NSString *selectedString) {
-                                if ([selectedString isEqualToString:USER_PROFILE_GENDER_NONE])
+                                if ([selectedString isEqualToString:USER_PROFILE_GENDER_NONE]) {
                                     _genderLabel.text = USER_PROFILE_GENDER_SELECT;
-                                else
+                                    _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
+                                }
+                                else {
                                     _genderLabel.text = selectedString;
+                                    _genderLabel.textColor = TEXT_COLOR_DARK_GRAY;
+                                }
                             }];
 }
 
@@ -806,8 +812,12 @@
     if (![_mobileTextField.text isEqualToString:_userData.phoneNumber])
         currUser[PF_USER_PHONE_NUMBER] = _mobileTextField.text;
     
-    if (![_genderLabel.text isEqualToString:_userData.gender])
-        currUser[PF_USER_GENDER] = _genderLabel.text;
+    if (![_genderLabel.text isEqualToString:_userData.gender]) {
+        if ([_genderLabel.text isEqualToString:USER_PROFILE_GENDER_SELECT])
+            currUser[PF_USER_GENDER] = @"";
+        else
+            currUser[PF_USER_GENDER] = _genderLabel.text;
+    }
     
     if (![_birthdayLabel.text isEqualToString:_userData.dateOfBirth])
         currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
