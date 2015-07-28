@@ -190,10 +190,15 @@
             if (location) {
                 NSArray *addresses = [self extractCountry:location];
                 if (addresses[0]) {
-                    user[@"areaAddress"] = addresses[0];
+                    user[@"city"] = addresses[0];
                 }
+                
                 if (addresses[1]) {
                     user[@"country"] = addresses[1];
+                    
+                    if (!addresses[0] || ((NSString *)addresses[0]).length == 0) {
+                        user[@"city"] = addresses[1];
+                    }
                 }
             }
             
