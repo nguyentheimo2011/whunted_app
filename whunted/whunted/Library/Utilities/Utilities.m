@@ -11,6 +11,9 @@
 
 @implementation Utilities
 
+
+#pragma mark - UI Handlers
+
 //------------------------------------------------------------------------------------------------------------------------------
 + (void) addBorderAndShadow: (UIView *) view
 //------------------------------------------------------------------------------------------------------------------------------
@@ -119,12 +122,69 @@
     return image;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) getStatusBarHeight
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    return [UIApplication sharedApplication].statusBarFrame.size.height;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = [NSString stringWithFormat:@"%@", title];
+    [titleLabel sizeToFit];
+    viewController.navigationItem.titleView = titleLabel;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) widthOfText: (NSString *) text withFont: (UIFont *) font andMaxWidth: (CGFloat) maxWidth
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text = text;
+    label.font = font;
+    [label sizeToFit];
+    CGFloat currWidth = label.frame.size.width;
+    
+    if (currWidth >= maxWidth)
+        return maxWidth;
+    else
+        return currWidth;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) scrollToBottom:(UIScrollView *)scrollView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGPoint bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
+    [scrollView setContentOffset:bottomOffset animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeItemBarButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
+}
+
+#pragma mark - Notification Handlers
+
 //------------------------------------------------------------------------------------------------------------------------------
 + (void) postNotification: (NSString *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
 }
+
+#pragma mark - Data Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
 + (BOOL) checkIfIsValidPrice: (NSString *) price
@@ -202,70 +262,6 @@
         return price;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------
-+ (NSDate *) getRoundMinuteDateFromDate: (NSDate *) date
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date];
-    return [calendar dateFromComponents:comps];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-+ (CGFloat) getStatusBarHeight
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    return [UIApplication sharedApplication].statusBarFrame.size.height;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
-    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = [NSString stringWithFormat:@"%@", title];
-    [titleLabel sizeToFit];
-    viewController.navigationItem.titleView = titleLabel;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (CGFloat) widthOfText: (NSString *) text withFont: (UIFont *) font andMaxWidth: (CGFloat) maxWidth
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.text = text;
-    label.font = font;
-    [label sizeToFit];
-    CGFloat currWidth = label.frame.size.width;
-    
-    if (currWidth >= maxWidth)
-        return maxWidth;
-    else
-        return currWidth;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) scrollToBottom:(UIScrollView *)scrollView
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGPoint bottomOffset = CGPointMake(0, scrollView.contentSize.height - scrollView.bounds.size.height);
-    [scrollView setContentOffset:bottomOffset animated:YES];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) commonlyFormattedStringFromDate: (NSDate *) date
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    return [formatter stringFromDate:date];
-}
-
 //------------------------------------------------------------------------------------------------------------------------------
 + (NSArray *) extractCountry: (NSString *) location
 //------------------------------------------------------------------------------------------------------------------------------
@@ -295,6 +291,24 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     return [formatter dateFromString:string];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
++ (NSDate *) getRoundMinuteDateFromDate: (NSDate *) date
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:date];
+    return [calendar dateFromComponents:comps];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) commonlyFormattedStringFromDate: (NSDate *) date
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    return [formatter stringFromDate:date];
 }
 
 @end
