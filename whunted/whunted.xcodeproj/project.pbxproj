@@ -175,6 +175,7 @@
 		E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264B71B65E7DA00CBEAFF /* ResidingCityTableVC.m */; };
 		E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */; };
 		E9D264C01B6640EE00CBEAFF /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264BF1B6640EE00CBEAFF /* UserData.m */; };
+		E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264C31B674BF800CBEAFF /* SettingsTableVC.m */; };
 		E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DC1B536D0500530492 /* fb_verification@1x.png */; };
 		E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DD1B536D0500530492 /* fb_verification@2x.png */; };
 		E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432DE1B536D0500530492 /* fb_verification@3x.png */; };
@@ -455,6 +456,8 @@
 		E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIDatePickerController.m; path = Library/AIDatePickerController/AIDatePickerController.m; sourceTree = "<group>"; };
 		E9D264BE1B6640EE00CBEAFF /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = Models/UserData/UserData.h; sourceTree = "<group>"; };
 		E9D264BF1B6640EE00CBEAFF /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserData.m; path = Models/UserData/UserData.m; sourceTree = "<group>"; };
+		E9D264C21B674BF800CBEAFF /* SettingsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableVC.h; path = Controllers/UserProfileVC/Settings/SettingsTableVC.h; sourceTree = "<group>"; };
+		E9D264C31B674BF800CBEAFF /* SettingsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableVC.m; path = Controllers/UserProfileVC/Settings/SettingsTableVC.m; sourceTree = "<group>"; };
 		E9D432DC1B536D0500530492 /* fb_verification@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@1x.png"; path = "Resources/User Profile/fb_verification@1x.png"; sourceTree = "<group>"; };
 		E9D432DD1B536D0500530492 /* fb_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@2x.png"; path = "Resources/User Profile/fb_verification@2x.png"; sourceTree = "<group>"; };
 		E9D432DE1B536D0500530492 /* fb_verification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fb_verification@3x.png"; path = "Resources/User Profile/fb_verification@3x.png"; sourceTree = "<group>"; };
@@ -1107,6 +1110,7 @@
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9D264C11B674BA800CBEAFF /* Settings */,
 				E9D264B51B65E76B00CBEAFF /* ResidingCityTableVC */,
 				E9D264A21B6226A700CBEAFF /* ResidingCountryTableVC */,
 				E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */,
@@ -1311,6 +1315,15 @@
 				E9D264BF1B6640EE00CBEAFF /* UserData.m */,
 			);
 			name = UserData;
+			sourceTree = "<group>";
+		};
+		E9D264C11B674BA800CBEAFF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E9D264C21B674BF800CBEAFF /* SettingsTableVC.h */,
+				E9D264C31B674BF800CBEAFF /* SettingsTableVC.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
@@ -1808,6 +1821,7 @@
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9A07C241B3165E300904DE9 /* emoji.m in Sources */,
 				E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */,
+				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
