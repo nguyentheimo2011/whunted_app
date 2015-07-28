@@ -113,7 +113,8 @@
                 NSLog(@"An error occurred: %@", error.localizedDescription);
             }
             
-            [self userDidTryToLogin];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
                                                             message:@"Login error"
                                                            delegate:nil
@@ -124,25 +125,18 @@
         } else {
             if (user.isNew) {
                 NSLog(@"User signed up and logged in through Facebook!");
+                [self addDataToUser];
             }
             else {
                 NSLog(@"User logged in through Facebook!");
             }
             
-            [self userDidTryToLogin];
-            [self addDataToUser];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
 //            [[SyncEngine sharedEngine] startSync];
             [self presentMainViewController];
         }
     }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) userDidTryToLogin
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [_FBLoginButton setEnabled:YES];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
