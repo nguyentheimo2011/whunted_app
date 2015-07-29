@@ -105,6 +105,38 @@
     [button.layer addSublayer:gradientLayer];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
++ (UIImage *)imageFromColor:(UIColor *)color forSize:(CGSize)size withCornerRadius:(CGFloat)radius
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // Begin a new image that will be the new image with the rounded corners
+    // (here with the size of an UIImageView)
+    UIGraphicsBeginImageContext(size);
+    
+    // Add a clip before drawing anything, in the shape of an rounded rect
+    [[UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius] addClip];
+    // Draw your image
+    [image drawInRect:rect];
+    
+    // Get the image, here setting the UIImageView image
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // Lets forget about that we were drawing
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 //------------------------------------------------------------------------------------------------------------------------------
 + (UIImage *)imageWithColor:(UIColor *)color
 //------------------------------------------------------------------------------------------------------------------------------
@@ -156,14 +188,23 @@
 + (void) customizeTabBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
-        
+    // set the bar background color
+    [[UITabBar appearance] setBackgroundImage:[Utilities imageFromColor:DARK_GRAY_COLOR forSize:CGSizeMake(WINSIZE.width, 49) withCornerRadius:0]];
+    
+    // set the text color for selected state
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
+    // set the text color for unselected state
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    
+    // set the selected icon color
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    
-    UIImage *image = [Utilities imageWithColor:DARK_GRAY_COLOR];
-    [[UITabBar appearance] setBackgroundImage:image];
-    
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    // remove the shadow
+    [[UITabBar appearance] setShadowImage:nil];
+    
+    // Set the dark color to selected tab (the dimmed background)
+    [[UITabBar appearance] setSelectionIndicatorImage:[Utilities imageFromColor:DARKER_GRAY_COLOR forSize:CGSizeMake(WINSIZE.width/4.0, 49) withCornerRadius:0]];
+
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

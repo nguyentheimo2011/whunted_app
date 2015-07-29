@@ -13,6 +13,7 @@
 #import "MySellViewController.h"
 #import "MyWantViewController.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
@@ -40,32 +41,33 @@
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController setTitle:NSLocalizedString(@"Marketplace", nil)];
-        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
+        [browserNavController.tabBarItem setImage:[[UIImage imageNamed:@"marketplace_2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         _newsFeedVC = [[NewsFeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
         [newsFeedfNavController setTitle:NSLocalizedString(@"Newsfeed", nil)];
-        [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+        [newsFeedfNavController.tabBarItem setImage:[[UIImage imageNamed:@"newsfeed.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         _newsFeedVC.delegate = self;
         
         UINavigationController *myWantNavController = [[UINavigationController alloc] init];
         _myWantVC = [[MyWantViewController alloc] init];
         [myWantNavController setViewControllers: [NSArray arrayWithObject:_myWantVC]];
         [myWantNavController setTitle:NSLocalizedString(@"Want", nil)];
-        [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
+        [myWantNavController.tabBarItem setImage:[[UIImage imageNamed:@"want_icon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         _myWantVC.delegate = self;
         
         UINavigationController *mySellNavController = [[UINavigationController alloc] init];
         _mySellVC = [[MySellViewController alloc] init];
         [mySellNavController setViewControllers: [NSArray arrayWithObject:_mySellVC]];
         [mySellNavController setTitle:NSLocalizedString(@"Sell", nil)];
-        [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
+        [mySellNavController.tabBarItem setImage:[[UIImage imageNamed:@"sell_icon.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         _mySellVC.delegate = self;
         
         NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, myWantNavController, mySellNavController, nil];
-        [self setViewControllers:controllers];        
+        [self setViewControllers:controllers];
+        [self setSelectedIndex:0];
     }
     
     return self;
