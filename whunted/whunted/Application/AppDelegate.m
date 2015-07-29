@@ -92,6 +92,7 @@
      forState:UIControlStateNormal];
     
     [Utilities customizeHeaderFooterLabels];
+    [Utilities customizeTabBarItem];
 }
 
 @end

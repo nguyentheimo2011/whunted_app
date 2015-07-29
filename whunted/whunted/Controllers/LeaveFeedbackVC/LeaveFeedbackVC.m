@@ -11,7 +11,7 @@
 #import "AppConstant.h"
 
 #define kRatingCellHeight       90.0f
-#define kSecondCellHeight       80.0f
+#define kSecondCellHeight       60.0f
 #define kFeedbackCommentHeight  80.0f
 #define kFourthCellHeight       40.0f
 
@@ -109,6 +109,8 @@
     _secondCell = [[UITableViewCell alloc] init];
     _secondCell.textLabel.text = NSLocalizedString(@"Describe your experience with ABC as a seller", nil);
     _secondCell.textLabel.font = DEFAULT_FONT;
+    _secondCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _secondCell.textLabel.numberOfLines = 2;
     _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
