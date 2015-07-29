@@ -33,6 +33,7 @@
 		E91A5A6E1B04C1E6008382E2 /* next@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6B1B04C1E6008382E2 /* next@1x.png */; };
 		E91A5A6F1B04C1E6008382E2 /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6C1B04C1E6008382E2 /* next@2x.png */; };
 		E91A5A701B04C1E6008382E2 /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A6D1B04C1E6008382E2 /* next@3x.png */; };
+		E92EC50B1B68904600AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC50A1B68904600AABB72 /* LeaveFeedbackVC.m */; };
 		E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -268,6 +269,8 @@
 		E91A5A6B1B04C1E6008382E2 /* next@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@1x.png"; path = "Resources/Want Details/next@1x.png"; sourceTree = "<group>"; };
 		E91A5A6C1B04C1E6008382E2 /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@2x.png"; path = "Resources/Want Details/next@2x.png"; sourceTree = "<group>"; };
 		E91A5A6D1B04C1E6008382E2 /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@3x.png"; path = "Resources/Want Details/next@3x.png"; sourceTree = "<group>"; };
+		E92EC5091B68904600AABB72 /* LeaveFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaveFeedbackVC.h; path = Controllers/LeaveFeedbackVC/LeaveFeedbackVC.h; sourceTree = "<group>"; };
+		E92EC50A1B68904600AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageViewController.h; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.h; sourceTree = "<group>"; };
 		E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageViewController.m; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.m; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
@@ -735,6 +738,23 @@
 			name = "Want Details";
 			sourceTree = "<group>";
 		};
+		E92EC5071B688EBF00AABB72 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				E92EC5081B688EE700AABB72 /* LeaveFeedbackVC */,
+			);
+			name = Feedback;
+			sourceTree = "<group>";
+		};
+		E92EC5081B688EE700AABB72 /* LeaveFeedbackVC */ = {
+			isa = PBXGroup;
+			children = (
+				E92EC5091B68904600AABB72 /* LeaveFeedbackVC.h */,
+				E92EC50A1B68904600AABB72 /* LeaveFeedbackVC.m */,
+			);
+			name = LeaveFeedbackVC;
+			sourceTree = "<group>";
+		};
 		E94A03711B1E9B3A00339BC4 /* ItemImageVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +778,7 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E92EC5071B688EBF00AABB72 /* Feedback */,
 				E9A07BE81B313B5400904DE9 /* InboxController */,
 				E9D9C5071B1BFFCE00222E0C /* Marketplace */,
 				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
@@ -1779,6 +1800,7 @@
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
+				E92EC50B1B68904600AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E916F44E1B00B978005055E3 /* GenericController.m in Sources */,

@@ -35,6 +35,7 @@
 #import "ChatView.h"
 
 #import "OfferData.h"
+#import "LeaveFeedbackVC.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -264,7 +265,7 @@
     _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR;
     _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR;
     _leavingFeedbackButton.titleColor = [UIColor whiteColor];
-    [_leavingFeedbackButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_leavingFeedbackButton];
 }
 
@@ -480,6 +481,14 @@
         
         [self messageSend:message Video:nil Picture:nil Audio:nil];
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) leavingFeedbackButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] init];
+    [self.navigationController pushViewController:leaveFeedbackVC animated:YES];
 }
 
 #pragma mark - Backend methods
