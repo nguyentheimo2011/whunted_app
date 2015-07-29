@@ -8,6 +8,8 @@
 
 #import "SyncEngine.h"
 #import "AppConstant.h"
+#import "PersistedCache.h"
+
 #import <Parse/Parse.h>
 
 @implementation SyncEngine
@@ -46,7 +48,8 @@
 - (void) downloadData
 //----------------------------------------------------------------------------------------------------------------------------
 {
-    [self downloadMyOffersData];
+//    [self downloadMyOffersData];
+    [self downloadUserProfilePicture];
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -67,6 +70,19 @@
              NSLog(@"Error: %@ %@", error, [error userInfo]);
          }
      }];
+}
+
+//----------------------------------------------------------------------------------------------------------------------------
+- (void) downloadUserProfilePicture
+//----------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *currUser = [PFUser currentUser];
+    PFFile *imageFile = currUser[PF_USER_PICTURE];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        UIImage *profileImage = [UIImage imageWithData:data];
+        [[PersistedCache sharedCache] setImage:profileImage forKey:currUser.objectId];
+        [self executeSyncCompletionOperations];
+    }];
 }
 
 //----------------------------------------------------------------------------------------------------------------------------

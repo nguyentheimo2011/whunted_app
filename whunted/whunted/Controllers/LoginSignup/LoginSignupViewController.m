@@ -133,7 +133,7 @@
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-//            [[SyncEngine sharedEngine] startSync];
+            [[SyncEngine sharedEngine] startSync];
             [self presentMainViewController];
         }
     }];
