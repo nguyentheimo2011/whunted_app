@@ -20,17 +20,19 @@
 
 @interface MainViewController ()
 {
-    MarketplaceViewController *_brController;
-    MyWantViewController *_myWantVC;
-    MySellViewController *_mySellVC;
-    NewsFeedViewController *_newsFeedVC;
+    MarketplaceViewController   *_brController;
+    MyWantViewController        *_myWantVC;
+    MySellViewController        *_mySellVC;
+    NewsFeedViewController      *_newsFeedVC;
 }
 
 @end
 
 @implementation MainViewController
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self != nil) {
@@ -63,33 +65,30 @@
         _mySellVC.delegate = self;
         
         NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, myWantNavController, mySellNavController, nil];
-        [self setViewControllers:controllers];
-        
-        [self customizeNavigationBar];
+        [self setViewControllers:controllers];        
     }
     
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void) customizeNavigationBar
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UINavigationBar appearance] setBarTintColor:MAIN_BLUE_COLOR];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [super viewDidLoad];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - GenericController Delegate methods
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) genericController:(GenericController *)controller shouldUpdateDataAt:(NSInteger)controllerIndex
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     if (controllerIndex == 0) {
         [_brController retrieveLatestWantData];

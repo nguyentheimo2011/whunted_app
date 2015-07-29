@@ -153,10 +153,25 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTabBarItem
++ (void) customizeTabBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:14]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
+        
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    UIImage *image = [Utilities imageWithColor:DARK_GRAY_COLOR];
+    [[UITabBar appearance] setBackgroundImage:image];
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UINavigationBar appearance] setBarTintColor:MAIN_BLUE_COLOR];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
