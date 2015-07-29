@@ -11,6 +11,7 @@
 #import "PersistedCache.h"
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
+#import "SettingsTableVC.h"
 #import "Utilities.h"
 
 #import <Parse/Parse.h>
@@ -176,6 +177,7 @@
     JTImageButton *settingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
     [settingButton createTitle:nil withIcon:[UIImage imageNamed:@"setting_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
     settingButton.borderColor = [UIColor whiteColor];
+    [settingButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_topRightView addSubview:settingButton];
 }
 
@@ -760,6 +762,14 @@
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
     editProfileVC.delegate = self;
     [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) settingsButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    SettingsTableVC *settingsVC = [[SettingsTableVC alloc] init];
+    [self.navigationController pushViewController:settingsVC animated:YES];
 }
 
 #pragma mark - EditProfileDelegate

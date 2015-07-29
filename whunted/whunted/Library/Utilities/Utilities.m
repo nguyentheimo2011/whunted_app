@@ -135,13 +135,21 @@
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text = [NSString stringWithFormat:@"%@", title];
     [titleLabel sizeToFit];
     viewController.navigationItem.titleView = titleLabel;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeSystemLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:TEXT_COLOR_DARK_GRAY];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

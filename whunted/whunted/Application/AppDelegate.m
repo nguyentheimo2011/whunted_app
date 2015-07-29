@@ -90,6 +90,8 @@
        NSFontAttributeName:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]
        }
      forState:UIControlStateNormal];
+    
+    [Utilities customizeSystemLabel];
 }
 
 @end
