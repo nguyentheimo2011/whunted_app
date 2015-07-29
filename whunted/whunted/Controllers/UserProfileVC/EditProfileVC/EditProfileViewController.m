@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 #import "AIDatePickerController.h"
+#import "PersistedCache.h"
+
 #import <SZTextView.h>
 #import <MMPickerView.h>
 #import <MBProgressHUD.h>
@@ -76,6 +78,7 @@
 }
 
 @synthesize userData = _userData;
+@synthesize delegate = _delegate;
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithUserData:(UserData *)userData
@@ -804,6 +807,9 @@
     if (![_userProfileImageView.image isEqual:_userData.profileImage]) {
         NSData *imageData = UIImagePNGRepresentation(_userProfileImageView.image);
         currUser[PF_USER_PICTURE] = [PFFile fileWithData:imageData];
+        
+        UIImage *profileImage = [UIImage imageWithData:imageData];
+        [[PersistedCache sharedCache] setImage:profileImage forKey:currUser.objectId];
     }
     
     if (![_emailTextField.text isEqualToString:_userData.emailAddress])
@@ -823,7 +829,7 @@
         currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
     
     [currUser saveInBackground];
-    
+    [_delegate editProfile:self didCompleteEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

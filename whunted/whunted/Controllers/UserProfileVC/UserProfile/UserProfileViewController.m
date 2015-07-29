@@ -11,7 +11,6 @@
 #import "PersistedCache.h"
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
-#import "EditProfileViewController.h"
 #import "Utilities.h"
 
 #import <Parse/Parse.h>
@@ -44,6 +43,11 @@
     JTImageButton       *_preferencesButton;
     
     UICollectionView    *_historyCollectionView;
+    
+    UIImageView         *_profileImageView;
+    UILabel             *_userFullNameLabel;
+    UILabel             *_countryLabel;
+    UILabel             *_userDescriptionLabel;
     
     CGFloat             _statusAndNavBarHeight;
     CGFloat             _tabBarHeight;
@@ -126,11 +130,11 @@
     UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];
     CGFloat const kMarginWidth = WINSIZE.width / 30.0;
     CGFloat const kImageWidth = WINSIZE.width * 0.3 - 2 * kMarginWidth;
-    UIImageView *profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginWidth, kMarginWidth, kImageWidth, kImageWidth)];
-    [profileImageView setImage:profileImage];
-    profileImageView.layer.cornerRadius = kImageWidth/2;
-    profileImageView.clipsToBounds = YES;
-    [profileBg addSubview:profileImageView];
+    _profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginWidth, kMarginWidth, kImageWidth, kImageWidth)];
+    [_profileImageView setImage:profileImage];
+    _profileImageView.layer.cornerRadius = kImageWidth/2;
+    _profileImageView.clipsToBounds = YES;
+    [profileBg addSubview:_profileImageView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -141,11 +145,11 @@
     [_scrollView addSubview:_topRightView];
     
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
-    UILabel *userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
-    userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
-    userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
-    userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    [_topRightView addSubview:userFullNameLabel];
+    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
+    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
+    _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
+    _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_topRightView addSubview:_userFullNameLabel];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -180,11 +184,11 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
-    UILabel *countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
-    countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
-    countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    [_topRightView addSubview:countryLabel];
+    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
+    _countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
+    _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_topRightView addSubview:_countryLabel];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -516,16 +520,16 @@
     CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
     CGFloat const kMaxNumOfLines = 40;
     
-    UILabel *userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
-    userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
-    userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
-    userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    userDescriptionLabel.numberOfLines = kMaxNumOfLines;
-    [userDescriptionLabel sizeToFit];
-    [_scrollView addSubview:userDescriptionLabel];
+    _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
+    _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
+    _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
+    _userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _userDescriptionLabel.numberOfLines = kMaxNumOfLines;
+    [_userDescriptionLabel sizeToFit];
+    [_scrollView addSubview:_userDescriptionLabel];
     
-    _currHeight += kLabelTopMargin + userDescriptionLabel.frame.size.height;
+    _currHeight += kLabelTopMargin + _userDescriptionLabel.frame.size.height;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -754,7 +758,31 @@
 {
     UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
+    editProfileVC.delegate = self;
     [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+#pragma mark - EditProfileDelegate
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editProfile:(UIViewController *)controller didCompleteEditing:(BOOL)edited
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self updateUserData];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) updateUserData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];
+    [_profileImageView setImage:profileImage];
+    
+    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
+    
+    _countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
+    
+    _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
 }
 
 @end
