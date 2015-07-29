@@ -87,11 +87,11 @@
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
      setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]
+       NSFontAttributeName:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]
        }
      forState:UIControlStateNormal];
     
-    [Utilities customizeSystemLabel];
+    [Utilities customizeHeaderFooterLabels];
 }
 
 @end

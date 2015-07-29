@@ -90,7 +90,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.navigationItem.title = _user2Username;
+    
+    [Utilities customizeTitleLabel:_user2Username forViewController:self];
+    
     [self customizeNavigationBar];
 	
 	items = [[NSMutableArray alloc] init];

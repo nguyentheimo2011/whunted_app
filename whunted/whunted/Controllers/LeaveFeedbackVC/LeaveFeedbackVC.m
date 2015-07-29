@@ -10,12 +10,12 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-#define kRatingCellHeight       100.0f
+#define kRatingCellHeight       90.0f
 #define kSecondCellHeight       80.0f
 #define kFeedbackCommentHeight  80.0f
 #define kFourthCellHeight       40.0f
 
-#define kHeaderHeight           30.0f
+#define kHeaderHeight           10.0f
 #define kFooterHeight           0.01f;
 
 @implementation LeaveFeedbackVC
@@ -75,7 +75,31 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _ratingCell = [[UITableViewCell alloc] init];
+    _ratingCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    UILabel *questionLabel = [[UILabel alloc] init];
+    questionLabel.text = NSLocalizedString(@"How was your experience?", nil);
+    questionLabel.font = DEFAULT_FONT;
+    [questionLabel sizeToFit];
+    
+    CGFloat const kLabelTopMargin = 10.0f;
+    CGFloat const kLabelWidth = questionLabel.frame.size.width;
+    CGFloat const kLabelHeight = questionLabel.frame.size.height;
+    CGFloat const kLabelLeftMargin = WINSIZE.width/2.0 - kLabelWidth/2.0;
+    questionLabel.frame = CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight);
+    [_ratingCell addSubview:questionLabel];
+    
+    CGFloat const kControlLeftMargin = 10.0f;
+    CGFloat const kControlTopMargin = 15.0f;
+    CGFloat const kControlYPos = kLabelTopMargin + kLabelHeight + kControlTopMargin;
+    CGFloat const kControlWidth = WINSIZE.width - 2 * kControlLeftMargin;
+    CGFloat const kControlHeight = 30.0f;
+    NSArray *ratings = @[@"Positive", @"Neutral", @"Negative"];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:ratings];
+    segmentedControl.frame = CGRectMake(kControlLeftMargin, kControlYPos, kControlWidth, kControlHeight);
+    [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
+    segmentedControl.selectedSegmentIndex = 0;
+    [_ratingCell addSubview:segmentedControl];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -85,6 +109,7 @@
     _secondCell = [[UITableViewCell alloc] init];
     _secondCell.textLabel.text = NSLocalizedString(@"Describe your experience with ABC as a seller", nil);
     _secondCell.textLabel.font = DEFAULT_FONT;
+    _secondCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -92,6 +117,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _feedbackCommentCell = [[UITableViewCell alloc] init];
+    _feedbackCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
 
@@ -102,6 +128,7 @@
     _numOfCharsLeftCell = [[UITableViewCell alloc] init];
     _numOfCharsLeftCell.detailTextLabel.text = @"500";
     _numOfCharsLeftCell.detailTextLabel.font = DEFAULT_FONT;
+    _numOfCharsLeftCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 #pragma mark - Table view data source
@@ -184,14 +211,14 @@
 - (void) submitBarButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) skipBarButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -145,7 +145,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeSystemLabel
++ (void) customizeHeaderFooterLabels
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];

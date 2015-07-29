@@ -10,6 +10,7 @@
 #import "MessageViewCell.h"
 #import "ChatView.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 #import "converter.h"
 #import <Firebase/Firebase.h>
 #import <MBProgressHUD.h>
@@ -48,7 +49,8 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Inbox";
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Inbox", nil) forViewController:self];
+    
     [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
 }
 
