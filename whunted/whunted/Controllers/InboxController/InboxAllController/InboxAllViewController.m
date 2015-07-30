@@ -17,9 +17,9 @@
 
 @interface InboxAllViewController ()
 
-@property (nonatomic, strong) UITableView *_inboxTableView;
-@property (nonatomic, strong) Firebase *_firebase;
-@property (nonatomic, strong) NSMutableArray *_recentMessages;
+@property (nonatomic, strong) UITableView       *_inboxTableView;
+@property (nonatomic, strong) Firebase          *_firebase;
+@property (nonatomic, strong) NSMutableArray    *_recentMessages;
 
 @end
 
