@@ -246,6 +246,13 @@
     return viewController.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) getHeightOfBottomTabBar:(UIViewController *)viewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return viewController.tabBarController.tabBar.frame.size.height;
+}
+
 #pragma mark - Notification Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------

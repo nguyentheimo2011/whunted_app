@@ -59,6 +59,7 @@
 #define     ACCEPTED_BUTTON_BACKGROUND_COLOR    [UIColor colorWithRed:0.0/255 green:172.0/255 blue:113.0/255 alpha:1.0]
 #define     DARK_GRAY_COLOR                     [UIColor colorWithRed:54.0/255 green:60.0/255 blue:62.0/255 alpha:1.0]
 #define     DARKER_GRAY_COLOR                   [UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0]
+#define     CELL_SEPARATOR_GRAY_COLOR           [UIColor colorWithRed:188.0/255 green:186.0/255 blue:193.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     FLAT_BLUE_COLOR                     [UIColor colorWithRed:7/255.0f green:188/255.0f blue:248/255.0f alpha:1.0f]
@@ -220,5 +221,12 @@ typedef enum {
     HashtagTypeModel,
     HashtagTypeNone
 } HashtagType;
+
+//----------------------------------------------------------------------------------------------------------------------------
+typedef enum {
+    FeedbackRatingPositive,
+    FeedbackRatingNeutral,
+    FeedbackRatingNegative
+} FeedbackRatingType;
 
 #endif

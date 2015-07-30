@@ -37,6 +37,7 @@
 		E92EC5111B69542400AABB72 /* marketplace_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E92EC50E1B69542400AABB72 /* marketplace_2@3x.png */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
+		E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51B1B6A276900AABB72 /* FeedbackData.m */; };
 		E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */; };
 		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
 		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
@@ -275,6 +276,8 @@
 		E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E92EC5161B6A0E3B00AABB72 /* FeedbackReviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackReviewVC.h; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.h; sourceTree = "<group>"; };
 		E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackReviewVC.m; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.m; sourceTree = "<group>"; };
+		E92EC51A1B6A276900AABB72 /* FeedbackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackData.h; path = Models/FeedbackData/FeedbackData.h; sourceTree = "<group>"; };
+		E92EC51B1B6A276900AABB72 /* FeedbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackData.m; path = Models/FeedbackData/FeedbackData.m; sourceTree = "<group>"; };
 		E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageViewController.h; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.h; sourceTree = "<group>"; };
 		E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageViewController.m; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.m; sourceTree = "<group>"; };
 		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
@@ -766,6 +769,15 @@
 			name = FeedbackReviewVC;
 			sourceTree = "<group>";
 		};
+		E92EC5191B6A274400AABB72 /* FeedbackData */ = {
+			isa = PBXGroup;
+			children = (
+				E92EC51A1B6A276900AABB72 /* FeedbackData.h */,
+				E92EC51B1B6A276900AABB72 /* FeedbackData.m */,
+			);
+			name = FeedbackData;
+			sourceTree = "<group>";
+		};
 		E94A03711B1E9B3A00339BC4 /* ItemImageVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +916,7 @@
 		E94D183D1AF9FB2300E31B01 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E92EC5191B6A274400AABB72 /* FeedbackData */,
 				E9D264BD1B6640BB00CBEAFF /* UserData */,
 				E9EEB9371B5D1FE400815D56 /* Hashtag */,
 				E9FB2E9B1B20482500F8C435 /* OfferData */,
@@ -1800,6 +1813,7 @@
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
+				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
