@@ -20,6 +20,8 @@
 #define kHeaderHeight           10.0f
 #define kFooterHeight           0.01f;
 
+#define kMaxNumOfChars          500
+
 @implementation LeaveFeedbackVC
 {
     UITableViewCell     *_ratingCell;
@@ -28,6 +30,8 @@
     UITableViewCell     *_numOfCharsLeftCell;
     
     SZTextView          *_feedbackCommentTextView;
+    
+    NSInteger           _numOfCharsLeft;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +39,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [self initData];
     
     [self customizeUI];
     [self initCells];
@@ -45,6 +51,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Data Init
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _numOfCharsLeft = kMaxNumOfChars;
 }
 
 #pragma mark - UI
@@ -65,6 +80,7 @@
     
     // remove cell separator
     self.tableView.separatorColor = [UIColor whiteColor];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -135,6 +151,7 @@
     _feedbackCommentTextView.layer.cornerRadius = 10.0f;
     _feedbackCommentTextView.font = DEFAULT_FONT;
     _feedbackCommentTextView.placeholder = NSLocalizedString(@"Example:\n Item was in great condition, very prompt delivery. Will deal again!\n\n kudos!:D", nil);
+    _feedbackCommentTextView.delegate = self;
     
     _feedbackCommentCell.accessoryView = _feedbackCommentTextView;
 }
@@ -144,7 +161,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _numOfCharsLeftCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"numOfCharsCell"];
-    _numOfCharsLeftCell.detailTextLabel.text = @"500";
+    _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
     _numOfCharsLeftCell.detailTextLabel.font = DEFAULT_FONT;
     _numOfCharsLeftCell.detailTextLabel.textColor = [UIColor blackColor];
     _numOfCharsLeftCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -224,6 +241,13 @@
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_feedbackCommentTextView resignFirstResponder];
+}
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -238,6 +262,34 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UITextViewDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if(range.length + range.location > textView.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textView.text length] + [text length] - range.length;
+    
+    if (newLength <= kMaxNumOfChars) {
+        _numOfCharsLeft = kMaxNumOfChars - newLength;
+        _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
+        return YES;
+    } else {
+        NSUInteger maxAddedLen = kMaxNumOfChars - (textView.text.length - range.length);
+        NSString *subText = [text substringToIndex:maxAddedLen];
+        NSString *newText = [NSString stringWithFormat:@"%@%@", textView.text, subText];
+        textView.text = newText;
+        _numOfCharsLeft = 0;
+        _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
+        return NO;
+    }
 }
 
 @end

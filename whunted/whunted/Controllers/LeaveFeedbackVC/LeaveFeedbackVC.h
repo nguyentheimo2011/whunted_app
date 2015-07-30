@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeaveFeedbackVC : UITableViewController
+@interface LeaveFeedbackVC : UITableViewController <UITextViewDelegate>
 
 @end
