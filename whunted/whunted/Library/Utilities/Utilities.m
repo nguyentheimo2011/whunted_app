@@ -188,23 +188,16 @@
 + (void) customizeTabBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    // set the bar background color
-    [[UITabBar appearance] setBackgroundImage:[Utilities imageFromColor:DARK_GRAY_COLOR forSize:CGSizeMake(WINSIZE.width, 49) withCornerRadius:0]];
-    
     // set the text color for selected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : MAIN_BLUE_COLOR} forState:UIControlStateSelected];
     // set the text color for unselected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:13], NSForegroundColorAttributeName : [UIColor grayColor]} forState:UIControlStateNormal];
     
     // set the selected icon color
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:MAIN_BLUE_COLOR];
     // remove the shadow
     [[UITabBar appearance] setShadowImage:nil];
-    
-    // Set the dark color to selected tab (the dimmed background)
-    [[UITabBar appearance] setSelectionIndicatorImage:[Utilities imageFromColor:DARKER_GRAY_COLOR forSize:CGSizeMake(WINSIZE.width/4.0, 49) withCornerRadius:0]];
-
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -35,6 +35,8 @@
 {
     self = [super init];
     if (self != nil) {
+        self.hidesBottomBarWhenPushed = YES;
+        
         [self addInboxTableView];
         _recentMessages = [NSMutableArray array];
         [self loadRecents];

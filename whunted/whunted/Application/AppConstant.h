@@ -46,6 +46,8 @@
 #define     GOLDEN_YELLOW_COLOR                 [UIColor colorWithRed:255.0/255 green:223.0/255 blue:0.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     GRAY_COLOR_LIGHT                    [UIColor colorWithRed:160.0/255 green:160.0/255 blue:160.0/255 alpha:1.0]
+#define     GRAY_COLOR_LIGHTER                  [UIColor colorWithRed:175.0/255 green:175.0/255 blue:175.0/255 alpha:1.0]
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
 #define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
 #define     LIGHTEST_GRAY_COLOR                 [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
