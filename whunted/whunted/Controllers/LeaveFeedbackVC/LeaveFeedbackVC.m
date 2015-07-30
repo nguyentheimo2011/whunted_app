@@ -10,10 +10,12 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-#define kRatingCellHeight       90.0f
-#define kSecondCellHeight       60.0f
-#define kFeedbackCommentHeight  80.0f
-#define kFourthCellHeight       40.0f
+#import <SZTextView.h>
+
+#define kRatingCellHeight       95.0f
+#define kSecondCellHeight       50.0f
+#define kFeedbackCommentHeight  150.0f
+#define kFourthCellHeight       32.0f
 
 #define kHeaderHeight           10.0f
 #define kFooterHeight           0.01f;
@@ -24,6 +26,8 @@
     UITableViewCell     *_secondCell;
     UITableViewCell     *_feedbackCommentCell;
     UITableViewCell     *_numOfCharsLeftCell;
+    
+    SZTextView          *_feedbackCommentTextView;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -58,6 +62,9 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Skip", nil) style:UIBarButtonItemStylePlain target:self action:@selector(skipBarButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submitBarButtonTapEventHandler)];
+    
+    // remove cell separator
+    self.tableView.separatorColor = [UIColor whiteColor];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -107,7 +114,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _secondCell = [[UITableViewCell alloc] init];
-    _secondCell.textLabel.text = NSLocalizedString(@"Describe your experience with ABC as a seller", nil);
+    _secondCell.textLabel.text = NSLocalizedString(@"Describe your experience with nguyentheimo2011 as a seller", nil);
     _secondCell.textLabel.font = DEFAULT_FONT;
     _secondCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _secondCell.textLabel.numberOfLines = 2;
@@ -121,15 +128,25 @@
     _feedbackCommentCell = [[UITableViewCell alloc] init];
     _feedbackCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
+    _feedbackCommentTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 35, kFeedbackCommentHeight - 10)];
+    _feedbackCommentTextView.layer.borderWidth = 1.0f;
+    _feedbackCommentTextView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _feedbackCommentTextView.layer.cornerRadius = 10.0f;
+    _feedbackCommentTextView.font = DEFAULT_FONT;
+    _feedbackCommentTextView.placeholder = NSLocalizedString(@"Example:\n Item was in great condition, very prompt delivery. Will deal again!\n\n kudos!:D", nil);
+    
+    _feedbackCommentCell.accessoryView = _feedbackCommentTextView;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initNumOfWordsLeftCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _numOfCharsLeftCell = [[UITableViewCell alloc] init];
+    _numOfCharsLeftCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"numOfCharsCell"];
     _numOfCharsLeftCell.detailTextLabel.text = @"500";
     _numOfCharsLeftCell.detailTextLabel.font = DEFAULT_FONT;
+    _numOfCharsLeftCell.detailTextLabel.textColor = [UIColor blackColor];
     _numOfCharsLeftCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
