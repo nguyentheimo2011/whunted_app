@@ -12,6 +12,7 @@
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
 #import "SettingsTableVC.h"
+#import "FeedbackReviewVC.h"
 #import "Utilities.h"
 
 #import <Parse/Parse.h>
@@ -213,6 +214,8 @@
     CGFloat const kWhiteSpaceWidth = WINSIZE.width / 32.0;
     CGFloat const kBackgroundHeight = WINSIZE.width * 0.3 - 2 * kTopMargin - 2 * kLabelHeight - kWhiteSpaceWidth;
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 2 * kLabelHeight + kWhiteSpaceWidth, WINSIZE.width * 0.6, kBackgroundHeight)];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ratingViewTapEventHandler)];
+    [backgroundView addGestureRecognizer:tapRecognizer];
     
     // TODO: color is likely to change later
     [backgroundView setBackgroundColor:BACKGROUND_GRAY_COLOR];
@@ -782,6 +785,14 @@
 {
     SettingsTableVC *settingsVC = [[SettingsTableVC alloc] init];
     [self.navigationController pushViewController:settingsVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) ratingViewTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    FeedbackReviewVC *feedbackVC = [[FeedbackReviewVC alloc] init];
+    [self.navigationController pushViewController:feedbackVC animated:YES];
 }
 
 #pragma mark - EditProfileDelegate

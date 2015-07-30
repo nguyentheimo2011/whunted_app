@@ -239,6 +239,13 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) getHeightOfNavigationAndStatusBars: (UIViewController *) viewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return viewController.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
+}
+
 #pragma mark - Notification Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------

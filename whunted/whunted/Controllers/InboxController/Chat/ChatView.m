@@ -168,6 +168,7 @@
     [_background setAlpha:0.98];
     [self.view addSubview:_background];
     
+    // table is displayed below top buttons
     self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 10;
 }
 
