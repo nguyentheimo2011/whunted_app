@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedbackReviewVC : UIViewController
+@interface FeedbackReviewVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *feedbackList;
 
 @end
