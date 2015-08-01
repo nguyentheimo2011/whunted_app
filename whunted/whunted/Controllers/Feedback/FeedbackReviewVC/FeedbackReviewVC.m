@@ -179,7 +179,7 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    FeedbackTableViewCell *cell = (FeedbackTableViewCell *) [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier forIndexPath:indexPath];
+    FeedbackTableViewCell *cell = (FeedbackTableViewCell *) [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier];
     
     if (!cell) {
         cell = [[FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFeedbackCellIdentifier];
