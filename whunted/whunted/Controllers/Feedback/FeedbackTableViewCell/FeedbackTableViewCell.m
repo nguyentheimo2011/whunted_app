@@ -11,18 +11,24 @@
 
 #import <JTImageButton.h>
 
-#define kProfilePictureWidth        40.0f
-#define kProfilePictureMargin       10.0f
+#define kProfilePictureWidth            40.0f
+#define kProfilePictureMargin           10.0f
+#define kProfilePictureContainerWidth   60.0f
 
-#define kRatingContainerWidth       40.0f
+#define kRatingContainerWidth           40.0f
+
+#define kClockImageWidth                12.0f
+#define kClockImageHeight               12.0f
 
 @implementation FeedbackTableViewCell
 {
     UIImageView     *_userProfilePicture;
     UIImageView     *_ratingImageView;
+    UIImageView     *_clockImageView;
     UITextView      *_commentTextView;
     UIButton        *_writerUsernameButton;
-    
+    UILabel         *_timestampLabel;
+    UILabel         *_purchasingRoleLabel;
 }
 
 @synthesize cellHeight = _cellHeight;
@@ -40,6 +46,9 @@
         [self addWriterUsernameLabel];
         [self addFeedbackCommentTextView];
         [self addRatingImageView];
+        [self addClockImageView];
+        [self addTimestampLabel];
+        [self addPurchasingRoleLabel];
     }
     
     return self;
@@ -61,10 +70,9 @@
 - (void) addWriterUsernameLabel
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kUsernameLabelLeftMargin = kProfilePictureWidth + 2 * kProfilePictureMargin;
     CGFloat const kUsernameLabelTopMargin = 0.0f;
     
-    _writerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kUsernameLabelLeftMargin, kUsernameLabelTopMargin, 0, 0)];
+    _writerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kUsernameLabelTopMargin, 0, 0)];
     _writerUsernameButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     [_writerUsernameButton setTitle:@"nguyentheimo2011" forState:UIControlStateNormal];
     [_writerUsernameButton setTitle:@"nguyentheimo2011" forState:UIControlStateHighlighted];
@@ -79,23 +87,21 @@
 - (void) addFeedbackCommentTextView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTextViewLeftMargin = kProfilePictureWidth + 2 * kProfilePictureMargin;
     CGFloat const kTextViewTopMargin = _writerUsernameButton.frame.size.height - 5;
-    CGFloat const kTextViewBottomMargin = 10.0f;
-    CGFloat const kTextViewWidth = WINSIZE.width - kTextViewLeftMargin - kRatingContainerWidth;
+    CGFloat const kTextViewWidth = WINSIZE.width - kProfilePictureContainerWidth - kRatingContainerWidth;
     CGFloat const kTextViewTopInset = -10.0f;
     CGFloat const KTextViewBottomInset = -5.0f;
     CGFloat const kTextViewLeftInset = -5.0f;
     
-    _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, kTextViewTopMargin, kTextViewWidth, 0)];
+    _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kTextViewTopMargin, kTextViewWidth, 0)];
     _commentTextView.text = @"Excellent seller! Will certainly deal again in future.";
     _commentTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _commentTextView.contentInset = UIEdgeInsetsMake(kTextViewTopInset, kTextViewLeftInset, KTextViewBottomInset, 0);
     [_commentTextView sizeToFit];
-    _commentTextView.frame = CGRectMake(kTextViewLeftMargin, kTextViewTopMargin, kTextViewWidth, _commentTextView.frame.size.height + kTextViewTopInset + KTextViewBottomInset);
+    _commentTextView.editable = NO;
+    _commentTextView.frame = CGRectMake(kProfilePictureContainerWidth, kTextViewTopMargin, kTextViewWidth, _commentTextView.frame.size.height + kTextViewTopInset);
+    [_commentTextView setContentSize:_commentTextView.frame.size];
     [self addSubview:_commentTextView];
-    
-    _cellHeight = kTextViewTopMargin + _commentTextView.frame.size.height + kTextViewBottomMargin;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -110,6 +116,49 @@
     UIImage *ratingImage = [UIImage imageNamed:@"smiling_face.png"];
     [_ratingImageView setImage:ratingImage];
     [self addSubview:_ratingImageView];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addClockImageView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kClockImageViewTopMargin = 0.0f;
+    CGFloat const kClockImageViewBottomMargin = 5.0f;
+    CGFloat const kClockImageViewYPos = _commentTextView.frame.origin.y + _commentTextView.frame.size.height + kClockImageViewTopMargin;
+    _clockImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kClockImageViewYPos, kClockImageWidth, kClockImageHeight)];
+    UIImage *clockImage = [UIImage imageNamed:@"clock_icon.png"];
+    [_clockImageView setImage:clockImage];
+    [self addSubview:_clockImageView];
+    
+    _cellHeight = kClockImageViewYPos + kClockImageHeight + kClockImageViewTopMargin + kClockImageViewBottomMargin;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addTimestampLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kTimestampLabelXPos = kProfilePictureContainerWidth + kClockImageWidth + 3;
+    CGFloat kTimestampLabelYPos = _clockImageView.frame.origin.y - 5;
+    
+    _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kTimestampLabelXPos, kTimestampLabelYPos, 0, 0)];
+    _timestampLabel.text = @"4h";
+    _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _timestampLabel.textColor = LIGHT_GRAY_COLOR;
+    [_timestampLabel sizeToFit];
+    [self addSubview:_timestampLabel];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addPurchasingRoleLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kPurchasingRoleLabelXPos = _timestampLabel.frame.origin.x + _timestampLabel.frame.size.width + 10.0f;
+    
+    _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
+    _purchasingRoleLabel.text = @"As Seller";
+    _purchasingRoleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    [_purchasingRoleLabel sizeToFit];
+    [self addSubview:_purchasingRoleLabel];
 }
 
 #pragma mark - Event Handler

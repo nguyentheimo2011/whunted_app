@@ -153,6 +153,7 @@
     CGFloat const kTableHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self];
 
     _feedbackTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kControlContainerHeight, WINSIZE.width, kTableHeight)];
+    _feedbackTableView.backgroundColor = LIGHTEST_GRAY_COLOR;
     _feedbackTableView.dataSource = self;
     _feedbackTableView.delegate = self;
     [_feedbackTableView registerClass:[FeedbackTableViewCell class] forCellReuseIdentifier:kFeedbackCellIdentifier];
