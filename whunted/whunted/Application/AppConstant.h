@@ -209,6 +209,12 @@
 #define     USER_PROFILE_GENDER_FEMALE                  @"female"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     NUM_OF_SECONDS_IN_A_MINUTE                  60
+#define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
+#define     NUM_OF_SECONDS_IN_A_DAY                     86400
+#define     NUM_OF_SECONDS_IN_A_WEEK                    604800
+
+//----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
     PhotoLibrary,
     Camera,

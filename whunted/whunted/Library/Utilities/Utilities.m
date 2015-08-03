@@ -389,4 +389,36 @@
     return [formatter stringFromDate:date];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) timestampStringFromDate:(NSDate *)date
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDate *now = [NSDate date];
+    NSTimeInterval timeInterval = [now timeIntervalSinceDate:date];
+    
+    if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE) {
+        NSInteger numOfSecs = (NSInteger) timeInterval;
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@", (long) numOfSecs, NSLocalizedString(@"s", nil)];
+        return timestamp;
+    } else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR) {
+        NSInteger numOfMins = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_MINUTE);
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@", (long) numOfMins, NSLocalizedString(@"m", nil)];
+        return timestamp;
+    } else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY) {
+        NSInteger numOfHours = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_AN_HOUR);
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@", (long) numOfHours, NSLocalizedString(@"h", nil)];
+        return timestamp;
+    } else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK) {
+        NSInteger numOfDays = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_DAY);
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@", (long) numOfDays, NSLocalizedString(@"d", nil)];
+        return timestamp;
+    } else {
+        NSInteger numOfWeeks = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_WEEK);
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@", (long) numOfWeeks, NSLocalizedString(@"w", nil)];
+        return timestamp;
+    }
+    
+    return @"";
+}
+
 @end
