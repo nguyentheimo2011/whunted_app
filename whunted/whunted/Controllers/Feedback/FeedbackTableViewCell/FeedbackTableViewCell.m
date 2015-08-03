@@ -79,6 +79,7 @@
 {
     _userProfilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(kProfilePictureMargin, kProfilePictureMargin, kProfilePictureWidth, kProfilePictureWidth)];
     _userProfilePicture.layer.cornerRadius = kProfilePictureWidth / 2.0;
+    _userProfilePicture.clipsToBounds = YES;
     _userProfilePicture.backgroundColor = MAIN_BLUE_COLOR;
     [self addSubview:_userProfilePicture];
 }
@@ -91,7 +92,8 @@
     
     _writerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kUsernameLabelTopMargin, 0, 0)];
     _writerUsernameButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    
+    [_writerUsernameButton setTitle:@" " forState:UIControlStateNormal];
+    [_writerUsernameButton setTitle:@" " forState:UIControlStateHighlighted];
     [_writerUsernameButton setTitleColor:TEA_ROSE_COLOR forState:UIControlStateNormal];
     [_writerUsernameButton setTitleColor:LIGHTEST_GRAY_COLOR forState:UIControlStateHighlighted];
     [_writerUsernameButton sizeToFit];
@@ -101,6 +103,7 @@
     FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
         [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateNormal];
         [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateHighlighted];
+        [_writerUsernameButton sizeToFit];
         
         [_userProfilePicture setImage:image];
     };

@@ -184,8 +184,9 @@
     
     if (!cell) {
         cell = [[FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFeedbackCellIdentifier];
-        [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
     }
+    
+    [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
     
     return cell;
 }

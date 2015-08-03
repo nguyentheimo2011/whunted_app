@@ -426,9 +426,9 @@
 + (void) getUserWithID:(NSString *)userID andRunBlock:(FetchedUserHandler) handler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFUser *user = [[PFUser alloc] init];
-    user.objectId = userID;
-    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:userID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             PFUser *fetchedUser = (PFUser *) object;
             PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
