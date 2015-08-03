@@ -7,7 +7,6 @@
 //
 
 #import "Utilities.h"
-#import "AppConstant.h"
 
 @implementation Utilities
 
@@ -419,6 +418,32 @@
     }
     
     return @"";
+}
+
+#pragma mark - Parse Backend
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) getUserWithID:(NSString *)userID andRunBlock:(FetchedUserHandler) handler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [[PFUser alloc] init];
+    user.objectId = userID;
+    [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            PFUser *fetchedUser = (PFUser *) object;
+            PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
+            [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+                if (!error2) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    handler(fetchedUser, image);
+                } else {
+                    NSLog(@"%@ %@", error2, [error2 userInfo]);
+                }
+            }];
+        } else {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end

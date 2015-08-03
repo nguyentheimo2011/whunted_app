@@ -184,6 +184,7 @@
     
     if (!cell) {
         cell = [[FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFeedbackCellIdentifier];
+        [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
     }
     
     return cell;
@@ -213,6 +214,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cell = [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier];
+        [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
     });
     
     return cell.cellHeight;

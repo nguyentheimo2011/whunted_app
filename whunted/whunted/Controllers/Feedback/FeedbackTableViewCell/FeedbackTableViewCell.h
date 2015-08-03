@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FeedbackData.h"
+
 @interface FeedbackTableViewCell : UITableViewCell
 
-@property (nonatomic) NSInteger cellHeight;
+@property (nonatomic)           NSInteger       cellHeight;
+
+@property (nonatomic, strong)   FeedbackData    *feedbackData;
 
 @end

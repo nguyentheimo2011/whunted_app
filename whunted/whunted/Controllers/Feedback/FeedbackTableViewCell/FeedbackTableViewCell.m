@@ -8,6 +8,7 @@
 
 #import "FeedbackTableViewCell.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 #import <JTImageButton.h>
 
@@ -33,6 +34,8 @@
 
 @synthesize cellHeight = _cellHeight;
 
+@synthesize feedbackData = _feedbackData;
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -41,20 +44,34 @@
     
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [self addUserProfilePicture];
-        [self addWriterUsernameLabel];
-        [self addFeedbackCommentTextView];
-        [self addRatingImageView];
-        [self addClockImageView];
-        [self addTimestampLabel];
-        [self addPurchasingRoleLabel];
     }
     
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) setFeedbackData:(FeedbackData *)feedbackData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _feedbackData = feedbackData;
+    
+    [self initUI];
+}
+
 #pragma mark - UI Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initUI
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addUserProfilePicture];
+    [self addWriterUsernameLabel];
+    [self addFeedbackCommentTextView];
+    [self addRatingImageView];
+    [self addClockImageView];
+    [self addTimestampLabel];
+    [self addPurchasingRoleLabel];
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) addUserProfilePicture
@@ -74,13 +91,21 @@
     
     _writerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kUsernameLabelTopMargin, 0, 0)];
     _writerUsernameButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    [_writerUsernameButton setTitle:@"nguyentheimo2011" forState:UIControlStateNormal];
-    [_writerUsernameButton setTitle:@"nguyentheimo2011" forState:UIControlStateHighlighted];
+    
     [_writerUsernameButton setTitleColor:TEA_ROSE_COLOR forState:UIControlStateNormal];
     [_writerUsernameButton setTitleColor:LIGHTEST_GRAY_COLOR forState:UIControlStateHighlighted];
     [_writerUsernameButton sizeToFit];
     [_writerUsernameButton addTarget:self action:@selector(usernameButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_writerUsernameButton];
+    
+    FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+        [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateNormal];
+        [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateHighlighted];
+        
+        [_userProfilePicture setImage:image];
+    };
+    
+    [Utilities getUserWithID:_feedbackData.writerID andRunBlock:handler];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -169,5 +194,7 @@
 {
     
 }
+
+#pragma mark - Backend
 
 @end

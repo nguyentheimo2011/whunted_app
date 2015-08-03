@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "AppConstant.h"
+
+#import <Parse/Parse.h>
+
 @interface Utilities : NSObject
 
 #pragma mark - UI
@@ -123,6 +127,12 @@
 // timestamp examples: 3s, 15m, 4h, 6d, 234w
 //------------------------------------------------------------------------------------------------------------------------------
 + (NSString *)  timestampStringFromDate: (NSDate *) date;
+//------------------------------------------------------------------------------------------------------------------------------
+
+#pragma mark - Parse Backend
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) getUserWithID: (NSString *) userID andRunBlock: (FetchedUserHandler) handler;
 //------------------------------------------------------------------------------------------------------------------------------
 
 @end

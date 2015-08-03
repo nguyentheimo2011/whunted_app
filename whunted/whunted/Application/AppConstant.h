@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
+#import <Parse/Parse.h>
+
 #ifndef whunted_AppConstant_h
 #define whunted_AppConstant_h
 
@@ -234,5 +236,8 @@ typedef enum {
     FeedbackRatingNeutral,
     FeedbackRatingNegative
 } FeedbackRatingType;
+
+//----------------------------------------------------------------------------------------------------------------------------
+typedef void (^FetchedUserHandler) (PFUser *, UIImage *);
 
 #endif
