@@ -112,7 +112,7 @@
     questionLabel.frame = CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight);
     [_ratingCell addSubview:questionLabel];
     
-    CGFloat const kControlLeftMargin = 10.0f;
+    CGFloat const kControlLeftMargin = 16.0f;
     CGFloat const kControlTopMargin = 15.0f;
     CGFloat const kControlYPos = kLabelTopMargin + kLabelHeight + kControlTopMargin;
     CGFloat const kControlWidth = WINSIZE.width - 2 * kControlLeftMargin;
@@ -122,6 +122,10 @@
     segmentedControl.frame = CGRectMake(kControlLeftMargin, kControlYPos, kControlWidth, kControlHeight);
     [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
     segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl setImage:[UIImage imageNamed:@"smiling_face_small.png"] forSegmentAtIndex:0];
+    [segmentedControl setImage:[UIImage imageNamed:@"meh_face_small.png"] forSegmentAtIndex:1];
+    [segmentedControl setImage:[UIImage imageNamed:@"sad_face_small.png"] forSegmentAtIndex:2];
+    segmentedControl.tintColor = MAIN_BLUE_COLOR;
     [_ratingCell addSubview:segmentedControl];
 }
 
@@ -145,7 +149,7 @@
     _feedbackCommentCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
-    _feedbackCommentTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 35, kFeedbackCommentHeight - 10)];
+    _feedbackCommentTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 32, kFeedbackCommentHeight - 10)];
     _feedbackCommentTextView.layer.borderWidth = 1.0f;
     _feedbackCommentTextView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     _feedbackCommentTextView.layer.cornerRadius = 10.0f;
