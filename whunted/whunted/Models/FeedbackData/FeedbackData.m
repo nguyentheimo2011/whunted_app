@@ -21,6 +21,23 @@
 @synthesize updatedDate = _updatedDate;
 
 //--------------------------------------------------------------------------------------------------------------------------------
+- (id) initWithPFObject:(PFObject *)obj
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _feedbackID = obj.objectId;
+        _writerID = obj[PF_FEEDBACK_WRITER_ID];
+        _receiverID = obj[PF_FEEDBACK_RECEIVER_ID];
+        _rating = [self feedbackRatingFromString:obj[PF_FEEDBACK_RATING]];
+        _comment = obj[PF_FEEDBACK_COMMENT];
+        _isWriterTheBuyer = [Utilities booleanFromString:obj[PF_FEEDBACK_IS_WRITER_THE_BUYER]];
+    }
+    
+    return self;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (PFObject *) pfObjectFromFeedbackData
 //--------------------------------------------------------------------------------------------------------------------------------
 {
@@ -46,6 +63,18 @@
         return FEEDBACK_RATING_NEUTRAL;
     else
         return FEEDBACK_RATING_NEGATIVE;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (FeedbackRatingType) feedbackRatingFromString: (NSString *) rating
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([rating isEqualToString:FEEDBACK_RATING_POSITIVE])
+        return FeedbackRatingPositive;
+    else if ([rating isEqualToString:FEEDBACK_RATING_NEUTRAL])
+        return FeedbackRatingNeutral;
+    else
+        return FeedbackRatingNegative;
 }
 
 

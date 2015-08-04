@@ -11,6 +11,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <JTImageButton.h>
+#import <MBProgressHUD.h>
 
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
@@ -490,9 +491,35 @@
 - (void) leavingFeedbackButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] initWithOfferData:_offerData];
-    [leaveFeedbackVC setReceiverUsername:_user2Username];
-    [self.navigationController pushViewController:leaveFeedbackVC animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    [query whereKey:PF_FEEDBACK_WRITER_ID equalTo:[PFUser currentUser].objectId];
+    [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[Utilities idOfDealerDealingWithMe:_offerData]];
+    [query whereKey:PF_FEEDBACK_IS_WRITER_THE_BUYER equalTo:[Utilities stringFromBoolean:[Utilities amITheBuyer:_offerData]]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"%@ %@", error, [error userInfo]);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        } else {
+            LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] initWithOfferData:_offerData];
+            [leaveFeedbackVC setReceiverUsername:_user2Username];
+            
+            if ([objects count] > 0) {
+                if ([objects count] > 1) {
+                    NSLog(@"leavingFeedbackButtonTapEventHandler duplicate feedback");
+                } else {
+                    PFObject *obj = [objects objectAtIndex:0];
+                    FeedbackData *feedback = [[FeedbackData alloc] initWithPFObject:obj];
+                    [leaveFeedbackVC setFeedbackData:feedback];
+                }
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            [self.navigationController pushViewController:leaveFeedbackVC animated:YES];
+        }
+    }];
 }
 
 #pragma mark - Backend methods

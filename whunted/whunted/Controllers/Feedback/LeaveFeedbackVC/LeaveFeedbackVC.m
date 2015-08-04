@@ -7,7 +7,6 @@
 //
 
 #import "LeaveFeedbackVC.h"
-#import "FeedbackData.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -39,6 +38,7 @@
 
 @synthesize offerData = _offerData;
 @synthesize receiverUsername = _receiverUsername;
+@synthesize feedbackData = _feedbackData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithOfferData: (OfferData *) offerData
@@ -62,6 +62,9 @@
     
     [self customizeUI];
     [self initCells];
+    
+    if (_feedbackData)
+        [self updateUI];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -78,6 +81,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _numOfCharsLeft = kMaxNumOfChars;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setFeedbackData:(FeedbackData *)feedbackData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _feedbackData = feedbackData;
 }
 
 #pragma mark - UI
@@ -195,6 +205,22 @@
     _numOfCharsLeftCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // update rating segmented control
+    if (_feedbackData.rating == FeedbackRatingPositive)
+        _ratingSegmentedControl.selectedSegmentIndex = 0;
+    else if (_feedbackData.rating == FeedbackRatingNeutral)
+        _ratingSegmentedControl.selectedSegmentIndex = 1;
+    else
+        _ratingSegmentedControl.selectedSegmentIndex = 2;
+    
+    // update comment text view
+    _feedbackCommentTextView.text = _feedbackData.comment;
+}
+
 #pragma mark - Table view data source
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -286,30 +312,32 @@
     
     PFUser *currUser = [PFUser currentUser];
     
-    FeedbackData *feedbackData = [[FeedbackData alloc] init];
-    feedbackData.writerID = currUser.objectId;
+    if (!_feedbackData)
+        _feedbackData = [[FeedbackData alloc] init];
+    
+    _feedbackData.writerID = currUser.objectId;
     if ([Utilities amITheBuyer:_offerData]) {
-        feedbackData.receiverID = _offerData.sellerID;
-        feedbackData.isWriterTheBuyer = YES;
+        _feedbackData.receiverID = _offerData.sellerID;
+        _feedbackData.isWriterTheBuyer = YES;
     }
     else {
-        feedbackData.receiverID = _offerData.buyerID;
-        feedbackData.isWriterTheBuyer = NO;
+        _feedbackData.receiverID = _offerData.buyerID;
+        _feedbackData.isWriterTheBuyer = NO;
     }
     
     if (_ratingSegmentedControl.selectedSegmentIndex == 0)
-        feedbackData.rating = FeedbackRatingPositive;
+        _feedbackData.rating = FeedbackRatingPositive;
     else if (_ratingSegmentedControl.selectedSegmentIndex == 1)
-        feedbackData.rating = FeedbackRatingNeutral;
+        _feedbackData.rating = FeedbackRatingNeutral;
     else
-        feedbackData.rating = FeedbackRatingNegative;
+        _feedbackData.rating = FeedbackRatingNegative;
     
     if (_feedbackCommentTextView.text)
-        feedbackData.comment = _feedbackCommentTextView.text;
+        _feedbackData.comment = _feedbackCommentTextView.text;
     else
-        feedbackData.comment = @"";
+        _feedbackData.comment = @"";
     
-    [self saveDataToRemoteServer:feedbackData];
+    [self saveDataToRemoteServer:_feedbackData];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

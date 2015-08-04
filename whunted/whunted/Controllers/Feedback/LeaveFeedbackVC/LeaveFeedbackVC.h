@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FeedbackData.h"
 #import "OfferData.h"
 
 @interface LeaveFeedbackVC : UITableViewController <UITextViewDelegate>
 
-@property (nonatomic, strong) OfferData *offerData;
+@property (nonatomic, strong) OfferData     *offerData;
 
-@property (nonatomic, strong) NSString  *receiverUsername;
+@property (nonatomic, strong) FeedbackData  *feedbackData;
+
+@property (nonatomic, strong) NSString      *receiverUsername;
 
 - (id) initWithOfferData: (OfferData *) offerData;
 
