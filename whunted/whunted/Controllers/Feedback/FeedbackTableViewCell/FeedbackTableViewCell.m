@@ -64,6 +64,8 @@
 - (void) initUI
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [self clearUI];
+    
     [self addUserProfilePicture];
     [self addWriterUsernameLabel];
     [self addFeedbackCommentTextView];
@@ -122,7 +124,7 @@
     CGFloat const kTextViewLeftInset = -5.0f;
     
     _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kTextViewTopMargin, kTextViewWidth, 0)];
-    _commentTextView.text = @"Excellent seller! Will certainly deal again in future.";
+    _commentTextView.text = _feedbackData.comment;
     _commentTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _commentTextView.contentInset = UIEdgeInsetsMake(kTextViewTopInset, kTextViewLeftInset, KTextViewBottomInset, 0);
     [_commentTextView sizeToFit];
@@ -141,7 +143,15 @@
     CGFloat const kRatingImageViewWidth = kRatingContainerWidth - 2 * kRatingImageViewMargin;
     
     _ratingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kRatingImageViewXPos, kProfilePictureMargin, kRatingImageViewWidth, kRatingImageViewWidth)];
-    UIImage *ratingImage = [UIImage imageNamed:@"smiling_face.png"];
+    UIImage *ratingImage;
+    if (_feedbackData.rating == FeedbackRatingPositive) {
+        ratingImage = [UIImage imageNamed:@"smiling_face.png"];
+    } else if (_feedbackData.rating == FeedbackRatingNeutral) {
+        ratingImage = [UIImage imageNamed:@"meh_face.png"];
+    } else {
+        ratingImage = [UIImage imageNamed:@"sad_face.png"];
+    }
+    
     [_ratingImageView setImage:ratingImage];
     [self addSubview:_ratingImageView];
 }
@@ -169,7 +179,7 @@
     CGFloat kTimestampLabelYPos = _clockImageView.frame.origin.y - 5;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kTimestampLabelXPos, kTimestampLabelYPos, 0, 0)];
-    _timestampLabel.text = @"4h";
+    _timestampLabel.text = [Utilities timestampStringFromDate:_feedbackData.modifiedDate];
     _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     _timestampLabel.textColor = LIGHT_GRAY_COLOR;
     [_timestampLabel sizeToFit];
@@ -183,10 +193,26 @@
     CGFloat kPurchasingRoleLabelXPos = _timestampLabel.frame.origin.x + _timestampLabel.frame.size.width + 10.0f;
     
     _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
-    _purchasingRoleLabel.text = @"As Seller";
+    if ([_feedbackData.writerID isEqualToString:_feedbackData.buyerID])
+        _purchasingRoleLabel.text = @"As Buyer";
+    else
+        _purchasingRoleLabel.text = @"As Seller";
     _purchasingRoleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     [_purchasingRoleLabel sizeToFit];
     [self addSubview:_purchasingRoleLabel];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) clearUI
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_userProfilePicture removeFromSuperview];
+    [_writerUsernameButton removeFromSuperview];
+    [_commentTextView removeFromSuperview];
+    [_ratingImageView removeFromSuperview];
+    [_clockImageView removeFromSuperview];
+    [_timestampLabel removeFromSuperview];
+    [_purchasingRoleLabel removeFromSuperview];
 }
 
 #pragma mark - Event Handler
