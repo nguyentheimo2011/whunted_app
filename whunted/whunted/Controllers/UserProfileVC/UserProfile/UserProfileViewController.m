@@ -54,6 +54,8 @@
     CGFloat             _statusAndNavBarHeight;
     CGFloat             _tabBarHeight;
     CGFloat             _currHeight;
+    
+    NSMutableDictionary *_ratingDict;
 }
 
 @synthesize delegate = _delegate;
@@ -792,7 +794,14 @@
 - (void) ratingViewTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error) {
+        
+    }];
+    
     FeedbackReviewVC *feedbackVC = [[FeedbackReviewVC alloc] init];
+    feedbackVC.ratingDict = _ratingDict;
     [self.navigationController pushViewController:feedbackVC animated:YES];
 }
 
@@ -825,6 +834,8 @@
 - (void) updateNumOfFeedbacks
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    _ratingDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@0, FEEDBACK_RATING_POSITIVE, @0, FEEDBACK_RATING_NEUTRAL, @0, FEEDBACK_RATING_NEGATIVE, nil];
+    
     // update positive feedback label
     PFQuery *posQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [posQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
@@ -834,6 +845,7 @@
             NSLog(@"%@ %@", error, [error userInfo]);
         else {
             _positiveFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+            [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_POSITIVE];
         }
     }];
     
@@ -846,6 +858,7 @@
             NSLog(@"%@ %@", error, [error userInfo]);
         else {
             _mehFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+            [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_NEUTRAL];
         }
     }];
     
@@ -858,6 +871,7 @@
             NSLog(@"%@ %@", error, [error userInfo]);
         else {
             _negativeFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+            [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_NEGATIVE];
         }
     }];
 }

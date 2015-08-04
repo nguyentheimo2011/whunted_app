@@ -23,6 +23,7 @@
 }
 
 @synthesize feedbackList = _feedbackList;
+@synthesize ratingDict = _ratingDict;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -110,7 +111,7 @@
 - (void) customizeUI
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities customizeTitleLabel:@"+10 / 0 / -0" forViewController:self];
+    [Utilities customizeTitleLabel:[NSString stringWithFormat:@"+%@ / %@ / -%@", [_ratingDict objectForKey:FEEDBACK_RATING_POSITIVE], [_ratingDict objectForKey:FEEDBACK_RATING_NEUTRAL], [_ratingDict objectForKey:FEEDBACK_RATING_NEGATIVE]] forViewController:self];
     
     self.view.backgroundColor = [UIColor whiteColor];
 }
