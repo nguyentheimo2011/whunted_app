@@ -15,10 +15,9 @@
 @property (nonatomic, strong)   NSString            *feedbackID;
 @property (nonatomic, strong)   NSString            *writerID;
 @property (nonatomic, strong)   NSString            *receiverID;
+@property (nonatomic)           BOOL                isWriterTheBuyer;
 @property (nonatomic)           FeedbackRatingType  rating;
 @property (nonatomic, strong)   NSString            *comment;
-@property (nonatomic, strong)   NSString            *buyerID;
-@property (nonatomic, strong)   NSString            *sellerID;
 @property (nonatomic, strong)   NSDate              *createdDate;
 @property (nonatomic, strong)   NSDate              *updatedDate;
 

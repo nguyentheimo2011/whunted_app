@@ -7,6 +7,7 @@
 //
 
 #import "FeedbackData.h"
+#import "Utilities.h"
 
 @implementation FeedbackData
 
@@ -15,8 +16,7 @@
 @synthesize receiverID = _receiverID;
 @synthesize rating = _rating;
 @synthesize comment = _comment;
-@synthesize buyerID = _buyerID;
-@synthesize sellerID = _sellerID;
+@synthesize isWriterTheBuyer = _isWriterTheBuyer;
 @synthesize createdDate = _createdDate;
 @synthesize updatedDate = _updatedDate;
 
@@ -29,10 +29,9 @@
         obj.objectId = _feedbackID;
     obj[PF_FEEDBACK_WRITER_ID] = _writerID;
     obj[PF_FEEDBACK_RECEIVER_ID] = _receiverID;
+    obj[PF_FEEDBACK_IS_WRITER_THE_BUYER] = [Utilities stringFromBoolean:_isWriterTheBuyer];
     obj[PF_FEEDBACK_RATING] = [self stringFromFeedbackRating:_rating];
     obj[PF_FEEDBACK_COMMENT] = _comment;
-    obj[PF_FEEDBACK_BUYER_ID] = _buyerID;
-    obj[PF_FEEDBACK_SELLER_ID] = _sellerID;
     
     return obj;
 }

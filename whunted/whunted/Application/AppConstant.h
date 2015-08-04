@@ -159,8 +159,7 @@
 #define     PF_FEEDBACK_RECEIVER_ID             @"receiverID"
 #define     PF_FEEDBACK_RATING                  @"rating"
 #define     PF_FEEDBACK_COMMENT                 @"comment"
-#define     PF_FEEDBACK_SELLER_ID               @"sellerID"
-#define     PF_FEEDBACK_BUYER_ID                @"buyerID"
+#define     PF_FEEDBACK_IS_WRITER_THE_BUYER     @"isWriterTheBuyer"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
@@ -216,6 +215,10 @@
 #define     USER_PROFILE_GENDER_NONE                    @"--"
 #define     USER_PROFILE_GENDER_MALE                    @"male"
 #define     USER_PROFILE_GENDER_FEMALE                  @"female"
+
+//----------------------------------------------------------------------------------------------------------------------------
+#define     STRING_OF_YES                               @"YES"
+#define     STRING_OF_NO                                @"NO"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60

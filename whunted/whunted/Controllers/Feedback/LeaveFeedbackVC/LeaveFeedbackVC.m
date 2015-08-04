@@ -288,12 +288,14 @@
     
     FeedbackData *feedbackData = [[FeedbackData alloc] init];
     feedbackData.writerID = currUser.objectId;
-    if ([Utilities amITheBuyer:_offerData])
+    if ([Utilities amITheBuyer:_offerData]) {
         feedbackData.receiverID = _offerData.sellerID;
-    else
+        feedbackData.isWriterTheBuyer = YES;
+    }
+    else {
         feedbackData.receiverID = _offerData.buyerID;
-    feedbackData.buyerID = _offerData.buyerID;
-    feedbackData.sellerID = _offerData.sellerID;
+        feedbackData.isWriterTheBuyer = NO;
+    }
     
     if (_ratingSegmentedControl.selectedSegmentIndex == 0)
         feedbackData.rating = FeedbackRatingPositive;
