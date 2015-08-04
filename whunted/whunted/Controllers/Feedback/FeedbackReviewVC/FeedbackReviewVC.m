@@ -20,6 +20,8 @@
     UITableView         *_feedbackTableView;
     
     UISegmentedControl  *_categorySegmentedControl;
+    
+    NSArray             *_categorizedFeedbackList;
 }
 
 @synthesize feedbackList = _feedbackList;
@@ -96,6 +98,8 @@
     [array addObject:feedback_4];
     
     _feedbackList = [NSArray arrayWithArray:array];
+    
+    _categorizedFeedbackList = [NSMutableArray arrayWithArray:_feedbackList];
 }
 
 #pragma mark - UI Handlers
@@ -137,6 +141,7 @@
     _categorySegmentedControl.tintColor = MAIN_BLUE_COLOR;
     [_categorySegmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
     _categorySegmentedControl.selectedSegmentIndex = 0;
+    [_categorySegmentedControl addTarget:self action:@selector(categorySegmentedControlSelectedIndexChange) forControlEvents:UIControlEventValueChanged];
     [segmentContainer addSubview:_categorySegmentedControl];
     
     CGFloat const kSeparatorLineLeftMargin = 15.0f;
@@ -175,7 +180,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_feedbackList count];
+    return [_categorizedFeedbackList count];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -188,7 +193,7 @@
         cell = [[FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFeedbackCellIdentifier];
     }
     
-    [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
+    [cell setFeedbackData:[_categorizedFeedbackList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -217,10 +222,58 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cell = [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier];
-        [cell setFeedbackData:[_feedbackList objectAtIndex:indexPath.row]];
+        [cell setFeedbackData:[_categorizedFeedbackList objectAtIndex:indexPath.row]];
     });
     
     return cell.cellHeight;
+}
+
+#pragma mark - Event Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) categorySegmentedControlSelectedIndexChange
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_categorySegmentedControl.selectedSegmentIndex == 0) {
+        _categorizedFeedbackList = [NSArray arrayWithArray:_feedbackList];
+        [_feedbackTableView reloadData];
+    } else if (_categorySegmentedControl.selectedSegmentIndex == 1) {
+        _categorizedFeedbackList = [NSArray arrayWithArray:[self getFeedbacksAsSeller:_feedbackList]];
+        [_feedbackTableView reloadData];
+    } else {
+        _categorizedFeedbackList = [NSArray arrayWithArray:[self getFeedbacksAsBuyer:_feedbackList]];
+        [_feedbackTableView reloadData];
+    }
+}
+
+#pragma mark - Helpers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) getFeedbacksAsSeller: (NSArray *) feedbackList
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (FeedbackData *feedback in feedbackList) {
+        if (feedback.isWriterTheBuyer)
+            [array addObject:feedback];
+    }
+    
+    return array;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) getFeedbacksAsBuyer: (NSArray *) feedbackList
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (FeedbackData *feedback in feedbackList) {
+        if (!feedback.isWriterTheBuyer)
+            [array addObject:feedback];
+    }
+    
+    return array;
 }
 
 @end

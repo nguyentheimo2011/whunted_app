@@ -193,7 +193,7 @@
     CGFloat kPurchasingRoleLabelXPos = _timestampLabel.frame.origin.x + _timestampLabel.frame.size.width + 10.0f;
     
     _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
-    if (_feedbackData.isWriterTheBuyer)
+    if (!_feedbackData.isWriterTheBuyer)
         _purchasingRoleLabel.text = @"As Buyer";
     else
         _purchasingRoleLabel.text = @"As Seller";
