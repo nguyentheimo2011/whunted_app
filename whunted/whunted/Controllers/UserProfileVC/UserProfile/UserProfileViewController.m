@@ -130,6 +130,7 @@
     [self addSettingButton];
     [self addCountryLabel];
     [self addRatingView];
+    [self updateNumOfFeedbacks];
     
     _currHeight = WINSIZE.width * 0.3;
 }
@@ -816,6 +817,49 @@
     _countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
     
     _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
+}
+
+#pragma mark - Backend
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) updateNumOfFeedbacks
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    // update positive feedback label
+    PFQuery *posQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    [posQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [posQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_POSITIVE];
+    [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if (error)
+            NSLog(@"%@ %@", error, [error userInfo]);
+        else {
+            _positiveFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+        }
+    }];
+    
+    // update neutral feedback label
+    PFQuery *neuQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    [neuQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [neuQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEUTRAL];
+    [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if (error)
+            NSLog(@"%@ %@", error, [error userInfo]);
+        else {
+            _mehFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+        }
+    }];
+    
+    // update negative feedback label
+    PFQuery *negQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    [negQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [negQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEGATIVE];
+    [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if (error)
+            NSLog(@"%@ %@", error, [error userInfo]);
+        else {
+            _negativeFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
+        }
+    }];
 }
 
 @end
