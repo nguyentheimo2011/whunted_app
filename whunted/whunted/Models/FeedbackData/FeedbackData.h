@@ -19,6 +19,6 @@
 @property (nonatomic, strong)   NSString            *buyerID;
 @property (nonatomic, strong)   NSString            *sellerID;
 @property (nonatomic, strong)   NSDate              *createdDate;
-@property (nonatomic, strong)   NSDate              *modifiedDate;
+@property (nonatomic, strong)   NSDate              *updatedDate;
 
 @end

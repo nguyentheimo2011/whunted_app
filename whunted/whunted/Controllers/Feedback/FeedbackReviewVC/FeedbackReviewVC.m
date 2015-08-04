@@ -61,7 +61,7 @@
     feedback_1.buyerID = @"jqHLAimRS6";
     feedback_1.sellerID = @"TvXZJZLPd8";
     feedback_1.createdDate = [Utilities dateFromCommonlyFormattedString:@"20/7/2015"];
-    feedback_1.modifiedDate = feedback_1.createdDate;
+    feedback_1.updatedDate = feedback_1.createdDate;
     [array addObject:feedback_1];
     
     FeedbackData *feedback_2 = [[FeedbackData alloc] init];
@@ -71,7 +71,7 @@
     feedback_2.buyerID = @"jqHLAimRS6";
     feedback_2.sellerID = @"TvXZJZLPd8";
     feedback_2.createdDate = [Utilities dateFromCommonlyFormattedString:@"21/7/2015"];
-    feedback_2.modifiedDate = feedback_2.createdDate;
+    feedback_2.updatedDate = feedback_2.createdDate;
     [array addObject:feedback_2];
     
     FeedbackData *feedback_3 = [[FeedbackData alloc] init];
@@ -81,7 +81,7 @@
     feedback_3.buyerID = @"TvXZJZLPd8";
     feedback_3.sellerID = @"jqHLAimRS6";
     feedback_3.createdDate = [Utilities dateFromCommonlyFormattedString:@"22/7/2015"];
-    feedback_3.modifiedDate = feedback_3.createdDate;
+    feedback_3.updatedDate = feedback_3.createdDate;
     [array addObject:feedback_3];
     
     FeedbackData *feedback_4 = [[FeedbackData alloc] init];
@@ -91,7 +91,7 @@
     feedback_4.buyerID = @"TvXZJZLPd8";
     feedback_4.sellerID = @"jqHLAimRS6";
     feedback_4.createdDate = [Utilities dateFromCommonlyFormattedString:@"23/7/2015"];
-    feedback_4.modifiedDate = feedback_4.createdDate;
+    feedback_4.updatedDate = feedback_4.createdDate;
     [array addObject:feedback_4];
     
     _feedbackList = [NSArray arrayWithArray:array];
