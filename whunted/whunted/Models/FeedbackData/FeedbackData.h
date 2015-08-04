@@ -22,4 +22,6 @@
 @property (nonatomic, strong)   NSDate              *createdDate;
 @property (nonatomic, strong)   NSDate              *updatedDate;
 
+- (PFObject *) pfObjectFromFeedbackData;
+
 @end

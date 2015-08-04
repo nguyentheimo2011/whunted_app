@@ -10,4 +10,45 @@
 
 @implementation FeedbackData
 
+@synthesize feedbackID = _feedbackID;
+@synthesize writerID = _writerID;
+@synthesize receiverID = _receiverID;
+@synthesize rating = _rating;
+@synthesize comment = _comment;
+@synthesize buyerID = _buyerID;
+@synthesize sellerID = _sellerID;
+@synthesize createdDate = _createdDate;
+@synthesize updatedDate = _updatedDate;
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (PFObject *) pfObjectFromFeedbackData
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *obj = [[PFObject alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
+    if ([_feedbackID length] > 0)
+        obj.objectId = _feedbackID;
+    obj[PF_FEEDBACK_WRITER_ID] = _writerID;
+    obj[PF_FEEDBACK_RECEIVER_ID] = _receiverID;
+    obj[PF_FEEDBACK_RATING] = [self stringFromFeedbackRating:_rating];
+    obj[PF_FEEDBACK_COMMENT] = _comment;
+    obj[PF_FEEDBACK_BUYER_ID] = _buyerID;
+    obj[PF_FEEDBACK_SELLER_ID] = _sellerID;
+    
+    return obj;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (NSString *) stringFromFeedbackRating: (FeedbackRatingType) rating
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    if (rating == FeedbackRatingPositive)
+        return FEEDBACK_RATING_POSITIVE;
+    else if (rating == FeedbackRatingNeutral)
+        return FEEDBACK_RATING_NEUTRAL;
+    else
+        return FEEDBACK_RATING_NEGATIVE;
+}
+
+
+
 @end

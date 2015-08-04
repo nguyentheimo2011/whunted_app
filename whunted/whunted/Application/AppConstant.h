@@ -155,6 +155,14 @@
 #define     PF_OFFER_STATUS_ACCEPTED            @"accepted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_FEEDBACK_WRITER_ID               @"writerID"
+#define     PF_FEEDBACK_RECEIVER_ID             @"receiverID"
+#define     PF_FEEDBACK_RATING                  @"rating"
+#define     PF_FEEDBACK_COMMENT                 @"comment"
+#define     PF_FEEDBACK_SELLER_ID               @"sellerID"
+#define     PF_FEEDBACK_BUYER_ID                @"buyerID"
+
+//-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
 #define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
 
@@ -187,14 +195,13 @@
 #define     DEFAULT_FONT                        [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]
 
 //----------------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------------------------------------
 #define     SYNC_IN_PROGRESS                    @"syncInProgess"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PF_OFFER_CLASS                      @"OfferedWant"
 #define     PF_ACCEPTED_OFFER_CLASS             @"AcceptedOffer"
 #define     PF_WANT_DATA_CLASS                  @"WantedPost"
+#define     PF_FEEDBACK_DATA_CLASS              @"FeedbackData"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY    @"uploadMessageSuccessfullyNotification"
@@ -236,6 +243,11 @@ typedef enum {
     FeedbackRatingNeutral,
     FeedbackRatingNegative
 } FeedbackRatingType;
+
+//----------------------------------------------------------------------------------------------------------------------------
+#define     FEEDBACK_RATING_POSITIVE                    @"positive"
+#define     FEEDBACK_RATING_NEUTRAL                     @"neutral"
+#define     FEEDBACK_RATING_NEGATIVE                    @"negative"
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef void (^FetchedUserHandler) (PFUser *, UIImage *);

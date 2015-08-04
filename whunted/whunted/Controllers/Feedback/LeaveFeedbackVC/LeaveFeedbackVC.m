@@ -7,6 +7,7 @@
 //
 
 #import "LeaveFeedbackVC.h"
+#import "FeedbackData.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -31,11 +32,28 @@
     
     SZTextView          *_feedbackCommentTextView;
     
+    UISegmentedControl  *_ratingSegmentedControl;
+    
     NSInteger           _numOfCharsLeft;
 }
 
+@synthesize offerData = _offerData;
+@synthesize receiverUsername = _receiverUsername;
+
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidLoad
+- (id) initWithOfferData: (OfferData *) offerData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        _offerData = offerData;
+    }
+    
+    return self;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewDidLoad
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
@@ -47,7 +65,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
@@ -118,23 +136,29 @@
     CGFloat const kControlWidth = WINSIZE.width - 2 * kControlLeftMargin;
     CGFloat const kControlHeight = 30.0f;
     NSArray *ratings = @[@"Positive", @"Neutral", @"Negative"];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:ratings];
-    segmentedControl.frame = CGRectMake(kControlLeftMargin, kControlYPos, kControlWidth, kControlHeight);
-    [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
-    segmentedControl.selectedSegmentIndex = 0;
-    [segmentedControl setImage:[UIImage imageNamed:@"smiling_face_small.png"] forSegmentAtIndex:0];
-    [segmentedControl setImage:[UIImage imageNamed:@"meh_face_small.png"] forSegmentAtIndex:1];
-    [segmentedControl setImage:[UIImage imageNamed:@"sad_face_small.png"] forSegmentAtIndex:2];
-    segmentedControl.tintColor = MAIN_BLUE_COLOR;
-    [_ratingCell addSubview:segmentedControl];
+    _ratingSegmentedControl = [[UISegmentedControl alloc] initWithItems:ratings];
+    _ratingSegmentedControl.frame = CGRectMake(kControlLeftMargin, kControlYPos, kControlWidth, kControlHeight);
+    [_ratingSegmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
+    _ratingSegmentedControl.selectedSegmentIndex = 0;
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"smiling_face_small.png"] forSegmentAtIndex:0];
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"meh_face_small.png"] forSegmentAtIndex:1];
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"sad_face_small.png"] forSegmentAtIndex:2];
+    _ratingSegmentedControl.tintColor = MAIN_BLUE_COLOR;
+    [_ratingCell addSubview:_ratingSegmentedControl];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initSecondCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    NSString *purchasingRole;
+    if ([Utilities amITheBuyer:_offerData])
+        purchasingRole = NSLocalizedString(@"as a seller", nil);
+    else
+        purchasingRole = NSLocalizedString(@"as a buyer", nil);
+    
     _secondCell = [[UITableViewCell alloc] init];
-    _secondCell.textLabel.text = NSLocalizedString(@"Describe your experience with nguyentheimo2011 as a seller", nil);
+    _secondCell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"Describe your experience with", nil), _receiverUsername, purchasingRole];
     _secondCell.textLabel.font = DEFAULT_FONT;
     _secondCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _secondCell.textLabel.numberOfLines = 2;
@@ -259,6 +283,31 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+    
+    PFUser *currUser = [PFUser currentUser];
+    
+    FeedbackData *feedbackData = [[FeedbackData alloc] init];
+    feedbackData.writerID = currUser.objectId;
+    if ([Utilities amITheBuyer:_offerData])
+        feedbackData.receiverID = _offerData.sellerID;
+    else
+        feedbackData.receiverID = _offerData.buyerID;
+    feedbackData.buyerID = _offerData.buyerID;
+    feedbackData.sellerID = _offerData.sellerID;
+    
+    if (_ratingSegmentedControl.selectedSegmentIndex == 0)
+        feedbackData.rating = FeedbackRatingPositive;
+    else if (_ratingSegmentedControl.selectedSegmentIndex == 1)
+        feedbackData.rating = FeedbackRatingNeutral;
+    else
+        feedbackData.rating = FeedbackRatingNegative;
+    
+    if (_feedbackCommentTextView.text)
+        feedbackData.comment = _feedbackCommentTextView.text;
+    else
+        feedbackData.comment = @"";
+    
+    [self saveDataToRemoteServer:feedbackData];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -272,8 +321,10 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-//------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
+    // text view has no more than kMaxNumOfChars chars
+    
     if(range.length + range.location > textView.text.length)
     {
         return NO;
@@ -282,18 +333,36 @@
     NSUInteger newLength = [textView.text length] + [text length] - range.length;
     
     if (newLength <= kMaxNumOfChars) {
+        // if the new text has the length of less than kMaxNumOfChars chars, then apply the changes
         _numOfCharsLeft = kMaxNumOfChars - newLength;
         _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
         return YES;
     } else {
+        // otherwise, take only part of the text
         NSUInteger maxAddedLen = kMaxNumOfChars - (textView.text.length - range.length);
         NSString *subText = [text substringToIndex:maxAddedLen];
         NSString *newText = [NSString stringWithFormat:@"%@%@", textView.text, subText];
         textView.text = newText;
+        
+        // update num of chars
         _numOfCharsLeft = 0;
         _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
         return NO;
     }
 }
+
+#pragma mark - Backend
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) saveDataToRemoteServer: (FeedbackData *) feedbackData
+//----------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *obj = [feedbackData pfObjectFromFeedbackData];
+    [obj saveInBackgroundWithBlock:^(BOOL success, NSError *error) {
+        if (!success)
+            NSLog(@"%@ %@", error, [error userInfo]);
+    }];
+}
+
 
 @end

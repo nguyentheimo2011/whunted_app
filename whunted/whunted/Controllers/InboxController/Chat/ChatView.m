@@ -490,7 +490,8 @@
 - (void) leavingFeedbackButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] init];
+    LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] initWithOfferData:_offerData];
+    [leaveFeedbackVC setReceiverUsername:_user2Username];
     [self.navigationController pushViewController:leaveFeedbackVC animated:YES];
 }
 

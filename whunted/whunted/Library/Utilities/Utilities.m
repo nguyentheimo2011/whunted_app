@@ -446,4 +446,16 @@
     }];
 }
 
+#pragma mark - Data Specifics
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (BOOL) amITheBuyer:(OfferData *) offerData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
+        return YES;
+    else
+        return NO;
+}
+
 @end
