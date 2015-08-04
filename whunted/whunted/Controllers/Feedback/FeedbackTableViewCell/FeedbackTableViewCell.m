@@ -193,10 +193,10 @@
     CGFloat kPurchasingRoleLabelXPos = _timestampLabel.frame.origin.x + _timestampLabel.frame.size.width + 10.0f;
     
     _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
-//    if ([_feedbackData.writerID isEqualToString:_feedbackData.buyerID])
-//        _purchasingRoleLabel.text = @"As Buyer";
-//    else
-//        _purchasingRoleLabel.text = @"As Seller";
+    if (_feedbackData.isWriterTheBuyer)
+        _purchasingRoleLabel.text = @"As Buyer";
+    else
+        _purchasingRoleLabel.text = @"As Seller";
     _purchasingRoleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     [_purchasingRoleLabel sizeToFit];
     [self addSubview:_purchasingRoleLabel];
