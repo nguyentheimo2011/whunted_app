@@ -160,6 +160,8 @@
 #define     PF_FEEDBACK_RATING                  @"rating"
 #define     PF_FEEDBACK_COMMENT                 @"comment"
 #define     PF_FEEDBACK_IS_WRITER_THE_BUYER     @"isWriterTheBuyer"
+#define     PF_CREATED_AT                       @"createdAt"
+#define     PF_UPDATED_AT                       @"updatedAt"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"

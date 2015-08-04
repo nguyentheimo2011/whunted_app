@@ -13,6 +13,7 @@
 #import "PreferenceViewController.h"
 #import "SettingsTableVC.h"
 #import "FeedbackReviewVC.h"
+#import "FeedbackData.h"
 #import "Utilities.h"
 
 #import <Parse/Parse.h>
@@ -796,13 +797,22 @@
 {
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [query orderByAscending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error) {
-        
+        if (error) {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        } else {
+            FeedbackReviewVC *feedbackVC = [[FeedbackReviewVC alloc] init];
+            feedbackVC.ratingDict = _ratingDict;
+            
+            NSMutableArray *feedbackList = [NSMutableArray array];
+            for (PFObject *obj in array)
+                [feedbackList addObject:[[FeedbackData alloc] initWithPFObject:obj]];
+            
+            feedbackVC.feedbackList = feedbackList;
+            [self.navigationController pushViewController:feedbackVC animated:YES];
+        }
     }];
-    
-    FeedbackReviewVC *feedbackVC = [[FeedbackReviewVC alloc] init];
-    feedbackVC.ratingDict = _ratingDict;
-    [self.navigationController pushViewController:feedbackVC animated:YES];
 }
 
 #pragma mark - EditProfileDelegate
