@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong)   NSString            *feedbackID;
 @property (nonatomic, strong)   NSString            *writerID;
+@property (nonatomic, strong)   NSString            *receiverID;
 @property (nonatomic)           FeedbackRatingType  rating;
 @property (nonatomic, strong)   NSString            *comment;
 @property (nonatomic, strong)   NSString            *buyerID;
