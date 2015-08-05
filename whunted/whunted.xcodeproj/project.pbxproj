@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		64AE23510F482E5A1A10D7E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A02F6CD541644ABF1CD6C53B /* libPods.a */; };
+		E90ACE0B1B71F04400DC9768 /* activity_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE051B71F04400DC9768 /* activity_tab_icon@1x.png */; };
+		E90ACE0C1B71F04400DC9768 /* activity_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE061B71F04400DC9768 /* activity_tab_icon@2x.png */; };
+		E90ACE0D1B71F04400DC9768 /* activity_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE071B71F04400DC9768 /* activity_tab_icon@3x.png */; };
+		E90ACE0E1B71F04400DC9768 /* camera_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE081B71F04400DC9768 /* camera_tab_icon@1x.png */; };
+		E90ACE0F1B71F04400DC9768 /* camera_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE091B71F04400DC9768 /* camera_tab_icon@2x.png */; };
+		E90ACE101B71F04400DC9768 /* camera_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE0A1B71F04400DC9768 /* camera_tab_icon@3x.png */; };
 		E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */; };
 		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
 		E915F8231B39587700D0A2F8 /* info_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F8201B39587700D0A2F8 /* info_icon.png */; };
@@ -18,9 +24,6 @@
 		E915F82C1B3A6EE400D0A2F8 /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E916F44E1B00B978005055E3 /* GenericController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F44D1B00B978005055E3 /* GenericController.m */; };
-		E916F45A1B01EC57005055E3 /* camera@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4571B01EC57005055E3 /* camera@1x.png */; };
-		E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4581B01EC57005055E3 /* camera@2x.png */; };
-		E916F45C1B01EC57005055E3 /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E916F4591B01EC57005055E3 /* camera@3x.png */; };
 		E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4601B02F62C005055E3 /* KLCPopup.m */; };
 		E916F46E1B033BDE005055E3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F46D1B033BDE005055E3 /* Utilities.m */; };
 		E91A5A621B048590008382E2 /* cameraplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A5F1B048590008382E2 /* cameraplus@1x.png */; };
@@ -253,6 +256,12 @@
 /* Begin PBXFileReference section */
 		531206C37018F83BCB102C23 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A02F6CD541644ABF1CD6C53B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E90ACE051B71F04400DC9768 /* activity_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/activity_tab_icon@1x.png"; sourceTree = "<group>"; };
+		E90ACE061B71F04400DC9768 /* activity_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/activity_tab_icon@2x.png"; sourceTree = "<group>"; };
+		E90ACE071B71F04400DC9768 /* activity_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "activity_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/activity_tab_icon@3x.png"; sourceTree = "<group>"; };
+		E90ACE081B71F04400DC9768 /* camera_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@1x.png"; sourceTree = "<group>"; };
+		E90ACE091B71F04400DC9768 /* camera_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@2x.png"; sourceTree = "<group>"; };
+		E90ACE0A1B71F04400DC9768 /* camera_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@3x.png"; sourceTree = "<group>"; };
 		E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriceOptionViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.h; sourceTree = "<group>"; };
 		E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriceOptionViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.m; sourceTree = "<group>"; };
 		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
@@ -266,9 +275,6 @@
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
 		E916F44C1B00B978005055E3 /* GenericController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericController.h; path = Controllers/GenericControllers/GenericController.h; sourceTree = "<group>"; };
 		E916F44D1B00B978005055E3 /* GenericController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericController.m; path = Controllers/GenericControllers/GenericController.m; sourceTree = "<group>"; };
-		E916F4571B01EC57005055E3 /* camera@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@1x.png"; path = "Resources/Tab Bar Icons/camera@1x.png"; sourceTree = "<group>"; };
-		E916F4581B01EC57005055E3 /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@2x.png"; path = "Resources/Tab Bar Icons/camera@2x.png"; sourceTree = "<group>"; };
-		E916F4591B01EC57005055E3 /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera@3x.png"; path = "Resources/Tab Bar Icons/camera@3x.png"; sourceTree = "<group>"; };
 		E916F45F1B02F62C005055E3 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = Library/KLCPopup/KLCPopup.h; sourceTree = "<group>"; };
 		E916F4601B02F62C005055E3 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = Library/KLCPopup/KLCPopup.m; sourceTree = "<group>"; };
 		E916F46C1B033BDE005055E3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = Library/Utilities/Utilities.h; sourceTree = "<group>"; };
@@ -948,10 +954,15 @@
 		E94D182A1AF9F16800E31B01 /* Tab Bar Icons */ = {
 			isa = PBXGroup;
 			children = (
+				E90ACE051B71F04400DC9768 /* activity_tab_icon@1x.png */,
+				E90ACE061B71F04400DC9768 /* activity_tab_icon@2x.png */,
+				E90ACE071B71F04400DC9768 /* activity_tab_icon@3x.png */,
+				E90ACE081B71F04400DC9768 /* camera_tab_icon@1x.png */,
+				E90ACE091B71F04400DC9768 /* camera_tab_icon@2x.png */,
+				E90ACE0A1B71F04400DC9768 /* camera_tab_icon@3x.png */,
 				E92EC50C1B69542400AABB72 /* marketplace_2@1x.png */,
 				E92EC50D1B69542400AABB72 /* marketplace_2@2x.png */,
 				E92EC50E1B69542400AABB72 /* marketplace_2@3x.png */,
-				E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */,
 				E963614A1B16C7F000EB9D35 /* marketplace@1x.png */,
 				E963614B1B16C7F000EB9D35 /* marketplace@2x.png */,
 				E963614C1B16C7F000EB9D35 /* marketplace@3x.png */,
@@ -961,11 +972,9 @@
 				E9E4566A1B0D8C7400E8B55D /* want_icon@1x.png */,
 				E9E4566B1B0D8C7400E8B55D /* want_icon@2x.png */,
 				E9E4566C1B0D8C7400E8B55D /* want_icon@3x.png */,
-				E916F4571B01EC57005055E3 /* camera@1x.png */,
-				E916F4581B01EC57005055E3 /* camera@2x.png */,
-				E916F4591B01EC57005055E3 /* camera@3x.png */,
 				E94D182E1AF9F18300E31B01 /* newsfeed@1x.png */,
 				E94D182F1AF9F18300E31B01 /* newsfeed@2x.png */,
+				E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */,
 			);
 			name = "Tab Bar Icons";
 			sourceTree = "<group>";
@@ -1709,10 +1718,10 @@
 				E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */,
 				E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */,
 				E92A0BF81B706F0E000D66BD /* smiling_face_small@2x.png in Resources */,
-				E916F45C1B01EC57005055E3 /* camera@3x.png in Resources */,
 				E97A95401B528973003796DD /* meh_face@2x.png in Resources */,
 				E9D432E71B536D0500530492 /* email_verification@3x.png in Resources */,
 				E9D432EF1B53C89400530492 /* grid_view_icon@2x.png in Resources */,
+				E90ACE0D1B71F04400DC9768 /* activity_tab_icon@3x.png in Resources */,
 				E92A0BF41B706F0E000D66BD /* sad_face_small@1x.png in Resources */,
 				E92A0BF61B706F0E000D66BD /* sad_face_small@3x.png in Resources */,
 				E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */,
@@ -1726,6 +1735,7 @@
 				E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */,
 				E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */,
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
+				E90ACE0C1B71F04400DC9768 /* activity_tab_icon@2x.png in Resources */,
 				E9E456841B0DE8E100E8B55D /* HorizontalLineViewController.xib in Resources */,
 				E97A95491B528F18003796DD /* move_to_next_icon@2x.png in Resources */,
 				E98113081B2155AB00ECAA0C /* userprofile@3x.png in Resources */,
@@ -1736,7 +1746,6 @@
 				E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */,
 				E9B8009A1B145481006D9133 /* background_image.jpg in Resources */,
 				E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */,
-				E916F45B1B01EC57005055E3 /* camera@2x.png in Resources */,
 				E9D264B11B64ACB300CBEAFF /* SourceSansPro-It.otf in Resources */,
 				E97A951F1B454072003796DD /* chat_pictures.png in Resources */,
 				E92EC50F1B69542400AABB72 /* marketplace_2@1x.png in Resources */,
@@ -1765,7 +1774,6 @@
 				E94D181B1AF9CE8900E31B01 /* profile@1x.png in Resources */,
 				E915F82C1B3A6EE400D0A2F8 /* newsfeed@3x.png in Resources */,
 				E9D433031B550EC200530492 /* edit_icon@2x.png in Resources */,
-				E916F45A1B01EC57005055E3 /* camera@1x.png in Resources */,
 				E963614D1B16C7F000EB9D35 /* marketplace@1x.png in Resources */,
 				E97A953F1B528973003796DD /* meh_face@1x.png in Resources */,
 				E94D18371AF9F18300E31B01 /* newsfeed@1x.png in Resources */,
@@ -1805,8 +1813,10 @@
 				E95CFA571B141EDE003755E3 /* facebook_login_button@3x.png in Resources */,
 				E9E456721B0D8C7400E8B55D /* want_icon@3x.png in Resources */,
 				E963614E1B16C7F000EB9D35 /* marketplace@2x.png in Resources */,
+				E90ACE0B1B71F04400DC9768 /* activity_tab_icon@1x.png in Resources */,
 				E9D432F21B53C89400530492 /* list_view_icon@2x.png in Resources */,
 				E97A95371B528423003796DD /* smiling_face@2x.png in Resources */,
+				E90ACE101B71F04400DC9768 /* camera_tab_icon@3x.png in Resources */,
 				E97A954A1B528F18003796DD /* move_to_next_icon@3x.png in Resources */,
 				E9E456701B0D8C7400E8B55D /* want_icon@1x.png in Resources */,
 				E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */,
@@ -1815,7 +1825,9 @@
 				E94D18171AF9CE8900E31B01 /* filter@3x.png in Resources */,
 				E92A0BF51B706F0E000D66BD /* sad_face_small@2x.png in Resources */,
 				E9D432E61B536D0500530492 /* email_verification@2x.png in Resources */,
+				E90ACE0E1B71F04400DC9768 /* camera_tab_icon@1x.png in Resources */,
 				E9A639321B298A500085C54F /* placeholder.png in Resources */,
+				E90ACE0F1B71F04400DC9768 /* camera_tab_icon@2x.png in Resources */,
 				E92A0BF31B706F0E000D66BD /* meh_face_small@3x.png in Resources */,
 				E94D18151AF9CE8900E31B01 /* filter@1x.png in Resources */,
 				E9D432E31B536D0500530492 /* fb_verification@2x.png in Resources */,
