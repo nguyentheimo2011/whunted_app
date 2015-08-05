@@ -10,8 +10,9 @@
 #import "NewsFeedViewController.h"
 #import "MarketplaceViewController.h"
 #import "GenericController.h"
-#import "MySellViewController.h"
-#import "MyWantViewController.h"
+#import "InboxAllViewController.h"
+#import "ActivityViewController.h"
+#import "UploadingViewController.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -22,9 +23,10 @@
 @interface MainViewController ()
 {
     MarketplaceViewController   *_brController;
-    MyWantViewController        *_myWantVC;
-    MySellViewController        *_mySellVC;
+    ActivityViewController      *_activityVC;
+    InboxAllViewController      *_inboxVC;
     NewsFeedViewController      *_newsFeedVC;
+    UploadingViewController     *_uploadingVC;
 }
 
 @end
@@ -51,21 +53,25 @@
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         _newsFeedVC.delegate = self;
         
-        UINavigationController *myWantNavController = [[UINavigationController alloc] init];
-        _myWantVC = [[MyWantViewController alloc] init];
-        [myWantNavController setViewControllers: [NSArray arrayWithObject:_myWantVC]];
-        [myWantNavController setTitle:NSLocalizedString(@"Want", nil)];
-        [myWantNavController.tabBarItem setImage:[UIImage imageNamed:@"want_icon.png"]];
-        _myWantVC.delegate = self;
+        UINavigationController *uploadingNavController = [[UINavigationController alloc] init];
+        _uploadingVC = [[UploadingViewController alloc] init];
+        [uploadingNavController setViewControllers:@[_uploadingVC]];
+        [uploadingNavController setTitle:NSLocalizedString(@"Upload", nil)];
+        [uploadingNavController.tabBarItem setImage:[UIImage imageNamed:@"camera_tab_icon.png"]];
         
-        UINavigationController *mySellNavController = [[UINavigationController alloc] init];
-        _mySellVC = [[MySellViewController alloc] init];
-        [mySellNavController setViewControllers: [NSArray arrayWithObject:_mySellVC]];
-        [mySellNavController setTitle:NSLocalizedString(@"Sell", nil)];
-        [mySellNavController.tabBarItem setImage:[UIImage imageNamed:@"sell_icon.png"]];
-        _mySellVC.delegate = self;
+        UINavigationController *activityNavController = [[UINavigationController alloc] init];
+        _activityVC = [[ActivityViewController alloc] init];
+        [activityNavController setViewControllers: [NSArray arrayWithObject:_activityVC]];
+        [activityNavController setTitle:NSLocalizedString(@"Activity", nil)];
+        [activityNavController.tabBarItem setImage:[UIImage imageNamed:@"activity_tab_icon.png"]];
         
-        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, myWantNavController, mySellNavController, nil];
+        UINavigationController *chattingNavController = [[UINavigationController alloc] init];
+        _inboxVC = [[InboxAllViewController alloc] init];
+        [chattingNavController setViewControllers: [NSArray arrayWithObject:_inboxVC]];
+        [chattingNavController setTitle:NSLocalizedString(@"Inbox", nil)];
+        [chattingNavController.tabBarItem setImage:[UIImage imageNamed:@"chat_tab_icon.png"]];
+        
+        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, uploadingNavController,activityNavController, chattingNavController, nil];
         [self setViewControllers:controllers];
         [self setSelectedIndex:0];
     }
@@ -92,15 +98,15 @@
 - (void) genericController:(GenericController *)controller shouldUpdateDataAt:(NSInteger)controllerIndex
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (controllerIndex == 0) {
-        [_brController retrieveLatestWantData];
-    } else if (controllerIndex == 2) {
-        [_myWantVC retrieveLatestWantData];
-        [self setSelectedIndex:2];
-    } else if (controllerIndex == 3) {
-        [_mySellVC retrieveLatestWantData];
-        [self setSelectedIndex:3];
-    }
+//    if (controllerIndex == 0) {
+//        [_brController retrieveLatestWantData];
+//    } else if (controllerIndex == 2) {
+//        [_myWantVC retrieveLatestWantData];
+//        [self setSelectedIndex:2];
+//    } else if (controllerIndex == 3) {
+//        [_mySellVC retrieveLatestWantData];
+//        [self setSelectedIndex:3];
+//    }
 }
 
 

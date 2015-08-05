@@ -10,13 +10,11 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-@interface ImageGetterViewController ()
-
-@end
-
 @implementation ImageGetterViewController
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -24,10 +22,14 @@
         [Utilities setTopRoundedCorner:self.titleView];
         [Utilities setBottomRoundedCorner:self.postingImageLinkButton];
     }
+    
     return self;
 }
 
-- (void) viewDidLoad {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) viewDidLoad
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
     
     CGFloat width = WINSIZE.width * 0.875;
@@ -37,7 +39,9 @@
     [self customizeUI];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.titleView setBackgroundColor:MAIN_BLUE_COLOR];
     [self.firstTitleLabel setText:NSLocalizedString(@"Tell people what you want to buy", nil)];
@@ -53,21 +57,30 @@
     [self.postingImageLinkButton setBackgroundColor:BACKGROUND_GRAY_COLOR];
 }
 
-- (void) didReceiveMemoryWarning {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) didReceiveMemoryWarning
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)selectPhoto:(UIButton *)sender;
+//--------------------------------------------------------------------------------------------------------------------------------
+- (IBAction)selectPhoto:(UIButton *)sender
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.delegate imageGetterViewController:self didChooseAMethod:PhotoLibrary];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (IBAction)takePhoto:(UIButton *)sender
+//--------------------------------------------------------------------------------------------------------------------------------s
 {
     [self.delegate imageGetterViewController:self didChooseAMethod:Camera];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (IBAction)imageLinkOptionChosen:(UIButton *)sender
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.delegate imageGetterViewController:self didChooseAMethod:ImageURL];
 }

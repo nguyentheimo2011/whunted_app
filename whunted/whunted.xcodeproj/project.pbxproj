@@ -14,6 +14,11 @@
 		E90ACE0E1B71F04400DC9768 /* camera_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE081B71F04400DC9768 /* camera_tab_icon@1x.png */; };
 		E90ACE0F1B71F04400DC9768 /* camera_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE091B71F04400DC9768 /* camera_tab_icon@2x.png */; };
 		E90ACE101B71F04400DC9768 /* camera_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE0A1B71F04400DC9768 /* camera_tab_icon@3x.png */; };
+		E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90ACE131B71F1FF00DC9768 /* UploadingViewController.m */; };
+		E90ACE181B7207B400DC9768 /* chat_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE151B7207B400DC9768 /* chat_tab_icon@1x.png */; };
+		E90ACE191B7207B400DC9768 /* chat_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE161B7207B400DC9768 /* chat_tab_icon@2x.png */; };
+		E90ACE1A1B7207B400DC9768 /* chat_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE171B7207B400DC9768 /* chat_tab_icon@3x.png */; };
+		E90ACE1E1B72080E00DC9768 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90ACE1D1B72080E00DC9768 /* ActivityViewController.m */; };
 		E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */; };
 		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
 		E915F8231B39587700D0A2F8 /* info_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F8201B39587700D0A2F8 /* info_icon.png */; };
@@ -262,6 +267,13 @@
 		E90ACE081B71F04400DC9768 /* camera_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@1x.png"; sourceTree = "<group>"; };
 		E90ACE091B71F04400DC9768 /* camera_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@2x.png"; sourceTree = "<group>"; };
 		E90ACE0A1B71F04400DC9768 /* camera_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/camera_tab_icon@3x.png"; sourceTree = "<group>"; };
+		E90ACE121B71F1FF00DC9768 /* UploadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadingViewController.h; path = Controllers/Upload/UploadingViewController/UploadingViewController.h; sourceTree = "<group>"; };
+		E90ACE131B71F1FF00DC9768 /* UploadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadingViewController.m; path = Controllers/Upload/UploadingViewController/UploadingViewController.m; sourceTree = "<group>"; };
+		E90ACE151B7207B400DC9768 /* chat_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/chat_tab_icon@1x.png"; sourceTree = "<group>"; };
+		E90ACE161B7207B400DC9768 /* chat_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/chat_tab_icon@2x.png"; sourceTree = "<group>"; };
+		E90ACE171B7207B400DC9768 /* chat_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/chat_tab_icon@3x.png"; sourceTree = "<group>"; };
+		E90ACE1C1B72080E00DC9768 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewController.h; path = Controllers/WantSell/ActivityVC/ActivityViewController.h; sourceTree = "<group>"; };
+		E90ACE1D1B72080E00DC9768 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewController.m; path = Controllers/WantSell/ActivityVC/ActivityViewController.m; sourceTree = "<group>"; };
 		E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriceOptionViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.h; sourceTree = "<group>"; };
 		E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriceOptionViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.m; sourceTree = "<group>"; };
 		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
@@ -643,6 +655,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E90ACE111B71F1BA00DC9768 /* UploadingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E90ACE121B71F1FF00DC9768 /* UploadingViewController.h */,
+				E90ACE131B71F1FF00DC9768 /* UploadingViewController.m */,
+			);
+			name = UploadingViewController;
+			sourceTree = "<group>";
+		};
+		E90ACE1B1B7207DC00DC9768 /* ActivityVC */ = {
+			isa = PBXGroup;
+			children = (
+				E90ACE1C1B72080E00DC9768 /* ActivityViewController.h */,
+				E90ACE1D1B72080E00DC9768 /* ActivityViewController.m */,
+			);
+			name = ActivityVC;
+			sourceTree = "<group>";
+		};
 		E915F8151B38024900D0A2F8 /* PriceOptionVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,6 +750,7 @@
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				E90ACE111B71F1BA00DC9768 /* UploadingViewController */,
 				E97CE49D1B09ECA00027C5FA /* ImageGetterPopupVC */,
 				E9A639181B28107B0085C54F /* ImageRetrieverVC */,
 				E97CE49E1B09ECAE0027C5FA /* WantDetailsVC */,
@@ -930,6 +961,7 @@
 		E94D17EA1AF9B28700E31B01 /* WantSell */ = {
 			isa = PBXGroup;
 			children = (
+				E90ACE1B1B7207DC00DC9768 /* ActivityVC */,
 				E98113171B21EB3900ECAA0C /* SellerListVC */,
 				E98113161B21EB0A00ECAA0C /* SellerListCell */,
 				E9E4567D1B0DDC9500E8B55D /* CustomVC */,
@@ -954,6 +986,9 @@
 		E94D182A1AF9F16800E31B01 /* Tab Bar Icons */ = {
 			isa = PBXGroup;
 			children = (
+				E90ACE151B7207B400DC9768 /* chat_tab_icon@1x.png */,
+				E90ACE161B7207B400DC9768 /* chat_tab_icon@2x.png */,
+				E90ACE171B7207B400DC9768 /* chat_tab_icon@3x.png */,
 				E90ACE051B71F04400DC9768 /* activity_tab_icon@1x.png */,
 				E90ACE061B71F04400DC9768 /* activity_tab_icon@2x.png */,
 				E90ACE071B71F04400DC9768 /* activity_tab_icon@3x.png */,
@@ -1692,6 +1727,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90ACE1A1B7207B400DC9768 /* chat_tab_icon@3x.png in Resources */,
 				E95CFA551B141EDE003755E3 /* facebook_login_button@1x.png in Resources */,
 				E9D432E21B536D0500530492 /* fb_verification@1x.png in Resources */,
 				E92A0BE61B6CD3B8000D66BD /* clock_icon@2x.png in Resources */,
@@ -1720,6 +1756,7 @@
 				E92A0BF81B706F0E000D66BD /* smiling_face_small@2x.png in Resources */,
 				E97A95401B528973003796DD /* meh_face@2x.png in Resources */,
 				E9D432E71B536D0500530492 /* email_verification@3x.png in Resources */,
+				E90ACE181B7207B400DC9768 /* chat_tab_icon@1x.png in Resources */,
 				E9D432EF1B53C89400530492 /* grid_view_icon@2x.png in Resources */,
 				E90ACE0D1B71F04400DC9768 /* activity_tab_icon@3x.png in Resources */,
 				E92A0BF41B706F0E000D66BD /* sad_face_small@1x.png in Resources */,
@@ -1753,6 +1790,7 @@
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
 				E9D433041B550EC200530492 /* edit_icon@3x.png in Resources */,
 				E94D18131AF9CE8900E31B01 /* chat@2x.png in Resources */,
+				E90ACE191B7207B400DC9768 /* chat_tab_icon@2x.png in Resources */,
 				E9D504961B33F661008ABDE4 /* heart_white.png in Resources */,
 				E97A95421B528973003796DD /* sad_face@1x.png in Resources */,
 				E92A0BF71B706F0E000D66BD /* smiling_face_small@1x.png in Resources */,
@@ -1890,6 +1928,7 @@
 				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
 				E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */,
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
+				E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
@@ -1901,6 +1940,7 @@
 				E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
+				E90ACE1E1B72080E00DC9768 /* ActivityViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
