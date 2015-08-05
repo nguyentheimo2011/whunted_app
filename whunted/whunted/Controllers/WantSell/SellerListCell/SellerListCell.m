@@ -11,16 +11,19 @@
 
 @implementation SellerListCell
 
-@synthesize delegate;
-@synthesize offerData;
-@synthesize profilePicButton;
-@synthesize sellerUsernameButton;
-@synthesize sellersOfferedPrice;
-@synthesize sellersOfferedDelivery;
+@synthesize delegate = _delegate;
+@synthesize offerData = _offerData;
+@synthesize profilePicButton = _profilePicButton;
+@synthesize sellerUsernameButton = _sellerUsernameButton;
+@synthesize sellersOfferedPrice = _sellersOfferedPrice;
+@synthesize sellersOfferedDelivery = _sellersOfferedDelivery;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 -(id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
     if (self != nil) {
         [self addProfilePicButton];
         [self addSellerUsername];
@@ -32,65 +35,76 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addButtonsIfNotAccepted
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self addAcceptButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addProfilePicButton
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    profilePicButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 15, 50, 50)];
-    profilePicButton.layer.cornerRadius = 22;
-    [profilePicButton setBackgroundImage:[UIImage imageNamed:@"userprofile.png"] forState:UIControlStateNormal];
-    [self addSubview:profilePicButton];
+    _profilePicButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 15, 50, 50)];
+    _profilePicButton.layer.cornerRadius = 22;
+    [_profilePicButton setBackgroundImage:[UIImage imageNamed:@"userprofile.png"] forState:UIControlStateNormal];
+    [self addSubview:_profilePicButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellerUsername
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    sellerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(95, 10, 120, 20)];
-    [sellerUsernameButton setTitle:@"seller " forState:UIControlStateNormal];
-    [sellerUsernameButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [sellerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    sellerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self addSubview:sellerUsernameButton];
+    _sellerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(95, 10, 120, 20)];
+    [_sellerUsernameButton setTitle:@"seller " forState:UIControlStateNormal];
+    [_sellerUsernameButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_sellerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    _sellerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self addSubview:_sellerUsernameButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellersOfferedPrice
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    sellersOfferedPrice = [[UILabel alloc] initWithFrame:CGRectMake(95, 30, 100, 20)];
-    [sellersOfferedPrice setText:@"$90"];
-    [sellersOfferedPrice setTextColor:[UIColor grayColor]];
-    [sellersOfferedPrice setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [self addSubview:sellersOfferedPrice];
+    _sellersOfferedPrice = [[UILabel alloc] initWithFrame:CGRectMake(95, 30, 100, 20)];
+    [_sellersOfferedPrice setText:@"$90"];
+    [_sellersOfferedPrice setTextColor:[UIColor grayColor]];
+    [_sellersOfferedPrice setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [self addSubview:_sellersOfferedPrice];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellersOfferedDelivery
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    sellersOfferedDelivery = [[UILabel alloc] initWithFrame:CGRectMake(95, 50, 120, 20)];
-    [sellersOfferedDelivery setText:@"Delivery: 2 weeks"];
-    [sellersOfferedDelivery setTextColor:[UIColor grayColor]];
-    [sellersOfferedDelivery setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [self addSubview:sellersOfferedDelivery];
+    _sellersOfferedDelivery = [[UILabel alloc] initWithFrame:CGRectMake(95, 50, 120, 20)];
+    [_sellersOfferedDelivery setText:@"Delivery: 2 weeks"];
+    [_sellersOfferedDelivery setTextColor:[UIColor grayColor]];
+    [_sellersOfferedDelivery setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [self addSubview:_sellersOfferedDelivery];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addChatWithSellerButton
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *chatWithSellerButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width - 90, 30, 25, 25)];
     [chatWithSellerButton setBackgroundImage:[UIImage imageNamed:@"chat_with_seller.png"] forState:UIControlStateNormal];
     [self addSubview:chatWithSellerButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addAcceptButton
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *acceptButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width - 50, 30, 25, 25)];
     [acceptButton setBackgroundImage:[UIImage imageNamed:@"accept.png"] forState:UIControlStateNormal];
@@ -98,9 +112,11 @@
     [self addSubview:acceptButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) acceptButtonCLickedHandler
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.delegate sellerListCell:self didAcceptOfferFromSeller:offerData];
+    [_delegate sellerListCell:self didAcceptOfferFromSeller:_offerData];
 }
 
 @end

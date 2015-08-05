@@ -10,30 +10,30 @@
 #import "HorizontalLineViewController.h"
 #import "WantData.h"
 #import "OfferData.h"
+#import "AppConstant.h"
 
 #import <Parse/Parse.h>
 
 @interface MySellViewController ()
 
-@property (strong, nonatomic) UITableView *wantTableView;
-@property (strong, nonatomic) UICollectionView *wantCollectionView;
-@property (strong, nonatomic) HorizontalLineViewController *horizontalLineVC;
-
-
 @end
 
 @implementation MySellViewController
 {
-    CGSize windowSize;
-    NSString *documents;
-    NSMutableArray *_yourOfferPriceList;
+    UITableView                     *_wantTableView;
+    UICollectionView                *_wantCollectionView;
+    HorizontalLineViewController    *_horizontalLineVC;
+    
+    NSString                        *_documents;
+    NSMutableArray                  *_yourOfferPriceList;
 }
 
-@synthesize wantTableView;
-
+//---------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
+    
     if (self != nil) {
         [self retrieveWantDataList];
     }
@@ -41,12 +41,13 @@
     return self;
 }
 
-- (void)viewDidLoad {
+//---------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//---------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    windowSize = [[UIScreen mainScreen] bounds].size;
-    documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+
+    _documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     _yourOfferPriceList = [[NSMutableArray alloc] init];
     
     [self addHorizontalLine];
@@ -55,29 +56,35 @@
 
 #pragma mark - UI Handlers
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) addHorizontalLine
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     
-    self.horizontalLineVC = [[HorizontalLineViewController alloc] init];
-    CGRect frame = self.horizontalLineVC.view.frame;
-    self.horizontalLineVC.view.frame = CGRectMake(0, navBarSize.height + 15, windowSize.width, frame.size.height);
+    _horizontalLineVC = [[HorizontalLineViewController alloc] init];
+    CGRect frame = _horizontalLineVC.view.frame;
+    _horizontalLineVC.view.frame = CGRectMake(0, navBarSize.height + 15, WINSIZE.width, frame.size.height);
     NSString *labelText = [NSString stringWithFormat:@"%lu offers", (unsigned long)[self.wantDataList count]];
-    [self.horizontalLineVC.numLabel setText:labelText];
-    [self.view addSubview:self.horizontalLineVC.view];
+    [_horizontalLineVC.numLabel setText:labelText];
+    [self.view addSubview:_horizontalLineVC.view];
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) addTableView
+//---------------------------------------------------------------------------------------------------------------------------------
 {
-    self.wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
-    self.wantTableView.dataSource = self;
-    self.wantTableView.delegate = self;
-    [self.view addSubview:self.wantTableView];
+    _wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, WINSIZE.width, WINSIZE.height * 0.7)];
+    _wantTableView.dataSource = self;
+    _wantTableView.delegate = self;
+    [self.view addSubview:_wantTableView];
 }
 
 #pragma mark - Data Handlers
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveWantDataList
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
@@ -95,12 +102,12 @@
                     [self.wantDataList addObject:wantData];
                     [_yourOfferPriceList addObject:object[@"offeredPrice"]];
                     if (i == [offerObjects count] - 1)
-                        [self.wantTableView reloadData];
+                        [_wantTableView reloadData];
                 }];
             }
             
             NSString *labelText = [NSString stringWithFormat:@"%lu offers", (unsigned long)[self.wantDataList count]];
-            [self.horizontalLineVC.numLabel setText:labelText];
+            [_horizontalLineVC.numLabel setText:labelText];
             
         } else {
             // Log details of the failure
@@ -109,7 +116,9 @@
     }];
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveLatestWantData
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *currentUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
@@ -123,11 +132,11 @@
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [self.wantDataList insertObject:wantData atIndex:0];
                 [_yourOfferPriceList insertObject:offerObject[@"offeredPrice"] atIndex:0];
-                [self.wantTableView reloadData];
+                [_wantTableView reloadData];
             }];
             
             NSString *labelText = [NSString stringWithFormat:@"%lu offers", (unsigned long)[self.wantDataList count]];
-            [self.horizontalLineVC.numLabel setText:labelText];
+            [_horizontalLineVC.numLabel setText:labelText];
             
         } else {
             // Log details of the failure
@@ -138,26 +147,34 @@
 
 #pragma mark - Table view data source
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     return 1;
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     return [self.wantDataList count];
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//---------------------------------------------------------------------------------------------------------------------------------
 {
-    return windowSize.width * 1.4;
+    return WINSIZE.width * 1.4;
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     static NSString *cellIdentifier = @"MySellTableViewCell";
     
-    SellTableViewCell *cell = (SellTableViewCell*)[self.wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SellTableViewCell *cell = (SellTableViewCell*)[_wantTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell==nil){
         cell = [[SellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -176,7 +193,7 @@
     
     cell.itemImageView.image = nil;
     NSString *fileName = [NSString stringWithFormat:@"sell_%@.jpg", wantData.itemID];
-    NSString *path = [documents stringByAppendingPathComponent:fileName];
+    NSString *path = [_documents stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (fileExists) {
         [cell.itemImageView hnk_setImageFromFile:path];
@@ -205,7 +222,10 @@
 }
 
 #pragma mark - WantTableView Delegate methods
+
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) sellTableViewCell:(SellTableViewCell *)cell didClickSellersNumButton:(WantData *)wantData
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query;
     if (wantData.isDealClosed) {
@@ -234,13 +254,19 @@
 }
 
 #pragma mark - SellerListViewController delegate methods
+
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) sellerListViewController:(SellerListViewController *)controller didAcceptOfferFromSeller:(WantData *)wantData
+//---------------------------------------------------------------------------------------------------------------------------------
 {
-    [wantTableView reloadData];
+    [_wantTableView reloadData];
 }
 
 #pragma mark - Overridden methods
+
+//---------------------------------------------------------------------------------------------------------------------------------
 - (void) pushViewController:(UIViewController *)controller
+//---------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController pushViewController:controller animated:YES];
 }

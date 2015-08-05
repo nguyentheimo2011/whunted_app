@@ -12,13 +12,17 @@
 
 @class WantTableViewCell;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol WantTableViewCellDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) wantTableViewCell: (WantTableViewCell *) cell didClickSellersNumButton: (WantData *) wantData;
 
 @end
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @interface WantTableViewCell : UITableViewCell
+//-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong) id<WantTableViewCellDelegate> delegate;
 

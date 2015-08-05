@@ -16,9 +16,9 @@
 
 @interface MyWantViewController ()
 
-@property (strong, nonatomic) UITableView *_wantTableView;
-@property (strong, nonatomic) UICollectionView *wantCollectionView;
-@property (strong, nonatomic) HorizontalLineViewController *horizontalLineVC;
+@property (strong, nonatomic) UITableView                   *_wantTableView;
+@property (strong, nonatomic) UICollectionView              *wantCollectionView;
+@property (strong, nonatomic) HorizontalLineViewController  *horizontalLineVC;
 
 @end
 
@@ -30,7 +30,9 @@
 
 @synthesize _wantTableView;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -40,9 +42,11 @@
     return self;
 }
 
-- (void)viewDidLoad {
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     windowSize = [[UIScreen mainScreen] bounds].size;
     documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -53,7 +57,9 @@
 
 #pragma mark - UI Handlers
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addHorizontalLine
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGSize navBarSize = self.navigationController.navigationBar.frame.size;
     
@@ -65,7 +71,9 @@
     [self.view addSubview:self.horizontalLineVC.view];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addTableView
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     _wantTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, windowSize.width, windowSize.height * 0.7)];
     _wantTableView.dataSource = self;
@@ -75,7 +83,9 @@
 
 #pragma mark - Data Handlers
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveWantDataList
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self.wantDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
@@ -100,7 +110,9 @@
     }];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveLatestWantData
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
     [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
@@ -121,22 +133,30 @@
 
 #pragma mark - Table view data source
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     return 1;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     return [self.wantDataList count];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     return windowSize.width * 1.4;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     static NSString *cellIdentifier = @"MyWantTableViewCell";
     
@@ -219,7 +239,10 @@
 }
 
 #pragma mark - WantTableView Delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) wantTableViewCell:(WantTableViewCell *)cell didClickSellersNumButton:(WantData *)wantData
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query;
     if (wantData.isDealClosed) {
@@ -248,13 +271,19 @@
 }
 
 #pragma mark - SellerListViewController delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) sellerListViewController:(SellerListViewController *)controller didAcceptOfferFromSeller:(WantData *)wantData
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [_wantTableView reloadData];
 }
 
 #pragma mark - Overridden methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) pushViewController:(UIViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController pushViewController:controller animated:YES];
 }

@@ -23,10 +23,10 @@
 
 @property (nonatomic, strong) OfferData *offerData;
 
-@property (nonatomic, strong) UIButton *profilePicButton;
-@property (nonatomic, strong) UIButton *sellerUsernameButton;
-@property (nonatomic, strong) UILabel *sellersOfferedPrice;
-@property (nonatomic, strong) UILabel *sellersOfferedDelivery;
+@property (nonatomic, strong) UIButton  *profilePicButton;
+@property (nonatomic, strong) UIButton  *sellerUsernameButton;
+@property (nonatomic, strong) UILabel   *sellersOfferedPrice;
+@property (nonatomic, strong) UILabel   *sellersOfferedDelivery;
 
 - (void) addButtonsIfNotAccepted;
 

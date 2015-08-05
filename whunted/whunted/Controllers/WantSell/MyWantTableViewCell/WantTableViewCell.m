@@ -22,7 +22,9 @@
 @synthesize sellersNum;
 @synthesize acceptedStatusLabel;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self != nil) {
@@ -38,16 +40,17 @@
     return self;
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     [super setSelected:selected animated:animated];
 
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemImageView
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, WINSIZE.width-20, WINSIZE.width-20)];
     [itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
@@ -56,7 +59,9 @@
     itemImageView.image = nil;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addViewNumberSection
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
@@ -76,7 +81,9 @@
     [view addSubview:imageView];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addLikesSection
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 + itemImageWidth/3, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
@@ -95,7 +102,9 @@
     [view addSubview:likeButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addPromotionSection
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10 + 2 * itemImageWidth/3, WINSIZE.width-10, itemImageWidth/3, itemImageWidth/8)];
@@ -108,7 +117,9 @@
     [view addSubview:promotionButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemNameLabel
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 5;
@@ -120,7 +131,9 @@
     [self addSubview:itemNameLabel];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addLowestOfferedPrice
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 35;
@@ -131,7 +144,9 @@
     [self addSubview:lowestOfferedPriceLabel];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellersNumButton
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat itemImageWidth = WINSIZE.width-20;
     CGFloat yPos = itemImageWidth * 7.0/6 + 30;
@@ -145,7 +160,9 @@
     [self addSubview:sellersNumButton];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addAcceptedStatusLabel
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     acceptedStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(itemImageView.frame.size.width - 120, 0, 120, 20)];
     [acceptedStatusLabel setText:NSLocalizedString(@"Accepted", nil)];
@@ -156,23 +173,32 @@
     [itemImageView addSubview:acceptedStatusLabel];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) activateAcceptedStatusLabel
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [acceptedStatusLabel setHidden:NO];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) deactivateAcceptedStatusLabel
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [acceptedStatusLabel setHidden:YES];
 }
 
 #pragma mark - Event Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) likeButtonClicked
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     NSLog(@"likeButtonClicked");
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) sellerNumButtonClickedHandler
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     if (sellersNum <= 0) {
         NSLog(@"No sellers for this item");

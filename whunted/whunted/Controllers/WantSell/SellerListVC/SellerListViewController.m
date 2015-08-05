@@ -11,46 +11,55 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-@interface SellerListViewController ()
-
-@end
-
 @implementation SellerListViewController
 {
     
 }
 
-@synthesize sellerTableView;
-@synthesize wantData;
-@synthesize delegate;
+@synthesize sellerTableView = _sellerTableView;
+@synthesize wantData = _wantData;
+@synthesize delegate = _delegate;
 
-- (void)viewDidLoad {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
     
     [self addTableView];
 }
 
-- (void)didReceiveMemoryWarning {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UI Handlers
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addTableView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
-    sellerTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    sellerTableView.dataSource = self;
-    sellerTableView.delegate = self;
-    [self.view addSubview:sellerTableView];
+    _sellerTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _sellerTableView.dataSource = self;
+    _sellerTableView.delegate = self;
+    [self.view addSubview:_sellerTableView];
 }
 
 #pragma mark - table view datasource method
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//--------------------------------------------------------------------------------------------------------------------------------
 {
-    return [wantData.sellersOfferList count];
+    return [_wantData.sellersOfferList count];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     static NSString *cellIdentifier = @"SellerListCell";
     SellerListCell *cell = (SellerListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -60,12 +69,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    OfferData *offerData = [wantData.sellersOfferList objectAtIndex:indexPath.row];
+    OfferData *offerData = [_wantData.sellersOfferList objectAtIndex:indexPath.row];
     [cell.sellerUsernameButton setTitle:offerData.sellerID forState:UIControlStateNormal];
     [cell.sellersOfferedPrice setText:offerData.offeredPrice];
     [cell.sellersOfferedDelivery setText:offerData.deliveryTime];
     
-    if (!wantData.isDealClosed) {
+    if (!_wantData.isDealClosed) {
         [cell addButtonsIfNotAccepted];
     }
     
@@ -77,17 +86,21 @@
 
 #pragma mark - TableView Delegate methods
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     return 80;
 }
 
 #pragma mark - SellerListCell delegate mothods
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) sellerListCell:(SellerListCell *)cell didAcceptOfferFromSeller:(OfferData *)offerData
+//--------------------------------------------------------------------------------------------------------------------------------
 {
-    [wantData setIsDealClosed:YES];
-    [[wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [_wantData setIsDealClosed:YES];
+    [[_wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Update successfully");
         } else {
@@ -102,7 +115,7 @@
                 NSLog(@"Upload to AcceptedOffer unsuccessfully");
             }
             
-            [delegate sellerListViewController:self didAcceptOfferFromSeller:wantData];
+            [_delegate sellerListViewController:self didAcceptOfferFromSeller:_wantData];
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }];

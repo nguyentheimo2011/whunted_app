@@ -7,12 +7,18 @@
 //
 
 #import "UploadingViewController.h"
+#import "KLCPopup.h"
 
 @interface UploadingViewController ()
 
 @end
 
 @implementation UploadingViewController
+{
+    KLCPopup        *popup;
+    
+    NSUInteger      currButtonIndex;
+}
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -21,6 +27,7 @@
     [super viewDidLoad];
     
     [self customizeUI];
+    [self showImageGettingOptionPopup];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -35,6 +42,76 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     self.view.backgroundColor = [UIColor whiteColor];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) showImageGettingOptionPopup
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
+    imageGetterVC.delegate = self;
+    
+    popup = [KLCPopup popupWithContentViewController:imageGetterVC];
+    [popup show];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    currButtonIndex = buttonIndex;
+    [self showImageGettingOptionPopup];
+}
+
+#pragma mark - Image Getter View Controller delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (popup != nil) {
+        [popup dismiss:YES];
+    }
+    
+    if (method == PhotoLibrary) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == Camera) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == ImageURL) {
+        ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
+        retrieverVC.delegate = self;
+        [self.navigationController pushViewController:retrieverVC animated:YES];
+    }
+}
+
+#pragma mark - CLImageEditorDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    UIViewController *topVC = [self.navigationController topViewController];
+    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+    } else {
+        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+        wantDetailsVC.delegate = self;
+        currButtonIndex = 0;
+        [wantDetailsVC setImage:image forButton:currButtonIndex];
+        [self.navigationController pushViewController:wantDetailsVC animated:NO];
+    }
 }
 
 @end

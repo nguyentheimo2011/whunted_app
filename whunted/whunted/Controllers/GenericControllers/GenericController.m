@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "KLCPopup.h"
 #import "AppConstant.h"
 #import "GenericController.h"
 #import "InboxAllViewController.h"
@@ -17,8 +16,7 @@
 
 @implementation GenericController
 {
-    KLCPopup* popup;
-    NSUInteger currButtonIndex;
+    
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -66,17 +64,6 @@
 #pragma mark - Event Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) showImageGettingOptionPopup
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
-    imageGetterVC.delegate = self;
-    
-    popup = [KLCPopup popupWithContentViewController:imageGetterVC];
-    [popup show];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) userProfileButtonClickedEvent
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -96,14 +83,6 @@
 #pragma mark - Upload Want Details View Controller delegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    currButtonIndex = buttonIndex;
-    [self showImageGettingOptionPopup];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -111,36 +90,6 @@
     [self.delegate genericController:self shouldUpdateDataAt:2];
 }
 
-#pragma mark - Image Getter View Controller delegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    if (popup != nil) {
-        [popup dismiss:YES];
-    }
-    
-    if (method == PhotoLibrary) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:picker animated:YES completion:nil];
-    } else if (method == Camera) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        [self presentViewController:picker animated:YES completion:nil];
-    } else if (method == ImageURL) {
-        ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
-        retrieverVC.delegate = self;
-        [self.navigationController pushViewController:retrieverVC animated:YES];
-    }
-}
 
 #pragma mark - Image Picker Controller delegate methods
 
@@ -180,26 +129,6 @@
     editor.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:editor animated:NO];
-}
-
-#pragma mark - CLImageEditorDelegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationController popViewControllerAnimated:NO];
-    UIViewController *topVC = [self.navigationController topViewController];
-    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
-        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
-        [wantDetailsVC setImage:image forButton:currButtonIndex];
-    } else {
-        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
-        wantDetailsVC.delegate = self;
-        currButtonIndex = 0;
-        [wantDetailsVC setImage:image forButton:currButtonIndex];
-        [self.navigationController pushViewController:wantDetailsVC animated:NO];
-    }
 }
 
 #pragma mark - UserProfileViewController Delegate methods

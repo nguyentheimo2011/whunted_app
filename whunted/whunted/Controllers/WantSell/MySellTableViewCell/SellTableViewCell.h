@@ -12,23 +12,27 @@
 
 @class SellTableViewCell;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol SellTableViewCellDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) sellTableViewCell: (SellTableViewCell *) cell didClickSellersNumButton: (WantData *) wantData;
 
 @end
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @interface SellTableViewCell : UITableViewCell
+//-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong) id<SellTableViewCellDelegate> delegate;
 
-@property (nonatomic, strong) WantData *wantData;
+@property (nonatomic, strong) WantData      *wantData;
 
-@property (nonatomic, strong) UIImageView *itemImageView;
-@property (nonatomic, strong) UILabel *viewsNumLabel;
-@property (nonatomic, strong) UILabel *likesNumLabel;
-@property (nonatomic, strong) UILabel *itemNameLabel;
-@property (nonatomic, strong) UILabel *lowestOfferedPriceLabel;
-@property (nonatomic, strong) UILabel *yourOfferLabel;
+@property (nonatomic, strong) UIImageView   *itemImageView;
+@property (nonatomic, strong) UILabel       *viewsNumLabel;
+@property (nonatomic, strong) UILabel       *likesNumLabel;
+@property (nonatomic, strong) UILabel       *itemNameLabel;
+@property (nonatomic, strong) UILabel       *lowestOfferedPriceLabel;
+@property (nonatomic, strong) UILabel       *yourOfferLabel;
 
 @end
