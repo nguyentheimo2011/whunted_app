@@ -45,17 +45,11 @@
 {
     UIImage *searchImage = [UIImage imageNamed:@"search.png"];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
-
-    UIImage *chatImage = [UIImage imageNamed:@"chat.png"];
-    UIBarButtonItem *chatButton = [[UIBarButtonItem alloc] initWithImage:chatImage style:UIBarButtonItemStylePlain target:self action:@selector(openInbox)];
     
     UIImage *profile = [UIImage imageNamed:@"profile.png"];
     UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
     
-    UIImage *camera = [UIImage imageNamed:@"camera.png"];
-    UIBarButtonItem *wantButton = [[UIBarButtonItem alloc] initWithImage:camera style:UIBarButtonItemStylePlain target:self action:@selector(showImageGettingOptionPopup)];
-    
-    NSArray *actionButtonItems = @[wantButton, profileButton, chatButton, searchButton];
+    NSArray *actionButtonItems = @[profileButton, searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
     
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;

@@ -34,7 +34,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {        
+    if (self != nil) {
         [self addInboxTableView];
         _recentMessages = [NSMutableArray array];
         [self loadRecents];
