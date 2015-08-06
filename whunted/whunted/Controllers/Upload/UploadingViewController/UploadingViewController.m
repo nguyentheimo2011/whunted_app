@@ -7,7 +7,6 @@
 //
 
 #import "UploadingViewController.h"
-#import "KLCPopup.h"
 
 @interface UploadingViewController ()
 
@@ -15,7 +14,6 @@
 
 @implementation UploadingViewController
 {
-    KLCPopup        *popup;
     
     NSUInteger      currButtonIndex;
 }
@@ -27,7 +25,7 @@
     [super viewDidLoad];
     
     [self customizeUI];
-    [self showImageGettingOptionPopup];
+//    [self showImageGettingOptionPopup];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -45,22 +43,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) showImageGettingOptionPopup
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
-    imageGetterVC.delegate = self;
-    
-    popup = [KLCPopup popupWithContentViewController:imageGetterVC];
-    [popup show];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     currButtonIndex = buttonIndex;
-    [self showImageGettingOptionPopup];
+//    [self showImageGettingOptionPopup];
 }
 
 #pragma mark - Image Getter View Controller delegate methods
@@ -69,9 +56,9 @@
 - (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (popup != nil) {
-        [popup dismiss:YES];
-    }
+//    if (popup != nil) {
+//        [popup dismiss:YES];
+//    }
     
     if (method == PhotoLibrary) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];

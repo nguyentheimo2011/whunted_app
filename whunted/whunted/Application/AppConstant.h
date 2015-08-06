@@ -205,6 +205,13 @@
 #define     PF_FEEDBACK_DATA_CLASS              @"FeedbackData"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     TAB_BAR_MARKETPLACE_PAGE_TITLE      @"Marketplace"
+#define     TAB_BAR_NEWSFEED_PAGE_TITLE         @"Newsfeed"
+#define     TAB_BAR_UPLOAD_PAGE_TITLE           @"Upload"
+#define     TAB_BAR_INBOX_PAGE_TITLE            @"Inbox"
+#define     TAB_BAR_PROFILE_PAGE_TITLE          @"Profile"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY    @"uploadMessageSuccessfullyNotification"
 #define     NOTIFICATION_WILL_UPLOAD_MESSAGE            @"willUploadMessageNotification"
 
