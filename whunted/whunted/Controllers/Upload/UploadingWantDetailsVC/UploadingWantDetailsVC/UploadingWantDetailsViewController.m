@@ -62,6 +62,15 @@
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeButtonListCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -174,6 +183,7 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeEscrowRequestCell
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.escrowRequestCell = [[UITableViewCell alloc] init];
     self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
@@ -182,16 +192,6 @@
     [escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
     self.escrowRequestCell.accessoryView = escrowSwitch;
     self.escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
-}
-//------------------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeNavigationBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", nil) style:UIBarButtonItemStylePlain target:self action:@selector(backButtonEvent)];
 }
 
 #pragma mark - Event Handling
@@ -246,11 +246,11 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) backButtonEvent
+- (void) topCancelButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIAlertView *backAlertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel your listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
-    [backAlertView show];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel your listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+    [alertView show];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -484,6 +484,7 @@
 }
 
 #pragma mark - ItemInfoTableViewController
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) itemInfoTableViewController:(ItemInfoTableViewController *)controller didPressDone:(NSDictionary *)itemInfo
 //------------------------------------------------------------------------------------------------------------------------------
@@ -551,20 +552,24 @@
     [priceTextField setText:[Utilities formatPriceText:priceTextField.text]];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
+
 #pragma mark - UIAlertViewDelegate
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+//------------------------------------------------------------------------------------------------------------------------------
 {
     if (buttonIndex == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
+
 #pragma mark - APNumberPad
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput
+//------------------------------------------------------------------------------------------------------------------------------
 {
     NSRange range = {[[priceTextField text] length], 1};
     if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])

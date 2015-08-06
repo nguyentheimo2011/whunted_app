@@ -16,14 +16,19 @@
 
 @class UploadingWantDetailsViewController;
 
+//--------------------------------------------------------------------------------------------------------------------------------
 @protocol UploadingWantDetailsViewControllerDelegate <NSObject>
+//--------------------------------------------------------------------------------------------------------------------------------
 
 - (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didPressItemImageButton: (NSUInteger) buttonIndex;
+
 - (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didCompleteSubmittingWantData: (WantData *) wantData;
 
 @end
 
+//--------------------------------------------------------------------------------------------------------------------------------
 @interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, CountryTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate>
+//--------------------------------------------------------------------------------------------------------------------------------
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 
