@@ -29,6 +29,8 @@
     UploadingViewController     *_uploadingVC;
     UserProfileViewController   *_userProfileVC;
     
+    UINavigationController      *_uploadingNavController;
+    
     KLCPopup                    *_popup;
     NSUInteger                  _currButtonIndex;
 }
@@ -121,6 +123,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     if ([viewController.title isEqualToString:TAB_BAR_UPLOAD_PAGE_TITLE]) {
+        _uploadingNavController = [[UINavigationController alloc] init];
         [self showImageGettingOptionPopup];
         
         return NO;
@@ -175,9 +178,8 @@
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
         
-        UINavigationController *navController = [[UINavigationController alloc] init];
-        [navController setViewControllers:@[retrieverVC]];
-        [self presentViewController:navController animated:YES completion:nil];
+        [_uploadingNavController setViewControllers:@[retrieverVC]];
+        [self presentViewController:_uploadingNavController animated:YES completion:nil];
     }
 }
 
@@ -188,10 +190,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    [self sendImageToUploadingWantDetailsVC:chosenImage];
-    
     [picker dismissViewControllerAnimated:NO completion:NULL];
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -208,19 +210,22 @@
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popViewControllerAnimated:NO];
-    [self sendImageToUploadingWantDetailsVC:image];
+    [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
+- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image withNavigationControllerNeeded: (BOOL) needed
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
     editor.delegate = self;
     editor.hidesBottomBarWhenPushed = YES;
     
-    [self.navigationController pushViewController:editor animated:NO];
+    if (!needed) {
+        [_uploadingNavController pushViewController:editor animated:NO];
+    } else {
+        [self presentViewController:editor animated:YES completion:nil];
+    }
 }
 
 
