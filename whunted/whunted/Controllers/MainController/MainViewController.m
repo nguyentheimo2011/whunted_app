@@ -43,7 +43,7 @@
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController setTitle:NSLocalizedString(@"Marketplace", nil)];
-        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace_2.png"]];
+        [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];

@@ -44,9 +44,6 @@
     UIImage *searchImage = [UIImage imageNamed:@"search.png"];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
     
-//    UIImage *profile = [UIImage imageNamed:@"profile.png"];
-//    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
-    
     NSArray *actionButtonItems = @[searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
     
@@ -62,15 +59,6 @@
 }
 
 #pragma mark - Event Handlers
-
-////-------------------------------------------------------------------------------------------------------------------------------
-//- (void) userProfileButtonClickedEvent
-////-------------------------------------------------------------------------------------------------------------------------------
-//{
-//    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
-//    userProfileVC.delegate = self;
-//    [self.navigationController pushViewController:userProfileVC animated:YES];
-//}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) openInbox
@@ -130,17 +118,6 @@
     
     [self.navigationController pushViewController:editor animated:NO];
 }
-
-#pragma mark - UserProfileViewController Delegate methods
-
-////-------------------------------------------------------------------------------------------------------------------------------
-//- (void) userProfileViewController:(UserProfileViewController *)controller didPressLogout:(BOOL)pressed
-////-------------------------------------------------------------------------------------------------------------------------------
-//{
-//    [PFUser logOut];
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
 
 #pragma mark - Methods for overridding by inherited class
 
