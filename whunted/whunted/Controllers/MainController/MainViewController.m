@@ -11,8 +11,8 @@
 #import "MarketplaceViewController.h"
 #import "GenericController.h"
 #import "InboxAllViewController.h"
-#import "ActivityViewController.h"
 #import "UploadingViewController.h"
+#import "UserProfileViewController.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -23,10 +23,10 @@
 @interface MainViewController ()
 {
     MarketplaceViewController   *_brController;
-    ActivityViewController      *_activityVC;
     InboxAllViewController      *_inboxVC;
     NewsFeedViewController      *_newsFeedVC;
     UploadingViewController     *_uploadingVC;
+    UserProfileViewController   *_userProfileVC;
 }
 
 @end
@@ -59,11 +59,11 @@
         [uploadingNavController setTitle:NSLocalizedString(@"Upload", nil)];
         [uploadingNavController.tabBarItem setImage:[UIImage imageNamed:@"camera_tab_icon.png"]];
         
-        UINavigationController *activityNavController = [[UINavigationController alloc] init];
-        _activityVC = [[ActivityViewController alloc] init];
-        [activityNavController setViewControllers: [NSArray arrayWithObject:_activityVC]];
-        [activityNavController setTitle:NSLocalizedString(@"Activity", nil)];
-        [activityNavController.tabBarItem setImage:[UIImage imageNamed:@"activity_tab_icon.png"]];
+        UINavigationController *userProfileNavController = [[UINavigationController alloc] init];
+        _userProfileVC = [[UserProfileViewController alloc] init];
+        [userProfileNavController setViewControllers: [NSArray arrayWithObject:_userProfileVC]];
+        [userProfileNavController setTitle:NSLocalizedString(@"Activity", nil)];
+        [userProfileNavController.tabBarItem setImage:[UIImage imageNamed:@"profile_tab_icon.png"]];
         
         UINavigationController *chattingNavController = [[UINavigationController alloc] init];
         _inboxVC = [[InboxAllViewController alloc] init];
@@ -71,7 +71,7 @@
         [chattingNavController setTitle:NSLocalizedString(@"Inbox", nil)];
         [chattingNavController.tabBarItem setImage:[UIImage imageNamed:@"chat_tab_icon.png"]];
         
-        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, uploadingNavController,activityNavController, chattingNavController, nil];
+        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, uploadingNavController, chattingNavController, userProfileNavController, nil];
         [self setViewControllers:controllers];
         [self setSelectedIndex:0];
     }

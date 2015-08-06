@@ -44,10 +44,10 @@
     UIImage *searchImage = [UIImage imageNamed:@"search.png"];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStylePlain target:self action:nil];
     
-    UIImage *profile = [UIImage imageNamed:@"profile.png"];
-    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
+//    UIImage *profile = [UIImage imageNamed:@"profile.png"];
+//    UIBarButtonItem *profileButton = [[UIBarButtonItem alloc] initWithImage:profile style:UIBarButtonItemStylePlain target:self action:@selector(userProfileButtonClickedEvent)];
     
-    NSArray *actionButtonItems = @[profileButton, searchButton];
+    NSArray *actionButtonItems = @[searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
     
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
@@ -63,14 +63,14 @@
 
 #pragma mark - Event Handlers
 
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) userProfileButtonClickedEvent
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
-    userProfileVC.delegate = self;
-    [self.navigationController pushViewController:userProfileVC animated:YES];
-}
+////-------------------------------------------------------------------------------------------------------------------------------
+//- (void) userProfileButtonClickedEvent
+////-------------------------------------------------------------------------------------------------------------------------------
+//{
+//    UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] init];
+//    userProfileVC.delegate = self;
+//    [self.navigationController pushViewController:userProfileVC animated:YES];
+//}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) openInbox
@@ -133,14 +133,14 @@
 
 #pragma mark - UserProfileViewController Delegate methods
 
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) userProfileViewController:(UserProfileViewController *)controller didPressLogout:(BOOL)pressed
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [PFUser logOut];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+////-------------------------------------------------------------------------------------------------------------------------------
+//- (void) userProfileViewController:(UserProfileViewController *)controller didPressLogout:(BOOL)pressed
+////-------------------------------------------------------------------------------------------------------------------------------
+//{
+//    [PFUser logOut];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark - Methods for overridding by inherited class
 

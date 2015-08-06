@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GenericController.h"
 #import "EditProfileViewController.h"
 
 @class UserProfileViewController;
@@ -21,7 +22,7 @@
 @end
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, EditProfileDelegate>
+@interface UserProfileViewController : GenericController<UICollectionViewDataSource, UICollectionViewDelegate, EditProfileDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
