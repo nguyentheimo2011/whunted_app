@@ -174,7 +174,10 @@
     } else if (method == ImageURL) {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
-        [self.navigationController pushViewController:retrieverVC animated:YES];
+        
+        UINavigationController *navController = [[UINavigationController alloc] init];
+        [navController setViewControllers:@[retrieverVC]];
+        [self presentViewController:navController animated:YES completion:nil];
     }
 }
 

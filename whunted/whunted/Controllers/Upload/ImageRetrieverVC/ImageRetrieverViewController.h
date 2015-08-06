@@ -10,13 +10,17 @@
 
 @class ImageRetrieverViewController;
 
+//--------------------------------------------------------------------------------------------------------------------------------
 @protocol ImageRetrieverDelegate <NSObject>
+//--------------------------------------------------------------------------------------------------------------------------------
 
 - (void) imageRetrieverViewController: (ImageRetrieverViewController *) controller didRetrieveImage: (UIImage *) image;
 
 @end
 
+//--------------------------------------------------------------------------------------------------------------------------------
 @interface ImageRetrieverViewController : UIViewController<UITextViewDelegate, UIAlertViewDelegate>
+//--------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<ImageRetrieverDelegate> delegate;
 

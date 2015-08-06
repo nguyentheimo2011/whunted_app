@@ -12,24 +12,19 @@
 
 #import "MBProgressHUD.h"
 
-@interface ImageRetrieverViewController ()
-
-@property (nonatomic, strong) UITextView *_imageLinkTextView;
-@property (nonatomic, strong) UIImageView *_itemImageView;
-@property (nonatomic, strong) UIImage *_currItemImage;
-@property (nonatomic, strong) UIScrollView *_scrollView;
-
-@end
-
 @implementation ImageRetrieverViewController
+{
+    UITextView      *_imageLinkTextView;
+    UIImageView     *_itemImageView;
+    UIImage         *_currItemImage;
+    UIScrollView    *_scrollView;
+}
 
-@synthesize _imageLinkTextView;
-@synthesize _itemImageView;
-@synthesize _currItemImage;
-@synthesize _scrollView;
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self) {
@@ -39,7 +34,10 @@
     return self;
 }
 
-- (void)viewDidLoad {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
     
     [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
@@ -54,27 +52,38 @@
     [self addDoneButton];
 }
 
-- (void)didReceiveMemoryWarning {
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//--------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    NSLog(@"ImageRetrieverViewController didReceiveMemoryWarning");
 }
 
 #pragma mark - UI Handlers
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeNavigationBar
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didStopEditing)];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonClickedEvent)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addScrollView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.width + 130)];
     [self.view addSubview:_scrollView];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addInstructionLabel
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, WINSIZE.width - 30, 25)];
     [instructionLabel setText:@"Paste image link here"];
@@ -83,7 +92,9 @@
     [_scrollView addSubview:instructionLabel];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addImageLinkTextView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     _imageLinkTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, WINSIZE.width - 30, 55)];
     [_imageLinkTextView setBackgroundColor:[UIColor whiteColor]];
@@ -95,7 +106,9 @@
     [_scrollView addSubview:_imageLinkTextView];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemImageView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 110, WINSIZE.width - 30, WINSIZE.width - 30)];
     [_itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
@@ -103,7 +116,9 @@
     [_scrollView addSubview:_itemImageView];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addProceedToEditButton
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *proceedToEditButton = [[UIButton alloc] initWithFrame:CGRectMake(15, WINSIZE.width + 105, 140, 40)];
     UIColor *normalColor = [UIColor colorWithRed:16.0/255 green:200.0/255 blue:205.0/255 alpha:1.0];
@@ -120,7 +135,9 @@
     [_scrollView addSubview:proceedToEditButton];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) addDoneButton
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width - 75, WINSIZE.width + 105, 60, 40)];
     UIColor *normalColor = [UIColor colorWithRed:51.0/255 green:153.0/255 blue:255.0/255 alpha:1.0];
@@ -139,14 +156,20 @@
 }
 
 #pragma mark - Event Handlers
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) textViewDidBeginEditing:(UITextView *)textView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) textViewDidChange:(UITextView *)textView
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [MBProgressHUD showHUDAddedTo:_itemImageView animated:YES];
+    
     NSURL *url = [NSURL URLWithString:_imageLinkTextView.text];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -161,32 +184,41 @@
     }];
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) didStopEditing
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     [_imageLinkTextView resignFirstResponder];
     [self.navigationItem.rightBarButtonItem setTitle:@""];
 }
 
-- (void) backButtonClickedEvent
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) topCancelButtonTapEventHandler
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     if (_currItemImage) {
-        UIAlertView *backAlertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to discard the image?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
-        [backAlertView show];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to discard the image?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+        [alertView show];
     } else {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) doneButtonClickedEvent
+//--------------------------------------------------------------------------------------------------------------------------------
 {
-    [delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
+    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
 }
 
 #pragma mark - UIAlertViewDelegate
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     if (buttonIndex == 1) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
