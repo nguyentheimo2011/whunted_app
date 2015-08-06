@@ -99,6 +99,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark - Event Handler
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -111,6 +112,7 @@
     _popup = [KLCPopup popupWithContentViewController:imageGetterVC];
     [_popup show];
 }
+
 
 #pragma mark - UITabBarControllerDelegate methods
 
@@ -125,6 +127,7 @@
     } else
         return YES;
 }
+
 
 #pragma mark - GenericController Delegate methods
 
@@ -142,6 +145,7 @@
 //        [self setSelectedIndex:3];
 //    }
 }
+
 
 #pragma mark - ImageGetterPopup delegate methods
 
@@ -174,7 +178,8 @@
     }
 }
 
-#pragma mark - Image Picker Controller delegate methods
+
+#pragma mark - ImagePickerControllerDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -192,6 +197,7 @@
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
+
 
 #pragma mark - ImageRetrieverDelegate methods
 
@@ -214,6 +220,7 @@
     [self.navigationController pushViewController:editor animated:NO];
 }
 
+
 #pragma mark - CLImageEditorDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -233,6 +240,7 @@
         [self.navigationController pushViewController:wantDetailsVC animated:NO];
     }
 }
+
 
 #pragma mark - UploadWantDetailsDelegate methods
 
