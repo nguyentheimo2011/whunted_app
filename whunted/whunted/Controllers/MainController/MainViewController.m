@@ -30,6 +30,7 @@
     UserProfileViewController   *_userProfileVC;
     
     KLCPopup                    *_popup;
+    NSUInteger                  _currButtonIndex;
 }
 
 @end
@@ -98,7 +99,20 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Overriding methods
+#pragma mark - Event Handler
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) showImageGettingOptionPopup
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
+    imageGetterVC.delegate = self;
+    
+    _popup = [KLCPopup popupWithContentViewController:imageGetterVC];
+    [_popup show];
+}
+
+#pragma mark - UITabBarControllerDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
@@ -129,17 +143,113 @@
 //    }
 }
 
-#pragma mark - Event Handler
+#pragma mark - ImageGetterPopup delegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) showImageGettingOptionPopup
+- (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
-    imageGetterVC.delegate = self;
+    if (_popup != nil) {
+        [_popup dismiss:YES];
+    }
     
-    _popup = [KLCPopup popupWithContentViewController:imageGetterVC];
-    [_popup show];
+    if (method == PhotoLibrary) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == Camera) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == ImageURL) {
+        ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
+        retrieverVC.delegate = self;
+        [self.navigationController pushViewController:retrieverVC animated:YES];
+    }
+}
+
+#pragma mark - Image Picker Controller delegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    [self sendImageToUploadingWantDetailsVC:chosenImage];
+    
+    [picker dismissViewControllerAnimated:NO completion:NULL];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - ImageRetrieverDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    [self sendImageToUploadingWantDetailsVC:image];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
+    editor.delegate = self;
+    editor.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:editor animated:NO];
+}
+
+#pragma mark - CLImageEditorDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:NO];
+    UIViewController *topVC = [self.navigationController topViewController];
+    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
+        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
+        [wantDetailsVC setImage:image forButton:_currButtonIndex];
+    } else {
+        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+        wantDetailsVC.delegate = self;
+        _currButtonIndex = 0;
+        [wantDetailsVC setImage:image forButton:_currButtonIndex];
+        [self.navigationController pushViewController:wantDetailsVC animated:NO];
+    }
+}
+
+#pragma mark - UploadWantDetailsDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+//    [self.delegate genericController:self shouldUpdateDataAt:0];
+//    [self.delegate genericController:self shouldUpdateDataAt:2];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _currButtonIndex = buttonIndex;
+        [self showImageGettingOptionPopup];
 }
 
 

@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GenericController.h"
-#import "ImageGetterViewController.h"
 
-@interface UploadingViewController : GenericController<ImageGetterViewControllerDelegate>
+@interface UploadingViewController : GenericController
 
 @end

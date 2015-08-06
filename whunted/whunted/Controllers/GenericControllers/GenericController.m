@@ -6,18 +6,11 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "AppConstant.h"
 #import "GenericController.h"
-#import "InboxAllViewController.h"
-
-@interface GenericController ()
-
-@end
+#import "AppConstant.h"
 
 @implementation GenericController
-{
-    
-}
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -60,64 +53,6 @@
 
 #pragma mark - Event Handlers
 
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) openInbox
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    InboxAllViewController *inboxVC = [[InboxAllViewController alloc] init];
-    [self.navigationController pushViewController:inboxVC animated:YES];
-}
-
-#pragma mark - Upload Want Details View Controller delegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.delegate genericController:self shouldUpdateDataAt:0];
-    [self.delegate genericController:self shouldUpdateDataAt:2];
-}
-
-
-#pragma mark - Image Picker Controller delegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    [self sendImageToUploadingWantDetailsVC:chosenImage];
-    
-    [picker dismissViewControllerAnimated:NO completion:NULL];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
-
-#pragma mark - ImageRetrieverDelegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationController popViewControllerAnimated:NO];
-    [self sendImageToUploadingWantDetailsVC:image];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
-    editor.delegate = self;
-    editor.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:editor animated:NO];
-}
 
 #pragma mark - Methods for overridding by inherited class
 

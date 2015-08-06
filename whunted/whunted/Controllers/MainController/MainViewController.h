@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GenericController.h"
+#import "ImageGetterViewController.h"
+#import "ImageRetrieverViewController.h"
+#import "UploadingWantDetailsViewController.h"
 
-@interface MainViewController : UITabBarController<GenericControllerDelegate, UITabBarControllerDelegate>
+#import <CLImageEditor.h>
+
+@interface MainViewController : UITabBarController<UITabBarControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GenericControllerDelegate, ImageGetterViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, UploadingWantDetailsViewControllerDelegate>
 
 @end

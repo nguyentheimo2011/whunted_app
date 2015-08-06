@@ -7,19 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UploadingWantDetailsViewController.h"
-#import "ImageRetrieverViewController.h"
-#import <CLImageEditor.h>
 
 @class GenericController;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol GenericControllerDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) genericController: (GenericController *) controller shouldUpdateDataAt: (NSInteger) controllerIndex;
 
 @end
 
-@interface GenericController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UploadingWantDetailsViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate>
+//-------------------------------------------------------------------------------------------------------------------------------
+@interface GenericController : UIViewController
+//-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<GenericControllerDelegate> delegate;
 
