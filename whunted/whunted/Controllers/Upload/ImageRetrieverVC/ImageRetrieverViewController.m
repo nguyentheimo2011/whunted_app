@@ -12,12 +12,16 @@
 
 #import "MBProgressHUD.h"
 
+#define kLeftMargin             15.0f
+
 @implementation ImageRetrieverViewController
 {
-    UITextView      *_imageLinkTextView;
-    UIImageView     *_itemImageView;
-    UIImage         *_currItemImage;
-    UIScrollView    *_scrollView;
+    UILabel             *_instructionLabel;
+    
+    UITextView          *_imageLinkTextView;
+    UIImageView         *_itemImageView;
+    UIImage             *_currItemImage;
+    UIScrollView        *_scrollView;
 }
 
 @synthesize delegate = _delegate;
@@ -40,9 +44,7 @@
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
-    
-    [self customizeNavigationBar];
+    [self customizeUI];
     
     [self addScrollView];
     [self addInstructionLabel];
@@ -61,15 +63,18 @@
     NSLog(@"ImageRetrieverViewController didReceiveMemoryWarning");
 }
 
+
 #pragma mark - UI Handlers
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeNavigationBar
+- (void) customizeUI
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didStopEditing)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -85,23 +90,34 @@
 - (void) addInstructionLabel
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    UILabel *instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, WINSIZE.width - 30, 25)];
-    [instructionLabel setText:@"Paste image link here"];
-    [instructionLabel setTextColor:[UIColor grayColor]];
-    [instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_scrollView addSubview:instructionLabel];
+    CGFloat const kLabelTopMargin = 10.0f;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLeftMargin;
+    CGFloat const kLabelHeight = 25.0f;
+    
+    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
+    [_instructionLabel setText:NSLocalizedString(@"Paste image link here", nil)];
+    [_instructionLabel setTextColor:TEXT_COLOR_DARK_GRAY];
+    [_instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
+    [_scrollView addSubview:_instructionLabel];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) addImageLinkTextView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    _imageLinkTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 35, WINSIZE.width - 30, 55)];
+    CGFloat const kTextViewTopMargin = 5.0f;
+    CGFloat const kTextViewYPos = _instructionLabel.frame.origin.y + _instructionLabel.frame.size.height + kTextViewTopMargin;
+    CGFloat const kTextViewWidth = WINSIZE.width - 2 * kLeftMargin;
+    CGFloat const kTextViewHeight = 55.0f;
+    
+    _imageLinkTextView = [[UITextView alloc] initWithFrame:CGRectMake(kLeftMargin, kTextViewYPos, kTextViewWidth, kTextViewHeight)];
     [_imageLinkTextView setBackgroundColor:[UIColor whiteColor]];
     [_imageLinkTextView setTextColor:[UIColor grayColor]];
     [_imageLinkTextView setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_imageLinkTextView setReturnKeyType:UIReturnKeyDone];
-    _imageLinkTextView.layer.cornerRadius = 6.0;
+    _imageLinkTextView.layer.cornerRadius = 10.0f;
+    _imageLinkTextView.layer.borderWidth = 1.0f;
+    _imageLinkTextView.layer.borderColor = [LIGHTER_GRAY_COLOR CGColor];
     _imageLinkTextView.delegate = self;
     [_scrollView addSubview:_imageLinkTextView];
 }
@@ -155,13 +171,25 @@
     [_scrollView addSubview:doneButton];
 }
 
-#pragma mark - Event Handlers
+#pragma mark - UITextViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) textViewDidBeginEditing:(UITextView *)textView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -183,6 +211,8 @@
         }
     }];
 }
+
+#pragma mark - Event Handlers
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) didStopEditing
