@@ -210,6 +210,8 @@
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+    
     [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
 }
 
@@ -221,11 +223,7 @@
     editor.delegate = self;
     editor.hidesBottomBarWhenPushed = YES;
     
-    if (!needed) {
-        [_uploadingNavController pushViewController:editor animated:NO];
-    } else {
-        [self presentViewController:editor animated:YES completion:nil];
-    }
+    [self presentViewController:editor animated:YES completion:nil];
 }
 
 
@@ -245,7 +243,10 @@
         wantDetailsVC.delegate = self;
         _currButtonIndex = 0;
         [wantDetailsVC setImage:image forButton:_currButtonIndex];
-        [self.navigationController pushViewController:wantDetailsVC animated:NO];
+        
+        [editor dismissViewControllerAnimated:YES completion:nil];
+        [_uploadingNavController setViewControllers:@[wantDetailsVC]];
+        [self presentViewController:_uploadingNavController animated:YES completion:nil];
     }
 }
 
