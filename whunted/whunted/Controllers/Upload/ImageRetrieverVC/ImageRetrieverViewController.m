@@ -10,7 +10,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#import "MBProgressHUD.h"
+#import <MBProgressHUD.h>
+#import <JTImageButton.h>
 
 #define kLeftMargin             15.0f
 
@@ -51,7 +52,6 @@
     [self addImageLinkTextView];
     [self addItemImageView];
     [self addProceedToEditButton];
-    [self addDoneButton];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.width + 130)];
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height)];
     [self.view addSubview:_scrollView];
 }
 
@@ -112,7 +112,7 @@
     
     _imageLinkTextView = [[UITextView alloc] initWithFrame:CGRectMake(kLeftMargin, kTextViewYPos, kTextViewWidth, kTextViewHeight)];
     [_imageLinkTextView setBackgroundColor:[UIColor whiteColor]];
-    [_imageLinkTextView setTextColor:[UIColor grayColor]];
+    [_imageLinkTextView setTextColor:TEXT_COLOR_DARK_GRAY];
     [_imageLinkTextView setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_imageLinkTextView setReturnKeyType:UIReturnKeyDone];
     _imageLinkTextView.layer.cornerRadius = 10.0f;
@@ -140,39 +140,25 @@
 - (void) addProceedToEditButton
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    UIButton *proceedToEditButton = [[UIButton alloc] initWithFrame:CGRectMake(15, WINSIZE.width + 105, 140, 40)];
-    UIColor *normalColor = [UIColor colorWithRed:16.0/255 green:200.0/255 blue:205.0/255 alpha:1.0];
-    UIColor *highlightedColor = [UIColor whiteColor];
-    [proceedToEditButton setTitle:@"Proceed to edit" forState:UIControlStateNormal];
-    [proceedToEditButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [proceedToEditButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [proceedToEditButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [proceedToEditButton setBackgroundImage:[Utilities imageWithColor:normalColor] forState:UIControlStateNormal];
-    [proceedToEditButton setBackgroundImage:[Utilities imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
-    proceedToEditButton.layer.cornerRadius = 5.0;
-    proceedToEditButton.clipsToBounds = YES;
-    [Utilities addGradientToButton:proceedToEditButton];
+    JTImageButton *proceedToEditButton = [[JTImageButton alloc] init];
+    [proceedToEditButton createTitle:NSLocalizedString(@"Proceed to edit", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    proceedToEditButton.titleColor = [UIColor whiteColor];
+    proceedToEditButton.cornerRadius = 6.0f;
+    proceedToEditButton.borderColor = MAIN_BLUE_COLOR;
+    proceedToEditButton.bgColor = MAIN_BLUE_COLOR;
+    
+    [proceedToEditButton sizeToFit];
+    CGFloat const kButtonWidth = proceedToEditButton.frame.size.width + 20.0f;
+    CGFloat const kButtonHeight = 40.0f;
+    CGFloat const kButtonXPos = WINSIZE.width - kLeftMargin - kButtonWidth;
+    CGFloat const kButtonTopMargin = 30.0f;
+    CGFloat const kButtonYPos = _itemImageView.frame.origin.y + _itemImageView.frame.size.height + kButtonTopMargin;
+    proceedToEditButton.frame = CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight);
+    
     [_scrollView addSubview:proceedToEditButton];
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------
-- (void) addDoneButton
-//--------------------------------------------------------------------------------------------------------------------------------
-{
-    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width - 75, WINSIZE.width + 105, 60, 40)];
-    UIColor *normalColor = [UIColor colorWithRed:51.0/255 green:153.0/255 blue:255.0/255 alpha:1.0];
-    UIColor *highlightedColor = [UIColor whiteColor];
-    [doneButton setTitle:@"Done" forState:UIControlStateNormal];
-    [doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [doneButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [doneButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [doneButton setBackgroundImage:[Utilities imageWithColor:normalColor] forState:UIControlStateNormal];
-    [doneButton setBackgroundImage:[Utilities imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
-    doneButton.layer.cornerRadius = 5.0;
-    doneButton.clipsToBounds = YES;
-    [Utilities addGradientToButton:doneButton];
-    [doneButton addTarget:self action:@selector(doneButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:doneButton];
+    
+    // adjust size of the scroll view
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, proceedToEditButton.frame.origin.y + proceedToEditButton.frame.size.height + 10.0f)];
 }
 
 #pragma mark - UITextViewDelegate methods
@@ -216,7 +202,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (_currItemImage) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to discard the image?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard the image?", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure!", nil), nil];
         [alertView show];
     } else {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -227,7 +213,7 @@
 - (void) topDoneButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
 }
 
 #pragma mark - UIAlertViewDelegate
