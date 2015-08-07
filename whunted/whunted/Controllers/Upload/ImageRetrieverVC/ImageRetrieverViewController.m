@@ -70,9 +70,9 @@
 - (void) customizeUI
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(didStopEditing)];
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(topDoneButtonTapEventHandler)];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
@@ -126,7 +126,11 @@
 - (void) addItemImageView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 110, WINSIZE.width - 30, WINSIZE.width - 30)];
+    CGFloat const kImageViewWidth = WINSIZE.width - 2 * kLeftMargin;
+    CGFloat const kImageViewTopMargin = 25.0f;
+    CGFloat const kImageViewYPos = _imageLinkTextView.frame.origin.y + _imageLinkTextView.frame.size.height + kImageViewTopMargin;
+    
+    _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kImageViewYPos, kImageViewWidth, kImageViewWidth)];
     [_itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     [_scrollView addSubview:_itemImageView];
@@ -174,13 +178,6 @@
 #pragma mark - UITextViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void) textViewDidBeginEditing:(UITextView *)textView
-//--------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationItem.rightBarButtonItem setTitle:@"Done"];
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 //--------------------------------------------------------------------------------------------------------------------------------
 {
@@ -215,14 +212,6 @@
 #pragma mark - Event Handlers
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void) didStopEditing
-//--------------------------------------------------------------------------------------------------------------------------------
-{
-    [_imageLinkTextView resignFirstResponder];
-    [self.navigationItem.rightBarButtonItem setTitle:@""];
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------
 - (void) topCancelButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
@@ -235,10 +224,10 @@
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void) doneButtonClickedEvent
+- (void) topDoneButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
+    
 }
 
 #pragma mark - UIAlertViewDelegate
