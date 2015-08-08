@@ -298,7 +298,7 @@
     }];
 }
 
-#pragma mark - Table view data source and table view delegate
+#pragma mark - UITableViewDataSource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -344,6 +344,8 @@
     }
     return nil;
 }
+
+#pragma mark - UITableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

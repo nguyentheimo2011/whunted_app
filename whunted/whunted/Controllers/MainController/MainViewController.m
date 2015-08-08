@@ -115,6 +115,13 @@
     [_popup show];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) topCancelButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - UITabBarControllerDelegate methods
 
@@ -222,10 +229,14 @@
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
     editor.delegate = self;
     editor.hidesBottomBarWhenPushed = YES;
+    editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
     
-    editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    [_uploadingNavController pushViewController:editor animated:YES];
+    if (!needed) {
+        [_uploadingNavController pushViewController:editor animated:YES];
+    } else {
+        [_uploadingNavController setViewControllers:@[editor]];
+        [self presentViewController:_uploadingNavController animated:YES completion:nil];
+    }
 }
 
 
@@ -246,9 +257,7 @@
         _currButtonIndex = 0;
         [wantDetailsVC setImage:image forButton:_currButtonIndex];
         
-        [editor dismissViewControllerAnimated:YES completion:nil];
-        [_uploadingNavController setViewControllers:@[wantDetailsVC]];
-        [self presentViewController:_uploadingNavController animated:YES completion:nil];
+        [_uploadingNavController pushViewController:wantDetailsVC animated:YES];
     }
 }
 
