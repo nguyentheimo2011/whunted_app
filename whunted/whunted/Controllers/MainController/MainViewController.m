@@ -210,7 +210,7 @@
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+//    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
     
     [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
 }
@@ -223,7 +223,9 @@
     editor.delegate = self;
     editor.hidesBottomBarWhenPushed = YES;
     
-    [self presentViewController:editor animated:YES completion:nil];
+    editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    [_uploadingNavController pushViewController:editor animated:YES];
 }
 
 
