@@ -31,6 +31,7 @@
     NSMutableArray              *_addingButtonList;
     
     NSString                    *_hashtagString;
+    NSInteger                   _prevTappedButtonIndex;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -200,6 +201,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = (UIButton *) sender;
+    _prevTappedButtonIndex = button.tag;
     
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
     imageGetterVC.delegate = self;
@@ -661,8 +663,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded
 //-------------------------------------------------------------------------------------------------------------------------------
-{
-    
+{  
     if (editingNeeded) {
         [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
     } else {
@@ -699,7 +700,7 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
     
-    [self setImage:image forButton:0];
+    [self setImage:image forButton:_prevTappedButtonIndex];
 }
 
 @end

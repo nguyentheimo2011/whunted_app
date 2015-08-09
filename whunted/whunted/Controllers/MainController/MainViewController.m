@@ -246,19 +246,13 @@
 - (void) addItemImageToWantDetailVC: (UIImage *) image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UIViewController *topVC = [self.navigationController topViewController];
-    if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
-        UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
-        [wantDetailsVC setImage:image forButton:_currButtonIndex];
-    } else {
-        UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
-        wantDetailsVC.delegate = self;
-        _currButtonIndex = 0;
-        [wantDetailsVC setImage:image forButton:_currButtonIndex];
-        
-        [_uploadingNavController setViewControllers:@[wantDetailsVC]];
-        [self presentViewController:_uploadingNavController animated:YES completion:nil];
-    }
+    UploadingWantDetailsViewController *wantDetailsVC = [[UploadingWantDetailsViewController alloc] init];
+    wantDetailsVC.delegate = self;
+    _currButtonIndex = 0;
+    [wantDetailsVC setImage:image forButton:_currButtonIndex];
+    
+    [_uploadingNavController setViewControllers:@[wantDetailsVC]];
+    [self presentViewController:_uploadingNavController animated:YES completion:nil];
 }
 
 
@@ -270,14 +264,6 @@
 {
 //    [self.delegate genericController:self shouldUpdateDataAt:0];
 //    [self.delegate genericController:self shouldUpdateDataAt:2];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didPressItemImageButton:(NSUInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    _currButtonIndex = buttonIndex;
-    [self showImageGettingOptionPopup];
 }
 
 
