@@ -11,6 +11,7 @@
 #import "Utilities.h"
 
 #import "KLCPopup.h"
+#import <RSKImageCropper.h>
 
 @implementation UploadingWantDetailsViewController
 {
@@ -645,9 +646,12 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
+//    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
+    [self.navigationController pushViewController:imageCropVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
