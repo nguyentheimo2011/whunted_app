@@ -100,6 +100,7 @@
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
     [_itemImageView setBackgroundColor:LIGHT_GRAY_COLOR];
+    _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_itemImageView];
     [_itemImageView hnk_cancelSetImage];
     _itemImageView.image = nil;

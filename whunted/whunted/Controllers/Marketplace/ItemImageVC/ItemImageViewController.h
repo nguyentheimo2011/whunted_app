@@ -10,7 +10,7 @@
 
 @interface ItemImageViewController : UIViewController
 
-@property (nonatomic, strong) UIImageView *itemImageView;
-@property (nonatomic) NSInteger index;
+@property (nonatomic, strong)   UIImageView     *itemImageView;
+@property (nonatomic)           NSInteger       index;
 
 @end

@@ -131,8 +131,8 @@
     CGFloat const kImageViewYPos = _imageLinkTextView.frame.origin.y + _imageLinkTextView.frame.size.height + kImageViewTopMargin;
     
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kImageViewYPos, kImageViewWidth, kImageViewWidth)];
-    [_itemImageView setBackgroundColor:BACKGROUND_GRAY_COLOR];
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+    _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     [_scrollView addSubview:_itemImageView];
 }
 

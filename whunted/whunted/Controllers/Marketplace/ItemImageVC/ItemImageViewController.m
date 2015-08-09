@@ -9,15 +9,13 @@
 #import "ItemImageViewController.h"
 #import "AppConstant.h"
 
-@interface ItemImageViewController ()
-
-@end
-
 @implementation ItemImageViewController
 
-@synthesize itemImageView;
+@synthesize itemImageView = _itemImageView;
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (id) init
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -27,23 +25,31 @@
     return self;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
     NSLog(@"ItemImageViewController didReceiveMemoryWarning");
 }
 
 #pragma mark - UI Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemImageView
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6)];
-    [itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
-    [self.view addSubview:itemImageView];
+    _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6)];
+    [_itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
+    _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_itemImageView];
 }
 
 
