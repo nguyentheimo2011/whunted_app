@@ -14,7 +14,7 @@
 @protocol ImageRetrieverDelegate <NSObject>
 //--------------------------------------------------------------------------------------------------------------------------------
 
-- (void) imageRetrieverViewController: (ImageRetrieverViewController *) controller didRetrieveImage: (UIImage *) image;
+- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded;
 
 @end
 

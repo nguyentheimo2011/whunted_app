@@ -154,6 +154,7 @@
     CGFloat const kButtonTopMargin = 30.0f;
     CGFloat const kButtonYPos = _itemImageView.frame.origin.y + _itemImageView.frame.size.height + kButtonTopMargin;
     proceedToEditButton.frame = CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight);
+    [proceedToEditButton addTarget:self action:@selector(proceedToEdit) forControlEvents:UIControlEventTouchUpInside];
     
     [_scrollView addSubview:proceedToEditButton];
     
@@ -213,7 +214,14 @@
 - (void) topDoneButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage];
+    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage needEditing:NO];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) proceedToEdit
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegate imageRetrieverViewController:self didRetrieveImage:_currItemImage needEditing:YES];
 }
 
 #pragma mark - UIAlertViewDelegate

@@ -207,12 +207,16 @@
 #pragma mark - ImageRetrieverDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image
+- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [_uploadingNavController dismissViewControllerAnimated:NO completion:nil];
     
-    [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
+    if (editingNeeded) {
+        [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
+    } else {
+        [self addItemImageToWantDetailVC:image];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -233,8 +237,15 @@
 - (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popViewControllerAnimated:NO];
+    [editor dismissViewControllerAnimated:NO completion:nil];
     
+    [self addItemImageToWantDetailVC:image];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addItemImageToWantDetailVC: (UIImage *) image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     UIViewController *topVC = [self.navigationController topViewController];
     if ([topVC isKindOfClass:[UploadingWantDetailsViewController class]]) {
         UploadingWantDetailsViewController *wantDetailsVC = (UploadingWantDetailsViewController *) topVC;
@@ -244,8 +255,6 @@
         wantDetailsVC.delegate = self;
         _currButtonIndex = 0;
         [wantDetailsVC setImage:image forButton:_currButtonIndex];
-        
-        [editor dismissViewControllerAnimated:NO completion:nil];
         
         [_uploadingNavController setViewControllers:@[wantDetailsVC]];
         [self presentViewController:_uploadingNavController animated:YES completion:nil];
