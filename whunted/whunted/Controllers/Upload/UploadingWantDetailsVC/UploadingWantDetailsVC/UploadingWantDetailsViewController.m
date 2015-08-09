@@ -10,6 +10,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
+#import "KLCPopup.h"
+
 @implementation UploadingWantDetailsViewController
 {
     UITableViewCell             *_buttonListCell;
@@ -22,6 +24,7 @@
     
     UITextField                 *_priceTextField;
     UISwitch                    *_escrowSwitch;
+    KLCPopup                    *_popup;
     
     WantData                    *_wantData;
     
@@ -85,9 +88,10 @@
     
     for (int i=0; i<4; i++) {
         UIButton *addingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [addingButton setTag:i];
+        addingButton.tag = i;
         [addingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
         [addingButton setEnabled:YES];
+        addingButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         addingButton.frame = CGRectMake((i+1) * spaceWidth + i * imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
         [addingButton addTarget:self action:@selector(addingImageButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
         [_buttonListCell addSubview:addingButton];
@@ -189,14 +193,19 @@
     _escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-#pragma mark - Event Handling
+#pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addingImageButtonEvent: (id) sender
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = (UIButton *) sender;
-    [self.delegate uploadingWantDetailsViewController:self didPressItemImageButton:button.tag];
+    
+    ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
+    imageGetterVC.delegate = self;
+    
+    _popup = [KLCPopup popupWithContentViewController:imageGetterVC];
+    [_popup show];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -269,7 +278,8 @@
     }
 }
 
-#pragma mark - Set image back ground for button
+
+#pragma mark - Set image for button
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
@@ -553,7 +563,6 @@
 }
 
 
-
 #pragma mark - UIAlertViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -593,5 +602,104 @@
         _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
 }
 
+
+#pragma mark - ImageGetterViewControllerDelegate
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_popup != nil) {
+        [_popup dismiss:YES];
+    }
+    
+    if (method == PhotoLibrary) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == Camera) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    } else if (method == ImageURL) {
+        ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
+        retrieverVC.delegate = self;
+        
+        [self.navigationController pushViewController:retrieverVC animated:YES];
+    }
+}
+
+
+#pragma mark - ImagePickerControllerDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+#pragma mark - ImageRetrieverDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    
+    if (editingNeeded) {
+        [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
+    } else {
+        [self addItemImageToWantDetailVC:image];
+    }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image withNavigationControllerNeeded: (BOOL) needed
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
+    editor.delegate = self;
+    editor.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:editor animated:YES];
+}
+
+
+#pragma mark - CLImageEditorDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [self addItemImageToWantDetailVC:image];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addItemImageToWantDetailVC: (UIImage *) image
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [self setImage:image forButton:0];
+}
 
 @end
