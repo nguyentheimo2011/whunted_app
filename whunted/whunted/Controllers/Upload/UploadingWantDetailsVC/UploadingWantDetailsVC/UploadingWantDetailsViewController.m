@@ -10,31 +10,25 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-@interface UploadingWantDetailsViewController ()
-
-@property (strong, nonatomic) NSMutableArray    *addingButtonList;
-@property (strong, nonatomic) UITableViewCell   *buttonListCell;
-
-@property (strong, nonatomic) UITableViewCell   *categoryCell;
-@property (strong, nonatomic) UITableViewCell   *itemInfoCell;
-@property (strong, nonatomic) UITableViewCell   *productOriginCell;
-@property (strong, nonatomic) UITableViewCell   *priceCell;
-@property (strong, nonatomic) UITableViewCell   *locationCell;
-@property (strong, nonatomic) UITableViewCell   *escrowRequestCell;
-
-@property (strong, nonatomic) WantData          *wantData;
-
-@end
-
 @implementation UploadingWantDetailsViewController
 {
-    UITextField     *priceTextField;
-    UISwitch        *escrowSwitch;
-    NSString        *hashtagString;
+    UITableViewCell             *_buttonListCell;
+    UITableViewCell             *_categoryCell;
+    UITableViewCell             *_itemInfoCell;
+    UITableViewCell             *_productOriginCell;
+    UITableViewCell             *_priceCell;
+    UITableViewCell             *_locationCell;
+    UITableViewCell             *_escrowRequestCell;
+    
+    UITextField                 *_priceTextField;
+    UISwitch                    *_escrowSwitch;
+    
+    WantData                    *_wantData;
+    
+    NSMutableArray              *_addingButtonList;
+    
+    NSString                    *_hashtagString;
 }
-
-@synthesize wantData;
-@synthesize productOriginCell;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -43,28 +37,36 @@
     self = [super init];
     
     if (self != nil) {
+        [self customizeUI];
         [self initializeButtonListCell];
         [self initializeSecondSection];
-        [self customizeNavigationBar];
-        self.view.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:244/255.0 alpha:1.0];
-        self.wantData = [[WantData alloc] init];
-        self.wantData.buyer = [PFUser currentUser];
-        self.wantData.itemPictureList = [[PFRelation alloc] init];
-        self.wantData.backupItemPictureList = [[NSMutableArray alloc] init];
-        
-        // hide bottom bar when uploading a new want
-        self.hidesBottomBarWhenPushed = YES;
+        [self initData];
     }
     
     return self;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _wantData = [[WantData alloc] init];
+    _wantData.buyer = [PFUser currentUser];
+    _wantData.itemPictureList = [[PFRelation alloc] init];
+    _wantData.backupItemPictureList = [[NSMutableArray alloc] init];
+}
+
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeNavigationBar
+- (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    
+    // hide bottom bar when uploading a new want
+    self.hidesBottomBarWhenPushed = YES;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
@@ -74,13 +76,12 @@
 - (void) initializeButtonListCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.buttonListCell = [[UITableViewCell alloc] init];
-    self.buttonListCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.buttonListCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _buttonListCell = [[UITableViewCell alloc] init];
+    _buttonListCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     CGSize imageSize = [UIImage imageNamed:@"squareplus.png"].size;
-    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
-    CGFloat spaceWidth = (windowSize.width - 4 * imageSize.width) / 5.0;
-    self.addingButtonList = [[NSMutableArray alloc] init];
+    CGFloat spaceWidth = (WINSIZE.width - 4 * imageSize.width) / 5.0;
+    _addingButtonList = [[NSMutableArray alloc] init];
     
     for (int i=0; i<4; i++) {
         UIButton *addingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -89,8 +90,8 @@
         [addingButton setEnabled:YES];
         addingButton.frame = CGRectMake((i+1) * spaceWidth + i * imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
         [addingButton addTarget:self action:@selector(addingImageButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
-        [self.buttonListCell addSubview:addingButton];
-        [self.addingButtonList addObject:addingButton];
+        [_buttonListCell addSubview:addingButton];
+        [_addingButtonList addObject:addingButton];
     }
 }
 
@@ -110,52 +111,48 @@
 - (void) initializeCategoryCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
-    self.categoryCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
-    self.categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
-    self.categoryCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
+    _categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
+    _categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
+    _categoryCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeItemInfoCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
-    self.itemInfoCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
-    self.itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
-    self.itemInfoCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
+    _itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
+    _itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
+    _itemInfoCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeProductOriginCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
-    self.productOriginCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
-    self.productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
-    self.productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
+    _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
+    _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializePriceCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.priceCell = [[UITableViewCell alloc] init];
-    self.priceCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
-    priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
-    [priceTextField setTextAlignment:NSTextAlignmentRight];
-    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:0.8];
-    priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
-    priceTextField.delegate = self;
-    priceTextField.tag = 102;
-    priceTextField.inputView = ({
+    _priceCell = [[UITableViewCell alloc] init];
+    _priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
+    _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
+    [_priceTextField setTextAlignment:NSTextAlignmentRight];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    _priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    _priceTextField.delegate = self;
+    _priceTextField.tag = 102;
+    _priceTextField.inputView = ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
         //
@@ -163,35 +160,33 @@
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad;
     });
-    [priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-    [priceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
-    self.priceCell.accessoryView = priceTextField;
-    self.priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [_priceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
+    [_priceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    _priceCell.accessoryView = _priceTextField;
+    _priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeLocationCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
-    self.locationCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
-    self.locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
-    self.locationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
+    _locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
+    _locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
+    _locationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeEscrowRequestCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.escrowRequestCell = [[UITableViewCell alloc] init];
-    self.escrowRequestCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.8f];
-    self.escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow", nil);
-    escrowSwitch = [[UISwitch alloc] init];
-    [escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
-    self.escrowRequestCell.accessoryView = escrowSwitch;
-    self.escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _escrowRequestCell = [[UITableViewCell alloc] init];
+    _escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow", nil);
+    _escrowSwitch = [[UISwitch alloc] init];
+    [_escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
+    _escrowRequestCell.accessoryView = _escrowSwitch;
+    _escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 #pragma mark - Event Handling
@@ -201,7 +196,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = (UIButton *) sender;
-    [self.delegate uploadingWantDetailsViewController:self didPressItemImageButton:[button tag]];
+    [self.delegate uploadingWantDetailsViewController:self didPressItemImageButton:button.tag];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -209,34 +204,34 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIAlertView *submissionAlertView;
-    if (self.wantData.itemCategory == nil) {
+    if (_wantData.itemCategory == nil) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please choose a category!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if (self.wantData.itemName == nil || [self.wantData.itemName length] == 0) {
+    } else if (_wantData.itemName == nil || [_wantData.itemName length] == 0) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please fill in item name!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if (self.wantData.demandedPrice == nil || [self.wantData.demandedPrice length] == 0) {
+    } else if (_wantData.demandedPrice == nil || [_wantData.demandedPrice length] == 0) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
-        if (!self.wantData.itemDesc)
-            self.wantData.itemDesc = @"";
-        if (!self.wantData.hashTagList)
-            self.wantData.hashTagList = [NSArray array];
-        if (!self.wantData.demandedPrice)
-            self.wantData.demandedPrice = @"0";
-        if (!self.wantData.paymentMethod)
-            self.wantData.paymentMethod = @"non-escrow";
-        if (!self.wantData.meetingLocation)
-            self.wantData.meetingLocation = @"";
+        if (!_wantData.itemDesc)
+            _wantData.itemDesc = @"";
+        if (!_wantData.hashTagList)
+            _wantData.hashTagList = [NSArray array];
+        if (!_wantData.demandedPrice)
+            _wantData.demandedPrice = @"0";
+        if (!_wantData.paymentMethod)
+            _wantData.paymentMethod = @"non-escrow";
+        if (!_wantData.meetingLocation)
+            _wantData.meetingLocation = @"";
         
-        self.wantData.sellersNum = 0;
-        self.wantData.itemPicturesNum = [self.wantData.backupItemPictureList count];
+        _wantData.sellersNum = 0;
+        _wantData.itemPicturesNum = [_wantData.backupItemPictureList count];
         
-        PFObject *pfObj = [self.wantData getPFObject];
+        PFObject *pfObj = [_wantData getPFObject];
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:self.wantData];
+                [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:_wantData];
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -257,8 +252,8 @@
 - (void) didFinishEditingPrice
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.wantData.demandedPrice = priceTextField.text;
-    [priceTextField resignFirstResponder];
+    _wantData.demandedPrice = _priceTextField.text;
+    [_priceTextField resignFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
 }
 
@@ -266,11 +261,11 @@
 - (void) escrowSwitchDidChangeState
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    BOOL state = [escrowSwitch isOn];
+    BOOL state = [_escrowSwitch isOn];
     if (state) {
-        self.wantData.paymentMethod = @"escrow";
+        _wantData.paymentMethod = @"escrow";
     } else {
-        self.wantData.paymentMethod = @"non-escrow";
+        _wantData.paymentMethod = @"non-escrow";
     }
 }
 
@@ -280,31 +275,30 @@
 - (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[self.addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
+    [[_addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
     
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", self.wantData.buyer.objectId] data:data];
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyer.objectId] data:data];
     
     // Temporary code. Not handle changing image yet
     PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];
     itemPictureObj[@"itemPicture"] = imageFile;
     [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
-            [self.wantData.itemPictureList addObject:itemPictureObj];
-            [self.wantData.backupItemPictureList addObject:itemPictureObj];
+            [_wantData.itemPictureList addObject:itemPictureObj];
+            [_wantData.backupItemPictureList addObject:itemPictureObj];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
 }
 
-#pragma mark - Table view data source and table view delegate
+#pragma mark - UITableViewDataSouce methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    // Return the number of sections.
     return 3;
 }
 
@@ -312,7 +306,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    // Return the number of rows in the section.
     switch(section)
     {
         case 0: return 0;   // section 0 has 0 row. Use footer of section i as the header of section i+1
@@ -330,20 +323,23 @@
     {
         case 0: return nil;
         case 1:
-            return self.buttonListCell;
+            return _buttonListCell;
         case 2:
             switch(indexPath.row)
             {
-                case 0: return self.categoryCell;
-                case 1: return self.itemInfoCell;
-                case 2: return self.productOriginCell;
-                case 3: return self.priceCell;
-                case 4: return self.locationCell;
-                case 5: return self.escrowRequestCell;
+                case 0: return _categoryCell;
+                case 1: return _itemInfoCell;
+                case 2: return _productOriginCell;
+                case 3: return _priceCell;
+                case 4: return _locationCell;
+                case 5: return _escrowRequestCell;
             }
     }
     return nil;
 }
+
+
+#pragma mark - UITableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -433,78 +429,82 @@
         if (indexPath.row == 0) {
             CategoryTableViewController *catVC = [[CategoryTableViewController alloc] init];
             catVC.delegte = self;
-            catVC.category = self.wantData.itemCategory;
+            catVC.category = _wantData.itemCategory;
             [self.navigationController pushViewController:catVC animated:YES];
         } else if (indexPath.row == 1) {
-            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:self.wantData.itemName, ITEM_NAME_KEY, self.wantData.itemDesc, ITEM_DESC_KEY, hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:self.wantData.secondHandOption], ITEM_SECONDHAND_OPTION, nil];
+            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.secondHandOption], ITEM_SECONDHAND_OPTION, nil];
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 2) {
-            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:wantData.productOriginList];
+            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.productOriginList];
             productTableVC.delegate = self;
             [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
             LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
             locVC.delegate = self;
-            locVC.location = self.wantData.meetingLocation;
+            locVC.location = _wantData.meetingLocation;
             [self.navigationController pushViewController:locVC animated:YES];
         }
     }
     
     if (indexPath.section != 2 || (indexPath.row != 2 && indexPath.row != 3)) {
-        [priceTextField resignFirstResponder];
+        [_priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)]) {
-            self.wantData.demandedPrice = priceTextField.text;
+            _wantData.demandedPrice = _priceTextField.text;
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
         }
     }
 }
 
-#pragma mark - CategoryTableViewControllerDelegate
+
+#pragma mark - CategoryTableViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) categoryTableViewController:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.wantData.itemCategory = category;;
+    _wantData.itemCategory = category;;
     [self.navigationController popViewControllerAnimated:YES];
-    self.categoryCell.detailTextLabel.text = self.wantData.itemCategory;
+    _categoryCell.detailTextLabel.text = _wantData.itemCategory;
 }
 
-#pragma mark - LocationTableViewControllerDelegate
+
+#pragma mark - LocationTableViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) locationTableViewController:(LocationTableViewController *)controller didSelectLocation:(NSString *)location
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.wantData.meetingLocation = location;
+    _wantData.meetingLocation = location;
     [self.navigationController popViewControllerAnimated:YES];
-    self.locationCell.detailTextLabel.text = self.wantData.meetingLocation;
+    _locationCell.detailTextLabel.text = _wantData.meetingLocation;
 }
 
-#pragma mark - ItemInfoTableViewController
+
+#pragma mark - ItemInfoTableViewController methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) itemInfoTableViewController:(ItemInfoTableViewController *)controller didPressDone:(NSDictionary *)itemInfo
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
-    self.wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
-    self.wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
-    hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
-    if ([hashtagString length] > 0)
-        self.wantData.hashTagList = [hashtagString componentsSeparatedByString:@" "];
+    _wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
+    _wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
+    _wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
+    _hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
+    if ([_hashtagString length] > 0)
+        _wantData.hashTagList = [_hashtagString componentsSeparatedByString:@" "];
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     if (itemName != nil) {
-        self.itemInfoCell.detailTextLabel.text = itemName;
+        _itemInfoCell.detailTextLabel.text = itemName;
     } else {
-        self.itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
+        _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - UITextFieldDelegate
+
+#pragma mark - UITextFieldDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) textFieldDidBeginEditing:(UITextField *)textField
@@ -549,11 +549,12 @@
 - (void) priceTextFieldDidChange
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [priceTextField setText:[Utilities formatPriceText:priceTextField.text]];
+    [_priceTextField setText:[Utilities formatPriceText:_priceTextField.text]];
 }
 
 
-#pragma mark - UIAlertViewDelegate
+
+#pragma mark - UIAlertViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -571,24 +572,25 @@
 - (void)numberPad:(APNumberPad *)numberPad functionButtonAction:(UIButton *)functionButton textInput:(UIResponder<UITextInput> *)textInput
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSRange range = {[[priceTextField text] length], 1};
-    if ([self textField:priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
+    NSRange range = {[[_priceTextField text] length], 1};
+    if ([self textField:_priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
         [textInput insertText:DOT_CHARACTER];
 }
 
-#pragma mark - ProductOriginTableViewDelegate
+
+#pragma mark - ProductOriginTableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingCountries:(NSArray *)countries
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    wantData.productOriginList = [NSArray arrayWithArray:countries];
+    _wantData.productOriginList = [NSArray arrayWithArray:countries];
     
-    if ([wantData.productOriginList count] > 0) {
-        NSString *originText = [wantData.productOriginList componentsJoinedByString:@", "];
-        [productOriginCell.detailTextLabel setText:originText];
+    if ([_wantData.productOriginList count] > 0) {
+        NSString *originText = [_wantData.productOriginList componentsJoinedByString:@", "];
+        [_productOriginCell.detailTextLabel setText:originText];
     } else
-        productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+        _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
 }
 
 

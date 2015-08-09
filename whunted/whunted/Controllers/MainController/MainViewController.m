@@ -277,7 +277,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _currButtonIndex = buttonIndex;
-        [self showImageGettingOptionPopup];
+    [self showImageGettingOptionPopup];
 }
 
 
