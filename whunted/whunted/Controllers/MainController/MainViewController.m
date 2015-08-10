@@ -170,8 +170,9 @@
     } else if (method == Camera) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.showsCameraControls = YES;
         
         [self presentViewController:picker animated:YES completion:nil];
     } else if (method == ImageURL) {
@@ -192,8 +193,13 @@
 {
     [picker dismissViewControllerAnimated:NO completion:NULL];
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    
+    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
+    imageCropVC.cropMode = RSKImageCropModeCustom;
+    imageCropVC.dataSource = self;
+    [_uploadingNavController setViewControllers:@[imageCropVC]];
+    [self presentViewController:_uploadingNavController animated:YES completion:nil];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -266,5 +272,49 @@
 //    [self.delegate genericController:self shouldUpdateDataAt:2];
 }
 
+
+#pragma mark - RSKImageCropViewControllerDataSource methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGRect maskRect = CGRectMake(0,
+                                 (WINSIZE.height - WINSIZE.width) * 0.5f,
+                                 WINSIZE.width,
+                                 WINSIZE.width);
+    
+    return maskRect;
+}
+
+// Returns a custom path for the mask.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGRect rect = controller.maskRect;
+    CGPoint point1 = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
+    CGPoint point2 = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+    CGPoint point3 = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGPoint point4 = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
+    
+    UIBezierPath *rectangle = [UIBezierPath bezierPath];
+    [rectangle moveToPoint:point1];
+    [rectangle addLineToPoint:point2];
+    [rectangle addLineToPoint:point3];
+    [rectangle addLineToPoint:point4];
+    [rectangle closePath];
+    
+    return rectangle;
+}
+
+// Returns a custom rect in which the image can be moved.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (CGRect)imageCropViewControllerCustomMovementRect:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    // If the image is not rotated, then the movement rect coincides with the mask rect.
+    return controller.maskRect;
+}
 
 @end
