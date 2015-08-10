@@ -33,6 +33,7 @@
     
     KLCPopup                    *_popup;
     NSUInteger                  _currButtonIndex;
+    BOOL                        _imageEdittingNeeded;
 }
 
 @end
@@ -124,31 +125,13 @@
 {
     if ([viewController.title isEqualToString:TAB_BAR_UPLOAD_PAGE_TITLE]) {
         _uploadingNavController = [[UINavigationController alloc] init];
+        _imageEdittingNeeded = YES;
         [self showImageGettingOptionPopup];
         
         return NO;
     } else
         return YES;
 }
-
-
-#pragma mark - GenericController Delegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) genericController:(GenericController *)controller shouldUpdateDataAt:(NSInteger)controllerIndex
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-//    if (controllerIndex == 0) {
-//        [_brController retrieveLatestWantData];
-//    } else if (controllerIndex == 2) {
-//        [_myWantVC retrieveLatestWantData];
-//        [self setSelectedIndex:2];
-//    } else if (controllerIndex == 3) {
-//        [_mySellVC retrieveLatestWantData];
-//        [self setSelectedIndex:3];
-//    }
-}
-
 
 #pragma mark - ImageGetterPopup delegate methods
 
@@ -196,6 +179,7 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     
+    // crop tool
     RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
     imageCropVC.cropMode = RSKImageCropModeCustom;
     imageCropVC.dataSource = self;
@@ -218,24 +202,14 @@
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [_uploadingNavController dismissViewControllerAnimated:NO completion:nil];
+    _imageEdittingNeeded = editingNeeded;
     
-    if (editingNeeded) {
-        [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
-    } else {
-        [self addItemImageToWantDetailVC:image];
-    }
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image withNavigationControllerNeeded: (BOOL) needed
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
-    editor.delegate = self;
-    editor.hidesBottomBarWhenPushed = YES;
+    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:image cropMode:RSKImageCropModeSquare];
+    imageCropVC.cropMode = RSKImageCropModeCustom;
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
     
-    [self presentViewController:editor animated:YES completion:nil];
+    [_uploadingNavController pushViewController:imageCropVC animated:YES];
 }
 
 
@@ -245,8 +219,6 @@
 - (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [editor dismissViewControllerAnimated:NO completion:nil];
-    
     [self addItemImageToWantDetailVC:image];
 }
 
@@ -259,8 +231,7 @@
     _currButtonIndex = 0;
     [wantDetailsVC setImage:image forButton:_currButtonIndex];
     
-    [_uploadingNavController setViewControllers:@[wantDetailsVC]];
-    [self presentViewController:_uploadingNavController animated:YES completion:nil];
+    [_uploadingNavController pushViewController:wantDetailsVC animated:YES];
 }
 
 
@@ -270,8 +241,7 @@
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-//    [self.delegate genericController:self shouldUpdateDataAt:0];
-//    [self.delegate genericController:self shouldUpdateDataAt:2];
+
 }
 
 
@@ -337,11 +307,28 @@
                   usingCropRect:(CGRect)cropRect
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
-    editor.delegate = self;
-    editor.hidesBottomBarWhenPushed = YES;
+    if (_imageEdittingNeeded) {
+        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
+        editor.delegate = self;
+        editor.hidesBottomBarWhenPushed = YES;
+        
+        editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(editorTopCancelButtonTapEventHandler)];
+        
+        [_uploadingNavController pushViewController:editor animated:YES];
+    } else {
+        [self addItemImageToWantDetailVC:croppedImage];
+    }
     
-    [_uploadingNavController pushViewController:editor animated:YES];
+}
+
+
+#pragma mark - Event Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editorTopCancelButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

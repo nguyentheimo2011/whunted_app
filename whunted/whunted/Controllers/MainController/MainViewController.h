@@ -15,6 +15,6 @@
 #import <CLImageEditor.h>
 #import <RSKImageCropper.h>
 
-@interface MainViewController : UITabBarController<UITabBarControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GenericControllerDelegate, ImageGetterViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, UploadingWantDetailsViewControllerDelegate, RSKImageCropViewControllerDataSource, RSKImageCropViewControllerDelegate>
+@interface MainViewController : UITabBarController<UITabBarControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageGetterViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, UploadingWantDetailsViewControllerDelegate, RSKImageCropViewControllerDataSource, RSKImageCropViewControllerDelegate>
 
 @end
