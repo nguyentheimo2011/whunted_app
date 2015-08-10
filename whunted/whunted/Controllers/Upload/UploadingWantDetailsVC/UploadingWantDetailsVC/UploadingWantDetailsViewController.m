@@ -11,6 +11,7 @@
 #import "Utilities.h"
 
 #import "KLCPopup.h"
+#import <MBProgressHUD.h>
 
 @implementation UploadingWantDetailsViewController
 {
@@ -72,7 +73,7 @@
     // hide bottom bar when uploading a new want
     self.hidesBottomBarWhenPushed = YES;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
 }
@@ -195,6 +196,7 @@
     _escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -213,7 +215,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) submittingButtonEvent
+- (void) submittingButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIAlertView *submissionAlertView;
@@ -227,6 +229,8 @@
         submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         if (!_wantData.itemDesc)
             _wantData.itemDesc = @"";
         if (!_wantData.hashTagList)
@@ -245,10 +249,11 @@
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:_wantData];
-                [self.navigationController popViewControllerAnimated:YES];
             } else {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }];
     }
 }
@@ -267,7 +272,7 @@
 {
     _wantData.demandedPrice = _priceTextField.text;
     [_priceTextField resignFirstResponder];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -466,7 +471,7 @@
         [_priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)]) {
             _wantData.demandedPrice = _priceTextField.text;
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonEvent)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
         }
     }
 }
@@ -505,15 +510,18 @@
     _wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     _wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
     _wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
+    
     _hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
-    if ([_hashtagString length] > 0)
-        _wantData.hashTagList = [_hashtagString componentsSeparatedByString:@" "];
+    if (_hashtagString.length > 0)
+        _wantData.hashTagList = [_hashtagString componentsSeparatedByString:WHITE_SPACE_CHARACTER];
+    
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     if (itemName != nil) {
         _itemInfoCell.detailTextLabel.text = itemName;
     } else {
         _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
     }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -248,7 +248,7 @@
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

@@ -10,18 +10,21 @@
 
 @class CountryTableViewController;
 
+//------------------------------------------------------------------------------------------------------------------------------
 @protocol CountryTableViewDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
 
 - (void) countryTableView: (CountryTableViewController *) controller didCompleteChoosingCountries: (NSArray *) countries;
 
 @end
 
+//------------------------------------------------------------------------------------------------------------------------------
 @interface CountryTableViewController : UITableViewController
+//------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak)     id<CountryTableViewDelegate> delegate;
 
 @property (nonatomic, strong)   NSArray     *selectedCountries;
-
 @property (nonatomic)           NSInteger   tag;
 
 - (id) initWithSelectedCountries: (NSArray *) countries;

@@ -10,13 +10,17 @@
 
 @class LocationTableViewController;
 
+//------------------------------------------------------------------------------------------------------------------------------
 @protocol LocationTableViewControllerDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
 
 - (void) locationTableViewController: (LocationTableViewController *) controller didSelectLocation: (NSString *) location;
 
 @end
 
+//------------------------------------------------------------------------------------------------------------------------------
 @interface LocationTableViewController : UITableViewController
+//------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<LocationTableViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString *location;

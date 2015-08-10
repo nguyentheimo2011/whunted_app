@@ -8,17 +8,13 @@
 
 #import "CountryTableViewController.h"
 
-@interface CountryTableViewController ()
-
-@end
-
 @implementation CountryTableViewController
 {
     NSArray             *_fullCountryList;
 }
 
 @synthesize selectedCountries = _selectedCountries;
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithSelectedCountries: (NSArray *) origins
@@ -54,6 +50,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
 }
+
 
 #pragma mark - Data Handler
 
@@ -131,7 +128,7 @@
 - (void) completeChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
+    [_delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

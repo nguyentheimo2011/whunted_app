@@ -180,6 +180,7 @@
 #define     TAIWAN_CURRENCY                     @"TWD "
 #define     DOT_CHARACTER                       @"."
 #define     COMMA_CHARACTER                     @","
+#define     WHITE_SPACE_CHARACTER               @" "
 
 
 #pragma mark - Font
