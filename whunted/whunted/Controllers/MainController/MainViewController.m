@@ -163,7 +163,7 @@
     if (method == PhotoLibrary) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
@@ -175,6 +175,7 @@
         picker.showsCameraControls = YES;
         
         [self presentViewController:picker animated:YES completion:nil];
+        
     } else if (method == ImageURL) {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
@@ -198,6 +199,7 @@
     RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
     imageCropVC.cropMode = RSKImageCropModeCustom;
     imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
     [_uploadingNavController setViewControllers:@[imageCropVC]];
     [self presentViewController:_uploadingNavController animated:YES completion:nil];
 }
@@ -315,6 +317,31 @@
 {
     // If the image is not rotated, then the movement rect coincides with the mask rect.
     return controller.maskRect;
+}
+
+
+#pragma mark - RSKImageCropViewControllerDelegate methods
+
+// Crop image has been canceled.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+}
+
+// The original image has been cropped.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
+    editor.delegate = self;
+    editor.hidesBottomBarWhenPushed = YES;
+    
+    [_uploadingNavController pushViewController:editor animated:YES];
 }
 
 @end

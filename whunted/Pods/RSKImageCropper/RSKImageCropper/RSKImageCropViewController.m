@@ -301,7 +301,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
         _moveAndScaleLabel = [[UILabel alloc] init];
         _moveAndScaleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _moveAndScaleLabel.backgroundColor = [UIColor clearColor];
-        _moveAndScaleLabel.text = NSLocalizedString(@"Move and Scale", @"Move and Scale label");
+        _moveAndScaleLabel.text = NSLocalizedString(@"", @"Move and Scale label");
         _moveAndScaleLabel.textColor = [UIColor whiteColor];
         _moveAndScaleLabel.opaque = NO;
     }
