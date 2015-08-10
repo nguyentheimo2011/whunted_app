@@ -11,7 +11,6 @@
 #import "Utilities.h"
 
 #import "KLCPopup.h"
-#import <RSKImageCropper.h>
 
 @implementation UploadingWantDetailsViewController
 {
@@ -33,6 +32,7 @@
     
     NSString                    *_hashtagString;
     NSInteger                   _prevTappedButtonIndex;
+    BOOL                        _imageEdittingNeeded;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -203,6 +203,7 @@
 {
     UIButton *button = (UIButton *) sender;
     _prevTappedButtonIndex = button.tag;
+    _imageEdittingNeeded = YES;
     
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
     imageGetterVC.delegate = self;
@@ -619,14 +620,14 @@
     if (method == PhotoLibrary) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
     } else if (method == Camera) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:nil];
@@ -645,13 +646,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-//    [self sendImageToUploadingWantDetailsVC:chosenImage withNavigationControllerNeeded:YES];
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    // crop tool
+    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
+    imageCropVC.cropMode = RSKImageCropModeCustom;
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    [self.navigationController pushViewController:imageCropVC animated:NO];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:chosenImage cropMode:RSKImageCropModeSquare];
-    [self.navigationController pushViewController:imageCropVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -668,22 +671,22 @@
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded
 //-------------------------------------------------------------------------------------------------------------------------------
 {  
-    if (editingNeeded) {
-        [self sendImageToUploadingWantDetailsVC:image withNavigationControllerNeeded:NO];
-    } else {
-        [self addItemImageToWantDetailVC:image];
-    }
+    _imageEdittingNeeded = editingNeeded;
+    
+    RSKImageCropViewController *imageCropVC = [[RSKImageCropViewController alloc] initWithImage:image cropMode:RSKImageCropModeSquare];
+    imageCropVC.cropMode = RSKImageCropModeCustom;
+    imageCropVC.dataSource = self;
+    imageCropVC.delegate = self;
+    
+    [self.navigationController pushViewController:imageCropVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) sendImageToUploadingWantDetailsVC: (UIImage *) image withNavigationControllerNeeded: (BOOL) needed
+- (void) imageRetrieverViewControllerDidCancel
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
-    editor.delegate = self;
-    editor.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:editor animated:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 
@@ -693,8 +696,6 @@
 - (void) imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
     [self addItemImageToWantDetailVC:image];
 }
 
@@ -702,9 +703,98 @@
 - (void) addItemImageToWantDetailVC: (UIImage *) image
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToViewController:self animated:YES];
     
     [self setImage:image forButton:_prevTappedButtonIndex];
+}
+
+#pragma mark - RSKImageCropViewControllerDataSource methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGRect maskRect = CGRectMake(0,
+                                 (WINSIZE.height - WINSIZE.width) * 0.5f,
+                                 WINSIZE.width,
+                                 WINSIZE.width);
+    
+    return maskRect;
+}
+
+// Returns a custom path for the mask.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (UIBezierPath *)imageCropViewControllerCustomMaskPath:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGRect rect = controller.maskRect;
+    CGPoint point1 = CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect));
+    CGPoint point2 = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+    CGPoint point3 = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGPoint point4 = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
+    
+    UIBezierPath *rectangle = [UIBezierPath bezierPath];
+    [rectangle moveToPoint:point1];
+    [rectangle addLineToPoint:point2];
+    [rectangle addLineToPoint:point3];
+    [rectangle addLineToPoint:point4];
+    [rectangle closePath];
+    
+    return rectangle;
+}
+
+// Returns a custom rect in which the image can be moved.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (CGRect)imageCropViewControllerCustomMovementRect:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    // If the image is not rotated, then the movement rect coincides with the mask rect.
+    return controller.maskRect;
+}
+
+
+#pragma mark - RSKImageCropViewControllerDelegate methods
+
+// Crop image has been canceled.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToViewController:self animated:YES];
+}
+
+// The original image has been cropped.
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)imageCropViewController:(RSKImageCropViewController *)controller
+                   didCropImage:(UIImage *)croppedImage
+                  usingCropRect:(CGRect)cropRect
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_imageEdittingNeeded) {
+        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
+        editor.delegate = self;
+        editor.hidesBottomBarWhenPushed = YES;
+        
+        editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(editorTopCancelButtonTapEventHandler)];
+        
+        [self.navigationController pushViewController:editor animated:YES];
+    } else {
+        [self addItemImageToWantDetailVC:croppedImage];
+    }
+    
+}
+
+
+#pragma mark - Event Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editorTopCancelButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

@@ -16,6 +16,8 @@
 
 - (void) imageRetrieverViewController:(ImageRetrieverViewController *)controller didRetrieveImage:(UIImage *)image needEditing: (BOOL) editingNeeded;
 
+- (void) imageRetrieverViewControllerDidCancel;
+
 @end
 
 //--------------------------------------------------------------------------------------------------------------------------------

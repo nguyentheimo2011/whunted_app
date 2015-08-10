@@ -212,6 +212,13 @@
     [_uploadingNavController pushViewController:imageCropVC animated:YES];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) imageRetrieverViewControllerDidCancel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - CLImageEditorDelegate methods
 

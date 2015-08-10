@@ -206,7 +206,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard the image?", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure!", nil), nil];
         [alertView show];
     } else {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [_delegate imageRetrieverViewControllerDidCancel];
     }
 }
 
@@ -231,7 +231,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (buttonIndex == 1) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [_delegate imageRetrieverViewControllerDidCancel];
     }
 }
 

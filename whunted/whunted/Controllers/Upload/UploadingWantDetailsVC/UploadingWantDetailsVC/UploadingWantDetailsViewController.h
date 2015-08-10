@@ -17,6 +17,7 @@
 #import "WantData.h"
 
 #import <CLImageEditor.h>
+#import <RSKImageCropper.h>
 
 @class UploadingWantDetailsViewController;
 
@@ -29,7 +30,7 @@
 @end
 
 //--------------------------------------------------------------------------------------------------------------------------------
-@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, CountryTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate, ImageGetterViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate>
+@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, CountryTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate, ImageGetterViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource>
 //--------------------------------------------------------------------------------------------------------------------------------
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
