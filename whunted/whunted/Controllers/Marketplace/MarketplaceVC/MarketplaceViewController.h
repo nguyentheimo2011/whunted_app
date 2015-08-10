@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray *wantDataList;
 
-- (void) retrieveLatestWantData;
+- (void) updateWantDataTable;
 
 @end

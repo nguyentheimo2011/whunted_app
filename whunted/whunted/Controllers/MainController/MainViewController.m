@@ -51,14 +51,12 @@
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController setTitle:NSLocalizedString(TAB_BAR_MARKETPLACE_PAGE_TITLE, nil)];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
-        _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         _newsFeedVC = [[NewsFeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
         [newsFeedfNavController setTitle:NSLocalizedString(TAB_BAR_NEWSFEED_PAGE_TITLE, nil)];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
-        _newsFeedVC.delegate = self;
         
         UINavigationController *uploadingNavController = [[UINavigationController alloc] init];
         _uploadingVC = [[UploadingViewController alloc] init];
@@ -248,6 +246,8 @@
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [_brController updateWantDataTable];
+    
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
