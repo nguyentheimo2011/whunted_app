@@ -89,13 +89,14 @@
     _addingButtonList = [[NSMutableArray alloc] init];
     
     for (int i=0; i<4; i++) {
-        UIButton *addingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIImageView *addingButton = [[UIImageView alloc] init];
         addingButton.tag = i;
-        [addingButton setBackgroundImage:[UIImage imageNamed:@"squareplus.png"] forState:UIControlStateNormal];
-        [addingButton setEnabled:YES];
-        addingButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [addingButton setImage:[UIImage imageNamed:@"squareplus.png"]];
+        addingButton.contentMode = UIViewContentModeScaleAspectFit;
         addingButton.frame = CGRectMake((i+1) * spaceWidth + i * imageSize.width, imageSize.width/6.0, imageSize.width, imageSize.height);
-        [addingButton addTarget:self action:@selector(addingImageButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+        addingButton.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addingImageButtonEvent:)];
+        [addingButton addGestureRecognizer:tapGesRec];
         [_buttonListCell addSubview:addingButton];
         [_addingButtonList addObject:addingButton];
     }
@@ -161,7 +162,6 @@
     _priceTextField.inputView = ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
-        //
         [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         numberPad;
@@ -201,8 +201,8 @@
 - (void) addingImageButtonEvent: (id) sender
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIButton *button = (UIButton *) sender;
-    _prevTappedButtonIndex = button.tag;
+    UIGestureRecognizer *tapGesRec = (UIGestureRecognizer *) sender;
+    _prevTappedButtonIndex = tapGesRec.view.tag;
     _imageEdittingNeeded = YES;
     
     ImageGetterViewController *imageGetterVC = [[ImageGetterViewController alloc] init];
@@ -289,7 +289,7 @@
 - (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[_addingButtonList objectAtIndex: buttonIndex] setBackgroundImage:image forState:UIControlStateNormal];
+    [[_addingButtonList objectAtIndex: buttonIndex] setImage: image];
     
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
     PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyer.objectId] data:data];
