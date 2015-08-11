@@ -12,39 +12,35 @@
 #import "ChatView.h"
 #import "recent.h"
 #import "PersistedCache.h"
+
 #import <MBProgressHUD.h>
-
-@interface ItemDetailsViewController ()
-
-@property (nonatomic, strong) NSMutableArray *itemImageList;
-
-@end
 
 @implementation ItemDetailsViewController
 {
-    NSInteger       _currImageIndex;
-    UIPageControl   *_pageControl;
-    UIScrollView    *_scrollView;
-    CGFloat         _nextXPos;
-    CGFloat         _nextYPos;
+    UIPageControl           *_pageControl;
+    UIScrollView            *_scrollView;
+    
+    NSMutableArray          *_itemImageList;
+    CGFloat                 _nextXPos;
+    CGFloat                 _nextYPos;
+    NSInteger               _currImageIndex;
 }
 
-@synthesize pageViewController;
-@synthesize wantData;
-@synthesize itemImageList;
-@synthesize itemImagesNum;
-@synthesize itemNameLabel;
-@synthesize postedTimestampLabel;
-@synthesize buyerUsernameButton;
-@synthesize demandedPriceLabel;
-@synthesize locationLabel;
-@synthesize itemDescLabel;
-@synthesize productOriginLabel;
-@synthesize paymentMethodLabel;
-@synthesize sellersLabel;
-@synthesize secondBottomButton  =   _secondBottomButton;
-@synthesize currOffer           =   _currOffer;
-@synthesize delegate;
+@synthesize pageViewController      =   _pageViewController;
+@synthesize wantData                =   _wantData;
+@synthesize itemImagesNum           =   _itemImagesNum;
+@synthesize itemNameLabel           =   _itemNameLabel;
+@synthesize postedTimestampLabel    =   _postedTimestampLabel;
+@synthesize buyerUsernameButton     =   _buyerUsernameButton;
+@synthesize demandedPriceLabel      =   _demandedPriceLabel;
+@synthesize locationLabel           =   _locationLabel;
+@synthesize itemDescLabel           =   _itemDescLabel;
+@synthesize productOriginLabel      =   _productOriginLabel;
+@synthesize paymentMethodLabel      =   _paymentMethodLabel;
+@synthesize sellersLabel            =   _sellersLabel;
+@synthesize secondBottomButton      =   _secondBottomButton;
+@synthesize currOffer               =   _currOffer;
+@synthesize delegate                =   _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -52,7 +48,7 @@
 {
     self = [super init];
     if (self != nil) {
-        self.hidesBottomBarWhenPushed = YES;
+        [self customizeUI];
     }
     
     return self;
@@ -64,29 +60,37 @@
 {
     [super viewDidLoad];
     
-    [self retrieveItemImages];
+    [self initData];
+    
     [self addScrollView];
     [self addPageViewController];
-    [self addItemNameLabel];
-    [self addPostedTimestampLabel];
-    [self addBuyerUsernameButton];
-    [self addDemandedPriceLabel];
-    [self addLocationLabel];
-    [self addItemDescLabel];
-    [self addProductOrigin];
-    [self addPaymentMethodLabel];
-    [self addSellersLabel];
-    [self addChatButton];
-    [self addOfferButton];
+    [self addItemDetails];
+    [self addFunctionalButtons];
 }
 
-- (void)didReceiveMemoryWarning
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) didReceiveMemoryWarning
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
     NSLog(@"ItemDetailsViewController didReceiveMemoryWarning");
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self retrieveItemImages];
+}
+
 #pragma mark - UI Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addScrollView
@@ -102,42 +106,51 @@
 - (void) addPageViewController
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    pageViewController.dataSource = self;
-    pageViewController.view.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6);
+    _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    _pageViewController.dataSource = self;
+    _pageViewController.view.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6);
     
     ItemImageViewController *itemImageVC = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
-    [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    [self addChildViewController:pageViewController];
-    [_scrollView addSubview:pageViewController.view];
-    [pageViewController didMoveToParentViewController:self];
+    [self addChildViewController:_pageViewController];
+    [_scrollView addSubview:_pageViewController.view];
+    [_pageViewController didMoveToParentViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (ItemImageViewController *) viewControllerAtIndex: (NSInteger) index
+- (void) addItemDetails
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    ItemImageViewController *itemImageVC = [[ItemImageViewController alloc] init];
-    itemImageVC.index = index;
-    _currImageIndex = index;
-    if (index < [itemImageList count]) {
-        [itemImageVC.itemImageView setImage:[itemImageList objectAtIndex:index]];
-    }
-    
-    return itemImageVC;
+    [self addItemNameLabel];
+    [self addPostedTimestampLabel];
+    [self addBuyerUsernameButton];
+    [self addDemandedPriceLabel];
+    [self addLocationLabel];
+    [self addItemDescLabel];
+    [self addProductOrigin];
+    [self addPaymentMethodLabel];
+    [self addSellersLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addFunctionalButtons
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addChatButton];
+    [self addOfferButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemNameLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 - 10, WINSIZE.width - 20, 20)];
-    [itemNameLabel setText:wantData.itemName];
-    [itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
-    [itemNameLabel setTextColor:[UIColor blackColor]];
-    [_scrollView addSubview:itemNameLabel];
+    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 - 10, WINSIZE.width - 20, 20)];
+    [_itemNameLabel setText:_wantData.itemName];
+    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
+    [_itemNameLabel setTextColor:[UIColor blackColor]];
+    [_scrollView addSubview:_itemNameLabel];
     
     _nextYPos = WINSIZE.height * 0.6 + 13;
 }
@@ -149,11 +162,11 @@
     NSString *placeHolderText = @"listed 3 hours ago by";
     CGSize expectedSize = [placeHolderText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
     
-    postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _nextYPos, expectedSize.width, expectedSize.height)];
-    [postedTimestampLabel setText:placeHolderText];
-    [postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [postedTimestampLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:postedTimestampLabel];
+    _postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _nextYPos, expectedSize.width, expectedSize.height)];
+    [_postedTimestampLabel setText:placeHolderText];
+    [_postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_postedTimestampLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_postedTimestampLabel];
     
     _nextXPos = expectedSize.width - 10;
     _nextYPos = _nextYPos + expectedSize.height + 17;
@@ -163,11 +176,11 @@
 - (void) addBuyerUsernameButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(_nextXPos, postedTimestampLabel.frame.origin.y, 150, 20)];
-    [buyerUsernameButton setTitle:wantData.buyer.objectId forState:UIControlStateNormal];
-    [buyerUsernameButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_scrollView addSubview:buyerUsernameButton];
+    _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(_nextXPos, _postedTimestampLabel.frame.origin.y, 150, 20)];
+    [_buyerUsernameButton setTitle:_wantData.buyer.objectId forState:UIControlStateNormal];
+    [_buyerUsernameButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_scrollView addSubview:_buyerUsernameButton];
     
     _nextXPos = 10;
 }
@@ -184,11 +197,11 @@
     _nextXPos = 40;
     _nextYPos += 3;
     
-    demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
-    [demandedPriceLabel setText:wantData.demandedPrice];
-    [demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [demandedPriceLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:demandedPriceLabel];
+    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    [_demandedPriceLabel setText:_wantData.demandedPrice];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_demandedPriceLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_demandedPriceLabel];
     
     _nextXPos = 10;
     _nextYPos += 35;
@@ -206,11 +219,11 @@
     _nextXPos = 40;
     _nextYPos += 3;
     
-    locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 25)];
-    [locationLabel setText:wantData.meetingLocation];
-    [locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [locationLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:locationLabel];
+    _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 25)];
+    [_locationLabel setText:_wantData.meetingLocation];
+    [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_locationLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_locationLabel];
     
     _nextXPos = 10;
     _nextYPos += 35;
@@ -228,14 +241,14 @@
     _nextXPos = 40;
     _nextYPos += 3;
     
-    CGSize expectedSize = [wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
-    [itemDescLabel setText:wantData.itemDesc];
-    [itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [itemDescLabel setTextColor:[UIColor grayColor]];
-    itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    itemDescLabel.numberOfLines = 0;
-    [_scrollView addSubview:itemDescLabel];
+    CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
+    _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
+    [_itemDescLabel setText:_wantData.itemDesc];
+    [_itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_itemDescLabel setTextColor:[UIColor grayColor]];
+    _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _itemDescLabel.numberOfLines = 0;
+    [_scrollView addSubview:_itemDescLabel];
     
     _nextXPos = 10;
     _nextYPos += expectedSize.height + 20;
@@ -253,13 +266,13 @@
     _nextXPos = 40;
     _nextYPos += 3;
     
-    NSString *productOriginText = [wantData.productOriginList componentsJoinedByString:@", "];
+    NSString *productOriginText = [_wantData.productOriginList componentsJoinedByString:@", "];
     CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
-    [productOriginLabel setText:productOriginText];
-    [productOriginLabel setFont:DEFAULT_FONT];
-    [productOriginLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:productOriginLabel];
+    _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
+    [_productOriginLabel setText:productOriginText];
+    [_productOriginLabel setFont:DEFAULT_FONT];
+    [_productOriginLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_productOriginLabel];
     
     _nextXPos = 10;
     _nextYPos += expectedSize.height + 30;
@@ -278,16 +291,16 @@
     _nextYPos += 3;
     
     NSString *paymentMethodText;
-    if ([wantData.paymentMethod isEqualToString:ESCROW_PAYMENT_METHOD]) {
+    if ([_wantData.paymentMethod isEqualToString:ESCROW_PAYMENT_METHOD]) {
         paymentMethodText = @"Request for Escrow";
     } else {
         paymentMethodText = @"Not request for Escrow";
     }
-    paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
-    [paymentMethodLabel setText:paymentMethodText];
-    [paymentMethodLabel setFont:DEFAULT_FONT];
-    [paymentMethodLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:paymentMethodLabel];
+    _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    [_paymentMethodLabel setText:paymentMethodText];
+    [_paymentMethodLabel setFont:DEFAULT_FONT];
+    [_paymentMethodLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_paymentMethodLabel];
     
     _nextXPos = 10;
     _nextYPos += 35;
@@ -306,11 +319,11 @@
     _nextYPos += 3;
     
     NSString *sellersText = @"2 sellers";
-    sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
-    [sellersLabel setText:sellersText];
-    [sellersLabel setFont:DEFAULT_FONT];
-    [sellersLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:sellersLabel];
+    _sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    [_sellersLabel setText:sellersText];
+    [_sellersLabel setFont:DEFAULT_FONT];
+    [_sellersLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_sellersLabel];
     
     _nextYPos += 25;
     
@@ -349,7 +362,7 @@
     _secondBottomButton.bgColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
     _secondBottomButton.titleColor = [UIColor whiteColor];
     
-    if ([wantData.buyer.objectId isEqualToString:curUser.objectId]) {
+    if ([_wantData.buyer.objectId isEqualToString:curUser.objectId]) {
         [_secondBottomButton createTitle:NSLocalizedString(@"Promote your post", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
         _secondBottomButton.cornerRadius = 0;
         [backgroundView addSubview:_secondBottomButton];
@@ -374,7 +387,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = [wantData buyer];
+    PFUser *user2 = [_wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
             BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
@@ -385,9 +398,9 @@
                 sellersOfferVC.offerData = _currOffer;
             } else {
                 OfferData *offerData = [[OfferData alloc] init];
-                offerData.itemID = wantData.itemID;
-                offerData.itemName = wantData.itemName;
-                offerData.originalDemandedPrice = wantData.demandedPrice;
+                offerData.itemID = _wantData.itemID;
+                offerData.itemName = _wantData.itemName;
+                offerData.originalDemandedPrice = _wantData.demandedPrice;
                 offerData.buyerID = user2.objectId;
                 offerData.sellerID = user1.objectId;
                 offerData.initiatorID = @"";
@@ -412,19 +425,19 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = [wantData buyer];
+    PFUser *user2 = [_wantData buyer];
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
-            [[PersistedCache sharedCache] setImage:[itemImageList objectAtIndex:0] forKey:wantData.itemID];
+            [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
             
             if (_currOffer) {
                 NSString *groupId = StartPrivateChat(user1, user2, _currOffer);
                 [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
             } else {
                 OfferData *offerData = [[OfferData alloc] init];
-                offerData.itemID = wantData.itemID;
-                offerData.itemName = wantData.itemName;
-                offerData.originalDemandedPrice = wantData.demandedPrice;
+                offerData.itemID = _wantData.itemID;
+                offerData.itemName = _wantData.itemName;
+                offerData.originalDemandedPrice = _wantData.demandedPrice;
                 offerData.buyerID = user2.objectId;
                 offerData.sellerID = user1.objectId;
                 offerData.initiatorID = @"";
@@ -459,22 +472,23 @@
 - (void) retrieveItemImages
 //------------------------------------------------------------------------------------------------------------------------------
 {    
-    itemImageList = [[NSMutableArray alloc] init];
-    PFRelation *picRelation = wantData.itemPictureList;
+    _itemImageList = [[NSMutableArray alloc] init];
+    PFRelation *picRelation = _wantData.itemPictureList;
     
     [[picRelation query] findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
         for (PFObject *pfObj in pfObjList) {
             PFFile *imageFile = pfObj[@"itemPicture"];
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 UIImage *image = [UIImage imageWithData:data];
-                [itemImageList addObject:image];
+                [_itemImageList addObject:image];
                 ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
                 NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
-                [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+                [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
             }];
         }
     }];
 }
+
 
 #pragma mark - PageViewController datasource methods
 
@@ -495,7 +509,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSInteger index = [(ItemImageViewController*)viewController index];
-    if (index == itemImagesNum-1) {
+    if (index == _itemImagesNum-1) {
         return nil;
     } else {
         return [self viewControllerAtIndex:index+1];
@@ -506,7 +520,7 @@
 - (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return itemImagesNum;
+    return _itemImagesNum;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -516,6 +530,7 @@
     // The selected item reflected in the page indicator.
     return 0;
 }
+
 
 #pragma mark - SellersOfferViewController delegate methods
 
@@ -527,10 +542,10 @@
     [_secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     
     NSString *id1 = [PFUser currentUser].objectId;
-    NSString *id2 = [wantData buyer].objectId;
+    NSString *id2 = [_wantData buyer].objectId;
     NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offer.itemID, id2, id1];
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
-    [chatView setUser2Username:wantData.buyer[PF_USER_USERNAME]];
+    [chatView setUser2Username:_wantData.buyer[PF_USER_USERNAME]];
     [chatView setOfferData:offer];
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
     [chatView messageSend:message Video:nil Picture:nil Audio:nil];
@@ -538,5 +553,21 @@
     [self.navigationController pushViewController:chatView animated:YES];
 }
 
+
+#pragma mark - Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (ItemImageViewController *) viewControllerAtIndex: (NSInteger) index
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    ItemImageViewController *itemImageVC = [[ItemImageViewController alloc] init];
+    itemImageVC.index = index;
+    _currImageIndex = index;
+    if (index < [_itemImageList count]) {
+        [itemImageVC.itemImageView setImage:[_itemImageList objectAtIndex:index]];
+    }
+    
+    return itemImageVC;
+}
 
 @end

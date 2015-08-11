@@ -15,13 +15,17 @@
 
 @class ItemDetailsViewController;
 
+//------------------------------------------------------------------------------------------------------------------------------
 @protocol ItemDetailsViewControllerDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
 
 - (void) itemDetailsViewController: (ItemDetailsViewController *) controller didCompleteOffer: (BOOL) completed;
 
 @end
 
+//------------------------------------------------------------------------------------------------------------------------------
 @interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate>
+//------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
 
