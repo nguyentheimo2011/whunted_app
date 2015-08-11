@@ -43,6 +43,8 @@
         self.buyerUsername      =   wantDataPFObject[PF_ITEM_BUYER_USERNAME];
         self.hashTagList        =   [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
         self.sellersNum         =   [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
+        self.createdDate        =   wantDataPFObject.createdAt;
+        self.updatedDate        =   wantDataPFObject.updatedAt;
         
         NSString *dealClosed = wantDataPFObject[PF_ITEM_CLOSED_DEAL];
         if ([dealClosed isEqual:@"YES"])

@@ -8,6 +8,7 @@
 
 #import "MarketplaceCollectionViewCell.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @implementation MarketplaceCollectionViewCell
 {
@@ -55,6 +56,7 @@
     _likesNum = 124;
 }
 
+
 #pragma mark - Setters
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -66,6 +68,7 @@
     [_itemNameLabel setText:_wantData.itemName];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     [_buyerUsernameLabel setText:_wantData.buyerUsername];
+    [_timestampLabel setText:[Utilities timestampStringFromDate:_wantData.createdDate]];
     
     NSString *text;
     if (_wantData.sellersNum <= 1) {
@@ -150,7 +153,7 @@
     CGFloat yPos = _cellWidth + 60;
     _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
     [_buyerUsernameLabel setText:@"Username"];
-    [_buyerUsernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_buyerUsernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
     [_buyerUsernameLabel setTextColor:[UIColor grayColor]];
     [self addSubview:_buyerUsernameLabel];
 }
@@ -159,11 +162,14 @@
 - (void) addTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat xPos = 45;
-    CGFloat yPos = _cellWidth + 75;
-    _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
+    CGFloat const kLabelXPos    =   45.0f;
+    CGFloat const kLabelYPos    =   _cellWidth + 75.0f;
+    CGFloat const kLabelWidth   =   WINSIZE.width/2-55;
+    CGFloat const kLabelHeight  =   15.0f;
+    
+    _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_timestampLabel setText:@"timestamp"];
-    [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
     [_timestampLabel setTextColor:[UIColor grayColor]];
     [self addSubview:_timestampLabel];
 }

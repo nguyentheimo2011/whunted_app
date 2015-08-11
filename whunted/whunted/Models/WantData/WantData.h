@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString          *demandedPrice;
 @property (nonatomic, strong) NSString          *paymentMethod;
 @property (nonatomic, strong) NSString          *meetingLocation;
+@property (nonatomic, strong) NSDate            *createdDate;
+@property (nonatomic, strong) NSDate            *updatedDate;
 
 @property (nonatomic, strong) PFRelation        *itemPictureList;
 @property (nonatomic, strong) NSMutableArray    *backupItemPictureList;
