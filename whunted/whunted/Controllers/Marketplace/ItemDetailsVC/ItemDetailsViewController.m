@@ -517,12 +517,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSInteger index = [(ItemImageViewController*)viewController index];
-    if (index == 0) {
+    
+    _pageControl.currentPage = index;
+    
+    if (index == 0)
         return nil;
-    } else {
-        _pageControl.currentPage = index - 1;
+    else
         return [self viewControllerAtIndex:index-1];
-    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -530,12 +531,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSInteger index = [(ItemImageViewController*)viewController index];
-    if (index == _itemImagesNum-1) {
+    
+    _pageControl.currentPage = index;
+    
+    if (index == _itemImagesNum-1)
         return nil;
-    } else {
-        _pageControl.currentPage = index + 1;
+    else
         return [self viewControllerAtIndex:index+1];
-    }
 }
 
 
