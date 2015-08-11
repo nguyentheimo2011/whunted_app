@@ -92,7 +92,7 @@
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     
-    if (cell.itemImageView == nil) {
+    if (cell.wantData == nil) {
         [cell initCell];
     }
     

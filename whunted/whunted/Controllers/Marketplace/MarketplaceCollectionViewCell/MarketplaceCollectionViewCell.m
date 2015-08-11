@@ -11,6 +11,15 @@
 
 @implementation MarketplaceCollectionViewCell
 {
+    UILabel             *_itemNameLabel;
+    UILabel             *_demandedPriceLabel;
+    UILabel             *_buyerUsernameLabel;
+    UILabel             *_timestampLabel;
+    UIButton            *_sellerNumButton;
+    UIButton            *_likeButton;
+    UIImageView         *_buyerProfilePic;
+    UIImageView         *_itemImageView;
+    
     UIImageView         *_likeImageView;
     UILabel             *_likesNumLabel;
     
@@ -20,15 +29,7 @@
     NSInteger           _likesNum;
 }
 
-@synthesize itemNameLabel       =   _itemNameLabel;
-@synthesize demandedPriceLabel  =   _demandedPriceLabel;
-@synthesize buyerUsernameLabel  =   _buyerUsernameLabel;
-@synthesize timestampLabel      =   _timestampLabel;
-@synthesize sellerNumButton     =   _sellerNumButton;
-@synthesize likeButton          =   _likeButton;
-@synthesize buyerProfilePic     =   _buyerProfilePic;
-@synthesize itemImageView       =   _itemImageView;
-@synthesize wantData            =   _wantData;
+@synthesize wantData = _wantData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
