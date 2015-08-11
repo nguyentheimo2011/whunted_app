@@ -117,6 +117,24 @@
     [self addChildViewController:_pageViewController];
     [_scrollView addSubview:_pageViewController.view];
     [_pageViewController didMoveToParentViewController:self];
+    
+    [self addPageControl];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addPageControl
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kPageControlWidth         =   80.0f;
+    CGFloat const kPageControlHeight        =   30.0f;
+    CGFloat const kPageControlLeftMargin    =   (WINSIZE.width - kPageControlWidth) / 2;
+    CGFloat const kPageControlTopMargin     =   WINSIZE.width - 45.0f;
+    
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(kPageControlLeftMargin, kPageControlTopMargin, kPageControlWidth, kPageControlHeight)];
+    _pageControl.numberOfPages = 1;
+    _pageControl.currentPage = 0;
+    [_scrollView addSubview:_pageControl];
+    [_scrollView bringSubviewToFront:_pageControl];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -486,6 +504,8 @@
                 [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
             }];
         }
+        
+        _pageControl.numberOfPages = [pfObjList count];
     }];
 }
 
@@ -500,6 +520,7 @@
     if (index == 0) {
         return nil;
     } else {
+        _pageControl.currentPage = index - 1;
         return [self viewControllerAtIndex:index-1];
     }
 }
@@ -512,24 +533,10 @@
     if (index == _itemImagesNum-1) {
         return nil;
     } else {
+        _pageControl.currentPage = index + 1;
         return [self viewControllerAtIndex:index+1];
     }
 }
-
-////------------------------------------------------------------------------------------------------------------------------------
-//- (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    return _itemImagesNum;
-//}
-//
-////------------------------------------------------------------------------------------------------------------------------------
-//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    // The selected item reflected in the page indicator.
-//    return 0;
-//}
 
 
 #pragma mark - SellersOfferViewController delegate methods

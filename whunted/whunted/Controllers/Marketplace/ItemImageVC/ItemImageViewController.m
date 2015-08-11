@@ -47,7 +47,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.width)];
-    [_itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
+    [_itemImageView setBackgroundColor:[UIColor whiteColor]];
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_itemImageView];
 }
