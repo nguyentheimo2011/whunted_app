@@ -57,7 +57,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantData = [[WantData alloc] init];
-    _wantData.buyer = [PFUser currentUser];
+    _wantData.buyerID = [PFUser currentUser].objectId;
+    _wantData.buyerUsername = [PFUser currentUser][PF_USER_USERNAME];
     _wantData.itemPictureList = [[PFRelation alloc] init];
     _wantData.backupItemPictureList = [[NSMutableArray alloc] init];
 }
@@ -220,13 +221,13 @@
 {
     UIAlertView *submissionAlertView;
     if (_wantData.itemCategory == nil) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please choose a category!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please choose a category!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
     } else if (_wantData.itemName == nil || [_wantData.itemName length] == 0) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please fill in item name!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please fill in item name!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
     } else if (_wantData.demandedPrice == nil || [_wantData.demandedPrice length] == 0) {
-        submissionAlertView = [[UIAlertView alloc] initWithTitle:@"Oops" message:@"Please state a price!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please state a price!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
     } else {
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -297,7 +298,7 @@
     [[_addingButtonList objectAtIndex: buttonIndex] setImage: image];
     
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
-    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyer.objectId] data:data];
+    PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyerID] data:data];
     
     // Temporary code. Not handle changing image yet
     PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];

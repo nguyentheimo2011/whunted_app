@@ -195,7 +195,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(_nextXPos, _postedTimestampLabel.frame.origin.y, 150, 20)];
-    [_buyerUsernameButton setTitle:_wantData.buyer.objectId forState:UIControlStateNormal];
+    [_buyerUsernameButton setTitle:_wantData.buyerUsername forState:UIControlStateNormal];
     [_buyerUsernameButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_scrollView addSubview:_buyerUsernameButton];
@@ -380,7 +380,7 @@
     _secondBottomButton.bgColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
     _secondBottomButton.titleColor = [UIColor whiteColor];
     
-    if ([_wantData.buyer.objectId isEqualToString:curUser.objectId]) {
+    if ([_wantData.buyerID isEqualToString:curUser.objectId]) {
         [_secondBottomButton createTitle:NSLocalizedString(@"Promote your post", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
         _secondBottomButton.cornerRadius = 0;
         [backgroundView addSubview:_secondBottomButton];
@@ -405,7 +405,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = [_wantData buyer];
+    PFUser *user2 = _wantData.buyerID;
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
             BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
@@ -443,7 +443,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = [_wantData buyer];
+    PFUser *user2 = _wantData.buyerID;
     [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
         if (!error) {
             [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
@@ -549,10 +549,10 @@
     [_secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     
     NSString *id1 = [PFUser currentUser].objectId;
-    NSString *id2 = [_wantData buyer].objectId;
+    NSString *id2 = _wantData.buyerID;
     NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offer.itemID, id2, id1];
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
-    [chatView setUser2Username:_wantData.buyer[PF_USER_USERNAME]];
+    [chatView setUser2Username:_wantData.buyerUsername];
     [chatView setOfferData:offer];
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
     [chatView messageSend:message Video:nil Picture:nil Audio:nil];

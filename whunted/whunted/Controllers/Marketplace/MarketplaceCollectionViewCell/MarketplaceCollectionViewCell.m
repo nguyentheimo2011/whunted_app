@@ -65,7 +65,7 @@
     
     [_itemNameLabel setText:_wantData.itemName];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
-    [_buyerUsernameLabel setText:_wantData.buyer.objectId];
+    [_buyerUsernameLabel setText:_wantData.buyerUsername];
     
     NSString *text;
     if (_wantData.sellersNum <= 1) {
