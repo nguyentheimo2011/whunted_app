@@ -12,7 +12,7 @@
 
 @interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
 
-@property (nonatomic, strong) NSMutableArray *wantDataList;
+@property (nonatomic, strong) NSMutableArray    *wantDataList;
 
 - (void) updateWantDataTable;
 

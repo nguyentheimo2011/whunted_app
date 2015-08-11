@@ -11,23 +11,24 @@
 
 @implementation MarketplaceCollectionViewCell
 {
-    CGFloat _cellWidth;
-    CGFloat _cellHeight;
-    BOOL _likedByMe;
-    NSInteger _likesNum;
-    UIImageView *_likeImageView;
-    UILabel *_likesNumLabel;
+    UIImageView         *_likeImageView;
+    UILabel             *_likesNumLabel;
+    
+    CGFloat             _cellWidth;
+    CGFloat             _cellHeight;
+    BOOL                _likedByMe;
+    NSInteger           _likesNum;
 }
 
-@synthesize itemNameLabel = _itemNameLabel;
-@synthesize demandedPriceLabel = _demandedPriceLabel;
-@synthesize buyerUsernameLabel = _buyerUsernameLabel;
-@synthesize timestampLabel = _timestampLabel;
-@synthesize sellerNumButton = _sellerNumButton;
-@synthesize likeButton = _likeButton;
-@synthesize buyerProfilePic = _buyerProfilePic;
-@synthesize itemImageView = _itemImageView;
-@synthesize wantData = _wantData;
+@synthesize itemNameLabel       =   _itemNameLabel;
+@synthesize demandedPriceLabel  =   _demandedPriceLabel;
+@synthesize buyerUsernameLabel  =   _buyerUsernameLabel;
+@synthesize timestampLabel      =   _timestampLabel;
+@synthesize sellerNumButton     =   _sellerNumButton;
+@synthesize likeButton          =   _likeButton;
+@synthesize buyerProfilePic     =   _buyerProfilePic;
+@synthesize itemImageView       =   _itemImageView;
+@synthesize wantData            =   _wantData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -201,6 +202,7 @@
     [_likeButton addSubview:_likesNumLabel];
 }
 
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -219,6 +221,9 @@
         [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
     }
 }
+
+
+#pragma mark - Backend
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) downloadItemImage

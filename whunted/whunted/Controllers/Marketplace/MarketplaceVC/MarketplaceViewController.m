@@ -13,18 +13,12 @@
 #import "SyncEngine.h"
 #import "OfferData.h"
 
-@interface MarketplaceViewController ()
-
-@property (nonatomic, strong) UICollectionView *wantCollectionView;
-
-@end
-
-//------------------------------------------------------------------------------------------------------------------------------
-
 @implementation MarketplaceViewController
+{
+    UICollectionView        *_wantCollectionView;
+}
 
 @synthesize wantDataList = _wantDataList;
-@synthesize wantCollectionView = _wantCollectionView;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -56,6 +50,7 @@
     NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
 }
 
+
 #pragma mark - UI Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -75,13 +70,14 @@
     _wantCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
     _wantCollectionView.dataSource = self;
     _wantCollectionView.delegate = self;
-    _wantCollectionView.backgroundColor = BACKGROUND_GRAY_COLOR;
+    _wantCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
     
     [_wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [self.view addSubview:_wantCollectionView];
 }
 
-#pragma mark - CollectionView datasource methods
+
+#pragma mark - CollectionViewDatasource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
