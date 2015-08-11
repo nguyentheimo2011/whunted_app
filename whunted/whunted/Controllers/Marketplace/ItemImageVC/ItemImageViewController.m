@@ -46,7 +46,7 @@
 - (void) addItemImageView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6)];
+    _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.width)];
     [_itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:_itemImageView];

@@ -108,7 +108,7 @@
 {
     _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     _pageViewController.dataSource = self;
-    _pageViewController.view.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.height * 0.6);
+    _pageViewController.view.frame = CGRectMake(0, 0, WINSIZE.width, WINSIZE.width);
     
     ItemImageViewController *itemImageVC = [self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
@@ -490,7 +490,7 @@
 }
 
 
-#pragma mark - PageViewController datasource methods
+#pragma mark - PageViewControllerDatasource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (UIViewController *) pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
@@ -516,20 +516,20 @@
     }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    return _itemImagesNum;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    // The selected item reflected in the page indicator.
-    return 0;
-}
+////------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger) presentationCountForPageViewController:(UIPageViewController *)pageViewController
+////------------------------------------------------------------------------------------------------------------------------------
+//{
+//    return _itemImagesNum;
+//}
+//
+////------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+////------------------------------------------------------------------------------------------------------------------------------
+//{
+//    // The selected item reflected in the page indicator.
+//    return 0;
+//}
 
 
 #pragma mark - SellersOfferViewController delegate methods
