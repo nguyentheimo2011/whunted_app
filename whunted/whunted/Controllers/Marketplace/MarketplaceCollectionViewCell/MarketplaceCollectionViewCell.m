@@ -53,7 +53,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _likedByMe = NO;
-    _likesNum = 124;
+    _likesNum = 0;
 }
 
 
@@ -69,6 +69,8 @@
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     [_buyerUsernameLabel setText:_wantData.buyerUsername];
     [_timestampLabel setText:[Utilities timestampStringFromDate:_wantData.createdDate]];
+    [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", wantData.likesNum]];
+    [_sellerNumButton setTitle:[NSString stringWithFormat:@"%ld", wantData.sellersNum] forState:UIControlStateNormal];
     
     NSString *text;
     if (_wantData.sellersNum <= 1) {

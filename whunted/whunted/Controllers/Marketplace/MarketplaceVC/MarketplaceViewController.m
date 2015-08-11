@@ -193,7 +193,7 @@
 {
     _wantDataList = [[NSMutableArray alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
-    [query orderByDescending:@"updatedAt"];
+    [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
@@ -214,7 +214,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
-    [query orderByDescending:@"updatedAt"];
+    [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
