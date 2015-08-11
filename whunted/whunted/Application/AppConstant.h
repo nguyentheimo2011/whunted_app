@@ -134,6 +134,7 @@
 #define     PF_ITEM_PICTURE_LIST                @"itemPictures"
 #define     PF_ITEM_PICTURES_NUM                @"itemPicturesNum"
 #define     PF_ITEM_BUYER_ID                    @"buyerID"
+#define     PF_ITEM_BUYER_USERNAME              @"buyerUsername"
 #define     PF_ITEM_HASHTAG_LIST                @"hashtaglist"
 #define     PF_ITEM_CLOSED_DEAL                 @"isDealClosed"
 #define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
