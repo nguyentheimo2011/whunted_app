@@ -33,6 +33,7 @@
 
 @property (nonatomic, strong) NSArray           *productOriginList;
 
+@property (nonatomic)         NSInteger         likesNum;
 @property (nonatomic, strong) NSMutableArray    *likerList;
 
 @property (nonatomic, strong) NSArray           *sellersOfferList;

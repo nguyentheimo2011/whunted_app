@@ -43,6 +43,7 @@
         self.buyerUsername      =   wantDataPFObject[PF_ITEM_BUYER_USERNAME];
         self.hashTagList        =   [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
         self.sellersNum         =   [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
+        self.likesNum           =   [wantDataPFObject[PF_ITEM_LIKES_NUM] integerValue];
         self.createdDate        =   wantDataPFObject.createdAt;
         self.updatedDate        =   wantDataPFObject.updatedAt;
         
@@ -72,6 +73,7 @@
     wantDataPFObject[PF_ITEM_BUYER_USERNAME]    =   self.buyerUsername;
     wantDataPFObject[PF_ITEM_HASHTAG_LIST]      =   self.hashTagList;
     wantDataPFObject[PF_ITEM_SELLERS_NUM]       =   [NSString stringWithFormat:@"%ld", self.sellersNum];
+    wantDataPFObject[PF_ITEM_LIKES_NUM]         =   [NSString stringWithFormat:@"%ld", self.likesNum];
     wantDataPFObject[PF_ITEM_PICTURES_NUM]      =   [NSString stringWithFormat:@"%ld", self.itemPicturesNum];
     
     if (self.isDealClosed)
