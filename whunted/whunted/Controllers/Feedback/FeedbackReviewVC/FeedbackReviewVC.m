@@ -91,7 +91,7 @@
     CGFloat const kControlHeight = kControlContainerHeight - 2 * kControlTopMargin;
     CGFloat const kControlWidth = WINSIZE.width - 2 * kControlLeftMargin;
     
-    NSArray *categories = @[@"All", @"As Seller", @"As Buyer"];
+    NSArray *categories = @[NSLocalizedString(@"All", nil), NSLocalizedString(@"As Seller", nil), NSLocalizedString(@"As Buyer", nil)];
     _categorySegmentedControl = [[UISegmentedControl alloc] initWithItems:categories];
     _categorySegmentedControl.frame = CGRectMake(kControlLeftMargin, kControlTopMargin, kControlWidth, kControlHeight);
     _categorySegmentedControl.tintColor = MAIN_BLUE_COLOR;

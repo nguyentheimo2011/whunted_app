@@ -250,7 +250,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _makingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
-    [_makingOfferButton createTitle:@"Make Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_makingOfferButton createTitle:NSLocalizedString(@"Make Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _makingOfferButton.cornerRadius = 6.0;
     _makingOfferButton.borderColor = FLAT_FRESH_RED_COLOR;
     _makingOfferButton.bgColor = FLAT_BLUR_RED_COLOR;
@@ -264,7 +264,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _leavingFeedbackButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
-    [_leavingFeedbackButton createTitle:@"Leave Feedback" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_leavingFeedbackButton createTitle:NSLocalizedString(@"Leave Feedback", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _leavingFeedbackButton.cornerRadius = 6.0;
     _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR;
     _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR;
@@ -278,7 +278,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.03, 5, WINSIZE.width * 0.46, FLAT_BUTTON_HEIGHT)];
-    [_makingAnotherOfferButton createTitle:@"Make another offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _makingAnotherOfferButton.cornerRadius = 6.0;
     _makingAnotherOfferButton.borderColor = FLAT_BLUE_COLOR;
     _makingAnotherOfferButton.bgColor = FLAT_BLUE_COLOR;
@@ -292,7 +292,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _decliningButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.52, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
-    [_decliningButton createTitle:@"Decline" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_decliningButton createTitle:NSLocalizedString(@"Decline", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _decliningButton.cornerRadius = 6.0;
     _decliningButton.borderColor = FLAT_GRAY_COLOR;
     _decliningButton.bgColor = FLAT_GRAY_COLOR;
@@ -306,7 +306,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _acceptingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.76, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
-    [_acceptingButton createTitle:@"Accept" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_acceptingButton createTitle:NSLocalizedString(@"Accept", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _acceptingButton.cornerRadius = 6.0;
     _acceptingButton.borderColor = FLAT_BLUR_RED_COLOR;
     _acceptingButton.bgColor = FLAT_BLUR_RED_COLOR;
@@ -320,7 +320,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _edittingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
-    [_edittingOfferButton createTitle:@"Edit Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_edittingOfferButton createTitle:NSLocalizedString(@"Edit Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _edittingOfferButton.cornerRadius = 6.0;
     _edittingOfferButton.borderColor = FLAT_BLUE_COLOR;
     _edittingOfferButton.bgColor = FLAT_BLUE_COLOR;
@@ -334,7 +334,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _cancellingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.525, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
-    [_cancellingOfferButton createTitle:@"Cancel Offer" withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_cancellingOfferButton createTitle:NSLocalizedString(@"Cancel Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _cancellingOfferButton.cornerRadius = 6.0;
     _cancellingOfferButton.borderColor = FLAT_GRAY_COLOR;
     _cancellingOfferButton.bgColor = FLAT_GRAY_COLOR;
@@ -422,7 +422,7 @@
         [self adjustButtonsVisibility];
         
         // Update recent message
-        NSString *message = [NSString stringWithFormat:@"\n Cancel Offer \n"];
+        NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil];
@@ -463,7 +463,7 @@
         [self adjustButtonsVisibility];
         
         // Update recent message
-        NSString *message = [NSString stringWithFormat:@"\n Decline Offer \n"];
+        NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil];
@@ -480,7 +480,7 @@
         [self adjustButtonsVisibility];
         
         // Update recent message
-        NSString *message = [NSString stringWithFormat:@"\n Accept Offer \n"];
+        NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
         UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil];

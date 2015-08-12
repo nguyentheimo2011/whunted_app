@@ -7,25 +7,27 @@
 */
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Cancel"                =           "Cancel";
-"Submit"                =           "Submit";
-"Done"                  =           "Done";
-"Back"                  =           "Back";
+"Cancel"                    =           "Cancel";
+"Submit"                    =           "Submit";
+"Done"                      =           "Done";
+"Back"                      =           "Back";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Details"               =           "DETAILS";
-"Category"              =           "Category";
-"Choose category"       =           "Choose category";
-"Item info"             =           "Item info";
-"What are you buying?"  =           "What are you buying?";
-"Your price"            =           "Your price";
-"Set a price"           =           "Set a price";
-"Product origin"        =           "Product origin";
-"Choose origin"         =           "Choose origin"; 
-"Location"              =           "Location";
-"Where to meet?"        =           "Where to meet?";
-"Request for Escrow"   =           "Request for Escrow";
+"Details"                   =           "DETAILS";
+"Category"                  =           "Category";
+"Choose category"           =           "Choose category";
+"Item info"                 =           "Item info";
+"What are you buying?"      =           "What are you buying?";
+"Your price"                =           "Your price";
+"Set a price"               =           "Set a price";
+"Product origin"            =           "Product origin";
+"Choose origin"             =           "Choose origin";
+"Location"                  =           "Location";
+"Where to meet?"            =           "Where to meet?";
+"Request for Escrow"        =           "Request for Escrow";
+"Allow second-hand item"    =           "Allow second-hand item";
+"Paste image link here"     =           "Paste image link here";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -37,6 +39,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "Marketplace"           =           "Marketplace";
 "Newsfeed"              =           "Newsfeed";
+"Upload"                =           "Upload";
+"Chats"                 =           "Chats";
+"Profile"               =           "Profile";
 "Want"                  =           "Want";
 "Sell"                  =           "Sell";
 //------------------------------------------------------------------------------------------------------------------------------
@@ -73,11 +78,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Tell people what you want to buy"    =   "Tell people what you want to buy";
-"Choose a way to upload your photo"   =   "Choose a way to upload your photo";
-"Take a photo"                        =   "Take a photo";
-"Choose from gallery"                 =   "Choose from gallery";
-"Paste image URL"                     =   "Paste image URL";
+"Tell people what you want to buy"      =   "Tell people what you want to buy";
+"Choose a way to upload your photo"     =   "Choose a way to upload your photo";
+"Take a photo"                          =   "Take a photo";
+"Choose from gallery"                   =   "Choose from gallery";
+"Paste image URL"                       =   "Paste image URL";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -85,6 +90,34 @@
 "wants to buy at"       =           "wants to buy at";
 "Your offer is "        =           "Your offer is ";
 "You can deliver in"    =           "You can deliver in";
+//------------------------------------------------------------------------------------------------------------------------------
+
+//User profile page
+//------------------------------------------------------------------------------------------------------------------------------
+"follower"                          =   "follower";
+"following"                         =   "following";
+"Info"                              =   "Info";
+"Date joined"                       =   "Date joined";
+"Verified"                          =   "Verified";
+"Bought"                            =   "Bought";
+"Sold"                              =   "Sold";
+"All displayed"                     =   "All displayed";
+"All"                               =   "All";
+"As Seller"                         =   "As Seller";
+"As Buyer"                          =   "As Buyer";
+"Where are you travelling to?"      =   "Where are you travelling to?";
+"Where are you living?"             =   "Where are you living?";
+"What would you like to buy?"       =   "What would you like to buy?";
+"What would you like to sell?"      =   "What would you like to sell?";
+//------------------------------------------------------------------------------------------------------------------------------
+
+// Chats
+//------------------------------------------------------------------------------------------------------------------------------
+"Offered you"                       =   "Offered you";
+"Make Offer"                        =   "Make Offer";
+"Edit Offer"                        =   "Edit offer";
+"Cancel Offer"                      =   "Cancel offer";
+"Deliver in"                        =   "Deliver in";
 //------------------------------------------------------------------------------------------------------------------------------
 
 

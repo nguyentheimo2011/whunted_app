@@ -659,7 +659,7 @@
     if (section == 0)
         return NSLocalizedString(@"Where are you travelling to?", nil);
     else if (section == 1)
-        return NSLocalizedString(@"Where are you residing at?", nil);
+        return NSLocalizedString(@"Where are you living?", nil);
     else if (section == 2)
         return NSLocalizedString(@"What would you like to buy?", nil);
     else if (section == 3)

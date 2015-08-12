@@ -134,7 +134,7 @@
     CGFloat const kLabelHeight = 25.0f;
     
     UILabel *secondHandLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
-    [secondHandLabel setText:@"Allow second-hand item?"];
+    [secondHandLabel setText:NSLocalizedString(@"Allow second-hand item", nil)];
     [secondHandLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
     [secondHandLabel setTextColor:[UIColor blackColor]];
     [_secondHandOptionCell addSubview:secondHandLabel];

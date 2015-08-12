@@ -357,8 +357,10 @@
     CGFloat const kButtonLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
+    NSString *title = [NSString stringWithFormat:@"0\n %@", NSLocalizedString(@"follower", nil)];
+    
     _followerButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonLeftMargin, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followerButton createTitle:@"0\n follower" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    [_followerButton createTitle:title withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
     _followerButton.bgColor = DARK_BLUE_COLOR;
@@ -379,8 +381,10 @@
     CGFloat const kButtonXPos = 2 * WINSIZE.width / 28.0 + WINSIZE.width / 3.6;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
+    NSString *title = [NSString stringWithFormat:@"0\n %@", NSLocalizedString(@"following", nil)];
+    
     _followingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_followingButton createTitle:@"0\n following" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    [_followingButton createTitle:title withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
     _followingButton.bgColor = DARK_BLUE_COLOR;
@@ -420,7 +424,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *infoLabel = [[UILabel alloc] init];
-    infoLabel.text = @"Info";
+    infoLabel.text = NSLocalizedString(@"Info", nil);
     infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
     infoLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [infoLabel sizeToFit];
@@ -472,7 +476,7 @@
     CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
     CGFloat const kLabelHeight = 20;
     UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
-    joiningDateLabel.text = [NSString stringWithFormat:@"Joined on %ld/%ld/%ld", (long)components.day, (long)components.month, (long)components.year];
+    joiningDateLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld/%ld", NSLocalizedString(@"Date joined", nil), (long)components.day, (long)components.month, (long)components.year];
     joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:joiningDateLabel];
@@ -494,7 +498,7 @@
     [_scrollView addSubview:backgroundView];
     
     UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
-    verifiedLabel.text = @"Verified";
+    verifiedLabel.text = NSLocalizedString(@"Verified", nil);
     verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
@@ -589,7 +593,7 @@
     CGFloat const kControlHeight = 35;
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
-    segmentedControl.sectionTitles = @[@"Bought", @"Sold"];
+    segmentedControl.sectionTitles = @[NSLocalizedString(@"Bought", nil), NSLocalizedString(@"Sold", nil)];
     
     segmentedControl.selectedSegmentIndex = 0;
     
@@ -670,7 +674,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     UILabel *allDisplayedLabel = [[UILabel alloc] init];
-    allDisplayedLabel.text = @"All displayed";
+    allDisplayedLabel.text = NSLocalizedString(@"All displayed", nil);
     allDisplayedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     allDisplayedLabel.textColor = LIGHT_GRAY_COLOR;
     [allDisplayedLabel sizeToFit];
