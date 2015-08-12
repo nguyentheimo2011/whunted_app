@@ -53,7 +53,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _likedByMe = NO;
-    _likesNum = 0;
+    _likesNum = _wantData.likesNum;
 }
 
 
@@ -140,10 +140,13 @@
 - (void) addBuyerProfilePic
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 60;
-    _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(5, yPos, 30, 30)];
-    [_buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
-    _buyerProfilePic.layer.cornerRadius = 13;
+    CGFloat const kImageLeftMargin = 5.0f;
+    CGFloat const kImageYPos = _cellWidth + 60.0f;
+    CGFloat const kImageWidth = 30.0f;
+    
+    _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, kImageYPos, kImageWidth, kImageWidth)];
+    [_buyerProfilePic setBackgroundColor:LIGHT_BLUE_COLOR];
+    _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     [self addSubview:_buyerProfilePic];
 }
 
@@ -151,9 +154,12 @@
 - (void) addBuyerUsername
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat xPos = 45;
-    CGFloat yPos = _cellWidth + 60;
-    _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, WINSIZE.width/2-55, 15)];
+    CGFloat const kLabelXPos    =   40.0f;
+    CGFloat const kLabelYPos    =   _cellWidth + 60.0f;
+    CGFloat const kLabelWidth   =   WINSIZE.width/2 - 53.0f;
+    CGFloat const kLabelHeight  =   15.0f;
+    
+    _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_buyerUsernameLabel setText:@"Username"];
     [_buyerUsernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
     [_buyerUsernameLabel setTextColor:[UIColor grayColor]];
@@ -164,9 +170,9 @@
 - (void) addTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelXPos    =   45.0f;
+    CGFloat const kLabelXPos    =   40.0f;
     CGFloat const kLabelYPos    =   _cellWidth + 75.0f;
-    CGFloat const kLabelWidth   =   WINSIZE.width/2-55;
+    CGFloat const kLabelWidth   =   WINSIZE.width/2 - 53.0f;
     CGFloat const kLabelHeight  =   15.0f;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
