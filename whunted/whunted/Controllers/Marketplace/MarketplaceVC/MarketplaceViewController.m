@@ -106,21 +106,28 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return CGSizeMake(WINSIZE.width/2-15, WINSIZE.width/2 + 110);
+    CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+    CGFloat const kCellHeight   =   kCellWidth + 125.0f;
+    
+    return CGSizeMake(kCellWidth, kCellHeight);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    CGFloat const kCellMargin   =   8.0f;
+    
+    return UIEdgeInsetsMake(kCellMargin, kCellMargin, kCellMargin, kCellMargin);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 10.0;
+    CGFloat const kCellMargin   =   8.0f;
+    
+    return kCellMargin;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
