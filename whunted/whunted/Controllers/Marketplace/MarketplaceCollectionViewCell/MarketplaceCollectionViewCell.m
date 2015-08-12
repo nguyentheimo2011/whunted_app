@@ -172,7 +172,7 @@
 - (void) addBuyerProfilePic
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kImageYPos = _cellWidth + 50.0f;
+    CGFloat const kImageYPos = _cellWidth + 53.0f;
     CGFloat const kImageWidth = 30.0f;
     
     _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
@@ -189,7 +189,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelXPos    =   _buyerProfilePic.frame.size.width + 2 * kCellLeftMagin;
-    CGFloat const kLabelYPos    =   _buyerProfilePic.frame.origin.y;
+    CGFloat const kLabelYPos    =   _buyerProfilePic.frame.origin.y - 2.0f;
     CGFloat const kLabelWidth   =   _cellWidth - kLabelXPos - kCellRightMargin;
     CGFloat const kLabelHeight  =   15.0f;
     
@@ -205,7 +205,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelXPos    =   _buyerUsernameLabel.frame.origin.x;
-    CGFloat const kLabelYPos    =   _cellWidth + 65.0f;
+    CGFloat const kLabelYPos    =   _cellWidth + 68.0f;
     CGFloat const kLabelWidth   =   _buyerUsernameLabel.frame.size.width;
     CGFloat const kLabelHeight  =   15.0f;
     
