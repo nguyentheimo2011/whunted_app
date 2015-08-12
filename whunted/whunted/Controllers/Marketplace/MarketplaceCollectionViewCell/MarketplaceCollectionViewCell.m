@@ -163,6 +163,8 @@
     [_buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     _buyerProfilePic.clipsToBounds = YES;
+    _buyerProfilePic.layer.borderWidth = 0.5f;
+    _buyerProfilePic.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [self addSubview:_buyerProfilePic];
 }
 
