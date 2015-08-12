@@ -10,6 +10,9 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
+#define kCellLeftMagin      4.0f
+#define kCellRightMargin    4.0f
+
 @implementation MarketplaceCollectionViewCell
 {
     UILabel             *_itemNameLabel;
@@ -44,8 +47,8 @@
     [self addBuyerProfilePic];
     [self addBuyerUsername];
     [self addTimestampLabel];
-    [self addSellerNumButton];
     [self addLikeButton];
+    [self addSellerNumButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -94,7 +97,7 @@
 - (void) customizeCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    self.backgroundColor = [UIColor whiteColor];
     
     self.layer.borderWidth = 0.5f;
     self.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
@@ -124,8 +127,11 @@
 - (void) addItemNameLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 10;
-    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 20)];
+    CGFloat const kLabelYPos      =   _cellWidth + 8.0f;
+    CGFloat const kLabelWidth     =   _cellWidth - 2 * kCellLeftMagin;
+    CGFloat const kLabelHeight    =   20.0f;
+    
+    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_itemNameLabel setText:@"Item name"];
     [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     [self addSubview:_itemNameLabel];
@@ -135,11 +141,14 @@
 - (void) addPriceLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 35;
-    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
+    CGFloat const kPriceLabelPos    =   _cellWidth + 30.0f;
+    CGFloat const kPriceLabelWidth  =   _cellWidth - 2 * kCellLeftMagin;
+    CGFloat const kPriceLabelHeight =   15.0f;
+    
+    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kPriceLabelPos, kPriceLabelWidth, kPriceLabelHeight)];
     [_demandedPriceLabel setText:@"Item price"];
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
-    [_demandedPriceLabel setTextColor:[UIColor grayColor]];
+    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [self addSubview:_demandedPriceLabel];
 }
 
@@ -147,13 +156,13 @@
 - (void) addBuyerProfilePic
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kImageLeftMargin = 5.0f;
-    CGFloat const kImageYPos = _cellWidth + 60.0f;
+    CGFloat const kImageYPos = _cellWidth + 50.0f;
     CGFloat const kImageWidth = 30.0f;
     
-    _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, kImageYPos, kImageWidth, kImageWidth)];
-    [_buyerProfilePic setBackgroundColor:LIGHT_BLUE_COLOR];
+    _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
+    [_buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
+    _buyerProfilePic.clipsToBounds = YES;
     [self addSubview:_buyerProfilePic];
 }
 
@@ -161,15 +170,15 @@
 - (void) addBuyerUsername
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelXPos    =   40.0f;
-    CGFloat const kLabelYPos    =   _cellWidth + 60.0f;
-    CGFloat const kLabelWidth   =   WINSIZE.width/2 - 53.0f;
+    CGFloat const kLabelXPos    =   _buyerProfilePic.frame.size.width + 2 * kCellLeftMagin;
+    CGFloat const kLabelYPos    =   _buyerProfilePic.frame.origin.y;
+    CGFloat const kLabelWidth   =   _cellWidth - kLabelXPos - kCellRightMargin;
     CGFloat const kLabelHeight  =   15.0f;
     
     _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_buyerUsernameLabel setText:@"Username"];
     [_buyerUsernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_buyerUsernameLabel setTextColor:[UIColor grayColor]];
+    [_buyerUsernameLabel setTextColor:TEXT_COLOR_GRAY];
     [self addSubview:_buyerUsernameLabel];
 }
 
@@ -177,39 +186,31 @@
 - (void) addTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelXPos    =   40.0f;
-    CGFloat const kLabelYPos    =   _cellWidth + 75.0f;
-    CGFloat const kLabelWidth   =   WINSIZE.width/2 - 53.0f;
+    CGFloat const kLabelXPos    =   _buyerUsernameLabel.frame.origin.x;
+    CGFloat const kLabelYPos    =   _cellWidth + 65.0f;
+    CGFloat const kLabelWidth   =   _buyerUsernameLabel.frame.size.width;
     CGFloat const kLabelHeight  =   15.0f;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_timestampLabel setText:@"timestamp"];
     [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_timestampLabel setTextColor:[UIColor grayColor]];
+    [_timestampLabel setTextColor:TEXT_COLOR_GRAY];
     [self addSubview:_timestampLabel];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addSellerNumButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kXPos = _cellWidth/2;
-    CGFloat const kYPos = _cellWidth + 100;
-    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
-    [_sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
-    [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
-    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
-    [self addSubview:_sellerNumButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addLikeButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kXPos = 0;
-    CGFloat const kYPos = _cellWidth + 100;
-    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, 25)];
-    [_likeButton setBackgroundColor:LIGHT_GRAY_COLOR];
+    CGFloat const kButtonXPos   =   0;
+    CGFloat const kButtonYPos   =   _cellWidth + 90.0f;
+    CGFloat const kButtonWidth  =   _cellWidth/2;
+    CGFloat const kButtonHeight =   25.0f;
+    
+    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+    [_likeButton setBackgroundColor:LIGHTER_GRAY_COLOR];
+    _likeButton.layer.borderWidth = 0.5f;
+    _likeButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
     
@@ -222,6 +223,24 @@
     [_likesNumLabel setTextColor:[UIColor whiteColor]];
     [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_likeButton addSubview:_likesNumLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSellerNumButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonXPos   =   _cellWidth/2;
+    CGFloat const kButtonYPos   =   _likeButton.frame.origin.y;
+    CGFloat const kButtonWidth  =   _cellWidth/2;
+    CGFloat const kButtonHeight =   _likeButton.frame.size.height;
+    
+    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+    [_sellerNumButton setBackgroundColor:LIGHT_GRAY_COLOR];
+    _sellerNumButton.layer.borderWidth = 0.5f;
+    _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
+    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    [self addSubview:_sellerNumButton];
 }
 
 

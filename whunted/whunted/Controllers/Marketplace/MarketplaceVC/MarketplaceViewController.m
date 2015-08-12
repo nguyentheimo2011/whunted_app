@@ -107,7 +107,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
-    CGFloat const kCellHeight   =   kCellWidth + 125.0f;
+    CGFloat const kCellHeight   =   kCellWidth + 115.0f;
     
     return CGSizeMake(kCellWidth, kCellHeight);
 }

@@ -72,6 +72,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1.0]
+#define     TEXT_COLOR_GRAY                     [UIColor colorWithRed:100/255.0 green:100/255.0 blue:100/255.0 alpha:1.0]
 #define     PLACEHOLDER_TEXT_COLOR              [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
