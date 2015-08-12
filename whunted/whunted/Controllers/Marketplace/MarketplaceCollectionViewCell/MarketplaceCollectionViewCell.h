@@ -16,4 +16,6 @@
 
 - (void) initCell;
 
+- (void) clearCellUI;
+
 @end

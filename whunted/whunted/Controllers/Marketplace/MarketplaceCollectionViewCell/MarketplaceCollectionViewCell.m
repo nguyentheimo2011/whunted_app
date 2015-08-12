@@ -100,6 +100,13 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) clearCellUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_buyerProfilePic setImage:nil];
+}
+
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -305,10 +312,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
-        [_buyerProfilePic setImage:image];
-        
-        NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
-        [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+        if ([user.objectId isEqualToString:_wantData.buyerID]) {
+            [_buyerProfilePic setImage:image];
+            
+            NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
+            [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+        }
     };
     
     [Utilities getUserWithID:_wantData.buyerID andRunBlock:handler];

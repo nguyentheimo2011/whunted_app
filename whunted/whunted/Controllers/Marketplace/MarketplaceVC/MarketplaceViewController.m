@@ -92,9 +92,10 @@
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     
-    if (cell.wantData == nil) {
+    if (cell.wantData == nil) 
         [cell initCell];
-    }
+    else
+        [cell clearCellUI];
     
     WantData *wantData = [_wantDataList objectAtIndex:indexPath.row];
     [cell setWantData:wantData];
