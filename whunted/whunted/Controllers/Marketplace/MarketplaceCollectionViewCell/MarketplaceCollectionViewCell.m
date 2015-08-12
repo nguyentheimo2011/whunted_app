@@ -163,7 +163,7 @@
     
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kPriceLabelPos, kPriceLabelWidth, kPriceLabelHeight)];
     [_demandedPriceLabel setText:@"Item price"];
-    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [self addSubview:_demandedPriceLabel];
 }
@@ -239,7 +239,7 @@
     _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
     [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
-    [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [_likeButton addSubview:_likesNumLabel];
 }
 
@@ -257,7 +257,7 @@
     _sellerNumButton.layer.borderWidth = 0.5f;
     _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
-    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
     [_sellerNumButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
     [self addSubview:_sellerNumButton];
 }
