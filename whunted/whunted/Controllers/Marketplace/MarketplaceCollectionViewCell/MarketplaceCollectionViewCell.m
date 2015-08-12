@@ -7,6 +7,7 @@
 //
 
 #import "MarketplaceCollectionViewCell.h"
+#import "TemporaryCache.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -89,6 +90,14 @@
     
     if (!_itemImageView.image)
         [self downloadItemImage];
+    
+    NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
+    if ([[TemporaryCache sharedCache] objectForKey:imageKey]) {
+        UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:imageKey];
+        [_buyerProfilePic setImage:profileImage];
+    } else {
+        [self downloadProfileImage];
+    }
 }
 
 #pragma mark - UI Handlers
@@ -289,6 +298,20 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) downloadProfileImage
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+        [_buyerProfilePic setImage:image];
+        
+        NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
+        [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+    };
+    
+    [Utilities getUserWithID:_wantData.buyerID andRunBlock:handler];
 }
 
 @end
