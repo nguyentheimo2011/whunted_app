@@ -97,7 +97,7 @@
     [self setBackgroundColor:LIGHTEST_GRAY_COLOR];
     
     self.layer.borderWidth = 0.5f;
-    self.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
+    self.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
@@ -110,9 +110,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
-    [_itemImageView setBackgroundColor:LIGHT_GRAY_COLOR];
+    [_itemImageView setBackgroundColor:[UIColor whiteColor]];
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _itemImageView.layer.borderWidth = 0.5f;
+    _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [self addSubview:_itemImageView];
+    
     [_itemImageView hnk_cancelSetImage];
     _itemImageView.image = nil;
 }
