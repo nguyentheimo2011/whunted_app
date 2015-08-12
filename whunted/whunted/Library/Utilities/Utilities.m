@@ -187,6 +187,8 @@
 + (void) customizeTabBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [[UITabBar appearance] setBackgroundImage:[Utilities imageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.9f]]];
+    
     // set the text color for selected state
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : MAIN_BLUE_COLOR} forState:UIControlStateSelected];
     // set the text color for unselected state
