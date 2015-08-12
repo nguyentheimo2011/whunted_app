@@ -210,19 +210,19 @@
     CGFloat const kButtonHeight =   25.0f;
     
     _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
-    [_likeButton setBackgroundColor:LIGHTER_GRAY_COLOR];
+    [_likeButton setBackgroundColor:[UIColor whiteColor]];
     _likeButton.layer.borderWidth = 0.5f;
     _likeButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
     
-    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, -1.5, 28, 28)];
+    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 4.0f, 17.0f, 17.0f)];
     [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
     [_likeButton addSubview:_likeImageView];
     
     _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    [_likesNumLabel setTextColor:[UIColor whiteColor]];
+    [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
     [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_likeButton addSubview:_likesNumLabel];
 }
@@ -231,17 +231,18 @@
 - (void) addSellerNumButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonXPos   =   _cellWidth/2;
+    CGFloat const kButtonXPos   =   _cellWidth/2 - 0.5f;
     CGFloat const kButtonYPos   =   _likeButton.frame.origin.y;
-    CGFloat const kButtonWidth  =   _cellWidth/2;
+    CGFloat const kButtonWidth  =   _cellWidth/2 + 0.5f;
     CGFloat const kButtonHeight =   _likeButton.frame.size.height;
     
     _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
-    [_sellerNumButton setBackgroundColor:LIGHT_GRAY_COLOR];
+    [_sellerNumButton setBackgroundColor:[UIColor whiteColor]];
     _sellerNumButton.layer.borderWidth = 0.5f;
     _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
     _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    [_sellerNumButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
     [self addSubview:_sellerNumButton];
 }
 
