@@ -94,9 +94,13 @@
 - (void) customizeCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setBackgroundColor:[UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]];
+    [self setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    
+    self.layer.borderWidth = 0.5f;
+    self.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
+    
     _cellWidth = self.frame.size.width;
     _cellHeight = self.frame.size.height;
 }
