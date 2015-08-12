@@ -121,7 +121,7 @@
 - (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([viewController.title isEqualToString:TAB_BAR_UPLOAD_PAGE_TITLE]) {
+    if ([viewController.title isEqualToString:NSLocalizedString(TAB_BAR_UPLOAD_PAGE_TITLE, nil)]) {
         _uploadingNavController = [[UINavigationController alloc] init];
         _imageEdittingNeeded = YES;
         [self showImageGettingOptionPopup];
