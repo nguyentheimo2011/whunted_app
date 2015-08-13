@@ -29,19 +29,9 @@
 
 @property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
 
-@property (nonatomic, strong) UIPageViewController  *pageViewController;
 @property (nonatomic, strong) WantData              *wantData;
 @property (nonatomic)         NSInteger             itemImagesNum;
-@property (nonatomic, strong) UILabel               *itemNameLabel;
-@property (nonatomic, strong) UILabel               *postedTimestampLabel;
-@property (nonatomic, strong) UIButton              *buyerUsernameButton;
-@property (nonatomic, strong) UILabel               *demandedPriceLabel;
-@property (nonatomic, strong) UILabel               *locationLabel;
-@property (nonatomic, strong) UILabel               *itemDescLabel;
-@property (nonatomic, strong) UILabel               *productOriginLabel;
-@property (nonatomic, strong) UILabel               *paymentMethodLabel;
-@property (nonatomic, strong) UILabel               *sellersLabel;
-@property (nonatomic, strong) JTImageButton         *secondBottomButton;
+
 @property (nonatomic)         OfferData             *currOffer;
 
 @end

@@ -17,6 +17,19 @@
 
 @implementation ItemDetailsViewController
 {
+    UIPageViewController    *_pageViewController;
+    
+    UILabel                 *_itemNameLabel;
+    UILabel                 *_postedTimestampLabel;
+    UIButton                *_buyerUsernameButton;
+    UILabel                 *_demandedPriceLabel;
+    UILabel                 *_locationLabel;
+    UILabel                 *_itemDescLabel;
+    UILabel                 *_productOriginLabel;
+    UILabel                 *_paymentMethodLabel;
+    UILabel                 *_sellersLabel;
+    JTImageButton           *_secondBottomButton;
+    
     UIPageControl           *_pageControl;
     UIScrollView            *_scrollView;
     
@@ -26,19 +39,8 @@
     NSInteger               _currImageIndex;
 }
 
-@synthesize pageViewController      =   _pageViewController;
 @synthesize wantData                =   _wantData;
 @synthesize itemImagesNum           =   _itemImagesNum;
-@synthesize itemNameLabel           =   _itemNameLabel;
-@synthesize postedTimestampLabel    =   _postedTimestampLabel;
-@synthesize buyerUsernameButton     =   _buyerUsernameButton;
-@synthesize demandedPriceLabel      =   _demandedPriceLabel;
-@synthesize locationLabel           =   _locationLabel;
-@synthesize itemDescLabel           =   _itemDescLabel;
-@synthesize productOriginLabel      =   _productOriginLabel;
-@synthesize paymentMethodLabel      =   _paymentMethodLabel;
-@synthesize sellersLabel            =   _sellersLabel;
-@synthesize secondBottomButton      =   _secondBottomButton;
 @synthesize currOffer               =   _currOffer;
 @synthesize delegate                =   _delegate;
 
