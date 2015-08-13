@@ -102,7 +102,7 @@
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height)];
-    [_scrollView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [_scrollView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_scrollView];
 }
 
@@ -222,22 +222,25 @@
 - (void) addDemandedPriceLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kPriceImageLeftMargin     =   10.0f;
+    CGFloat const kPriceImageTopMargin      =   15.0f;
+    CGFloat const kPriceImageYPos           =   _postedTimestampLabel.frame.origin.y + _postedTimestampLabel.frame.size.height + kPriceImageTopMargin;
+    CGFloat const kPriceImageWidth          =   23.0f;
+    
     UIImage *priceTagImage = [UIImage imageNamed:@"pricetag_icon.png"];
-    UIImageView *priceTagImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 23, 23)];
+    UIImageView *priceTagImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPriceImageLeftMargin, kPriceImageYPos, kPriceImageWidth, kPriceImageWidth)];
     [priceTagImageView setImage:priceTagImage];
     [_scrollView addSubview:priceTagImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kPriceImageLeftMargin + kPriceImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
-    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPriceImageYPos, kLabelWidth, kPriceImageWidth)];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_demandedPriceLabel setTextColor:[UIColor grayColor]];
+    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_demandedPriceLabel];
-    
-    _nextXPos = 10;
-    _nextYPos += 35;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
