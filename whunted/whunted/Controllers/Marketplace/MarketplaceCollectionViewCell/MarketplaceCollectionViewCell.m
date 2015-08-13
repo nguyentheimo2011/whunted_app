@@ -27,6 +27,7 @@
     
     UIImageView         *_likeImageView;
     UILabel             *_likesNumLabel;
+    UIView              *_likesNumContainer;
     
     CGFloat             _cellWidth;
     CGFloat             _cellHeight;
@@ -68,12 +69,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantData = wantData;
+    _likesNum = _wantData.likesNum;
     
     [_itemNameLabel setText:_wantData.itemName];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     [_buyerUsernameLabel setText:_wantData.buyerUsername];
     [_timestampLabel setText:[Utilities timestampStringFromDate:_wantData.createdDate]];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", wantData.likesNum]];
+    [self resizeLikesNumContainer];
     [_sellerNumButton setTitle:[NSString stringWithFormat:@"%ld", wantData.sellersNum] forState:UIControlStateNormal];
     
     NSString *text;
@@ -232,8 +235,8 @@
     [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
     
-    CGFloat const kImageTopMargin   =   4.0f;
-    CGFloat const kImageWdith       =   17.0f;
+    CGFloat const kImageTopMargin   =   5.5f;
+    CGFloat const kImageWdith       =   14.0f;
     
     _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, kImageTopMargin, kImageWdith, kImageWdith)];
     [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
@@ -249,9 +252,16 @@
     [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     [_likesNumLabel sizeToFit];
     
-//    CGFloat kContainerWidth
+    CGFloat const kContainerWidth = kImageWdith + kLabelLeftMargin + _likesNumLabel.frame.size.width;
+    CGFloat const kContainerXPos  = (kButtonWidth - kContainerWidth) / 2.0;
     
-    [_likeButton addSubview:_likesNumLabel];
+    _likesNumContainer = [[UIView alloc] initWithFrame:CGRectMake(kContainerXPos, 0, kContainerWidth, kButtonHeight)];
+    [_likesNumContainer addSubview:_likeImageView];
+    [_likesNumContainer addSubview:_likesNumLabel];
+    UITapGestureRecognizer *tapGesRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likeButtonClickedEvent)];
+    [_likesNumContainer addGestureRecognizer:tapGesRec];
+    
+    [_likeButton addSubview:_likesNumContainer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -291,8 +301,24 @@
         [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
         [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
     }
+    
+    [self resizeLikesNumContainer];
 }
 
+
+#pragma mark - Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) resizeLikesNumContainer
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_likesNumLabel sizeToFit];
+    
+    CGFloat const kContainerWidth = _likesNumLabel.frame.origin.x + _likesNumLabel.frame.size.width;
+    CGFloat const kContainerXPos  = (_likeButton.frame.size.width - kContainerWidth) / 2.0;
+    
+    _likesNumContainer.frame = CGRectMake(kContainerXPos, 0, kContainerWidth, _likeButton.frame.size.height);
+}
 
 #pragma mark - Backend
 
