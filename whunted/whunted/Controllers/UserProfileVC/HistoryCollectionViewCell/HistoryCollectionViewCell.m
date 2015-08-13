@@ -9,22 +9,30 @@
 #import "HistoryCollectionViewCell.h"
 #import "AppConstant.h"
 
+#define kCellLeftMagin      4.0f
+#define kCellRightMargin    4.0f
+
 @implementation HistoryCollectionViewCell
 {
-    CGFloat     _cellWidth;
-    CGFloat     _cellHeight;
-    BOOL        _likedByMe;
-    NSInteger   _likesNum;
-    UIImageView *_likeImageView;
-    UILabel     *_likesNumLabel;
+    UILabel         *_itemNameLabel;
+    UILabel         *_demandedPriceLabel;
+    UIButton        *_sellerNumButton;
+    UIButton        *_likeButton;
+    UIImageView     *_itemImageView;
+    
+    UIView          *_likesNumContainer;
+    
+    UIImageView     *_likeImageView;
+    UILabel         *_likesNumLabel;
+    
+    CGFloat         _cellWidth;
+    CGFloat         _cellHeight;
+    NSInteger       _likesNum;
+    BOOL            _likedByMe;
 }
 
-@synthesize itemNameLabel       =       _itemNameLabel;
-@synthesize demandedPriceLabel  =       _demandedPriceLabel;
-@synthesize sellerNumButton     =       _sellerNumButton;
-@synthesize likeButton          =       _likeButton;
-@synthesize itemImageView       =       _itemImageView;
-@synthesize wantData            =       _wantData;
+
+@synthesize wantData = _wantData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -44,7 +52,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _likedByMe = NO;
-    _likesNum = 124;
+    _likesNum = _wantData.likesNum;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) clearCellUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _wantData = nil;
 }
 
 #pragma mark - Setters
@@ -80,9 +95,14 @@
 - (void) customizeCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setBackgroundColor:LIGHTEST_GRAY_COLOR];
-    self.layer.cornerRadius = 5;
+    [self setBackgroundColor:[UIColor whiteColor]];
+    
+    self.layer.borderWidth = 0.5f;
+    self.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    
+    self.layer.cornerRadius = 5.0f;
     self.clipsToBounds = YES;
+    
     _cellWidth = self.frame.size.width;
     _cellHeight = self.frame.size.height;
 }
@@ -92,8 +112,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
-    [_itemImageView setBackgroundColor:LIGHTER_GRAY_COLOR];
+    [_itemImageView setBackgroundColor:[UIColor whiteColor]];
+    _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:_itemImageView];
+    
+    _itemImageView.layer.borderWidth = 0.5f;
+    _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    
     [_itemImageView hnk_cancelSetImage];
     _itemImageView.image = nil;
 }
@@ -102,8 +127,11 @@
 - (void) addItemNameLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 10;
-    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 20)];
+    CGFloat const kLabelYPos      =   _cellWidth + 8.0f;
+    CGFloat const kLabelWidth     =   _cellWidth - 2 * kCellLeftMagin;
+    CGFloat const kLabelHeight    =   20.0f;
+    
+    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_itemNameLabel setText:@"Item name"];
     [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     [self addSubview:_itemNameLabel];
@@ -113,51 +141,116 @@
 - (void) addPriceLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat yPos = _cellWidth + 35;
-    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, yPos, WINSIZE.width/2-15, 15)];
-    [_demandedPriceLabel setText:@"Item price"];
-    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
-    [_demandedPriceLabel setTextColor:[UIColor grayColor]];
-    [self addSubview:_demandedPriceLabel];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addSellerNumButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kXPos = _cellWidth/2;
-    CGFloat const kYPos = _cellWidth + 60;
-    CGFloat const kButtonHeight = 25;
+    CGFloat const kPriceLabelPos    =   _cellWidth + 30.0f;
+    CGFloat const kPriceLabelWidth  =   _cellWidth - 2 * kCellLeftMagin;
+    CGFloat const kPriceLabelHeight =   15.0f;
     
-    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, kButtonHeight)];
-    [_sellerNumButton setBackgroundColor:[UIColor colorWithRed:180.0/255 green:180.0/255 blue:180.0/255 alpha:1.0]];
-    [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
-    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
-    [self addSubview:_sellerNumButton];
+    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kPriceLabelPos, kPriceLabelWidth, kPriceLabelHeight)];
+    [_demandedPriceLabel setText:@"Item price"];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
+    [self addSubview:_demandedPriceLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addLikeButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kXPos = 0;
+    CGFloat const kButtonXPos   =   0;
+    CGFloat const kButtonYPos   =   _cellWidth + 60.0f;
+    CGFloat const kButtonWidth  =   _cellWidth/2;
+    CGFloat const kButtonHeight =   25.0f;
+    
+    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+    [_likeButton setBackgroundColor:[UIColor whiteColor]];
+    _likeButton.layer.borderWidth = 0.5f;
+    _likeButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_likeButton];
+    
+    CGFloat const kImageTopMargin   =   5.5f;
+    CGFloat const kImageWdith       =   14.0f;
+    
+    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, kImageTopMargin, kImageWdith, kImageWdith)];
+    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+    
+    CGFloat const kLabelLeftMargin  =   5.0f;
+    CGFloat const kLabelXPos        =   kImageWdith + kLabelLeftMargin;
+    CGFloat const kLabelYPos        =   5.0f;
+    CGFloat const kLabelHeight      =   15.0f;
+    
+    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, 0, kLabelHeight)];
+    [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
+    [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_likesNumLabel sizeToFit];
+    
+    CGFloat const kContainerWidth = kImageWdith + kLabelLeftMargin + _likesNumLabel.frame.size.width;
+    CGFloat const kContainerXPos  = (kButtonWidth - kContainerWidth) / 2.0;
+    
+    _likesNumContainer = [[UIView alloc] initWithFrame:CGRectMake(kContainerXPos, 0, kContainerWidth, kButtonHeight)];
+    [_likesNumContainer addSubview:_likeImageView];
+    [_likesNumContainer addSubview:_likesNumLabel];
+    UITapGestureRecognizer *tapGesRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likeButtonClickedEvent)];
+    [_likesNumContainer addGestureRecognizer:tapGesRec];
+    
+    [_likeButton addSubview:_likesNumContainer];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSellerNumButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kXPos = _cellWidth/2 - 0.5f;
     CGFloat const kYPos = _cellWidth + 60;
     CGFloat const kButtonHeight = 25;
     
-    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2, kButtonHeight)];
-    [_likeButton setBackgroundColor:LIGHT_GRAY_COLOR];
-    [self addSubview:_likeButton];
-    
-    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, -1.5, 28, 28)];
-    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
-    [_likeButton addSubview:_likeImageView];
-    
-    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
-    [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    [_likesNumLabel setTextColor:[UIColor whiteColor]];
-    [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_likeButton addSubview:_likesNumLabel];
+    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kXPos, kYPos, _cellWidth/2 + 0.5f, kButtonHeight)];
+    [_sellerNumButton setBackgroundColor:[UIColor whiteColor]];
+    _sellerNumButton.layer.borderWidth = 0.5f;
+    _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
+    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
+    [_sellerNumButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
+    [self addSubview:_sellerNumButton];
 }
+
+#pragma mark - Event Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) likeButtonClickedEvent
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_likedByMe) {
+        _likedByMe = NO;
+        _likesNum -= 1;
+        [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    } else {
+        _likedByMe = YES;
+        _likesNum += 1;
+        [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
+        [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+    }
+    
+    [self resizeLikesNumContainer];
+}
+
+
+#pragma mark - Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) resizeLikesNumContainer
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_likesNumLabel sizeToFit];
+    
+    CGFloat const kContainerWidth = _likesNumLabel.frame.origin.x + _likesNumLabel.frame.size.width;
+    CGFloat const kContainerXPos  = (_likeButton.frame.size.width - kContainerWidth) / 2.0;
+    
+    _likesNumContainer.frame = CGRectMake(kContainerXPos, 0, kContainerWidth, _likeButton.frame.size.height);
+}
+
 
 #pragma mark - Backend
 

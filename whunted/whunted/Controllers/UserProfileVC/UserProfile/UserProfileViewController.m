@@ -593,7 +593,7 @@
     CGFloat const kControlHeight = 35;
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
-    segmentedControl.sectionTitles = @[NSLocalizedString(@"Bought", nil), NSLocalizedString(@"Sold", nil)];
+    segmentedControl.sectionTitles = @[NSLocalizedString(@"Buying", nil), NSLocalizedString(@"Selling", nil)];
     
     segmentedControl.selectedSegmentIndex = 0;
     
@@ -662,7 +662,7 @@
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     _historyCollectionView.dataSource = self;
     _historyCollectionView.delegate = self;
-    _historyCollectionView.backgroundColor = [UIColor whiteColor];
+    _historyCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_scrollView addSubview:_historyCollectionView];
     
@@ -706,7 +706,7 @@
 {
     HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
     
-    if (cell.itemImageView == nil) {
+    if (cell.wantData == nil) {
         [cell initCell];
     }
     
@@ -717,8 +717,8 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCellWidth = WINSIZE.width/2.0 - 15;
-    CGFloat const kCellHeight = kCellWidth + 85;
+    CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+    CGFloat const kCellHeight   =   kCellWidth + 85;
     
     return CGSizeMake(kCellWidth, kCellHeight);
 }
@@ -727,21 +727,21 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 10.0;
+    return 8.0;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 15.0;
+    return 10.0;
 }
 
 #pragma mark - Event Handlers
