@@ -249,7 +249,7 @@
 {
     CGFloat const kLocationImageLeftMargin     =   10.0f;
     CGFloat const kLocationImageTopMargin      =   15.0f;
-    CGFloat const kLocationImageYPos           =   _demandedPriceLabel.frame.origin.y + _postedTimestampLabel.frame.size.height + kLocationImageTopMargin;
+    CGFloat const kLocationImageYPos           =   _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height + kLocationImageTopMargin;
     CGFloat const kLocationImageWidth          =   23.0f;
     
     UIImage *locationImage = [UIImage imageNamed:@"location_icon.png"];
@@ -272,25 +272,28 @@
 - (void) addItemDescLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kDescImageLeftMargin     =   10.0f;
+    CGFloat const kDescImageTopMargin      =   15.0f;
+    CGFloat const kDescImageYPos           =   _locationLabel.frame.origin.y + _locationLabel.frame.size.height + kDescImageTopMargin;
+    CGFloat const kDescImageWidth          =   23.0f;
+    
     UIImage *descriptionImage = [UIImage imageNamed:@"info_icon.png"];
-    UIImageView *descriptionImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 20, 20)];
+    UIImageView *descriptionImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kDescImageLeftMargin, kDescImageYPos, kDescImageWidth, kDescImageWidth)];
     [descriptionImageView setImage:descriptionImage];
     [_scrollView addSubview:descriptionImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
-    
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kDescImageLeftMargin + kDescImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
+    
+    _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
     [_itemDescLabel setText:_wantData.itemDesc];
     [_itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_itemDescLabel setTextColor:[UIColor grayColor]];
+    [_itemDescLabel setTextColor:TEXT_COLOR_GRAY];
     _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _itemDescLabel.numberOfLines = 0;
     [_scrollView addSubview:_itemDescLabel];
-    
-    _nextXPos = 10;
-    _nextYPos += expectedSize.height + 20;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
