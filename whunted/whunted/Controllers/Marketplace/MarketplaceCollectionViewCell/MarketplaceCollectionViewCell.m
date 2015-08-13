@@ -232,14 +232,25 @@
     [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_likeButton];
     
-    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 4.0f, 17.0f, 17.0f)];
-    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
-    [_likeButton addSubview:_likeImageView];
+    CGFloat const kImageTopMargin   =   4.0f;
+    CGFloat const kImageWdith       =   17.0f;
     
-    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(35, 5, _cellWidth/2 - 40, 15)];
+    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, kImageTopMargin, kImageWdith, kImageWdith)];
+    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+    
+    CGFloat const kLabelLeftMargin  =   5.0f;
+    CGFloat const kLabelXPos        =   kImageWdith + kLabelLeftMargin;
+    CGFloat const kLabelYPos        =   5.0f;
+    CGFloat const kLabelHeight      =   15.0f;
+    
+    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, 0, kLabelHeight)];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
     [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
     [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_likesNumLabel sizeToFit];
+    
+//    CGFloat kContainerWidth
+    
     [_likeButton addSubview:_likesNumLabel];
 }
 
