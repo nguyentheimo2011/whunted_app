@@ -25,6 +25,6 @@
 @interface UserProfileViewController : GenericController<UICollectionViewDataSource, UICollectionViewDelegate, EditProfileDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<UserProfileViewControllerDelegate, GenericControllerDelegate> delegate;
 
 @end

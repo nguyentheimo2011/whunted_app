@@ -23,12 +23,6 @@
 #define kTopMargin      WINSIZE.width / 30.0
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface UserProfileViewController ()
-//-------------------------------------------------------------------------------------------------------------------------------
-
-@end
-
-//-------------------------------------------------------------------------------------------------------------------------------
 @implementation UserProfileViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -57,6 +51,7 @@
     CGFloat             _currHeight;
     
     NSMutableDictionary *_ratingDict;
+    NSMutableArray      *_myWantDataList;
 }
 
 @synthesize delegate = _delegate;
@@ -67,7 +62,7 @@
 {
     self = [super init];
     if (self) {
-        
+        [self retrieveMyWantList];
     }
     
     return self;
@@ -679,15 +674,16 @@
     allDisplayedLabel.textColor = LIGHT_GRAY_COLOR;
     [allDisplayedLabel sizeToFit];
     
-    CGFloat const kLabelWidth = allDisplayedLabel.frame.size.width;
-    CGFloat const kLabelHeight = allDisplayedLabel.frame.size.height;
-    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
     CGFloat const kLabelTopMargin = WINSIZE.height / 24.0;
-    CGFloat const kYPos = _currHeight + kLabelTopMargin;
-    allDisplayedLabel.frame = CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight);
+    CGFloat const kLabelWidth = WINSIZE.width;
+    CGFloat const kLabelHeight = allDisplayedLabel.frame.size.height + 2 * kLabelTopMargin;
+    CGFloat const kYPos = _currHeight;
+    allDisplayedLabel.frame = CGRectMake(0, kYPos, kLabelWidth, kLabelHeight);
+    allDisplayedLabel.backgroundColor = LIGHTEST_GRAY_COLOR;
+    allDisplayedLabel.textAlignment = NSTextAlignmentCenter;
     [_scrollView addSubview:allDisplayedLabel];
     
-    _currHeight +=  2 * kLabelTopMargin + kLabelHeight;
+    _currHeight +=  kLabelHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
@@ -709,6 +705,9 @@
     if (cell.wantData == nil) {
         [cell initCell];
     }
+    
+    WantData *wantData = [_myWantDataList objectAtIndex:indexPath.row];
+    [cell setWantData:wantData];
     
     return cell;
 }
@@ -886,6 +885,29 @@
         else {
             _negativeFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
             [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_NEGATIVE];
+        }
+    }];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveMyWantList
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _myWantDataList = [[NSMutableArray alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    [query whereKey:PF_ITEM_BUYER_ID equalTo:[PFUser currentUser].objectId];
+    [query orderByDescending:PF_CREATED_AT];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                [_myWantDataList addObject:wantData];
+            }
+            [_historyCollectionView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
 }
