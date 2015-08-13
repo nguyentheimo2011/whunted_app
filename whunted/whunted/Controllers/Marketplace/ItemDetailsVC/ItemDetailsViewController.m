@@ -300,24 +300,27 @@
 - (void) addProductOrigin
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kOriginImageLeftMargin     =   10.0f;
+    CGFloat const kOriginImageTopMargin      =   15.0f;
+    CGFloat const kOriginImageYPos           =   _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height + kOriginImageTopMargin;
+    CGFloat const kOriginImageWidth          =   23.0f;
+    
     UIImage *originIconImage = [UIImage imageNamed:@"product_origin_icon.png"];
-    UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 23, 23)];
+    UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kOriginImageLeftMargin, kOriginImageYPos, kOriginImageWidth, kOriginImageWidth)];
     [originIconImageView setImage:originIconImage];
     [_scrollView addSubview:originIconImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
     NSString *productOriginText = [_wantData.productOriginList componentsJoinedByString:@", "];
     CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, expectedSize.height)];
+    _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
     [_productOriginLabel setText:productOriginText];
     [_productOriginLabel setFont:DEFAULT_FONT];
-    [_productOriginLabel setTextColor:[UIColor grayColor]];
+    [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_productOriginLabel];
-    
-    _nextXPos = 10;
-    _nextYPos += expectedSize.height + 30;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -369,7 +372,7 @@
     
     _nextYPos += 25;
     
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _nextYPos += 60)];
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height + 60.0f)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
