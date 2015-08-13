@@ -151,7 +151,7 @@
     [self addDemandedPriceLabel];
     [self addLocationLabel];
     [self addItemDescLabel];
-    [self addProductOrigin];
+//    [self addProductOrigin];
     [self addPaymentMethodLabel];
     [self addSellersLabel];
 }
@@ -327,13 +327,19 @@
 - (void) addPaymentMethodLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kPaymentImageLeftMargin     =   10.0f;
+    CGFloat const kPaymentImageTopMargin      =   15.0f;
+    CGFloat const kPaymentImageYPos           =   _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height + kPaymentImageTopMargin;
+    CGFloat const kPaymentImageWidth          =   23.0f;
+    
     UIImage *paymentMethodIconImage = [UIImage imageNamed:@"payment_method_icon.png"];
-    UIImageView *paymentMethodIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 23, 23)];
+    UIImageView *paymentMethodIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPaymentImageLeftMargin, kPaymentImageYPos, kPaymentImageWidth, kPaymentImageWidth)];
     [paymentMethodIconImageView setImage:paymentMethodIconImage];
     [_scrollView addSubview:paymentMethodIconImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kPaymentImageLeftMargin + kPaymentImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
     NSString *paymentMethodText;
     if ([_wantData.paymentMethod isEqualToString:ESCROW_PAYMENT_METHOD]) {
@@ -341,7 +347,7 @@
     } else {
         paymentMethodText = @"Not request for Escrow";
     }
-    _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPaymentImageYPos, kLabelWidth, kPaymentImageWidth)];
     [_paymentMethodLabel setText:paymentMethodText];
     [_paymentMethodLabel setFont:DEFAULT_FONT];
     [_paymentMethodLabel setTextColor:[UIColor grayColor]];
@@ -355,24 +361,33 @@
 - (void) addSellersLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kSellerImageLeftMargin     =   10.0f;
+    CGFloat const kSellerImageTopMargin      =   15.0f;
+    CGFloat const kSellerImageYPos           =   _paymentMethodLabel.frame.origin.y + _paymentMethodLabel.frame.size.height + kSellerImageTopMargin;
+    CGFloat const kSellerImageWidth          =   23.0f;
+    
     UIImage *sellersIconImage = [UIImage imageNamed:@"sellers_icon"];
-    UIImageView *sellersIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 23, 23)];
+    UIImageView *sellersIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSellerImageLeftMargin, kSellerImageYPos, kSellerImageWidth, kSellerImageWidth)];
     [sellersIconImageView setImage:sellersIconImage];
     [_scrollView addSubview:sellersIconImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kSellerImageLeftMargin + kSellerImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
-    NSString *sellersText = @"2 sellers";
-    _sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 20)];
+    NSString *sellersText;
+    if (_wantData.sellersNum <= 0)
+        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
+    else
+        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
+    
+    _sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kSellerImageYPos, kLabelWidth, kSellerImageWidth)];
     [_sellersLabel setText:sellersText];
     [_sellersLabel setFont:DEFAULT_FONT];
     [_sellersLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:_sellersLabel];
     
-    _nextYPos += 25;
-    
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height + 60.0f)];
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, kSellerImageYPos + kSellerImageWidth + 60.0f)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
