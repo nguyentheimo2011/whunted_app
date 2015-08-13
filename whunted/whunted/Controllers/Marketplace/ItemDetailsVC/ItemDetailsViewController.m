@@ -247,22 +247,25 @@
 - (void) addLocationLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLocationImageLeftMargin     =   10.0f;
+    CGFloat const kLocationImageTopMargin      =   15.0f;
+    CGFloat const kLocationImageYPos           =   _demandedPriceLabel.frame.origin.y + _postedTimestampLabel.frame.size.height + kLocationImageTopMargin;
+    CGFloat const kLocationImageWidth          =   23.0f;
+    
     UIImage *locationImage = [UIImage imageNamed:@"location_icon.png"];
-    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, 23, 23)];
+    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLocationImageLeftMargin, kLocationImageYPos, kLocationImageWidth, kLocationImageWidth)];
     [locationImageView setImage:locationImage];
     [_scrollView addSubview:locationImageView];
     
-    _nextXPos = 40;
-    _nextYPos += 3;
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
-    _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nextXPos, _nextYPos, WINSIZE.width-50, 25)];
+    _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLocationImageYPos, kLabelWidth, kLocationImageWidth)];
     [_locationLabel setText:_wantData.meetingLocation];
     [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_locationLabel setTextColor:[UIColor grayColor]];
+    [_locationLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_locationLabel];
-    
-    _nextXPos = 10;
-    _nextYPos += 35;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
