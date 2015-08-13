@@ -444,75 +444,64 @@
 - (void) sellerOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = _wantData.buyerID;
-    [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
-        if (!error) {
-            BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
-            sellersOfferVC.delegate = self;
-            sellersOfferVC.buyerName = user2[PF_USER_USERNAME];
-            sellersOfferVC.user2 = user2;
-            if (_currOffer) {
-                sellersOfferVC.offerData = _currOffer;
-            } else {
-                OfferData *offerData = [[OfferData alloc] init];
-                offerData.itemID = _wantData.itemID;
-                offerData.itemName = _wantData.itemName;
-                offerData.originalDemandedPrice = _wantData.demandedPrice;
-                offerData.buyerID = user2.objectId;
-                offerData.sellerID = user1.objectId;
-                offerData.initiatorID = @"";
-                offerData.offeredPrice = @"";
-                offerData.deliveryTime = @"";
-                offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
-                sellersOfferVC.offerData = offerData;
-            }
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            [self.navigationController pushViewController:sellersOfferVC animated:YES];
-        } else {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-        }
-    }];
+    PFUser *user2 = [[PFUser alloc] init];
+    user2.objectId = _wantData.buyerID;
+    user2[PF_USER_USERNAME] = _wantData.buyerUsername;
+    
+    BuyersOrSellersOfferViewController *sellersOfferVC = [[BuyersOrSellersOfferViewController alloc] init];
+    sellersOfferVC.delegate = self;
+    sellersOfferVC.buyerName = _wantData.buyerUsername;
+    sellersOfferVC.user2 = user2;
+    
+    if (_currOffer) {
+        sellersOfferVC.offerData = _currOffer;
+    } else {
+        OfferData *offerData = [[OfferData alloc] init];
+        offerData.itemID = _wantData.itemID;
+        offerData.itemName = _wantData.itemName;
+        offerData.originalDemandedPrice = _wantData.demandedPrice;
+        offerData.buyerID = _wantData.buyerID;
+        offerData.sellerID = user1.objectId;
+        offerData.initiatorID = @"";
+        offerData.offeredPrice = @"";
+        offerData.deliveryTime = @"";
+        offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
+        sellersOfferVC.offerData = offerData;
+    }
+    
+    [self.navigationController pushViewController:sellersOfferVC animated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) chatButtonClickedEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFUser *user1 = [PFUser currentUser];
-    PFUser *user2 = _wantData.buyerID;
-    [user2 fetchIfNeededInBackgroundWithBlock:^(PFObject *user, NSError *error) {
-        if (!error) {
-            [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
-            
-            if (_currOffer) {
-                NSString *groupId = StartPrivateChat(user1, user2, _currOffer);
-                [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
-            } else {
-                OfferData *offerData = [[OfferData alloc] init];
-                offerData.itemID = _wantData.itemID;
-                offerData.itemName = _wantData.itemName;
-                offerData.originalDemandedPrice = _wantData.demandedPrice;
-                offerData.buyerID = user2.objectId;
-                offerData.sellerID = user1.objectId;
-                offerData.initiatorID = @"";
-                offerData.offeredPrice = @"";
-                offerData.deliveryTime = @"";
-                offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
-                
-                NSString *groupId = StartPrivateChat(user1, user2, offerData);
-                [self actionChat:groupId withUser2:user2 andOfferData:offerData];
-            }
-        } else {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-        }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    PFUser *user2 = [[PFUser alloc] init];
+    user2.objectId = _wantData.buyerID;
+    user2[PF_USER_USERNAME] = _wantData.buyerUsername;
+    
+    [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
+    
+    if (_currOffer) {
+        NSString *groupId = StartPrivateChat(user1, user2, _currOffer);
+        [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
+    } else {
+        OfferData *offerData = [[OfferData alloc] init];
+        offerData.itemID = _wantData.itemID;
+        offerData.itemName = _wantData.itemName;
+        offerData.originalDemandedPrice = _wantData.demandedPrice;
+        offerData.buyerID = user2.objectId;
+        offerData.sellerID = user1.objectId;
+        offerData.initiatorID = @"";
+        offerData.offeredPrice = @"";
+        offerData.deliveryTime = @"";
+        offerData.offerStatus = PF_OFFER_STATUS_NOT_OFFERED;
+        
+        NSString *groupId = StartPrivateChat(user1, user2, offerData);
+        [self actionChat:groupId withUser2:user2 andOfferData:offerData];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
