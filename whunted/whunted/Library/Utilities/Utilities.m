@@ -458,7 +458,7 @@
         else
             timeUnit = @"seconds";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfSecs, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfSecs, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
         
@@ -471,7 +471,7 @@
         else
             timeUnit = @"minutes";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfMins, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfMins, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
         
@@ -484,7 +484,7 @@
         else
             timeUnit = @"hours";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfHours, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfHours, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
         
@@ -497,7 +497,7 @@
         else
             timeUnit = @"days";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfDays, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfDays, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
         
@@ -510,7 +510,7 @@
         else
             timeUnit = @"weeks";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
     }

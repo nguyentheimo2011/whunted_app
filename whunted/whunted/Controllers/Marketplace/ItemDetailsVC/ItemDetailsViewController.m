@@ -7,13 +7,15 @@
 //
 
 #import "ItemDetailsViewController.h"
-#import "AppConstant.h"
 #import "ItemImageViewController.h"
 #import "ChatView.h"
 #import "recent.h"
 #import "PersistedCache.h"
+#import "AppConstant.h"
+#import "Utilities.h"
 
 #import <MBProgressHUD.h>
+#import <JTImageButton.h>
 
 @implementation ItemDetailsViewController
 {
@@ -21,7 +23,7 @@
     
     UILabel                 *_itemNameLabel;
     UILabel                 *_postedTimestampLabel;
-    UIButton                *_buyerUsernameButton;
+    JTImageButton           *_buyerUsernameButton;
     UILabel                 *_demandedPriceLabel;
     UILabel                 *_locationLabel;
     UILabel                 *_itemDescLabel;
@@ -177,38 +179,43 @@
     [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
     [_itemNameLabel setTextColor:TEXT_COLOR_DARK_GRAY];
     [_scrollView addSubview:_itemNameLabel];
-    
-    _nextYPos = WINSIZE.height * 0.6 + 13;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addPostedTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *placeHolderText = @"listed 3 hours ago by";
-    CGSize expectedSize = [placeHolderText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
+    NSString *timestamp = [Utilities longTimestampStringFromDate:_wantData.createdDate];
+    NSString *postedTimestampText = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"listed", nil), timestamp, NSLocalizedString(@"by", nil)];
     
-    _postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _nextYPos, expectedSize.width, expectedSize.height)];
-    [_postedTimestampLabel setText:placeHolderText];
-    [_postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_postedTimestampLabel setTextColor:[UIColor grayColor]];
+    CGFloat const kLabelLeftMargin  =   10.0f;
+    CGFloat const kLabelYPos        =   _itemNameLabel.frame.origin.y + _itemNameLabel.frame.size.height;
+    
+    _postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, 0, 0)];
+    [_postedTimestampLabel setText:postedTimestampText];
+    [_postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_postedTimestampLabel setTextColor:TEXT_COLOR_GRAY];
+    [_postedTimestampLabel sizeToFit];
     [_scrollView addSubview:_postedTimestampLabel];
-    
-    _nextXPos = expectedSize.width - 10;
-    _nextYPos = _nextYPos + expectedSize.height + 17;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addBuyerUsernameButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(_nextXPos, _postedTimestampLabel.frame.origin.y, 150, 20)];
-    [_buyerUsernameButton setTitle:_wantData.buyerUsername forState:UIControlStateNormal];
-    [_buyerUsernameButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_scrollView addSubview:_buyerUsernameButton];
+    CGFloat const kButtonLeftMargin =   3.0f;
+    CGFloat const kButtonXPos       =   _postedTimestampLabel.frame.origin.x + _postedTimestampLabel.frame.size.width + kButtonLeftMargin;
+    CGFloat const kButtonYPos       =   _postedTimestampLabel.frame.origin.y;
+    CGFloat const kButtonWidth      =   WINSIZE.width - 20.0f - kButtonXPos;
+    CGFloat const kButtonHeight     =   _postedTimestampLabel.frame.size.height;
     
-    _nextXPos = 10;
+    _buyerUsernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+    [_buyerUsernameButton createTitle:_wantData.buyerUsername withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    _buyerUsernameButton.borderColor = [UIColor clearColor];
+    _buyerUsernameButton.cornerRadius = 0;
+    _buyerUsernameButton.titleColor = MAIN_BLUE_COLOR;
+    _buyerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_scrollView addSubview:_buyerUsernameButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
