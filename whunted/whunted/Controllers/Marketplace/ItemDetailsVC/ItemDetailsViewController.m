@@ -164,10 +164,16 @@
 - (void) addItemNameLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, WINSIZE.height * 0.6 - 10, WINSIZE.width - 20, 20)];
+    CGFloat const kNameLabelLeftMargin  =   10.0f;
+    CGFloat const kNameLabelTopMargin   =   10.0f;
+    CGFloat const kNameLabelYPos        =   WINSIZE.width + kNameLabelTopMargin;
+    CGFloat const kNameLabelWidth       =   WINSIZE.width - 2 * kNameLabelLeftMargin;
+    CGFloat const kNameLabelHeight      =   20.0f;
+    
+    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kNameLabelLeftMargin, kNameLabelYPos, kNameLabelWidth, kNameLabelHeight)];
     [_itemNameLabel setText:_wantData.itemName];
-    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
-    [_itemNameLabel setTextColor:[UIColor blackColor]];
+    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_itemNameLabel setTextColor:TEXT_COLOR_DARK_GRAY];
     [_scrollView addSubview:_itemNameLabel];
     
     _nextYPos = WINSIZE.height * 0.6 + 13;
