@@ -135,7 +135,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 15.0;
+    return 8.0f;
 }
 
 #pragma mark - UICollectionView delegate methods
