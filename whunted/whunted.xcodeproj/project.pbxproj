@@ -372,7 +372,7 @@
 		E94D180E1AF9CE8900E31B01 /* search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search@3x.png"; path = "Resources/Navigation Icons/search@3x.png"; sourceTree = "<group>"; };
 		E94D182E1AF9F18300E31B01 /* newsfeed@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@1x.png"; path = "Resources/Tab Bar Icons/newsfeed@1x.png"; sourceTree = "<group>"; };
 		E94D182F1AF9F18300E31B01 /* newsfeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@2x.png"; path = "Resources/Tab Bar Icons/newsfeed@2x.png"; sourceTree = "<group>"; };
-		E955743B1AF86D2600F0B230 /* whunted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whunted.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E955743B1AF86D2600F0B230 /* Whunted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whunted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E955744B1AF86D2600F0B230 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E955744E1AF86D2600F0B230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E95574541AF86D2600F0B230 /* whuntedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whuntedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1063,7 +1063,7 @@
 		E955743C1AF86D2600F0B230 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E955743B1AF86D2600F0B230 /* whunted.app */,
+				E955743B1AF86D2600F0B230 /* Whunted.app */,
 				E95574541AF86D2600F0B230 /* whuntedTests.xctest */,
 			);
 			name = Products;
@@ -1688,7 +1688,7 @@
 			);
 			name = whunted;
 			productName = whunted;
-			productReference = E955743B1AF86D2600F0B230 /* whunted.app */;
+			productReference = E955743B1AF86D2600F0B230 /* Whunted.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E95574531AF86D2600F0B230 /* whuntedTests */ = {
@@ -2174,7 +2174,7 @@
 				INFOPLIST_FILE = whunted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Whunted;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -2199,7 +2199,7 @@
 				INFOPLIST_FILE = whunted/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Whunted;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
