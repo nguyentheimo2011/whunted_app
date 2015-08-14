@@ -651,7 +651,7 @@
     
     CGFloat const kCellHeight = WINSIZE.width/2.0 + 70;
     CGFloat const kYDistanceBetweenCell = 20;
-    CGFloat const kCollectionViewHeight = 5 * kCellHeight + 4 * kYDistanceBetweenCell;
+    CGFloat const kCollectionViewHeight = [_myWantDataList count]/2 * kCellHeight + ([_myWantDataList count]/2 - 1) * kYDistanceBetweenCell;
     CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
@@ -693,7 +693,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 10;
+    return [_myWantDataList count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
