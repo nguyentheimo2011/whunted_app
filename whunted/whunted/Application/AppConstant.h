@@ -268,4 +268,10 @@ typedef enum {
 //----------------------------------------------------------------------------------------------------------------------------
 typedef void (^FetchedUserHandler) (PFUser *, UIImage *);
 
+//----------------------------------------------------------------------------------------------------------------------------
+typedef enum {
+    HistoryCollectionViewModeBuying,
+    HistoryCollectionViewModeSelling
+} HistoryCollectionViewMode;
+
 #endif

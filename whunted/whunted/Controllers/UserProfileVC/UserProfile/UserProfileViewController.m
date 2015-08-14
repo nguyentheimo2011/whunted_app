@@ -7,14 +7,15 @@
 //
 
 #import "UserProfileViewController.h"
-#import "AppConstant.h"
-#import "PersistedCache.h"
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
 #import "SettingsTableVC.h"
 #import "FeedbackReviewVC.h"
 #import "FeedbackData.h"
+#import "MarketplaceCollectionViewCell.h"
 #import "Utilities.h"
+#import "AppConstant.h"
+#import "PersistedCache.h"
 
 #import <Parse/Parse.h>
 #import <JTImageButton.h>
@@ -26,32 +27,35 @@
 @implementation UserProfileViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UIScrollView        *_scrollView;
-    UIView              *_topRightView;
+    UIScrollView                *_scrollView;
+    UIView                      *_topRightView;
     
-    UILabel             *_positiveFeedbackLabel;
-    UILabel             *_mehFeedbackLabel;
-    UILabel             *_negativeFeedbackLabel;
+    UILabel                     *_positiveFeedbackLabel;
+    UILabel                     *_mehFeedbackLabel;
+    UILabel                     *_negativeFeedbackLabel;
     
-    UILabel             *_totalListingsNumLabel;
+    UILabel                     *_totalListingsNumLabel;
     
-    JTImageButton       *_followerButton;
-    JTImageButton       *_followingButton;
-    JTImageButton       *_preferencesButton;
+    JTImageButton               *_followerButton;
+    JTImageButton               *_followingButton;
+    JTImageButton               *_preferencesButton;
     
-    UICollectionView    *_historyCollectionView;
+    UICollectionView            *_historyCollectionView;
     
-    UIImageView         *_profileImageView;
-    UILabel             *_userFullNameLabel;
-    UILabel             *_countryLabel;
-    UILabel             *_userDescriptionLabel;
+    UIImageView                 *_profileImageView;
+    UILabel                     *_userFullNameLabel;
+    UILabel                     *_countryLabel;
+    UILabel                     *_userDescriptionLabel;
     
-    CGFloat             _statusAndNavBarHeight;
-    CGFloat             _tabBarHeight;
-    CGFloat             _currHeight;
+    CGFloat                     _statusAndNavBarHeight;
+    CGFloat                     _tabBarHeight;
+    CGFloat                     _currHeight;
     
-    NSMutableDictionary *_ratingDict;
-    NSMutableArray      *_myWantDataList;
+    HistoryCollectionViewMode   _curViewMode;
+    
+    NSMutableDictionary         *_ratingDict;
+    NSMutableArray              *_myWantDataList;
+    NSMutableArray              *_mySellDataList;
 }
 
 @synthesize delegate = _delegate;
@@ -62,6 +66,7 @@
 {
     self = [super init];
     if (self) {
+        [self initData];
         [self retrieveMyWantList];
     }
     
@@ -92,6 +97,13 @@
 {
     [super didReceiveMemoryWarning];
     NSLog(@"UserProfileViewController didReceiveMemoryWarning");
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _curViewMode = HistoryCollectionViewModeBuying;
 }
 
 #pragma mark - UI
@@ -659,6 +671,8 @@
     _historyCollectionView.delegate = self;
     _historyCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
+    [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
+    
     [_scrollView addSubview:_historyCollectionView];
     
     _currHeight += kCollectionViewHeight + kCollectionTopMargin;
@@ -693,33 +707,55 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_myWantDataList count];
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+        return [_myWantDataList count];
+    else
+        return [_mySellDataList count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
-    
-    if (cell.wantData == nil) {
-        [cell initCell];
+    if (_curViewMode == HistoryCollectionViewModeBuying) {
+        HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
+        
+        if (cell.wantData == nil) {
+            [cell initCell];
+        }
+        
+        WantData *wantData = [_myWantDataList objectAtIndex:indexPath.row];
+        [cell setWantData:wantData];
+        
+        return cell;
+    } else {
+       MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+        
+        if (cell.wantData == nil)
+            [cell initCell];
+        
+        WantData *wantData = [_mySellDataList objectAtIndex:indexPath.row];
+        [cell setWantData:wantData];
+        
+        return cell;
     }
-    
-    WantData *wantData = [_myWantDataList objectAtIndex:indexPath.row];
-    [cell setWantData:wantData];
-    
-    return cell;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
-    CGFloat const kCellHeight   =   kCellWidth + 85;
-    
-    return CGSizeMake(kCellWidth, kCellHeight);
+    if (_curViewMode == HistoryCollectionViewModeBuying) {
+        CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+        CGFloat const kCellHeight   =   kCellWidth + 85;
+        
+        return CGSizeMake(kCellWidth, kCellHeight);
+    } else {
+        CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+        CGFloat const kCellHeight   =   kCellWidth + 115.0f;
+        
+        return CGSizeMake(kCellWidth, kCellHeight);
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -773,7 +809,16 @@
 - (void) segmentedControlSwitchEventHandler: (HMSegmentedControl *) segmentedControl
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-//    NSLog(@"segmentedControlSwitchEventHandler %d", segmentedControl.selectedSegmentIndex);
+    if (segmentedControl.selectedSegmentIndex == 0)
+        _curViewMode = HistoryCollectionViewModeBuying;
+    else {
+        _curViewMode = HistoryCollectionViewModeSelling;
+        
+        if (!_mySellDataList)
+            [self retrieveMySellList];
+    }
+    
+    [_historyCollectionView reloadData];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -904,6 +949,35 @@
                 [_myWantDataList addObject:wantData];
             }
             [_historyCollectionView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveMySellList
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _mySellDataList = [[NSMutableArray alloc] init];
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    [query whereKey:@"sellerID" equalTo:currentUser.objectId];
+    [query orderByDescending:PF_UPDATED_AT];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
+        if (!error) {
+            for (int i=0; i<[offerObjects count]; i++) {
+                PFObject *object = [offerObjects objectAtIndex:i];
+                NSString *itemID = object[@"itemID"];
+                PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+                [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
+                    WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
+                    [_mySellDataList addObject:wantData];
+                    [_historyCollectionView reloadData];
+                }];
+            }
             
         } else {
             // Log details of the failure
