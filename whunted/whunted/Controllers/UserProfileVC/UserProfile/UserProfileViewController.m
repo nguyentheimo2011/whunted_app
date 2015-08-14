@@ -672,7 +672,7 @@
     _historyCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
     _historyCollectionView.scrollEnabled = NO;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
-    [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
+    [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     
     [_scrollView addSubview:_historyCollectionView];
     
@@ -689,16 +689,24 @@
     allDisplayedLabel.textColor = LIGHT_GRAY_COLOR;
     [allDisplayedLabel sizeToFit];
     
-    CGFloat const kLabelTopMargin = WINSIZE.height / 24.0;
-    CGFloat const kLabelWidth = WINSIZE.width;
-    CGFloat const kLabelHeight = allDisplayedLabel.frame.size.height + 2 * kLabelTopMargin;
-    CGFloat const kYPos = _currHeight;
-    allDisplayedLabel.frame = CGRectMake(0, kYPos, kLabelWidth, kLabelHeight);
+    CGFloat const kContainerTopMargin   =   WINSIZE.height / 24.0;
+    CGFloat const kContainerWidth       =   WINSIZE.width;
+    CGFloat const kContainerHeight      =   2 * kContainerTopMargin;
+    CGFloat const kYPos                 =   _currHeight;
+    
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, kContainerWidth, kContainerHeight)];
+    container.backgroundColor = LIGHTEST_GRAY_COLOR;
+    [_scrollView addSubview:container];
+    
+    CGFloat const kLabelTopMargin   =   (kContainerHeight - allDisplayedLabel.frame.size.height)/2;
+    CGFloat const kLabelLeftMargin  =   (kContainerWidth - allDisplayedLabel.frame.size.width) / 2;
+    
+    allDisplayedLabel.frame = CGRectMake(kLabelLeftMargin, kLabelTopMargin, allDisplayedLabel.frame.size.width, allDisplayedLabel.frame.size.height);
     allDisplayedLabel.backgroundColor = LIGHTEST_GRAY_COLOR;
     allDisplayedLabel.textAlignment = NSTextAlignmentCenter;
-    [_scrollView addSubview:allDisplayedLabel];
+    [container addSubview:allDisplayedLabel];
     
-    _currHeight +=  kLabelHeight;
+    _currHeight +=  kContainerHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
