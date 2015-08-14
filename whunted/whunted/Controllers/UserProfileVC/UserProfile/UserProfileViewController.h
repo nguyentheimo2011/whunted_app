@@ -27,4 +27,8 @@
 
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate, GenericControllerDelegate> delegate;
 
+- (void) retrieveLatestWantData;
+
+- (void) retrieveLatestSellData;
+
 @end

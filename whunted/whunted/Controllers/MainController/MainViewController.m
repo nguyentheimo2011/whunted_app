@@ -247,6 +247,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [_brController updateWantDataTable];
+    [_userProfileVC retrieveLatestWantData];
     
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }

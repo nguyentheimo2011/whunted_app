@@ -986,4 +986,46 @@
     }];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveLatestWantData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
+    [query orderByDescending:PF_CREATED_AT];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+        if (!error) {
+            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
+            [_myWantDataList insertObject:wantData atIndex:0];
+            [_historyCollectionView reloadData];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveLatestSellData
+//---------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    [query whereKey:@"sellerID" equalTo:currentUser.objectId];
+    [query orderByDescending:@"updatedAt"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
+        if (!error) {
+            NSString *itemID = offerObject[@"itemID"];
+            PFQuery *sQuery = [PFQuery queryWithClassName:@"WantedPost"];
+            [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
+                WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
+                [_mySellDataList insertObject:wantData atIndex:0];
+                [_historyCollectionView reloadData];
+            }];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 @end
