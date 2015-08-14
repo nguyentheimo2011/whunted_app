@@ -661,9 +661,9 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCellHeight = WINSIZE.width/2.0 + 70;
-    CGFloat const kYDistanceBetweenCell = 20;
-    CGFloat const kCollectionViewHeight = [_myWantDataList count]/2 * kCellHeight + ([_myWantDataList count]/2 - 1) * kYDistanceBetweenCell;
+    CGFloat const kCellHeight = WINSIZE.width/2.0 + 73.0;
+    CGFloat const kYDistanceBetweenCell = 16.0f;
+    CGFloat const kCollectionViewHeight = ([_myWantDataList count]+1)/2 * kCellHeight + ([_myWantDataList count]/2 - 1) * kYDistanceBetweenCell;
     CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
@@ -756,7 +756,7 @@
 {
     if (_curViewMode == HistoryCollectionViewModeBuying) {
         CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
-        CGFloat const kCellHeight   =   kCellWidth + 85;
+        CGFloat const kCellHeight   =   kCellWidth + 85.0;
         
         return CGSizeMake(kCellWidth, kCellHeight);
     } else {
@@ -827,7 +827,30 @@
             [self retrieveMySellList];
     }
     
+    [self resizeHistoryCollectionView];
     [_historyCollectionView reloadData];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) resizeHistoryCollectionView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _currHeight -= _historyCollectionView.frame.size.height;
+    
+    CGFloat const kYDistanceBetweenCell = 16.0f;
+    CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+    CGFloat newHeight;
+    if (_curViewMode == HistoryCollectionViewModeBuying) {
+        CGFloat const kCellHeight = kCellWidth + 85.0f;
+        newHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + ([_myWantDataList count]/2 - 1) * kYDistanceBetweenCell;
+    } else {
+        CGFloat const kCellHeight = kCellWidth + 115.0f;
+        newHeight = ([_mySellDataList count]+ 1)/2 * kCellHeight + ([_myWantDataList count]/2 - 1) * kYDistanceBetweenCell;
+    }
+    
+    _historyCollectionView.frame = CGRectMake(0, _historyCollectionView.frame.origin.y, WINSIZE.width, newHeight);
+    _currHeight += _historyCollectionView.frame.size.height;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, newHeight)];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
