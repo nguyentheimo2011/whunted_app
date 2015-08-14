@@ -38,6 +38,11 @@
 #define     STAR_COMMAND_BLUE                   [UIColor colorWithRed:0.0/255 green:123.0/255 blue:184.0/255 alpha:1.0]
 #define     TUFTS_BLUE_COLOR                    [UIColor colorWithRed:65.0/255 green:125.0/255 blue:193.0/255 alpha:1.0]
 #define     CYAN_COLOR                          [UIColor colorWithRed:0.0/255 green:183.0/255 blue:235.0/255 alpha:1.0]
+#define     DARK_CYAN_COLOR                     [UIColor colorWithRed:33.0/255 green:107.0/255 blue:171.0/255 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     DARK_SPRING_GREEN_COLOR             [UIColor colorWithRed:23.0/255 green:114.0/255 blue:69.0/255 alpha:1.0]
+#define     PERSIAN_GREEN_COLOR                 [UIColor colorWithRed:0.0/255 green:166.0/255 blue:147.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     RED_ORAGNE_COLOR                    [UIColor colorWithRed:255.0/255 green:83.0/255 blue:73.0/255 alpha:1.0]

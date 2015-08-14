@@ -409,14 +409,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 45, WINSIZE.width/2, 45)];
-    [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
     [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
     chatButton.cornerRadius = 0;
-    chatButton.borderColor = [UIColor grayColor];
-    chatButton.bgColor = [UIColor grayColor];
+    chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     chatButton.titleColor = [UIColor whiteColor];
     [chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:chatButton];
@@ -427,13 +427,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 45, WINSIZE.width/2, 45)];
-    [backgroundView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     PFUser *curUser = [PFUser currentUser];
     _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
-    _secondBottomButton.borderColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
-    _secondBottomButton.bgColor = [UIColor colorWithRed:99.0/255 green:184.0/255 blue:1.0 alpha:1.0];
+    _secondBottomButton.borderColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
+    _secondBottomButton.bgColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
     _secondBottomButton.titleColor = [UIColor whiteColor];
     
     if ([_wantData.buyerID isEqualToString:curUser.objectId]) {
