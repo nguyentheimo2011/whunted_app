@@ -123,6 +123,7 @@
     [_pageViewController didMoveToParentViewController:self];
     
     [self addPageControl];
+    [self addLineSeparator];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -145,10 +146,13 @@
 - (void) addLineSeparator
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLineYPos     =   _pageControl.frame.origin.y + _pageControl.frame.size.height;
+    // add a line to separate item image view from item details
+    CGFloat const kLineYPos     =   WINSIZE.width;
     CGFloat const kLineHeihgt   =   0.5f;
     
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, , , )]
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, kLineYPos, WINSIZE.width, kLineHeihgt)];
+    view.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:view];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
