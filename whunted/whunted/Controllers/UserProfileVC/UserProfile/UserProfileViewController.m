@@ -670,6 +670,7 @@
     _historyCollectionView.dataSource = self;
     _historyCollectionView.delegate = self;
     _historyCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _historyCollectionView.scrollEnabled = NO;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     
