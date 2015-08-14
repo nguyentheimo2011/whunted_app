@@ -992,7 +992,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
-    [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
+    [query whereKey:@"buyerID" equalTo:[PFUser currentUser].objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
