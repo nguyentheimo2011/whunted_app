@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "NewsFeedViewController.h"
-#import "MarketplaceViewController.h"
 #import "GenericController.h"
 #import "InboxAllViewController.h"
 #import "UploadingViewController.h"
@@ -51,6 +50,7 @@
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController setTitle:NSLocalizedString(TAB_BAR_MARKETPLACE_PAGE_TITLE, nil)];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
+        _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         _newsFeedVC = [[NewsFeedViewController alloc] init];
@@ -337,6 +337,15 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - MarketplaceViewDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) marketPlaceUserDidOfferForAnItem
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_userProfileVC retrieveLatestSellData];
 }
 
 @end

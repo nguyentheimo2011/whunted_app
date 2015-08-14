@@ -590,6 +590,9 @@
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
     [chatView messageSend:message Video:nil Picture:nil Audio:nil];
     chatView.hidesBottomBarWhenPushed = YES;
+    
+    [_delegate itemDetailsViewController:self didCompleteOffer:YES];
+    
     [self.navigationController pushViewController:chatView animated:YES];
 }
 

@@ -8,21 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class GenericController;
-
-//-------------------------------------------------------------------------------------------------------------------------------
-@protocol GenericControllerDelegate <NSObject>
-//-------------------------------------------------------------------------------------------------------------------------------
-
-- (void) genericController: (GenericController *) controller shouldUpdateDataAt: (NSInteger) controllerIndex;
-
-@end
-
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface GenericController : UIViewController
 //-------------------------------------------------------------------------------------------------------------------------------
-
-@property (nonatomic, weak) id<GenericControllerDelegate> delegate;
 
 - (void) pushViewController: (UIViewController *) controller;
 

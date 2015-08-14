@@ -11,10 +11,11 @@
 #import "ImageGetterViewController.h"
 #import "ImageRetrieverViewController.h"
 #import "UploadingWantDetailsViewController.h"
+#import "MarketplaceViewController.h"
 
 #import <CLImageEditor.h>
 #import <RSKImageCropper.h>
 
-@interface MainViewController : UITabBarController<UITabBarControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageGetterViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, UploadingWantDetailsViewControllerDelegate, RSKImageCropViewControllerDataSource, RSKImageCropViewControllerDelegate>
+@interface MainViewController : UITabBarController<UITabBarControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageGetterViewControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, UploadingWantDetailsViewControllerDelegate, RSKImageCropViewControllerDataSource, RSKImageCropViewControllerDelegate, MarketplaceViewDelegate>
 
 @end

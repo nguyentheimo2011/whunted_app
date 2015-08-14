@@ -18,7 +18,8 @@
     UICollectionView        *_wantCollectionView;
 }
 
-@synthesize wantDataList = _wantDataList;
+@synthesize wantDataList    =   _wantDataList;
+@synthesize delegate        =   _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -179,7 +180,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (completed) {
-        [self.delegate genericController:self shouldUpdateDataAt:3];
+        [_delegate marketPlaceUserDidOfferForAnItem];
     }
 }
 

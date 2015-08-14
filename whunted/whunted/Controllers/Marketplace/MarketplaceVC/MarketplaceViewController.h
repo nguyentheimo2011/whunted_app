@@ -10,7 +10,15 @@
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
 
+@protocol MarketplaceViewDelegate <NSObject>
+
+- (void) marketPlaceUserDidOfferForAnItem;
+
+@end
+
 @interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
+
+@property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray    *wantDataList;
 
