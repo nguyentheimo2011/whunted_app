@@ -14,12 +14,12 @@
 
 @interface BuyersOrSellersOfferViewController ()
 
-@property (nonatomic, strong) UILabel *summaryLabel;
-@property (nonatomic, strong) UILabel *priceAskingLabel;
-@property (nonatomic, strong) UILabel *deliveryAskingLabel;
-@property (nonatomic, strong) UILabel *instructionLabel;
-@property (nonatomic, strong) UITextField *offeredPriceTextField;
-@property (nonatomic, strong) UITextField *offeredDeliveryTextField;
+@property (nonatomic, strong) UILabel       *summaryLabel;
+@property (nonatomic, strong) UILabel       *priceAskingLabel;
+@property (nonatomic, strong) UILabel       *deliveryAskingLabel;
+@property (nonatomic, strong) UILabel       *instructionLabel;
+@property (nonatomic, strong) UITextField   *offeredPriceTextField;
+@property (nonatomic, strong) UITextField   *offeredDeliveryTextField;
 
 @end
 
@@ -28,45 +28,60 @@
     CGFloat startingYPos;
 }
 
-@synthesize offerData = _offerData;
-@synthesize buyerName = _buyerName;
-@synthesize isEditingOffer = _isEditingOffer;
-@synthesize summaryLabel = _summaryLabel;
-@synthesize priceAskingLabel = _priceAskingLabel;
-@synthesize deliveryAskingLabel = _deliveryAskingLabel;
-@synthesize instructionLabel = _instructionLabel;
-@synthesize offeredPriceTextField = _offeredPriceTextField;
-@synthesize offeredDeliveryTextField = _offeredDeliveryTextField;
-@synthesize delegate = _delegate;
-@synthesize user2 = _user2;
+@synthesize offerData                   =   _offerData;
+@synthesize buyerName                   =   _buyerName;
+@synthesize isEditingOffer              =   _isEditingOffer;
+@synthesize summaryLabel                =   _summaryLabel;
+@synthesize priceAskingLabel            =   _priceAskingLabel;
+@synthesize deliveryAskingLabel         =   _deliveryAskingLabel;
+@synthesize instructionLabel            =   _instructionLabel;
+@synthesize offeredPriceTextField       =   _offeredPriceTextField;
+@synthesize offeredDeliveryTextField    =   _offeredDeliveryTextField;
+@synthesize delegate                    =   _delegate;
+@synthesize user2                       =   _user2;
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidLoad
+- (void) viewDidLoad
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
-    startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;;
-    
+    [self initData];
+    [self customizeUI];
     [self addSummaryLabel];
     [self addPriceAskingLabel];
     [self addOfferedPriceTextField];
     [self addDeliveryAskingLabel];
     [self addOfferedDeliveryTextField];
     [self addInstructionLabel];
-    [self customizeNavigationBar];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
     
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+}
+
 #pragma mark - UI Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClickedHandler)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submitButtonClickedHandler)];
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addSummaryLabel
@@ -155,14 +170,6 @@
     [_instructionLabel setTextColor:[UIColor grayColor]];
     [_instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     [self.view addSubview:_instructionLabel];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeNavigationBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClickedHandler)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submitButtonClickedHandler)];
 }
 
 #pragma mark - Event Handlers

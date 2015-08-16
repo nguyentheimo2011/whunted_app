@@ -41,41 +41,41 @@
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
 {
-	NSString *groupId;
+	NSString                *groupId;
 
-	BOOL initialized;
-	int typingCounter;
+	BOOL                    initialized;
+	int                     typingCounter;
 
-	Firebase *firebase1;
-	Firebase *firebase2;
+	Firebase                *firebase1;
+	Firebase                *firebase2;
 
-	NSMutableArray *items;
-	NSMutableArray *messages;
-	NSMutableDictionary *avatars;
-    NSMutableDictionary *messageStatusDict;
+	NSMutableArray          *items;
+	NSMutableArray          *messages;
+	NSMutableDictionary     *avatars;
+    NSMutableDictionary     *messageStatusDict;
 
-	JSQMessagesBubbleImage *bubbleImageOutgoing;
-    JSQMessagesBubbleImage *bubbleImageOutgoingSending;
-	JSQMessagesBubbleImage *bubbleImageIncoming;
-	JSQMessagesAvatarImage *avatarImageBlank;
+	JSQMessagesBubbleImage  *bubbleImageOutgoing;
+    JSQMessagesBubbleImage  *bubbleImageOutgoingSending;
+	JSQMessagesBubbleImage  *bubbleImageIncoming;
+	JSQMessagesAvatarImage  *avatarImageBlank;
     
-    UIView *_background;
+    UIView                  *_background;
     
-    JTImageButton *_makingOfferButton;
-    JTImageButton *_leavingFeedbackButton;
-    JTImageButton *_makingAnotherOfferButton;
-    JTImageButton *_acceptingButton;
-    JTImageButton *_decliningButton;
-    JTImageButton *_edittingOfferButton;
-    JTImageButton *_cancellingOfferButton;
+    JTImageButton           *_makingOfferButton;
+    JTImageButton           *_leavingFeedbackButton;
+    JTImageButton           *_makingAnotherOfferButton;
+    JTImageButton           *_acceptingButton;
+    JTImageButton           *_decliningButton;
+    JTImageButton           *_edittingOfferButton;
+    JTImageButton           *_cancellingOfferButton;
 }
 @end
 //------------------------------------------------------------------------------------------------------------------------------
 
 @implementation ChatView
 
-@synthesize user2Username = _user2Username;
-@synthesize offerData = _offerData;
+@synthesize user2Username   =   _user2Username;
+@synthesize offerData       =   _offerData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -156,7 +156,10 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapEventHandler)];
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -11.0f;
+    
+    self.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapEventHandler)]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -364,6 +367,7 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) backButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
 {
     DeleteRecentItems(groupId);
     [self.navigationController popViewControllerAnimated:YES];
