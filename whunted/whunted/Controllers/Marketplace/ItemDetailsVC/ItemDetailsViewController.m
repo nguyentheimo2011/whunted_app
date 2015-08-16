@@ -100,7 +100,7 @@
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationController.navigationBar.topItem.title = @"";;
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -534,6 +534,13 @@
     [chatView setOfferData:offerData];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Data Handlers

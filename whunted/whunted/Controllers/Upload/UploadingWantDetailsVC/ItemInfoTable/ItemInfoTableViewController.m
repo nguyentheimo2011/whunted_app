@@ -60,7 +60,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    
     [Utilities customizeTitleLabel:NSLocalizedString(@"Item info", nil) forViewController:self];
+    
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonEvent)];
 }
@@ -156,6 +159,13 @@
     [_itemInfoDict setObject:[NSNumber numberWithBool:_secondHandOptionSwitch.on] forKey:ITEM_SECONDHAND_OPTION];
     
     [self.delegate itemInfoTableViewController:self didPressDone:_itemInfoDict];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

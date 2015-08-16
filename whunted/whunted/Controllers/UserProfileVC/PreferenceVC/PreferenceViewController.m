@@ -177,6 +177,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [Utilities customizeTitleLabel:@"Preferences" forViewController:self];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:TEXT_COLOR_DARK_GRAY];
@@ -958,7 +959,13 @@
                 _sellingHashtagTextField.text = @"";
         }
     }
-    
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Helper functions

@@ -7,43 +7,66 @@
 //
 
 #import "CategoryTableViewController.h"
-
-@interface CategoryTableViewController ()
-
-@end
+#import "Utilities.h"
 
 @implementation CategoryTableViewController
 {
-    NSArray *categoryList;
-    NSUInteger selectedIndex;
+    NSArray         *_categoryList;
+    NSUInteger      _selectedIndex;
 }
 
-- (void)viewDidLoad {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
     
-    categoryList = [NSArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
-    
-    selectedIndex = [categoryList indexOfObject:self.category];
+    [self initData];
+    [self customizeUI];
 }
 
-- (void)didReceiveMemoryWarning {
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//------------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _categoryList = [NSArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
+    
+    _selectedIndex = [_categoryList indexOfObject:self.category];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//------------------------------------------------------------------------------------------------------------------------------
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [categoryList count];
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return [_categoryList count];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *cellID = @"CategoryCell";
     
@@ -52,30 +75,40 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = [categoryList objectAtIndex:indexPath.row];
-    if (indexPath.row == selectedIndex) {
+    cell.textLabel.text = [_categoryList objectAtIndex:indexPath.row];
+    if (indexPath.row == _selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
     return cell;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (selectedIndex != NSNotFound) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedIndex inSection:0]];
+    if (_selectedIndex != NSNotFound) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    selectedIndex = indexPath.row;
+    _selectedIndex = indexPath.row;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    NSString *selectedCategory = [categoryList objectAtIndex:indexPath.row];
+    NSString *selectedCategory = [_categoryList objectAtIndex:indexPath.row];
     [self.delegte categoryTableViewController:self didSelectCategory:selectedCategory];
 }
 
 
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
  
 
 @end

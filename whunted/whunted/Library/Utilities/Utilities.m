@@ -210,6 +210,16 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeBackButtonForViewController:(UIViewController *)controller withAction:(SEL)action
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -11.0f;
+    
+    controller.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:controller action:action]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 + (CGFloat) widthOfText: (NSString *) text withFont: (UIFont *) font andMaxWidth: (CGFloat) maxWidth
 //------------------------------------------------------------------------------------------------------------------------------
 {

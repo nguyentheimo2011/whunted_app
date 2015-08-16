@@ -10,13 +10,17 @@
 
 @class CategoryTableViewController;
 
+//------------------------------------------------------------------------------------------------------------------------------
 @protocol CategoryTableViewControllerDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
 
 - (void) categoryTableViewController: (CategoryTableViewController *) controller didSelectCategory: (NSString *) category;
 
 @end
 
+//------------------------------------------------------------------------------------------------------------------------------
 @interface CategoryTableViewController : UITableViewController
+//------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<CategoryTableViewControllerDelegate> delegte;
 @property (nonatomic, strong) NSString *category;

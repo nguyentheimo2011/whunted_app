@@ -48,11 +48,13 @@
 - (void) customizeUI
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    
     // customize title
     NSString *title = NSLocalizedString(@"Settings", nil);
     [Utilities customizeTitleLabel:title forViewController:self];
     
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneBarButtonTapEventHandler)];
 }
@@ -206,6 +208,13 @@
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) doneBarButtonTapEventHandler
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];

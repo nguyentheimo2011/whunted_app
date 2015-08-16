@@ -34,9 +34,6 @@
     [super viewDidLoad];
     
     [self initData];
-    
-    [self initUI];
-    
     [self customizeUI];
     [self addTableView];
     [self addSegmentedControl];
@@ -61,19 +58,14 @@
 #pragma mark - UI Handlers
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) initUI
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [Utilities customizeTitleLabel:[NSString stringWithFormat:@"+%@ / %@ / -%@", [_ratingDict objectForKey:FEEDBACK_RATING_POSITIVE], [_ratingDict objectForKey:FEEDBACK_RATING_NEUTRAL], [_ratingDict objectForKey:FEEDBACK_RATING_NEGATIVE]] forViewController:self];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -200,6 +192,13 @@
         _categorizedFeedbackList = [NSArray arrayWithArray:[self getFeedbacksAsBuyer:_feedbackList]];
         [_feedbackTableView reloadData];
     }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Helpers

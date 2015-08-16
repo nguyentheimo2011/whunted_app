@@ -7,6 +7,7 @@
 //
 
 #import "LocationTableViewController.h"
+#import "Utilities.h"
 
 @implementation LocationTableViewController
 {
@@ -21,8 +22,8 @@
     
     [super viewDidLoad];
     
-    _locationList = [NSArray arrayWithObjects:@"Changhua", @"Hualien", @"Magong", @"Taichung", @"Taipao", @"Taipei", @"Yilan", nil];
-    _selectedIndex = [_locationList indexOfObject:self.location];
+    [self initData];
+    [self customizeUI];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -30,6 +31,24 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _locationList = [NSArray arrayWithObjects:@"Changhua", @"Hualien", @"Magong", @"Taichung", @"Taipao", @"Taipei", @"Yilan", nil];
+    _selectedIndex = [_locationList indexOfObject:self.location];
+}
+
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
 }
 
 
@@ -83,6 +102,16 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     NSString *selectedLocation = [_locationList objectAtIndex:indexPath.row];
     [self.delegate locationTableViewController:self didSelectLocation:selectedLocation];
+}
+
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) topBackButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

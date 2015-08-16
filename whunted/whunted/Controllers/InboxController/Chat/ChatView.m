@@ -156,10 +156,7 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = -11.0f;
-    
-    self.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTapEventHandler)]];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(backButtonTapEventHandler)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
