@@ -122,6 +122,7 @@
     _offeredPriceTextField.keyboardType     =   UIKeyboardTypeNumbersAndPunctuation;
     _offeredPriceTextField.tag              =   103;
     _offeredPriceTextField.delegate         =   self;
+    [_offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     
     // customize keyboard
     _offeredPriceTextField.inputView        =   ({
@@ -181,7 +182,6 @@
     _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:25];
     _offeredDeliveryTextField.placeholder       =   @"1 week";
     _offeredDeliveryTextField.delegate          =   self;
-    [_offeredDeliveryTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     
     // customize keyboard
     _offeredDeliveryTextField.inputView        =   ({
@@ -285,6 +285,9 @@
 - (void) priceKeyboardDoneButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    if ([_offeredPriceTextField.text isEqualToString:TAIWAN_CURRENCY])
+        _offeredPriceTextField.text = nil;
+    
     [_offeredPriceTextField resignFirstResponder];
 }
 

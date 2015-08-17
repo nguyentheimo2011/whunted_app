@@ -281,7 +281,7 @@
 {
     NSRange range = [price rangeOfString:DOT_CHARACTER];
     if (range.location == NSNotFound)
-        return YES;
+        return (price.length <= MAX_NUM_OF_CHARACTERS_FOR_PRICE);
     else {
         NSString *subString = [price substringFromIndex:range.location + 1];
         if ([subString containsString:DOT_CHARACTER])
