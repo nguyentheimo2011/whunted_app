@@ -25,7 +25,7 @@
 
 @implementation BuyersOrSellersOfferViewController
 {
-    CGFloat startingYPos;
+    CGFloat     _startingYPos;
 }
 
 @synthesize offerData                   =   _offerData;
@@ -61,14 +61,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    
+    NSLog(@"BuyersOrSellersOfferViewController didReceiveMemoryWarning");
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    _startingYPos = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
 }
 
 #pragma mark - UI Handlers
@@ -88,11 +88,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _offerData.originalDemandedPrice];
-    _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 20, WINSIZE.width - 40, 20)];
+    _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 20, WINSIZE.width - 40, 20)];
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
-    [_summaryLabel setTextColor:[UIColor grayColor]];
-    [_summaryLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_summaryLabel setTextColor:TEXT_COLOR_DARK_GRAY];
+    [_summaryLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [self.view addSubview:_summaryLabel];
 }
 
@@ -100,11 +100,11 @@
 - (void) addPriceAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 45, WINSIZE.width - 40, 20)];
+    _priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 45, WINSIZE.width - 40, 20)];
     _priceAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
-    [_priceAskingLabel setTextColor:[UIColor grayColor]];
-    [_priceAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_priceAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
+    [_priceAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [self.view addSubview:_priceAskingLabel];
 }
 
@@ -112,23 +112,25 @@
 - (void) addOfferedPriceTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, startingYPos + 75, WINSIZE.width - 80, 60)];
-    _offeredPriceTextField.minimumFontSize = 15;
-    [_offeredPriceTextField setText:_offerData.offeredPrice];
-    [_offeredPriceTextField setTextColor:[UIColor grayColor]];
-    [_offeredPriceTextField setTextAlignment:NSTextAlignmentCenter];
-    [_offeredPriceTextField setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:30]];
-    [_offeredPriceTextField setPlaceholder:_offerData.originalDemandedPrice];
-    [_offeredPriceTextField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
-    _offeredPriceTextField.delegate = self;
-    _offeredPriceTextField.tag = 103;
-    _offeredPriceTextField.inputView = ({
+    _offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, _startingYPos + 75, WINSIZE.width - 80, 60)];
+    _offeredPriceTextField.minimumFontSize  =   15;
+    _offeredPriceTextField.text             =   _offerData.offeredPrice;
+    _offeredPriceTextField.textColor        =   TEXT_COLOR_DARK_GRAY;
+    _offeredPriceTextField.textAlignment    =   NSTextAlignmentCenter;
+    _offeredPriceTextField.font             =   [UIFont fontWithName:REGULAR_FONT_NAME size:30];
+    _offeredPriceTextField.placeholder      =   _offerData.originalDemandedPrice;
+    _offeredPriceTextField.keyboardType     =   UIKeyboardTypeNumbersAndPunctuation;
+    _offeredPriceTextField.tag              =   103;
+    _offeredPriceTextField.delegate         =   self;
+    _offeredPriceTextField.inputView        =   ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
         [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [numberPad.leftFunctionButton setBackgroundImage:[Utilities imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
         numberPad;
     });
+    
     [self.view addSubview:_offeredPriceTextField];
 }
 
@@ -136,11 +138,11 @@
 - (void) addDeliveryAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 140, WINSIZE.width - 40, 20)];
+    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 140, WINSIZE.width - 40, 20)];
     _deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
-    [_deliveryAskingLabel setTextColor:[UIColor grayColor]];
-    [_deliveryAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_deliveryAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
+    [_deliveryAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [self.view addSubview:_deliveryAskingLabel];
 }
 
@@ -148,14 +150,15 @@
 - (void) addOfferedDeliveryTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, startingYPos + 175, WINSIZE.width - 120, 40)];
-    _offeredDeliveryTextField.minimumFontSize = 15;
-    [_offeredDeliveryTextField setTextColor:[UIColor grayColor]];
-    [_offeredDeliveryTextField setText:_offerData.deliveryTime];
-    [_offeredDeliveryTextField setTextAlignment:NSTextAlignmentCenter];
-    [_offeredDeliveryTextField setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:25]];
-    [_offeredDeliveryTextField setPlaceholder:@"1 week"];
-    _offeredDeliveryTextField.delegate = self;
+    _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, _startingYPos + 175, WINSIZE.width - 120, 40)];
+    _offeredDeliveryTextField.minimumFontSize   =   15;
+    _offeredDeliveryTextField.textColor         =   TEXT_COLOR_DARK_GRAY;
+    _offeredDeliveryTextField.text              =   _offerData.deliveryTime;
+    _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
+    _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:25];
+    _offeredDeliveryTextField.placeholder       =   @"1 week";
+    _offeredDeliveryTextField.keyboardType      =   UIKeyboardTypeNumberPad;
+    _offeredDeliveryTextField.delegate          =   self;
     [_offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:_offeredDeliveryTextField];
 }
@@ -164,11 +167,11 @@
 - (void) addInstructionLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, startingYPos + 230, WINSIZE.width - 40, 20)];
+    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 230, WINSIZE.width - 40, 20)];
     _instructionLabel.textAlignment = NSTextAlignmentCenter;
-    [_instructionLabel setText:@"Tap to change"];
-    [_instructionLabel setTextColor:[UIColor grayColor]];
-    [_instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    _instructionLabel.text = @"Tap to change";
+    _instructionLabel.textColor = [UIColor grayColor];
+    _instructionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     [self.view addSubview:_instructionLabel];
 }
 

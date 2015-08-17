@@ -2177,9 +2177,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/whunted/Library/Parse-library-1.7.4",
-					/Users/Thomas/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/whunted/Library/Facebook",
-					SDK,
+					"$(PROJECT_DIR)/whunted/Library/FacebookSDK",
 					"$(PROJECT_DIR)/whunted/Library/Facebook",
 					SDK,
 				);
@@ -2202,9 +2200,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/whunted/Library/Parse-library-1.7.4",
-					/Users/Thomas/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/whunted/Library/Facebook",
-					SDK,
+					"$(PROJECT_DIR)/whunted/Library/FacebookSDK",
 					"$(PROJECT_DIR)/whunted/Library/Facebook",
 					SDK,
 				);
