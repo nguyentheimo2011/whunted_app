@@ -13,6 +13,12 @@
 #import "KLCPopup.h"
 #import <MBProgressHUD.h>
 
+#define kCellHeight         40.0f
+#define kIconWidth          20.0f
+#define kIconHeight         20.0f
+#define kIconLeftMargin     15.0f
+#define kIconTopMargin      10.0f
+
 @implementation UploadingWantDetailsViewController
 {
     UITableViewCell             *_buttonListCell;
@@ -122,9 +128,17 @@
 {
     _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     _categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
+    _categoryCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _categoryCell.indentationLevel = 3;
     _categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
     _categoryCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    
+    // add category icon
+    UIImageView *catImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *catImage = [UIImage imageNamed:@"category_icon.png"];
+    [catImageView setImage:catImage];
+    [_categoryCell addSubview:catImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -133,9 +147,17 @@
 {
     _itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
     _itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
+    _itemInfoCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _itemInfoCell.indentationLevel = 3;
     _itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
     _itemInfoCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    
+    // add info icon
+    UIImageView *infoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *infoImage = [UIImage imageNamed:@"info_icon.png"];
+    [infoImageView setImage:infoImage];
+    [_itemInfoCell addSubview:infoImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -144,9 +166,17 @@
 {
     _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
     _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
+    _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _productOriginCell.indentationLevel = 3;
     _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
     _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    
+    // add origin icon
+    UIImageView *originImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *originImage = [UIImage imageNamed:@"product_origin_icon.png"];
+    [originImageView setImage:originImage];
+    [_productOriginCell addSubview:originImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -155,6 +185,8 @@
 {
     _priceCell = [[UITableViewCell alloc] init];
     _priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
+    _priceCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _priceCell.indentationLevel = 3;
     _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [_priceTextField setTextAlignment:NSTextAlignmentRight];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
@@ -172,6 +204,12 @@
     [_priceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     _priceCell.accessoryView = _priceTextField;
     _priceCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // add price tag icon
+    UIImageView *priceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *priceImage = [UIImage imageNamed:@"pricetag_icon.png"];
+    [priceImageView setImage:priceImage];
+    [_priceCell addSubview:priceImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -180,9 +218,17 @@
 {
     _locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     _locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
+    _locationCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _locationCell.indentationLevel = 3;
     _locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
     _locationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    
+    // add location icon
+    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *locationImage = [UIImage imageNamed:@"location_icon.png"];
+    [locationImageView setImage:locationImage];
+    [_locationCell addSubview:locationImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -191,10 +237,18 @@
 {
     _escrowRequestCell = [[UITableViewCell alloc] init];
     _escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow", nil);
+    _escrowRequestCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _escrowRequestCell.indentationLevel = 3;
     _escrowSwitch = [[UISwitch alloc] init];
     [_escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];
     _escrowRequestCell.accessoryView = _escrowSwitch;
     _escrowRequestCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // add payment icon
+    UIImageView *paymentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *paymentImage = [UIImage imageNamed:@"payment_method_icon.png"];
+    [paymentImageView setImage:paymentImage];
+    [_escrowRequestCell addSubview:paymentImageView];
 }
 
 
@@ -371,10 +425,10 @@
         case 1:
             return 80.0f;
         case 2:
-            return 40;
+            return kCellHeight;
             
         default:
-            return 40;
+            return kCellHeight;
             break;
     }
 }
