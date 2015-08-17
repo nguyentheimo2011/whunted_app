@@ -93,14 +93,16 @@
     CGFloat const kLabelLeftMargin  =   20.0f;
     CGFloat const kLabelYPos        =   _startingYPos + 20;
     CGFloat const kLabelWidth       =   WINSIZE.width - 40;
-    CGFloat const kLabelHeight      =   20.0f;
+    CGFloat const kLabelHeight      =   50.0f;
     
     NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _offerData.originalDemandedPrice];
     _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
     [_summaryLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_summaryLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_summaryLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    _summaryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _summaryLabel.numberOfLines = 2;
     [self.view addSubview:_summaryLabel];
 }
 
@@ -118,7 +120,7 @@
     _priceAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
     [_priceAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_priceAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_priceAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
     [self.view addSubview:_priceAskingLabel];
 }
 
@@ -182,17 +184,17 @@
 - (void) addDeliveryAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelLeftMargin  =   20.0f;
+    CGFloat const kLabelLeftMargin  =   0.0f;
     CGFloat const kLabelTopMargin   =   15.0f;
     CGFloat const kLabelYPos        =   _offeredPriceTextField.frame.origin.y + _offeredPriceTextField.frame.size.height + kLabelTopMargin;
-    CGFloat const kLabelWidth       =   WINSIZE.width - 40.0f;
     CGFloat const kLabelHeight      =   20.0f;
     
-    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
+    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, 0, kLabelHeight)];
     _deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
     [_deliveryAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_deliveryAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_deliveryAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_deliveryAskingLabel sizeToFit];
     [self.view addSubview:_deliveryAskingLabel];
 }
 
@@ -200,18 +202,17 @@
 - (void) addOfferedDeliveryTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTextFieldWidth       =   50.0f;
-    CGFloat const kTextFieldHeight      =   40.0f;
-    CGFloat const kTextFieldXPos        =   (WINSIZE.width - kTextFieldWidth)/2 - 30.0f;
-    CGFloat const kTextFieldTopMargin   =   10.0f;
-    CGFloat const kTextFieldYPos        =   _deliveryAskingLabel.frame.origin.y + _deliveryAskingLabel.frame.size.height + kTextFieldTopMargin;
+    CGFloat const kTextFieldWidth       =   40.0f;
+    CGFloat const kTextFieldHeight      =   20.0f;
+    CGFloat const kTextFieldXPos        =   _deliveryAskingLabel.frame.origin.x + _deliveryAskingLabel.frame.size.width;
+    CGFloat const kTextFieldYPos        =   _deliveryAskingLabel.frame.origin.y;
     
     _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldXPos, kTextFieldYPos, kTextFieldWidth, kTextFieldHeight)];
     _offeredDeliveryTextField.minimumFontSize   =   15;
     _offeredDeliveryTextField.textColor         =   TEXT_COLOR_DARK_GRAY;
     _offeredDeliveryTextField.text              =   _offerData.deliveryTime;
     _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
-    _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:25];
+    _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:18];
     _offeredDeliveryTextField.placeholder       =   @"5";
     _offeredDeliveryTextField.delegate          =   self;
     
@@ -251,16 +252,24 @@
 - (void) addDeliveryTimeUnitLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelWidth = 60.0f;
-    CGFloat const kLabelHeight = 40.0f;
+    CGFloat const kLabelWidth = 40.0f;
+    CGFloat const kLabelHeight = 20.0f;
     CGFloat const kLabelXPos = _offeredDeliveryTextField.frame.origin.x + _offeredDeliveryTextField.frame.size.width;
     CGFloat const kLabelYPos = _offeredDeliveryTextField.frame.origin.y;
     
     _deliveryTimeUnitLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     _deliveryTimeUnitLabel.text = NSLocalizedString(@"days", nil);
-    _deliveryTimeUnitLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:22];
+    _deliveryTimeUnitLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
     _deliveryTimeUnitLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self.view addSubview:_deliveryTimeUnitLabel];
+    
+    // cemtralize delivery label
+    CGFloat rightSpaceWidth     =   WINSIZE.width - _deliveryTimeUnitLabel.frame.origin.x - _deliveryTimeUnitLabel.frame.size.width;
+    CGFloat correctLeftMargin   =   rightSpaceWidth/2;
+    _deliveryAskingLabel.frame = CGRectMake(correctLeftMargin, _deliveryAskingLabel.frame.origin.y, _deliveryAskingLabel.frame.size.width, _deliveryAskingLabel.frame.size.height);
+    _offeredDeliveryTextField.frame = CGRectMake(_offeredDeliveryTextField.frame.origin.x + correctLeftMargin, _offeredDeliveryTextField.frame.origin.y, _offeredDeliveryTextField.frame.size.width, _offeredDeliveryTextField.frame.size.height);
+    _deliveryTimeUnitLabel.frame = CGRectMake(_deliveryTimeUnitLabel.frame.origin.x + correctLeftMargin, _deliveryTimeUnitLabel.frame.origin.y, _deliveryTimeUnitLabel.frame.size.width, _deliveryTimeUnitLabel.frame.size.height);
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
