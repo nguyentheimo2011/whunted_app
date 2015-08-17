@@ -10,13 +10,17 @@
 
 @class ItemInfoTableViewController;
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @protocol ItemInfoTableViewControllerDelegate <NSObject>
+//-----------------------------------------------------------------------------------------------------------------------------
 
 - (void) itemInfoTableViewController: (ItemInfoTableViewController *) controller didPressDone: (NSDictionary *) itemInfo;
 
 @end
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface ItemInfoTableViewController : UITableViewController<UITextFieldDelegate>
+//-----------------------------------------------------------------------------------------------------------------------------
 
 - (id) initWithItemInfoDict: (NSDictionary *) infoDict;
 

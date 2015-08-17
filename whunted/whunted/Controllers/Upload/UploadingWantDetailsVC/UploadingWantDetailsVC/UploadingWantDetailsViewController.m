@@ -571,7 +571,7 @@
         _wantData.hashTagList = [_hashtagString componentsSeparatedByString:WHITE_SPACE_CHARACTER];
     
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
-    if (itemName != nil) {
+    if (itemName != nil && itemName.length > 0) {
         _itemInfoCell.detailTextLabel.text = itemName;
     } else {
         _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
