@@ -90,8 +90,13 @@
 - (void) addSummaryLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLabelLeftMargin  =   20.0f;
+    CGFloat const kLabelYPos        =   _startingYPos + 20;
+    CGFloat const kLabelWidth       =   WINSIZE.width - 40;
+    CGFloat const kLabelHeight      =   20.0f;
+    
     NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _offerData.originalDemandedPrice];
-    _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 20, WINSIZE.width - 40, 20)];
+    _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
     [_summaryLabel setTextColor:TEXT_COLOR_DARK_GRAY];
@@ -103,7 +108,13 @@
 - (void) addPriceAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 45, WINSIZE.width - 40, 20)];
+    CGFloat const kLabelLeftMargin  =   20.0f;
+    CGFloat const kLabelTopMargin   =   5.0f;
+    CGFloat const kLabelYPos        =   _summaryLabel.frame.origin.y + _summaryLabel.frame.size.height + kLabelTopMargin;
+    CGFloat const kLabelWidth       =   WINSIZE.width - 40.0f;
+    CGFloat const kLabelHeight      =   20.0f;
+    
+    _priceAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _priceAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
     [_priceAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
@@ -115,7 +126,13 @@
 - (void) addOfferedPriceTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(40, _startingYPos + 75, WINSIZE.width - 80, 60)];
+    CGFloat const kTextFieldLeftMargin  =   40.0f;
+    CGFloat const kTextFieldTopMargin   =   10.0f;
+    CGFloat const kTextFieldYPos        =   _priceAskingLabel.frame.origin.y + _priceAskingLabel.frame.size.height + kTextFieldTopMargin;
+    CGFloat const kTextFieldWidth       =   WINSIZE.width - 80.0f;
+    CGFloat const kTextFieldHeight      =   60.0f;
+    
+    _offeredPriceTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldYPos, kTextFieldWidth, kTextFieldHeight)];
     _offeredPriceTextField.minimumFontSize  =   15;
     _offeredPriceTextField.text             =   _offerData.offeredPrice;
     _offeredPriceTextField.textColor        =   TEXT_COLOR_DARK_GRAY;
@@ -165,7 +182,13 @@
 - (void) addDeliveryAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 140, WINSIZE.width - 40, 20)];
+    CGFloat const kLabelLeftMargin  =   20.0f;
+    CGFloat const kLabelTopMargin   =   15.0f;
+    CGFloat const kLabelYPos        =   _offeredPriceTextField.frame.origin.y + _offeredPriceTextField.frame.size.height + kLabelTopMargin;
+    CGFloat const kLabelWidth       =   WINSIZE.width - 40.0f;
+    CGFloat const kLabelHeight      =   20.0f;
+    
+    _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
     [_deliveryAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
@@ -177,10 +200,11 @@
 - (void) addOfferedDeliveryTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTextFieldWidth   =   50.0f;
-    CGFloat const kTextFieldHeight  =   40.0f;
-    CGFloat const kTextFieldXPos    =   (WINSIZE.width - kTextFieldWidth)/2 - 30.0f;
-    CGFloat const kTextFieldYPos    =   _startingYPos + 175;
+    CGFloat const kTextFieldWidth       =   50.0f;
+    CGFloat const kTextFieldHeight      =   40.0f;
+    CGFloat const kTextFieldXPos        =   (WINSIZE.width - kTextFieldWidth)/2 - 30.0f;
+    CGFloat const kTextFieldTopMargin   =   10.0f;
+    CGFloat const kTextFieldYPos        =   _deliveryAskingLabel.frame.origin.y + _deliveryAskingLabel.frame.size.height + kTextFieldTopMargin;
     
     _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldXPos, kTextFieldYPos, kTextFieldWidth, kTextFieldHeight)];
     _offeredDeliveryTextField.minimumFontSize   =   15;
@@ -243,7 +267,13 @@
 - (void) addInstructionLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, _startingYPos + 230, WINSIZE.width - 40, 20)];
+    CGFloat const kLabelLeftMargin  =   20.0f;
+    CGFloat const kLabelTopMargin   =   10.0f;
+    CGFloat const kLabelYPos        =   _deliveryTimeUnitLabel.frame.origin.y + _deliveryTimeUnitLabel.frame.size.height + kLabelTopMargin;
+    CGFloat const kLabelWidth       =   WINSIZE.width - 40.0f;
+    CGFloat const kLabelHeight      =   20.0f;
+    
+    _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _instructionLabel.textAlignment = NSTextAlignmentCenter;
     _instructionLabel.text = @"Tap to change";
     _instructionLabel.textColor = [UIColor grayColor];
@@ -319,7 +349,7 @@
 - (void) deliveryKeyboardDoneButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([_offeredDeliveryTextField.text integerValue] <= 1)
+    if ([_offeredPriceTextField.text integerValue] > 0 && [_offeredDeliveryTextField.text integerValue] <= 1)
         _deliveryTimeUnitLabel.text = NSLocalizedString(@"day", nil);
     else
         _deliveryTimeUnitLabel.text = NSLocalizedString(@"days", nil);
