@@ -111,7 +111,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelLeftMargin  =   20.0f;
-    CGFloat const kLabelTopMargin   =   5.0f;
+    CGFloat const kLabelTopMargin   =   20.0f;
     CGFloat const kLabelYPos        =   _summaryLabel.frame.origin.y + _summaryLabel.frame.size.height + kLabelTopMargin;
     CGFloat const kLabelWidth       =   WINSIZE.width - 40.0f;
     CGFloat const kLabelHeight      =   20.0f;
@@ -129,7 +129,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTextFieldLeftMargin  =   40.0f;
-    CGFloat const kTextFieldTopMargin   =   10.0f;
+    CGFloat const kTextFieldTopMargin   =   0.0f;
     CGFloat const kTextFieldYPos        =   _priceAskingLabel.frame.origin.y + _priceAskingLabel.frame.size.height + kTextFieldTopMargin;
     CGFloat const kTextFieldWidth       =   WINSIZE.width - 80.0f;
     CGFloat const kTextFieldHeight      =   60.0f;
@@ -212,7 +212,7 @@
     _offeredDeliveryTextField.textColor         =   TEXT_COLOR_DARK_GRAY;
     _offeredDeliveryTextField.text              =   _offerData.deliveryTime;
     _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
-    _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:18];
+    _offeredDeliveryTextField.font              =   [UIFont fontWithName:BOLD_FONT_NAME size:18];
     _offeredDeliveryTextField.placeholder       =   @"5";
     _offeredDeliveryTextField.delegate          =   self;
     

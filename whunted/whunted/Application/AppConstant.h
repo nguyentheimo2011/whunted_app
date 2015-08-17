@@ -197,7 +197,7 @@
 #define     LIGHT_FONT_NAME                     @"HelveticaNeue-Light"
 #define     REGULAR_FONT_NAME                   @"HelveticaNeue-Light"
 #define     SEMIBOLD_FONT_NAME                  @"HelveticaNeue-Medium"
-#define     BOLD_FONT_NAME                      @"HelveticaNeue-Light"
+#define     BOLD_FONT_NAME                      @"HelveticaNeue-Medium"
 
 #define     DEFAULT_FONT_SIZE                   17
 #define     BIG_FONT_SIZE                       18
