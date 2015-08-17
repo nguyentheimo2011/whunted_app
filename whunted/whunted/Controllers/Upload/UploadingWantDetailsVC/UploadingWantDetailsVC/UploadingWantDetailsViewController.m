@@ -129,6 +129,7 @@
     _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     _categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
     _categoryCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _categoryCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _categoryCell.indentationLevel = 3;
     _categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
@@ -148,6 +149,7 @@
     _itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
     _itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
     _itemInfoCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _itemInfoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _itemInfoCell.indentationLevel = 3;
     _itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
@@ -167,6 +169,7 @@
     _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
     _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
     _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _productOriginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _productOriginCell.indentationLevel = 3;
     _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
@@ -186,6 +189,7 @@
     _priceCell = [[UITableViewCell alloc] init];
     _priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
     _priceCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _priceCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _priceCell.indentationLevel = 3;
     _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [_priceTextField setTextAlignment:NSTextAlignmentRight];
@@ -219,6 +223,7 @@
     _locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     _locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
     _locationCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _locationCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _locationCell.indentationLevel = 3;
     _locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
@@ -238,6 +243,7 @@
     _escrowRequestCell = [[UITableViewCell alloc] init];
     _escrowRequestCell.textLabel.text = NSLocalizedString(@"Request for Escrow", nil);
     _escrowRequestCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _escrowRequestCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _escrowRequestCell.indentationLevel = 3;
     _escrowSwitch = [[UISwitch alloc] init];
     [_escrowSwitch addTarget:self action:@selector(escrowSwitchDidChangeState) forControlEvents:UIControlEventValueChanged];

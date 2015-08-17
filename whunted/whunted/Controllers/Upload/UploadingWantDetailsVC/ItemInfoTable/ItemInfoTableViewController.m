@@ -82,8 +82,8 @@
     
     _itemNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
     _itemNameTextField.text = [_itemInfoDict objectForKey:ITEM_NAME_KEY];
-    _itemNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]}];
+    _itemNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     _itemNameTextField.delegate = self;
     [_itemNameCell addSubview:_itemNameTextField];
 }
@@ -101,8 +101,9 @@
     
     _descriptionTextView = [[SZTextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, 0, kTextViewWidth, kTextViewHeight)];
     _descriptionTextView.text = [_itemInfoDict objectForKey:ITEM_DESC_KEY];
-    _descriptionTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _descriptionTextView.placeholder = NSLocalizedString(@"Describe more about the item that you want. \nE.g. Size, condition, color, etc.", nil);
+    _descriptionTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    NSString *placeholder = NSLocalizedString(@"Describe more about the item that you want. \nE.g. Size, condition, color, etc.", nil);
+    _descriptionTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     [_descriptionCell addSubview:_descriptionTextView];
 }
 
@@ -119,8 +120,9 @@
     
     _hashTagTextView = [[SZTextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, 0, kTextViewWidth, kTextViewHeight)];
     _hashTagTextView.text = [_itemInfoDict objectForKey:ITEM_HASH_TAG_KEY];
-    _hashTagTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _hashTagTextView.placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc.", nil);
+    _hashTagTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    NSString *placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc.", nil);
+    _hashTagTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     [_hashtagCell addSubview:_hashTagTextView];
 }
 
@@ -138,8 +140,8 @@
     
     UILabel *secondHandLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
     [secondHandLabel setText:NSLocalizedString(@"Allow second-hand item", nil)];
-    [secondHandLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
-    [secondHandLabel setTextColor:[UIColor blackColor]];
+    [secondHandLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
+    [secondHandLabel setTextColor:TEXT_COLOR_DARK_GRAY];
     [_secondHandOptionCell addSubview:secondHandLabel];
     
     _secondHandOptionSwitch = [[UISwitch alloc] init];
