@@ -367,7 +367,16 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     DeleteRecentItems(groupId);
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    NSInteger viewControllersNum = [self.navigationController.viewControllers count];
+    if (viewControllersNum >= 3) {
+        if ([[self.navigationController.viewControllers objectAtIndex:viewControllersNum-2] isKindOfClass:[BuyersOrSellersOfferViewController class]]) {
+            UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex:viewControllersNum-3];
+            [self.navigationController popToViewController:viewController animated:YES];
+        }
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -606,6 +606,9 @@
 - (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(OfferData *)offer
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // update data in user profile page
+    [_delegate itemDetailsViewController:self didCompleteOffer:YES];
+    
     _currOffer = offer;
     [_secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     
@@ -618,8 +621,6 @@
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
     [chatView messageSend:message Video:nil Picture:nil Audio:nil];
     chatView.hidesBottomBarWhenPushed = YES;
-    
-    [_delegate itemDetailsViewController:self didCompleteOffer:YES];
     
     [self.navigationController pushViewController:chatView animated:YES];
 }

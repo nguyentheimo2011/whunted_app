@@ -313,7 +313,7 @@
     }
     
     if (_offerData.deliveryTime == nil || _offerData.deliveryTime.length == 0) {
-        _offerData.deliveryTime = @"1 week";
+        _offerData.deliveryTime = @"5";
     }
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
@@ -330,8 +330,6 @@
                 
                 groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id2, id1];
             }
-            
-            [self.navigationController popViewControllerAnimated:YES];
             
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             

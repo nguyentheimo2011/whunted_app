@@ -19,6 +19,8 @@
 #import "OfferData.h"
 #import "BuyersOrSellersOfferViewController.h"
 
+@class BuyersOrSellersOfferViewController;
+
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
