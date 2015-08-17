@@ -249,6 +249,8 @@
     [_brController updateWantDataTable];
     [_userProfileVC retrieveLatestWantData];
     
+    [self setSelectedIndex:4];
+    
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
