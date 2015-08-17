@@ -26,6 +26,8 @@
 @implementation BuyersOrSellersOfferViewController
 {
     CGFloat     _startingYPos;
+    
+    UILabel     *_deliveryTimeUnitLabel;
 }
 
 @synthesize offerData                   =   _offerData;
@@ -53,6 +55,7 @@
     [self addOfferedPriceTextField];
     [self addDeliveryAskingLabel];
     [self addOfferedDeliveryTextField];
+    [self addDeliveryTimeUnitLabel];
     [self addInstructionLabel];
 }
 
@@ -174,13 +177,18 @@
 - (void) addOfferedDeliveryTextField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, _startingYPos + 175, WINSIZE.width - 120, 40)];
+    CGFloat const kTextFieldWidth   =   50.0f;
+    CGFloat const kTextFieldHeight  =   40.0f;
+    CGFloat const kTextFieldXPos    =   (WINSIZE.width - kTextFieldWidth)/2 - 30.0f;
+    CGFloat const kTextFieldYPos    =   _startingYPos + 175;
+    
+    _offeredDeliveryTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldXPos, kTextFieldYPos, kTextFieldWidth, kTextFieldHeight)];
     _offeredDeliveryTextField.minimumFontSize   =   15;
     _offeredDeliveryTextField.textColor         =   TEXT_COLOR_DARK_GRAY;
     _offeredDeliveryTextField.text              =   _offerData.deliveryTime;
     _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
     _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:25];
-    _offeredDeliveryTextField.placeholder       =   @"1 week";
+    _offeredDeliveryTextField.placeholder       =   @"5";
     _offeredDeliveryTextField.delegate          =   self;
     
     // customize keyboard
@@ -213,6 +221,22 @@
     _offeredDeliveryTextField.inputAccessoryView = container;
     
     [self.view addSubview:_offeredDeliveryTextField];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addDeliveryTimeUnitLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelWidth = 60.0f;
+    CGFloat const kLabelHeight = 40.0f;
+    CGFloat const kLabelXPos = _offeredDeliveryTextField.frame.origin.x + _offeredDeliveryTextField.frame.size.width;
+    CGFloat const kLabelYPos = _offeredDeliveryTextField.frame.origin.y;
+    
+    _deliveryTimeUnitLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
+    _deliveryTimeUnitLabel.text = NSLocalizedString(@"days", nil);
+    _deliveryTimeUnitLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:22];
+    _deliveryTimeUnitLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [self.view addSubview:_deliveryTimeUnitLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -295,6 +319,11 @@
 - (void) deliveryKeyboardDoneButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    if ([_offeredDeliveryTextField.text integerValue] <= 1)
+        _deliveryTimeUnitLabel.text = NSLocalizedString(@"day", nil);
+    else
+        _deliveryTimeUnitLabel.text = NSLocalizedString(@"days", nil);
+    
     [_offeredDeliveryTextField resignFirstResponder];
 }
 
@@ -319,7 +348,7 @@
         }
         
         NSUInteger newLength = [textField.text length] + [string length] - range.length;
-        return newLength <= 13;
+        return newLength <= 3;
     }
 }
 
