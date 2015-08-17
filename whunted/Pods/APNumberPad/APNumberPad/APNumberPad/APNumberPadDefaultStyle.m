@@ -60,7 +60,7 @@ static inline UIColor * APNP_RGBa(int r, int g, int b, CGFloat alpha) {
 }
 
 + (UIColor *)functionButtonBackgroundColor {
-    return APNP_RGBa(188, 192, 198, 1.f);
+    return APNP_RGBa(230, 230, 230, 1.f);
 }
 
 + (UIColor *)functionButtonHighlightedColor {

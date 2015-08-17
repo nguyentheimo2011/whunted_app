@@ -122,14 +122,37 @@
     _offeredPriceTextField.keyboardType     =   UIKeyboardTypeNumbersAndPunctuation;
     _offeredPriceTextField.tag              =   103;
     _offeredPriceTextField.delegate         =   self;
+    
+    // customize keyboard
     _offeredPriceTextField.inputView        =   ({
         APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
         // configure function button
         [numberPad.leftFunctionButton setTitle:DOT_CHARACTER forState:UIControlStateNormal];
         numberPad.leftFunctionButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [numberPad.leftFunctionButton setBackgroundImage:[Utilities imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [numberPad.leftFunctionButton setBackgroundImage:[Utilities imageWithColor:[UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f]] forState:UIControlStateNormal];
         numberPad;
     });
+    
+    // add done button above the keyboard
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 50.0f)];
+    container.backgroundColor   =   [UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f];
+    
+    UIView *horizontalLine      =   [[UIView alloc] initWithFrame:CGRectMake(0, 49.5f, WINSIZE.width, 0.5f)];
+    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    [container addSubview:horizontalLine];
+    
+    UIButton *doneButton = [[UIButton alloc] init];
+    [doneButton setTitle:NSLocalizedString(@"Done", nil) forState:UIControlStateNormal];
+    [doneButton setTitleColor:MAIN_BLUE_COLOR forState:UIControlStateNormal];
+    [doneButton sizeToFit];
+    CGFloat const kButtonWidth  =   doneButton.frame.size.width;
+    CGFloat const kButtonHeight =   doneButton.frame.size.height;
+    CGFloat const kButtonXPos   =   WINSIZE.width - kButtonWidth - 20.0f;
+    CGFloat const kButtonYPos   =   (50.0f - kButtonHeight) / 2;
+    doneButton.frame = CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight);
+    [doneButton addTarget:self action:@selector(priceKeyboardDoneButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [container addSubview:doneButton];
+    _offeredPriceTextField.inputAccessoryView = container;
     
     [self.view addSubview:_offeredPriceTextField];
 }
@@ -157,9 +180,38 @@
     _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
     _offeredDeliveryTextField.font              =   [UIFont fontWithName:REGULAR_FONT_NAME size:25];
     _offeredDeliveryTextField.placeholder       =   @"1 week";
-    _offeredDeliveryTextField.keyboardType      =   UIKeyboardTypeNumberPad;
     _offeredDeliveryTextField.delegate          =   self;
-    [_offeredPriceTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    [_offeredDeliveryTextField addTarget:self action:@selector(priceTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
+    
+    // customize keyboard
+    _offeredDeliveryTextField.inputView        =   ({
+        APNumberPad *numberPad = [APNumberPad numberPadWithDelegate:self];
+        // configure function button
+        [numberPad.leftFunctionButton setBackgroundImage:[Utilities imageWithColor:[UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f]] forState:UIControlStateNormal];
+        numberPad;
+    });
+    
+    // add done button above the keyboard
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 50.0f)];
+    container.backgroundColor   =   [UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f];
+    
+    UIView *horizontalLine      =   [[UIView alloc] initWithFrame:CGRectMake(0, 49.5f, WINSIZE.width, 0.5f)];
+    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    [container addSubview:horizontalLine];
+    
+    UIButton *doneButton = [[UIButton alloc] init];
+    [doneButton setTitle:NSLocalizedString(@"Done", nil) forState:UIControlStateNormal];
+    [doneButton setTitleColor:MAIN_BLUE_COLOR forState:UIControlStateNormal];
+    [doneButton sizeToFit];
+    CGFloat const kButtonWidth  =   doneButton.frame.size.width;
+    CGFloat const kButtonHeight =   doneButton.frame.size.height;
+    CGFloat const kButtonXPos   =   WINSIZE.width - kButtonWidth - 20.0f;
+    CGFloat const kButtonYPos   =   (50.0f - kButtonHeight) / 2;
+    doneButton.frame = CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight);
+    [doneButton addTarget:self action:@selector(deliveryKeyboardDoneButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [container addSubview:doneButton];
+    _offeredDeliveryTextField.inputAccessoryView = container;
+    
     [self.view addSubview:_offeredDeliveryTextField];
 }
 
@@ -227,6 +279,20 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) priceKeyboardDoneButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_offeredPriceTextField resignFirstResponder];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) deliveryKeyboardDoneButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_offeredDeliveryTextField resignFirstResponder];
 }
 
 #pragma mark - TextField delegate methods
