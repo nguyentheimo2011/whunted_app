@@ -34,6 +34,8 @@
         self.itemName           =   wantDataPFObject[PF_ITEM_NAME];
         self.itemDesc           =   wantDataPFObject[PF_ITEM_DESC];
         self.itemCategory       =   wantDataPFObject[PF_ITEM_CATEGORY];
+        
+        
         self.demandedPrice      =   wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
         self.paymentMethod      =   wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
         self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
