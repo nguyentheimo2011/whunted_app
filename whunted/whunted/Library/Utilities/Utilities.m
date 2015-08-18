@@ -187,7 +187,7 @@
 + (void) customizeTabBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UITabBar appearance] setBackgroundImage:[Utilities imageWithColor:[[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0] colorWithAlphaComponent:1.0f]]];
+    [[UITabBar appearance] setBackgroundImage:[Utilities imageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.9f]]];
     
     // set the text color for selected state
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : MAIN_BLUE_COLOR} forState:UIControlStateSelected];
@@ -197,8 +197,8 @@
     // set the selected icon color
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setSelectedImageTintColor:MAIN_BLUE_COLOR];
-    // remove the shadow
-    [[UITabBar appearance] setShadowImage:nil];
+    
+    [[UITabBar appearance] setShadowImage:[Utilities imageWithColor:[UIColor whiteColor]]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -20,6 +20,8 @@
 #import <Parse/Parse.h>
 #import "KLCPopup.h"
 
+#define     kUPLOAD_TAB_BAR     101
+
 @interface MainViewController ()
 {
     MarketplaceViewController   *_brController;
@@ -48,33 +50,34 @@
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
-        [browserNavController setTitle:NSLocalizedString(TAB_BAR_MARKETPLACE_PAGE_TITLE, nil)];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
+        browserNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
         _newsFeedVC = [[NewsFeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
-        [newsFeedfNavController setTitle:NSLocalizedString(TAB_BAR_NEWSFEED_PAGE_TITLE, nil)];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+        newsFeedfNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
         UINavigationController *uploadingNavController = [[UINavigationController alloc] init];
         _uploadingVC = [[UploadingViewController alloc] init];
         [uploadingNavController setViewControllers:@[_uploadingVC]];
-        [uploadingNavController setTitle:NSLocalizedString(TAB_BAR_UPLOAD_PAGE_TITLE, nil)];
         [uploadingNavController.tabBarItem setImage:[UIImage imageNamed:@"camera_tab_icon.png"]];
+        uploadingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+        uploadingNavController.view.tag = kUPLOAD_TAB_BAR;
         
         UINavigationController *chattingNavController = [[UINavigationController alloc] init];
         _inboxVC = [[InboxAllViewController alloc] init];
         [chattingNavController setViewControllers: [NSArray arrayWithObject:_inboxVC]];
-        [chattingNavController setTitle:NSLocalizedString(TAB_BAR_INBOX_PAGE_TITLE, nil)];
         [chattingNavController.tabBarItem setImage:[UIImage imageNamed:@"chat_tab_icon.png"]];
+        chattingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
         UINavigationController *userProfileNavController = [[UINavigationController alloc] init];
         _userProfileVC = [[UserProfileViewController alloc] init];
         [userProfileNavController setViewControllers: [NSArray arrayWithObject:_userProfileVC]];
-        [userProfileNavController setTitle:NSLocalizedString(TAB_BAR_PROFILE_PAGE_TITLE, nil)];
         [userProfileNavController.tabBarItem setImage:[UIImage imageNamed:@"profile_tab_icon.png"]];
+        userProfileNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
         NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, uploadingNavController, chattingNavController, userProfileNavController, nil];
         [self setViewControllers:controllers];
@@ -121,7 +124,7 @@
 - (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([viewController.title isEqualToString:NSLocalizedString(TAB_BAR_UPLOAD_PAGE_TITLE, nil)]) {
+    if (viewController.view.tag == kUPLOAD_TAB_BAR) {
         _uploadingNavController = [[UINavigationController alloc] init];
         _imageEdittingNeeded = YES;
         [self showImageGettingOptionPopup];
@@ -348,6 +351,17 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [_userProfileVC retrieveLatestSellData];
+}
+
+
+#pragma mark - Overriding methods
+
+// change tab bar height
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void)viewWillLayoutSubviews
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    self.tabBar.frame = CGRectMake(0, WINSIZE.height - 48, WINSIZE.width, 48);
 }
 
 @end
