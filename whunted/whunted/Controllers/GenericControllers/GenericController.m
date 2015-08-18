@@ -39,16 +39,6 @@
     
     NSArray *actionButtonItems = @[searchButton];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
-    
-    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowSize.width, 100)];
-    UIImage *appIcon = [UIImage imageNamed:@"app_icon.png"];
-    UIImageView *appIconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 35, 30, 29)];
-    appIconView.layer.cornerRadius = 5;
-    appIconView.clipsToBounds = YES;
-    [appIconView setImage:appIcon];
-    [titleView addSubview:appIconView];
-    self.navigationItem.titleView = titleView;
 }
 
 #pragma mark - Event Handlers
