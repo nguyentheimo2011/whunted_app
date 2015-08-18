@@ -12,17 +12,21 @@
 
 #import <SZTextView/SZTextView.h>
 
+#define     kReferenceLinkCellHeight    80.0f
+
 @implementation ItemInfoTableViewController
 {
     UITableViewCell         *_itemNameCell;
     UITableViewCell         *_descriptionCell;
     UITableViewCell         *_hashtagCell;
     UITableViewCell         *_secondHandOptionCell;
+    UITableViewCell         *_referenceLinkCell;
     
     UITextField             *_itemNameTextField;
     SZTextView              *_descriptionTextView;
     SZTextView              *_hashTagTextView;
     UISwitch                *_secondHandOptionSwitch;
+    SZTextView              *_referenceLinkTextView;
 
     NSMutableDictionary     *_itemInfoDict;
 }
@@ -39,7 +43,7 @@
         [self initializeDescriptionCell];
         [self initializeHashtagCell];
         [self initializeSecondHandOptionCell];
-        
+        [self initReferenceLinkCell];
     }
     
     return self;
@@ -66,6 +70,8 @@
     [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonEvent)];
+    
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -84,6 +90,7 @@
     _itemNameTextField.text = [_itemInfoDict objectForKey:ITEM_NAME_KEY];
     _itemNameTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _itemNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Item name", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+    _itemNameTextField.returnKeyType = UIReturnKeyDone;
     _itemNameTextField.delegate = self;
     [_itemNameCell addSubview:_itemNameTextField];
 }
@@ -149,6 +156,25 @@
     _secondHandOptionCell.accessoryView = _secondHandOptionSwitch;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initReferenceLinkCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _referenceLinkCell = [[UITableViewCell alloc] init];
+    _referenceLinkCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat const kTextViewLeftMargin = 10.0f;
+    CGFloat const kTextViewWidth = WINSIZE.width - 2 * kTextViewLeftMargin;
+    CGFloat const kTextViewHeight = kReferenceLinkCellHeight;
+    
+    _referenceLinkTextView = [[SZTextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, 0, kTextViewWidth, kTextViewHeight)];
+    _referenceLinkTextView.text = [_itemInfoDict objectForKey:ITEM_REFERENCE_LINK];
+    _referenceLinkTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    NSString *placeholder = NSLocalizedString(@"Enter reference link. http://...", nil);
+    _referenceLinkTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+    [_referenceLinkCell addSubview:_referenceLinkTextView];
+}
+
 #pragma mark - Event Handling
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -185,7 +211,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -199,6 +225,8 @@
     } else if (indexPath.row == 2) {
         return _hashtagCell;
     } else if (indexPath.row == 3) {
+        return _referenceLinkCell;
+    } else if (indexPath.row == 4) {
         return _secondHandOptionCell;
     }
     
@@ -226,6 +254,8 @@
     } else if (indexPath.row == 2) {
         return windowSize.height/6;
     } else if (indexPath.row == 3) {
+        return kReferenceLinkCellHeight;
+    } else if (indexPath.row == 4) {
         return 45;
     }
     
