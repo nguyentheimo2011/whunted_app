@@ -84,7 +84,7 @@
         wantDataPFObject[PF_ITEM_CLOSED_DEAL] = @"NO";
     
     PFRelation *relation = [wantDataPFObject relationForKey:PF_ITEM_PICTURE_LIST];
-    for (PFObject *obj in self.backupItemPictureList)
+    for (PFObject *obj in self.itemPictures)
         [relation addObject:obj];
     
     return wantDataPFObject;

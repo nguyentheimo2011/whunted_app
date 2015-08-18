@@ -12,36 +12,41 @@
 
 @interface WantData : NSObject
 
-@property (nonatomic, strong) NSString          *itemID;
-@property (nonatomic, strong) NSString          *buyerID;
-@property (nonatomic, strong) NSString          *buyerUsername;
-@property (nonatomic, strong) NSString          *itemName;
-@property (nonatomic, strong) NSString          *itemDesc;
-@property (nonatomic)         BOOL              secondHandOption;
-@property (nonatomic, strong) NSString          *itemCategory;
-@property (nonatomic, strong) NSString          *demandedPrice;
-@property (nonatomic, strong) NSString          *paymentMethod;
-@property (nonatomic, strong) NSString          *referenceURL;
-@property (nonatomic, strong) NSString          *meetingLocation;
-@property (nonatomic, strong) NSDate            *createdDate;
-@property (nonatomic, strong) NSDate            *updatedDate;
+// properties of wanted item
+@property (nonatomic, strong)   NSString          *itemID;
+@property (nonatomic, strong)   NSString          *itemName;
+@property (nonatomic, strong)   NSString          *itemDesc;
+@property (nonatomic, strong)   NSString          *itemCategory;
+@property (nonatomic, strong)   NSArray           *itemOrigins;
+@property (nonatomic, strong)   NSMutableArray    *itemPictures;
+@property (nonatomic)           NSInteger         itemPicturesNum;
+@property (nonatomic, strong)   NSArray           *hashTagList;
+@property (nonatomic, strong)   NSString          *referenceURL;
 
-@property (nonatomic, strong) PFRelation        *itemPictureList;
-@property (nonatomic, strong) NSMutableArray    *backupItemPictureList;
-@property (nonatomic)         NSInteger         itemPicturesNum;
+// properties of a want
+@property (nonatomic, strong)   NSString          *buyerID;
+@property (nonatomic, strong)   NSString          *buyerUsername;
+@property (nonatomic, strong)   NSString          *demandedPrice;
+@property (nonatomic, strong)   NSString          *paymentMethod;
+@property (nonatomic)           BOOL              secondHandOption;
+@property (nonatomic, strong)   NSString          *meetingLocation;
+@property (nonatomic, strong)   NSDate            *createdDate;
+@property (nonatomic, strong)   NSDate            *updatedDate;
 
-@property (nonatomic, strong) NSArray           *hashTagList;
+// properties of a post
+@property (nonatomic)           NSInteger         likesNum;
+@property (nonatomic, strong)   NSMutableArray    *likerList;
 
-@property (nonatomic, strong) NSArray           *productOriginList;
+// properties of a transaction
+@property (nonatomic, strong)   NSArray           *sellersOfferList;
+@property (nonatomic)           NSInteger         sellersNum;
 
-@property (nonatomic)         NSInteger         likesNum;
-@property (nonatomic, strong) NSMutableArray    *likerList;
+@property (nonatomic)           BOOL              isDealClosed;
+@property (nonatomic, strong)   OfferData         *acceptedOffer;
 
-@property (nonatomic, strong) NSArray           *sellersOfferList;
-@property (nonatomic)         NSInteger         sellersNum;
+// Temprary data sturetures
+@property (nonatomic, strong)   PFRelation        *itemPictureList;
 
-@property (nonatomic)         BOOL              isDealClosed;
-@property (nonatomic, strong) OfferData         *acceptedOffer;
 
 - (id) initWithPFObject: (PFObject *) wantDataPFObject;
 - (PFObject *) getPFObject;

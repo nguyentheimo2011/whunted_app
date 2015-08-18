@@ -66,7 +66,7 @@
     _wantData.buyerID = [PFUser currentUser].objectId;
     _wantData.buyerUsername = [PFUser currentUser][PF_USER_USERNAME];
     _wantData.itemPictureList = [[PFRelation alloc] init];
-    _wantData.backupItemPictureList = [[NSMutableArray alloc] init];
+    _wantData.itemPictures = [[NSMutableArray alloc] init];
 }
 
 #pragma mark - UI Handlers
@@ -311,7 +311,7 @@
             _wantData.meetingLocation = @"";
         
         _wantData.sellersNum = 0;
-        _wantData.itemPicturesNum = [_wantData.backupItemPictureList count];
+        _wantData.itemPicturesNum = [_wantData.itemPictures count];
         
         PFObject *pfObj = [_wantData getPFObject];
         [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -373,7 +373,7 @@
     [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
             [_wantData.itemPictureList addObject:itemPictureObj];
-            [_wantData.backupItemPictureList addObject:itemPictureObj];
+            [_wantData.itemPictures addObject:itemPictureObj];
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
@@ -524,7 +524,7 @@
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 2) {
-            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.productOriginList];
+            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins];
             productTableVC.delegate = self;
             [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
@@ -674,10 +674,10 @@
 - (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingCountries:(NSArray *)countries
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantData.productOriginList = [NSArray arrayWithArray:countries];
+    _wantData.itemOrigins = [NSArray arrayWithArray:countries];
     
-    if ([_wantData.productOriginList count] > 0) {
-        NSString *originText = [_wantData.productOriginList componentsJoinedByString:@", "];
+    if ([_wantData.itemOrigins count] > 0) {
+        NSString *originText = [_wantData.itemOrigins componentsJoinedByString:@", "];
         [_productOriginCell.detailTextLabel setText:originText];
     } else
         _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);

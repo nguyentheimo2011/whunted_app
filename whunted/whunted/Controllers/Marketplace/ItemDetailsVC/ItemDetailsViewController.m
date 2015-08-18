@@ -335,7 +335,7 @@
     CGFloat const kLabelXPos            =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
     CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
-    NSString *productOriginText = [_wantData.productOriginList componentsJoinedByString:@", "];
+    NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
     CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
     _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
     [_productOriginLabel setText:productOriginText];
