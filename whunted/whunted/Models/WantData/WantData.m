@@ -37,6 +37,7 @@
         self.demandedPrice      =   wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
         self.paymentMethod      =   wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
         self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
+        self.referenceURL       =   wantDataPFObject[PF_ITEM_REFERENCE_URL];
         self.itemPictureList    =   wantDataPFObject[PF_ITEM_PICTURE_LIST];
         self.itemPicturesNum    =   [wantDataPFObject[PF_ITEM_PICTURES_NUM] integerValue];
         self.buyerID            =   wantDataPFObject[PF_ITEM_BUYER_ID];
@@ -69,6 +70,7 @@
     wantDataPFObject[PF_ITEM_DEMANDED_PRICE]    =   self.demandedPrice;
     wantDataPFObject[PF_ITEM_PAYMENT_METHOD]    =   self.paymentMethod;
     wantDataPFObject[PF_ITEM_MEETING_PLACE]     =   self.meetingLocation;
+    wantDataPFObject[PF_ITEM_REFERENCE_URL]     =   self.referenceURL;
     wantDataPFObject[PF_ITEM_BUYER_ID]          =   self.buyerID;
     wantDataPFObject[PF_ITEM_BUYER_USERNAME]    =   self.buyerUsername;
     wantDataPFObject[PF_ITEM_HASHTAG_LIST]      =   self.hashTagList;

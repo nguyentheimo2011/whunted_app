@@ -138,6 +138,7 @@
 #define     PF_ITEM_DEMANDED_PRICE              @"demandedPrice"
 #define     PF_ITEM_PAYMENT_METHOD              @"paymentMethod"
 #define     PF_ITEM_MEETING_PLACE               @"meetingPlace"
+#define     PF_ITEM_REFERENCE_URL               @"referenceURL"
 #define     PF_ITEM_PICTURE_LIST                @"itemPictures"
 #define     PF_ITEM_PICTURES_NUM                @"itemPicturesNum"
 #define     PF_ITEM_BUYER_ID                    @"buyerID"

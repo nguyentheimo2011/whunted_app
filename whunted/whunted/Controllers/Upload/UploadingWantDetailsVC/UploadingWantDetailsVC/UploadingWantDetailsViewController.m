@@ -294,12 +294,19 @@
         
         if (!_wantData.itemDesc)
             _wantData.itemDesc = @"";
+        
         if (!_wantData.hashTagList)
             _wantData.hashTagList = [NSArray array];
+        
+        if (!_wantData.referenceURL)
+            _wantData.referenceURL = @"";
+        
         if (!_wantData.demandedPrice)
             _wantData.demandedPrice = @"0";
+
         if (!_wantData.paymentMethod)
             _wantData.paymentMethod = @"non-escrow";
+        
         if (!_wantData.meetingLocation)
             _wantData.meetingLocation = @"";
         
@@ -571,6 +578,7 @@
     _wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     _wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
     _wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
+    _wantData.referenceURL = [itemInfo objectForKey:ITEM_REFERENCE_LINK];
     
     _hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
     if (_hashtagString.length > 0)

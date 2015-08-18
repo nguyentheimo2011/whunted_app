@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString          *itemCategory;
 @property (nonatomic, strong) NSString          *demandedPrice;
 @property (nonatomic, strong) NSString          *paymentMethod;
+@property (nonatomic, strong) NSString          *referenceURL;
 @property (nonatomic, strong) NSString          *meetingLocation;
 @property (nonatomic, strong) NSDate            *createdDate;
 @property (nonatomic, strong) NSDate            *updatedDate;

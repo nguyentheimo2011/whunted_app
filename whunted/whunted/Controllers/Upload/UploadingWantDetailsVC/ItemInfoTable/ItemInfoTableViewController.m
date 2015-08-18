@@ -185,6 +185,7 @@
     [_itemInfoDict setObject:_descriptionTextView.text forKey:ITEM_DESC_KEY];
     [_itemInfoDict setObject:_hashTagTextView.text forKey:ITEM_HASH_TAG_KEY];
     [_itemInfoDict setObject:[NSNumber numberWithBool:_secondHandOptionSwitch.on] forKey:ITEM_SECONDHAND_OPTION];
+    [_itemInfoDict setObject:_referenceLinkTextView.text forKey:ITEM_REFERENCE_LINK];
     
     [self.delegate itemInfoTableViewController:self didPressDone:_itemInfoDict];
 }
