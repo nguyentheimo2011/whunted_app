@@ -519,7 +519,7 @@
             catVC.category = _wantData.itemCategory;
             [self.navigationController pushViewController:catVC animated:YES];
         } else if (indexPath.row == 1) {
-            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.secondHandOption], ITEM_SECONDHAND_OPTION, nil];
+            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
             ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
@@ -577,7 +577,7 @@
 {
     _wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
     _wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
-    _wantData.secondHandOption = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
+    _wantData.acceptedSecondHand = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
     _wantData.referenceURL = [itemInfo objectForKey:ITEM_REFERENCE_LINK];
     
     _hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];

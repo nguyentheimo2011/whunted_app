@@ -132,6 +132,7 @@
 #define     PF_USER_FACEBOOK_VERIFIED           @"facebookVerified"     //  Boolean
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_ITEM_ID                          @"itemID"
 #define     PF_ITEM_NAME                        @"itemName"
 #define     PF_ITEM_DESC                        @"itemDesc"
 #define     PF_ITEM_CATEGORY                    @"category"
@@ -139,6 +140,7 @@
 #define     PF_ITEM_PICTURE_LIST                @"itemPictures"
 #define     PF_ITEM_DEMANDED_PRICE              @"demandedPrice"
 #define     PF_ITEM_PAYMENT_METHOD              @"paymentMethod"
+#define     PF_ITEM_ACCEPTED_SECONDHAND         @"acceptedSecondHand"
 #define     PF_ITEM_MEETING_PLACE               @"meetingPlace"
 #define     PF_ITEM_REFERENCE_URL               @"referenceURL"
 #define     PF_ITEM_PICTURES_NUM                @"itemPicturesNum"
@@ -148,7 +150,6 @@
 #define     PF_ITEM_CLOSED_DEAL                 @"isDealClosed"
 #define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
 #define     PF_ITEM_LIKES_NUM                   @"likesNum"
-#define     PF_ITEM_ID                          @"itemID"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_OFFER_ID                         @"offerID"
