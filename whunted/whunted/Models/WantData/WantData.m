@@ -34,17 +34,21 @@
         self.itemName           =   wantDataPFObject[PF_ITEM_NAME];
         self.itemDesc           =   wantDataPFObject[PF_ITEM_DESC];
         self.itemCategory       =   wantDataPFObject[PF_ITEM_CATEGORY];
-        
-        
-        self.demandedPrice      =   wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
-        self.paymentMethod      =   wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
-        self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
-        self.referenceURL       =   wantDataPFObject[PF_ITEM_REFERENCE_URL];
+        self.itemOrigins        =   [wantDataPFObject[PF_ITEM_CATEGORY] componentsSeparatedByString:COMMA_CHARACTER];
         self.itemPictureList    =   wantDataPFObject[PF_ITEM_PICTURE_LIST];
         self.itemPicturesNum    =   [wantDataPFObject[PF_ITEM_PICTURES_NUM] integerValue];
+        self.hashTagList        =   [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
+        self.referenceURL       =   wantDataPFObject[PF_ITEM_REFERENCE_URL];
+        
         self.buyerID            =   wantDataPFObject[PF_ITEM_BUYER_ID];
         self.buyerUsername      =   wantDataPFObject[PF_ITEM_BUYER_USERNAME];
-        self.hashTagList        =   [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
+        self.demandedPrice      =   wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
+        self.paymentMethod      =   wantDataPFObject[PF_ITEM_PAYMENT_METHOD];
+        
+        self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
+        
+        
+       
         self.sellersNum         =   [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
         self.likesNum           =   [wantDataPFObject[PF_ITEM_LIKES_NUM] integerValue];
         self.createdDate        =   wantDataPFObject.createdAt;

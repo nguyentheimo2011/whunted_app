@@ -64,7 +64,7 @@
         _uploadingVC = [[UploadingViewController alloc] init];
         [uploadingNavController setViewControllers:@[_uploadingVC]];
         [uploadingNavController.tabBarItem setImage:[UIImage imageNamed:@"camera_tab_icon.png"]];
-        uploadingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+        uploadingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
         uploadingNavController.view.tag = kUPLOAD_TAB_BAR;
         
         UINavigationController *chattingNavController = [[UINavigationController alloc] init];
