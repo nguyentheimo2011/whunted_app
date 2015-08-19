@@ -60,9 +60,11 @@
     JSQMessagesBubbleImage  *_bubbleImageOutgoingMakingOffer;
     JSQMessagesBubbleImage  *_bubbleImageOutgoingAcceptingOffer;
     JSQMessagesBubbleImage  *_bubbleImageOutgoingDecliningOffer;
+    JSQMessagesBubbleImage  *_bubbleImageOutgoingCancellingOffer;
     JSQMessagesBubbleImage  *_bubbleImageIncomingMakingOffer;
     JSQMessagesBubbleImage  *_bubbleImageIncomingAcceptingOffer;
     JSQMessagesBubbleImage  *_bubbleImageIncomingDecliningOffer;
+    JSQMessagesBubbleImage  *_bubbleImageIncomingCancellingOffer;
 	JSQMessagesAvatarImage  *_avatarImageBlank;
     
     UIView                  *_background;
@@ -183,6 +185,8 @@
     _bubbleImageIncomingAcceptingOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:FLAT_FRESH_RED_COLOR];
     _bubbleImageOutgoingDecliningOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:DARKER_BLUE_COLOR];
     _bubbleImageIncomingDecliningOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:DARKER_BLUE_COLOR];
+    _bubbleImageOutgoingCancellingOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:JASMINE_YELLOW_COLOR];
+    _bubbleImageIncomingCancellingOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:JASMINE_YELLOW_COLOR];
     
     _avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
     

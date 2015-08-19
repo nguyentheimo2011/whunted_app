@@ -293,9 +293,11 @@ typedef enum {
     ChatMessageTypeIncomingMakingOffer,
     ChatMessageTypeIncomingAcceptingOffer,
     ChatMessageTypeIncomingDecliningOffer,
+    ChatMessageTypeIncomingCancellingOffer,
     ChatMessageTypeOutgoingMakingOffer,
     ChatMessageTypeOutgoingAcceptingOffer,
-    ChatMessageTypeOutgoingDecliningOffer
+    ChatMessageTypeOutgoingDecliningOffer,
+    ChatMessageTypeOutgoingCancellingOffer
 } ChatMessageType;
 
 #endif
