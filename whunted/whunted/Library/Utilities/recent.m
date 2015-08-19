@@ -67,8 +67,12 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	PFUser *lastUser = [PFUser currentUser];
 	NSString *date = Date2String([NSDate date]);
     NSString *message = @"";
-    if (offerData.offeredPrice && offerData.offeredPrice.length > 0)
-        message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offerData.offeredPrice, offerData.deliveryTime];
+    if (offerData.offeredPrice && offerData.offeredPrice.length > 0) {
+        if ([offerData.deliveryTime integerValue] <= 1)
+            message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", offerData.offeredPrice, offerData.deliveryTime];
+        else
+            message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", offerData.offeredPrice, offerData.deliveryTime];
+    }
 	
 	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
                              @"lastUser":lastUser.objectId, @"lastMessage":message, @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_OFFER_ID:@"", PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, PF_INITIATOR_ID:offerData.initiatorID, PF_OFFERED_PRICE:offerData.offeredPrice, PF_DELIVERY_TIME:offerData.deliveryTime, PF_OFFER_STATUS:offerData.offerStatus};

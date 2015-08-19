@@ -334,7 +334,12 @@
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
             
             // Update recent message with new offer details
-            NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", _offerData.offeredPrice, _offerData.deliveryTime];
+            NSString *message;
+            if ([_offerData.deliveryTime integerValue] <= 1)
+                message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", _offerData.offeredPrice, _offerData.deliveryTime];
+            else
+                message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", _offerData.offeredPrice, _offerData.deliveryTime];
+            
             UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);

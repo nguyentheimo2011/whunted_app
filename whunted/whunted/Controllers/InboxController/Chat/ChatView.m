@@ -56,14 +56,7 @@
 	JSQMessagesBubbleImage  *_bubbleImageOutgoing;
     JSQMessagesBubbleImage  *_bubbleImageOutgoingSending;
 	JSQMessagesBubbleImage  *_bubbleImageIncoming;
-    JSQMessagesBubbleImage  *_bubbleImageOutgoingMakingOffer;
-    JSQMessagesBubbleImage  *_bubbleImageOutgoingAcceptingOffer;
-    JSQMessagesBubbleImage  *_bubbleImageOutgoingDecliningOffer;
-    JSQMessagesBubbleImage  *_bubbleImageOutgoingCancellingOffer;
-    JSQMessagesBubbleImage  *_bubbleImageIncomingMakingOffer;
-    JSQMessagesBubbleImage  *_bubbleImageIncomingAcceptingOffer;
-    JSQMessagesBubbleImage  *_bubbleImageIncomingDecliningOffer;
-    JSQMessagesBubbleImage  *_bubbleImageIncomingCancellingOffer;
+
 	JSQMessagesAvatarImage  *_avatarImageBlank;
     
     UIView                  *_background;
@@ -178,14 +171,6 @@
     _bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
     _bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
     _bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
-    _bubbleImageOutgoingMakingOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:DARK_CYAN_COLOR];
-    _bubbleImageIncomingMakingOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:DARK_CYAN_COLOR];
-    _bubbleImageOutgoingAcceptingOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:FLAT_FRESH_RED_COLOR];
-    _bubbleImageIncomingAcceptingOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:FLAT_FRESH_RED_COLOR];
-    _bubbleImageOutgoingDecliningOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:DARKER_BLUE_COLOR];
-    _bubbleImageIncomingDecliningOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:DARKER_BLUE_COLOR];
-    _bubbleImageOutgoingCancellingOffer = [bubbleFactory outgoingMessagesBubbleImageWithColor:JASMINE_YELLOW_COLOR];
-    _bubbleImageIncomingCancellingOffer = [bubbleFactory incomingMessagesBubbleImageWithColor:JASMINE_YELLOW_COLOR];
     
     _avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
     
@@ -678,45 +663,13 @@
             BOOL isSuccessful = [messageStatusDict[key] boolValue];
             if (!isSuccessful)
                 return _bubbleImageOutgoingSending;
-            else {
-                ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
-                if (messageType == ChatMessageTypeAcceptingOffer)
-                    return _bubbleImageOutgoingAcceptingOffer;
-                else if (messageType == ChatMessageTypeCancellingOffer)
-                    return _bubbleImageOutgoingCancellingOffer;
-                else if (messageType == ChatMessageTypeDecliningOffer)
-                    return _bubbleImageOutgoingDecliningOffer;
-                else if (messageType == ChatMessageTypeMakingOffer)
-                    return _bubbleImageOutgoingMakingOffer;
-                else
-                    return _bubbleImageOutgoing;
-            }
-        } else {
-            ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
-            if (messageType == ChatMessageTypeAcceptingOffer)
-                return _bubbleImageOutgoingAcceptingOffer;
-            else if (messageType == ChatMessageTypeCancellingOffer)
-                return _bubbleImageOutgoingCancellingOffer;
-            else if (messageType == ChatMessageTypeDecliningOffer)
-                return _bubbleImageOutgoingDecliningOffer;
-            else if (messageType == ChatMessageTypeMakingOffer)
-                return _bubbleImageOutgoingMakingOffer;
             else
                 return _bubbleImageOutgoing;
-        }
+        } else
+            return _bubbleImageOutgoing;
 	}
     else {
-        ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
-        if (messageType == ChatMessageTypeAcceptingOffer)
-            return _bubbleImageIncomingAcceptingOffer;
-        else if (messageType == ChatMessageTypeCancellingOffer)
-            return _bubbleImageIncomingCancellingOffer;
-        else if (messageType == ChatMessageTypeDecliningOffer)
-            return _bubbleImageIncomingDecliningOffer;
-        else if (messageType == ChatMessageTypeMakingOffer)
-            return _bubbleImageIncomingMakingOffer;
-        else
-            return _bubbleImageIncoming;
+        return _bubbleImageIncoming;
     }
 }
 
@@ -808,13 +761,22 @@
 {
 	JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
 
-	if ([self outgoing:messages[indexPath.item]])
-	{
+	if ([self outgoing:messages[indexPath.item]]) {
 		cell.textView.textColor = [UIColor whiteColor];
-	}
-	else
-	{
+        
+        ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
+        if (messageType == ChatMessageTypeNormal)
+            cell.textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        else
+            cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+	} else {
 		cell.textView.textColor = [UIColor blackColor];
+        
+        ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
+        if (messageType == ChatMessageTypeNormal)
+            cell.textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        else
+            cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
 	}
 	return cell;
 }
@@ -1013,7 +975,12 @@
     [self adjustButtonsVisibility];
     _offerData = offer;
     
-    NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
+    NSString *message;
+    if ([offer.deliveryTime integerValue] <= 1)
+        message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", offer.offeredPrice, offer.deliveryTime];
+    else
+        message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", offer.offeredPrice, offer.deliveryTime];
+    
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer];
     
     [self.navigationController popViewControllerAnimated:YES];
