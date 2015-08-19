@@ -196,7 +196,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addBackGroundForButtons
+- (void) addBackgroundForButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat statusAndNavigationBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -213,7 +213,7 @@
 - (void) addTopButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self addBackGroundForButtons];
+    [self addBackgroundForButtons];
     [self addMakingOfferButton];
     [self addLeavingFeedbackButton];
     [self addMakingAnotherOfferButton];
@@ -409,6 +409,8 @@
         if ([[self.navigationController.viewControllers objectAtIndex:viewControllersNum-2] isKindOfClass:[BuyersOrSellersOfferViewController class]]) {
             UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex:viewControllersNum-3];
             [self.navigationController popToViewController:viewController animated:YES];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } else {
         [self.navigationController popViewControllerAnimated:YES];
@@ -676,12 +678,46 @@
             BOOL isSuccessful = [messageStatusDict[key] boolValue];
             if (!isSuccessful)
                 return _bubbleImageOutgoingSending;
+            else {
+                ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
+                if (messageType == ChatMessageTypeAcceptingOffer)
+                    return _bubbleImageOutgoingAcceptingOffer;
+                else if (messageType == ChatMessageTypeCancellingOffer)
+                    return _bubbleImageOutgoingCancellingOffer;
+                else if (messageType == ChatMessageTypeDecliningOffer)
+                    return _bubbleImageOutgoingDecliningOffer;
+                else if (messageType == ChatMessageTypeMakingOffer)
+                    return _bubbleImageOutgoingMakingOffer;
+                else
+                    return _bubbleImageOutgoing;
+            }
+        } else {
+            ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
+            if (messageType == ChatMessageTypeAcceptingOffer)
+                return _bubbleImageOutgoingAcceptingOffer;
+            else if (messageType == ChatMessageTypeCancellingOffer)
+                return _bubbleImageOutgoingCancellingOffer;
+            else if (messageType == ChatMessageTypeDecliningOffer)
+                return _bubbleImageOutgoingDecliningOffer;
+            else if (messageType == ChatMessageTypeMakingOffer)
+                return _bubbleImageOutgoingMakingOffer;
             else
                 return _bubbleImageOutgoing;
-        } else
-            return _bubbleImageOutgoing;
+        }
 	}
-	else return _bubbleImageIncoming;
+    else {
+        ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
+        if (messageType == ChatMessageTypeAcceptingOffer)
+            return _bubbleImageIncomingAcceptingOffer;
+        else if (messageType == ChatMessageTypeCancellingOffer)
+            return _bubbleImageIncomingCancellingOffer;
+        else if (messageType == ChatMessageTypeDecliningOffer)
+            return _bubbleImageIncomingDecliningOffer;
+        else if (messageType == ChatMessageTypeMakingOffer)
+            return _bubbleImageIncomingMakingOffer;
+        else
+            return _bubbleImageIncoming;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -978,7 +1014,9 @@
     _offerData = offer;
     
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
-    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNone];
+    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Backend methods

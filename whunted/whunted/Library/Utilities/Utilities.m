@@ -562,6 +562,8 @@
         return ChatMessageTypeDecliningOffer;
     else if ([type isEqualToString:@"ChatMessageTypeMakingOffer"])
         return ChatMessageTypeMakingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeNormal"])
+        return ChatMessageTypeNormal;
     else
         return ChatMessageTypeNone;
 }
