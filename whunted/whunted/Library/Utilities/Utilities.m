@@ -534,26 +534,16 @@
 {
     if (type == ChatMessageTypeNone)
         return @"ChatMessageTypeNone";
-    else if (type == ChatMessageTypeIncomingAcceptingOffer)
-        return @"ChatMessageTypeIncomingAcceptingOffer";
-    else if (type == ChatMessageTypeIncomingCancellingOffer)
-        return @"ChatMessageTypeIncomingCancellingOffer";
-    else if (type == ChatMessageTypeIncomingDecliningOffer)
-        return @"ChatMessageTypeIncomingDecliningOffer";
-    else if (type == ChatMessageTypeIncomingMakingOffer)
-        return @"ChatMessageTypeIncomingMakingOffer";
-    else if (type == ChatMessageTypeIncomingNormal)
-        return @"ChatMessageTypeIncomingNormal";
-    else if (type == ChatMessageTypeOutgoingAcceptingOffer)
-        return @"ChatMessageTypeOutgoingAcceptingOffer";
-    else if (type == ChatMessageTypeOutgoingCancellingOffer)
-        return @"ChatMessageTypeOutgoingCancellingOffer";
-    else if (type == ChatMessageTypeOutgoingDecliningOffer)
-        return @"ChatMessageTypeOutgoingDecliningOffer";
-    else if (type == ChatMessageTypeOutgoingMakingOffer)
-        return @"ChatMessageTypeOutgoingMakingOffer";
-    else if (type == ChatMessageTypeOutgoingNormal)
-        return @"ChatMessageTypeOutgoingNormal";
+    else if (type == ChatMessageTypeAcceptingOffer)
+        return @"ChatMessageTypeAcceptingOffer";
+    else if (type == ChatMessageTypeCancellingOffer)
+        return @"ChatMessageTypeCancellingOffer";
+    else if (type == ChatMessageTypeDecliningOffer)
+        return @"ChatMessageTypeDecliningOffer";
+    else if (type == ChatMessageTypeMakingOffer)
+        return @"ChatMessageTypeMakingOffer";
+    else if (type == ChatMessageTypeNormal)
+        return @"ChatMessageTypeNormal";
     else
         return @"";
 }
@@ -564,26 +554,14 @@
 {
     if ([type isEqualToString:@"ChatMessageTypeNone"])
         return ChatMessageTypeNone;
-    else if ([type isEqualToString:@"ChatMessageTypeIncomingAcceptingOffer"])
-        return ChatMessageTypeIncomingAcceptingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeIncomingCancellingOffer"])
-        return ChatMessageTypeIncomingCancellingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeIncomingDecliningOffer"])
-        return ChatMessageTypeIncomingDecliningOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeIncomingMakingOffer"])
-        return ChatMessageTypeIncomingMakingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeIncomingNormal"])
-        return ChatMessageTypeIncomingNormal;
-    else if ([type isEqualToString:@"ChatMessageTypeOutgoingAcceptingOffer"])
-        return ChatMessageTypeOutgoingAcceptingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeOutgoingCancellingOffer"])
-        return ChatMessageTypeOutgoingCancellingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeOutgoingDecliningOffer"])
-        return ChatMessageTypeOutgoingDecliningOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeOutgoingMakingOffer"])
-        return ChatMessageTypeOutgoingMakingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeOutgoingNormal"])
-        return ChatMessageTypeOutgoingNormal;
+    else if ([type isEqualToString:@"ChatMessageTypeAcceptingOffer"])
+        return ChatMessageTypeAcceptingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeCancellingOffer"])
+        return ChatMessageTypeCancellingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeDecliningOffer"])
+        return ChatMessageTypeDecliningOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeMakingOffer"])
+        return ChatMessageTypeMakingOffer;
     else
         return ChatMessageTypeNone;
 }

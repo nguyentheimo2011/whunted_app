@@ -471,7 +471,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingCancellingOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer];
     }];
 }
 
@@ -512,7 +512,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingDecliningOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer];
     }];
 }
 
@@ -529,7 +529,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
         UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingAcceptingOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer];
     }];
 }
 
@@ -645,7 +645,7 @@
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)name date:(NSDate *)date
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingNormal];
+	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNormal];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

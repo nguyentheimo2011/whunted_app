@@ -619,7 +619,7 @@
     [chatView setUser2Username:_wantData.buyerUsername];
     [chatView setOfferData:offer];
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
-    [chatView messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingMakingOffer];
+    [chatView messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer];
     chatView.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:chatView animated:YES];
