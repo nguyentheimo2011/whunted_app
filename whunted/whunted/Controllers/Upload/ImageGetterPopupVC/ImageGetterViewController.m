@@ -12,6 +12,10 @@
 
 @implementation ImageGetterViewController
 
+@synthesize takingPhotoButton       =   _takingPhotoButton;
+@synthesize choosingPhotoButton     =   _choosingPhotoButton;
+@synthesize postingImageLinkButton  =   _postingImageLinkButton;
+
 //--------------------------------------------------------------------------------------------------------------------------------
 - (id) init
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -49,12 +53,23 @@
     [self.secondTitleLabel setText:NSLocalizedString(@"Choose a way to upload your photo", nil)];
     [self.secondTitleLabel setTextColor:[UIColor whiteColor]];
     
-    [self.takingPhotoButton setTitle:NSLocalizedString(@"Take a photo", nil) forState:UIControlStateNormal];
-    [self.takingPhotoButton setBackgroundColor:BACKGROUND_GRAY_COLOR];
-    [self.choosingPhotoButton setTitle:NSLocalizedString(@"Choose from gallery", nil) forState:UIControlStateNormal];
-    [self.choosingPhotoButton setBackgroundColor:LIGHTER_GRAY_COLOR];
-    [self.postingImageLinkButton setTitle:NSLocalizedString(@"Paste image URL", nil) forState:UIControlStateNormal];
-    [self.postingImageLinkButton setBackgroundColor:BACKGROUND_GRAY_COLOR];
+    [_takingPhotoButton createTitle:NSLocalizedString(@"Take a photo", nil) withIcon:[UIImage imageNamed:@"camera_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
+    _takingPhotoButton.cornerRadius = 0;
+    _takingPhotoButton.bgColor = LIGHTEST_GRAY_COLOR;
+    _takingPhotoButton.borderColor = LIGHTEST_GRAY_COLOR;
+    _takingPhotoButton.titleColor = MAIN_BLUE_COLOR;
+    
+    [_choosingPhotoButton createTitle:NSLocalizedString(@"Choose from gallery", nil) withIcon:[UIImage imageNamed:@"gallery_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
+    _choosingPhotoButton.cornerRadius = 0;
+    _choosingPhotoButton.bgColor = BACKGROUND_GRAY_COLOR;
+    _choosingPhotoButton.borderColor = BACKGROUND_GRAY_COLOR;
+    _choosingPhotoButton.titleColor = MAIN_BLUE_COLOR;
+    
+    [_postingImageLinkButton createTitle:NSLocalizedString(@"Paste image URL", nil) withIcon:[UIImage imageNamed:@"image_link_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
+    _postingImageLinkButton.cornerRadius = 0;
+    _postingImageLinkButton.bgColor = LIGHTEST_GRAY_COLOR;
+    _postingImageLinkButton.borderColor = LIGHTEST_GRAY_COLOR;
+    _postingImageLinkButton.titleColor = MAIN_BLUE_COLOR;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
