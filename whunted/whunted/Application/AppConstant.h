@@ -290,9 +290,12 @@ typedef enum {
 typedef enum {
     ChatMessageTypeIncomingNormal,
     ChatMessageTypeOutgoingNormal,
-    ChatMessageTypeMakingOffer,
-    ChatMessageTypeAcceptingOffer,
-    ChatMessageTypeDecliningOffer
+    ChatMessageTypeIncomingMakingOffer,
+    ChatMessageTypeIncomingAcceptingOffer,
+    ChatMessageTypeIncomingDecliningOffer,
+    ChatMessageTypeOutgoingMakingOffer,
+    ChatMessageTypeOutgoingAcceptingOffer,
+    ChatMessageTypeOutgoingDecliningOffer
 } ChatMessageType;
 
 #endif
