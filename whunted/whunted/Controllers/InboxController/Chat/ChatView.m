@@ -54,10 +54,10 @@
 	NSMutableDictionary     *avatars;
     NSMutableDictionary     *messageStatusDict;
 
-	JSQMessagesBubbleImage  *bubbleImageOutgoing;
-    JSQMessagesBubbleImage  *bubbleImageOutgoingSending;
-	JSQMessagesBubbleImage  *bubbleImageIncoming;
-	JSQMessagesAvatarImage  *avatarImageBlank;
+	JSQMessagesBubbleImage  *_bubbleImageOutgoing;
+    JSQMessagesBubbleImage  *_bubbleImageOutgoingSending;
+	JSQMessagesBubbleImage  *_bubbleImageIncoming;
+	JSQMessagesAvatarImage  *_avatarImageBlank;
     
     UIView                  *_background;
     
@@ -92,39 +92,14 @@
 {
 	[super viewDidLoad];
     
-    [Utilities customizeTitleLabel:_user2Username forViewController:self];
+    [self initData];
     
     [self customizeNavigationBar];
-	
-	items = [[NSMutableArray alloc] init];
-	messages = [[NSMutableArray alloc] init];
-	avatars = [[NSMutableDictionary alloc] init];
-    messageStatusDict = [[NSMutableDictionary alloc] init];
-	
-	PFUser *user = [PFUser currentUser];
-	self.senderId = user.objectId;
-	self.senderDisplayName = user[PF_USER_USERNAME];
-    
+    [self initUI];
     [self addTopButtons];
     [self adjustButtonsVisibility];
-	
-	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
-	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
-    bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
-	bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
     
-    avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
-    
-	[JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
-	
-	UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
-	[UIMenuController sharedMenuController].menuItems = @[menuItemCopy];
-	
-	firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
-	firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveWillUploadMessageNotification:) name:NOTIFICATION_WILL_UPLOAD_MESSAGE object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUploadMessageSuccessfullyNotification:) name:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:nil];
+    [self registerNotification];
 	
 	[self loadMessages];
 }
@@ -153,10 +128,56 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    items = [[NSMutableArray alloc] init];
+    messages = [[NSMutableArray alloc] init];
+    avatars = [[NSMutableDictionary alloc] init];
+    messageStatusDict = [[NSMutableDictionary alloc] init];
+    
+    PFUser *user = [PFUser currentUser];
+    self.senderId = user.objectId;
+    self.senderDisplayName = user[PF_USER_USERNAME];
+    
+    firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
+    firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) registerNotification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveWillUploadMessageNotification:) name:NOTIFICATION_WILL_UPLOAD_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUploadMessageSuccessfullyNotification:) name:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:nil];
+}
+
+
+#pragma mark - UI Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities customizeTitleLabel:_user2Username forViewController:self];
     [Utilities customizeBackButtonForViewController:self withAction:@selector(backButtonTapEventHandler)];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
+    _bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
+    _bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
+    _bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
+    
+    _avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_circle.png"] diameter:30.0];
+    
+    [JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
+    
+    UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
+    [UIMenuController sharedMenuController].menuItems = @[menuItemCopy];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -639,13 +660,13 @@
         if ([messageStatusDict objectForKey:key]) {
             BOOL isSuccessful = [messageStatusDict[key] boolValue];
             if (!isSuccessful)
-                return bubbleImageOutgoingSending;
+                return _bubbleImageOutgoingSending;
             else
-                return bubbleImageOutgoing;
+                return _bubbleImageOutgoing;
         } else
-            return bubbleImageOutgoing;
+            return _bubbleImageOutgoing;
 	}
-	else return bubbleImageIncoming;
+	else return _bubbleImageIncoming;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

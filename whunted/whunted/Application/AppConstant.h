@@ -286,4 +286,13 @@ typedef enum {
     HistoryCollectionViewModeSelling
 } HistoryCollectionViewMode;
 
+//----------------------------------------------------------------------------------------------------------------------------
+typedef enum {
+    ChatMessageTypeIncomingNormal,
+    ChatMessageTypeOutgoingNormal,
+    ChatMessageTypeMakingOffer,
+    ChatMessageTypeAcceptingOffer,
+    ChatMessageTypeDecliningOffer
+} ChatMessageType;
+
 #endif
