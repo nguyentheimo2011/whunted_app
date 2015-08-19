@@ -18,7 +18,6 @@
 #import "IDMPhotoBrowser.h"
 #import "RNGridMenu.h"
 
-#import "AppConstant.h"
 #import "camera.h"
 #import "common.h"
 #import "recent.h"
@@ -472,7 +471,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingCancellingOffer];
     }];
 }
 
@@ -513,7 +512,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
         UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingDecliningOffer];
     }];
 }
 
@@ -530,7 +529,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
         UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingAcceptingOffer];
     }];
 }
 
@@ -630,11 +629,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Outgoing *outgoing = [[Outgoing alloc] initWith:groupId View:self.navigationController.view];
-	[outgoing send:text Video:video Picture:picture Audio:audio];
+	[outgoing send:text Video:video Picture:picture Audio:audio ChatMessageType:type];
 	
 	[JSQSystemSoundPlayer jsq_playMessageSentSound];
 	[self finishSendingMessage];
@@ -646,7 +645,7 @@
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)name date:(NSDate *)date
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	[self messageSend:text Video:nil Picture:nil Audio:nil];
+	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeOutgoingNormal];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -948,7 +947,7 @@
 	NSURL *video = info[UIImagePickerControllerMediaURL];
 	UIImage *picture = info[UIImagePickerControllerEditedImage];
 	//---------------------------------------------------------------------------------------------------------------------------
-	[self messageSend:nil Video:video Picture:picture Audio:nil];
+	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone];
 	//---------------------------------------------------------------------------------------------------------------------------
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -979,7 +978,7 @@
     _offerData = offer;
     
     NSString *message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@", offer.offeredPrice, offer.deliveryTime];
-    [self messageSend:message Video:nil Picture:nil Audio:nil];
+    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNone];
 }
 
 #pragma mark - Backend methods

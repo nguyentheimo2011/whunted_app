@@ -9,6 +9,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "Outgoing.h"
+
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
 #import "MBProgressHUD.h"
@@ -20,9 +22,7 @@
 #import "push.h"
 #import "recent.h"
 #import "video.h"
-
-#import "Outgoing.h"
-#import "AppConstant.h"
+#import "Utilities.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface Outgoing()
@@ -46,17 +46,18 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio
+- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	item[@"userId"] = user.objectId;
-	item[@"name"] = user[PF_USER_USERNAME];
-	item[@"date"] = Date2String([NSDate date]);
-	item[@"status"] = @"Delivered";
+	item[@"userId"]         =   user.objectId;
+	item[@"name"]           =   user[PF_USER_USERNAME];
+	item[@"date"]           =   Date2String([NSDate date]);
+	item[@"status"]         =   @"Delivered";
+    item[CHAT_MESSAGE_TYPE] =   [Utilities stringFromChatMessageType:type];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	item[@"video"] = item[@"thumbnail"] = item[@"picture"] = item[@"audio"] = item[@"latitude"] = item[@"longitude"] = @"";
 	item[@"video_duration"] = item[@"audio_duration"] = @0;

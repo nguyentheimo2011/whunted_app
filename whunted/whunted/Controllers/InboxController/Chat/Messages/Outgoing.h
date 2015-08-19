@@ -11,12 +11,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "AppConstant.h"
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface Outgoing : NSObject
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 - (id)initWith:(NSString *)groupId_ View:(UIView *)view_;
 
-- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio;
+- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type;
 
 @end

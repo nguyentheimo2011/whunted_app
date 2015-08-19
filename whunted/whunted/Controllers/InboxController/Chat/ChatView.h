@@ -19,6 +19,8 @@
 #import "OfferData.h"
 #import "BuyersOrSellersOfferViewController.h"
 
+#import "AppConstant.h"
+
 @class BuyersOrSellersOfferViewController;
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -30,6 +32,6 @@
 
 - (id)initWith:(NSString *)groupId_;
 
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio;
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type;
 
 @end
