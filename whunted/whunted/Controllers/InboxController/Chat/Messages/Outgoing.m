@@ -13,7 +13,6 @@
 #import <Firebase/Firebase.h>
 #import "MBProgressHUD.h"
 
-#import "AppConstant.h"
 #import "AppDelegate.h"
 #import "converter.h"
 #import "emoji.h"

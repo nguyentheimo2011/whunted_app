@@ -288,6 +288,7 @@ typedef enum {
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
+    ChatMessageTypeNone,
     ChatMessageTypeIncomingNormal,
     ChatMessageTypeOutgoingNormal,
     ChatMessageTypeIncomingMakingOffer,
