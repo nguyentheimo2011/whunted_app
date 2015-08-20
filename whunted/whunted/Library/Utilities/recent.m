@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 
 #import "AppConstant.h"
+#import "Utilities.h"
 #import "converter.h"
 
 #import "recent.h"
@@ -72,11 +73,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
     // first message can only be either normal message or making offer message
     if (offerData.offeredPrice && offerData.offeredPrice.length > 0)
     {
-        if ([offerData.deliveryTime integerValue] <= 1)
-            message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", offerData.offeredPrice, offerData.deliveryTime];
-        else
-            message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", offerData.offeredPrice, offerData.deliveryTime];
-        
+        message = [Utilities makingOfferMessageFromOfferedPrice:offerData.offeredPrice andDeliveryTime:offerData.deliveryTime];
         transactionLastUserID = user.objectId;
     }
 	

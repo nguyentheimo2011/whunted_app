@@ -619,11 +619,7 @@
     [chatView setUser2Username:_wantData.buyerUsername];
     [chatView setOfferData:offer];
     
-    NSString *message;
-    if ([offer.deliveryTime integerValue] <= 1)
-        message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", offer.offeredPrice, offer.deliveryTime];
-    else
-        message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", offer.offeredPrice, offer.deliveryTime];
+    NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
     
     [chatView messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer];
     chatView.hidesBottomBarWhenPushed = YES;
