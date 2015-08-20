@@ -26,56 +26,60 @@
 	NSDictionary *_message;
 }
 
-@property (strong, nonatomic) IBOutlet PFImageView  *imageUser;
-@property (strong, nonatomic) IBOutlet UILabel      *labelDescription;
-@property (strong, nonatomic) IBOutlet UILabel      *labelItemName;
-@property (strong, nonatomic) IBOutlet UILabel      *labelLastMessage;
-@property (strong, nonatomic) IBOutlet UILabel      *labelElapsed;
-@property (strong, nonatomic) IBOutlet UIImageView  *itemImage;
-@property (strong, nonatomic) IBOutlet UILabel      *labelTransactionStatus;
-@property (strong, nonatomic) IBOutlet UILabel      *labelOfferedPrice;
+@property (strong, nonatomic) IBOutlet UIImageView  *userProfileImage;
+@property (strong, nonatomic) IBOutlet UILabel      *usernameLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *itemNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *lastMessageLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *timestampLabel;
+@property (strong, nonatomic) IBOutlet UIImageView  *itemImageView;
+@property (strong, nonatomic) IBOutlet UILabel      *transactionStatusLabel;
+@property (strong, nonatomic) IBOutlet UILabel      *detailedStatusLabel;
+
 
 @end
 //------------------------------------------------------------------------------------------------------------------------------
 
 @implementation MessageViewCell
 
-@synthesize imageUser;
-@synthesize labelDescription, labelItemName, labelLastMessage;
-@synthesize labelElapsed;
-@synthesize itemImage;
-@synthesize labelTransactionStatus, labelOfferedPrice;
+@synthesize userProfileImage        =   _userProfileImage;
+@synthesize usernameLabel           =   _usernameLabel;
+@synthesize itemNameLabel           =   _itemNameLabel;
+@synthesize lastMessageLabel        =   _lastMessageLabel;
+@synthesize timestampLabel          =   _timestampLabel;
+@synthesize itemImageView           =   _itemImageView;
+@synthesize transactionStatusLabel  =   _transactionStatusLabel;
+@synthesize detailedStatusLabel     =   _detailedStatusLabel;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [imageUser setImage:[UIImage imageNamed:@"user_profile_circle.png"]];
-    imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
-    imageUser.layer.masksToBounds = YES;
+    [_userProfileImage setImage:[UIImage imageNamed:@"user_profile_placeholder.png"]];
+    _userProfileImage.layer.cornerRadius = _userProfileImage.frame.size.width/2;
+    _userProfileImage.layer.masksToBounds = YES;
     
-    [labelDescription setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [labelItemName setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_usernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
     
-    [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [labelLastMessage setTextColor:[UIColor blackColor]];
+    [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_lastMessageLabel setTextColor:[UIColor blackColor]];
     
-    [labelElapsed setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:12]];
+    [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:12]];
     
-    [labelTransactionStatus setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [labelTransactionStatus setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
-    [labelTransactionStatus setTextColor:[UIColor whiteColor]];
-    [labelTransactionStatus setTextAlignment:NSTextAlignmentCenter];
-    labelTransactionStatus.layer.cornerRadius = 2;
-    labelTransactionStatus.layer.masksToBounds = YES;
-    [labelTransactionStatus setHidden:NO];
+    [_transactionStatusLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
+    [_transactionStatusLabel setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
+    [_transactionStatusLabel setTextColor:[UIColor whiteColor]];
+    [_transactionStatusLabel setTextAlignment:NSTextAlignmentCenter];
+    _transactionStatusLabel.layer.cornerRadius = 2;
+    _transactionStatusLabel.layer.masksToBounds = YES;
+    [_transactionStatusLabel setHidden:NO];
     
-    [labelOfferedPrice setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [labelOfferedPrice setHidden:NO];
+    [_detailedStatusLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
+    [_detailedStatusLabel setHidden:NO];
     
-    [itemImage setImage:[UIImage imageNamed:@"placeholder.png"]];
-    itemImage.layer.cornerRadius = 3;
-    itemImage.layer.masksToBounds = YES;
+    [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+    _itemImageView.layer.cornerRadius = 3;
+    _itemImageView.layer.masksToBounds = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -86,28 +90,28 @@
     
     if ([[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]]) {
         UIImage *image = [[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]];
-        [imageUser setImage:image];
+        [_userProfileImage setImage:image];
     } else {
         [self getProfileImageFromRemoteServer];
     }
 	
-	labelDescription.text = _message[@"description"];
-    labelItemName.text = _message[PF_ITEM_NAME];
-	labelLastMessage.text = _message[@"lastMessage"];
+	_usernameLabel.text = _message[@"description"];
+    _itemNameLabel.text = _message[PF_ITEM_NAME];
+	_lastMessageLabel.text = _message[@"lastMessage"];
     
     [self setItemPicture:_message[PF_ITEM_ID]];
 	
 	NSDate *date = String2Date(_message[@"date"]);
 	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:date];
-	labelElapsed.text = TimeElapsed(seconds);
+	_timestampLabel.text = TimeElapsed(seconds);
 	
 	int counter = [_message[@"counter"] intValue];
     if (counter == 0) {
-        [labelLastMessage setTextColor:[UIColor grayColor]];
-        [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+        [_lastMessageLabel setTextColor:[UIColor grayColor]];
+        [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     } else {
-        [labelLastMessage setTextColor:[UIColor blackColor]];
-        [labelLastMessage setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+        [_lastMessageLabel setTextColor:[UIColor blackColor]];
+        [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
     }
 }
 
@@ -117,7 +121,7 @@
 {
     UIImage *image = (UIImage *) [[PersistedCache sharedCache] imageForKey:itemID];
     if (image)
-        [itemImage setImage:image];
+        [_itemImageView setImage:image];
     else
         [self downloadItemImageFromRemoteServer];
 }
@@ -138,7 +142,7 @@
              [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                  if (!error) {
                      UIImage *image = [UIImage imageWithData:data];
-                     [imageUser setImage:image];
+                     [_userProfileImage setImage:image];
                      [[TemporaryCache sharedCache] setObject:image forKey:_message[@"profileId"]];
                  }
              }];
@@ -161,7 +165,7 @@
                     [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                         if (!error_2) {
                             UIImage *image = [UIImage imageWithData:data];
-                            [itemImage setImage:image];
+                            [_itemImageView setImage:image];
                             [[PersistedCache sharedCache] setImage:image forKey:_message[PF_ITEM_ID]];
                         } else {
                             NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);

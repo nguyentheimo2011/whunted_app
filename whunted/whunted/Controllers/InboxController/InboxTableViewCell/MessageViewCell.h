@@ -15,7 +15,7 @@
 @interface MessageViewCell : UITableViewCell
 //------------------------------------------------------------------------------------------------------------------------------
 
-- (void) customizeUI;
-- (void)bindData:(NSDictionary *)message;
+- (void)    customizeUI;
+- (void)    bindData:(NSDictionary *)message;
 
 @end

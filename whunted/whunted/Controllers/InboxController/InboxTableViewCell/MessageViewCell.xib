@@ -39,7 +39,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blank" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ois-e3-M4I">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Message" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ois-e3-M4I">
                         <rect key="frame" x="70" y="49.5" width="184.5" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="bLA-BN-B3s"/>
@@ -130,14 +130,14 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageUser" destination="Ifk-Hu-PIe" id="jXg-NP-iy1"/>
-                <outlet property="itemImage" destination="dbJ-cZ-a7n" id="K0g-Pc-56L"/>
-                <outlet property="labelDescription" destination="uxG-h3-jPt" id="zZj-wb-Zmk"/>
-                <outlet property="labelElapsed" destination="aCl-zV-J5y" id="ojp-rj-HN6"/>
-                <outlet property="labelItemName" destination="pSh-MW-vtJ" id="YJn-nv-bM8"/>
-                <outlet property="labelLastMessage" destination="Ois-e3-M4I" id="vrK-9B-5rf"/>
-                <outlet property="labelOfferedPrice" destination="fhr-tL-iaY" id="Kx1-6u-Ccy"/>
-                <outlet property="labelTransactionStatus" destination="LrI-Yt-dju" id="984-Zo-RI7"/>
+                <outlet property="detailedStatusLabel" destination="fhr-tL-iaY" id="Kaa-3u-HYa"/>
+                <outlet property="itemImageView" destination="dbJ-cZ-a7n" id="XsX-P9-JLe"/>
+                <outlet property="itemNameLabel" destination="pSh-MW-vtJ" id="m63-Dh-wVA"/>
+                <outlet property="lastMessageLabel" destination="Ois-e3-M4I" id="pMs-Gh-Qkb"/>
+                <outlet property="timestampLabel" destination="aCl-zV-J5y" id="a6W-cd-yBx"/>
+                <outlet property="transactionStatusLabel" destination="LrI-Yt-dju" id="e6m-bD-z96"/>
+                <outlet property="userProfileImage" destination="Ifk-Hu-PIe" id="SXy-YP-mQZ"/>
+                <outlet property="usernameLabel" destination="uxG-h3-jPt" id="zem-hq-wWl"/>
             </connections>
             <point key="canvasLocation" x="423" y="548"/>
         </tableViewCell>
