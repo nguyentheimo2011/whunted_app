@@ -175,6 +175,27 @@
 #define     PF_CREATED_AT                       @"createdAt"
 #define     PF_UPDATED_AT                       @"updatedAt"
 
+// Firebase Chat Recent
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     FB_RECENT_CHAT_ID                   @"recentChatID"
+#define     FB_GROUP_ID                         @"groupID"
+#define     FB_GROUP_MEMBERS                    @"groupMembers"
+#define     FB_CHAT_INITIATOR                   @"chatInitiator"
+#define     FB_LAST_MESSAGE                     @"lastMessage"
+#define     FB_LAST_USER                        @"lastUser"
+#define     FB_TIMESTAMP                        @"timestamp"
+#define     FB_UNREAD_MESSAGES_COUNTER          @"unreadMessagesCounter"
+#define     FB_WHUNT_OWNER_ID                   @"whuntOwnerID"
+#define     FB_WHUNT_OWNER_USERNAME             @"whuntOwnerUsername"
+#define     FB_ITEM_ID                          @"itemID"
+#define     FB_ITEM_NAME                        @"itemName"
+#define     FB_TRANSACTION_STATUS               @"transactionStatus"
+#define     FB_TRANSACTION_LAST_USER            @"transactionLastUser"
+#define     FB_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
+#define     FB_CURRENT_OFFERED_PRICE            @"currentOfferedPrice"
+#define     FB_CURRENT_OFFERED_DELIVERY_TIME    @"currentOfferedDeliveryTime"
+
+
 //-----------------------------------------------------------------------------------------------------------------------------
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
 #define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
