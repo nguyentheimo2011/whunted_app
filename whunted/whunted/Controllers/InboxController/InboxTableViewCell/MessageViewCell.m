@@ -13,10 +13,11 @@
 #import <ParseUI/ParseUI.h>
 #import <Haneke/UIImageView+Haneke.h>
 
-#import "AppConstant.h"
 #import "converter.h"
 #import "PersistedCache.h"
 #import "TemporaryCache.h"
+#import "AppConstant.h"
+#import "Utilities.h"
 
 #import "MessageViewCell.h"
 
@@ -58,24 +59,29 @@
     _userProfileImage.layer.cornerRadius = _userProfileImage.frame.size.width/2;
     _userProfileImage.layer.masksToBounds = YES;
     
-    [_usernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    _usernameLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
+    _usernameLabel.textColor = TEXT_COLOR_GRAY;
     
-    [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [_lastMessageLabel setTextColor:[UIColor blackColor]];
+    _itemNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
+    _itemNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     
-    [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:12]];
+    _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     
-    [_transactionStatusLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_transactionStatusLabel setBackgroundColor:ACCEPTED_BUTTON_BACKGROUND_COLOR];
-    [_transactionStatusLabel setTextColor:[UIColor whiteColor]];
-    [_transactionStatusLabel setTextAlignment:NSTextAlignmentCenter];
+    _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:12];
+    _timestampLabel.textColor = DARKEST_BLUE_COLOR;
+    
+    _transactionStatusLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
+    _transactionStatusLabel.backgroundColor = MAIN_BLUE_COLOR;
+    _transactionStatusLabel.textColor = [UIColor whiteColor];
+    _transactionStatusLabel.textAlignment = NSTextAlignmentCenter;
     _transactionStatusLabel.layer.cornerRadius = 2;
     _transactionStatusLabel.layer.masksToBounds = YES;
-    [_transactionStatusLabel setHidden:NO];
+    _transactionStatusLabel.hidden = NO;
     
-    [_detailedStatusLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_detailedStatusLabel setHidden:NO];
+    _detailedStatusLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
+    _detailedStatusLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _detailedStatusLabel.hidden = NO;
     
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     _itemImageView.layer.cornerRadius = 3;
@@ -102,16 +108,16 @@
     [self setItemPicture:_message[PF_ITEM_ID]];
 	
 	NSDate *date = String2Date(_message[@"date"]);
-	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:date];
-	_timestampLabel.text = TimeElapsed(seconds);
+	_timestampLabel.text = [Utilities longTimestampStringFromDate:date];
 	
 	int counter = [_message[@"counter"] intValue];
     if (counter == 0) {
-        [_lastMessageLabel setTextColor:[UIColor grayColor]];
-        [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+        _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+        _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
+        
     } else {
-        [_lastMessageLabel setTextColor:[UIColor blackColor]];
-        [_lastMessageLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+        _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
+        _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     }
 }
 
