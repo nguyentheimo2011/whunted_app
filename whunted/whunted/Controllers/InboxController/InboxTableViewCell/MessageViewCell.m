@@ -94,23 +94,23 @@
 {
 	_message = message;
     
-    if ([[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]]) {
-        UIImage *image = [[TemporaryCache sharedCache] objectForKey:_message[@"profileId"]];
+    if ([[TemporaryCache sharedCache] objectForKey:_message[FB_OPPOSING_USER_ID]]) {
+        UIImage *image = [[TemporaryCache sharedCache] objectForKey:_message[FB_OPPOSING_USER_ID]];
         [_userProfileImage setImage:image];
     } else {
         [self getProfileImageFromRemoteServer];
     }
 	
-	_usernameLabel.text = _message[@"description"];
+	_usernameLabel.text = _message[FB_OPPOSING_USER_USERNAME];
     _itemNameLabel.text = _message[PF_ITEM_NAME];
-	_lastMessageLabel.text = _message[@"lastMessage"];
+	_lastMessageLabel.text = _message[FB_LAST_MESSAGE];
     
     [self setItemPicture:_message[PF_ITEM_ID]];
 	
-	NSDate *date = String2Date(_message[@"date"]);
+	NSDate *date = String2Date(_message[FB_TIMESTAMP]);
 	_timestampLabel.text = [Utilities longTimestampStringFromDate:date];
 	
-	int counter = [_message[@"counter"] intValue];
+	int counter = [_message[FB_UNREAD_MESSAGES_COUNTER] intValue];
     if (counter == 0) {
         _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
         _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
@@ -137,7 +137,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-    [query whereKey:PF_USER_OBJECTID equalTo:_message[@"profileId"]];
+    [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_OPPOSING_USER_ID]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (!error)
@@ -161,7 +161,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
-    [query whereKey:PF_USER_OBJECTID equalTo:_message[PF_ITEM_ID]];
+    [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_ITEM_ID]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
             PFRelation *pictureRelation = obj[PF_ITEM_PICTURE_LIST];

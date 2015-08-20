@@ -76,7 +76,7 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-        FQuery *query = [[_firebase queryOrderedByChild:@"userId"] queryEqualToValue:user.objectId];
+        FQuery *query = [[_firebase queryOrderedByChild:FB_SELF_USER_ID] queryEqualToValue:user.objectId];
         [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
          {
              [_recentMessages removeAllObjects];
@@ -86,8 +86,8 @@
                                     {
                                         NSDictionary *recent1 = (NSDictionary *)obj1;
                                         NSDictionary *recent2 = (NSDictionary *)obj2;
-                                        NSDate *date1 = String2Date(recent1[@"date"]);
-                                        NSDate *date2 = String2Date(recent2[@"date"]);
+                                        NSDate *date1 = String2Date(recent1[FB_TIMESTAMP]);
+                                        NSDate *date2 = String2Date(recent2[FB_TIMESTAMP]);
                                         return [date2 compare:date1];
                                     }];
                  for (NSDictionary *recent in sorted)
@@ -160,15 +160,15 @@
     [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *recent = _recentMessages[indexPath.row];
-    ChatView *chatView = [[ChatView alloc] initWith:recent[@"groupId"]];
-    [chatView setUser2Username:recent[@"description"]];
+    ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
+    [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
     
     OfferData *offerData = [[OfferData alloc] init];
     offerData.objectID = recent[PF_OFFER_ID];
     offerData.itemID = recent[PF_ITEM_ID];
     offerData.itemName = recent[PF_ITEM_NAME];
-    offerData.sellerID = [(NSArray *) recent[@"members"] objectAtIndex:0];
-    offerData.buyerID = [(NSArray *) recent[@"members"] objectAtIndex:1];
+    offerData.sellerID = [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:0];
+    offerData.buyerID = [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:1];
     offerData.initiatorID = recent[PF_INITIATOR_ID];
     offerData.originalDemandedPrice = recent[PF_ORIGINAL_DEMANDED_PRICE];
     offerData.offeredPrice = recent[PF_OFFERED_PRICE];
