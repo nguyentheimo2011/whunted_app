@@ -54,7 +54,7 @@
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_userProfileImage setImage:[UIImage imageNamed:@"user_profile_placeholder.png"]];
+    [_userProfileImage setImage:[UIImage imageNamed:@"user_profile_image_placeholder_big.png"]];
     _userProfileImage.layer.cornerRadius = _userProfileImage.frame.size.width/2;
     _userProfileImage.layer.masksToBounds = YES;
     
