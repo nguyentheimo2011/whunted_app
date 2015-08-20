@@ -162,9 +162,11 @@
 #define     PF_OFFER_STATUS                     @"offerStatus"
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     PF_OFFER_STATUS_NOT_OFFERED         @"notOffered"
-#define     PF_OFFER_STATUS_OFFERED             @"offered"
-#define     PF_OFFER_STATUS_ACCEPTED            @"accepted"
+#define     OFFER_STATUS_NOT_OFFERED            @"NotOffered"
+#define     OFFER_STATUS_OFFERED                @"Offered"
+#define     OFFER_STATUS_CANCELLED              @"Cancelled"
+#define     OFFER_STATUS_DECLINED               @"Declined"
+#define     OFFER_STATUS_ACCEPTED               @"Accepted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_FEEDBACK_WRITER_ID               @"writerID"
@@ -191,7 +193,7 @@
 #define     FB_ITEM_ID                          @"itemID"
 #define     FB_ITEM_NAME                        @"itemName"
 #define     FB_TRANSACTION_STATUS               @"transactionStatus"
-#define     FB_TRANSACTION_LAST_USER_ID         @"transactionLastUserID"
+#define     FB_TRANSACTION_LAST_USER            @"transactionLastUser"
 #define     FB_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
 #define     FB_CURRENT_OFFERED_PRICE            @"currentOfferedPrice"
 #define     FB_CURRENT_OFFERED_DELIVERY_TIME    @"currentOfferedDeliveryTime"

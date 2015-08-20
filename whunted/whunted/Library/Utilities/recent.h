@@ -30,8 +30,10 @@ void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *last
 void			UpdateRecentCounter2	(NSDictionary *recent, NSInteger amount, NSString *lastMessage);
 
 //------------------------------------------------------------------------------------------------------------------------------
-void            UpdateRecentOffer1      (NSString *groupId, NSString *offerID, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus, NSString *message);
-void            UpdateRecentOffer2      (NSDictionary *recent, NSString *offerID, NSString *initiatorID, NSString *offeredPrice, NSString *deliveryTime, NSString *offerStatus, NSString *message);
+void            UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, NSString *transactionLastUserID,
+                                          NSString *offeredPrice, NSString *deliveryTime, NSString *message);
+void            UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus, NSString *transactionLastUserID,
+                                          NSString *offeredPrice, NSString *deliveryTime, NSString *message);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			ClearRecentCounter1		(NSString *groupId);

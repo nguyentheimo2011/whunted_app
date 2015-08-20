@@ -306,7 +306,7 @@
     _offerData.offeredPrice = _offeredPriceTextField.text;
     _offerData.deliveryTime = _offeredDeliveryTextField.text;
     _offerData.initiatorID = [PFUser currentUser].objectId;
-    _offerData.offerStatus = PF_OFFER_STATUS_OFFERED;
+    _offerData.offerStatus = OFFER_STATUS_OFFERED;
     
     if (_offerData.offeredPrice == nil || _offerData.offeredPrice.length == 0) {
         _offerData.offeredPrice = _offerData.originalDemandedPrice;
@@ -336,7 +336,7 @@
             // Update recent message with new offer details
             NSString *message = [Utilities makingOfferMessageFromOfferedPrice:_offerData.offeredPrice andDeliveryTime:_offerData.deliveryTime];
             
-            UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+            UpdateRecentTransaction1(groupId, _offerData.offerStatus, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, message);
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

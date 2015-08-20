@@ -213,7 +213,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (_offerData.initiatorID.length > 0) {
-        if ([_offerData.offerStatus isEqualToString:PF_OFFER_STATUS_ACCEPTED]) {
+        if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_ACCEPTED]) {
             // Offer was accepted
             [_makingOfferButton setHidden:YES];
             
@@ -450,13 +450,13 @@
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
-        _offerData.offerStatus = @"";
+        _offerData.offerStatus = OFFER_STATUS_CANCELLED;
         
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
-        UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer];
     }];
@@ -491,13 +491,13 @@
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
-        _offerData.offerStatus = @"";
+        _offerData.offerStatus = OFFER_STATUS_DECLINED;
         
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
-        UpdateRecentOffer1(groupId, @"", _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer];
     }];
@@ -507,14 +507,14 @@
 - (void) acceptingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offerData.offerStatus = PF_OFFER_STATUS_ACCEPTED;
+    _offerData.offerStatus = OFFER_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-        UpdateRecentOffer1(groupId, _offerData.objectID, _offerData.initiatorID, _offerData.offeredPrice, _offerData.deliveryTime, _offerData.offerStatus, message);
+        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer];
     }];
