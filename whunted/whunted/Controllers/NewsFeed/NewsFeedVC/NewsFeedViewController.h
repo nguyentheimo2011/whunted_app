@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GenericController.h"
 
-@interface NewsFeedViewController : GenericController <UITableViewDataSource, UITableViewDelegate>
+@interface NewsFeedViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

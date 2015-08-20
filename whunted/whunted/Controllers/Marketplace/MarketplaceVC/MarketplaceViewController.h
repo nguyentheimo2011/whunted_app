@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "GenericController.h"
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
 
@@ -16,7 +15,7 @@
 
 @end
 
-@interface MarketplaceViewController : GenericController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
+@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 

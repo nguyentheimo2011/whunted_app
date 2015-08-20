@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GenericController.h"
-
-@interface UploadingViewController : GenericController
+@interface UploadingViewController : UIViewController
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GenericController.h"
 #import "ImageGetterViewController.h"
 #import "ImageRetrieverViewController.h"
 #import "UploadingWantDetailsViewController.h"

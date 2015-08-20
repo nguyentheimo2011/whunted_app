@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "NewsFeedViewController.h"
-#import "GenericController.h"
 #import "InboxAllViewController.h"
 #import "UploadingViewController.h"
 #import "UserProfileViewController.h"
