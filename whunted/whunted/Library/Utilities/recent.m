@@ -37,7 +37,7 @@ NSString* StartPrivateChat(PFUser *user1, PFUser *user2, OfferData *offerData)
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData)
+void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, OfferData *offerData)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -52,30 +52,41 @@ void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSStri
 				if ([recent[@"userId"] isEqualToString:user.objectId]) create = NO;
 			}
 		}
-		if (create) CreateRecentItem2(user, groupId, members, description, profile, offerData);
+		if (create) CreateRecentItem2(user, groupId, members, opposingUserUsername, opposingUser, offerData);
 	}];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData)
+void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, OfferData *offerData)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	Firebase *reference = [firebase childByAutoId];
 	
-	NSString *recentId = reference.key;
-	PFUser *lastUser = [PFUser currentUser];
-	NSString *date = Date2String([NSDate date]);
-    NSString *message = @"";
-    if (offerData.offeredPrice && offerData.offeredPrice.length > 0) {
+	NSString    *recentId               =   reference.key;
+	PFUser      *lastUser               =   [PFUser currentUser];
+	NSString    *timestamp              =   Date2String([NSDate date]);
+    NSString    *message                =   @"";
+    NSString    *transactionLastUserID  =   @"";
+    
+    // first message can only be either normal message or making offer message
+    if (offerData.offeredPrice && offerData.offeredPrice.length > 0)
+    {
         if ([offerData.deliveryTime integerValue] <= 1)
             message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ day", offerData.offeredPrice, offerData.deliveryTime];
         else
             message = [NSString stringWithFormat:@"Made An Offer\n  %@  \nDeliver in %@ days", offerData.offeredPrice, offerData.deliveryTime];
+        
+        transactionLastUserID = user.objectId;
     }
 	
-	NSDictionary *recent = @{@"recentId":recentId, @"userId":user.objectId, @"groupId":groupId, @"members":members, @"description":description,
-                             @"lastUser":lastUser.objectId, @"lastMessage":message, @"counter":@0, @"date":date, @"profileId":profile.objectId, PF_OFFER_ID:@"", PF_ITEM_ID:offerData.itemID, PF_ITEM_NAME:offerData.itemName, PF_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, PF_INITIATOR_ID:offerData.initiatorID, PF_OFFERED_PRICE:offerData.offeredPrice, PF_DELIVERY_TIME:offerData.deliveryTime, PF_OFFER_STATUS:offerData.offerStatus};
+    NSDictionary *recent = @{FB_RECENT_CHAT_ID:recentId, FB_GROUP_ID:groupId, FB_GROUP_MEMBERS:members,
+                             FB_CHAT_INITIATOR:user.objectId, FB_OPPOSING_USER_ID:opposingUser.objectId,
+                             FB_OPPOSING_USER_USERNAME:opposingUserUsername, FB_LAST_USER:lastUser.objectId,
+                             FB_LAST_MESSAGE:message, FB_UNREAD_MESSAGES_COUNTER:@0, FB_TIMESTAMP:timestamp,
+                             FB_ITEM_ID:offerData.itemID, FB_ITEM_NAME:offerData.itemName,
+                             FB_TRANSACTION_STATUS:offerData.offerStatus, FB_TRANSACTION_LAST_USER_ID:transactionLastUserID,
+                             FB_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, FB_CURRENT_OFFERED_PRICE:offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:offerData.deliveryTime};
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{

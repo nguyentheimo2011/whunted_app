@@ -19,8 +19,11 @@ NSString*		StartMultipleChat		(NSMutableArray *users);
 void			StartGroupChat			(PFObject *group, NSMutableArray *users);
 
 //------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData);
-void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *description, PFUser *profile, OfferData *offerData);
+void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername,
+                                         PFUser *opposingUser, OfferData *offerData);
+
+void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername,
+                                         PFUser *opposingUser, OfferData *offerData);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *lastMessage);
