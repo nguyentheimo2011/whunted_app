@@ -181,6 +181,7 @@
 #define     FB_GROUP_ID                         @"groupID"
 #define     FB_GROUP_MEMBERS                    @"groupMembers"
 #define     FB_CHAT_INITIATOR                   @"chatInitiator"
+#define     FB_SELF_USER_ID                     @"selfUserID"
 #define     FB_OPPOSING_USER_ID                 @"opposingUserID"
 #define     FB_OPPOSING_USER_USERNAME           @"opposingUserUsername"
 #define     FB_LAST_MESSAGE                     @"lastMessage"

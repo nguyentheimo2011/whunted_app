@@ -115,7 +115,7 @@ void UpdateRecentCounter2(NSDictionary *recent, NSInteger amount, NSString *last
 {
 	PFUser *user = [PFUser currentUser];
 	NSString *date = Date2String([NSDate date]);
-	NSInteger counter = [recent[@"counter"] integerValue];
+	NSInteger counter = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue];
 	if ([recent[@"userId"] isEqualToString:user.objectId] == NO) counter += amount;
 	
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[@"recentId"]]];
