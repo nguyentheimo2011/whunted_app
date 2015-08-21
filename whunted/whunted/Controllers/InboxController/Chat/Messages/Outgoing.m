@@ -46,7 +46,7 @@
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
+- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock
 //--------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
@@ -71,7 +71,7 @@
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
+- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock
 //--------------------------------------------------------------------------------------------------------------------------------
 {
 	item[@"text"] = text;
@@ -163,7 +163,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)sendMessage:(NSMutableDictionary *)item TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
+- (void)sendMessage:(NSMutableDictionary *)item TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];

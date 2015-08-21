@@ -616,7 +616,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Outgoing *outgoing = [[Outgoing alloc] initWith:groupId View:self.navigationController.view];

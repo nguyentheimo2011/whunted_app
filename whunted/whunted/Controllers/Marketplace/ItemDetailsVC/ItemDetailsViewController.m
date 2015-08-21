@@ -624,7 +624,7 @@
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
     NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:offer.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_currOffer.objectID, FB_CURRENT_OFFERED_PRICE:offer.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:offer.deliveryTime};
     
-    MakingOfferHandler handler = ^() {
+    CompletionHandler handler = ^() {
         [self.navigationController pushViewController:chatView animated:YES];
     };
     

@@ -310,7 +310,7 @@ typedef enum {
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef void (^FetchedUserHandler) (PFUser *, UIImage *);
-typedef void (^MakingOfferHandler) (void);
+typedef void (^CompletionHandler) (void);
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
