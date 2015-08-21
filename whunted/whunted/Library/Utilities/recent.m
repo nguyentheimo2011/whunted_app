@@ -122,7 +122,7 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
     NSDictionary *values;
     if (transactionStatus.length > 0)
-        values = @{FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
+        values = @{FB_TRANSACTION_STATUS:transactionStatus, FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
     else
         values = @{FB_LAST_USER:[PFUser currentUser].objectId, FB_LAST_MESSAGE:message, FB_UNREAD_MESSAGES_COUNTER:@(counter), FB_TIMESTAMP:date};
     

@@ -81,8 +81,8 @@
     
     _detailedStatusLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
     _detailedStatusLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _detailedStatusLabel.text = @"Not Offered";
-    _detailedStatusLabel.hidden = NO;
+    _detailedStatusLabel.text = @"";
+    _detailedStatusLabel.hidden = YES;
     
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     _itemImageView.layer.cornerRadius = 3;
@@ -140,15 +140,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([transactionStatus isEqualToString:OFFER_STATUS_ACCEPTED])
-        _detailedStatusLabel.text = OFFER_STATUS_ACCEPTED;
+        _transactionStatusLabel.text = OFFER_STATUS_ACCEPTED;
     else if ([transactionStatus isEqualToString:OFFER_STATUS_CANCELLED])
-        _detailedStatusLabel.text = OFFER_STATUS_CANCELLED;
+        _transactionStatusLabel.text = OFFER_STATUS_CANCELLED;
     else if ([transactionStatus isEqualToString:OFFER_STATUS_DECLINED])
-        _detailedStatusLabel.text = OFFER_STATUS_DECLINED;
+        _transactionStatusLabel.text = OFFER_STATUS_DECLINED;
     else if ([transactionStatus isEqualToString:OFFER_STATUS_NOT_OFFERED])
-        _detailedStatusLabel.text = @"Not Offered";
+        _transactionStatusLabel.text = @"Not Offered";
     else
-        _detailedStatusLabel.text = OFFER_STATUS_OFFERED;
+        _transactionStatusLabel.text = OFFER_STATUS_OFFERED;
         
 }
 
