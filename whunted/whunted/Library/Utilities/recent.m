@@ -151,9 +151,11 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *date = Date2String([NSDate date]);
+    NSInteger counter = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue];
+    if ([recent[FB_SELF_USER_ID] isEqualToString:[PFUser currentUser].objectId] == NO) counter += 1;
     
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
-    NSDictionary *values = @{FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date};
+    NSDictionary *values = @{FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
     [firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
      {
          if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");

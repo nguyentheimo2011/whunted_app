@@ -446,7 +446,7 @@
 {
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        _offerData.objectID = nil;
+        _offerData.objectID = @"";
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
@@ -456,9 +456,9 @@
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
-        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails];
     }];
 }
 
@@ -487,7 +487,7 @@
 {
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        _offerData.objectID = nil;
+        _offerData.objectID = @"";
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
@@ -497,9 +497,9 @@
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
-        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails];
     }];
 }
 
@@ -514,9 +514,9 @@
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-        UpdateRecentTransaction1(groupId, _offerData.offerStatus, [PFUser currentUser].objectId, _offerData.offeredPrice, _offerData.deliveryTime, message);
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails];
     }];
 }
 
@@ -616,11 +616,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Outgoing *outgoing = [[Outgoing alloc] initWith:groupId View:self.navigationController.view];
-	[outgoing send:text Video:video Picture:picture Audio:audio ChatMessageType:type];
+	[outgoing send:text Video:video Picture:picture Audio:audio ChatMessageType:type TransactionDetails:details];
 	
 	[JSQSystemSoundPlayer jsq_playMessageSentSound];
 	[self finishSendingMessage];
@@ -632,7 +632,7 @@
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)name date:(NSDate *)date
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNormal];
+	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNormal TransactionDetails:nil];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -761,7 +761,8 @@
 {
 	JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
 
-	if ([self outgoing:messages[indexPath.item]]) {
+	if ([self outgoing:messages[indexPath.item]])
+    {
 		cell.textView.textColor = [UIColor whiteColor];
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
@@ -769,7 +770,9 @@
             cell.textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
         else
             cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
-	} else {
+	}
+    else
+    {
 		cell.textView.textColor = [UIColor blackColor];
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
@@ -945,7 +948,7 @@
 	NSURL *video = info[UIImagePickerControllerMediaURL];
 	UIImage *picture = info[UIImagePickerControllerEditedImage];
 	//---------------------------------------------------------------------------------------------------------------------------
-	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone];
+	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone TransactionDetails:nil];
 	//---------------------------------------------------------------------------------------------------------------------------
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -976,8 +979,9 @@
     _offerData = offer;
     
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
+    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
     
-    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer];
+    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

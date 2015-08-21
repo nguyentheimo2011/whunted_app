@@ -24,20 +24,20 @@
 #import "video.h"
 #import "Utilities.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 @interface Outgoing()
 {
 	NSString *groupId;
 	UIView *view;
 }
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 
 @implementation Outgoing
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_ View:(UIView *)view_
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 	self = [super init];
 	groupId = groupId_;
@@ -45,47 +45,47 @@
 	return self;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	item[@"userId"]         =   user.objectId;
 	item[@"name"]           =   user[PF_USER_USERNAME];
 	item[@"date"]           =   Date2String([NSDate date]);
 	item[@"status"]         =   @"Delivered";
     item[CHAT_MESSAGE_TYPE] =   [Utilities stringFromChatMessageType:type];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	item[@"video"] = item[@"thumbnail"] = item[@"picture"] = item[@"audio"] = item[@"latitude"] = item[@"longitude"] = @"";
 	item[@"video_duration"] = item[@"audio_duration"] = @0;
 	item[@"picture_width"] = item[@"picture_height"] = @0;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if (text != nil) [self sendTextMessage:item Text:text];
+	
+	if (text != nil) [self sendTextMessage:item Text:text TransactionDetails:details];
 	else if (video != nil) [self sendVideoMessage:item Video:video];
 	else if (picture != nil) [self sendPictureMessage:item Picture:picture];
 	else if (audio != nil) [self sendAudioMessage:item Audio:audio];
 	else [self sendLoactionMessage:item];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text TransactionDetails: (NSDictionary *) details
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 	item[@"text"] = text;
 	item[@"type"] = IsEmoji(text) ? @"emoji" : @"text";
-	[self sendMessage:item];
+	[self sendMessage:item TransactionDetails:details];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void)sendVideoMessage:(NSMutableDictionary *)item Video:(NSURL *)video
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
 	hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	UIImage *picture = VideoThumbnail(video);
 	UIImage *squared = SquareImage(picture, 320);
 	NSNumber *duration = VideoDuration(video);
@@ -105,7 +105,7 @@
 					item[@"thumbnail"] = fileThumbnail.url;
 					item[@"text"] = @"[Video message]";
 					item[@"type"] = @"video";
-					[self sendMessage:item];
+					[self sendMessage:item TransactionDetails:nil];
 				}
 				else NSLog(@"Outgoing sendVideoMessage video save error.");
 			}
@@ -118,13 +118,13 @@
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void)sendPictureMessage:(NSMutableDictionary *)item Picture:(UIImage *)picture
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
 	hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	int width = (int) picture.size.width;
 	int height = (int) picture.size.height;
 	PFFile *file = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
@@ -138,7 +138,7 @@
 			item[@"picture_height"] = [NSNumber numberWithInt:height];
 			item[@"text"] = @"[Picture message]";
 			item[@"type"] = @"picture";
-			[self sendMessage:item];
+			[self sendMessage:item TransactionDetails:nil];
 		}
 		else NSLog(@"Outgoing sendPictureMessage picture save error.");
 	}
@@ -148,22 +148,22 @@
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void)sendAudioMessage:(NSMutableDictionary *)item Audio:(NSString *)audio
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void)sendLoactionMessage:(NSMutableDictionary *)item
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
 
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)sendMessage:(NSMutableDictionary *)item
+- (void)sendMessage:(NSMutableDictionary *)item TransactionDetails: (NSDictionary *) details
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
@@ -181,7 +181,11 @@
 	}];
 	
 	SendPushNotification1(groupId, item[@"text"]);
-	UpdateRecentCounter1(groupId, 1, item[@"text"]);
+    
+    if (details)
+        UpdateRecentCounter1(groupId, 1, item[@"text"]);
+    else
+        UpdateRecentTransaction1(details[FB_GROUP_ID], details[FB_TRANSACTION_STATUS], details[FB_TRANSACTION_LAST_USER], details[FB_CURRENT_OFFERED_PRICE], details[FB_CURRENT_OFFERED_DELIVERY_TIME], item[@"text"]);
 }
 
 @end
