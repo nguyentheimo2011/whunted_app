@@ -31,9 +31,9 @@ void			UpdateRecentCounter2	(NSDictionary *recent, NSInteger amount, NSString *l
 
 //------------------------------------------------------------------------------------------------------------------------------
 void            UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, NSString *transactionLastUserID,
-                                          NSString *offeredPrice, NSString *deliveryTime, NSString *message);
+                                          NSString *offerID, NSString *offeredPrice, NSString *deliveryTime, NSString *message);
 void            UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus, NSString *transactionLastUserID,
-                                          NSString *offeredPrice, NSString *deliveryTime, NSString *message);
+                                          NSString *offerID, NSString *offeredPrice, NSString *deliveryTime, NSString *message);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			ClearRecentCounter1		(NSString *groupId);
