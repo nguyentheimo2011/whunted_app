@@ -32,4 +32,6 @@
 
 @property (nonatomic, strong) PFUser    *user2;
 
+@property (nonatomic, strong) NSString  *offerFrom;
+
 @end

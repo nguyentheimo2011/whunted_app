@@ -41,6 +41,7 @@
 @synthesize offeredDeliveryTextField    =   _offeredDeliveryTextField;
 @synthesize delegate                    =   _delegate;
 @synthesize user2                       =   _user2;
+@synthesize offerFrom                   =   _offerFrom;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -323,7 +324,7 @@
         if (!error) {
             [_offerData setObjectID:offerObj.objectId];
             
-            if (!offerChanged) {
+            if (!offerChanged && ![_offerFrom isEqualToString:OFFER_FROM_CHAT_VIEW]) {
                 StartPrivateChat([PFUser currentUser], _user2, _offerData);
             }
             

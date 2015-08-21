@@ -268,6 +268,10 @@
 #define     STRING_OF_NO                                @"NO"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     OFFER_FROM_CHAT_VIEW                        @"offerFromChatView"
+#define     OFFER_FROM_ITEM_DETAILS                     @"offerFromItemDetails"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60
 #define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
 #define     NUM_OF_SECONDS_IN_A_DAY                     86400

@@ -408,6 +408,7 @@
 {
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
     [offerVC setOfferData:_offerData];
+    offerVC.offerFrom = OFFER_FROM_CHAT_VIEW;
     [offerVC setDelegate:self];
     
     if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {

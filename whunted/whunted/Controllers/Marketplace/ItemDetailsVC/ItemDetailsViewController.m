@@ -474,6 +474,7 @@
     sellersOfferVC.delegate = self;
     sellersOfferVC.buyerName = _wantData.buyerUsername;
     sellersOfferVC.user2 = user2;
+    sellersOfferVC.offerFrom = OFFER_FROM_ITEM_DETAILS;
     
     if (_currOffer) {
         sellersOfferVC.offerData = _currOffer;
