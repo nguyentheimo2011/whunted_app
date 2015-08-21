@@ -458,7 +458,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
 }
 
@@ -499,7 +499,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
         NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
 }
 
@@ -516,7 +516,7 @@
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
         NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails];
+        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
 }
 
@@ -616,11 +616,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details
+- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Outgoing *outgoing = [[Outgoing alloc] initWith:groupId View:self.navigationController.view];
-	[outgoing send:text Video:video Picture:picture Audio:audio ChatMessageType:type TransactionDetails:details];
+	[outgoing send:text Video:video Picture:picture Audio:audio ChatMessageType:type TransactionDetails:details CompletionBlock:completionBlock];
 	
 	[JSQSystemSoundPlayer jsq_playMessageSentSound];
 	[self finishSendingMessage];
@@ -632,7 +632,7 @@
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)name date:(NSDate *)date
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNormal TransactionDetails:nil];
+	[self messageSend:text Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeNormal TransactionDetails:nil CompletionBlock:nil];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -948,7 +948,7 @@
 	NSURL *video = info[UIImagePickerControllerMediaURL];
 	UIImage *picture = info[UIImagePickerControllerEditedImage];
 	//---------------------------------------------------------------------------------------------------------------------------
-	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone TransactionDetails:nil];
+	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone TransactionDetails:nil CompletionBlock:nil];
 	//---------------------------------------------------------------------------------------------------------------------------
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
@@ -981,7 +981,7 @@
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
     NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
     
-    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails];
+    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:nil];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

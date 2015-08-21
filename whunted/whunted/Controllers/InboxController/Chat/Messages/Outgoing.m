@@ -46,7 +46,7 @@
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details
+- (void)send:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
 //--------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
@@ -63,7 +63,7 @@
 	item[@"video_duration"] = item[@"audio_duration"] = @0;
 	item[@"picture_width"] = item[@"picture_height"] = @0;
 	
-	if (text != nil) [self sendTextMessage:item Text:text TransactionDetails:details];
+	if (text != nil) [self sendTextMessage:item Text:text TransactionDetails:details CompletionBlock:completionBlock];
 	else if (video != nil) [self sendVideoMessage:item Video:video];
 	else if (picture != nil) [self sendPictureMessage:item Picture:picture];
 	else if (audio != nil) [self sendAudioMessage:item Audio:audio];
@@ -71,12 +71,12 @@
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
-- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text TransactionDetails: (NSDictionary *) details
+- (void)sendTextMessage:(NSMutableDictionary *)item Text:(NSString *)text TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
 //--------------------------------------------------------------------------------------------------------------------------------
 {
 	item[@"text"] = text;
 	item[@"type"] = IsEmoji(text) ? @"emoji" : @"text";
-	[self sendMessage:item TransactionDetails:details];
+	[self sendMessage:item TransactionDetails:details CompletionBlock:completionBlock];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@
 					item[@"thumbnail"] = fileThumbnail.url;
 					item[@"text"] = @"[Video message]";
 					item[@"type"] = @"video";
-					[self sendMessage:item TransactionDetails:nil];
+					[self sendMessage:item TransactionDetails:nil CompletionBlock:nil];
 				}
 				else NSLog(@"Outgoing sendVideoMessage video save error.");
 			}
@@ -138,7 +138,7 @@
 			item[@"picture_height"] = [NSNumber numberWithInt:height];
 			item[@"text"] = @"[Picture message]";
 			item[@"type"] = @"picture";
-			[self sendMessage:item TransactionDetails:nil];
+			[self sendMessage:item TransactionDetails:nil CompletionBlock:nil];
 		}
 		else NSLog(@"Outgoing sendPictureMessage picture save error.");
 	}
@@ -163,7 +163,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)sendMessage:(NSMutableDictionary *)item TransactionDetails: (NSDictionary *) details
+- (void)sendMessage:(NSMutableDictionary *)item TransactionDetails: (NSDictionary *) details CompletionBlock: (MakingOfferHandler) completionBlock
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
@@ -176,8 +176,11 @@
 	{
 		if (error)
             NSLog(@"Outgoing sendMessage network error.");
-        else
+        else {
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:item[@"key"]];
+            if (completionBlock)
+                completionBlock();
+        }
 	}];
 	
 	SendPushNotification1(groupId, item[@"text"]);
