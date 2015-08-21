@@ -92,41 +92,6 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void UpdateRecentCounter1(NSString *groupId, NSInteger amount, NSString *lastMessage)
-//------------------------------------------------------------------------------------------------------------------------------
-{
-	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-	FQuery *query = [[firebase queryOrderedByChild:FB_GROUP_ID] queryEqualToValue:groupId];
-	[query observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
-	{
-		if (snapshot.value != [NSNull null])
-		{
-			for (NSDictionary *recent in [snapshot.value allValues])
-			{
-				UpdateRecentCounter2(recent, amount, lastMessage);
-			}
-		}
-	}];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-void UpdateRecentCounter2(NSDictionary *recent, NSInteger amount, NSString *lastMessage)
-//------------------------------------------------------------------------------------------------------------------------------
-{
-	PFUser *user = [PFUser currentUser];
-	NSString *date = Date2String([NSDate date]);
-	NSInteger counter = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue];
-	if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId] == NO) counter += amount;
-	
-	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
-	NSDictionary *values = @{FB_LAST_USER:user.objectId, FB_LAST_MESSAGE:lastMessage, FB_UNREAD_MESSAGES_COUNTER:@(counter), FB_TIMESTAMP:date};
-	[firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
-	{
-		if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");
-	}];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 void UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, NSString *transactionLastUserID,
                                NSString *offeredPrice, NSString *deliveryTime, NSString *message)
 //------------------------------------------------------------------------------------------------------------------------------
@@ -155,7 +120,12 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
     if ([recent[FB_SELF_USER_ID] isEqualToString:[PFUser currentUser].objectId] == NO) counter += 1;
     
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
-    NSDictionary *values = @{FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
+    NSDictionary *values;
+    if (transactionStatus.length > 0)
+        values = @{FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
+    else
+        values = @{FB_LAST_USER:[PFUser currentUser].objectId, FB_LAST_MESSAGE:message, FB_UNREAD_MESSAGES_COUNTER:@(counter), FB_TIMESTAMP:date};
+    
     [firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
      {
          if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");

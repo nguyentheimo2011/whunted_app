@@ -181,11 +181,7 @@
 	}];
 	
 	SendPushNotification1(groupId, item[@"text"]);
-    
-    if (details)
-        UpdateRecentCounter1(groupId, 1, item[@"text"]);
-    else
-        UpdateRecentTransaction1(details[FB_GROUP_ID], details[FB_TRANSACTION_STATUS], details[FB_TRANSACTION_LAST_USER], details[FB_CURRENT_OFFERED_PRICE], details[FB_CURRENT_OFFERED_DELIVERY_TIME], item[@"text"]);
+    UpdateRecentTransaction1(groupId, details[FB_TRANSACTION_STATUS], details[FB_TRANSACTION_LAST_USER], details[FB_CURRENT_OFFERED_PRICE], details[FB_CURRENT_OFFERED_DELIVERY_TIME], item[@"text"]);
 }
 
 @end

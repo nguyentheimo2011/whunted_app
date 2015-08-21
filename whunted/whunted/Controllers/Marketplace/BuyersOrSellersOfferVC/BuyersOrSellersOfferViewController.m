@@ -316,19 +316,15 @@
         _offerData.deliveryTime = @"5";
     }
     
+    BOOL offerChanged = _offerData.objectID.length > 0;
+    
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
     [ offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error) {
             [_offerData setObjectID:offerObj.objectId];
             
-            NSString *groupId;
-            if (_user2) {
-                groupId = StartPrivateChat([PFUser currentUser], _user2, _offerData);
-            } else {
-                NSString *id1 = _offerData.buyerID;
-                NSString *id2 = _offerData.sellerID;
-                
-                groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _offerData.itemID, id2, id1];
+            if (!offerChanged) {
+                StartPrivateChat([PFUser currentUser], _user2, _offerData);
             }
             
             [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
