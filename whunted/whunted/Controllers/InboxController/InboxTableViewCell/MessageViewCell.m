@@ -109,7 +109,7 @@
     [self setItemPicture:_message[PF_ITEM_ID]];
 	
 	NSDate *date = String2Date(_message[FB_TIMESTAMP]);
-	_timestampLabel.text = [Utilities longTimestampStringFromDate:date];
+	_timestampLabel.text = [Utilities timestampStringFromDate:date];
 	
 	int counter = [_message[FB_UNREAD_MESSAGES_COUNTER] intValue];
     if (counter == 0) {

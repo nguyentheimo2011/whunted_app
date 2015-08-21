@@ -51,7 +51,7 @@ void SendPushNotification1(NSString *groupId, NSString *text)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-	FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
+	FQuery *query = [[firebase queryOrderedByChild:FB_GROUP_ID] queryEqualToValue:groupId];
 	[query observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
 	{
 		if (snapshot.value != [NSNull null])
@@ -60,7 +60,7 @@ void SendPushNotification1(NSString *groupId, NSString *text)
 			NSDictionary *recent = [recents firstObject];
 			if (recent != nil)
 			{
-				SendPushNotification2(recent[@"members"], text);
+				SendPushNotification2(recent[FB_GROUP_MEMBERS], text);
 			}
 		}
 	}];

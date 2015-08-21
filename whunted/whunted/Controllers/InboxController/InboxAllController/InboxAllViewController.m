@@ -163,17 +163,17 @@
     ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
     [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
     
-    OfferData *offerData = [[OfferData alloc] init];
-    offerData.objectID = recent[PF_OFFER_ID];
-    offerData.itemID = recent[PF_ITEM_ID];
-    offerData.itemName = recent[PF_ITEM_NAME];
-    offerData.sellerID = [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:0];
-    offerData.buyerID = [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:1];
-    offerData.initiatorID = recent[PF_INITIATOR_ID];
-    offerData.originalDemandedPrice = recent[PF_ORIGINAL_DEMANDED_PRICE];
-    offerData.offeredPrice = recent[PF_OFFERED_PRICE];
-    offerData.deliveryTime = recent[PF_DELIVERY_TIME];
-    offerData.offerStatus = recent[PF_OFFER_STATUS];
+    OfferData *offerData            =   [[OfferData alloc] init];
+    offerData.objectID              =   recent[FB_CURRENT_OFFER_ID];
+    offerData.itemID                =   recent[FB_ITEM_ID];
+    offerData.itemName              =   recent[FB_ITEM_NAME];
+    offerData.sellerID              =   [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:0];
+    offerData.buyerID               =   [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:1];
+    offerData.initiatorID           =   recent[FB_TRANSACTION_LAST_USER];
+    offerData.originalDemandedPrice =   recent[FB_ORIGINAL_DEMANDED_PRICE];
+    offerData.offeredPrice          =   recent[FB_CURRENT_OFFERED_PRICE];
+    offerData.deliveryTime          =   recent[FB_CURRENT_OFFERED_DELIVERY_TIME];
+    offerData.offerStatus           =   recent[FB_TRANSACTION_STATUS];
     
     [chatView setOfferData:offerData];
     

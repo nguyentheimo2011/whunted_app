@@ -132,7 +132,7 @@ void UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, N
 //------------------------------------------------------------------------------------------------------------------------------
 {
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-    FQuery *query = [[firebase queryOrderedByChild:@"groupId"] queryEqualToValue:groupId];
+    FQuery *query = [[firebase queryOrderedByChild:FB_GROUP_ID] queryEqualToValue:groupId];
     [query observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
      {
          if (snapshot.value != [NSNull null])

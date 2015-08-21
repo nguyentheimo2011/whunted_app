@@ -18,7 +18,6 @@
 
 #import "OfferData.h"
 #import "BuyersOrSellersOfferViewController.h"
-
 #import "AppConstant.h"
 
 @class BuyersOrSellersOfferViewController;
@@ -27,8 +26,8 @@
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong) NSString *user2Username;
-@property (nonatomic, strong) OfferData *offerData;
+@property (nonatomic, strong)   NSString    *user2Username;
+@property (nonatomic, strong)   OfferData   *offerData;
 
 - (id)initWith:(NSString *)groupId_;
 
