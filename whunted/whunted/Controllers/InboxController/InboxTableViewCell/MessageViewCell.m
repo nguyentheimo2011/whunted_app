@@ -21,7 +21,7 @@
 
 #import "MessageViewCell.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 @interface MessageViewCell ()
 {
 	NSDictionary *_message;
@@ -36,9 +36,7 @@
 @property (strong, nonatomic) IBOutlet UILabel      *transactionStatusLabel;
 @property (strong, nonatomic) IBOutlet UILabel      *detailedStatusLabel;
 
-
 @end
-//------------------------------------------------------------------------------------------------------------------------------
 
 @implementation MessageViewCell
 
@@ -95,8 +93,10 @@
 {
 	_message = message;
     
-    if ([[TemporaryCache sharedCache] objectForKey:_message[FB_OPPOSING_USER_ID]]) {
-        UIImage *image = [[TemporaryCache sharedCache] objectForKey:_message[FB_OPPOSING_USER_ID]];
+    NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
+    UIImage *image = [[TemporaryCache sharedCache] objectForKey:imageKey];
+    
+    if (image) {
         [_userProfileImage setImage:image];
     } else {
         [self getProfileImageFromRemoteServer];
@@ -169,7 +169,9 @@
                  if (!error) {
                      UIImage *image = [UIImage imageWithData:data];
                      [_userProfileImage setImage:image];
-                     [[TemporaryCache sharedCache] setObject:image forKey:_message[@"profileId"]];
+                     
+                     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
+                     [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
                  }
              }];
          }

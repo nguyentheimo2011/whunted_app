@@ -94,7 +94,7 @@
     if (!_itemImageView.image)
         [self downloadItemImage];
     
-    NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
+    NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
     if ([[TemporaryCache sharedCache] objectForKey:imageKey]) {
         UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:imageKey];
         [_buyerProfilePic setImage:profileImage];
@@ -352,7 +352,7 @@
         if ([user.objectId isEqualToString:_wantData.buyerID]) {
             [_buyerProfilePic setImage:image];
             
-            NSString *imageKey = [NSString stringWithFormat:@"%@_image", _wantData.buyerID];
+            NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
             [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
         }
     };
