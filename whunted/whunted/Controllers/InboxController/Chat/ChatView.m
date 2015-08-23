@@ -604,16 +604,13 @@
 - (void)loadAvatar:(NSString *)senderId
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([senderId isEqualToString:[PFUser currentUser].objectId]) {
-        UIImage *image = [[PersistedCache sharedCache] imageForKey:senderId];
+    NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
+    UIImage *image = [[TemporaryCache sharedCache] objectForKey:imageKey];
+    
+    if (image)
         avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
-    } else {
-        UIImage *image = [[TemporaryCache sharedCache] objectForKey:senderId];
-        if (image)
-            avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
-        else
-            [self downloadImageFromRemoteServer:senderId];
-    }
+    else
+        [self downloadImageFromRemoteServer:senderId];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1010,6 +1007,9 @@
                           UIImage *image = [UIImage imageWithData:imageData];
                           avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
                           [self.collectionView reloadData];
+                          
+                          NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
+                          [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
                       }
                   }];
              }
