@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "NewsFeedViewController.h"
-#import "InboxAllViewController.h"
 #import "UploadingViewController.h"
 #import "UserProfileViewController.h"
 #import "AppConstant.h"
@@ -68,6 +67,7 @@
         
         UINavigationController *chattingNavController = [[UINavigationController alloc] init];
         _inboxVC = [[InboxAllViewController alloc] init];
+        _inboxVC.delegate = self;
         [chattingNavController setViewControllers: [NSArray arrayWithObject:_inboxVC]];
         [chattingNavController.tabBarItem setImage:[UIImage imageNamed:@"chat_tab_icon.png"]];
         chattingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
@@ -356,11 +356,20 @@
 #pragma mark - Overriding methods
 
 // change tab bar height
-//-------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 - (void)viewWillLayoutSubviews
-//-------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
     self.tabBar.frame = CGRectMake(0, WINSIZE.height - 48, WINSIZE.width, 48);
+}
+
+#pragma mark - InboxAllViewDelegate
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) inboxAllViewController:(InboxAllViewController *)controller didRetrieveNumOfUnreadConversations:(NSInteger)num
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (num > 0)
+        [_inboxVC.navigationController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%ld", (long)num]];
 }
 
 @end

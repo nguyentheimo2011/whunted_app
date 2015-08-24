@@ -15,19 +15,16 @@
 #import <Firebase/Firebase.h>
 #import <MBProgressHUD.h>
 
-@interface InboxAllViewController ()
-
-@property (nonatomic, strong) UITableView       *_inboxTableView;
-@property (nonatomic, strong) Firebase          *_firebase;
-@property (nonatomic, strong) NSMutableArray    *_recentMessages;
-
-@end
-
 @implementation InboxAllViewController
+{
+    UITableView         *_inboxTableView;
+    Firebase            *_firebase;
+    NSMutableArray      *_recentMessages;
+    
+    NSInteger           _numOfUnreadConversations;
+}
 
-@synthesize _inboxTableView;
-@synthesize _firebase;
-@synthesize _recentMessages;
+@synthesize delegate = _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -36,7 +33,10 @@
     self = [super init];
     if (self != nil) {
         [self addInboxTableView];
+        
         _recentMessages = [NSMutableArray array];
+        _numOfUnreadConversations = 0;
+        
         [self loadRecents];
     }
     
@@ -93,8 +93,14 @@
                  for (NSDictionary *recent in sorted)
                  {
                      [_recentMessages addObject:recent];
+                     
+                     if ([recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0)
+                         _numOfUnreadConversations++;
                  }
              }
+             
+             [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
+             
              [_inboxTableView reloadData];
              [MBProgressHUD hideHUDForView:self.view animated:YES];
          }];

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class InboxAllViewController;
+
+//-----------------------------------------------------------------------------------------------------------------------------
+@protocol InboxAllViewDelegate <NSObject>
+//-----------------------------------------------------------------------------------------------------------------------------
+
+- (void) inboxAllViewController: (InboxAllViewController *) controller didRetrieveNumOfUnreadConversations: (NSInteger) num;
+
+@end
+
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface InboxAllViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+//-----------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic)   id<InboxAllViewDelegate>    delegate;
 
 @end
