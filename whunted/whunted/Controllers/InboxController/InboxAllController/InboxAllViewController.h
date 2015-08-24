@@ -24,4 +24,6 @@
 
 @property (nonatomic)   id<InboxAllViewDelegate>    delegate;
 
+@property (nonatomic)   NSInteger                   numOfUnreadConversations;
+
 @end

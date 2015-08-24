@@ -19,12 +19,11 @@
 {
     UITableView         *_inboxTableView;
     Firebase            *_firebase;
-    NSMutableArray      *_recentMessages;
-    
-    NSInteger           _numOfUnreadConversations;
+    NSMutableArray      *_recentMessages;    
 }
 
-@synthesize delegate = _delegate;
+@synthesize delegate                    =   _delegate;
+@synthesize numOfUnreadConversations    =   _numOfUnreadConversations;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -35,7 +34,6 @@
         [self addInboxTableView];
         
         _recentMessages = [NSMutableArray array];
-        _numOfUnreadConversations = 0;
         
         [self loadRecents];
     }
@@ -90,6 +88,9 @@
                                         NSDate *date2 = String2Date(recent2[FB_TIMESTAMP]);
                                         return [date2 compare:date1];
                                     }];
+                 
+                 _numOfUnreadConversations = 0;
+                 
                  for (NSDictionary *recent in sorted)
                  {
                      [_recentMessages addObject:recent];
