@@ -343,6 +343,7 @@
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 #pragma mark - MarketplaceViewDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -363,7 +364,9 @@
     self.tabBar.frame = CGRectMake(0, WINSIZE.height - 48, WINSIZE.width, 48);
 }
 
+
 #pragma mark - InboxAllViewDelegate
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) inboxAllViewController:(InboxAllViewController *)controller didRetrieveNumOfUnreadConversations:(NSInteger)num
 //------------------------------------------------------------------------------------------------------------------------------

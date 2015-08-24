@@ -181,8 +181,6 @@ void DeleteRecentItems(NSString *groupId)
 				if ([recent[FB_LAST_MESSAGE] length] == 0)
 				{
 					DeleteRecentItem(recent);
-                } else {
-                    ClearRecentCounter1(groupId);
                 }
 			}
 		}
