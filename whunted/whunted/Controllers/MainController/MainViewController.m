@@ -20,24 +20,20 @@
 
 #define     kUPLOAD_TAB_BAR     101
 
-@interface MainViewController ()
-{
-    MarketplaceViewController   *_brController;
-    InboxAllViewController      *_inboxVC;
-    NewsFeedViewController      *_newsFeedVC;
-    UploadingViewController     *_uploadingVC;
-    UserProfileViewController   *_userProfileVC;
-    
-    UINavigationController      *_uploadingNavController;
-    
-    KLCPopup                    *_popup;
-    NSUInteger                  _currButtonIndex;
-    BOOL                        _imageEdittingNeeded;
-}
-
-@end
-
 @implementation MainViewController
+{
+    MarketplaceViewController           *_brController;
+    InboxAllViewController              *_inboxVC;
+    NewsFeedViewController              *_newsFeedVC;
+    UploadingViewController             *_uploadingVC;
+    UserProfileViewController           *_userProfileVC;
+    
+    UINavigationController              *_uploadingNavController;
+    
+    KLCPopup                            *_popup;
+    NSUInteger                          _currButtonIndex;
+    BOOL                                _imageEdittingNeeded;
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
