@@ -117,7 +117,7 @@
         _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
         
     } else {
-        _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
+        _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
         _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     }
     
