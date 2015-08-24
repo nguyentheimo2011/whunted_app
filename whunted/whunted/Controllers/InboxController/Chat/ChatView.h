@@ -21,16 +21,27 @@
 #import "AppConstant.h"
 
 @class BuyersOrSellersOfferViewController;
+@class ChatView;
+
+//-------------------------------------------------------------------------------------------------------------------------------
+@protocol ChatViewDelegate <NSObject>
+
+- (void) chatViewDidSeeAConversation: (ChatView *) chatView;
+
+@end
 
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong)   NSString    *user2Username;
-@property (nonatomic, strong)   OfferData   *offerData;
+@property (nonatomic)           id<ChatViewDelegate>    delegate;
 
-- (id)initWith:(NSString *)groupId_;
+@property (nonatomic, strong)   NSString                *user2Username;
+@property (nonatomic, strong)   OfferData               *offerData;
 
-- (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock;
+
+- (id) initWith: (NSString *) groupId_;
+
+- (void) messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock;
 
 @end

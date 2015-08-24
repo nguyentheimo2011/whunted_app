@@ -8,7 +8,6 @@
 
 #import "InboxAllViewController.h"
 #import "MessageViewCell.h"
-#import "ChatView.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 #import "converter.h"
@@ -17,9 +16,9 @@
 
 @implementation InboxAllViewController
 {
-    UITableView         *_inboxTableView;
-    Firebase            *_firebase;
-    NSMutableArray      *_recentMessages;    
+    UITableView             *_inboxTableView;
+    Firebase                *_firebase;
+    NSMutableArray          *_recentMessages;
 }
 
 @synthesize delegate                    =   _delegate;
@@ -172,6 +171,7 @@
     NSDictionary *recent = _recentMessages[indexPath.row];
     ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
     [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
+    chatView.delegate = self;
     
     OfferData *offerData            =   [[OfferData alloc] init];
     offerData.objectID              =   recent[FB_CURRENT_OFFER_ID];
@@ -189,6 +189,17 @@
     
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
+}
+
+
+#pragma mark - ChatViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) chatViewDidSeeAConversation:(ChatView *)chatView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _numOfUnreadConversations--;
+    [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
 }
 
 @end

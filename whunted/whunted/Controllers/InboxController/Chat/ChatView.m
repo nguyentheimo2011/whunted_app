@@ -74,6 +74,7 @@
 
 @implementation ChatView
 
+@synthesize delegate        =   _delegate;
 @synthesize user2Username   =   _user2Username;
 @synthesize offerData       =   _offerData;
 
@@ -103,7 +104,7 @@
 	
 	[self loadMessages];
     
-    ClearRecentCounter1(groupId);
+    [self updateUnreadChatNotification];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -587,6 +588,15 @@
     
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
         [self adjustButtonsVisibility];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateUnreadChatNotification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    ClearRecentCounter1(groupId);
+    
+    [_delegate chatViewDidSeeAConversation:self];
 }
 
 #pragma mark - Backend methods

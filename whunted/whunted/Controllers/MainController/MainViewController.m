@@ -373,6 +373,8 @@
 {
     if (num > 0)
         [_inboxVC.navigationController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%ld", (long)num]];
+    else
+        [_inboxVC.navigationController.tabBarItem setBadgeValue:nil];
 }
 
 @end

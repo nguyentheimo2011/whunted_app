@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ChatView.h"
+
 @class InboxAllViewController;
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -19,7 +21,7 @@
 @end
 
 //-----------------------------------------------------------------------------------------------------------------------------
-@interface InboxAllViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface InboxAllViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ChatViewDelegate>
 //-----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic)   id<InboxAllViewDelegate>    delegate;
