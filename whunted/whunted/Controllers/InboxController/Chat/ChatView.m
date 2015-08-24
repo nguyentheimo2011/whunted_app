@@ -556,6 +556,26 @@
     }];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateOfferStatus: (NSString *) lastMessageType messageFromSender:  (NSString *) senderID
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    ChatMessageType messageType = [Utilities chatMessageTypeFromString:lastMessageType];
+    if (messageType == ChatMessageTypeMakingOffer) {
+        _offerData.offerStatus = OFFER_STATUS_OFFERED;
+        _offerData.initiatorID = senderID;
+    } else if (messageType == ChatMessageTypeCancellingOffer) {
+        _offerData.offerStatus = OFFER_STATUS_CANCELLED;
+    } else if (messageType == ChatMessageTypeDecliningOffer) {
+        _offerData.offerStatus = OFFER_STATUS_DECLINED;
+    } else if (messageType == ChatMessageTypeAcceptingOffer) {
+        _offerData.offerStatus = OFFER_STATUS_ACCEPTED;
+    }
+    
+    if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
+        [self adjustButtonsVisibility];
+}
+
 #pragma mark - Backend methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -573,9 +593,12 @@
 		{
 			if (incoming) [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
 			[self finishReceivingMessage];
+            
+            NSDictionary *item = snapshot.value;
+            [self updateOfferStatus:item[CHAT_MESSAGE_TYPE] messageFromSender:item[@"userId"]];
 		}
 	}];
-	//--------------------------------------------------------------------------------------------------------------------------
+	
 	[firebase1 observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
 	{
 		[self finishReceivingMessage];
@@ -591,12 +614,12 @@
 {
 	Incoming *incoming = [[Incoming alloc] initWith:self.senderId ChatView:self];
 	JSQMessage *message = [incoming create:item];
-	//--------------------------------------------------------------------------------------------------------------------------
+	
 	if (message == nil) return NO;
-	//--------------------------------------------------------------------------------------------------------------------------
+	
 	[items addObject:item];
 	[messages addObject:message];
-	//--------------------------------------------------------------------------------------------------------------------------
+	
 	return [self incoming:message];
 }
 
