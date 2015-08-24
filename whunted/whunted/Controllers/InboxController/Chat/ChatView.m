@@ -225,7 +225,7 @@
             
             [_edittingOfferButton setHidden:YES];
             [_cancellingOfferButton setHidden:YES];
-        } else {
+        } else if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_OFFERED]) {
             if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId]) {
                 // Offer is made by me
                 [_makingOfferButton setHidden:YES];
@@ -250,6 +250,17 @@
                 [_edittingOfferButton setHidden:YES];
                 [_cancellingOfferButton setHidden:YES];
             }
+        } else if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_CANCELLED] || [_offerData.offerStatus isEqualToString:OFFER_STATUS_DECLINED]) {
+            [_makingOfferButton setHidden:NO];
+            
+            [_leavingFeedbackButton setHidden:YES];
+            
+            [_makingAnotherOfferButton setHidden:YES];
+            [_decliningButton setHidden:YES];
+            [_acceptingButton setHidden:YES];
+            
+            [_edittingOfferButton setHidden:YES];
+            [_cancellingOfferButton setHidden:YES];
         }
     } else {
         // No one has made any offers yet
