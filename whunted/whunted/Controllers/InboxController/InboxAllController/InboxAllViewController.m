@@ -14,10 +14,15 @@
 #import <Firebase/Firebase.h>
 #import <MBProgressHUD.h>
 
+#define     kControlContainerHeight         60.0f
+
 @implementation InboxAllViewController
 {
     UITableView             *_inboxTableView;
     Firebase                *_firebase;
+    
+    UISegmentedControl      *_categorySegmentedControl;
+    
     NSMutableArray          *_recentMessages;
 }
 
@@ -30,11 +35,7 @@
 {
     self = [super init];
     if (self != nil) {
-        [self addInboxTableView];
-        
         _recentMessages = [NSMutableArray array];
-        
-        [self loadRecents];
     }
     
     return self;
@@ -48,14 +49,55 @@
     
     [Utilities customizeTitleLabel:NSLocalizedString(@"Inbox", nil) forViewController:self];
     
+    [self addSegmentedControl];
+    [self addInboxTableView];
+
+    [self loadRecents];
+    
     [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSegmentedControl
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kContainerYPos = [Utilities getHeightOfNavigationAndStatusBars:self];
+    UIView *segmentContainer = [[UIView alloc] initWithFrame:CGRectMake(0, kContainerYPos, WINSIZE.width, kControlContainerHeight)];
+    [segmentContainer setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:segmentContainer];
+    
+    CGFloat const kControlTopMargin = 15.0f;
+    CGFloat const kControlLeftMargin = 30.0f;
+    CGFloat const kControlHeight = kControlContainerHeight - 2 * kControlTopMargin;
+    CGFloat const kControlWidth = WINSIZE.width - 2 * kControlLeftMargin;
+    
+    NSArray *categories = @[NSLocalizedString(@"All", nil), NSLocalizedString(@"As Seller", nil), NSLocalizedString(@"As Buyer", nil)];
+    _categorySegmentedControl = [[UISegmentedControl alloc] initWithItems:categories];
+    _categorySegmentedControl.frame = CGRectMake(kControlLeftMargin, kControlTopMargin, kControlWidth, kControlHeight);
+    _categorySegmentedControl.tintColor = MAIN_BLUE_COLOR;
+    [_categorySegmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
+    _categorySegmentedControl.selectedSegmentIndex = 0;
+    [_categorySegmentedControl addTarget:self action:@selector(categorySegmentedControlSelectedIndexChange) forControlEvents:UIControlEventValueChanged];
+    [segmentContainer addSubview:_categorySegmentedControl];
+    
+    CGFloat const kSeparatorLineLeftMargin = 15.0f;
+    CGFloat const kSeparatorLineHeight = 0.75f;
+    CGFloat const kSeparatorLineWidth = WINSIZE.width - kSeparatorLineLeftMargin;
+    CGFloat const kSeparatorLineYPos = kControlContainerHeight - kSeparatorLineHeight;
+    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMargin, kSeparatorLineYPos, kSeparatorLineWidth, kSeparatorLineHeight)];
+    [separatorLine setBackgroundColor:CELL_SEPARATOR_GRAY_COLOR];
+    [segmentContainer addSubview:separatorLine];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addInboxTableView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _inboxTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGFloat const kTableHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self] - [Utilities getHeightOfBottomTabBar:self] - kControlContainerHeight;
+    
+    CGFloat const kTableYPos = kControlContainerHeight + [Utilities getHeightOfNavigationAndStatusBars:self];
+    
+    _inboxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
     [_inboxTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
@@ -201,6 +243,16 @@
 {
     _numOfUnreadConversations--;
     [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
+}
+
+
+#pragma mark - Event Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) categorySegmentedControlSelectedIndexChange
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 @end
