@@ -24,6 +24,7 @@
     UISegmentedControl      *_categorySegmentedControl;
     
     NSMutableArray          *_recentMessages;
+    NSMutableArray          *_categorizedMessages;
 }
 
 @synthesize delegate                    =   _delegate;
@@ -139,6 +140,8 @@
                      if ([recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0)
                          _numOfUnreadConversations++;
                  }
+                 
+                 [self updateCategorizedMessages];
              }
              
              [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
@@ -156,7 +159,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_recentMessages count];
+    return [_categorizedMessages count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -166,7 +169,7 @@
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     [cell customizeUI];
-    [cell bindData:_recentMessages[indexPath.row]];
+    [cell bindData:_categorizedMessages[indexPath.row]];
     
     return cell;
 }
@@ -211,7 +214,7 @@
 {
     [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSDictionary *recent = _recentMessages[indexPath.row];
+    NSDictionary *recent = _categorizedMessages[indexPath.row];
     ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
     [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
     chatView.delegate = self;
@@ -252,7 +255,32 @@
 - (void) categorySegmentedControlSelectedIndexChange
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self updateCategorizedMessages];
     
+    [_inboxTableView reloadData];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateCategorizedMessages
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_categorySegmentedControl.selectedSegmentIndex == 0) { // Display all messages
+        _categorizedMessages = [NSMutableArray arrayWithArray:_recentMessages];
+    } else if (_categorySegmentedControl.selectedSegmentIndex == 1) { // Display messages that acted as a seller
+        _categorizedMessages = [NSMutableArray array];
+        
+        for (NSDictionary *recent in _recentMessages) {
+            if ([[PFUser currentUser].objectId isEqualToString:recent[FB_ITEM_SELLER_ID]])
+                [_categorizedMessages addObject:recent];
+        }
+    } else if (_categorySegmentedControl.selectedSegmentIndex == 2) { // Display message that acted as a buyer
+        _categorizedMessages = [NSMutableArray array];
+        
+        for (NSDictionary *recent in _recentMessages) {
+            if ([[PFUser currentUser].objectId isEqualToString:recent[FB_ITEM_BUYER_ID]])
+                [_categorizedMessages addObject:recent];
+        }
+    }
 }
 
 @end

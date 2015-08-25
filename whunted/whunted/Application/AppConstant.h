@@ -192,6 +192,8 @@
 #define     FB_UNREAD_MESSAGES_COUNTER          @"unreadMessagesCounter"
 #define     FB_ITEM_ID                          @"itemID"
 #define     FB_ITEM_NAME                        @"itemName"
+#define     FB_ITEM_BUYER_ID                    @"itemBuyerID"
+#define     FB_ITEM_SELLER_ID                   @"itemSellerID"
 #define     FB_TRANSACTION_STATUS               @"transactionStatus"
 #define     FB_TRANSACTION_LAST_USER            @"transactionLastUser"
 #define     FB_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
