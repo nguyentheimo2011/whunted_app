@@ -283,6 +283,9 @@
 		E9FC1D691B8C6FE9001226C5 /* sort_filter_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D661B8C6FE9001226C5 /* sort_filter_icon@1x.png */; };
 		E9FC1D6A1B8C6FE9001226C5 /* sort_filter_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D671B8C6FE9001226C5 /* sort_filter_icon@2x.png */; };
 		E9FC1D6B1B8C6FE9001226C5 /* sort_filter_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D681B8C6FE9001226C5 /* sort_filter_icon@3x.png */; };
+		E9FC1D6F1B8CD404001226C5 /* down_arrow_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6C1B8CD404001226C5 /* down_arrow_icon@1x.png */; };
+		E9FC1D701B8CD404001226C5 /* down_arrow_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6D1B8CD404001226C5 /* down_arrow_icon@2x.png */; };
+		E9FC1D711B8CD404001226C5 /* down_arrow_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6E1B8CD404001226C5 /* down_arrow_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -646,6 +649,9 @@
 		E9FC1D661B8C6FE9001226C5 /* sort_filter_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sort_filter_icon@1x.png"; path = "Resources/SortAndFilter/sort_filter_icon@1x.png"; sourceTree = "<group>"; };
 		E9FC1D671B8C6FE9001226C5 /* sort_filter_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sort_filter_icon@2x.png"; path = "Resources/SortAndFilter/sort_filter_icon@2x.png"; sourceTree = "<group>"; };
 		E9FC1D681B8C6FE9001226C5 /* sort_filter_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sort_filter_icon@3x.png"; path = "Resources/SortAndFilter/sort_filter_icon@3x.png"; sourceTree = "<group>"; };
+		E9FC1D6C1B8CD404001226C5 /* down_arrow_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@1x.png"; path = "Resources/SortAndFilter/down_arrow_icon@1x.png"; sourceTree = "<group>"; };
+		E9FC1D6D1B8CD404001226C5 /* down_arrow_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@2x.png"; path = "Resources/SortAndFilter/down_arrow_icon@2x.png"; sourceTree = "<group>"; };
+		E9FC1D6E1B8CD404001226C5 /* down_arrow_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@3x.png"; path = "Resources/SortAndFilter/down_arrow_icon@3x.png"; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1737,6 +1743,9 @@
 		E9FC1D591B8C5CEF001226C5 /* SortAndFilter */ = {
 			isa = PBXGroup;
 			children = (
+				E9FC1D6C1B8CD404001226C5 /* down_arrow_icon@1x.png */,
+				E9FC1D6D1B8CD404001226C5 /* down_arrow_icon@2x.png */,
+				E9FC1D6E1B8CD404001226C5 /* down_arrow_icon@3x.png */,
 				E9FC1D661B8C6FE9001226C5 /* sort_filter_icon@1x.png */,
 				E9FC1D671B8C6FE9001226C5 /* sort_filter_icon@2x.png */,
 				E9FC1D681B8C6FE9001226C5 /* sort_filter_icon@3x.png */,
@@ -1853,6 +1862,7 @@
 				E9A07BF51B313EF200904DE9 /* MessageViewCell.xib in Resources */,
 				E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */,
 				E918062C1B7C85C7009C1F2D /* location_icon@1x.png in Resources */,
+				E9FC1D701B8CD404001226C5 /* down_arrow_icon@2x.png in Resources */,
 				E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */,
 				E91806291B7C85C7009C1F2D /* info_icon@1x.png in Resources */,
 				E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */,
@@ -1861,6 +1871,7 @@
 				E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */,
 				E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */,
 				E92A0BF81B706F0E000D66BD /* smiling_face_small@2x.png in Resources */,
+				E9FC1D711B8CD404001226C5 /* down_arrow_icon@3x.png in Resources */,
 				E97A95401B528973003796DD /* meh_face@2x.png in Resources */,
 				E9D432E71B536D0500530492 /* email_verification@3x.png in Resources */,
 				E90ACE181B7207B400DC9768 /* chat_tab_icon@1x.png in Resources */,
@@ -1982,6 +1993,7 @@
 				E9E31F731B849989008D6A3D /* gallery_upload_icon@3x.png in Resources */,
 				E94D18161AF9CE8900E31B01 /* filter@2x.png in Resources */,
 				E94D181F1AF9CE8900E31B01 /* search_icon@2x.png in Resources */,
+				E9FC1D6F1B8CD404001226C5 /* down_arrow_icon@1x.png in Resources */,
 				E9D433021B550EC200530492 /* edit_icon@1x.png in Resources */,
 				E9D432F11B53C89400530492 /* list_view_icon@1x.png in Resources */,
 				E95CFA571B141EDE003755E3 /* facebook_login_button@3x.png in Resources */,

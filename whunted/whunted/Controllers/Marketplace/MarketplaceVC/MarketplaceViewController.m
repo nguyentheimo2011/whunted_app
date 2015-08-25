@@ -22,6 +22,9 @@
     UICollectionView        *_wantCollectionView;
     
     UIView                  *_sortAndFilterBar;
+    UILabel                 *_currProductOriginLabel;
+    UILabel                 *_currCategoryLabel;
+    UILabel                 *_currSortFilterLabel;
 }
 
 @synthesize wantDataList    =   _wantDataList;
@@ -127,7 +130,7 @@
     [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
     [container addSubview:iconImageView];
     
-    //
+    // add labels
     CGFloat const kProductOriginLabelXPos   =   1.5 * kLeftMargin + kIconWidth;
     CGFloat const kProductOriginLabelWidth  =   WINSIZE.width - kProductOriginLabelXPos - kLeftMargin;
     CGFloat const kProductOriginLabelHeight =   20.0f;
@@ -137,6 +140,25 @@
     productOriginLabel.textColor = TEXT_COLOR_DARK_GRAY;
     productOriginLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     [container addSubview:productOriginLabel];
+    
+    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + kIconHeight;
+    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelYPos - 2 * kLeftMargin;
+    CGFloat const kCurrLabelHeight  =   20.0f;
+    
+    _currProductOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kProductOriginLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
+    _currProductOriginLabel.text = NSLocalizedString(@"Taiwan", nil);
+    _currProductOriginLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _currProductOriginLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
+    [container addSubview:_currProductOriginLabel];
+    
+    // add down arrow icon
+    CGFloat const kImageViewWidth   =   8.0f;
+    CGFloat const kImageViewHeight  =   8.0f;
+    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
+    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
+    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
+    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
+    [container addSubview:downArrowImageView];
     
     // add vertical line
     UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kTopMargin)];
