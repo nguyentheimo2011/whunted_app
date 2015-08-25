@@ -229,9 +229,11 @@
 #define     SEMIBOLD_FONT_NAME                  @"HelveticaNeue"
 #define     BOLD_FONT_NAME                      @"HelveticaNeue-Medium"
 
-#define     DEFAULT_FONT_SIZE                   17
 #define     BIG_FONT_SIZE                       18
+#define     DEFAULT_FONT_SIZE                   17
 #define     SMALL_FONT_SIZE                     16
+#define     SMALLER_FONT_SIZE                   15
+
 #define     DEFAULT_FONT                        [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]
 
 //----------------------------------------------------------------------------------------------------------------------------
