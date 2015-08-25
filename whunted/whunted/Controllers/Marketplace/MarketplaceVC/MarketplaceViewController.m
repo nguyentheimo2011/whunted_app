@@ -141,11 +141,12 @@
     productOriginLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     [container addSubview:productOriginLabel];
     
+    CGFloat const kCurrLabelXPos    =   kProductOriginLabelXPos;
     CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + kIconHeight;
-    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelYPos - 2 * kLeftMargin;
+    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
     CGFloat const kCurrLabelHeight  =   20.0f;
     
-    _currProductOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kProductOriginLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
+    _currProductOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
     _currProductOriginLabel.text = NSLocalizedString(@"Taiwan", nil);
     _currProductOriginLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _currProductOriginLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
@@ -193,6 +194,26 @@
     categoryLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     [container addSubview:categoryLabel];
     
+    CGFloat const kCurrLabelXPos    =   kLeftMargin;
+    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + kIconHeight;
+    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
+    CGFloat const kCurrLabelHeight  =   20.0f;
+    
+    _currCategoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
+    _currCategoryLabel.text = NSLocalizedString(@"Luxury branded", nil);
+    _currCategoryLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _currCategoryLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
+    [container addSubview:_currCategoryLabel];
+    
+    // add down arrow icon
+    CGFloat const kImageViewWidth   =   8.0f;
+    CGFloat const kImageViewHeight  =   8.0f;
+    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
+    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
+    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
+    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
+    [container addSubview:downArrowImageView];
+    
     // add vertical line
     UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kTopMargin)];
     verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
@@ -225,6 +246,26 @@
     sortFilterLabel.textColor = TEXT_COLOR_DARK_GRAY;
     sortFilterLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     [container addSubview:sortFilterLabel];
+    
+    CGFloat const kCurrLabelXPos    =   2 * kLeftMargin;
+    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + 15;
+    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
+    CGFloat const kCurrLabelHeight  =   20.0f;
+    
+    _currSortFilterLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
+    _currSortFilterLabel.text = NSLocalizedString(@"Price", nil);
+    _currSortFilterLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _currSortFilterLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
+    [container addSubview:_currSortFilterLabel];
+    
+    // add down arrow icon
+    CGFloat const kImageViewWidth   =   8.0f;
+    CGFloat const kImageViewHeight  =   8.0f;
+    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
+    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
+    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
+    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
+    [container addSubview:downArrowImageView];
 }
 
 
