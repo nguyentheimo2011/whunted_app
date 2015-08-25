@@ -77,6 +77,7 @@
 @synthesize delegate        =   _delegate;
 @synthesize user2Username   =   _user2Username;
 @synthesize offerData       =   _offerData;
+@synthesize isUnread        =   _isUnread;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id)initWith:(NSString *)groupId_
@@ -596,7 +597,9 @@
 {
     ClearRecentCounter1(groupId);
     
-    [_delegate chatViewDidSeeAConversation:self];
+    [_delegate chatView:self didSeeAnUnreadConversation:_isUnread];
+    
+    _isUnread = NO;
 }
 
 #pragma mark - Backend methods
@@ -670,6 +673,7 @@
 	[self finishSendingMessage];
 }
 
+
 #pragma mark - JSQMessagesViewController method overrides
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -685,6 +689,7 @@
 {
 	[self actionAttach];
 }
+
 
 #pragma mark - JSQMessages CollectionView DataSource
 
@@ -790,6 +795,7 @@
 	else return nil;
 }
 
+
 #pragma mark - UICollectionView DataSource
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -828,6 +834,7 @@
 	return cell;
 }
 
+
 #pragma mark - UICollectionView Delegate
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -851,6 +858,7 @@
 {
 	if (action == @selector(actionCopy:))		[self actionCopy:indexPath];
 }
+
 
 #pragma mark - JSQMessages collection view flow layout delegate
 

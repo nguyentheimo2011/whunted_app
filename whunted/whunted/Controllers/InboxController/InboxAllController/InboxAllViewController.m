@@ -218,6 +218,7 @@
     ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
     [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
     chatView.delegate = self;
+    chatView.isUnread = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0;
     
     OfferData *offerData            =   [[OfferData alloc] init];
     offerData.objectID              =   recent[FB_CURRENT_OFFER_ID];
@@ -241,11 +242,13 @@
 #pragma mark - ChatViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) chatViewDidSeeAConversation:(ChatView *)chatView
+- (void) chatView:(ChatView *)chatView didSeeAnUnreadConversation:(BOOL)isUnread
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _numOfUnreadConversations--;
-    [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
+    if (isUnread) {
+        _numOfUnreadConversations--;
+        [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
+    }
 }
 
 

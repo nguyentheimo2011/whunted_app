@@ -25,8 +25,9 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------
 @protocol ChatViewDelegate <NSObject>
+//-------------------------------------------------------------------------------------------------------------------------------
 
-- (void) chatViewDidSeeAConversation: (ChatView *) chatView;
+- (void) chatView: (ChatView *) chatView didSeeAnUnreadConversation: (BOOL) isUnread;
 
 @end
 
@@ -36,8 +37,11 @@
 
 @property (nonatomic)           id<ChatViewDelegate>    delegate;
 
-@property (nonatomic, strong)   NSString                *user2Username;
 @property (nonatomic, strong)   OfferData               *offerData;
+
+@property (nonatomic, strong)   NSString                *user2Username;
+
+@property (nonatomic)           BOOL                    isUnread;
 
 
 - (id) initWith: (NSString *) groupId_;
