@@ -127,6 +127,7 @@
     [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
     [container addSubview:iconImageView];
     
+    //
     CGFloat const kProductOriginLabelXPos   =   1.5 * kLeftMargin + kIconWidth;
     CGFloat const kProductOriginLabelWidth  =   WINSIZE.width - kProductOriginLabelXPos - kLeftMargin;
     CGFloat const kProductOriginLabelHeight =   20.0f;
@@ -151,13 +152,27 @@
     [_sortAndFilterBar addSubview:container];
     
     // add icon
-//    CGFloat const kLeftMargin       =   8.0f;
-    CGFloat const kIconTopMargin    =   8.0f;
-//    CGFloat const kIconWidth        =   15.0f;
-//    CGFloat const kIconHeight       =   15.0f;
+    CGFloat const kLeftMargin       =   8.0f;
+    CGFloat const kTopMargin        =   8.0f;
+    CGFloat const kIconWidth        =   15.0f;
+    CGFloat const kIconHeight       =   15.0f;
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kTopMargin, kIconWidth, kIconHeight)];
+    [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
+    [container addSubview:iconImageView];
+    
+    CGFloat const kCategoryLabelXPos   =   2 * kLeftMargin + kIconWidth;
+    CGFloat const kCategoryLabelWidth  =   WINSIZE.width - kCategoryLabelXPos - kLeftMargin;
+    CGFloat const kCategoryLabelHeight =   20.0f;
+    
+    UILabel *categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCategoryLabelXPos, kTopMargin, kCategoryLabelWidth, kCategoryLabelHeight)];
+    categoryLabel.text = NSLocalizedString(@"CATEGORY", nil);
+    categoryLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    categoryLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
+    [container addSubview:categoryLabel];
     
     // add vertical line
-    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kIconTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kIconTopMargin)];
+    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kTopMargin)];
     verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
     [container addSubview:verticalLine];
 }
@@ -168,6 +183,26 @@
 {
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * 2/3.0f, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
     [_sortAndFilterBar addSubview:container];
+    
+    // add icon
+    CGFloat const kLeftMargin       =   8.0f;
+    CGFloat const kTopMargin        =   8.0f;
+    CGFloat const kIconWidth        =   20.0f;
+    CGFloat const kIconHeight       =   20.0f;
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kTopMargin/2, kIconWidth, kIconHeight)];
+    [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
+    [container addSubview:iconImageView];
+    
+    CGFloat const kSortFilterLabelXPos   =   1.5 * kLeftMargin + kIconWidth;
+    CGFloat const kSortFilterLabelWidth  =   WINSIZE.width - kSortFilterLabelXPos - kLeftMargin;
+    CGFloat const kSortFilterLabelHeight =   20.0f;
+    
+    UILabel *sortFilterLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSortFilterLabelXPos, kTopMargin, kSortFilterLabelWidth, kSortFilterLabelHeight)];
+    sortFilterLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
+    sortFilterLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    sortFilterLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
+    [container addSubview:sortFilterLabel];
 }
 
 
