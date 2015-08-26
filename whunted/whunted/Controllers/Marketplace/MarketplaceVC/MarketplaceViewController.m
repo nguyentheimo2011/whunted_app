@@ -168,13 +168,13 @@
     UIImageView *iconImageView = [[UIImageView alloc] init];
     
     if (tag == 0) {
-        iconImageView.frame = CGRectMake(6.0f, 8.0f, 15.0f, 15.0f);
+        iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
         [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
     } else if (tag == 1) {
         iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
         [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
     } else if (tag == 2) {
-        iconImageView.frame = CGRectMake(8.0f, 8.0f, 20.0f, 20.0f);
+        iconImageView.frame = CGRectMake(6.0f, 6.0f, 20.0f, 20.0f);
         [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
     }
     
@@ -190,14 +190,14 @@
     titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     
     if (tag == 0) {
-        titleLabel.text = NSLocalizedString(@"PRODUCT ORIGIN", nil);
-        titleLabel.frame = CGRectMake(24.0f, 8.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
+        titleLabel.text = NSLocalizedString(@"ORIGIN", nil);
+        titleLabel.frame = CGRectMake(24.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
     } else if (tag == 1) {
         titleLabel.text = NSLocalizedString(@"CATEGORY", nil);
-        titleLabel.frame = CGRectMake(30.0f, 8.0f, WINSIZE.width/3.0 - 40.0f, 20.0f);
+        titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 36.0f, 20.0f);
     } else if (tag == 2) {
         titleLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
-        titleLabel.frame = CGRectMake(32.0f, 8.0f, WINSIZE.width/3.0 - 42.0f, 20.0f);
+        titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 38.0f, 20.0f);
     }
     
     [container addSubview:titleLabel];
@@ -213,15 +213,15 @@
     [container addSubview:curLabel];
     
     if (tag == 0) {
-        curLabel.frame = CGRectMake(24.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
+        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
         curLabel.text = NSLocalizedString(@"Taiwan", nil);;
         _currProductOriginLabel = curLabel;
     } else if (tag == 1) {
         curLabel.frame = CGRectMake(8.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"Luxury branded", nil);
+        curLabel.text = NSLocalizedString(@"Luxury", nil);
         _currCategoryLabel = curLabel;
     } else if (tag == 2) {
-        curLabel.frame = CGRectMake(16.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
+        curLabel.frame = CGRectMake(8.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
         curLabel.text = NSLocalizedString(@"Price", nil);
         _currSortFilterLabel = curLabel;
     }
