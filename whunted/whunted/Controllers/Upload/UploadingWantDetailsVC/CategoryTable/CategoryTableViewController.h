@@ -14,15 +14,19 @@
 @protocol CategoryTableViewControllerDelegate <NSObject>
 //------------------------------------------------------------------------------------------------------------------------------
 
-- (void) categoryTableViewController: (CategoryTableViewController *) controller didSelectCategory: (NSString *) category;
+- (void) categoryTableView: (CategoryTableViewController *) controller didSelectCategory: (NSString *) category;
 
 @end
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface CategoryTableViewController : UITableViewController
 //------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, weak) id<CategoryTableViewControllerDelegate> delegte;
-@property (nonatomic, strong) NSString *category;
+@property (nonatomic, weak)     id<CategoryTableViewControllerDelegate>     delegte;
+
+@property (nonatomic)           BOOL        usedForFiltering;
+
+- (id) initWithCategory:(NSString *)category usedForFiltering: (BOOL) used;
 
 @end

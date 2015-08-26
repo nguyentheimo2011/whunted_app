@@ -9,6 +9,7 @@
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
 #import "CountryTableViewController.h"
+#import "CategoryTableViewController.h"
 
 //----------------------------------------------------------------------------------------------------------------------------
 @protocol MarketplaceViewDelegate <NSObject>
@@ -20,7 +21,7 @@
 
 
 //----------------------------------------------------------------------------------------------------------------------------
-@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate>
+@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate, CategoryTableViewControllerDelegate>
 //----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;

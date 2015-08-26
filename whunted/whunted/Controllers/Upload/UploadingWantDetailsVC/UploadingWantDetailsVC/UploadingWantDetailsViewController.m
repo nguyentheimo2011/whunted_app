@@ -514,9 +514,8 @@
 {
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            CategoryTableViewController *catVC = [[CategoryTableViewController alloc] init];
+            CategoryTableViewController *catVC = [[CategoryTableViewController alloc] initWithCategory:_wantData.itemCategory usedForFiltering:NO];
             catVC.delegte = self;
-            catVC.category = _wantData.itemCategory;
             [self.navigationController pushViewController:catVC animated:YES];
         } else if (indexPath.row == 1) {
             NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];

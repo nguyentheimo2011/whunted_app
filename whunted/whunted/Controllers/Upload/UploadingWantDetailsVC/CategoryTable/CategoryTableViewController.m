@@ -11,8 +11,30 @@
 
 @implementation CategoryTableViewController
 {
-    NSArray         *_categoryList;
-    NSUInteger      _selectedIndex;
+    NSMutableArray      *_categoryList;
+    NSUInteger          _selectedIndex;
+}
+
+@synthesize usedForFiltering = _usedForFiltering;
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (id) initWithCategory:(NSString *)category usedForFiltering: (BOOL) used
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    if (self)
+    {
+        _usedForFiltering = used;
+        
+        _categoryList = [NSMutableArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
+        
+        if (_usedForFiltering)
+            [_categoryList insertObject:NSLocalizedString(@"All", nil) atIndex:0];
+        
+        _selectedIndex = [_categoryList indexOfObject:category];
+    }
+    
+    return self;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +43,6 @@
 {
     [super viewDidLoad];
     
-    [self initData];
     [self customizeUI];
 }
 
@@ -33,19 +54,16 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) initData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _categoryList = [NSArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
-    
-    _selectedIndex = [_categoryList indexOfObject:self.category];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
+    if (_usedForFiltering) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingCategory)];
+    } else {
+        [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
+    }
+    
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Category", nil) forViewController:self];
 }
 
 #pragma mark - Table view data source
@@ -88,16 +106,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (_selectedIndex != NSNotFound) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    _selectedIndex = indexPath.row;
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     NSString *selectedCategory = [_categoryList objectAtIndex:indexPath.row];
-    [self.delegte categoryTableViewController:self didSelectCategory:selectedCategory];
+    [self completeChoosingCategory:selectedCategory];
 }
 
 
@@ -108,6 +124,25 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cancelChoosingCategory
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) completeChoosingCategory: (NSString *) category
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegte categoryTableView:self didSelectCategory:category];
+    
+    if (_usedForFiltering)
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    else
+        [self.navigationController popViewControllerAnimated:YES];
 }
  
 

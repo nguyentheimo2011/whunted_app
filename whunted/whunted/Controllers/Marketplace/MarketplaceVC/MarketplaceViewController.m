@@ -220,11 +220,11 @@
         curLabel.text = NSLocalizedString(@"Taiwan", nil);;
         _currProductOriginLabel = curLabel;
     } else if (tag == 1) {
-        curLabel.frame = CGRectMake(8.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"Luxury", nil);
+        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
+        curLabel.text = NSLocalizedString(@"All", nil);
         _currCategoryLabel = curLabel;
     } else if (tag == 2) {
-        curLabel.frame = CGRectMake(8.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
+        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
         curLabel.text = NSLocalizedString(@"Price", nil);
         _currSortFilterLabel = curLabel;
     }
@@ -389,7 +389,11 @@
 - (void) categoryViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CategoryTableViewController *categoryTableView = [[CategoryTableViewController alloc] initWithCategory:_currCategoryLabel.text usedForFiltering:YES];
+    categoryTableView.delegte = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:categoryTableView];
     
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -420,6 +424,17 @@
 {
     _currProductOriginLabel.text = NSLocalizedString(country, nil);
 }
+
+
+#pragma mark - CategoryTableViewControllerDelegate
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currCategoryLabel.text = NSLocalizedString(category, nil);
+}
+
 
 #pragma mark - Overridden methods
 
