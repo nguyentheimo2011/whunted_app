@@ -8,6 +8,7 @@
 
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
+#import "CountryTableViewController.h"
 #import "OfferData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -124,6 +125,7 @@
     [self addCurCriterionLabelToContainer:container withTag:0];
     [self addDownIconArrowToContainer:container withTag:0];
     [self addVerticalLineToContainer:container];
+    [self addTapGestureRecognizerToView:container withTag:0];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -137,6 +139,7 @@
     [self addCurCriterionLabelToContainer:container withTag:1];
     [self addDownIconArrowToContainer:container withTag:1];
     [self addVerticalLineToContainer:container];
+    [self addTapGestureRecognizerToView:container withTag:1];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -149,6 +152,7 @@
     [self addTitleLabelToContainer:container withTag:2];
     [self addCurCriterionLabelToContainer:container withTag:2];
     [self addDownIconArrowToContainer:container withTag:2];
+    [self addTapGestureRecognizerToView:container withTag:2];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -254,6 +258,23 @@
     [container addSubview:verticalLine];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addTapGestureRecognizerToView: (UIView *) container withTag: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UITapGestureRecognizer *tapGesture;
+    
+    if (tag == 0) {
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(productOriginViewTouchEventHandler)];
+    } else if (tag == 1) {
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(categoryViewTouchEventHandler)];
+    } else if (tag == 2) {
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortAndFilterViewTouchEventHandler)];
+    }
+    
+    [container addGestureRecognizer:tapGesture];
+}
+
 #pragma mark - CollectionViewDatasource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -315,6 +336,7 @@
     return 8.0f;
 }
 
+
 #pragma mark - UICollectionView delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -347,6 +369,33 @@
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
+}
+
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) productOriginViewTouchEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:countryTableView];
+    
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) categoryViewTouchEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) sortAndFilterViewTouchEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 

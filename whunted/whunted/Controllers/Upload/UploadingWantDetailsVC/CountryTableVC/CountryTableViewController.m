@@ -13,8 +13,8 @@
     NSArray             *_fullCountryList;
 }
 
-@synthesize selectedCountries = _selectedCountries;
-@synthesize delegate = _delegate;
+@synthesize selectedCountries   =   _selectedCountries;
+@synthesize delegate            =   _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithSelectedCountries: (NSArray *) origins
@@ -124,6 +124,7 @@
 }
 
 #pragma mark - Event Handlers
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) completeChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
