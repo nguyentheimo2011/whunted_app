@@ -507,7 +507,10 @@
     [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
     
     if (_currOffer) {
-        NSString *groupId = StartPrivateChat(user1, user2, _currOffer);
+        NSString *id1 = user1.objectId;
+        NSString *id2 = user2.objectId;
+        
+        NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id2, id1];;
         [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
     } else {
         OfferData *offerData = [[OfferData alloc] init];
