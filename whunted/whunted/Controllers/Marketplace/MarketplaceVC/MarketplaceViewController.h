@@ -10,6 +10,7 @@
 #import "ItemDetailsViewController.h"
 #import "CountryTableViewController.h"
 #import "CategoryTableViewController.h"
+#import "SortAndFilterTableVC.h"
 
 //----------------------------------------------------------------------------------------------------------------------------
 @protocol MarketplaceViewDelegate <NSObject>

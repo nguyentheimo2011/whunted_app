@@ -400,7 +400,10 @@
 - (void) sortAndFilterViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 

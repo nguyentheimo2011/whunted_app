@@ -286,6 +286,7 @@
 		E9FC1D6F1B8CD404001226C5 /* down_arrow_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6C1B8CD404001226C5 /* down_arrow_icon@1x.png */; };
 		E9FC1D701B8CD404001226C5 /* down_arrow_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6D1B8CD404001226C5 /* down_arrow_icon@2x.png */; };
 		E9FC1D711B8CD404001226C5 /* down_arrow_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D6E1B8CD404001226C5 /* down_arrow_icon@3x.png */; };
+		E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -652,6 +653,8 @@
 		E9FC1D6C1B8CD404001226C5 /* down_arrow_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@1x.png"; path = "Resources/SortAndFilter/down_arrow_icon@1x.png"; sourceTree = "<group>"; };
 		E9FC1D6D1B8CD404001226C5 /* down_arrow_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@2x.png"; path = "Resources/SortAndFilter/down_arrow_icon@2x.png"; sourceTree = "<group>"; };
 		E9FC1D6E1B8CD404001226C5 /* down_arrow_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down_arrow_icon@3x.png"; path = "Resources/SortAndFilter/down_arrow_icon@3x.png"; sourceTree = "<group>"; };
+		E9FC1D761B8DCAF5001226C5 /* SortAndFilterTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortAndFilterTableVC.h; path = Controllers/Marketplace/SortAndFilter/SortAndFilterTableVC.h; sourceTree = "<group>"; };
+		E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortAndFilterTableVC.m; path = Controllers/Marketplace/SortAndFilter/SortAndFilterTableVC.m; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1581,6 +1584,7 @@
 			children = (
 				E9D9C5081B1C009400222E0C /* MarketplaceVC */,
 				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
+				E9FC1D721B8DC82A001226C5 /* SortAndFilter */,
 				E9D9C5101B1DA43700222E0C /* ItemDetailsVC */,
 				E94A03711B1E9B3A00339BC4 /* ItemImageVC */,
 				E9FB2E931B1F0DC700F8C435 /* BuyersOrSellersOfferVC */,
@@ -1755,6 +1759,15 @@
 				E9FC1D5D1B8C5D09001226C5 /* product_origin_small_icon@1x.png */,
 				E9FC1D5E1B8C5D09001226C5 /* product_origin_small_icon@2x.png */,
 				E9FC1D5F1B8C5D09001226C5 /* product_origin_small_icon@3x.png */,
+			);
+			name = SortAndFilter;
+			sourceTree = "<group>";
+		};
+		E9FC1D721B8DC82A001226C5 /* SortAndFilter */ = {
+			isa = PBXGroup;
+			children = (
+				E9FC1D761B8DCAF5001226C5 /* SortAndFilterTableVC.h */,
+				E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */,
 			);
 			name = SortAndFilter;
 			sourceTree = "<group>";
@@ -2097,6 +2110,7 @@
 				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
+				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
