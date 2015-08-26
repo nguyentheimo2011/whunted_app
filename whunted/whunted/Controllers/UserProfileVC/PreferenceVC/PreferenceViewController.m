@@ -716,13 +716,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (indexPath.section == 0) {
-        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_travellingToCountryList];
+        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_travellingToCountryList usedForFiltering:NO];
         countryVC.delegate = self;
         countryVC.tag = kTravellingToTag;
         [self.navigationController pushViewController:countryVC animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if (indexPath.section == 1) {
-        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_residingCountryList];
+        CountryTableViewController *countryVC = [[CountryTableViewController alloc] initWithSelectedCountries:_residingCountryList usedForFiltering:NO];
         countryVC.delegate = self;
         countryVC.tag = kResidingCountryTag;
         [self.navigationController pushViewController:countryVC animated:YES];

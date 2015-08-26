@@ -7,23 +7,28 @@
 //
 
 #import "CountryTableViewController.h"
+#import "Utilities.h"
+
 
 @implementation CountryTableViewController
 {
     NSArray             *_fullCountryList;
 }
 
-@synthesize selectedCountries   =   _selectedCountries;
 @synthesize delegate            =   _delegate;
+@synthesize selectedCountries   =   _selectedCountries;
+@synthesize usedForFiltering    =   _usedForFiltering;
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (id) initWithSelectedCountries: (NSArray *) origins
+- (id) initWithSelectedCountries: (NSArray *) origins usedForFiltering: (BOOL) used
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     
     if (self != nil) {
         _selectedCountries = [NSArray arrayWithArray:origins];
+        _usedForFiltering = used;
+        
         [self getCountryList];
         [self customizeNavigationBar];
     }
@@ -44,9 +49,13 @@
 - (void) customizeNavigationBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingOrigins)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingOrigins)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(completeChoosingOrigins)];
+    if (!_usedForFiltering) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(completeChoosingOrigins)];
+    }
+    
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Product Origin", nil) forViewController:self];
     
     self.hidesBottomBarWhenPushed = YES;
 }
@@ -106,18 +115,33 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
-    if ([_selectedCountries containsObject:country]) {
-        NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
-        [countries removeObject:country];
-        _selectedCountries = [NSArray arrayWithArray:countries];
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    } else {
-        NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
-        [countries addObject:country];
-        _selectedCountries = [NSArray arrayWithArray:countries];
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    if (_usedForFiltering)
+    {   // if country table is used for filtering, only on country can be chosen
+        [_delegate countryTableView:self didCompleteChoosingACountry:country];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {   // multiple countries can be chosen        
+        if ([_selectedCountries containsObject:country]) {
+            // remove country from selected list
+            NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
+            [countries removeObject:country];
+            _selectedCountries = [NSArray arrayWithArray:countries];
+            
+            // remove check mark
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        } else {
+            // add country to selected list
+            NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
+            [countries addObject:country];
+            _selectedCountries = [NSArray arrayWithArray:countries];
+            
+            // add check mark
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -129,15 +153,20 @@
 - (void) completeChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!_usedForFiltering) {
+        [_delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) cancelChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_usedForFiltering)
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    else
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

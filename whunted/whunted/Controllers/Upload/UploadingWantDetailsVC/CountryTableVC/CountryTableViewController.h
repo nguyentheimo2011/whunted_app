@@ -14,9 +14,13 @@
 @protocol CountryTableViewDelegate <NSObject>
 //------------------------------------------------------------------------------------------------------------------------------
 
+@optional
+
 - (void) countryTableView: (CountryTableViewController *) controller didCompleteChoosingCountries: (NSArray *) countries;
+- (void) countryTableView: (CountryTableViewController *) controller didCompleteChoosingACountry: (NSString *) country;
 
 @end
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface CountryTableViewController : UITableViewController
@@ -27,6 +31,8 @@
 @property (nonatomic, strong)   NSArray     *selectedCountries;
 @property (nonatomic)           NSInteger   tag;
 
-- (id) initWithSelectedCountries: (NSArray *) countries;
+@property (nonatomic)           BOOL        usedForFiltering;
+
+- (id) initWithSelectedCountries: (NSArray *) countries usedForFiltering: (BOOL) used;
 
 @end

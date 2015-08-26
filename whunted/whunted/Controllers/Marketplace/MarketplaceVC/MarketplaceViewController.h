@@ -8,14 +8,20 @@
 
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
+#import "CountryTableViewController.h"
 
+//----------------------------------------------------------------------------------------------------------------------------
 @protocol MarketplaceViewDelegate <NSObject>
+//----------------------------------------------------------------------------------------------------------------------------
 
 - (void) marketPlaceUserDidOfferForAnItem;
 
 @end
 
-@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate>
+
+//----------------------------------------------------------------------------------------------------------------------------
+@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate>
+//----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 

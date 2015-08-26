@@ -8,7 +8,6 @@
 
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
-#import "CountryTableViewController.h"
 #import "OfferData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -275,6 +274,7 @@
     [container addGestureRecognizer:tapGesture];
 }
 
+
 #pragma mark - CollectionViewDatasource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -378,7 +378,8 @@
 - (void) productOriginViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil];
+    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil usedForFiltering:YES];
+    countryTableView.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:countryTableView];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
@@ -399,7 +400,7 @@
 }
 
 
-#pragma mark - ItemDetailsViewController Delegate
+#pragma mark - ItemDetailsViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) itemDetailsViewController:(ItemDetailsViewController *)controller didCompleteOffer:(BOOL)completed
@@ -410,6 +411,15 @@
     }
 }
 
+
+#pragma mark - CountryTableViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingACountry:(NSString *)country
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currProductOriginLabel.text = NSLocalizedString(country, nil);
+}
 
 #pragma mark - Overridden methods
 

@@ -524,7 +524,7 @@
             itemInfoVC.delegate = self;
             [self.navigationController pushViewController:itemInfoVC animated:YES];
         } else if (indexPath.row == 2) {
-            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins];
+            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins usedForFiltering:NO];
             productTableVC.delegate = self;
             [self.navigationController pushViewController:productTableVC animated:YES];
         } else if (indexPath.row == 4) {
