@@ -117,157 +117,142 @@
 - (void) addProductOriginFilterToSortAndFilterBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
-    [_sortAndFilterBar addSubview:container];
+    UIView *container = [self createContainerView:0];
     
-    // add icon
-    CGFloat const kLeftMargin       =   6.0f;
-    CGFloat const kTopMargin        =   8.0f;
-    CGFloat const kIconWidth        =   15.0f;
-    CGFloat const kIconHeight       =   15.0f;
-    
-    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kTopMargin, kIconWidth, kIconHeight)];
-    [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
-    [container addSubview:iconImageView];
-    
-    // add labels
-    CGFloat const kProductOriginLabelXPos   =   1.5 * kLeftMargin + kIconWidth;
-    CGFloat const kProductOriginLabelWidth  =   WINSIZE.width - kProductOriginLabelXPos - kLeftMargin;
-    CGFloat const kProductOriginLabelHeight =   20.0f;
-    
-    UILabel *productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kProductOriginLabelXPos, kTopMargin, kProductOriginLabelWidth, kProductOriginLabelHeight)];
-    productOriginLabel.text = NSLocalizedString(@"PRODUCT ORIGIN", nil);
-    productOriginLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    productOriginLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
-    [container addSubview:productOriginLabel];
-    
-    CGFloat const kCurrLabelXPos    =   kProductOriginLabelXPos;
-    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + kIconHeight;
-    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
-    CGFloat const kCurrLabelHeight  =   20.0f;
-    
-    _currProductOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
-    _currProductOriginLabel.text = NSLocalizedString(@"Taiwan", nil);
-    _currProductOriginLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _currProductOriginLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
-    [container addSubview:_currProductOriginLabel];
-    
-    // add down arrow icon
-    CGFloat const kImageViewWidth   =   8.0f;
-    CGFloat const kImageViewHeight  =   8.0f;
-    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
-    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
-    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
-    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
-    [container addSubview:downArrowImageView];
-    
-    // add vertical line
-    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kTopMargin)];
-    verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
-    [container addSubview:verticalLine];
+    [self addIconImageViewToContainer:container withTag:0];
+    [self addTitleLabelToContainer:container withTag:0];
+    [self addCurCriterionLabelToContainer:container withTag:0];
+    [self addDownIconArrowToContainer:container withTag:0];
+    [self addVerticalLineToContainer:container];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addCategoryFilterToSortAndFilterBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0f, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
-    [_sortAndFilterBar addSubview:container];
+    UIView *container = [self createContainerView:1];
     
-    // add icon
-    CGFloat const kLeftMargin       =   8.0f;
-    CGFloat const kTopMargin        =   8.0f;
-    CGFloat const kIconWidth        =   15.0f;
-    CGFloat const kIconHeight       =   15.0f;
-    
-    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kTopMargin, kIconWidth, kIconHeight)];
-    [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
-    [container addSubview:iconImageView];
-    
-    CGFloat const kCategoryLabelXPos   =   2 * kLeftMargin + kIconWidth;
-    CGFloat const kCategoryLabelWidth  =   WINSIZE.width - kCategoryLabelXPos - kLeftMargin;
-    CGFloat const kCategoryLabelHeight =   20.0f;
-    
-    UILabel *categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCategoryLabelXPos, kTopMargin, kCategoryLabelWidth, kCategoryLabelHeight)];
-    categoryLabel.text = NSLocalizedString(@"CATEGORY", nil);
-    categoryLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    categoryLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
-    [container addSubview:categoryLabel];
-    
-    CGFloat const kCurrLabelXPos    =   kLeftMargin;
-    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + kIconHeight;
-    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
-    CGFloat const kCurrLabelHeight  =   20.0f;
-    
-    _currCategoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
-    _currCategoryLabel.text = NSLocalizedString(@"Luxury branded", nil);
-    _currCategoryLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _currCategoryLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
-    [container addSubview:_currCategoryLabel];
-    
-    // add down arrow icon
-    CGFloat const kImageViewWidth   =   8.0f;
-    CGFloat const kImageViewHeight  =   8.0f;
-    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
-    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
-    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
-    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
-    [container addSubview:downArrowImageView];
-    
-    // add vertical line
-    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, kTopMargin, 0.5f, kSortAndFilterBarHeight - 2 * kTopMargin)];
-    verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
-    [container addSubview:verticalLine];
+    [self addIconImageViewToContainer:container withTag:1];
+    [self addTitleLabelToContainer:container withTag:1];
+    [self addCurCriterionLabelToContainer:container withTag:1];
+    [self addDownIconArrowToContainer:container withTag:1];
+    [self addVerticalLineToContainer:container];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addSortAndFilterOptionToSortAndFilterBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * 2/3.0f, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
+    UIView *container = [self createContainerView:2];
+    
+    [self addIconImageViewToContainer:container withTag:2];
+    [self addTitleLabelToContainer:container withTag:2];
+    [self addCurCriterionLabelToContainer:container withTag:2];
+    [self addDownIconArrowToContainer:container withTag:2];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (UIView *) createContainerView: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(tag * WINSIZE.width/3.0f, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
     [_sortAndFilterBar addSubview:container];
     
-    // add icon
-    CGFloat const kLeftMargin       =   8.0f;
-    CGFloat const kTopMargin        =   8.0f;
-    CGFloat const kIconWidth        =   20.0f;
-    CGFloat const kIconHeight       =   20.0f;
+    return container;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addIconImageViewToContainer: (UIView *) container withTag: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImageView *iconImageView = [[UIImageView alloc] init];
     
-    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLeftMargin, kTopMargin/2, kIconWidth, kIconHeight)];
-    [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
+    if (tag == 0) {
+        iconImageView.frame = CGRectMake(6.0f, 8.0f, 15.0f, 15.0f);
+        [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
+    } else if (tag == 1) {
+        iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
+        [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
+    } else if (tag == 2) {
+        iconImageView.frame = CGRectMake(8.0f, 8.0f, 20.0f, 20.0f);
+        [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
+    }
+    
     [container addSubview:iconImageView];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addTitleLabelToContainer: (UIView *) container withTag: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     
-    CGFloat const kSortFilterLabelXPos   =   1.5 * kLeftMargin + kIconWidth;
-    CGFloat const kSortFilterLabelWidth  =   WINSIZE.width - kSortFilterLabelXPos - kLeftMargin;
-    CGFloat const kSortFilterLabelHeight =   20.0f;
+    if (tag == 0) {
+        titleLabel.text = NSLocalizedString(@"PRODUCT ORIGIN", nil);
+        titleLabel.frame = CGRectMake(24.0f, 8.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
+    } else if (tag == 1) {
+        titleLabel.text = NSLocalizedString(@"CATEGORY", nil);
+        titleLabel.frame = CGRectMake(30.0f, 8.0f, WINSIZE.width/3.0 - 40.0f, 20.0f);
+    } else if (tag == 2) {
+        titleLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
+        titleLabel.frame = CGRectMake(32.0f, 8.0f, WINSIZE.width/3.0 - 42.0f, 20.0f);
+    }
     
-    UILabel *sortFilterLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSortFilterLabelXPos, kTopMargin, kSortFilterLabelWidth, kSortFilterLabelHeight)];
-    sortFilterLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
-    sortFilterLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    sortFilterLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
-    [container addSubview:sortFilterLabel];
+    [container addSubview:titleLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addCurCriterionLabelToContainer: (UIView *) container withTag: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *curLabel = [[UILabel alloc] init];
+    curLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    curLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
+    [container addSubview:curLabel];
     
-    CGFloat const kCurrLabelXPos    =   2 * kLeftMargin;
-    CGFloat const kCurrLabelYPos    =   1.2 * kTopMargin + 15;
-    CGFloat const kCurrLabelWidth   =   WINSIZE.width/3.0 - kCurrLabelXPos - kLeftMargin;
-    CGFloat const kCurrLabelHeight  =   20.0f;
-    
-    _currSortFilterLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCurrLabelXPos, kCurrLabelYPos, kCurrLabelWidth, kCurrLabelHeight)];
-    _currSortFilterLabel.text = NSLocalizedString(@"Price", nil);
-    _currSortFilterLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _currSortFilterLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
-    [container addSubview:_currSortFilterLabel];
-    
-    // add down arrow icon
-    CGFloat const kImageViewWidth   =   8.0f;
-    CGFloat const kImageViewHeight  =   8.0f;
-    CGFloat const kImageViewXPos    =   WINSIZE.width/3.0 - kImageViewWidth - kLeftMargin;
-    CGFloat const kImageViewYPos    =   kCurrLabelYPos + 7.0f;
-    UIImageView *downArrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewXPos, kImageViewYPos, kImageViewWidth, kImageViewHeight)];
+    if (tag == 0) {
+        curLabel.frame = CGRectMake(24.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
+        curLabel.text = NSLocalizedString(@"Taiwan", nil);;
+        _currProductOriginLabel = curLabel;
+    } else if (tag == 1) {
+        curLabel.frame = CGRectMake(8.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
+        curLabel.text = NSLocalizedString(@"Luxury branded", nil);
+        _currCategoryLabel = curLabel;
+    } else if (tag == 2) {
+        curLabel.frame = CGRectMake(16.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
+        curLabel.text = NSLocalizedString(@"Price", nil);
+        _currSortFilterLabel = curLabel;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addDownIconArrowToContainer: (UIView *) container withTag: (NSInteger) tag
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIImageView *downArrowImageView = [[UIImageView alloc] init];
     [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
+    
+    if (tag == 0) {
+        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
+    } else if (tag == 1) {
+        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
+    } else if (tag == 2) {
+        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
+    }
+    
     [container addSubview:downArrowImageView];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addVerticalLineToContainer: (UIView *) container
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, 8.0f, 0.5f, kSortAndFilterBarHeight - 2 * 8.0f)];
+    verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
+    [container addSubview:verticalLine];
+}
 
 #pragma mark - CollectionViewDatasource methods
 
