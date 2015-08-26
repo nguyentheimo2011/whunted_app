@@ -422,9 +422,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
-    [offerVC setOfferData:_offerData];
+    offerVC.offerData = _offerData;
     offerVC.offerFrom = OFFER_FROM_CHAT_VIEW;
-    [offerVC setDelegate:self];
+    offerVC.delegate = self;
     
     if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
         // current user is the seller
@@ -442,8 +442,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
-    [offerVC setOfferData:_offerData];
-    [offerVC setDelegate:self];
+    offerVC.offerData = _offerData;
+    offerVC.offerFrom = OFFER_FROM_CHAT_VIEW;
+    offerVC.delegate = self;
     
     if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
         // current user is the seller
