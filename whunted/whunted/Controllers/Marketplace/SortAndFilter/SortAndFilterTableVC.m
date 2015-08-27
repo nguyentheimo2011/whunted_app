@@ -117,7 +117,7 @@
     _lowestPriceSortCell.indentationLevel = 3;
     
     // add popular sort icon
-    UIImageView *lowestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImageView *lowestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin-2.5, kIconWidth+5, kIconHeight+5)];
     UIImage *lowestImage = [UIImage imageNamed:@"lowest_price_icon.png"];
     [lowestImageView setImage:lowestImage];
     [_lowestPriceSortCell addSubview:lowestImageView];
@@ -134,7 +134,7 @@
     _highestPriceSortCell.indentationLevel = 3;
     
     // add popular sort icon
-    UIImageView *highestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImageView *highestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin-2.5, kIconWidth+5, kIconHeight+5)];
     UIImage *highestImage = [UIImage imageNamed:@"highest_price_icon.png"];
     [highestImageView setImage:highestImage];
     [_highestPriceSortCell addSubview:highestImageView];
