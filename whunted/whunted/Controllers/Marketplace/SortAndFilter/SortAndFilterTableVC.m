@@ -25,13 +25,19 @@
     UITableViewCell         *_nearestSortCell;
     
     UITableViewCell         *_buyerLocationCell;
+    
+    NSInteger               _selectedSortingIndex;
 }
+
+@synthesize sortingCriterion = _sortingCriterion;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [self initData];
     
     [self customizeUI];
     [self initCells];
@@ -44,6 +50,16 @@
     [super didReceiveMemoryWarning];
     
     NSLog(@"SortAndFilterTableVC didReceiveMemoryWarning");
+}
+
+#pragma mark - Data Initialization
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil), NSLocalizedString(@"Nearest Price", nil)];
+    _selectedSortingIndex = [array indexOfObject:_sortingCriterion];
 }
 
 
@@ -70,6 +86,7 @@
     [self initHighestPriceSortCell];
     [self initNearestSortCell];
     [self initBuyerLocationCell];
+    [self addCheckMarkToSelectedSortingCell];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -158,6 +175,19 @@
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
+- (void) addCheckMarkToSelectedSortingCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSArray *cells = @[_popularSortCell, _recentSortCell, _lowestPriceSortCell, _highestPriceSortCell, _nearestSortCell];
+    
+    if (_selectedSortingIndex != NSNotFound) {
+        UITableViewCell *cell = [cells objectAtIndex:_selectedSortingIndex];
+        cell.textLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:SMALL_FONT_SIZE];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
 - (void) initBuyerLocationCell
 //-----------------------------------------------------------------------------------------------------------------------------
 {
@@ -242,6 +272,24 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row != _selectedSortingIndex) {
+        UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedSortingIndex inSection:0]];
+        prevCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        prevCell.accessoryType = UITableViewCellAccessoryNone;
+        
+        _selectedSortingIndex = indexPath.row;
+        UITableViewCell *chosenCell = [tableView cellForRowAtIndexPath:indexPath];
+        chosenCell.textLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:SMALL_FONT_SIZE];
+        chosenCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
 }
 
 

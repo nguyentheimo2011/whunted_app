@@ -225,7 +225,7 @@
         _currCategoryLabel = curLabel;
     } else if (tag == 2) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"Price", nil);
+        curLabel.text = NSLocalizedString(@"Recent", nil);
         _currSortFilterLabel = curLabel;
     }
 }
@@ -401,6 +401,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
+    sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];

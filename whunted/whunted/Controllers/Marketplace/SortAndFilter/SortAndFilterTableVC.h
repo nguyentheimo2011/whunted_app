@@ -10,4 +10,6 @@
 
 @interface SortAndFilterTableVC : UITableViewController
 
+@property (nonatomic, strong)   NSString        *sortingCriterion;
+
 @end
