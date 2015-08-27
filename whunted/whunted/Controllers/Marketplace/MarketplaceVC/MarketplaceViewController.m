@@ -402,6 +402,7 @@
 {
     SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
     sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
+    sortAndFilterTableVC.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
@@ -430,13 +431,23 @@
 }
 
 
-#pragma mark - CategoryTableViewControllerDelegate
+#pragma mark - CategoryTableViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currCategoryLabel.text = NSLocalizedString(category, nil);
+}
+
+
+#pragma mark - SortAndFilterTableViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currSortFilterLabel.text = criterion;
 }
 
 

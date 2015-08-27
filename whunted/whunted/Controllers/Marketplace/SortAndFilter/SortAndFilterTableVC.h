@@ -8,7 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class SortAndFilterTableVC;
+
+//------------------------------------------------------------------------------------------------------------------------------
+@protocol SortAndFilterTableViewDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
+
+- (void) sortAndFilterTableView: (SortAndFilterTableVC *) controller didCompleteChoosingSortingCriterion: (NSString *) criterion;
+
+@end
+
+
+//------------------------------------------------------------------------------------------------------------------------------
 @interface SortAndFilterTableVC : UITableViewController
+//------------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic, strong)   id<SortAndFilterTableViewDelegate>  delegate;
 
 @property (nonatomic, strong)   NSString        *sortingCriterion;
 

@@ -29,7 +29,8 @@
     NSInteger               _selectedSortingIndex;
 }
 
-@synthesize sortingCriterion = _sortingCriterion;
+@synthesize sortingCriterion    =   _sortingCriterion;
+@synthesize delegate            =   _delegate;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -74,6 +75,8 @@
     [Utilities customizeTitleLabel:NSLocalizedString(@"Sort & Filter", nil) forViewController:self];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSortAndFilter)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Apply", nil) style:UIBarButtonItemStylePlain target:self action:@selector(applyNewSortingAndFilteringCriteria)];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -281,14 +284,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row != _selectedSortingIndex) {
+        // clear checkmark from the previous cell
         UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedSortingIndex inSection:0]];
         prevCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
         prevCell.accessoryType = UITableViewCellAccessoryNone;
         
-        _selectedSortingIndex = indexPath.row;
+        // add checkmark to the chosen cell
         UITableViewCell *chosenCell = [tableView cellForRowAtIndexPath:indexPath];
         chosenCell.textLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:SMALL_FONT_SIZE];
         chosenCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+        // update data
+        _selectedSortingIndex = indexPath.row;
+        _sortingCriterion = chosenCell.textLabel.text;
     }
 }
 
@@ -299,6 +307,14 @@
 - (void) cancelSortAndFilter
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) applyNewSortingAndFilteringCriteria
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

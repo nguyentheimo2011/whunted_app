@@ -22,7 +22,7 @@
 
 
 //----------------------------------------------------------------------------------------------------------------------------
-@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate, CategoryTableViewControllerDelegate>
+@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate, CategoryTableViewControllerDelegate, SortAndFilterTableViewDelegate>
 //----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
