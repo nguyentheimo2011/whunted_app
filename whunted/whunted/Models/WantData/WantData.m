@@ -112,11 +112,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (self.likesNum > otherWantData.likesNum)
-        return NSOrderedDescending;
+        return NSOrderedAscending;
     else if (self.likesNum == otherWantData.likesNum)
         return NSOrderedSame;
     else
-        return NSOrderedAscending;
+        return NSOrderedDescending;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -470,6 +470,9 @@
     
     _currSortingBy = criterion;
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:SORTING_BY];
+    
+    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
+    [_wantCollectionView reloadData];
 }
 
 
