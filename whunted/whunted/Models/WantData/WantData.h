@@ -51,4 +51,9 @@
 - (id) initWithPFObject: (PFObject *) wantDataPFObject;
 - (PFObject *) getPFObject;
 
+- (NSComparisonResult) compareBasedOnRecent: (WantData *) otherWantData;
+- (NSComparisonResult) compareBasedOnPopular: (WantData *) otherWantData;
+- (NSComparisonResult) compareBasedOnAscendingPrice: (WantData *) otherWantData;
+- (NSComparisonResult) compareBasedOnDescendingPrice: (WantData *) otherWantData;
+
 @end

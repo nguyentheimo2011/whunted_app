@@ -100,6 +100,47 @@
     return wantDataPFObject;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSComparisonResult) compareBasedOnRecent:(WantData *)otherWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return [self.createdDate compare:otherWantData.createdDate];
+}
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSComparisonResult) compareBasedOnPopular:(WantData *)otherWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (self.likesNum > otherWantData.likesNum)
+        return NSOrderedDescending;
+    else if (self.likesNum == otherWantData.likesNum)
+        return NSOrderedSame;
+    else
+        return NSOrderedAscending;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSComparisonResult) compareBasedOnAscendingPrice:(WantData *)otherWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (self.demandedPrice > otherWantData.demandedPrice)
+        return NSOrderedDescending;
+    else if (self.demandedPrice == otherWantData.demandedPrice)
+        return NSOrderedSame;
+    else
+        return NSOrderedAscending;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSComparisonResult) compareBasedOnDescendingPrice:(WantData *)otherWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (self.demandedPrice > otherWantData.demandedPrice)
+        return NSOrderedDescending;
+    else if (self.demandedPrice == otherWantData.demandedPrice)
+        return NSOrderedSame;
+    else
+        return NSOrderedAscending;
+}
 
 @end

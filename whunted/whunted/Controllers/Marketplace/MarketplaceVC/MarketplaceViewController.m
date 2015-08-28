@@ -17,6 +17,7 @@
 
 #define     kSortAndFilterBarHeight     50.0f
 
+
 @implementation MarketplaceViewController
 {
     UICollectionView        *_wantCollectionView;
@@ -25,9 +26,13 @@
     UILabel                 *_currProductOriginLabel;
     UILabel                 *_currCategoryLabel;
     UILabel                 *_currSortFilterLabel;
+    
+    NSString                *_currSortingBy;
+
+    NSMutableArray          *_wantDataList;
+    NSArray                 *_sortedAndFilteredWantDataList;
 }
 
-@synthesize wantDataList    =   _wantDataList;
 @synthesize delegate        =   _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -36,6 +41,7 @@
 {
     self = [super init];
     if (self != nil) {
+        [self initData];
         [self retrieveWantDataList];
     }
     
@@ -59,6 +65,19 @@
 {
     [super didReceiveMemoryWarning];
     NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
+}
+
+
+#pragma mark - Data Initialization
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:SORTING_BY];
+    
+    if (_currSortingBy.length == 0)
+        _currSortingBy = SORTING_BY_RECENT;
 }
 
 
@@ -281,7 +300,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_wantDataList count];
+    return [_sortedAndFilteredWantDataList count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -295,7 +314,7 @@
     else
         [cell clearCellUI];
     
-    WantData *wantData = [_wantDataList objectAtIndex:indexPath.row];
+    WantData *wantData = [_sortedAndFilteredWantDataList objectAtIndex:indexPath.row];
     [cell setWantData:wantData];
     
     return cell;
@@ -474,8 +493,9 @@
         if (!error) {
             for (PFObject *object in objects) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                [self.wantDataList addObject:wantData];
+                [_wantDataList addObject:wantData];
             }
+            _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
             [_wantCollectionView reloadData];
             
         } else {
@@ -494,12 +514,32 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
-            [self.wantDataList insertObject:wantData atIndex:0];
+            [_wantDataList insertObject:wantData atIndex:0];
             [_wantCollectionView reloadData];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) sortArray: (NSArray *) array by: (NSString *) sortingBy
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSArray *sortedArray;
+    
+    if ([sortingBy isEqualToString:SORTING_BY_POPULAR])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnPopular:)];
+    else if ([sortingBy isEqualToString:SORTING_BY_RECENT])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnRecent:)];
+    else if ([sortingBy isEqualToString:SORTING_BY_LOWEST_PRICE])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnAscendingPrice:)];
+    else if ([sortingBy isEqualToString:SORTING_BY_HIGHEST_PRICE])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnDescendingPrice:)];
+    else
+        sortedArray = array;
+    
+    return sortedArray;
 }
 
 @end

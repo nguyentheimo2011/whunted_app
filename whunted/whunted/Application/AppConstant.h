@@ -280,6 +280,14 @@
 #define     OFFER_FROM_ITEM_DETAILS                     @"offerFromItemDetails"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     SORTING_BY                                  @"SortingBy"
+#define     SORTING_BY_POPULAR                          @"Popular"
+#define     SORTING_BY_RECENT                           @"Recent"
+#define     SORTING_BY_LOWEST_PRICE                     @"Lowest Price"
+#define     SORTING_BY_HIGHEST_PRICE                    @"Highest Price"
+#define     SORTING_BY_NEAREST                          @"Nearest"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60
 #define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
 #define     NUM_OF_SECONDS_IN_A_DAY                     86400
@@ -339,5 +347,6 @@ typedef enum {
     ChatMessageTypeDecliningOffer,
     ChatMessageTypeCancellingOffer
 } ChatMessageType;
+
 
 #endif

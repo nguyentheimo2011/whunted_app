@@ -27,8 +27,6 @@
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 
-@property (nonatomic, strong) NSMutableArray    *wantDataList;
-
 - (void) updateWantDataTable;
 
 @end

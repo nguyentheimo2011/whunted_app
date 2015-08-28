@@ -97,7 +97,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _popularSortCell = [[UITableViewCell alloc] init];
-    _popularSortCell.textLabel.text = NSLocalizedString(@"Popular", nil);
+    _popularSortCell.textLabel.text = NSLocalizedString(SORTING_BY_POPULAR, nil);
     _popularSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _popularSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _popularSortCell.indentationLevel = 3;
@@ -114,7 +114,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _recentSortCell = [[UITableViewCell alloc] init];
-    _recentSortCell.textLabel.text = NSLocalizedString(@"Recent", nil);
+    _recentSortCell.textLabel.text = NSLocalizedString(SORTING_BY_RECENT, nil);
     _recentSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _recentSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _recentSortCell.indentationLevel = 3;
@@ -131,7 +131,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _lowestPriceSortCell = [[UITableViewCell alloc] init];
-    _lowestPriceSortCell.textLabel.text = NSLocalizedString(@"Lowest Price", nil);
+    _lowestPriceSortCell.textLabel.text = NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil);
     _lowestPriceSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _lowestPriceSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _lowestPriceSortCell.indentationLevel = 3;
@@ -148,7 +148,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _highestPriceSortCell = [[UITableViewCell alloc] init];
-    _highestPriceSortCell.textLabel.text = NSLocalizedString(@"Highest Price", nil);
+    _highestPriceSortCell.textLabel.text = NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil);
     _highestPriceSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _highestPriceSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _highestPriceSortCell.indentationLevel = 3;
@@ -165,7 +165,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _nearestSortCell = [[UITableViewCell alloc] init];
-    _nearestSortCell.textLabel.text = NSLocalizedString(@"Nearest Price", nil);
+    _nearestSortCell.textLabel.text = NSLocalizedString(SORTING_BY_NEAREST, nil);
     _nearestSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _nearestSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _nearestSortCell.indentationLevel = 3;
