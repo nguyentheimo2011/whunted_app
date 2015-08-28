@@ -76,8 +76,8 @@
 {
     _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:SORTING_BY];
     
-    if (_currSortingBy.length == 0)
-        _currSortingBy = SORTING_BY_RECENT;
+    if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
+        _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
 }
 
 
@@ -244,7 +244,7 @@
         _currCategoryLabel = curLabel;
     } else if (tag == 2) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"Recent", nil);
+        curLabel.text = _currSortingBy;
         _currSortFilterLabel = curLabel;
     }
 }
@@ -467,6 +467,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currSortFilterLabel.text = criterion;
+    
+    _currSortingBy = criterion;
+    [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:SORTING_BY];
 }
 
 
@@ -540,6 +543,27 @@
         sortedArray = array;
     
     return sortedArray;
+}
+
+
+#pragma mark - Event Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) isOfOneOfCorrectSortingSchemes: (NSString *) sortingBy
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_POPULAR, nil)])
+        return YES;
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+        return YES;
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+        return YES;
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+        return YES;
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_NEAREST, nil)])
+        return YES;
+    else
+        return NO;
 }
 
 @end
