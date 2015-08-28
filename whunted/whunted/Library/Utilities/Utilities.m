@@ -569,6 +569,17 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
++ (float) floatingNumFromDemandedPrice:(NSString *)demandedPrice
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *reducedString = [demandedPrice stringByReplacingOccurrencesOfString:PROPER_TAIWAN_CURRENCY withString:@""];
+    reducedString = [reducedString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    reducedString = [reducedString stringByReplacingOccurrencesOfString:@"," withString:@""];
+    
+    return [reducedString floatValue];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) makingOfferMessageFromOfferedPrice:(NSString *)offeredPrice andDeliveryTime:(NSString *)deliveryTime
 //------------------------------------------------------------------------------------------------------------------------------
 {

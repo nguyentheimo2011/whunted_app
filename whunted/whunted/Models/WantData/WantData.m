@@ -123,9 +123,12 @@
 - (NSComparisonResult) compareBasedOnAscendingPrice:(WantData *)otherWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (self.demandedPrice > otherWantData.demandedPrice)
+    float selfPrice = [Utilities floatingNumFromDemandedPrice:self.demandedPrice];
+    float otherPrice = [Utilities floatingNumFromDemandedPrice:otherWantData.demandedPrice];
+    
+    if ( selfPrice > otherPrice)
         return NSOrderedDescending;
-    else if (self.demandedPrice == otherWantData.demandedPrice)
+    else if (selfPrice == otherPrice)
         return NSOrderedSame;
     else
         return NSOrderedAscending;
@@ -135,12 +138,15 @@
 - (NSComparisonResult) compareBasedOnDescendingPrice:(WantData *)otherWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (self.demandedPrice > otherWantData.demandedPrice)
-        return NSOrderedDescending;
-    else if (self.demandedPrice == otherWantData.demandedPrice)
+    float selfPrice = [Utilities floatingNumFromDemandedPrice:self.demandedPrice];
+    float otherPrice = [Utilities floatingNumFromDemandedPrice:otherWantData.demandedPrice];
+    
+    if (selfPrice > otherPrice)
+        return NSOrderedAscending;
+    else if (selfPrice == otherPrice)
         return NSOrderedSame;
     else
-        return NSOrderedAscending;
+        return NSOrderedDescending;
 }
 
 @end

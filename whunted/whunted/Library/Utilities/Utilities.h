@@ -75,13 +75,15 @@
 #pragma mark - Data Type Conversion
 //-----------------------------------------------------------------------------------------------------------------------------
 
-+ (BOOL)            booleanFromString:          (NSString *) string;
++ (BOOL)            booleanFromString:              (NSString *) string;
 
-+ (NSString *)      stringFromBoolean:          (BOOL) boolean;
++ (NSString *)      stringFromBoolean:              (BOOL) boolean;
 
-+ (NSString *)      stringFromChatMessageType:  (ChatMessageType) type;
++ (NSString *)      stringFromChatMessageType:      (ChatMessageType) type;
 
-+ (ChatMessageType) chatMessageTypeFromString:  (NSString *) type;
++ (ChatMessageType) chatMessageTypeFromString:      (NSString *) type;
+
++ (float)           floatingNumFromDemandedPrice:   (NSString *) demandedPrice;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Whunt Details Helpers
