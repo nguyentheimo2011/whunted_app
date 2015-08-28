@@ -104,7 +104,7 @@
 - (NSComparisonResult) compareBasedOnRecent:(WantData *)otherWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [self.createdDate compare:otherWantData.createdDate];
+    return [otherWantData.createdDate compare:self.createdDate];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
