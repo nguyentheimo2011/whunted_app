@@ -466,6 +466,10 @@
     
     _currCategory = category;
     [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
+    
+    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
+    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
+    [_wantCollectionView reloadData];
 }
 
 
@@ -481,6 +485,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:SORTING_BY];
     
     _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
+    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
     [_wantCollectionView reloadData];
 }
 
@@ -511,6 +516,8 @@
                 [_wantDataList addObject:wantData];
             }
             _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
+            _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
+            
             [_wantCollectionView reloadData];
             
         } else {
@@ -561,8 +568,14 @@
 - (NSArray *) filterArray: (NSArray *) array byCategory: (NSString *) category
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    NSMutableArray *filteredArray = [NSMutableArray array];
     
-    return nil;
+    for (WantData *wantData in array) {
+        if ([wantData.itemCategory isEqualToString:category])
+            [filteredArray addObject:wantData];
+    }
+    
+    return filteredArray;
 }
 
 
