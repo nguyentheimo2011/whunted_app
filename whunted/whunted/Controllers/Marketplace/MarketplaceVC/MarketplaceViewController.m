@@ -568,14 +568,18 @@
 - (NSArray *) filterArray: (NSArray *) array byCategory: (NSString *) category
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSMutableArray *filteredArray = [NSMutableArray array];
-    
-    for (WantData *wantData in array) {
-        if ([wantData.itemCategory isEqualToString:category])
-            [filteredArray addObject:wantData];
+    if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
+        return array;
+    else {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array) {
+            if ([wantData.itemCategory isEqualToString:category])
+                [filteredArray addObject:wantData];
+        }
+        
+        return filteredArray;
     }
-    
-    return filteredArray;
 }
 
 
