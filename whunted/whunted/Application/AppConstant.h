@@ -289,6 +289,22 @@
 #define     SORTING_BY_NEAREST                          @"Nearest"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     CURRENT_CATEGORY_FILTER                     @"currCategoryFilter"
+#define     ITEM_CATEGORY_ALL                           @"All"
+#define     ITEM_CATEGORY_BEAUTY_PRODUCTS               @"Beauty products"
+#define     ITEM_CATEGORY_BOOKS_AND_MAGAZINES           @"Books and magazines"
+#define     ITEM_CATEGORY_LUXURY_BRANDED                @"Luxury branded"
+#define     ITEM_CATEGORY_GAMES_AND_TOYS                @"Games & Toys"
+#define     ITEM_CATEGORY_PROFESSIONAL_SERVICES         @"Professional services"
+#define     ITEM_CATEGORY_SPORT_EQUIPMENTS              @"Sporting equipment"
+#define     ITEM_CATEGORY_TICKETS_AND_VOUCHERS          @"Tickets and vouchers"
+#define     ITEM_CATEGORY_WATCHES                       @"Watches"
+#define     ITEM_CATEGORY_CUSTOMIZATION                 @"Customization"
+#define     ITEM_CATEGORY_BORROWING                     @"Borrowing"
+#define     ITEM_CATEGORY_FUNITURE                      @"Furniture"
+#define     ITEM_CATEGORY_OTHERS                        @"Others"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60
 #define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
 #define     NUM_OF_SECONDS_IN_A_DAY                     86400

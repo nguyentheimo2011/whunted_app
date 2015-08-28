@@ -28,6 +28,7 @@
     UILabel                 *_currSortFilterLabel;
     
     NSString                *_currSortingBy;
+    NSString                *_currCategory;
 
     NSMutableArray          *_wantDataList;
     NSArray                 *_sortedAndFilteredWantDataList;
@@ -78,6 +79,11 @@
     
     if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
         _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
+    
+    _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
+    
+    if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
+        _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
 }
 
 
@@ -240,7 +246,7 @@
         _currProductOriginLabel = curLabel;
     } else if (tag == 1) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"All", nil);
+        curLabel.text = _currCategory;
         _currCategoryLabel = curLabel;
     } else if (tag == 2) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
@@ -456,7 +462,10 @@
 - (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currCategoryLabel.text = NSLocalizedString(category, nil);
+    _currCategoryLabel.text = category;
+    
+    _currCategory = category;
+    [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
 }
 
 
@@ -548,8 +557,16 @@
     return sortedArray;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) filterArray: (NSArray *) array byCategory: (NSString *) category
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
+    return nil;
+}
 
-#pragma mark - Event Handlers
+
+#pragma mark - Helpers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) isOfOneOfCorrectSortingSchemes: (NSString *) sortingBy
@@ -564,6 +581,43 @@
     else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
         return YES;
     else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_NEAREST, nil)])
+        return YES;
+    else
+        return NO;
+}
+
+#pragma mark - Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) isOfOneOfCorrectCategories: (NSString *) category
+
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BEAUTY_PRODUCTS, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BOOKS_AND_MAGAZINES, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BORROWING, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_CUSTOMIZATION, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_FUNITURE, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_GAMES_AND_TOYS, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_LUXURY_BRANDED, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_OTHERS, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_PROFESSIONAL_SERVICES, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_SPORT_EQUIPMENTS, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_TICKETS_AND_VOUCHERS, nil)])
+        return YES;
+    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_WATCHES, nil)])
         return YES;
     else
         return NO;

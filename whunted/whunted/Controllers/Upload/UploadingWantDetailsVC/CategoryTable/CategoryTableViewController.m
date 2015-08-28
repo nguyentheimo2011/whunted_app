@@ -7,6 +7,7 @@
 //
 
 #import "CategoryTableViewController.h"
+#import "AppConstant.h"
 #import "Utilities.h"
 
 @implementation CategoryTableViewController
@@ -26,7 +27,7 @@
     {
         _usedForFiltering = used;
         
-        _categoryList = [NSMutableArray arrayWithObjects:NSLocalizedString(@"Beauty products", nil), NSLocalizedString(@"Books and magazines", nil), NSLocalizedString(@"Luxury branded", nil), NSLocalizedString(@"Games & Toys", nil), NSLocalizedString(@"Professional services", nil), NSLocalizedString(@"Sporting equipment", nil), NSLocalizedString(@"Tickets and vouchers", nil), NSLocalizedString(@"Watches", nil), NSLocalizedString(@"Customization", nil), NSLocalizedString(@"Borrowing", nil), NSLocalizedString(@"Furniture", nil), NSLocalizedString(@"Others", nil),nil];
+        _categoryList = [NSMutableArray arrayWithObjects:NSLocalizedString(ITEM_CATEGORY_BEAUTY_PRODUCTS, nil), NSLocalizedString(ITEM_CATEGORY_BOOKS_AND_MAGAZINES, nil), NSLocalizedString(ITEM_CATEGORY_LUXURY_BRANDED, nil), NSLocalizedString(ITEM_CATEGORY_GAMES_AND_TOYS, nil), NSLocalizedString(ITEM_CATEGORY_PROFESSIONAL_SERVICES, nil), NSLocalizedString(ITEM_CATEGORY_SPORT_EQUIPMENTS, nil), NSLocalizedString(ITEM_CATEGORY_TICKETS_AND_VOUCHERS, nil), NSLocalizedString(ITEM_CATEGORY_WATCHES, nil), NSLocalizedString(ITEM_CATEGORY_CUSTOMIZATION, nil), NSLocalizedString(ITEM_CATEGORY_BORROWING, nil), NSLocalizedString(ITEM_CATEGORY_FUNITURE, nil), NSLocalizedString(ITEM_CATEGORY_OTHERS, nil),nil];
         
         if (_usedForFiltering)
             [_categoryList insertObject:NSLocalizedString(@"All", nil) atIndex:0];
