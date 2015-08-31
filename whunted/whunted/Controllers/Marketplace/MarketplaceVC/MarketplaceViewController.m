@@ -403,9 +403,11 @@
 - (void) productOriginViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil usedForFiltering:YES];
-    countryTableView.delegate = self;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:countryTableView];
+//    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil usedForFiltering:YES];
+//    countryTableView.delegate = self;
+    
+    CityViewController *cityViewController = [[CityViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
 }

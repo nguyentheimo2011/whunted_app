@@ -11,6 +11,7 @@
 #import "CountryTableViewController.h"
 #import "CategoryTableViewController.h"
 #import "SortAndFilterTableVC.h"
+#import "CityViewController.h"
 
 //----------------------------------------------------------------------------------------------------------------------------
 @protocol MarketplaceViewDelegate <NSObject>

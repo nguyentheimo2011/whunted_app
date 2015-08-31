@@ -272,6 +272,7 @@
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
 		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
 		E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9391B5D203800815D56 /* HashtagData.m */; };
+		E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1ACBC1B941B14009819DE /* CityViewController.m */; };
 		E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22931B43A38D00395062 /* PersistedCache.m */; };
 		E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22971B43A62000395062 /* TemporaryCache.m */; };
 		E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E991B20481E00F8C435 /* WantData.m */; };
@@ -654,6 +655,8 @@
 		E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownMenu.m; path = Library/IGLDropDownMenu/IGLDropDownMenu.m; sourceTree = "<group>"; };
 		E9EEB9381B5D203800815D56 /* HashtagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashtagData.h; path = Models/Hashtag/HashtagData.h; sourceTree = "<group>"; };
 		E9EEB9391B5D203800815D56 /* HashtagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HashtagData.m; path = Models/Hashtag/HashtagData.m; sourceTree = "<group>"; };
+		E9F1ACBB1B941B14009819DE /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = Controllers/Marketplace/CityViewController/CityViewController.h; sourceTree = "<group>"; };
+		E9F1ACBC1B941B14009819DE /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityViewController.m; path = Controllers/Marketplace/CityViewController/CityViewController.m; sourceTree = "<group>"; };
 		E9FB22921B43A38D00395062 /* PersistedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistedCache.h; path = Library/PersistedCache/PersistedCache.h; sourceTree = "<group>"; };
 		E9FB22931B43A38D00395062 /* PersistedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistedCache.m; path = Library/PersistedCache/PersistedCache.m; sourceTree = "<group>"; };
 		E9FB22961B43A62000395062 /* TemporaryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemporaryCache.h; path = Library/TemporaryCache/TemporaryCache.h; sourceTree = "<group>"; };
@@ -1627,6 +1630,7 @@
 		E9D9C5071B1BFFCE00222E0C /* Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				E9F1ACBA1B941AAE009819DE /* CityViewController */,
 				E9D9C5081B1C009400222E0C /* MarketplaceVC */,
 				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
 				E9FC1D721B8DC82A001226C5 /* SortAndFilter */,
@@ -1752,6 +1756,15 @@
 				E9EEB9391B5D203800815D56 /* HashtagData.m */,
 			);
 			name = Hashtag;
+			sourceTree = "<group>";
+		};
+		E9F1ACBA1B941AAE009819DE /* CityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E9F1ACBB1B941B14009819DE /* CityViewController.h */,
+				E9F1ACBC1B941B14009819DE /* CityViewController.m */,
+			);
+			name = CityViewController;
 			sourceTree = "<group>";
 		};
 		E9FB22951B43A5E300395062 /* TemporaryCache */ = {
@@ -2204,6 +2217,7 @@
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
+				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
 				E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */,
 				E9A07BF81B31437D00904DE9 /* converter.m in Sources */,
