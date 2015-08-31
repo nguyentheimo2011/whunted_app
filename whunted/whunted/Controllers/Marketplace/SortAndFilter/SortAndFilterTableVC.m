@@ -10,7 +10,7 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#define     kCellHeight             40.0f
+#define     kNormalCellHeight       42.0f
 #define     kIconWidth              20.0f
 #define     kIconHeight             20.0f
 #define     kIconLeftMargin         15.0f
@@ -272,6 +272,13 @@
 #pragma mark - UITableViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    return kNormalCellHeight;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 //--------------------------------------------------------------------------------------------------------------------------------
 {
@@ -352,6 +359,16 @@
 
 
 #pragma mark - UITextFieldDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGPoint bottomOffset = CGPointMake(0, 240.0f);
+    [self.tableView setContentOffset:bottomOffset animated:YES];
+    
+    return YES;
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
