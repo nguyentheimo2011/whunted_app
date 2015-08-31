@@ -11,6 +11,7 @@
 #import "Utilities.h"
 
 #define     kNormalCellHeight       42.0f
+#define     kExpandedCellHeight     60.0f
 #define     kIconWidth              20.0f
 #define     kIconHeight             20.0f
 #define     kIconLeftMargin         15.0f
@@ -213,7 +214,7 @@
     _buyerLocationCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     CGFloat const kTextFieldLeftMargin = WINSIZE.width/10.0f;
-    CGFloat const kTextFieldTopMargin = 5.0f;
+    CGFloat const kTextFieldTopMargin = 15.0f;
     CGFloat const kTextFieldWidth = WINSIZE.width - 2 * kTextFieldLeftMargin;
     CGFloat const kTextFieldHeight = 30.0f;
     
@@ -244,16 +245,16 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return 5;
-    else
         return 1;
+    else
+        return 5;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 0)
             return _popularSortCell;
         else if (indexPath.row == 1)
@@ -275,7 +276,10 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return kNormalCellHeight;
+    if (indexPath.section == 0)
+        return kExpandedCellHeight;
+    else
+        return kNormalCellHeight;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -297,9 +301,9 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return NSLocalizedString(@"SORT BY", nil);
-    else
         return NSLocalizedString(@"FILTER BY LOCATION", nil);
+    else
+        return NSLocalizedString(@"SORT BY", nil);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
