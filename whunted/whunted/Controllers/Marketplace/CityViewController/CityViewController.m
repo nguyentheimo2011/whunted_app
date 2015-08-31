@@ -219,6 +219,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    _cityTextField.text = [_matchedCitiesAndCountriesList objectAtIndex:indexPath.row];
 }
 
 
@@ -237,6 +239,9 @@
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    NSString *adjustedString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
+    [self matchCountriesAndCitiesWithText:adjustedString];
+    [_cityTableView reloadData];
     
     return YES;
 }
