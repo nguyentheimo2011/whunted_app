@@ -163,7 +163,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTableViewOriginX     =   _cityTextField.frame.origin.x;
-    CGFloat const kTableViewOriginY     =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height;
+    CGFloat const kTableViewOriginY     =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height + 5.0f;
     CGFloat const kTableViewWidth       =   _cityTextField.frame.size.width;
     CGFloat const kTableViewHeight      =   200.0f;
     
@@ -174,6 +174,8 @@
     _cityTableView.dataSource = self;
     _cityTableView.delegate = self;
     [self.view addSubview:_cityTableView];
+    
+    _cityTableView.hidden = YES;
 }
 
 
@@ -221,6 +223,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     _cityTextField.text = [_matchedCitiesAndCountriesList objectAtIndex:indexPath.row];
+    _cityTableView.hidden = YES;
+    [_cityTextField resignFirstResponder];
 }
 
 
@@ -230,6 +234,7 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    _cityTableView.hidden = YES;
     [textField resignFirstResponder];
     
     return YES;
@@ -242,6 +247,15 @@
     NSString *adjustedString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
     [self matchCountriesAndCitiesWithText:adjustedString];
     [_cityTableView reloadData];
+    
+    return YES;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _cityTableView.hidden = NO;
     
     return YES;
 }
