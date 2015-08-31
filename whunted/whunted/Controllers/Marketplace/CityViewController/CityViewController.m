@@ -10,6 +10,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
+#define     MAX_NUM_OF_MATCHES      20
+
 
 @implementation CityViewController
 {
@@ -18,8 +20,9 @@
     
     UITableView             *_cityTableView;
     
-    NSArray                 *_citiesAndCountriesListl;
+    NSMutableArray          *_citiesAndCountriesList;
     NSArray                 *_matchedCitiesAndCountriesList;
+    NSMutableArray          *_taiwaneseCountryAndCitiesList;
 }
 
 @synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
@@ -29,6 +32,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [self initData];
     
     [self customizeUI];
     [self addGuidanceLabel];
@@ -51,7 +56,38 @@
 - (void) initData
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [self getCountriesToCitiesListFromJSONFile];
+    [self matchCountriesAndCitiesWithText:@""];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) getCountriesToCitiesListFromJSONFile
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countriesToCities" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSDictionary *countriesToCitiesDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
+    NSArray *countries = [countriesToCitiesDict allKeys];
+    _citiesAndCountriesList = [[NSMutableArray alloc] init];
+    
+    for (NSString *country in countries) {
+        [_citiesAndCountriesList addObject:country];
+        
+        NSArray *cities = [countriesToCitiesDict objectForKey:country];
+        for (NSString *city in cities) {
+            NSString *newCity = [NSString stringWithFormat:@"%@, %@", city, country];
+            [_citiesAndCountriesList addObject:newCity];
+        }
+    }
+    
+    NSArray *taiwaneseCities = [countriesToCitiesDict objectForKey:@"Taiwan"];
+    _taiwaneseCountryAndCitiesList = [NSMutableArray array];
+    [_taiwaneseCountryAndCitiesList addObject:@"Taiwan"];
+    for (NSString *city in taiwaneseCities) {
+        NSString *newCity = [NSString stringWithFormat:@"%@, Taiwan", city];
+        [_taiwaneseCountryAndCitiesList addObject:newCity];
+    }
 }
 
 
@@ -147,14 +183,23 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    return 5;
+    return _matchedCitiesAndCountriesList.count;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *cellID = @"CountryAndCityCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    cell.textLabel.text = [_matchedCitiesAndCountriesList objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -188,6 +233,14 @@
     return YES;
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    
+    return YES;
+}
+
 
 #pragma mark - Event Handlers
 
@@ -217,6 +270,24 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) matchCountriesAndCitiesWithText: (NSString *) typedText
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    if (typedText.length == 0) {
+        _matchedCitiesAndCountriesList = [_taiwaneseCountryAndCitiesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
+    } else {
+        NSString *filter = @"SELF BEGINSWITH[cd] %@";
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:filter, typedText];
+        
+        _matchedCitiesAndCountriesList = [_citiesAndCountriesList filteredArrayUsingPredicate:predicate];
+        
+        if (_matchedCitiesAndCountriesList.count > MAX_NUM_OF_MATCHES)
+            _matchedCitiesAndCountriesList = [_matchedCitiesAndCountriesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
+    }
 }
 
 @end
