@@ -20,7 +20,7 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-@interface SortAndFilterTableVC : UITableViewController
+@interface SortAndFilterTableVC : UITableViewController <UITextFieldDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong)   id<SortAndFilterTableViewDelegate>  delegate;

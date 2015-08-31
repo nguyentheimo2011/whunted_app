@@ -26,6 +26,10 @@
     
     UITableViewCell         *_buyerLocationCell;
     
+    UITextField             *_cityTextField;
+    
+    NSDictionary            *_countriesToCitiesDict;
+    
     NSInteger               _selectedSortingIndex;
 }
 
@@ -61,6 +65,17 @@
 {
     NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil), NSLocalizedString(@"Nearest Price", nil)];
     _selectedSortingIndex = [array indexOfObject:_sortingCriterion];
+    
+    [self getCountriesToCitiesDictionaryFromJSONFile];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) getCountriesToCitiesDictionaryFromJSONFile
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countriesToCities" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    _countriesToCitiesDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
 
@@ -195,6 +210,23 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _buyerLocationCell = [[UITableViewCell alloc] init];
+    _buyerLocationCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat const kTextFieldLeftMargin = WINSIZE.width/10.0f;
+    CGFloat const kTextFieldTopMargin = 5.0f;
+    CGFloat const kTextFieldWidth = WINSIZE.width - 2 * kTextFieldLeftMargin;
+    CGFloat const kTextFieldHeight = 30.0f;
+    
+    _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
+    _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter city", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+    _cityTextField.returnKeyType = UIReturnKeyDone;
+    _cityTextField.layer.borderWidth = 0.5f;
+    _cityTextField.layer.borderColor = [TEXT_COLOR_DARK_GRAY CGColor];
+    _cityTextField.layer.cornerRadius = 8.0f;
+    _cityTextField.delegate = self;
+    [Utilities customizeTextField:_cityTextField];
+    [_buyerLocationCell addSubview:_cityTextField];
 }
 
 
@@ -316,6 +348,18 @@
 {
     [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - UITextFieldDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 @end

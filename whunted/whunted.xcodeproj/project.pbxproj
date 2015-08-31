@@ -302,6 +302,7 @@
 		E9FC1D941B8EBA2E001226C5 /* recent_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D851B8EBA2E001226C5 /* recent_icon@1x.png */; };
 		E9FC1D951B8EBA2E001226C5 /* recent_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D861B8EBA2E001226C5 /* recent_icon@2x.png */; };
 		E9FC1D961B8EBA2E001226C5 /* recent_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D871B8EBA2E001226C5 /* recent_icon@3x.png */; };
+		E9FC1D9C1B93D96F001226C5 /* countriesToCities.json in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -685,6 +686,7 @@
 		E9FC1D851B8EBA2E001226C5 /* recent_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent_icon@1x.png"; path = "Resources/SortAndFilter/recent_icon@1x.png"; sourceTree = "<group>"; };
 		E9FC1D861B8EBA2E001226C5 /* recent_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent_icon@2x.png"; path = "Resources/SortAndFilter/recent_icon@2x.png"; sourceTree = "<group>"; };
 		E9FC1D871B8EBA2E001226C5 /* recent_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent_icon@3x.png"; path = "Resources/SortAndFilter/recent_icon@3x.png"; sourceTree = "<group>"; };
+		E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countriesToCities.json; path = "Resources/JSON-files/countriesToCities.json"; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1028,6 +1030,7 @@
 		E94D17D51AF8B68600E31B01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9FC1D9A1B93D916001226C5 /* JSON-files */,
 				E9FC1D591B8C5CEF001226C5 /* SortAndFilter */,
 				E9E31F5D1B8496F7008D6A3D /* UploadPopup */,
 				E92A0BE11B6CD36B000D66BD /* Feedback */,
@@ -1817,6 +1820,14 @@
 			name = SortAndFilter;
 			sourceTree = "<group>";
 		};
+		E9FC1D9A1B93D916001226C5 /* JSON-files */ = {
+			isa = PBXGroup;
+			children = (
+				E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */,
+			);
+			name = "JSON-files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1987,6 +1998,7 @@
 				E97CE4901B07876C0027C5FA /* squareplus@2x.png in Resources */,
 				E9FC1D601B8C5D09001226C5 /* category_small_icon@1x.png in Resources */,
 				E9D433041B550EC200530492 /* edit_icon@3x.png in Resources */,
+				E9FC1D9C1B93D96F001226C5 /* countriesToCities.json in Resources */,
 				E90ACE191B7207B400DC9768 /* chat_tab_icon@2x.png in Resources */,
 				E97A95421B528973003796DD /* sad_face@1x.png in Resources */,
 				E92A0BF71B706F0E000D66BD /* smiling_face_small@1x.png in Resources */,

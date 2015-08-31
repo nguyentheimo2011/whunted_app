@@ -55,6 +55,8 @@
 
 + (void)        customizeHeaderFooterLabels;
 
++ (void)        customizeTextField: (UITextField *) textField;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UI Helpers
