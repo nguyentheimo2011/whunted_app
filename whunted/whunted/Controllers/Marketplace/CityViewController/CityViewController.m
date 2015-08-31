@@ -15,9 +15,14 @@
 {
     UILabel                 *_guidanceLabel;
     UITextField             *_cityTextField;
+    
+    UITableView             *_cityTableView;
+    
+    NSArray                 *_citiesAndCountriesListl;
+    NSArray                 *_matchedCitiesAndCountriesList;
 }
 
-@synthesize labelTitle = _labelTitle;
+@synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -28,6 +33,7 @@
     [self customizeUI];
     [self addGuidanceLabel];
     [self addTextField];
+    [self addCityTable];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -39,6 +45,16 @@
 }
 
 
+#pragma mark - Data Initialization
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+
 #pragma mark - UI
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -46,6 +62,21 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    if (_isToSetProductOrigin) {
+        [Utilities customizeTitleLabel:NSLocalizedString(@"Product Origin", nil) forViewController:self];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSortAndFilter)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Apply", nil) style:UIBarButtonItemStylePlain target:self action:@selector(applyNewSortingAndFilteringCriteria)];
+    }
+    else {
+        [Utilities customizeTitleLabel:NSLocalizedString(@"Buyer's City", nil) forViewController:self];
+        
+        [Utilities customizeBackButtonForViewController:self withAction:@selector(backToPreviousView)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topDoneButtonTapEventHandler)];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -58,7 +89,12 @@
     CGFloat const kLabelHeight      =   20.0f;
     
     _guidanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
-    _guidanceLabel.text = @"Product Origin:";
+    
+    if (_isToSetProductOrigin)
+        _guidanceLabel.text = NSLocalizedString(@"Product origin:", nil);
+    else
+        _guidanceLabel.text = NSLocalizedString(@"Filter by buyer's city:", nil);
+    
     _guidanceLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _guidanceLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self.view addSubview:_guidanceLabel];
@@ -72,7 +108,7 @@
     CGFloat const kTextFieldTopMargin   =   10.0f;
     CGFloat const kTextFieldOriginY     =   _guidanceLabel.frame.origin.y + _guidanceLabel.frame.size.height + kTextFieldTopMargin;
     CGFloat const kTextFieldWidth       =   WINSIZE.width - 2 * kTextFieldLeftMargin;
-    CGFloat const kTextFieldHeight      =   30.0f;
+    CGFloat const kTextFieldHeight      =   40.0f;
     
     _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
@@ -86,6 +122,60 @@
     [self.view addSubview:_cityTextField];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addCityTable
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kTableViewOriginX     =   _cityTextField.frame.origin.x;
+    CGFloat const kTableViewOriginY     =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height;
+    CGFloat const kTableViewWidth       =   _cityTextField.frame.size.width;
+    CGFloat const kTableViewHeight      =   200.0f;
+    
+    _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(kTableViewOriginX, kTableViewOriginY, kTableViewWidth, kTableViewHeight)];
+    _cityTableView.layer.borderWidth = 0.5f;
+    _cityTableView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _cityTableView.layer.cornerRadius = 8.0f;
+    _cityTableView.dataSource = self;
+    _cityTableView.delegate = self;
+    [self.view addSubview:_cityTableView];
+}
+
+
+#pragma mark - UITableViewDataSource methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    return 5;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    return cell;
+}
+
+
+#pragma mark - UITableViewDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    return 40.0f;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark - UITextFieldDelegate methods
 
@@ -96,6 +186,37 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+
+#pragma mark - Event Handlers
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) cancelSortAndFilter
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) applyNewSortingAndFilteringCriteria
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) backToPreviousView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) topDoneButtonTapEventHandler
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

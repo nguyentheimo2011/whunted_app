@@ -407,6 +407,7 @@
 //    countryTableView.delegate = self;
     
     CityViewController *cityViewController = [[CityViewController alloc] init];
+    cityViewController.isToSetProductOrigin = YES;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];

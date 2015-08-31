@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityViewController : UIViewController <UITextFieldDelegate>
+@interface CityViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong)   NSString    *labelTitle;
+@property (nonatomic)       BOOL        isToSetProductOrigin;
 
 @end

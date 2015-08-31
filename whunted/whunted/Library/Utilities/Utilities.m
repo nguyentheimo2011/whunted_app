@@ -187,7 +187,7 @@
 + (void) customizeTextField:(UITextField *)textField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, textField.frame.size.height)];
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, textField.frame.size.height)];
     textField.leftView = paddingView;
     textField.leftViewMode = UITextFieldViewModeAlways;
 }
