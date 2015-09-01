@@ -547,11 +547,10 @@
 #pragma mark - CategoryTableViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) categoryTableViewController:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
+- (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantData.itemCategory = category;;
-    [self.navigationController popViewControllerAnimated:YES];
     _categoryCell.detailTextLabel.text = _wantData.itemCategory;
 }
 
