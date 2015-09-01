@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <APNumberPad.h>
+
 #import "CategoryTableViewController.h"
-#import "LocationTableViewController.h"
 #import "ItemInfoTableViewController.h"
-#import "CountryTableViewController.h"
 #import "ImageGetterViewController.h"
 #import "ImageRetrieverViewController.h"
 #import "WantData.h"
+#import "CityViewController.h"
 
 #import <CLImageEditor.h>
 #import <RSKImageCropper.h>
+#import <APNumberPad.h>
 
 @class UploadingWantDetailsViewController;
 
@@ -34,9 +34,8 @@
 @interface UploadingWantDetailsViewController : UITableViewController
 //-------------------------------------------------------------------------------------------------------------------------------
                                                 <CategoryTableViewControllerDelegate,
-                                                 LocationTableViewControllerDelegate,
+                                                 CityViewDelegate,
                                                  ItemInfoTableViewControllerDelegate,
-                                                 CountryTableViewDelegate,
                                                  UITextFieldDelegate,
                                                  UIAlertViewDelegate,
                                                  APNumberPadDelegate,

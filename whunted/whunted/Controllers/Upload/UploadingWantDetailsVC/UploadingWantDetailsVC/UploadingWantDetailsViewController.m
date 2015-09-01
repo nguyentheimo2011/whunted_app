@@ -13,11 +13,14 @@
 #import "KLCPopup.h"
 #import <MBProgressHUD.h>
 
-#define kCellHeight         40.0f
-#define kIconWidth          20.0f
-#define kIconHeight         20.0f
-#define kIconLeftMargin     15.0f
-#define kIconTopMargin      10.0f
+#define     kCellHeight             40.0f
+#define     kIconWidth              20.0f
+#define     kIconHeight             20.0f
+#define     kIconLeftMargin         15.0f
+#define     kIconTopMargin          10.0f
+
+#define     PRODUCT_ORIGIN_TAG      110
+#define     MEETING_LOCATION_TAG    120
 
 @implementation UploadingWantDetailsViewController
 {
@@ -389,19 +392,24 @@
 - (void) pushProductOriginViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins usedForFiltering:NO];
-    productTableVC.delegate = self;
-    [self.navigationController pushViewController:productTableVC animated:YES];
+    CityViewController *productOriginVC = [[CityViewController alloc] init];
+    productOriginVC.tag = PRODUCT_ORIGIN_TAG;
+    productOriginVC.currentLocation = (_wantData.itemOrigins.count > 0) ? [_wantData.itemOrigins objectAtIndex:0] : nil;
+    productOriginVC.delegate = self;
+    
+    [self.navigationController pushViewController:productOriginVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) pushMeetingLocationViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
-    locVC.delegate = self;
-    locVC.location = _wantData.meetingLocation;
-    [self.navigationController pushViewController:locVC animated:YES];
+    CityViewController *meetingLocationVC = [[CityViewController alloc] init];
+    meetingLocationVC.tag = MEETING_LOCATION_TAG;
+    meetingLocationVC.currentLocation = _wantData.meetingLocation;
+    meetingLocationVC.delegate = self;
+    
+    [self.navigationController pushViewController:meetingLocationVC animated:YES];
 }
 
 
@@ -595,15 +603,30 @@
 }
 
 
-#pragma mark - LocationTableViewControllerDelegate methods
+#pragma mark - CityViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) locationTableViewController:(LocationTableViewController *)controller didSelectLocation:(NSString *)location
+- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantData.meetingLocation = location;
-    [self.navigationController popViewControllerAnimated:YES];
-    _locationCell.detailTextLabel.text = _wantData.meetingLocation;
+    if (controller.tag == PRODUCT_ORIGIN_TAG)
+    {
+        _wantData.itemOrigins = [NSArray arrayWithObject:location];
+        
+        if (location.length > 0)
+            _productOriginCell.detailTextLabel.text = location;
+        else
+            _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+    }
+    else
+    {
+        _wantData.meetingLocation = location;
+        
+        if (location.length > 0)
+            _locationCell.detailTextLabel.text = location;
+        else
+            _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
+    }
 }
 
 
@@ -703,22 +726,6 @@
     NSRange range = {[[_priceTextField text] length], 1};
     if ([self textField:_priceTextField shouldChangeCharactersInRange:range replacementString:DOT_CHARACTER])
         [textInput insertText:DOT_CHARACTER];
-}
-
-
-#pragma mark - ProductOriginTableViewDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingCountries:(NSArray *)countries
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _wantData.itemOrigins = [NSArray arrayWithArray:countries];
-    
-    if ([_wantData.itemOrigins count] > 0) {
-        NSString *originText = [_wantData.itemOrigins componentsJoinedByString:@", "];
-        [_productOriginCell.detailTextLabel setText:originText];
-    } else
-        _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
 }
 
 

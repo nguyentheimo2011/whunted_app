@@ -28,4 +28,6 @@
 
 @property (nonatomic, strong)   NSString    *currentLocation;
 
+@property (nonatomic)           NSInteger   tag;
+
 @end
