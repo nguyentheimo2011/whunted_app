@@ -498,13 +498,16 @@
 #pragma mark - SortAndFilterTableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion
+- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion andBuyerLocation:(NSString *)buyerLocation
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currSortFilterLabel.text = criterion;
     
     _currSortingBy = criterion;
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
+    
+    _currBuyerLocation = buyerLocation;
+    [[NSUserDefaults standardUserDefaults] setObject:buyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
     
     [self updateMatchedWantData];
 }
@@ -619,6 +622,25 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) filterArray: (NSArray *) array byBuyerLocation: (NSString *) buyerLocation
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([buyerLocation isEqualToString:NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil)])
+        return array;
+    else {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array) {
+            if ([wantData.meetingLocation isEqualToString:buyerLocation]) {
+                [filteredArray addObject:wantData];
+            }
+        }
+        
+        return filteredArray;
+    }
+}
+
 
 #pragma mark - Helpers
 
@@ -626,9 +648,10 @@
 - (void) updateMatchedWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
-    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
+    _sortedAndFilteredWantDataList = [self filterArray:_wantDataList byCategory:_currCategory];
     _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byProductOrigin:_currProductOrigin];
+    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byBuyerLocation:_currBuyerLocation];
+    _sortedAndFilteredWantDataList = [self sortArray:_sortedAndFilteredWantDataList by:_currSortingBy];
     
     [_wantCollectionView reloadData];
 }

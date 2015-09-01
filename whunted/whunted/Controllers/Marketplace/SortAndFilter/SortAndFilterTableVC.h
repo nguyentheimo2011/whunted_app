@@ -16,7 +16,7 @@
 @protocol SortAndFilterTableViewDelegate <NSObject>
 //------------------------------------------------------------------------------------------------------------------------------
 
-- (void) sortAndFilterTableView: (SortAndFilterTableVC *) controller didCompleteChoosingSortingCriterion: (NSString *) criterion;
+- (void) sortAndFilterTableView: (SortAndFilterTableVC *) controller didCompleteChoosingSortingCriterion: (NSString *) criterion andBuyerLocation: (NSString *) buyerLocation;
 
 @end
 

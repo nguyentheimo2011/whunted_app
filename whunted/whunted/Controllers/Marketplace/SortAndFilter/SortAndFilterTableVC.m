@@ -350,7 +350,7 @@
 - (void) applyNewSortingAndFilteringCriteria
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion];
+    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion andBuyerLocation:_buyerLocationFilter];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
