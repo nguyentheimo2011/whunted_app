@@ -88,7 +88,9 @@
     
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
-    _itemImageView.image = nil;
+    NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
+    _itemImageView.image = [[TemporaryCache sharedCache] objectForKey:key];
+    
     
     if (!_itemImageView.image)
         [self downloadItemImage];
@@ -329,10 +331,16 @@
         if (!error) {
             PFFile *firstPicture = firstObject[@"itemPicture"];
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
-                if (!error_2) {
+                if (!error_2)
+                {
                     UIImage *image = [UIImage imageWithData:data];
                     [_itemImageView setImage:image];
-                } else {
+                    
+                    NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
+                    [[TemporaryCache sharedCache] setObject:image forKey:key];
+                }
+                else
+                {
                     NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                 }
             }];
