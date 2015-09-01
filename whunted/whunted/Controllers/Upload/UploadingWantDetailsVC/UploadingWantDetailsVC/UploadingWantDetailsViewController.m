@@ -69,6 +69,7 @@
     _wantData.itemPictures = [[NSMutableArray alloc] init];
 }
 
+
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -355,6 +356,14 @@
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editorTopCancelButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToViewController:self animated:YES];
+}
+
 
 #pragma mark - Set image for button
 
@@ -379,6 +388,7 @@
         }
     }];
 }
+
 
 #pragma mark - UITableViewDataSouce methods
 
@@ -784,8 +794,10 @@
     [self setImage:image forButton:_prevTappedButtonIndex];
 }
 
+
 #pragma mark - RSKImageCropViewControllerDataSource methods
 
+// cropt non-square images to squared images
 //-------------------------------------------------------------------------------------------------------------------------------
 - (CGRect)imageCropViewControllerCustomMaskRect:(RSKImageCropViewController *)controller
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -859,17 +871,6 @@
         [self addItemImageToWantDetailVC:croppedImage];
     }
     
-}
-
-
-#pragma mark - Event Handlers
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) editorTopCancelButtonTapEventHandler
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

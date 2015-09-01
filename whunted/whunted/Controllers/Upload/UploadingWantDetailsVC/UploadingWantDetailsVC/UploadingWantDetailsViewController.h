@@ -21,17 +21,33 @@
 
 @class UploadingWantDetailsViewController;
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 @protocol UploadingWantDetailsViewControllerDelegate <NSObject>
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 
 - (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didCompleteSubmittingWantData: (WantData *) wantData;
 
 @end
 
-//--------------------------------------------------------------------------------------------------------------------------------
-@interface UploadingWantDetailsViewController : UITableViewController <CategoryTableViewControllerDelegate, LocationTableViewControllerDelegate, ItemInfoTableViewControllerDelegate, CountryTableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, APNumberPadDelegate, ImageGetterViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ImageRetrieverDelegate, CLImageEditorDelegate, RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource>
-//--------------------------------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------------------------
+@interface UploadingWantDetailsViewController : UITableViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+                                                <CategoryTableViewControllerDelegate,
+                                                 LocationTableViewControllerDelegate,
+                                                 ItemInfoTableViewControllerDelegate,
+                                                 CountryTableViewDelegate,
+                                                 UITextFieldDelegate,
+                                                 UIAlertViewDelegate,
+                                                 APNumberPadDelegate,
+                                                 ImageGetterViewControllerDelegate,
+                                                 UINavigationControllerDelegate,
+                                                 UIImagePickerControllerDelegate,
+                                                 ImageRetrieverDelegate,
+                                                 CLImageEditorDelegate,
+                                                 RSKImageCropViewControllerDelegate,
+                                                 RSKImageCropViewControllerDataSource>
+
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 
