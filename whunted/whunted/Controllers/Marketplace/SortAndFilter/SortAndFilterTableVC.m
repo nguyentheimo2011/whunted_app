@@ -327,6 +327,10 @@
     } else {
         CityViewController *cityViewController = [[CityViewController alloc] init];
         cityViewController.isToSetProductOrigin = NO;
+        
+        if (![_buyerLocationFilter isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])
+            cityViewController.currentLocation = _buyerLocationFilter;
+        
         cityViewController.delegate = self;
         [self.navigationController pushViewController:cityViewController animated:YES];
     }
