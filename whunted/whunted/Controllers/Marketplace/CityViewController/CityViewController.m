@@ -62,36 +62,6 @@
     [self matchCountriesAndCitiesWithText:_currentLocation];
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) getCountriesToCitiesListFromJSONFile
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countriesToCities" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *countriesToCitiesDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    
-    NSArray *countries = [countriesToCitiesDict allKeys];
-    _citiesAndCountriesList = [[NSMutableArray alloc] init];
-    
-    for (NSString *country in countries) {
-        [_citiesAndCountriesList addObject:country];
-        
-        NSArray *cities = [countriesToCitiesDict objectForKey:country];
-        for (NSString *city in cities) {
-            NSString *newCity = [NSString stringWithFormat:@"%@, %@", city, country];
-            [_citiesAndCountriesList addObject:newCity];
-        }
-    }
-    
-    NSArray *taiwaneseCities = [countriesToCitiesDict objectForKey:@"Taiwan"];
-    _taiwaneseCountryAndCitiesList = [NSMutableArray array];
-    [_taiwaneseCountryAndCitiesList addObject:@"Taiwan"];
-    for (NSString *city in taiwaneseCities) {
-        NSString *newCity = [NSString stringWithFormat:@"%@, Taiwan", city];
-        [_taiwaneseCountryAndCitiesList addObject:newCity];
-    }
-}
-
 
 #pragma mark - UI
 
@@ -151,7 +121,7 @@
     _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _cityTextField.text = _currentLocation;
     _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter city", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter a location", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     _cityTextField.returnKeyType = UIReturnKeyDone;
     _cityTextField.layer.borderWidth = 0.5f;
     _cityTextField.layer.borderColor = [TEXT_COLOR_DARK_GRAY CGColor];
@@ -311,6 +281,39 @@
         
         if (_matchedCitiesAndCountriesList.count > MAX_NUM_OF_MATCHES)
             _matchedCitiesAndCountriesList = [_matchedCitiesAndCountriesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
+    }
+}
+
+
+#pragma mark - Data Handlers
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) getCountriesToCitiesListFromJSONFile
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countriesToCities" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSDictionary *countriesToCitiesDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    
+    NSArray *countries = [countriesToCitiesDict allKeys];
+    _citiesAndCountriesList = [[NSMutableArray alloc] init];
+    
+    for (NSString *country in countries) {
+        [_citiesAndCountriesList addObject:country];
+        
+        NSArray *cities = [countriesToCitiesDict objectForKey:country];
+        for (NSString *city in cities) {
+            NSString *newCity = [NSString stringWithFormat:@"%@, %@", city, country];
+            [_citiesAndCountriesList addObject:newCity];
+        }
+    }
+    
+    NSArray *taiwaneseCities = [countriesToCitiesDict objectForKey:@"Taiwan"];
+    _taiwaneseCountryAndCitiesList = [NSMutableArray array];
+    [_taiwaneseCountryAndCitiesList addObject:@"Taiwan"];
+    for (NSString *city in taiwaneseCities) {
+        NSString *newCity = [NSString stringWithFormat:@"%@, Taiwan", city];
+        [_taiwaneseCountryAndCitiesList addObject:newCity];
     }
 }
 
