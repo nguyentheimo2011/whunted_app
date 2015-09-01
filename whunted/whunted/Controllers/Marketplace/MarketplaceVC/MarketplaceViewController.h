@@ -8,7 +8,6 @@
 
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
-#import "CountryTableViewController.h"
 #import "CategoryTableViewController.h"
 #import "SortAndFilterTableVC.h"
 #import "CityViewController.h"
@@ -23,7 +22,7 @@
 
 
 //----------------------------------------------------------------------------------------------------------------------------
-@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CountryTableViewDelegate, CategoryTableViewControllerDelegate, SortAndFilterTableViewDelegate>
+@interface MarketplaceViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, ItemDetailsViewControllerDelegate, CategoryTableViewControllerDelegate, SortAndFilterTableViewDelegate, CityViewDelegate>
 //----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;

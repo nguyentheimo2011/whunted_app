@@ -281,7 +281,7 @@
 #define     OFFER_FROM_ITEM_DETAILS                     @"offerFromItemDetails"
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     SORTING_BY                                  @"SortingBy"
+#define     CURRENT_SORTING_BY                          @"currSortingBy"
 #define     SORTING_BY_POPULAR                          @"Popular"
 #define     SORTING_BY_RECENT                           @"Recent"
 #define     SORTING_BY_LOWEST_PRICE                     @"Lowest Price"
@@ -303,6 +303,10 @@
 #define     ITEM_CATEGORY_BORROWING                     @"Borrowing"
 #define     ITEM_CATEGORY_FUNITURE                      @"Furniture"
 #define     ITEM_CATEGORY_OTHERS                        @"Others"
+
+//----------------------------------------------------------------------------------------------------------------------------
+#define     CURRENT_PRODUCT_ORIGIN_FILTER               @"currProductOrigin"
+#define     ITEM_PRODUCT_ORIGIN_ALL                     @"All"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60

@@ -25,6 +25,7 @@
     NSMutableArray          *_taiwaneseCountryAndCitiesList;
 }
 
+@synthesize delegate                =   _delegate;
 @synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -274,6 +275,7 @@
 - (void) applyNewSortingAndFilteringCriteria
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

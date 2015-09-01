@@ -7,7 +7,6 @@
 //
 
 #import "SortAndFilterTableVC.h"
-#import "CityTableVC.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -29,8 +28,6 @@
     UITableViewCell         *_buyerLocationCell;
     
     UITextField             *_cityTextField;
-    
-    CityTableVC             *_cityTableVC;
     
     NSDictionary            *_countriesToCitiesDict;
     
@@ -372,15 +369,6 @@
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const tableViewWidth    =   _cityTextField.frame.size.width;
-    CGFloat const tableViewHeight   =   200.0f;
-    CGFloat const tableViewOriginX  =   _cityTextField.frame.origin.x;
-    CGFloat const tableViewOriginY  =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height;
-    
-    _cityTableVC = [[CityTableVC alloc] init];
-    _cityTableVC.tableView.frame = CGRectMake(tableViewOriginX, tableViewOriginY, tableViewWidth, tableViewHeight);
-    [_buyerLocationCell addSubview:_cityTableVC.tableView];
-    
     return YES;
 }
 

@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class CityViewController;
+
+//------------------------------------------------------------------------------------------------------------------------------
+@protocol CityViewDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
+
+- (void) cityView: (CityViewController *) controller didSpecifyLocation: (NSString *) location;
+
+@end
+
+//------------------------------------------------------------------------------------------------------------------------------
 @interface CityViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+//------------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic, weak) id<CityViewDelegate>    delegate;
 
 @property (nonatomic)       BOOL        isToSetProductOrigin;
 

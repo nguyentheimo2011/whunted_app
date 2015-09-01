@@ -27,6 +27,7 @@
     UILabel                 *_currCategoryLabel;
     UILabel                 *_currSortFilterLabel;
     
+    NSString                *_currProductOrigin;
     NSString                *_currSortingBy;
     NSString                *_currCategory;
 
@@ -75,7 +76,12 @@
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:SORTING_BY];
+    _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    
+    if (_currProductOrigin.length == 0)
+        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+    
+    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
     
     if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
         _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
@@ -242,7 +248,7 @@
     
     if (tag == 0) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
-        curLabel.text = NSLocalizedString(@"Taiwan", nil);;
+        curLabel.text = _currProductOrigin;
         _currProductOriginLabel = curLabel;
     } else if (tag == 1) {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
@@ -402,12 +408,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) productOriginViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
-{
-//    CountryTableViewController *countryTableView = [[CountryTableViewController alloc] initWithSelectedCountries:nil usedForFiltering:YES];
-//    countryTableView.delegate = self;
-    
+{    
     CityViewController *cityViewController = [[CityViewController alloc] init];
     cityViewController.isToSetProductOrigin = YES;
+    cityViewController.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
@@ -449,13 +453,19 @@
 }
 
 
-#pragma mark - CountryTableViewDelegate methods
+#pragma mark - CityViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) countryTableView:(CountryTableViewController *)controller didCompleteChoosingACountry:(NSString *)country
+- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currProductOriginLabel.text = NSLocalizedString(country, nil);
+    if (location.length > 0) {
+        _currProductOrigin = location;
+        _currProductOriginLabel.text = location;
+    } else {
+        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+        _currProductOriginLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+    }
 }
 
 
@@ -485,7 +495,7 @@
     _currSortFilterLabel.text = criterion;
     
     _currSortingBy = criterion;
-    [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:SORTING_BY];
+    [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
     
     _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
     _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
