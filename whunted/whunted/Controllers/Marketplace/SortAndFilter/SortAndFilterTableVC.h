@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CityViewController.h"
+
 @class SortAndFilterTableVC;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -20,7 +22,7 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-@interface SortAndFilterTableVC : UITableViewController <UITextFieldDelegate>
+@interface SortAndFilterTableVC : UITableViewController <UITextFieldDelegate, CityViewDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong)   id<SortAndFilterTableViewDelegate>  delegate;

@@ -108,7 +108,7 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Apply", nil) style:UIBarButtonItemStylePlain target:self action:@selector(applyNewSortingAndFilteringCriteria)];
     }
     else {
-        [Utilities customizeTitleLabel:NSLocalizedString(@"Buyer's City", nil) forViewController:self];
+        [Utilities customizeTitleLabel:NSLocalizedString(@"Location", nil) forViewController:self];
         
         [Utilities customizeBackButtonForViewController:self withAction:@selector(backToPreviousView)];
         
@@ -130,7 +130,7 @@
     if (_isToSetProductOrigin)
         _guidanceLabel.text = NSLocalizedString(@"Product origin:", nil);
     else
-        _guidanceLabel.text = NSLocalizedString(@"Filter by buyer's city:", nil);
+        _guidanceLabel.text = NSLocalizedString(@"Filter by buyer's location:", nil);
     
     _guidanceLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _guidanceLabel.textColor = TEXT_COLOR_DARK_GRAY;
@@ -290,6 +290,7 @@
 - (void) topDoneButtonTapEventHandler
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

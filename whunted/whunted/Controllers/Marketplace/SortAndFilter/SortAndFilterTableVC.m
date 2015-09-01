@@ -11,7 +11,6 @@
 #import "Utilities.h"
 
 #define     kNormalCellHeight       42.0f
-#define     kExpandedCellHeight     60.0f
 #define     kIconWidth              20.0f
 #define     kIconHeight             20.0f
 #define     kIconLeftMargin         15.0f
@@ -211,24 +210,18 @@
 - (void) initBuyerLocationCell
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    _buyerLocationCell = [[UITableViewCell alloc] init];
-    _buyerLocationCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _buyerLocationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"BuyerLocationCell"];
+    _buyerLocationCell.textLabel.text = NSLocalizedString(@"Location", nil);
+    _buyerLocationCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _buyerLocationCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _buyerLocationCell.indentationLevel = 3;
+    _buyerLocationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    CGFloat const kTextFieldLeftMargin = WINSIZE.width/10.0f;
-    CGFloat const kTextFieldTopMargin = 15.0f;
-    CGFloat const kTextFieldWidth = WINSIZE.width - 2 * kTextFieldLeftMargin;
-    CGFloat const kTextFieldHeight = 30.0f;
-    
-    _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldTopMargin, kTextFieldWidth, kTextFieldHeight)];
-    _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter city", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
-    _cityTextField.returnKeyType = UIReturnKeyDone;
-    _cityTextField.layer.borderWidth = 0.5f;
-    _cityTextField.layer.borderColor = [TEXT_COLOR_DARK_GRAY CGColor];
-    _cityTextField.layer.cornerRadius = 8.0f;
-    _cityTextField.delegate = self;
-    [Utilities customizeTextField:_cityTextField];
-    [_buyerLocationCell addSubview:_cityTextField];
+    // add popular sort icon
+    UIImageView *buyerLocationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *buyerLocationImage = [UIImage imageNamed:@"buyer_location_icon.png"];
+    [buyerLocationImageView setImage:buyerLocationImage];
+    [_buyerLocationCell addSubview:buyerLocationImageView];
 }
 
 
@@ -277,10 +270,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0)
-        return kNormalCellHeight;
-    else
-        return kExpandedCellHeight;
+    return kNormalCellHeight;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -304,7 +294,7 @@
     if (section == 0)
         return NSLocalizedString(@"SORT BY", nil);
     else
-        return NSLocalizedString(@"FILTER BY LOCATION", nil);
+        return NSLocalizedString(@"FILTER BY BUYER'S LOCATION", nil);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -327,20 +317,27 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row != _selectedSortingIndex) {
-        // clear checkmark from the previous cell
-        UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedSortingIndex inSection:0]];
-        prevCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-        prevCell.accessoryType = UITableViewCellAccessoryNone;
-        
-        // add checkmark to the chosen cell
-        UITableViewCell *chosenCell = [tableView cellForRowAtIndexPath:indexPath];
-        chosenCell.textLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:SMALL_FONT_SIZE];
-        chosenCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        // update data
-        _selectedSortingIndex = indexPath.row;
-        _sortingCriterion = chosenCell.textLabel.text;
+    if (indexPath.section == 0) {
+        if (indexPath.row != _selectedSortingIndex) {
+            // clear checkmark from the previous cell
+            UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedSortingIndex inSection:0]];
+            prevCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            prevCell.accessoryType = UITableViewCellAccessoryNone;
+            
+            // add checkmark to the chosen cell
+            UITableViewCell *chosenCell = [tableView cellForRowAtIndexPath:indexPath];
+            chosenCell.textLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:SMALL_FONT_SIZE];
+            chosenCell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            // update data
+            _selectedSortingIndex = indexPath.row;
+            _sortingCriterion = chosenCell.textLabel.text;
+        }
+    } else {
+        CityViewController *cityViewController = [[CityViewController alloc] init];
+        cityViewController.isToSetProductOrigin = NO;
+        cityViewController.delegate = self;
+        [self.navigationController pushViewController:cityViewController animated:YES];
     }
 }
 
@@ -379,6 +376,17 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+
+#pragma mark - CityViewDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _buyerLocationCell.detailTextLabel.text = location;
+    _buyerLocationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
 }
 
 @end
