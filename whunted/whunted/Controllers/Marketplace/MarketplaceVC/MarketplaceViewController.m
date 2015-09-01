@@ -225,7 +225,7 @@
     
     if (tag == 0) {
         titleLabel.text = NSLocalizedString(@"ORIGIN", nil);
-        titleLabel.frame = CGRectMake(24.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
+        titleLabel.frame = CGRectMake(26.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
     } else if (tag == 1) {
         titleLabel.text = NSLocalizedString(@"CATEGORY", nil);
         titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 36.0f, 20.0f);
@@ -466,6 +466,10 @@
         _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
         _currProductOriginLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
     }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    
+    [self updateMatchedWantData];
 }
 
 
@@ -480,9 +484,7 @@
     _currCategory = category;
     [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
     
-    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
-    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
-    [_wantCollectionView reloadData];
+    [self updateMatchedWantData];
 }
 
 
@@ -497,9 +499,7 @@
     _currSortingBy = criterion;
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
     
-    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
-    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
-    [_wantCollectionView reloadData];
+    [self updateMatchedWantData];
 }
 
 
@@ -528,10 +528,8 @@
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [_wantDataList addObject:wantData];
             }
-            _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
-            _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
             
-            [_wantCollectionView reloadData];
+            [self updateMatchedWantData];
             
         } else {
             // Log details of the failure
@@ -595,8 +593,38 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (NSArray *) filterArray: (NSArray *) array byProductOrigin: (NSString *) productOrigin
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([productOrigin isEqualToString:NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil)])
+        return array;
+    else {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array) {
+            if ([wantData.itemOrigins containsObject:productOrigin] || [wantData.itemOrigins containsObject:NSLocalizedString(productOrigin, nil)]) {
+                [filteredArray addObject:wantData];
+            }
+        }
+        
+        return filteredArray;
+    }
+}
+
 
 #pragma mark - Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateMatchedWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _sortedAndFilteredWantDataList = [self sortArray:_wantDataList by:_currSortingBy];
+    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byCategory:_currCategory];
+    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byProductOrigin:_currProductOrigin];
+    
+    [_wantCollectionView reloadData];
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) isOfOneOfCorrectSortingSchemes: (NSString *) sortingBy
@@ -615,8 +643,6 @@
     else
         return NO;
 }
-
-#pragma mark - Helpers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) isOfOneOfCorrectCategories: (NSString *) category
