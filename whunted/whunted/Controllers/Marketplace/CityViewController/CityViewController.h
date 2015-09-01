@@ -24,6 +24,8 @@
 
 @property (nonatomic, weak) id<CityViewDelegate>    delegate;
 
-@property (nonatomic)       BOOL        isToSetProductOrigin;
+@property (nonatomic)           BOOL        isToSetProductOrigin;
+
+@property (nonatomic, strong)   NSString    *currentLocation;
 
 @end

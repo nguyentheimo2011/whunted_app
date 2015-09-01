@@ -27,6 +27,7 @@
 
 @synthesize delegate                =   _delegate;
 @synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
+@synthesize currentLocation         =   _currentLocation;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -58,7 +59,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [self getCountriesToCitiesListFromJSONFile];
-    [self matchCountriesAndCitiesWithText:@""];
+    [self matchCountriesAndCitiesWithText:_currentLocation];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -148,6 +149,7 @@
     CGFloat const kTextFieldHeight      =   40.0f;
     
     _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
+    _cityTextField.text = _currentLocation;
     _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter city", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     _cityTextField.returnKeyType = UIReturnKeyDone;

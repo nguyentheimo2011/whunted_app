@@ -28,13 +28,12 @@
     
     UITextField             *_cityTextField;
     
-    NSDictionary            *_countriesToCitiesDict;
-    
     NSInteger               _selectedSortingIndex;
 }
 
-@synthesize sortingCriterion    =   _sortingCriterion;
 @synthesize delegate            =   _delegate;
+@synthesize sortingCriterion    =   _sortingCriterion;
+@synthesize buyerLocationFilter =   _buyerLocationFilter;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -66,17 +65,6 @@
 {
     NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil), NSLocalizedString(@"Nearest Price", nil)];
     _selectedSortingIndex = [array indexOfObject:_sortingCriterion];
-    
-    [self getCountriesToCitiesDictionaryFromJSONFile];
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) getCountriesToCitiesDictionaryFromJSONFile
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countriesToCities" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    _countriesToCitiesDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 }
 
 
@@ -387,6 +375,8 @@
 {
     _buyerLocationCell.detailTextLabel.text = location;
     _buyerLocationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    
+    _buyerLocationFilter = location;
 }
 
 @end

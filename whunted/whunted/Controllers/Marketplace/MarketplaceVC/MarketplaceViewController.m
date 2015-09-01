@@ -412,6 +412,10 @@
     CityViewController *cityViewController = [[CityViewController alloc] init];
     cityViewController.isToSetProductOrigin = YES;
     cityViewController.delegate = self;
+    
+    if (![_currProductOrigin isEqualToString:ITEM_PRODUCT_ORIGIN_ALL])
+        cityViewController.currentLocation = _currProductOrigin;
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
