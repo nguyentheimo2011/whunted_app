@@ -309,6 +309,10 @@
 #define     ITEM_PRODUCT_ORIGIN_ALL                     @"All"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     CURRENT_BUYER_LOCATION_FILTER               @"currBuyerLocationFilter"
+#define     ITEM_BUYER_LOCATION_DEFAULT                 @"All"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60
 #define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
 #define     NUM_OF_SECONDS_IN_A_DAY                     86400

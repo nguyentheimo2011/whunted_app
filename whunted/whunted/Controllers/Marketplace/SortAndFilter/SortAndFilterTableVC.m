@@ -205,6 +205,9 @@
     _buyerLocationCell.indentationLevel = 3;
     _buyerLocationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    _buyerLocationCell.detailTextLabel.text = _buyerLocationFilter;
+    _buyerLocationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    
     // add popular sort icon
     UIImageView *buyerLocationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
     UIImage *buyerLocationImage = [UIImage imageNamed:@"buyer_location_icon.png"];
@@ -374,7 +377,6 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     _buyerLocationCell.detailTextLabel.text = location;
-    _buyerLocationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     
     _buyerLocationFilter = location;
 }

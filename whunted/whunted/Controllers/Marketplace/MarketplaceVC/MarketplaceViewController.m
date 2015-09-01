@@ -28,8 +28,9 @@
     UILabel                 *_currSortFilterLabel;
     
     NSString                *_currProductOrigin;
-    NSString                *_currSortingBy;
     NSString                *_currCategory;
+    NSString                *_currSortingBy;
+    NSString                *_currBuyerLocation;
 
     NSMutableArray          *_wantDataList;
     NSArray                 *_sortedAndFilteredWantDataList;
@@ -77,19 +78,20 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-    
     if (_currProductOrigin.length == 0)
         _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
     
-    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
+    _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
+    if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
+        _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
     
+    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
     if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
         _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
     
-    _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
-    
-    if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
-        _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
+    _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
+    if (_currBuyerLocation.length == 0)
+        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
 }
 
 
@@ -438,6 +440,7 @@
 {
     SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
     sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
+    sortAndFilterTableVC.buyerLocationFilter = _currBuyerLocation;
     sortAndFilterTableVC.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
