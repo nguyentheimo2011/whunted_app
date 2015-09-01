@@ -12,7 +12,6 @@
 #import "BuyersOrSellersOfferViewController.h"
 #import "OfferData.h"
 
-#import <Haneke/UIImageView+Haneke.h>
 #import <JTImageButton.h>
 
 @class ItemDetailsViewController;

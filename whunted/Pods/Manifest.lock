@@ -26,7 +26,6 @@ PODS:
   - CLImageEditor/Core (0.1.4)
   - DACircularProgress (2.3.1)
   - Firebase (2.3.1)
-  - Haneke (1.0.1)
   - HMSegmentedControl (1.5.2)
   - IDMPhotoBrowser (1.6.2):
     - AFNetworking
@@ -51,7 +50,6 @@ DEPENDENCIES:
   - APNumberPad
   - CLImageEditor
   - Firebase (>= 2.3.1)
-  - Haneke (~> 1.0)
   - HMSegmentedControl
   - IDMPhotoBrowser
   - JSQMessagesViewController
@@ -69,7 +67,6 @@ SPEC CHECKSUMS:
   CLImageEditor: 9d388449af816729da67e68465e20462f181841d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Firebase: 462795adf92029ddb97777660627f5dd4fd59876
-  Haneke: d60be8b96b228633b24708dd153169d6849d6f78
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IDMPhotoBrowser: ebbfa6690456b72dd92d93b7bc11d71519f4d06d
   JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40

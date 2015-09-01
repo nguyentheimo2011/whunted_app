@@ -89,7 +89,6 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     _itemImageView.image = nil;
-    [_itemImageView hnk_setImage:nil withKey:[NSString stringWithFormat:@"item_%@", _wantData.itemID]];
     
     if (!_itemImageView.image)
         [self downloadItemImage];
@@ -138,7 +137,6 @@
     _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     [self addSubview:_itemImageView];
     
-    [_itemImageView hnk_cancelSetImage];
     _itemImageView.image = nil;
 }
 
@@ -333,7 +331,7 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2) {
                     UIImage *image = [UIImage imageWithData:data];
-                    [_itemImageView hnk_setImage:image withKey:[NSString stringWithFormat:@"item_%@", _wantData.itemID]];
+                    [_itemImageView setImage:image];
                 } else {
                     NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                 }

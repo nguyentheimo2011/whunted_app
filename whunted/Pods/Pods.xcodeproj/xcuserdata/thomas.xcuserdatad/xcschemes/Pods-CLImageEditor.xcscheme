@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF8FB9534911D2AFA9D6BFA3"
+               BlueprintIdentifier = "F25C036634E079CA71CE31C9"
                BuildableName = "libPods-CLImageEditor.a"
                BlueprintName = "Pods-CLImageEditor"
                ReferencedContainer = "container:Pods.xcodeproj">

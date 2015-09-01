@@ -11,7 +11,6 @@
 
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
-#import <Haneke/UIImageView+Haneke.h>
 
 #import "converter.h"
 #import "PersistedCache.h"

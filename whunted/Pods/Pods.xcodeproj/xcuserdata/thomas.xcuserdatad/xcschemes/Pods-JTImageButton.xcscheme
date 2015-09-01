@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3008624572AFAD4A43AAC98"
+               BlueprintIdentifier = "567EE1071CE2879422DA2760"
                BuildableName = "libPods-JTImageButton.a"
                BlueprintName = "Pods-JTImageButton"
                ReferencedContainer = "container:Pods.xcodeproj">

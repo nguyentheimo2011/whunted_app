@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Haneke/UIImageView+Haneke.h>
 #import "WantData.h"
 
 @interface HistoryCollectionViewCell : UICollectionViewCell

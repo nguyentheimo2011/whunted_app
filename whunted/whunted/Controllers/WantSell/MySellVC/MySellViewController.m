@@ -196,7 +196,6 @@
     NSString *path = [_documents stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (fileExists) {
-        [cell.itemImageView hnk_setImageFromFile:path];
     } else {
         PFRelation *picRelation = wantData.itemPictureList;
         [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
