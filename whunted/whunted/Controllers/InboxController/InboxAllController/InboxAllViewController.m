@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
     
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Inbox", nil) forViewController:self];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Chat", nil) forViewController:self];
     
     [self addSegmentedControl];
     [self addInboxTableView];

@@ -8,14 +8,14 @@
 
 #import "NewsFeedViewController.h"
 #import "NewsFeedTableViewCell.h"
+#import "Utilities.h"
 
-@interface NewsFeedViewController ()
-
-@end
 
 @implementation NewsFeedViewController
 
+//-----------------------------------------------------------------------------------------------------------------------------
 - (id)init
+//-----------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self != nil) {
@@ -24,27 +24,60 @@
     return self;
 }
 
-- (void)viewDidLoad {
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void)viewDidLoad
+//-----------------------------------------------------------------------------------------------------------------------------
+{
     [super viewDidLoad];
     
-    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];
+    [self initData];
     
+    [self customizeUI];
     
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
 }
 
-- (void)didReceiveMemoryWarning {
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+//-----------------------------------------------------------------------------------------------------------------------------
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-#pragma - TableView Delegate Methods
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+#pragma mark - Data Initialization
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];
+}
+
+
+#pragma mark - UI
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Newsfeed", nil) forViewController:self];
+}
+
+
+#pragma - UITableViewDataSource methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//-----------------------------------------------------------------------------------------------------------------------------
+{
     return [self.newsfeedList count];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
 {
     static NSString *cellIdentifier = @"NewsFeedTableViewCell";
     
@@ -61,12 +94,16 @@
     return cell;
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
 {
     return 300;
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
 - (void) pushViewController:(UIViewController *)controller
+//-----------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController pushViewController:controller animated:YES];
 }

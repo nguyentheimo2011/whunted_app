@@ -78,6 +78,8 @@
 {
     self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
     
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Upload", nil) forViewController:self];
+    
     // hide bottom bar when uploading a new want
     self.hidesBottomBarWhenPushed = YES;
     
@@ -364,6 +366,44 @@
     [self.navigationController popToViewController:self animated:YES];
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushCategoryViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CategoryTableViewController *catVC = [[CategoryTableViewController alloc] initWithCategory:_wantData.itemCategory usedForFiltering:NO];
+    catVC.delegte = self;
+    [self.navigationController pushViewController:catVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushItemInfoViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
+    ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
+    itemInfoVC.delegate = self;
+    [self.navigationController pushViewController:itemInfoVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushProductOriginViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins usedForFiltering:NO];
+    productTableVC.delegate = self;
+    [self.navigationController pushViewController:productTableVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushMeetingLocationViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
+    locVC.delegate = self;
+    locVC.location = _wantData.meetingLocation;
+    [self.navigationController pushViewController:locVC animated:YES];
+}
+
 
 #pragma mark - Set image for button
 
@@ -523,28 +563,18 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            CategoryTableViewController *catVC = [[CategoryTableViewController alloc] initWithCategory:_wantData.itemCategory usedForFiltering:NO];
-            catVC.delegte = self;
-            [self.navigationController pushViewController:catVC animated:YES];
-        } else if (indexPath.row == 1) {
-            NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
-            ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
-            itemInfoVC.delegate = self;
-            [self.navigationController pushViewController:itemInfoVC animated:YES];
-        } else if (indexPath.row == 2) {
-            CountryTableViewController *productTableVC = [[CountryTableViewController alloc] initWithSelectedCountries:_wantData.itemOrigins usedForFiltering:NO];
-            productTableVC.delegate = self;
-            [self.navigationController pushViewController:productTableVC animated:YES];
-        } else if (indexPath.row == 4) {
-            LocationTableViewController *locVC = [[LocationTableViewController alloc] init];
-            locVC.delegate = self;
-            locVC.location = _wantData.meetingLocation;
-            [self.navigationController pushViewController:locVC animated:YES];
-        }
+        if (indexPath.row == 0)
+            [self pushCategoryViewController];
+        else if (indexPath.row == 1)
+            [self pushItemInfoViewController];
+        else if (indexPath.row == 2)
+            [self pushProductOriginViewController];
+        else if (indexPath.row == 4)
+            [self pushMeetingLocationViewController];
     }
     
-    if (indexPath.section != 2 || (indexPath.row != 2 && indexPath.row != 3)) {
+    // stop editing price
+    if (indexPath.section != 3) {
         [_priceTextField resignFirstResponder];
         if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)]) {
             _wantData.demandedPrice = _priceTextField.text;
