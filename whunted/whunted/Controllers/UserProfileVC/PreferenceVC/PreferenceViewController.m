@@ -15,22 +15,22 @@
 
 #import <JTImageButton.h>
 
-#define kTravellingToTag            0
-#define kResidingCountryTag         1
+#define kTravellingToTag                0
+#define kResidingCountryTag             1
 
-#define kMaximumLines               10
-#define kLeftRightMargin            30
+#define kMaximumLines                   10
+#define kLeftRightMargin                30
 
-#define kAddedTopBottomSpace        10
+#define kAddedTopBottomSpace            10
 
-#define kBuyingDropDownMenuTag      101
-#define kSellingDropDownMenuTag     102
-#define kBuyingTextFieldTag         103
-#define kSellingTextFieldTag        104
-#define kBuyingAddingButtonTag      105
-#define kSellingAddingButtonTag     106
-#define kBuyingDeletionButtonTag    107
-#define kSellingDeletionButtonTag   108
+#define kBuyingDropDownMenuTag          101
+#define kSellingDropDownMenuTag         102
+#define kBuyingTextFieldTag             103
+#define kSellingTextFieldTag            104
+#define kBuyingAddingButtonTag          105
+#define kSellingAddingButtonTag         106
+#define kBuyingDeletionButtonTag        107
+#define kSellingDeletionButtonTag       108
 
 #define kTravellingToCountryList        @"travellingToCountryList"
 #define kResidingCountryList            @"residingCountryList"
@@ -69,6 +69,18 @@
     
     BOOL            _isExpandingContentSize;
     NSInteger       _currTextFieldTag;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (id) init
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    if (self) {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    
+    return self;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -142,6 +154,7 @@
                                                   object:nil];
 }
 
+
 #pragma mark - Data Initialization
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -167,6 +180,7 @@
         [tempSellingList addObject:[hashtagData toDict]];
     [[NSUserDefaults standardUserDefaults] setObject:tempSellingList forKey:kSellingPreferenceHashtagList];
 }
+
 
 #pragma mark - UI
 
@@ -266,10 +280,7 @@
     [_buyingHashTagCell addSubview:_buyingHashtagTextField];
     
     // Add left padding
-    CGFloat const kLeftPaddingWidth = 10.0f;
-    UIView *leftPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLeftPaddingWidth, kTextFieldHeight)];
-    _buyingHashtagTextField.leftView = leftPadding;
-    _buyingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
+    [Utilities customizeTextField:_buyingHashtagTextField];
     
     // Add button to the right of the text field
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;
@@ -293,8 +304,9 @@
     CGFloat const kContainerWidth = WINSIZE.width * 0.92;
     
     _buyingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
-    _buyingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
     _buyingHashtagContainer.layer.cornerRadius = 10.0f;
+    _buyingHashtagContainer.layer.borderWidth = 0.5f;
+    _buyingHashtagContainer.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
     _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_buyingHashTagCell addSubview:_buyingHashtagContainer];
     
@@ -369,10 +381,7 @@
     [_sellingHashTagCell addSubview:_sellingHashtagTextField];
     
     // Add left padding
-    CGFloat const kLeftPaddingWidth = 10.0f;
-    UIView *leftPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLeftPaddingWidth, kTextFieldHeight)];
-    _sellingHashtagTextField.leftView = leftPadding;
-    _sellingHashtagTextField.leftViewMode = UITextFieldViewModeAlways;
+    [Utilities customizeTextField:_sellingHashtagTextField];
     
     // Add button to the right of the text field
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;
@@ -396,8 +405,9 @@
     CGFloat const kContainerWidth = WINSIZE.width * 0.92;
     
     _sellingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
-    _sellingHashtagContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
     _sellingHashtagContainer.layer.cornerRadius = 10.0f;
+    _sellingHashtagContainer.layer.borderWidth = 0.5f;
+    _sellingHashtagContainer.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
     _sellingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_sellingHashTagCell addSubview:_sellingHashtagContainer];
     
