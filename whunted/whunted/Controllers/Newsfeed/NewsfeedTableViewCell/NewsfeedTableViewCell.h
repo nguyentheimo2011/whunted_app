@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TransactionData.h"
+
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface NewsfeedTableViewCell : UITableViewCell
+//-----------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic, strong)       TransactionData     *transactionData;
+
+
+- (id) initCellWithTransactionData: (TransactionData *) transactionData;
 
 @end

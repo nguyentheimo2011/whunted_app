@@ -14,6 +14,8 @@
 @implementation NewsfeedViewController
 {
     UITableView                 *_newsfeedTableView;
+    
+    NSMutableArray              *_transactionDataList;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +97,8 @@
     NewsfeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
     if (cell == nil) {
-        cell = [[NewsfeedTableViewCell alloc] init];
+        cell = [[NewsfeedTableViewCell alloc] initCellWithTransactionData:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     return cell;
@@ -105,7 +108,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    return 300;
+    return NEWSFEED_CELL_HEIGHT;
 }
 
 
