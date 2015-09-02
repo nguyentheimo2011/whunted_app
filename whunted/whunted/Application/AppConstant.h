@@ -162,11 +162,11 @@
 #define     PF_OFFER_STATUS                     @"offerStatus"
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     OFFER_STATUS_NOT_OFFERED            @"NotOffered"
-#define     OFFER_STATUS_OFFERED                @"Offered"
-#define     OFFER_STATUS_CANCELLED              @"Cancelled"
-#define     OFFER_STATUS_DECLINED               @"Declined"
-#define     OFFER_STATUS_ACCEPTED               @"Accepted"
+#define     TRANSACTION_STATUS_NOT_OFFERED      @"NotOffered"
+#define     TRANSACTION_STATUS_OFFERED          @"Offered"
+#define     TRANSACTION_STATUS_CANCELLED        @"Cancelled"
+#define     TRANSACTION_STATUS_DECLINED         @"Declined"
+#define     TRANSACTION_STATUS_ACCEPTED         @"Accepted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_FEEDBACK_WRITER_ID               @"writerID"

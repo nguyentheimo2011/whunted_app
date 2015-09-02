@@ -20,7 +20,7 @@
 @property (nonatomic, strong)   NSString    *initiatorID;
 @property (nonatomic, strong)   NSString    *offeredPrice;
 @property (nonatomic, strong)   NSString    *deliveryTime;
-@property (nonatomic, strong)   NSString    *offerStatus;
+@property (nonatomic, strong)   NSString    *transactionStatus;
 
 - (id)          initWithPFObject: (PFObject *) pfObj;
 - (PFObject *)  getPFObjectWithClassName: (NSString *) className;

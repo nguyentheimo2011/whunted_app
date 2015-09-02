@@ -488,7 +488,7 @@
         offerData.initiatorID = @"";
         offerData.offeredPrice = @"";
         offerData.deliveryTime = @"";
-        offerData.offerStatus = OFFER_STATUS_NOT_OFFERED;
+        offerData.transactionStatus = TRANSACTION_STATUS_NOT_OFFERED;
         sellersOfferVC.offerData = offerData;
     }
     
@@ -522,7 +522,7 @@
         offerData.initiatorID = @"";
         offerData.offeredPrice = @"";
         offerData.deliveryTime = @"";
-        offerData.offerStatus = OFFER_STATUS_NOT_OFFERED;
+        offerData.transactionStatus = TRANSACTION_STATUS_NOT_OFFERED;
         
         NSString *groupId = StartPrivateChat(user1, user2, offerData);
         [self actionChat:groupId withUser2:user2 andOfferData:offerData];
@@ -626,7 +626,7 @@
     chatView.hidesBottomBarWhenPushed = YES;
     
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
-    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:offer.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_currOffer.objectID, FB_CURRENT_OFFERED_PRICE:offer.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:offer.deliveryTime};
+    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:offer.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_currOffer.objectID, FB_CURRENT_OFFERED_PRICE:offer.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:offer.deliveryTime};
     
     CompletionHandler handler = ^() {
         [self.navigationController pushViewController:chatView animated:YES];

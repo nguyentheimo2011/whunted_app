@@ -217,7 +217,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (_offerData.initiatorID.length > 0) {
-        if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_ACCEPTED]) {
+        if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED]) {
             // Offer was accepted
             [_makingOfferButton setHidden:YES];
             
@@ -229,7 +229,7 @@
             
             [_edittingOfferButton setHidden:YES];
             [_cancellingOfferButton setHidden:YES];
-        } else if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_OFFERED]) {
+        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_OFFERED]) {
             if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId]) {
                 // Offer is made by me
                 [_makingOfferButton setHidden:YES];
@@ -254,7 +254,7 @@
                 [_edittingOfferButton setHidden:YES];
                 [_cancellingOfferButton setHidden:YES];
             }
-        } else if ([_offerData.offerStatus isEqualToString:OFFER_STATUS_CANCELLED] || [_offerData.offerStatus isEqualToString:OFFER_STATUS_DECLINED]) {
+        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED] || [_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED]) {
             [_makingOfferButton setHidden:NO];
             
             [_leavingFeedbackButton setHidden:YES];
@@ -467,13 +467,13 @@
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
-        _offerData.offerStatus = OFFER_STATUS_CANCELLED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
         
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
-        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
@@ -508,13 +508,13 @@
         _offerData.initiatorID = @"";
         _offerData.offeredPrice = @"";
         _offerData.deliveryTime = @"";
-        _offerData.offerStatus = OFFER_STATUS_DECLINED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
         
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
-        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
@@ -524,14 +524,14 @@
 - (void) acceptingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offerData.offerStatus = OFFER_STATUS_ACCEPTED;
+    _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self adjustButtonsVisibility];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
         
         [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
     }];
@@ -578,14 +578,14 @@
 {
     ChatMessageType messageType = [Utilities chatMessageTypeFromString:lastMessageType];
     if (messageType == ChatMessageTypeMakingOffer) {
-        _offerData.offerStatus = OFFER_STATUS_OFFERED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_OFFERED;
         _offerData.initiatorID = senderID;
     } else if (messageType == ChatMessageTypeCancellingOffer) {
-        _offerData.offerStatus = OFFER_STATUS_CANCELLED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
     } else if (messageType == ChatMessageTypeDecliningOffer) {
-        _offerData.offerStatus = OFFER_STATUS_DECLINED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
     } else if (messageType == ChatMessageTypeAcceptingOffer) {
-        _offerData.offerStatus = OFFER_STATUS_ACCEPTED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     }
     
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
@@ -1032,7 +1032,7 @@
     _offerData = offer;
     
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
-    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.offerStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
     
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:nil];
     

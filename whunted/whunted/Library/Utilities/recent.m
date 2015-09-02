@@ -83,7 +83,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
                              FB_LAST_USER:lastUser.objectId, FB_LAST_MESSAGE:message, FB_UNREAD_MESSAGES_COUNTER:@0,
                              FB_TIMESTAMP:timestamp, FB_CURRENT_OFFER_ID:@"", FB_ITEM_ID:offerData.itemID,
                              FB_ITEM_NAME:offerData.itemName, FB_ITEM_BUYER_ID:offerData.buyerID, FB_ITEM_SELLER_ID:offerData.sellerID,
-                             FB_TRANSACTION_STATUS:offerData.offerStatus, FB_TRANSACTION_LAST_USER:transactionLastUser,
+                             FB_TRANSACTION_STATUS:offerData.transactionStatus, FB_TRANSACTION_LAST_USER:transactionLastUser,
                              FB_ORIGINAL_DEMANDED_PRICE:offerData.originalDemandedPrice, FB_CURRENT_OFFERED_PRICE:offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:offerData.deliveryTime};
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)

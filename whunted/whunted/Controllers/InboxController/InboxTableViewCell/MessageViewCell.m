@@ -141,16 +141,16 @@
 - (void) updateTransactionStatus: (NSString *) transactionStatus
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([transactionStatus isEqualToString:OFFER_STATUS_ACCEPTED])
-        _transactionStatusLabel.text = OFFER_STATUS_ACCEPTED;
-    else if ([transactionStatus isEqualToString:OFFER_STATUS_CANCELLED])
-        _transactionStatusLabel.text = OFFER_STATUS_CANCELLED;
-    else if ([transactionStatus isEqualToString:OFFER_STATUS_DECLINED])
-        _transactionStatusLabel.text = OFFER_STATUS_DECLINED;
-    else if ([transactionStatus isEqualToString:OFFER_STATUS_NOT_OFFERED])
+    if ([transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED])
+        _transactionStatusLabel.text = TRANSACTION_STATUS_ACCEPTED;
+    else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED])
+        _transactionStatusLabel.text = TRANSACTION_STATUS_CANCELLED;
+    else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
+        _transactionStatusLabel.text = TRANSACTION_STATUS_DECLINED;
+    else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_NOT_OFFERED])
         _transactionStatusLabel.text = @"Not Offered";
     else
-        _transactionStatusLabel.text = OFFER_STATUS_OFFERED;
+        _transactionStatusLabel.text = TRANSACTION_STATUS_OFFERED;
         
 }
 

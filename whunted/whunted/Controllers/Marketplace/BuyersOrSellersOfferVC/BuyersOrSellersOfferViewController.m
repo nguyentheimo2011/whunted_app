@@ -304,10 +304,10 @@
 - (void) submitButtonClickedHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _offerData.offeredPrice = _offeredPriceTextField.text;
-    _offerData.deliveryTime = _offeredDeliveryTextField.text;
-    _offerData.initiatorID = [PFUser currentUser].objectId;
-    _offerData.offerStatus = OFFER_STATUS_OFFERED;
+    _offerData.offeredPrice         =   _offeredPriceTextField.text;
+    _offerData.deliveryTime         =   _offeredDeliveryTextField.text;
+    _offerData.initiatorID          =   [PFUser currentUser].objectId;
+    _offerData.transactionStatus    =   TRANSACTION_STATUS_OFFERED;
     
     if (_offerData.offeredPrice == nil || _offerData.offeredPrice.length == 0) {
         _offerData.offeredPrice = _offerData.originalDemandedPrice;
