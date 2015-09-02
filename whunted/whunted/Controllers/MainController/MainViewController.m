@@ -24,7 +24,7 @@
 {
     MarketplaceViewController           *_brController;
     InboxAllViewController              *_inboxVC;
-    NewsFeedViewController              *_newsFeedVC;
+    NewsfeedViewController              *_newsFeedVC;
     UploadingViewController             *_uploadingVC;
     UserProfileViewController           *_userProfileVC;
     
@@ -49,7 +49,7 @@
         _brController.delegate = self;
         
         UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
-        _newsFeedVC = [[NewsFeedViewController alloc] init];
+        _newsFeedVC = [[NewsfeedViewController alloc] init];
         [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
         [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
         newsFeedfNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);

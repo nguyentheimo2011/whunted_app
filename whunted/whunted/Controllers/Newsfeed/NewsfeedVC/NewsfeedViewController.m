@@ -1,17 +1,20 @@
 //
-//  NewsFeedViewController.m
+//  NewsfeedViewController.m
 //  whunted
 //
-//  Created by thomas nguyen on 5/5/15.
+//  Created by thomas nguyen on 2/9/15.
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "NewsFeedViewController.h"
-#import "NewsFeedTableViewCell.h"
+#import "NewsfeedViewController.h"
+#import "NewsfeedTableViewCell.h"
+#import "AppConstant.h"
 #import "Utilities.h"
 
-
-@implementation NewsFeedViewController
+@implementation NewsfeedViewController
+{
+    UITableView                 *_newsfeedTableView;
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (id)init
@@ -33,9 +36,7 @@
     [self initData];
     
     [self customizeUI];
-    
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
+    [self addNewsfeedTableView];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -52,7 +53,7 @@
 - (void) initData
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    self.newsfeedList = [[NSMutableArray alloc] initWithObjects:@"One",@"Two",@"Three",@"Four",@"Five",@"Six",@"Seven",@"Eight",@"Nine",@"Ten",nil];
+    
 }
 
 
@@ -65,6 +66,16 @@
     [Utilities customizeTitleLabel:NSLocalizedString(@"Newsfeed", nil) forViewController:self];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addNewsfeedTableView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+        _newsfeedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
+        _newsfeedTableView.delegate = self;
+        _newsfeedTableView.dataSource = self;
+        [self.view addSubview:_newsfeedTableView];
+}
+
 
 #pragma - UITableViewDataSource methods
 
@@ -72,7 +83,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    return [self.newsfeedList count];
+    return 10;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -80,17 +91,13 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     static NSString *cellIdentifier = @"NewsFeedTableViewCell";
-    
-    NewsFeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+
+    NewsfeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
     if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        cell = [[NewsfeedTableViewCell alloc] init];
     }
-    
-    [cell.itemImageView setBackgroundColor:[UIColor colorWithRed:135.0/255 green:206.0/255 blue:255.0/255 alpha:1]];
-    [cell.itemName setText:@"Coach"];
-    
+
     return cell;
 }
 
@@ -101,12 +108,6 @@
     return 300;
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) pushViewController:(UIViewController *)controller
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 
 @end
+
