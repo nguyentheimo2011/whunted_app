@@ -72,10 +72,11 @@
 - (void) addNewsfeedTableView
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-        _newsfeedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
-        _newsfeedTableView.delegate = self;
-        _newsfeedTableView.dataSource = self;
-        [self.view addSubview:_newsfeedTableView];
+    _newsfeedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
+    _newsfeedTableView.separatorColor = [UIColor whiteColor];
+    _newsfeedTableView.delegate = self;
+    _newsfeedTableView.dataSource = self;
+    [self.view addSubview:_newsfeedTableView];
 }
 
 
