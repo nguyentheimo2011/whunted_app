@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OfferData.h"
+#import "TransactionData.h"
 
 @class SellerListCell;
 
 @protocol SellerListCellDelegate <NSObject>
 
-- (void) sellerListCell: (SellerListCell *) cell didAcceptOfferFromSeller: (OfferData *) offerData;
+- (void) sellerListCell: (SellerListCell *) cell didAcceptOfferFromSeller: (TransactionData *) offerData;
 
 @end
 
@@ -21,7 +21,7 @@
 
 @property (nonatomic, weak) id<SellerListCellDelegate> delegate;
 
-@property (nonatomic, strong) OfferData *offerData;
+@property (nonatomic, strong) TransactionData *offerData;
 
 @property (nonatomic, strong) UIButton  *profilePicButton;
 @property (nonatomic, strong) UIButton  *sellerUsernameButton;

@@ -8,7 +8,7 @@
 
 #import "BuyersOrSellersOfferViewController.h"
 #import "AppConstant.h"
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "Utilities.h"
 #import "recent.h"
 

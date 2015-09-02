@@ -636,7 +636,7 @@
 #pragma mark - Data Specifics
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (BOOL) amITheBuyer:(OfferData *) offerData
++ (BOOL) amITheBuyer:(TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
@@ -646,7 +646,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) idOfDealerDealingWithMe: (OfferData *) offerData
++ (NSString *) idOfDealerDealingWithMe: (TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])

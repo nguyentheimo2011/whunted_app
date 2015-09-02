@@ -8,7 +8,7 @@
 
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 #import "SyncEngine.h"
@@ -393,7 +393,7 @@
     [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
         if (!error) {
             if (object) {
-                itemDetailsVC.currOffer = [[OfferData alloc] initWithPFObject:object];
+                itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:object];
             }
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);

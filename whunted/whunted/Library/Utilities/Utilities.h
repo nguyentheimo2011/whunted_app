@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "AppConstant.h"
 
 #import <Parse/Parse.h>
@@ -138,9 +138,9 @@
 #pragma mark -  Transaction Data
 //------------------------------------------------------------------------------------------------------------------------------
 
-+ (BOOL)        amITheBuyer: (OfferData *) offerData;
++ (BOOL)        amITheBuyer: (TransactionData *) offerData;
 
-+ (NSString *)  idOfDealerDealingWithMe: (OfferData *) offerData;
++ (NSString *)  idOfDealerDealingWithMe: (TransactionData *) offerData;
 
 + (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice andDeliveryTime: (NSString *) deliveryTime;
 

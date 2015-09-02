@@ -34,7 +34,7 @@
 
 #import "ChatView.h"
 
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "LeaveFeedbackVC.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -1025,7 +1025,7 @@
 #pragma mark - Delegation methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(OfferData *)offer
+- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(TransactionData *)offer
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self adjustButtonsVisibility];

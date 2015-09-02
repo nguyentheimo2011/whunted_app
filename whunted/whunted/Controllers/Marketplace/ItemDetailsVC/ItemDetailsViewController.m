@@ -479,7 +479,7 @@
     if (_currOffer) {
         sellersOfferVC.offerData = _currOffer;
     } else {
-        OfferData *offerData = [[OfferData alloc] init];
+        TransactionData *offerData = [[TransactionData alloc] init];
         offerData.itemID = _wantData.itemID;
         offerData.itemName = _wantData.itemName;
         offerData.originalDemandedPrice = _wantData.demandedPrice;
@@ -513,7 +513,7 @@
         NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id2, id1];;
         [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
     } else {
-        OfferData *offerData = [[OfferData alloc] init];
+        TransactionData *offerData = [[TransactionData alloc] init];
         offerData.itemID = _wantData.itemID;
         offerData.itemName = _wantData.itemName;
         offerData.originalDemandedPrice = _wantData.demandedPrice;
@@ -530,7 +530,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)actionChat:(NSString *)groupId withUser2: (PFUser *) user2 andOfferData: (OfferData *) offerData
+- (void)actionChat:(NSString *)groupId withUser2: (PFUser *) user2 andOfferData: (TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
@@ -607,7 +607,7 @@
 #pragma mark - SellersOfferViewController delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(OfferData *)offer
+- (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(TransactionData *)offer
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // update data in user profile page

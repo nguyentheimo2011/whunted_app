@@ -41,7 +41,7 @@
 @synthesize feedbackData = _feedbackData;
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (id) initWithOfferData: (OfferData *) offerData
+- (id) initWithOfferData: (TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];

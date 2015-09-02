@@ -220,7 +220,7 @@
     chatView.delegate = self;
     chatView.isUnread = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0;
     
-    OfferData *offerData            =   [[OfferData alloc] init];
+    TransactionData *offerData      =   [[TransactionData alloc] init];
     offerData.objectID              =   recent[FB_CURRENT_OFFER_ID];
     offerData.itemID                =   recent[FB_ITEM_ID];
     offerData.itemName              =   recent[FB_ITEM_NAME];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "OfferData.h"
+#import "TransactionData.h"
 
 @interface WantData : NSObject
 
@@ -42,7 +42,7 @@
 @property (nonatomic)           NSInteger         sellersNum;
 
 @property (nonatomic)           BOOL              isDealClosed;
-@property (nonatomic, strong)   OfferData         *acceptedOffer;
+@property (nonatomic, strong)   TransactionData         *acceptedOffer;
 
 // Temprary data sturetures
 @property (nonatomic, strong)   PFRelation        *itemPictureList;

@@ -107,7 +107,6 @@
 		E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E96361511B1815D400EB9D35 /* WantTableViewCell.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
-		E97A95241B4639D3003796DD /* OfferData.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95231B4639D3003796DD /* OfferData.m */; };
 		E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */; };
 		E97A95361B528423003796DD /* smiling_face@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95331B528423003796DD /* smiling_face@1x.png */; };
 		E97A95371B528423003796DD /* smiling_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95341B528423003796DD /* smiling_face@2x.png */; };
@@ -199,6 +198,7 @@
 		E9D0E66F1B95BCE00061AE8E /* buyer_location_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D0E66C1B95BCE00061AE8E /* buyer_location_icon@3x.png */; };
 		E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6711B96A9EE0061AE8E /* NewsfeedViewController.m */; };
 		E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */; };
+		E9D0E6781B96AFC30061AE8E /* TransactionData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6771B96AFC30061AE8E /* TransactionData.m */; };
 		E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */; };
 		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
 		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
@@ -435,8 +435,6 @@
 		E96361511B1815D400EB9D35 /* WantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WantTableViewCell.m; path = Controllers/WantSell/MyWantTableViewCell/WantTableViewCell.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
 		E97A95191B454072003796DD /* chat_pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_pictures.png; path = Resources/Chat/chat_pictures.png; sourceTree = "<group>"; };
-		E97A95221B4639D3003796DD /* OfferData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferData.h; path = Models/OfferData/OfferData.h; sourceTree = "<group>"; };
-		E97A95231B4639D3003796DD /* OfferData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferData.m; path = Models/OfferData/OfferData.m; sourceTree = "<group>"; };
 		E97A95251B463BCF003796DD /* BuyersOrSellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyersOrSellersOfferViewController.h; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.h; sourceTree = "<group>"; };
 		E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyersOrSellersOfferViewController.m; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.m; sourceTree = "<group>"; };
 		E97A95331B528423003796DD /* smiling_face@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "smiling_face@1x.png"; path = "Resources/User Profile/smiling_face@1x.png"; sourceTree = "<group>"; };
@@ -560,6 +558,8 @@
 		E9D0E6711B96A9EE0061AE8E /* NewsfeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsfeedViewController.m; path = Controllers/Newsfeed/NewsfeedVC/NewsfeedViewController.m; sourceTree = "<group>"; };
 		E9D0E6731B96AAC20061AE8E /* NewsfeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsfeedTableViewCell.h; path = Controllers/Newsfeed/NewsfeedTableViewCell/NewsfeedTableViewCell.h; sourceTree = "<group>"; };
 		E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsfeedTableViewCell.m; path = Controllers/Newsfeed/NewsfeedTableViewCell/NewsfeedTableViewCell.m; sourceTree = "<group>"; };
+		E9D0E6761B96AFC30061AE8E /* TransactionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransactionData.h; path = Models/TransactionData/TransactionData.h; sourceTree = "<group>"; };
+		E9D0E6771B96AFC30061AE8E /* TransactionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionData.m; path = Models/TransactionData/TransactionData.m; sourceTree = "<group>"; };
 		E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProfileViewController.h; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.h; sourceTree = "<group>"; };
 		E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProfileViewController.m; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.m; sourceTree = "<group>"; };
 		E9D2649F1B62268500CBEAFF /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/CountryTableVC/CountryTableViewController.h; sourceTree = "<group>"; };
@@ -1134,7 +1134,7 @@
 				E92EC5191B6A274400AABB72 /* FeedbackData */,
 				E9D264BD1B6640BB00CBEAFF /* UserData */,
 				E9EEB9371B5D1FE400815D56 /* Hashtag */,
-				E9FB2E9B1B20482500F8C435 /* OfferData */,
+				E9FB2E9B1B20482500F8C435 /* TransactionData */,
 				E9FB2E971B20480B00F8C435 /* WantData */,
 			);
 			name = Models;
@@ -1781,13 +1781,13 @@
 			name = WantData;
 			sourceTree = "<group>";
 		};
-		E9FB2E9B1B20482500F8C435 /* OfferData */ = {
+		E9FB2E9B1B20482500F8C435 /* TransactionData */ = {
 			isa = PBXGroup;
 			children = (
-				E97A95221B4639D3003796DD /* OfferData.h */,
-				E97A95231B4639D3003796DD /* OfferData.m */,
+				E9D0E6761B96AFC30061AE8E /* TransactionData.h */,
+				E9D0E6771B96AFC30061AE8E /* TransactionData.m */,
 			);
-			name = OfferData;
+			name = TransactionData;
 			sourceTree = "<group>";
 		};
 		E9FC1D591B8C5CEF001226C5 /* SortAndFilter */ = {
@@ -2215,7 +2215,6 @@
 				E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */,
 				E9A07BF81B31437D00904DE9 /* converter.m in Sources */,
 				E9A07C1F1B31640B00904DE9 /* PFUser+Util.m in Sources */,
-				E97A95241B4639D3003796DD /* OfferData.m in Sources */,
 				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
 				E9A07C161B31623C00904DE9 /* camera.m in Sources */,
 				E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */,
@@ -2250,6 +2249,7 @@
 				E9A07C241B3165E300904DE9 /* emoji.m in Sources */,
 				E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */,
 				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
+				E9D0E6781B96AFC30061AE8E /* TransactionData.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

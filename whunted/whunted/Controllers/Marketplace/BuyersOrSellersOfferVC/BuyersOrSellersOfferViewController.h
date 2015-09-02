@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <APNumberPad.h>
-#import "OfferData.h"
+#import "TransactionData.h"
 
 @class BuyersOrSellersOfferViewController;
 
@@ -16,7 +16,7 @@
 @protocol BuyersOrSellerOfferDelegate <NSObject>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-- (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOffer: (OfferData *) offer;
+- (void) buyersOrSellersOfferViewController: (BuyersOrSellersOfferViewController *) controller didOffer: (TransactionData *) offer;
 
 @end
 
@@ -26,7 +26,7 @@
 
 @property (nonatomic, weak)     id<BuyersOrSellerOfferDelegate> delegate;
 
-@property (nonatomic, strong) OfferData *offerData;
+@property (nonatomic, strong) TransactionData *offerData;
 @property (nonatomic, strong) NSString  *buyerName;
 @property (nonatomic)         BOOL      isEditingOffer;
 

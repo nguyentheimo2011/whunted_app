@@ -16,7 +16,7 @@
 #import "JSQMessages.h"
 #import "RNGridMenu.h"
 
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "BuyersOrSellersOfferViewController.h"
 #import "AppConstant.h"
 
@@ -37,7 +37,7 @@
 
 @property (nonatomic)           id<ChatViewDelegate>    delegate;
 
-@property (nonatomic, strong)   OfferData               *offerData;
+@property (nonatomic, strong)   TransactionData         *offerData;
 
 @property (nonatomic, strong)   NSString                *user2Username;
 

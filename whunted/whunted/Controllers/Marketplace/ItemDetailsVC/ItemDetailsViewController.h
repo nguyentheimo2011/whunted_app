@@ -10,7 +10,7 @@
 
 #import "WantData.h"
 #import "BuyersOrSellersOfferViewController.h"
-#import "OfferData.h"
+#import "TransactionData.h"
 
 #import <JTImageButton.h>
 
@@ -33,6 +33,6 @@
 @property (nonatomic, strong) WantData              *wantData;
 @property (nonatomic)         NSInteger             itemImagesNum;
 
-@property (nonatomic)         OfferData             *currOffer;
+@property (nonatomic)         TransactionData       *currOffer;
 
 @end

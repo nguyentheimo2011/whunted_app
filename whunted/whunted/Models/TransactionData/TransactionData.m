@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "OfferData.h"
+#import "TransactionData.h"
 #import "AppConstant.h"
 
-@implementation OfferData
+@implementation TransactionData
 
 @synthesize objectID = _objectID;
 @synthesize itemID = _itemID;
