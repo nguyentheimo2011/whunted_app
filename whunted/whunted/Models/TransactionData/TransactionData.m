@@ -77,6 +77,25 @@
     return pfObj;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (PFObject *) createPFObjectWithClassName: (NSString *) className
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *pfObj = [PFObject objectWithClassName:className];
+    
+    pfObj[PF_ITEM_ID]                   =   _itemID;
+    pfObj[PF_ITEM_NAME]                 =   _itemName;
+    pfObj[PF_BUYER_ID]                  =   _buyerID;
+    pfObj[PF_SELLER_ID]                 =   _sellerID;
+    pfObj[PF_INITIATOR_ID]              =   _initiatorID;
+    pfObj[PF_ORIGINAL_DEMANDED_PRICE]   =   _originalDemandedPrice;
+    pfObj[PF_OFFERED_PRICE]             =   _offeredPrice;
+    pfObj[PF_DELIVERY_TIME]             =   _deliveryTime;
+    pfObj[PF_TRANSACTION_STATUS]        =   _transactionStatus;
+    
+    return pfObj;
+}
+
 
 
 @end

@@ -24,5 +24,6 @@
 
 - (id)          initWithPFObject: (PFObject *) pfObj;
 - (PFObject *)  getPFObjectWithClassName: (NSString *) className;
+- (PFObject *)  createPFObjectWithClassName: (NSString *) className;
 
 @end
