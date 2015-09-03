@@ -9,6 +9,7 @@
 #import "NewsfeedTableViewCell.h"
 #import "WantData.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 #import "TemporaryCache.h"
 
 #import <JTImageButton.h>
@@ -45,6 +46,7 @@
     [self setTextForInitialPriceLabel:transactionData.originalDemandedPrice];
     
     [self retrieveItemInfo];
+    [self setProfileImages];
 }
 
 
@@ -80,7 +82,7 @@
 {
     CGFloat const kImageViewWidth   =   WINSIZE.width;
     CGFloat const kImageViewHeight  =   WINSIZE.width;
-    CGFloat const kImageViewOriginY =   30.0f;
+    CGFloat const kImageViewOriginY =   35.0f;
     
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
     _itemImageView.backgroundColor = WHITE_GRAY_COLOR;
@@ -94,11 +96,12 @@
     CGFloat const kImageViewWidth   =   50.0f;
     CGFloat const kImageViewHeight  =   50.0f;
     CGFloat const kImageViewOriginX =   15.0f;
-    CGFloat const kImageViewOriginY =   10.0f;
+    CGFloat const kImageViewOriginY =   15.0f;
     
     _buyerProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewOriginX, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
     _buyerProfileImageView.backgroundColor = VIVID_SKY_BLUE_COLOR;
     _buyerProfileImageView.layer.cornerRadius = kImageViewHeight/2;
+    _buyerProfileImageView.clipsToBounds = YES;
     [_cellContainer addSubview:_buyerProfileImageView];
 }
 
@@ -107,7 +110,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelOriginX     =   _buyerProfileImageView.frame.origin.x + _buyerProfileImageView.frame.size.width + 5.0f;
-    CGFloat const kLabelOriginY     =   7.0f;
+    CGFloat const kLabelOriginY     =   12.0f;
     CGFloat const kLabelWidth       =   WINSIZE.width - kLabelOriginX - 20.0f;
     CGFloat const kLabelHeight      =   20.0f;
     
@@ -200,6 +203,7 @@
     
     _sellerProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewOriginX, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
     _sellerProfileImageView.layer.cornerRadius = kImageViewHeight/2;
+    _sellerProfileImageView.clipsToBounds = YES;
     _sellerProfileImageView.backgroundColor = JASMINE_YELLOW_COLOR;
     [_cellContainer addSubview:_sellerProfileImageView];
 }
@@ -273,6 +277,34 @@
     [_itemImageView addSubview:_initialPriceLabel];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) setProfileImages
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *key = [NSString stringWithFormat:@"%@%@", _transactionData.buyerID, USER_PROFILE_IMAGE];
+    UIImage *buyerImage = [[TemporaryCache sharedCache] objectForKey:key];
+    
+    if (buyerImage)
+        _buyerProfileImageView.image = buyerImage;
+    else {
+        FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+            _buyerProfileImageView.image = image;
+        };
+        [Utilities getUserWithID:_transactionData.buyerID andRunBlock:handler];
+    }
+    
+    key = [NSString stringWithFormat:@"%@%@", _transactionData.sellerID, USER_PROFILE_IMAGE];
+    UIImage *sellerImage = [[TemporaryCache sharedCache] objectForKey:key];
+    
+    if (sellerImage)
+        _sellerProfileImageView.image = sellerImage;
+    else {
+        FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+            _sellerProfileImageView.image = image;
+        };
+        [Utilities getUserWithID:_transactionData.sellerID andRunBlock:handler];
+    }
+}
 
 
 #pragma mark - Backend
