@@ -133,6 +133,7 @@
 #define     PF_USER_FACEBOOK_VERIFIED           @"facebookVerified"     //  Boolean
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     PF_OBJECT_ID                        @"objectId"
 #define     PF_ITEM_ID                          @"itemID"
 #define     PF_ITEM_NAME                        @"itemName"
 #define     PF_ITEM_DESC                        @"itemDesc"

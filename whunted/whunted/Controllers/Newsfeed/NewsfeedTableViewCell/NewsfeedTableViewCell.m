@@ -7,7 +7,9 @@
 //
 
 #import "NewsfeedTableViewCell.h"
+#import "WantData.h"
 #import "AppConstant.h"
+#import "TemporaryCache.h"
 
 #import <JTImageButton.h>
 
@@ -41,6 +43,8 @@
     
     _itemNameLabel.text = transactionData.itemName;
     [self setTextForInitialPriceLabel:transactionData.originalDemandedPrice];
+    
+    [self retrieveItemInfo];
 }
 
 
@@ -277,7 +281,50 @@
 - (void) retrieveItemInfo
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_WANT_DATA_CLASS];
+    [query whereKey:PF_OBJECT_ID equalTo:_transactionData.itemID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error)
+        {
+            WantData *wantData = [[WantData alloc] initWithPFObject:object];
+            _productOriginLabel.text = (wantData.itemOrigins.count > 0) ? [wantData.itemOrigins objectAtIndex:0] : @"";
+            _meetingLocationLabel.text = wantData.meetingLocation;
+            
+            [self downloadItemImage:wantData];
+        }
+        else
+        {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) downloadItemImage: (WantData *) wantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFRelation *picRelation = wantData.itemPictureList;
+    [[picRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+        if (!error) {
+            PFFile *firstPicture = firstObject[@"itemPicture"];
+            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                if (!error_2)
+                {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [_itemImageView setImage:image];
+                    
+                    NSString *key = [NSString stringWithFormat:@"%@%@", wantData.itemID, ITEM_FIRST_IMAGE];
+                    [[TemporaryCache sharedCache] setObject:image forKey:key];
+                }
+                else
+                {
+                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                }
+            }];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 
