@@ -488,7 +488,7 @@
         offerData.initiatorID = @"";
         offerData.offeredPrice = @"";
         offerData.deliveryTime = @"";
-        offerData.transactionStatus = TRANSACTION_STATUS_NOT_OFFERED;
+        offerData.transactionStatus = TRANSACTION_STATUS_NONE;
         sellersOfferVC.offerData = offerData;
     }
     
@@ -522,7 +522,7 @@
         offerData.initiatorID = @"";
         offerData.offeredPrice = @"";
         offerData.deliveryTime = @"";
-        offerData.transactionStatus = TRANSACTION_STATUS_NOT_OFFERED;
+        offerData.transactionStatus = TRANSACTION_STATUS_NONE;
         
         NSString *groupId = StartPrivateChat(user1, user2, offerData);
         [self actionChat:groupId withUser2:user2 andOfferData:offerData];

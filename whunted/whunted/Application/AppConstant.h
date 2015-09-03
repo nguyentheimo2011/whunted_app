@@ -163,8 +163,8 @@
 #define     PF_OFFER_STATUS                     @"offerStatus"
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     TRANSACTION_STATUS_NOT_OFFERED      @"NotOffered"
-#define     TRANSACTION_STATUS_OFFERED          @"Offered"
+#define     TRANSACTION_STATUS_NONE             @"None"
+#define     TRANSACTION_STATUS_ONGOING          @"Ongoing"
 #define     TRANSACTION_STATUS_CANCELLED        @"Cancelled"
 #define     TRANSACTION_STATUS_DECLINED         @"Declined"
 #define     TRANSACTION_STATUS_ACCEPTED         @"Accepted"

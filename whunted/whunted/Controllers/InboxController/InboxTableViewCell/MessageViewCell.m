@@ -147,10 +147,10 @@
         _transactionStatusLabel.text = TRANSACTION_STATUS_CANCELLED;
     else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
         _transactionStatusLabel.text = TRANSACTION_STATUS_DECLINED;
-    else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_NOT_OFFERED])
+    else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_NONE])
         _transactionStatusLabel.text = @"Not Offered";
     else
-        _transactionStatusLabel.text = TRANSACTION_STATUS_OFFERED;
+        _transactionStatusLabel.text = TRANSACTION_STATUS_ONGOING;
         
 }
 

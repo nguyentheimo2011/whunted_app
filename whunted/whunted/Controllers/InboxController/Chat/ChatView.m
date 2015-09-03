@@ -229,7 +229,7 @@
             
             [_edittingOfferButton setHidden:YES];
             [_cancellingOfferButton setHidden:YES];
-        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_OFFERED]) {
+        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ONGOING]) {
             if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId]) {
                 // Offer is made by me
                 [_makingOfferButton setHidden:YES];
@@ -578,7 +578,7 @@
 {
     ChatMessageType messageType = [Utilities chatMessageTypeFromString:lastMessageType];
     if (messageType == ChatMessageTypeMakingOffer) {
-        _offerData.transactionStatus = TRANSACTION_STATUS_OFFERED;
+        _offerData.transactionStatus = TRANSACTION_STATUS_ONGOING;
         _offerData.initiatorID = senderID;
     } else if (messageType == ChatMessageTypeCancellingOffer) {
         _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
