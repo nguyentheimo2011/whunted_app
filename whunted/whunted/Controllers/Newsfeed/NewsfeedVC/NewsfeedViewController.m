@@ -106,6 +106,8 @@
         [cell initUI];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    [cell setTransactionData:[_transactionDataList objectAtIndex:indexPath.row]];
 
     return cell;
 }

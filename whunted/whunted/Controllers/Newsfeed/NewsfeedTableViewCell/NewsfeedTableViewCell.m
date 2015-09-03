@@ -39,7 +39,8 @@
 {
     _transactionData = transactionData;
     
-    
+    _itemNameLabel.text = transactionData.itemName;
+    [self setTextForInitialPriceLabel:transactionData.originalDemandedPrice];
 }
 
 
@@ -63,7 +64,6 @@
     [self addBuyerProfileImageView];
     [self addItemNameLabel];
     [self addInitialPriceLabel];
-//    [self addSeparatorBelowItemImage];
     [self addWhuntButton];
     [self addSellerProfileImageView];
     [self addProductOriginUI];
@@ -125,11 +125,13 @@
     CGFloat const kLabelOriginY         =   _itemImageView.frame.size.height - kLabelHeight - kLabelBottomMargin;
     
     _initialPriceLabel = [[UILabel alloc] init];
-    _initialPriceLabel.text = @"TWD 20,000";
+    _initialPriceLabel.text = @"";
     _initialPriceLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _initialPriceLabel.textColor = [UIColor whiteColor];
     _initialPriceLabel.backgroundColor = STAR_COMMAND_BLUE;
     _initialPriceLabel.textAlignment = NSTextAlignmentCenter;
+    _initialPriceLabel.layer.cornerRadius = 5.0f;
+    _initialPriceLabel.clipsToBounds = YES;
     [_initialPriceLabel sizeToFit];
     
     CGFloat const kLabelWidth   =   MIN(_initialPriceLabel.frame.size.width + 10.0f, kLabelMaxWidth);
@@ -246,6 +248,36 @@
     _meetingLocationLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _meetingLocationLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_cellContainer addSubview:_meetingLocationLabel];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) setTextForInitialPriceLabel: (NSString *) text
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelRightMargin     =   10.0f;
+    CGFloat const kLabelBottomMargin    =   10.0f;
+    CGFloat const kLabelMaxWidth        =   WINSIZE.width/2 - kLabelRightMargin;
+    CGFloat const kLabelHeight          =   25.0f;
+    CGFloat const kLabelOriginY         =   _itemImageView.frame.size.height - kLabelHeight - kLabelBottomMargin;
+    
+    _initialPriceLabel.text = text;
+    [_initialPriceLabel sizeToFit];
+    
+    CGFloat const kLabelWidth   =   MIN(_initialPriceLabel.frame.size.width + 10.0f, kLabelMaxWidth);
+    CGFloat const kLabelOriginX =   WINSIZE.width - kLabelWidth - kLabelRightMargin;
+    _initialPriceLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+    [_itemImageView addSubview:_initialPriceLabel];
+}
+
+
+
+#pragma mark - Backend
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveItemInfo
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 
