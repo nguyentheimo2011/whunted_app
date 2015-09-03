@@ -170,6 +170,10 @@
 #define     TRANSACTION_STATUS_ACCEPTED         @"Accepted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     TRANSACTION_STATUS_DISPLAY_NEGOTIATING      @"Negotiating"
+#define     TRANSACTION_STATUS_DISPLAY_OFFERED          @"Offered"
+
+//-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_FEEDBACK_WRITER_ID               @"writerID"
 #define     PF_FEEDBACK_RECEIVER_ID             @"receiverID"
 #define     PF_FEEDBACK_RATING                  @"rating"

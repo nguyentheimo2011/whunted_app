@@ -142,15 +142,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED])
-        _transactionStatusLabel.text = TRANSACTION_STATUS_ACCEPTED;
+        _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_ACCEPTED, nil);
     else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED])
-        _transactionStatusLabel.text = TRANSACTION_STATUS_CANCELLED;
+        _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_CANCELLED, nil);
     else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
-        _transactionStatusLabel.text = TRANSACTION_STATUS_DECLINED;
+        _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_DECLINED, nil);
     else if ([transactionStatus isEqualToString:TRANSACTION_STATUS_NONE])
-        _transactionStatusLabel.text = @"Not Offered";
+        _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_DISPLAY_NEGOTIATING, nil);
     else
-        _transactionStatusLabel.text = TRANSACTION_STATUS_ONGOING;
+        _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_DISPLAY_OFFERED, nil);
         
 }
 
