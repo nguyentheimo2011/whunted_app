@@ -387,13 +387,10 @@
     [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
-//    if (![SyncEngine sharedEngine].syncInProgess)
-//        [sQuery fromPinWithName:PF_OFFER_CLASS];
-    
-    [sQuery getFirstObjectInBackgroundWithBlock:^(PFObject* object, NSError *error) {
+    [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            if (object) {
-                itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:object];
+            if (objects.count > 0) {
+                itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:[objects objectAtIndex:0]];
             }
         } else {
             NSLog(@"Error %@ %@", error, [error userInfo]);
