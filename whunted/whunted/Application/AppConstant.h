@@ -84,7 +84,7 @@
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
 #define     FLAT_BUTTON_HEIGHT                  35.0f
 #define     kOFFSET_FOR_KEYBOARD                200.0f
-#define     NEWSFEED_CELL_HEIGHT                WINSIZE.width + 90.0f
+#define     NEWSFEED_CELL_HEIGHT                WINSIZE.width + 100.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ITEM_NAME_KEY                       @"itemName"

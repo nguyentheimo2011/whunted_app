@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong)       TransactionData     *transactionData;
 
-
-- (id) initCellWithTransactionData: (TransactionData *) transactionData;
+- (void) initUI;
 
 @end

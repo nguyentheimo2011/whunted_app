@@ -11,6 +11,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
+#import <Parse/Parse.h>
+
 @implementation NewsfeedViewController
 {
     UITableView                 *_newsfeedTableView;
@@ -23,8 +25,14 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {
+    
+    if (self != nil)
+    {
+        [self initData];
+        [self retrieveTransactionDataList];
         
+        [self customizeUI];
+        [self addNewsfeedTableView];
     }
     return self;
 }
@@ -34,11 +42,6 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    
-    [self initData];
-    
-    [self customizeUI];
-    [self addNewsfeedTableView];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -76,6 +79,7 @@
     _newsfeedTableView.separatorColor = [UIColor whiteColor];
     _newsfeedTableView.delegate = self;
     _newsfeedTableView.dataSource = self;
+    _newsfeedTableView.backgroundColor = WHITE_GRAY_COLOR;
     [self.view addSubview:_newsfeedTableView];
 }
 
@@ -86,7 +90,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    return 10;
+    return _transactionDataList.count;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -98,7 +102,8 @@
     NewsfeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
     if (cell == nil) {
-        cell = [[NewsfeedTableViewCell alloc] initCellWithTransactionData:nil];
+        cell = [[NewsfeedTableViewCell alloc] init];
+        [cell initUI];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
@@ -110,6 +115,34 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     return NEWSFEED_CELL_HEIGHT;
+}
+
+
+#pragma mark - Backend
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveTransactionDataList
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _transactionDataList = [[NSMutableArray alloc] init];
+    
+    PFQuery *query = [PFQuery queryWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
+    [query orderByDescending:PF_UPDATED_AT];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *transactionObjects, NSError *error) {
+        if (!error)
+        {
+            for (PFObject *object in transactionObjects) {
+                TransactionData *transactionData = [[TransactionData alloc] initWithPFObject:object];
+                [_transactionDataList addObject:transactionData];
+            }
+            
+            [_newsfeedTableView reloadData];
+        }
+        else
+        {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 

@@ -30,24 +30,27 @@
 
 @synthesize transactionData     =   _transactionData;
 
+
+#pragma mark - Setters
+
 //-----------------------------------------------------------------------------------------------------------------------------
-- (id) initCellWithTransactionData:(TransactionData *)transactionData
+- (void) setTransactionData:(TransactionData *)transactionData
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    self = [super init];
+    _transactionData = transactionData;
     
-    if (self)
-    {
-        _transactionData = transactionData;
-        
-        [self addCellContainer];
-    }
     
-    return self;
 }
 
 
 #pragma mark - UI Handlers
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initUI
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [self addCellContainer];
+}
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) addCellContainer
@@ -60,8 +63,7 @@
     [self addBuyerProfileImageView];
     [self addItemNameLabel];
     [self addInitialPriceLabel];
-    [self addSeparatorBelowItemImage];
-    [self addSeparatorBetweenCells];
+//    [self addSeparatorBelowItemImage];
     [self addWhuntButton];
     [self addSellerProfileImageView];
     [self addProductOriginUI];
@@ -77,7 +79,7 @@
     CGFloat const kImageViewOriginY =   30.0f;
     
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
-    _itemImageView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _itemImageView.backgroundColor = WHITE_GRAY_COLOR;
     [_cellContainer addSubview:_itemImageView];
 }
 
