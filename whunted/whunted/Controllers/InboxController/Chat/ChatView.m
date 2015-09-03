@@ -461,7 +461,7 @@
 - (void) cancellingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         _offerData.objectID = @"";
         _offerData.initiatorID = @"";
@@ -502,7 +502,7 @@
 - (void) decliningOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         _offerData.objectID = @"";
         _offerData.initiatorID = @"";
@@ -525,7 +525,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
-    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self adjustButtonsVisibility];
         

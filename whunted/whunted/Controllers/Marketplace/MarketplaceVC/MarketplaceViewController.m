@@ -383,7 +383,7 @@
     
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     
-    PFQuery *sQuery = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     

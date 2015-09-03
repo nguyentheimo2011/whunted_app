@@ -244,8 +244,10 @@
 #define     SYNC_IN_PROGRESS                    @"syncInProgess"
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     PF_OFFER_CLASS                      @"OfferedWant"
-#define     PF_ACCEPTED_OFFER_CLASS             @"AcceptedOffer"
+#define     PF_ONGOING_TRANSACTION_CLASS        @"OngoingTransactionData"
+#define     PF_ACCEPTED_TRANSACTION_CLASS       @"AcceptedTransactionData"
+#define     PF_CANCELLED_TRANSACTION_CLASS      @"CancelledTransactionData"
+#define     PF_DECLINED_TRANSACTION_CLASS       @"DeclinedTransactionData"
 #define     PF_WANT_DATA_CLASS                  @"WantedPost"
 #define     PF_FEEDBACK_DATA_CLASS              @"FeedbackData"
 

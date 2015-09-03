@@ -56,14 +56,14 @@
 - (void) downloadMyOffersData
 //----------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:PF_SELLER_ID equalTo:[PFUser currentUser].objectId];
     [query setLimit:1000];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (!error) {
              for (PFObject *obj in objects) {
-                 [obj pinInBackgroundWithName:PF_OFFER_CLASS];
+                 [obj pinInBackgroundWithName:PF_ONGOING_TRANSACTION_CLASS];
              }
              [self executeSyncCompletionOperations];
          } else {

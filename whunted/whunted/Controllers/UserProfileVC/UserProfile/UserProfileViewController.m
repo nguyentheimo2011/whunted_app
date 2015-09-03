@@ -1003,7 +1003,7 @@
 {
     _mySellDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
@@ -1049,7 +1049,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {

@@ -107,7 +107,7 @@
             NSLog(@"Update unsuccessfully");
         }
         
-        PFObject *obj = [offerData getPFObjectWithClassName:PF_ACCEPTED_OFFER_CLASS];
+        PFObject *obj = [offerData getPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
         [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"Upload to AcceptedOffer successfully");

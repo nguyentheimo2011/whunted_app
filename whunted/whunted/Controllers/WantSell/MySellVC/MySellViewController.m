@@ -88,7 +88,7 @@
 {
     self.wantDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
@@ -121,7 +121,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
@@ -228,9 +228,9 @@
 {
     PFQuery *query;
     if (wantData.isDealClosed) {
-        query = [PFQuery queryWithClassName:PF_ACCEPTED_OFFER_CLASS];
+        query = [PFQuery queryWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     } else {
-        query = [PFQuery queryWithClassName:PF_OFFER_CLASS];
+        query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     }
     
     [query whereKey:@"itemID" equalTo:wantData.itemID];

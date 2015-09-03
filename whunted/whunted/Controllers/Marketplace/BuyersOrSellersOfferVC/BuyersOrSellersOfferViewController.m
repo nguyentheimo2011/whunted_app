@@ -319,7 +319,7 @@
     
     BOOL offerChanged = _offerData.objectID.length > 0;
     
-    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_OFFER_CLASS];
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [ offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error) {
             [_offerData setObjectID:offerObj.objectId];
