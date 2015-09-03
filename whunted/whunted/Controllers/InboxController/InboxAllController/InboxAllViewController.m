@@ -230,7 +230,7 @@
     offerData.originalDemandedPrice =   recent[FB_ORIGINAL_DEMANDED_PRICE];
     offerData.offeredPrice          =   recent[FB_CURRENT_OFFERED_PRICE];
     offerData.deliveryTime          =   recent[FB_CURRENT_OFFERED_DELIVERY_TIME];
-    offerData.transactionStatus           =   recent[FB_TRANSACTION_STATUS];
+    offerData.transactionStatus     =   recent[FB_TRANSACTION_STATUS];
     
     [chatView setOfferData:offerData];
     

@@ -74,7 +74,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
     if (offerData.offeredPrice && offerData.offeredPrice.length > 0)
     {
         message = [Utilities makingOfferMessageFromOfferedPrice:offerData.offeredPrice andDeliveryTime:offerData.deliveryTime];
-        transactionLastUser = user.objectId;
+        transactionLastUser = lastUser.objectId;
     }
 	
     NSDictionary *recent = @{FB_RECENT_CHAT_ID:recentId, FB_GROUP_ID:groupId, FB_GROUP_MEMBERS:members,

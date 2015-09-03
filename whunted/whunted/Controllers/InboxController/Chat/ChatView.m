@@ -525,7 +525,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
-    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+    PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self adjustButtonsVisibility];
         

@@ -183,7 +183,6 @@
         }
 	}];
 	
-	SendPushNotification1(groupId, item[@"text"]);
     UpdateRecentTransaction1(groupId, details[FB_TRANSACTION_STATUS], details[FB_TRANSACTION_LAST_USER], details[FB_CURRENT_OFFER_ID], details[FB_CURRENT_OFFERED_PRICE], details[FB_CURRENT_OFFERED_DELIVERY_TIME], item[@"text"]);
 }
 
