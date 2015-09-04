@@ -75,6 +75,7 @@
         _profileOwner = profileOwner;
         
         [self initData];
+        [self initUI];
         [self retrieveMyWantList];
     }
     
@@ -86,17 +87,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    [self customizeView];
-    [self addScrollView];
-    [self addProfileImage_Name_Country_Rating];
-    [self addFollower_Following_PreferencesButtons];
-    [self addSaperatorLineAndInfoLabel];
-    [self addDate_Verification_DescriptionLabels];
-    [self addUserDescription];
-    [self addControls];
-    [self addTotalListingsNumLabel];
-    [self addHistoryCollectionView];
-    [self addAllDisplayedLabel];
+    
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -121,6 +112,23 @@
 
 
 #pragma mark - UI
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initUI
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self customizeView];
+    [self addScrollView];
+    [self addProfileImage_Name_Country_Rating];
+    [self addFollower_Following_PreferencesButtons];
+    [self addSaperatorLineAndInfoLabel];
+    [self addDate_Verification_DescriptionLabels];
+    [self addUserDescription];
+    [self addControls];
+    [self addTotalListingsNumLabel];
+    [self addHistoryCollectionView];
+    [self addAllDisplayedLabel];
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeView
@@ -666,16 +674,17 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCellHeight = WINSIZE.width/2.0 + 73.0;
-    CGFloat const kYDistanceBetweenCell = 16.0f;
-    CGFloat const kCollectionViewHeight = ([_myWantDataList count]+1)/2 * kCellHeight + (([_myWantDataList count]+1)/2 - 1) * kYDistanceBetweenCell;
-    CGFloat const kCollectionTopMargin = WINSIZE.height / 48.0;
-    CGFloat const kCollectionYPos = _currHeight + kCollectionTopMargin;
+    CGFloat const kCellHeight           =   WINSIZE.width/2.0 + 73.0;
+    CGFloat const kYDistanceBetweenCell =   16.0f;
+    CGFloat const kCollectionViewHeight =   ([_myWantDataList count]+1)/2 * kCellHeight + (([_myWantDataList count]+1)/2 - 1) * kYDistanceBetweenCell;
+    CGFloat const kCollectionTopMargin  =   WINSIZE.height / 48.0;
+    CGFloat const kCollectionYPos       =   _currHeight + kCollectionTopMargin;
+    
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
-    _historyCollectionView.dataSource = self;
-    _historyCollectionView.delegate = self;
-    _historyCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
-    _historyCollectionView.scrollEnabled = NO;
+    _historyCollectionView.dataSource       =   self;
+    _historyCollectionView.delegate         =   self;
+    _historyCollectionView.backgroundColor  =   LIGHTEST_GRAY_COLOR;
+    _historyCollectionView.scrollEnabled    =   NO;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     
@@ -885,9 +894,10 @@
 {
     _currHeight -= _historyCollectionView.frame.size.height;
     
-    CGFloat const kYDistanceBetweenCell = 16.0f;
-    CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
+    CGFloat const kYDistanceBetweenCell     =   16.0f;
+    CGFloat const kCellWidth                =   WINSIZE.width/2 - 12.0f;
     CGFloat newHeight;
+    
     if (_curViewMode == HistoryCollectionViewModeBuying) {
         CGFloat const kCellHeight = kCellWidth + 85.0f;
         newHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + (([_myWantDataList count]/2+1) - 1) * kYDistanceBetweenCell;
@@ -936,6 +946,7 @@
         }
     }];
 }
+
 
 #pragma mark - SettingsTableViewDelegate methods
 
@@ -1079,9 +1090,9 @@
     }];
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveLatestSellData
-//---------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *currentUser = _profileOwner;
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
