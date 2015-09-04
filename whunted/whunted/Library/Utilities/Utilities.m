@@ -633,6 +633,21 @@
     }];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) retrieveProfileImageForUser:(PFUser *)user andRunBlock:(ImageHandler)handler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFFile *profileImage = user[PF_USER_PICTURE];
+    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+        if (!error2) {
+            UIImage *image = [UIImage imageWithData:data];
+            handler(image);
+        } else {
+            NSLog(@"%@ %@", error2, [error2 userInfo]);
+        }
+    }];
+}
+
 #pragma mark - Data Specifics
 
 //------------------------------------------------------------------------------------------------------------------------------

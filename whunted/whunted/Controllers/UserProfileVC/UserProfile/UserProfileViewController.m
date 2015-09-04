@@ -13,6 +13,7 @@
 #import "FeedbackData.h"
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
+#import "TemporaryCache.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 #import "PersistedCache.h"
@@ -167,7 +168,9 @@
     UIView *profileBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.3, WINSIZE.width * 0.3)];
     [_scrollView addSubview:profileBg];
     
-    UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];
+    NSString *key = [NSString stringWithFormat:@"%@%@", _profileOwner.objectId, USER_PROFILE_IMAGE];
+    UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:key];
+    
     CGFloat const kMarginWidth = WINSIZE.width / 30.0;
     CGFloat const kImageWidth = WINSIZE.width * 0.3 - 2 * kMarginWidth;
     _profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kMarginWidth, kMarginWidth, kImageWidth, kImageWidth)];
@@ -175,6 +178,14 @@
     _profileImageView.layer.cornerRadius = kImageWidth/2;
     _profileImageView.clipsToBounds = YES;
     [profileBg addSubview:_profileImageView];
+    
+    if (!_profileImageView.image)
+    {
+        ImageHandler handler = ^(UIImage *image) {
+            _profileImageView.image = image;
+        };
+        [Utilities retrieveProfileImageForUser:_profileOwner andRunBlock:handler];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
