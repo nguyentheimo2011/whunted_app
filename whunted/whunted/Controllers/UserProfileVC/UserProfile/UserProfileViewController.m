@@ -53,6 +53,7 @@
     CGFloat                     _statusAndNavBarHeight;
     CGFloat                     _tabBarHeight;
     CGFloat                     _currHeight;
+    CGFloat                     _collectionViewOriginY;
     
     HistoryCollectionViewMode   _curViewMode;
     
@@ -679,8 +680,10 @@
     CGFloat const kCollectionViewHeight =   ([_myWantDataList count]+1)/2 * kCellHeight + (([_myWantDataList count]+1)/2 - 1) * kYDistanceBetweenCell;
     CGFloat const kCollectionTopMargin  =   WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos       =   _currHeight + kCollectionTopMargin;
+    _collectionViewOriginY              =   kCollectionYPos;
     
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
+    _historyCollectionView.frame = CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight);
     _historyCollectionView.dataSource       =   self;
     _historyCollectionView.delegate         =   self;
     _historyCollectionView.backgroundColor  =   LIGHTEST_GRAY_COLOR;
@@ -907,7 +910,7 @@
         newHeight = (listSize + 1)/2 * kCellHeight + ((listSize + 1)/2) * kYDistanceBetweenCell;
     }
     
-    _historyCollectionView.frame = CGRectMake(_historyCollectionView.frame.origin.x, _historyCollectionView.frame.origin.y, WINSIZE.width, newHeight);
+    _historyCollectionView.frame = CGRectMake(0, _collectionViewOriginY, WINSIZE.width, newHeight);
     _currHeight += _historyCollectionView.frame.size.height;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
     
