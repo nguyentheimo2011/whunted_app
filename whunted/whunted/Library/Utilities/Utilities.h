@@ -135,6 +135,8 @@
 
 + (void) retrieveProfileImageForUser: (PFUser *) user andRunBlock: (ImageHandler) handler;
 
++ (void) retrieveUserInfoByUserID: (NSString *) userID andRunBlock: (UserHandler) handler;
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 #pragma mark -  Transaction Data

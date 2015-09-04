@@ -363,9 +363,10 @@ typedef enum {
 #define     FEEDBACK_RATING_NEGATIVE                    @"negative"
 
 //----------------------------------------------------------------------------------------------------------------------------
-typedef void (^FetchedUserHandler) (PFUser *, UIImage *);
-typedef void (^ImageHandler) (UIImage *);
-typedef void (^CompletionHandler) (void);
+typedef void (^FetchedUserHandler)  (PFUser *, UIImage *);
+typedef void (^UserHandler)         (PFUser *);
+typedef void (^ImageHandler)        (UIImage *);
+typedef void (^CompletionHandler)   (void);
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

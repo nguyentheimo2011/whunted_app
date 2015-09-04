@@ -648,6 +648,25 @@
     }];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) retrieveUserInfoByUserID: (NSString *) userID andRunBlock:(UserHandler)handler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:userID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error)
+        {
+            PFUser *fetchedUser = (PFUser *) object;
+            handler(fetchedUser);
+        }
+        else
+        {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 #pragma mark - Data Specifics
 
 //------------------------------------------------------------------------------------------------------------------------------

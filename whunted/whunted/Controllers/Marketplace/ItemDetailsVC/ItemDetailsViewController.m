@@ -11,6 +11,7 @@
 #import "ChatView.h"
 #import "recent.h"
 #import "PersistedCache.h"
+#import "UserProfileViewController.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -236,6 +237,7 @@
     _buyerUsernameButton.cornerRadius = 0;
     _buyerUsernameButton.titleColor = MAIN_BLUE_COLOR;
     _buyerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_buyerUsernameButton addTarget:self action:@selector(buyerUsernameButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_buyerUsernameButton];
 }
 
@@ -530,7 +532,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void)actionChat:(NSString *)groupId withUser2: (PFUser *) user2 andOfferData: (TransactionData *) offerData
+- (void) actionChat:(NSString *)groupId withUser2: (PFUser *) user2 andOfferData: (TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatView *chatView = [[ChatView alloc] initWith:groupId];
@@ -545,6 +547,18 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) buyerUsernameButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UserHandler handler = ^(PFUser *user) {
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    [Utilities retrieveUserInfoByUserID:_wantData.buyerID andRunBlock:handler];
 }
 
 #pragma mark - Data Handlers
