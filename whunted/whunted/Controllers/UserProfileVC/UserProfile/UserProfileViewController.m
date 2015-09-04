@@ -128,7 +128,7 @@
 {
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    NSString *title = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
+    NSString *title = [NSString stringWithFormat:@"@%@", _profileOwner[PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
     
     if (_isViewingMyProfile) {
@@ -197,7 +197,7 @@
     
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
-    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
+    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
     _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:_userFullNameLabel];
@@ -209,7 +209,7 @@
 {
     CGFloat const kLabelHeight = WINSIZE.width / 16.0;
     _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
-    _countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
+    _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
     _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:_countryLabel];
@@ -478,7 +478,7 @@
 - (void) addJoiningDate
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSDate *joiningDate = [PFUser currentUser].createdAt;
+    NSDate *joiningDate = _profileOwner.createdAt;
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:joiningDate];
     
@@ -516,7 +516,7 @@
     [verifiedLabel sizeToFit];
     [backgroundView addSubview:verifiedLabel];
     
-    BOOL facebookVerified = (BOOL) [PFUser currentUser][PF_USER_FACEBOOK_VERIFIED];
+    BOOL facebookVerified = (BOOL) _profileOwner[PF_USER_FACEBOOK_VERIFIED];
     if (facebookVerified) {
         UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
         
@@ -528,7 +528,7 @@
         [backgroundView addSubview:fbImageView];
     }
     
-    BOOL emailVerified = (BOOL) [PFUser currentUser][PF_USER_EMAIL_VERIFICATION];
+    BOOL emailVerified = (BOOL) _profileOwner[PF_USER_EMAIL_VERIFICATION];
     if (emailVerified) {
         UIImage *emailImage = [UIImage imageNamed:@"email_verification.png"];
         
@@ -558,7 +558,7 @@
     CGFloat const kMaxNumOfLines = 40;
     
     _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
-    _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
+    _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
     _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     _userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -819,7 +819,7 @@
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     
     PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
+    [sQuery whereKey:@"sellerID" equalTo:_profileOwner.objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
     [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -918,7 +918,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
-    [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [query orderByAscending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error) {
         if (error) {
@@ -950,14 +950,14 @@
 - (void) updateUserData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];
+    UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:_profileOwner.objectId];
     [_profileImageView setImage:profileImage];
     
-    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", [PFUser currentUser][PF_USER_FIRSTNAME], [PFUser currentUser][PF_USER_LASTNAME]];
+    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
     
-    _countryLabel.text = [PFUser currentUser][PF_USER_COUNTRY];
+    _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
     
-    _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
+    _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
 }
 
 
@@ -971,7 +971,7 @@
     
     // update positive feedback label
     PFQuery *posQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
-    [posQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [posQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [posQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_POSITIVE];
     [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
@@ -984,7 +984,7 @@
     
     // update neutral feedback label
     PFQuery *neuQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
-    [neuQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [neuQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [neuQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEUTRAL];
     [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
@@ -997,7 +997,7 @@
     
     // update negative feedback label
     PFQuery *negQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
-    [negQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[PFUser currentUser].objectId];
+    [negQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [negQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEGATIVE];
     [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
@@ -1015,7 +1015,7 @@
 {
     _myWantDataList = [[NSMutableArray alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
-    [query whereKey:PF_ITEM_BUYER_ID equalTo:[PFUser currentUser].objectId];
+    [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -1037,7 +1037,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _mySellDataList = [[NSMutableArray alloc] init];
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = _profileOwner;
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:PF_UPDATED_AT];
@@ -1066,7 +1066,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
-    [query whereKey:@"buyerID" equalTo:[PFUser currentUser].objectId];
+    [query whereKey:@"buyerID" equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
@@ -1083,7 +1083,7 @@
 - (void) retrieveLatestSellData
 //---------------------------------------------------------------------------------------------------------------------------------
 {
-    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = _profileOwner;
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
