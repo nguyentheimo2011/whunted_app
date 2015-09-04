@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsTableVC : UITableViewController
+#import "EditProfileViewController.h"
+
+@class SettingsTableVC;
+
+//------------------------------------------------------------------------------------------------------------------------------
+@protocol SettingsTableViewDelegate <NSObject>
+//------------------------------------------------------------------------------------------------------------------------------
+
+- (void) didUpdateProfileInfo;
+
+@end
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+@interface SettingsTableVC : UITableViewController <EditProfileDelegate>
+//------------------------------------------------------------------------------------------------------------------------------
+
+@property (nonatomic, strong)   id<SettingsTableViewDelegate>   delegate;
 
 @end

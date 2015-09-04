@@ -9,7 +9,6 @@
 #import "UserProfileViewController.h"
 #import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
-#import "SettingsTableVC.h"
 #import "FeedbackReviewVC.h"
 #import "FeedbackData.h"
 #import "MarketplaceCollectionViewCell.h"
@@ -138,7 +137,6 @@
 {
     [self addProfileImage];
     [self addUserFullNameLabel];
-    [self addEditButton];
     [self addSettingButton];
     [self addCountryLabel];
     [self addRatingView];
@@ -177,20 +175,6 @@
     _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:_userFullNameLabel];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addEditButton
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kButtonXPos = WINSIZE.width * 0.5 + 5;
-    CGFloat const kButtonWidth = 25;
-    
-    JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
-    [editButton createTitle:nil withIcon:[UIImage imageNamed:@"edit_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
-    editButton.borderColor = [UIColor whiteColor];
-    [editButton addTarget:self action:@selector(editingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_topRightView addSubview:editButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -794,6 +778,7 @@
     return 10.0;
 }
 
+
 #pragma mark - Event Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -862,20 +847,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) editingButtonTapEventHandler
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
-    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
-    editProfileVC.delegate = self;
-    [self.navigationController pushViewController:editProfileVC animated:YES];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) settingsButtonTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     SettingsTableVC *settingsVC = [[SettingsTableVC alloc] init];
+    settingsVC.delegate = self;
     [self.navigationController pushViewController:settingsVC animated:YES];
 }
 
@@ -903,18 +879,18 @@
     }];
 }
 
-#pragma mark - EditProfileDelegate
+#pragma mark - SettingsTableViewDelegate methods
 
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) editProfile:(UIViewController *)controller didCompleteEditing:(BOOL)edited
-//-------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) didUpdateProfileInfo
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [self updateUserData];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) updateUserData
-//-------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------
 {
     UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];
     [_profileImageView setImage:profileImage];
@@ -925,6 +901,7 @@
     
     _userDescriptionLabel.text = [PFUser currentUser][PF_USER_DESCRIPTION];
 }
+
 
 #pragma mark - Backend
 

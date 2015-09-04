@@ -24,6 +24,8 @@
     UITableViewCell     *_logoutCell;
 }
 
+@synthesize delegate = _delegate;
+
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -235,9 +237,10 @@
     
     if (indexPath.section == 0)
     {
-        
+        [self pushEditProfileViewController];
     }
 }
+
 
 #pragma mark - Event Handlers
 
@@ -253,6 +256,26 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushEditProfileViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
+    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
+    editProfileVC.delegate = self;
+    [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+
+#pragma mark - EditProfileDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editProfile:(UIViewController *)controller didCompleteEditing:(BOOL)edited
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegate didUpdateProfileInfo];
 }
 
 @end

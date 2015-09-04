@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "EditProfileViewController.h"
+#import "SettingsTableVC.h"
 
 @class UserProfileViewController;
 
@@ -20,8 +20,9 @@
 
 @end
 
+
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, EditProfileDelegate>
+@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, SettingsTableViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
