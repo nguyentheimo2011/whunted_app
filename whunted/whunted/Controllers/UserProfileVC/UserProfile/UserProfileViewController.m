@@ -17,7 +17,6 @@
 #import "AppConstant.h"
 #import "PersistedCache.h"
 
-#import <Parse/Parse.h>
 #import <JTImageButton.h>
 #import <HMSegmentedControl.h>
 #import <MBProgressHUD.h>
@@ -59,16 +58,21 @@
     NSMutableDictionary         *_ratingDict;
     NSMutableArray              *_myWantDataList;
     NSMutableArray              *_mySellDataList;
+    
+    BOOL                        _isViewingMyProfile;
 }
 
-@synthesize delegate = _delegate;
+@synthesize delegate        =   _delegate;
+@synthesize profileOwner    =   _profileOwner;
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (id) init
+- (id) initWithProfileOwner: (PFUser *) profileOwner
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     if (self) {
+        _profileOwner = profileOwner;
+        
         [self initData];
         [self retrieveMyWantList];
     }
@@ -107,6 +111,11 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _curViewMode = HistoryCollectionViewModeBuying;
+    
+    if ([_profileOwner.objectId isEqualToString:[PFUser currentUser].objectId])
+        _isViewingMyProfile = YES;
+    else
+        _isViewingMyProfile = NO;
 }
 
 
@@ -121,7 +130,9 @@
     NSString *title = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
+    if (_isViewingMyProfile) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -335,10 +346,15 @@
 - (void) addFollowerButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width / 3.6;
+    CGFloat       kButtonWidth = WINSIZE.width / 3.6;
     CGFloat const kButtonHeight = 60;
-    CGFloat const kButtonLeftMargin = WINSIZE.width / 28.0;
+    CGFloat       kButtonLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+    
+    if (!_isViewingMyProfile) {
+        kButtonLeftMargin = WINSIZE.width * 0.1f;
+        kButtonWidth = WINSIZE.width * (1 - 0.3) / 2.0;
+    }
     
     NSString *title = [NSString stringWithFormat:@"0\n %@", NSLocalizedString(@"follower", nil)];
     
@@ -359,9 +375,9 @@
 - (void) addFollowingButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width / 3.6;
+    CGFloat const kButtonWidth = _followerButton.frame.size.width;
     CGFloat const kButtonHeight = 60;
-    CGFloat const kButtonXPos = 2 * WINSIZE.width / 28.0 + WINSIZE.width / 3.6;
+    CGFloat const kButtonXPos = _followerButton.frame.size.width + 2 * _followerButton.frame.origin.x;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
     NSString *title = [NSString stringWithFormat:@"0\n %@", NSLocalizedString(@"following", nil)];
@@ -383,23 +399,25 @@
 - (void) addPreferencesButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth = WINSIZE.width * (6/7.0 - 2/3.6);
-    CGFloat const kButtonHeight = 60;
-    CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.6;
-    CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
-    
-    _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-    [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
-    
-    // TODO: colors are likely to change
-    _preferencesButton.bgColor = DARK_BLUE_COLOR;
-    _preferencesButton.borderColor = DARK_BLUE_COLOR;
-    _preferencesButton.titleColor = [UIColor whiteColor];
-    
-    _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _preferencesButton.cornerRadius = 10.0;
-    [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [backgroundView addSubview:_preferencesButton];
+    if (_isViewingMyProfile) {
+        CGFloat const kButtonWidth = WINSIZE.width * (6/7.0 - 2/3.6);
+        CGFloat const kButtonHeight = 60;
+        CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.6;
+        CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+        
+        _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
+        [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+        
+        // TODO: colors are likely to change
+        _preferencesButton.bgColor = DARK_BLUE_COLOR;
+        _preferencesButton.borderColor = DARK_BLUE_COLOR;
+        _preferencesButton.titleColor = [UIColor whiteColor];
+        
+        _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _preferencesButton.cornerRadius = 10.0;
+        [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+        [backgroundView addSubview:_preferencesButton];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

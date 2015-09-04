@@ -10,6 +10,8 @@
 
 #import "SettingsTableVC.h"
 
+#import <Parse/Parse.h>
+
 @class UserProfileViewController;
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -25,10 +27,13 @@
 @interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, SettingsTableViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
+@property (nonatomic, weak)     id<UserProfileViewControllerDelegate>   delegate;
+
+@property (nonatomic, strong)   PFUser      *profileOwner;
+
 
 - (void) retrieveLatestWantData;
-
 - (void) retrieveLatestSellData;
+- (id) initWithProfileOwner: (PFUser *) profileOwner;
 
 @end

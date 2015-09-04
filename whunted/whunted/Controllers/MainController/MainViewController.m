@@ -69,7 +69,7 @@
         chattingNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
         UINavigationController *userProfileNavController = [[UINavigationController alloc] init];
-        _userProfileVC = [[UserProfileViewController alloc] init];
+        _userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:[PFUser currentUser]];
         [userProfileNavController setViewControllers: [NSArray arrayWithObject:_userProfileVC]];
         [userProfileNavController.tabBarItem setImage:[UIImage imageNamed:@"profile_tab_icon.png"]];
         userProfileNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
