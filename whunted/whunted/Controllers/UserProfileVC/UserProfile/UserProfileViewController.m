@@ -12,6 +12,7 @@
 #import "FeedbackReviewVC.h"
 #import "FeedbackData.h"
 #import "MarketplaceCollectionViewCell.h"
+#import "ItemDetailsViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 #import "PersistedCache.h"
@@ -19,6 +20,7 @@
 #import <Parse/Parse.h>
 #import <JTImageButton.h>
 #import <HMSegmentedControl.h>
+#import <MBProgressHUD.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
 
@@ -684,7 +686,8 @@
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
-#pragma mark - CollectionView datasource methods
+
+#pragma mark - CollectionViewDataSource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -704,7 +707,8 @@
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_curViewMode == HistoryCollectionViewModeBuying) {
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+    {
         HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
         
         if (cell.wantData == nil) {
@@ -715,7 +719,9 @@
         [cell setWantData:wantData];
         
         return cell;
-    } else {
+    }
+    else
+    {
        MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
         
         if (cell.wantData == nil)
@@ -764,6 +770,41 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     return 10.0;
+}
+
+
+#pragma mark - UICollectionViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
+    
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+        itemDetailsVC.wantData = [_myWantDataList objectAtIndex:indexPath.row];
+    else
+        itemDetailsVC.wantData = [_mySellDataList objectAtIndex:indexPath.row];
+    
+    itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
+    
+    PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+    [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
+    [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
+    
+    [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count > 0) {
+                itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:[objects objectAtIndex:0]];
+            }
+        } else {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+        
+        [self.navigationController pushViewController:itemDetailsVC animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 

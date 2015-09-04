@@ -370,7 +370,7 @@
 }
 
 
-#pragma mark - UICollectionView delegate methods
+#pragma mark - UICollectionViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
