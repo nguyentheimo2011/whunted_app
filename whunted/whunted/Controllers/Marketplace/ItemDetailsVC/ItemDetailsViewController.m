@@ -24,14 +24,16 @@
     
     UILabel                 *_itemNameLabel;
     UILabel                 *_postedTimestampLabel;
-    JTImageButton           *_buyerUsernameButton;
     UILabel                 *_demandedPriceLabel;
     UILabel                 *_locationLabel;
     UILabel                 *_itemDescLabel;
     UILabel                 *_productOriginLabel;
     UILabel                 *_paymentMethodLabel;
     UILabel                 *_sellersLabel;
+    
+    JTImageButton           *_buyerUsernameButton;
     JTImageButton           *_secondBottomButton;
+    JTImageButton           *_viewOffersButton;
     
     UIPageControl           *_pageControl;
     UIScrollView            *_scrollView;
@@ -40,6 +42,8 @@
     CGFloat                 _nextXPos;
     CGFloat                 _nextYPos;
     NSInteger               _currImageIndex;
+    
+    BOOL                    _itemPostedByMe;
 }
 
 @synthesize wantData                =   _wantData;
@@ -85,6 +89,8 @@
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _itemPostedByMe = [_wantData.buyerID isEqualToString:[PFUser currentUser].objectId];
+    
     [self retrieveItemImages];
 }
 
@@ -182,8 +188,12 @@
 - (void) addFunctionalButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self addChatButton];
-    [self addOfferButton];
+    if (_itemPostedByMe) {
+        [self addViewOfferButton];
+    } else {
+        [self addChatButton];
+        [self addOfferButton];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -461,6 +471,25 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addViewOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 45, WINSIZE.width, 45)];
+    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
+    [self.view addSubview:backgroundView];
+    
+    _viewOffersButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 45)];
+    [_viewOffersButton createTitle:NSLocalizedString(@"View Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
+    _viewOffersButton.cornerRadius = 0;
+    _viewOffersButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _viewOffersButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _viewOffersButton.titleColor = [UIColor whiteColor];
+    [_viewOffersButton addTarget:self action:@selector(viewOffersButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:_viewOffersButton];
+}
+
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -529,6 +558,13 @@
         NSString *groupId = StartPrivateChat(user1, user2, offerData);
         [self actionChat:groupId withUser2:user2 andOfferData:offerData];
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewOffersButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegate itemDetailsViewController:self didChooseToViewOffersOfItem:_wantData.itemID];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

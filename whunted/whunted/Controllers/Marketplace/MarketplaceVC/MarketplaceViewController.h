@@ -18,6 +18,8 @@
 
 - (void) marketPlaceUserDidOfferForAnItem;
 
+- (void) viewOffersForItem: (NSString *) itemID;
+
 @end
 
 

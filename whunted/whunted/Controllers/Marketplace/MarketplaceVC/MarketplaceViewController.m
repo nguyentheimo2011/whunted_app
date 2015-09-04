@@ -456,6 +456,13 @@
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) itemDetailsViewController:(ItemDetailsViewController *)controller didChooseToViewOffersOfItem:(NSString *)itemID
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_delegate viewOffersForItem:itemID];
+}
+
 
 #pragma mark - CityViewDelegate methods
 
