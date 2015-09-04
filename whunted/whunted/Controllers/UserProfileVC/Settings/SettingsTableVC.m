@@ -10,12 +10,11 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-@interface SettingsTableVC ()
-
-@end
 
 @implementation SettingsTableVC
 {
+    UITableViewCell     *_editingProfileCell;
+    
     UITableViewCell     *_gettingStartedCell;
     UITableViewCell     *_helpFAQCell;
     UITableViewCell     *_communityRulesCell;
@@ -40,6 +39,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
+    NSLog(@"SettingsTableVC didReceiveMemoryWarning");
 }
 
 #pragma mark - UI
@@ -63,6 +63,8 @@
 - (void) initCells
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [self initEditingProfileCell];
+    
     [self initGettingStartedCell];
     [self initHelpFAQCell];
     [self initCommunityRulesCell];
@@ -73,13 +75,23 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) initEditingProfileCell
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _editingProfileCell = [[UITableViewCell alloc] init];
+    _editingProfileCell.textLabel.text  =   NSLocalizedString(@"Edit Profile", nil);
+    _editingProfileCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _editingProfileCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) initGettingStartedCell
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _gettingStartedCell = [[UITableViewCell alloc] init];
-    _gettingStartedCell.textLabel.text = NSLocalizedString(@"Getting Started Guide", nil);
-    _gettingStartedCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _gettingStartedCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _gettingStartedCell.textLabel.text  =   NSLocalizedString(@"Getting Started Guide", nil);
+    _gettingStartedCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _gettingStartedCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -87,9 +99,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _helpFAQCell = [[UITableViewCell alloc] init];
-    _helpFAQCell.textLabel.text = NSLocalizedString(@"Help & FAQ", nil);
-    _helpFAQCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _helpFAQCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _helpFAQCell.textLabel.text     =   NSLocalizedString(@"Help & FAQ", nil);
+    _helpFAQCell.textLabel.font     =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _helpFAQCell.accessoryType      =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -97,9 +109,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _communityRulesCell = [[UITableViewCell alloc] init];
-    _communityRulesCell.textLabel.text = NSLocalizedString(@"Community Rules", nil);
-    _communityRulesCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _communityRulesCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _communityRulesCell.textLabel.text  =   NSLocalizedString(@"Community Rules", nil);
+    _communityRulesCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _communityRulesCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -107,9 +119,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _aboutWhuntedCell = [[UITableViewCell alloc] init];
-    _aboutWhuntedCell.textLabel.text = NSLocalizedString(@"About Whunted", nil);
-    _aboutWhuntedCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _aboutWhuntedCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _aboutWhuntedCell.textLabel.text    =   NSLocalizedString(@"About Whunted", nil);
+    _aboutWhuntedCell.textLabel.font    =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _aboutWhuntedCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -117,9 +129,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _notificationSettingsCell = [[UITableViewCell alloc] init];
-    _notificationSettingsCell.textLabel.text = NSLocalizedString(@"Notification Settings", nil);
-    _notificationSettingsCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _notificationSettingsCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _notificationSettingsCell.textLabel.text    =   NSLocalizedString(@"Notification Settings", nil);
+    _notificationSettingsCell.textLabel.font    =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _notificationSettingsCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -127,18 +139,19 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _logoutCell = [[UITableViewCell alloc] init];
-    _logoutCell.textLabel.text = NSLocalizedString(@"Log Out", nil);
-    _logoutCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _logoutCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _logoutCell.textLabel.text  =   NSLocalizedString(@"Log Out", nil);
+    _logoutCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _logoutCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
-#pragma mark - Table view data source
+
+#pragma mark - UITableViewDataSource methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 2;
+    return 3;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -146,6 +159,8 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
+        return 1;
+    else if (section == 1)
         return 4;
     else
         return 2;
@@ -155,7 +170,12 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
+        return _editingProfileCell;
+    }
+    else if (indexPath.section == 1)
+    {
         if (indexPath.row == 0)
             return _gettingStartedCell;
         else if (indexPath.row == 1)
@@ -164,7 +184,9 @@
             return _communityRulesCell;
         else if (indexPath.row == 3)
             return _aboutWhuntedCell;
-    } else if (indexPath.section == 1) {
+    }
+    else if (indexPath.section == 2)
+    {
         if (indexPath.row == 0)
             return _notificationSettingsCell;
         else if (indexPath.row == 1)
@@ -173,6 +195,7 @@
     
     return [[UITableViewCell alloc] init];
 }
+
 
 #pragma mark - UITableViewDelegate methods
 
@@ -197,25 +220,37 @@
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     view.tintColor = LIGHTEST_GRAY_COLOR;
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0)
+    {
+        
+    }
+}
+
 #pragma mark - Event Handlers
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) doneBarButtonTapEventHandler
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) topBackButtonTapEventHandler
-//--------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
