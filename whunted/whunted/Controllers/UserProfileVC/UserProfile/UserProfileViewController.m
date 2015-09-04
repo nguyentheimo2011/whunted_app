@@ -54,6 +54,7 @@
     CGFloat                     _tabBarHeight;
     CGFloat                     _currHeight;
     CGFloat                     _collectionViewOriginY;
+    CGFloat                     _collectionViewCurrHeight;
     
     HistoryCollectionViewMode   _curViewMode;
     
@@ -104,6 +105,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _curViewMode = HistoryCollectionViewModeBuying;
+    
+    _myWantDataList = [[NSMutableArray alloc] init];
     
     if ([_profileOwner.objectId isEqualToString:[PFUser currentUser].objectId])
         _isViewingMyProfile = YES;
@@ -675,12 +678,11 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCellHeight           =   WINSIZE.width/2.0 + 73.0;
-    CGFloat const kYDistanceBetweenCell =   16.0f;
-    CGFloat const kCollectionViewHeight =   ([_myWantDataList count]+1)/2 * kCellHeight + (([_myWantDataList count]+1)/2 - 1) * kYDistanceBetweenCell;
+    CGFloat const kCollectionViewHeight =   0;
     CGFloat const kCollectionTopMargin  =   WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos       =   _currHeight + kCollectionTopMargin;
     _collectionViewOriginY              =   kCollectionYPos;
+    _collectionViewCurrHeight           =   kCollectionViewHeight;
     
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     _historyCollectionView.frame = CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight);
@@ -895,23 +897,22 @@
 - (void) resizeHistoryCollectionView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _currHeight -= _historyCollectionView.frame.size.height;
+    _currHeight -= _collectionViewCurrHeight;
     
     CGFloat const kYDistanceBetweenCell     =   16.0f;
     CGFloat const kCellWidth                =   WINSIZE.width/2 - 12.0f;
-    CGFloat newHeight;
     
     if (_curViewMode == HistoryCollectionViewModeBuying) {
         CGFloat const kCellHeight = kCellWidth + 85.0f;
-        newHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + (([_myWantDataList count]/2+1) - 1) * kYDistanceBetweenCell;
+        _collectionViewCurrHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + (([_myWantDataList count]/2+1) + 1) * kYDistanceBetweenCell;
     } else {
         CGFloat const kCellHeight = kCellWidth + 115.0f;
         NSInteger listSize = [_mySellDataList count];
-        newHeight = (listSize + 1)/2 * kCellHeight + ((listSize + 1)/2) * kYDistanceBetweenCell;
+        _collectionViewCurrHeight = (listSize + 1)/2 * kCellHeight + ((listSize + 1)/2) * kYDistanceBetweenCell;
     }
     
-    _historyCollectionView.frame = CGRectMake(0, _collectionViewOriginY, WINSIZE.width, newHeight);
-    _currHeight += _historyCollectionView.frame.size.height;
+    _historyCollectionView.frame = CGRectMake(0, _collectionViewOriginY, WINSIZE.width, _collectionViewCurrHeight);
+    _currHeight += _collectionViewCurrHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
     
     _bottomLabelContainer.frame = CGRectMake(_bottomLabelContainer.frame.origin.x, _currHeight - _bottomLabelContainer.frame.size.height, _bottomLabelContainer.frame.size.width, _bottomLabelContainer.frame.size.height);
