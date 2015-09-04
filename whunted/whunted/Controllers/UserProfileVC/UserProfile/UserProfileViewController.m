@@ -107,6 +107,7 @@
     _curViewMode = HistoryCollectionViewModeBuying;
 }
 
+
 #pragma mark - UI
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -117,6 +118,8 @@
     
     NSString *title = [NSString stringWithFormat:@"@%@", [PFUser currentUser][PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -137,7 +140,6 @@
 {
     [self addProfileImage];
     [self addUserFullNameLabel];
-    [self addSettingButton];
     [self addCountryLabel];
     [self addRatingView];
     [self updateNumOfFeedbacks];
@@ -175,20 +177,6 @@
     _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:_userFullNameLabel];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addSettingButton
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kButtonXPos = WINSIZE.width * 0.5 + 3 * WINSIZE.width / 30.0;
-    CGFloat const kButtonWidth = 25;
-    
-    JTImageButton *settingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kTopMargin, kButtonWidth, kButtonWidth)];
-    [settingButton createTitle:nil withIcon:[UIImage imageNamed:@"setting_icon.png"] font:nil iconHeight:kButtonWidth-5 iconOffsetY:0];
-    settingButton.borderColor = [UIColor whiteColor];
-    [settingButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_topRightView addSubview:settingButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
