@@ -41,7 +41,7 @@
 @property (nonatomic, strong)   NSArray           *sellersOfferList;
 @property (nonatomic)           NSInteger         sellersNum;
 
-@property (nonatomic)           BOOL              isDealClosed;
+@property (nonatomic)           BOOL              isFulfilled;
 @property (nonatomic, strong)   TransactionData         *acceptedOffer;
 
 // Temprary data sturetures

@@ -149,7 +149,6 @@
 #define     PF_ITEM_BUYER_ID                    @"buyerID"
 #define     PF_ITEM_BUYER_USERNAME              @"buyerUsername"
 #define     PF_ITEM_HASHTAG_LIST                @"hashtaglist"
-#define     PF_ITEM_CLOSED_DEAL                 @"isDealClosed"
 #define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
 #define     PF_ITEM_LIKES_NUM                   @"likesNum"
 
@@ -253,7 +252,7 @@
 #define     PF_ACCEPTED_TRANSACTION_CLASS       @"AcceptedTransactionData"
 #define     PF_CANCELLED_TRANSACTION_CLASS      @"CancelledTransactionData"
 #define     PF_DECLINED_TRANSACTION_CLASS       @"DeclinedTransactionData"
-#define     PF_WANT_DATA_CLASS                  @"WantedPost"
+#define     PF_WANT_DATA_CLASS                  @"OngoingWantData"
 #define     PF_FEEDBACK_DATA_CLASS              @"FeedbackData"
 
 //----------------------------------------------------------------------------------------------------------------------------

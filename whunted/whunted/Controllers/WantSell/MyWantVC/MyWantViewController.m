@@ -89,7 +89,7 @@
 {
     self.wantDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:currentUser];
     [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -114,7 +114,7 @@
 - (void) retrieveLatestWantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"updatedAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
@@ -202,7 +202,7 @@
         }];
     }
     
-    if (wantData.isDealClosed) {
+    if (wantData.isFulfilled) {
         [cell.sellersNumButton setTitle:@"1 seller" forState:UIControlStateNormal];
         [cell.sellersNumButton setBackgroundColor:[UIColor colorWithRed:219.0/255 green:112.0/255 blue:147.0/255 alpha:1.0]];
         cell.sellersNum = 1;
@@ -244,7 +244,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query;
-    if (wantData.isDealClosed) {
+    if (wantData.isFulfilled) {
         query = [PFQuery queryWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     } else {
         query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];

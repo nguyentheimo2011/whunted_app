@@ -96,7 +96,7 @@
             for (int i=0; i<[offerObjects count]; i++) {
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
-                PFQuery *sQuery = [PFQuery queryWithClassName:@"WantedPost"];
+                PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
                 [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [self.wantDataList addObject:wantData];
@@ -127,7 +127,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
         if (!error) {
             NSString *itemID = offerObject[@"itemID"];
-            PFQuery *sQuery = [PFQuery queryWithClassName:@"WantedPost"];
+            PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [self.wantDataList insertObject:wantData atIndex:0];
@@ -222,12 +222,12 @@
 
 #pragma mark - WantTableView Delegate methods
 
-//---------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) sellTableViewCell:(SellTableViewCell *)cell didClickSellersNumButton:(WantData *)wantData
-//---------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query;
-    if (wantData.isDealClosed) {
+    if (wantData.isFulfilled) {
         query = [PFQuery queryWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     } else {
         query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];

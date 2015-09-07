@@ -74,7 +74,7 @@
     [cell.sellersOfferedPrice setText:offerData.offeredPrice];
     [cell.sellersOfferedDelivery setText:offerData.deliveryTime];
     
-    if (!_wantData.isDealClosed) {
+    if (!_wantData.isFulfilled) {
         [cell addButtonsIfNotAccepted];
     }
     
@@ -99,7 +99,7 @@
 - (void) sellerListCell:(SellerListCell *)cell didAcceptOfferFromSeller:(TransactionData *)offerData
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    [_wantData setIsDealClosed:YES];
+    _wantData.isFulfilled = YES;
     [[_wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Update successfully");

@@ -53,11 +53,11 @@
         self.createdDate        =   wantDataPFObject.createdAt;
         self.updatedDate        =   wantDataPFObject.updatedAt;
         
-        NSString *dealClosed = wantDataPFObject[PF_ITEM_CLOSED_DEAL];
+        NSString *dealClosed = @"NO";
         if ([dealClosed isEqual:@"YES"])
-            self.isDealClosed = YES;
+            self.isFulfilled = YES;
         else
-            self.isDealClosed = NO;
+            self.isFulfilled = NO;
     }
     
     return self;
@@ -87,11 +87,6 @@
     wantDataPFObject[PF_ITEM_SELLERS_NUM]           =   [NSString stringWithFormat:@"%ld", self.sellersNum];
     wantDataPFObject[PF_ITEM_LIKES_NUM]             =   [NSString stringWithFormat:@"%ld", self.likesNum];
     
-    
-    if (self.isDealClosed)
-        wantDataPFObject[PF_ITEM_CLOSED_DEAL] = STRING_OF_YES;
-    else
-        wantDataPFObject[PF_ITEM_CLOSED_DEAL] = STRING_OF_NO;
     
     PFRelation *relation = [wantDataPFObject relationForKey:PF_ITEM_PICTURE_LIST];
     for (PFObject *obj in self.itemPictures)

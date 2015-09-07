@@ -527,7 +527,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantDataList = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -549,7 +549,7 @@
 - (void) updateWantDataTable
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {

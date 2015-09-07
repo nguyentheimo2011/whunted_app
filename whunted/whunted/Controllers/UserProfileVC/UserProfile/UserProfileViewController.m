@@ -1029,7 +1029,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _myWantDataList = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:@"WantedPost"];
+    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -1105,7 +1105,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
         if (!error) {
             NSString *itemID = offerObject[@"itemID"];
-            PFQuery *sQuery = [PFQuery queryWithClassName:@"WantedPost"];
+            PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [_mySellDataList insertObject:wantData atIndex:0];
