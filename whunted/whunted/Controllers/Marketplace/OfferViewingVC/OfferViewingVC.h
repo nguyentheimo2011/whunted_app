@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "ChatView.h"
+#import "WantData.h"
 
-@interface OfferViewingVC : UIViewController <UITableViewDataSource, UITableViewDelegate, ChatViewDelegate>
+//-----------------------------------------------------------------------------------------------------------------------------
+@interface OfferViewingVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+//-----------------------------------------------------------------------------------------------------------------------------
 
-
+@property (nonatomic, strong)   UIImage     *itemImage;
+@property (nonatomic, strong)   WantData    *wantData;
 
 @end

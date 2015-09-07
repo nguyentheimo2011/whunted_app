@@ -12,6 +12,7 @@
 #import "recent.h"
 #import "PersistedCache.h"
 #import "UserProfileViewController.h"
+#import "OfferViewingVC.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -564,7 +565,10 @@
 - (void) viewOffersButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate itemDetailsViewController:self didChooseToViewOffersOfItem:_wantData.itemID];
+    OfferViewingVC  *offerViewingVC = [[OfferViewingVC alloc] init];
+    offerViewingVC.itemImage = _itemImageList.count > 0 ? [_itemImageList objectAtIndex:0] : nil;
+    offerViewingVC.wantData = _wantData;
+    [self.navigationController pushViewController:offerViewingVC animated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

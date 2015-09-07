@@ -22,7 +22,6 @@
 
 - (void) itemDetailsViewController: (ItemDetailsViewController *) controller didCompleteOffer: (BOOL) completed;
 
-- (void) itemDetailsViewController: (ItemDetailsViewController *) controller didChooseToViewOffersOfItem: (NSString *) itemID;
 
 @end
 

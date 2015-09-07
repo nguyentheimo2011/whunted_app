@@ -19,10 +19,14 @@
 @implementation OfferViewingVC
 {
     UITableView             *_offersTableView;
+    
     Firebase                *_firebase;
     
     NSMutableArray          *_recentTransactionalMessages;
 }
+
+@synthesize itemImage   =   _itemImage;
+@synthesize wantData    =   _wantData;
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -32,6 +36,8 @@
     self = [super init];
     if (self != nil)
     {
+        self.hidesBottomBarWhenPushed = YES;
+        
         _recentTransactionalMessages = [NSMutableArray array];
     }
     
@@ -44,14 +50,20 @@
 {
     [super viewDidLoad];
     
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Chat", nil) forViewController:self];
-    
+    [self customizeUI];
     [self addItemInfoUI];
-    [self addInboxTableView];
+    [self addOffersTableView];
     
     [self loadRecents];
     
     [_offersTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Offers", nil) forViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -63,6 +75,10 @@
     itemInfoContainer.backgroundColor   =   [UIColor whiteColor];
     [self.view addSubview:itemInfoContainer];
     
+    [self addItemImageView:itemInfoContainer];
+    [self addItemNameLabel:itemInfoContainer];
+    [self addItemPriceLabel:itemInfoContainer];
+    
     CGFloat const kSeparatorLineLeftMargin  =   15.0f;
     CGFloat const kSeparatorLineHeight      =   0.5f;
     CGFloat const kSeparatorLineWidth       =   WINSIZE.width - kSeparatorLineLeftMargin;
@@ -73,15 +89,62 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addInboxTableView
+- (void) addItemImageView: (UIView *) viewContainer
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTableHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self] - [Utilities getHeightOfBottomTabBar:self] - kControlContainerHeight;
+    CGFloat const kImageViewOriginX     =   15.0f;
+    CGFloat const kImageViewOriginY     =   5.0f;
+    CGFloat const kImageViewWidth       =   50.0f;
+    CGFloat const kImageViewHeight      =   50.0f;
     
-    CGFloat const kTableYPos = kControlContainerHeight + [Utilities getHeightOfNavigationAndStatusBars:self];
+    UIImageView *itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageViewOriginX, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
+    itemImageView.image = _itemImage;
+    itemImageView.layer.cornerRadius = 5.0f;
+    itemImageView.clipsToBounds = YES;
+    [viewContainer addSubview:itemImageView];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addItemNameLabel: (UIView *) viewContainer
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelOriginX     =   75.0f;
+    CGFloat const kLabelOriginY     =   8.0f;
+    CGFloat const kLabelWidth       =   WINSIZE.width - kLabelOriginX - 30.0f;
+    CGFloat const kLabelHeight      =   20.0f;
+    
+    UILabel *itemNameLabel  =   [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    itemNameLabel.text = _wantData.itemName;
+    itemNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    itemNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [viewContainer addSubview:itemNameLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addItemPriceLabel: (UIView *) viewContainer
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelOriginX     =   75.0f;
+    CGFloat const kLabelOriginY     =   30.0f;
+    CGFloat const kLabelWidth       =   WINSIZE.width - kLabelOriginX - 30.0f;
+    CGFloat const kLabelHeight      =   20.0f;
+    
+    UILabel *itemPriceLabel =   [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    itemPriceLabel.text = _wantData.demandedPrice;
+    itemPriceLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    itemPriceLabel.textColor = TEXT_COLOR_GRAY;
+    [viewContainer addSubview:itemPriceLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addOffersTableView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kTableHeight  =  WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self] - kControlContainerHeight;
+    CGFloat const kTableYPos    =  kControlContainerHeight + [Utilities getHeightOfNavigationAndStatusBars:self];
     
     _offersTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
-    [_offersTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    _offersTableView.backgroundColor = LIGHTEST_GRAY_COLOR;
     _offersTableView.delegate = self;
     _offersTableView.dataSource = self;
     [self.view addSubview:_offersTableView];
@@ -192,7 +255,6 @@
     NSDictionary *recent    =   _recentTransactionalMessages[indexPath.row];
     ChatView *chatView      =   [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
     chatView.user2Username  =   recent[FB_OPPOSING_USER_USERNAME];
-    chatView.delegate       =   self;
     chatView.isUnread       =   [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0;
     
     TransactionData *offerData      =   [[TransactionData alloc] init];
@@ -211,16 +273,6 @@
     
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
-}
-
-
-#pragma mark - ChatViewDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) chatView:(ChatView *)chatView didSeeAnUnreadConversation:(BOOL)isUnread
-//------------------------------------------------------------------------------------------------------------------------------
-{
-
 }
 
 
