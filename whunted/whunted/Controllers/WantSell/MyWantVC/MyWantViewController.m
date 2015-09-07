@@ -89,7 +89,7 @@
 {
     self.wantDataList = [[NSMutableArray alloc] init];
     PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:currentUser];
     [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -114,7 +114,7 @@
 - (void) retrieveLatestWantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"updatedAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {

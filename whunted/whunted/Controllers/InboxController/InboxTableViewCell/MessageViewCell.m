@@ -184,7 +184,7 @@
 - (void) downloadItemImageFromRemoteServer
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_ITEM_ID]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {

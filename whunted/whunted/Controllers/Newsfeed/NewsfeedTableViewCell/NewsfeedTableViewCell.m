@@ -313,7 +313,7 @@
 - (void) retrieveItemInfo
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_OBJECT_ID equalTo:_transactionData.itemID];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error)

@@ -67,7 +67,7 @@
 - (PFObject *) getPFObject
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFObject *wantDataPFObject = [PFObject objectWithClassName:PF_WANT_DATA_CLASS];
+    PFObject *wantDataPFObject = [PFObject objectWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     wantDataPFObject.objectId                       =   self.itemID;
     wantDataPFObject[PF_ITEM_NAME]                  =   self.itemName;
     wantDataPFObject[PF_ITEM_DESC]                  =   self.itemDesc;

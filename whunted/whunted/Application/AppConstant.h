@@ -252,7 +252,8 @@
 #define     PF_ACCEPTED_TRANSACTION_CLASS       @"AcceptedTransactionData"
 #define     PF_CANCELLED_TRANSACTION_CLASS      @"CancelledTransactionData"
 #define     PF_DECLINED_TRANSACTION_CLASS       @"DeclinedTransactionData"
-#define     PF_WANT_DATA_CLASS                  @"OngoingWantData"
+#define     PF_ONGOING_WANT_DATA_CLASS          @"OngoingWantData"
+#define     PF_COMPLETED_WANT_DATA_CLASS        @"CompletedWantData"
 #define     PF_FEEDBACK_DATA_CLASS              @"FeedbackData"
 
 //----------------------------------------------------------------------------------------------------------------------------

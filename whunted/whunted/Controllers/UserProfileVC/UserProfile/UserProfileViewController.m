@@ -1029,7 +1029,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _myWantDataList = [[NSMutableArray alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -1061,7 +1061,7 @@
             for (int i=0; i<[offerObjects count]; i++) {
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
-                PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+                PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
                 [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [_mySellDataList addObject:wantData];
@@ -1080,7 +1080,7 @@
 - (void) retrieveLatestWantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
@@ -1105,7 +1105,7 @@
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
         if (!error) {
             NSString *itemID = offerObject[@"itemID"];
-            PFQuery *sQuery = [PFQuery queryWithClassName:PF_WANT_DATA_CLASS];
+            PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [_mySellDataList insertObject:wantData atIndex:0];
