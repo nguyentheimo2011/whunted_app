@@ -46,7 +46,7 @@
     
     [Utilities customizeTitleLabel:NSLocalizedString(@"Chat", nil) forViewController:self];
     
-    [self addSegmentedControl];
+    [self addItemInfoUI];
     [self addInboxTableView];
     
     [self loadRecents];
@@ -55,21 +55,21 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addSegmentedControl
+- (void) addItemInfoUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kContainerYPos = [Utilities getHeightOfNavigationAndStatusBars:self];
-    UIView *segmentContainer = [[UIView alloc] initWithFrame:CGRectMake(0, kContainerYPos, WINSIZE.width, kControlContainerHeight)];
-    [segmentContainer setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:segmentContainer];
+    CGFloat const kContainerYPos    =   [Utilities getHeightOfNavigationAndStatusBars:self];
+    UIView *itemInfoContainer       =   [[UIView alloc] initWithFrame:CGRectMake(0, kContainerYPos, WINSIZE.width, kControlContainerHeight)];
+    itemInfoContainer.backgroundColor   =   [UIColor whiteColor];
+    [self.view addSubview:itemInfoContainer];
     
-    CGFloat const kSeparatorLineLeftMargin = 15.0f;
-    CGFloat const kSeparatorLineHeight = 0.75f;
-    CGFloat const kSeparatorLineWidth = WINSIZE.width - kSeparatorLineLeftMargin;
-    CGFloat const kSeparatorLineYPos = kControlContainerHeight - kSeparatorLineHeight;
+    CGFloat const kSeparatorLineLeftMargin  =   15.0f;
+    CGFloat const kSeparatorLineHeight      =   0.5f;
+    CGFloat const kSeparatorLineWidth       =   WINSIZE.width - kSeparatorLineLeftMargin;
+    CGFloat const kSeparatorLineYPos        =   kControlContainerHeight - kSeparatorLineHeight;
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMargin, kSeparatorLineYPos, kSeparatorLineWidth, kSeparatorLineHeight)];
-    [separatorLine setBackgroundColor:CELL_SEPARATOR_GRAY_COLOR];
-    [segmentContainer addSubview:separatorLine];
+    separatorLine.backgroundColor = CELL_SEPARATOR_GRAY_COLOR;
+    [itemInfoContainer addSubview:separatorLine];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -87,7 +87,9 @@
     [self.view addSubview:_offersTableView];
 }
 
+
 #pragma mark - Backend methods
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)loadRecents
 //------------------------------------------------------------------------------------------------------------------------------
