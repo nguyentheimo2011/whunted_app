@@ -163,7 +163,7 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-        FQuery *query = [[_firebase queryOrderedByChild:FB_SELF_USER_ID] queryEqualToValue:user.objectId];
+        FQuery *query = [[_firebase queryOrderedByChild:FB_ITEM_ID] queryEqualToValue:_wantData.itemID];
         [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
          {
              [_recentTransactionalMessages removeAllObjects];
@@ -180,7 +180,8 @@
                  
                  for (NSDictionary *recent in sorted)
                  {
-                     [_recentTransactionalMessages addObject:recent];
+                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId])
+                         [_recentTransactionalMessages addObject:recent];
                  }
              }
              
