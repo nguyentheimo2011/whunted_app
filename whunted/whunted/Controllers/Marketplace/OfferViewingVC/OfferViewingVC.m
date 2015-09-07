@@ -180,7 +180,7 @@
                  
                  for (NSDictionary *recent in sorted)
                  {
-                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId])
+                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId] && ![recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ACCEPTED])
                          [_recentTransactionalMessages addObject:recent];
                  }
              }

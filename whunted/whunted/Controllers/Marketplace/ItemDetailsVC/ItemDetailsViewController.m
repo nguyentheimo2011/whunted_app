@@ -45,6 +45,8 @@
     NSInteger               _currImageIndex;
     
     BOOL                    _itemPostedByMe;
+    
+    NSInteger               _numOfOffers;
 }
 
 @synthesize wantData                =   _wantData;
@@ -93,6 +95,7 @@
     _itemPostedByMe = [_wantData.buyerID isEqualToString:[PFUser currentUser].objectId];
     
     [self retrieveItemImages];
+    [self retrieveItemOffers];
 }
 
 #pragma mark - UI Handlers
@@ -601,6 +604,15 @@
     [Utilities retrieveUserInfoByUserID:_wantData.buyerID andRunBlock:handler];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateViewingOfferButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *title = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"View Offer", nil), _numOfOffers];
+    [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+}
+
+
 #pragma mark - Data Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -623,6 +635,18 @@
         }
         
         _pageControl.numberOfPages = [pfObjList count];
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveItemOffers
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *countingQuery = [[PFQuery alloc] initWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+    [countingQuery whereKey:PF_ITEM_ID equalTo:_wantData.itemID];
+    [countingQuery countObjectsInBackgroundWithBlock:^(int num, NSError *error) {
+        _numOfOffers = num;
+        [self updateViewingOfferButton];
     }];
 }
 
