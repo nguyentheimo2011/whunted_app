@@ -51,6 +51,7 @@
 		E918063B1B7C88EE009C1F2D /* sellers_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91806381B7C88EE009C1F2D /* sellers_icon@1x.png */; };
 		E918063C1B7C88EE009C1F2D /* sellers_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91806391B7C88EE009C1F2D /* sellers_icon@2x.png */; };
 		E918063D1B7C88EE009C1F2D /* sellers_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E918063A1B7C88EE009C1F2D /* sellers_icon@3x.png */; };
+		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
 		E91A5A621B048590008382E2 /* cameraplus@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A5F1B048590008382E2 /* cameraplus@1x.png */; };
 		E91A5A631B048590008382E2 /* cameraplus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A601B048590008382E2 /* cameraplus@2x.png */; };
 		E91A5A641B048590008382E2 /* cameraplus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E91A5A611B048590008382E2 /* cameraplus@3x.png */; };
@@ -368,6 +369,8 @@
 		E91806381B7C88EE009C1F2D /* sellers_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sellers_icon@1x.png"; path = "Resources/Want Details/sellers_icon@1x.png"; sourceTree = "<group>"; };
 		E91806391B7C88EE009C1F2D /* sellers_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sellers_icon@2x.png"; path = "Resources/Want Details/sellers_icon@2x.png"; sourceTree = "<group>"; };
 		E918063A1B7C88EE009C1F2D /* sellers_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sellers_icon@3x.png"; path = "Resources/Want Details/sellers_icon@3x.png"; sourceTree = "<group>"; };
+		E918254D1B9D2DB900A40B0A /* OfferViewingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferViewingVC.h; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.h; sourceTree = "<group>"; };
+		E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferViewingVC.m; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.m; sourceTree = "<group>"; };
 		E91A5A5F1B048590008382E2 /* cameraplus@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cameraplus@1x.png"; path = "Resources/Want Details/cameraplus@1x.png"; sourceTree = "<group>"; };
 		E91A5A601B048590008382E2 /* cameraplus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cameraplus@2x.png"; path = "Resources/Want Details/cameraplus@2x.png"; sourceTree = "<group>"; };
 		E91A5A611B048590008382E2 /* cameraplus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cameraplus@3x.png"; path = "Resources/Want Details/cameraplus@3x.png"; sourceTree = "<group>"; };
@@ -879,6 +882,15 @@
 				E916F4601B02F62C005055E3 /* KLCPopup.m */,
 			);
 			name = KLCPopup;
+			sourceTree = "<group>";
+		};
+		E918254C1B9D2D6100A40B0A /* OfferViewingVC */ = {
+			isa = PBXGroup;
+			children = (
+				E918254D1B9D2DB900A40B0A /* OfferViewingVC.h */,
+				E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */,
+			);
+			name = OfferViewingVC;
 			sourceTree = "<group>";
 		};
 		E91A5A581B0484CA008382E2 /* Want Details */ = {
@@ -1625,6 +1637,7 @@
 				E9FB2E931B1F0DC700F8C435 /* BuyersOrSellersOfferVC */,
 				E9FC1D721B8DC82A001226C5 /* SortAndFilter */,
 				E9F1ACBA1B941AAE009819DE /* CityViewController */,
+				E918254C1B9D2D6100A40B0A /* OfferViewingVC */,
 			);
 			name = Marketplace;
 			sourceTree = "<group>";
@@ -2240,6 +2253,7 @@
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
+				E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */,
 				E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9A07C181B31623C00904DE9 /* image.m in Sources */,
