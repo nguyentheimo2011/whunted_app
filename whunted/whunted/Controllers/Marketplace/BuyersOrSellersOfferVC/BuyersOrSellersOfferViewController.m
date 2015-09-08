@@ -12,36 +12,28 @@
 #import "Utilities.h"
 #import "recent.h"
 
-@interface BuyersOrSellersOfferViewController ()
-
-@property (nonatomic, strong) UILabel       *summaryLabel;
-@property (nonatomic, strong) UILabel       *priceAskingLabel;
-@property (nonatomic, strong) UILabel       *deliveryAskingLabel;
-@property (nonatomic, strong) UILabel       *instructionLabel;
-@property (nonatomic, strong) UITextField   *offeredPriceTextField;
-@property (nonatomic, strong) UITextField   *offeredDeliveryTextField;
-
-@end
+#import <MBProgressHUD.h>
 
 @implementation BuyersOrSellersOfferViewController
 {
-    CGFloat     _startingYPos;
+    UILabel         *_summaryLabel;
+    UILabel         *_priceAskingLabel;
+    UILabel         *_deliveryAskingLabel;
+    UILabel         *_instructionLabel;
+    UILabel         *_deliveryTimeUnitLabel;
     
-    UILabel     *_deliveryTimeUnitLabel;
+    UITextField     *_offeredPriceTextField;
+    UITextField     *_offeredDeliveryTextField;
+    
+    CGFloat         _startingYPos;
 }
 
-@synthesize offerData                   =   _offerData;
-@synthesize buyerName                   =   _buyerName;
-@synthesize isEditingOffer              =   _isEditingOffer;
-@synthesize summaryLabel                =   _summaryLabel;
-@synthesize priceAskingLabel            =   _priceAskingLabel;
-@synthesize deliveryAskingLabel         =   _deliveryAskingLabel;
-@synthesize instructionLabel            =   _instructionLabel;
-@synthesize offeredPriceTextField       =   _offeredPriceTextField;
-@synthesize offeredDeliveryTextField    =   _offeredDeliveryTextField;
-@synthesize delegate                    =   _delegate;
-@synthesize user2                       =   _user2;
-@synthesize offerFrom                   =   _offerFrom;
+@synthesize offerData               =   _offerData;
+@synthesize buyerName               =   _buyerName;
+@synthesize isEditingOffer          =   _isEditingOffer;
+@synthesize delegate                =   _delegate;
+@synthesize user2                   =   _user2;
+@synthesize offerFrom               =   _offerFrom;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -291,6 +283,7 @@
     [self.view addSubview:_instructionLabel];
 }
 
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -320,7 +313,7 @@
     BOOL offerChanged = _offerData.objectID.length > 0;
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [ offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (!error) {
             [_offerData setObjectID:offerObj.objectId];
             
