@@ -669,9 +669,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {    
     _itemImageList = [[NSMutableArray alloc] init];
-    PFRelation *picRelation = _wantData.itemPictureList;
     
-    [[picRelation query] findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
+    PFRelation *picRelation = _wantData.itemPictureList;
+    PFQuery *query = [picRelation query];
+    [query orderByAscending:PF_CREATED_AT];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
         for (PFObject *pfObj in pfObjList) {
             PFFile *imageFile = pfObj[@"itemPicture"];
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
