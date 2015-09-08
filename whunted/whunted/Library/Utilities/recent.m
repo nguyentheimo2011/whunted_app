@@ -14,14 +14,15 @@
 #import "PFUser+Util.h"
 #import "MBProgressHUD.h"
 
-#import "AppConstant.h"
 #import "Utilities.h"
 #import "converter.h"
 
 #import "recent.h"
 
+#define     HANDLER_EXECUTED            @"handlerExecuted"
+
 //------------------------------------------------------------------------------------------------------------------------------
-NSString* StartPrivateChat(PFUser *user1, PFUser *user2, TransactionData *offerData)
+NSString* StartPrivateChat(PFUser *user1, PFUser *user2, TransactionData *offerData, CompletionHandler handler)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	NSString *id1 = user1.objectId;
@@ -30,17 +31,18 @@ NSString* StartPrivateChat(PFUser *user1, PFUser *user2, TransactionData *offerD
 	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id2, id1];
 	
 	NSArray *members = @[user1.objectId, user2.objectId];
+    NSMutableDictionary *handlerExecuted = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], HANDLER_EXECUTED, nil];
 	
-	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2, offerData);
-	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1, offerData);
+	CreateRecentItem1(user1, groupId, members, user2[PF_USER_USERNAME], user2, offerData, handler, handlerExecuted);
+	CreateRecentItem1(user2, groupId, members, user1[PF_USER_USERNAME], user1, offerData, handler, handlerExecuted);
 	
 	return groupId;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, TransactionData *offerData)
+void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, TransactionData *offerData, CompletionHandler handler, NSMutableDictionary *handlerExecuted)
 //------------------------------------------------------------------------------------------------------------------------------
-{
+{    
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
 	FQuery *query = [[firebase queryOrderedByChild:FB_GROUP_ID] queryEqualToValue:groupId];
 	[query observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
@@ -53,12 +55,24 @@ void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSStri
 				if ([recent[@"userId"] isEqualToString:user.objectId]) create = NO;
 			}
 		}
-		if (create) CreateRecentItem2(user, groupId, members, opposingUserUsername, opposingUser, offerData);
+        
+		if (create)
+            CreateRecentItem2(user, groupId, members, opposingUserUsername, opposingUser, offerData, handler, handlerExecuted);
+        else
+        {
+            NSNumber *num = [handlerExecuted objectForKey:HANDLER_EXECUTED];
+            NSNumber *newNum = [NSNumber numberWithInt:num.intValue + 1];
+            [handlerExecuted setObject:newNum forKey:HANDLER_EXECUTED];
+            
+            if (handler && newNum.intValue == 2) { // Only run handler when both CreateRecentItem1s finish
+                handler();
+            }
+        }
 	}];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, TransactionData *offerData)
+void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername, PFUser *opposingUser, TransactionData *offerData, CompletionHandler handler, NSMutableDictionary *handlerExecuted)
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -92,7 +106,18 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
-		if (error != nil) NSLog(@"CreateRecentItem2 save error.");
+		if (error)
+            NSLog(@"CreateRecentItem2 save error.");
+        else
+        {
+            NSNumber *num = [handlerExecuted objectForKey:HANDLER_EXECUTED];
+            NSNumber *newNum = [NSNumber numberWithInt:(int)num.integerValue + 1];
+            [handlerExecuted setObject:newNum forKey:HANDLER_EXECUTED];
+            
+            if (handler && newNum.intValue == 2) { // Only run handler when both CreateRecentItem1s finish
+                handler();
+            }
+        }
 	}];
 }
 

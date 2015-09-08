@@ -11,19 +11,20 @@
 
 #import <Parse/Parse.h>
 #import "TransactionData.h"
+#import "AppConstant.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
-NSString*       StartPrivateChat        (PFUser *user1, PFUser *user2, TransactionData *offerData);
+NSString*       StartPrivateChat        (PFUser *user1, PFUser *user2, TransactionData *offerData, CompletionHandler handler);
 NSString*		StartMultipleChat		(NSMutableArray *users);
 
 void			StartGroupChat			(PFObject *group, NSMutableArray *users);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			CreateRecentItem1		(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername,
-                                         PFUser *opposingUser, TransactionData *offerData);
+                                         PFUser *opposingUser, TransactionData *offerData, CompletionHandler handler, NSMutableDictionary *handlerExecuted);
 
 void			CreateRecentItem2		(PFUser *user, NSString *groupId, NSArray *members, NSString *opposingUserUsername,
-                                         PFUser *opposingUser, TransactionData *offerData);
+                                         PFUser *opposingUser, TransactionData *offerData, CompletionHandler handler, NSMutableDictionary *handlerExecuted);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			UpdateRecentCounter1	(NSString *groupId, NSInteger amount, NSString *lastMessage);

@@ -559,7 +559,7 @@
         offerData.deliveryTime = @"";
         offerData.transactionStatus = TRANSACTION_STATUS_NONE;
         
-        NSString *groupId = StartPrivateChat(user1, user2, offerData);
+        NSString *groupId = StartPrivateChat(user1, user2, offerData, nil);
         [self actionChat:groupId withUser2:user2 andOfferData:offerData];
     }
 }

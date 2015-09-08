@@ -297,32 +297,46 @@
 - (void) submitButtonClickedHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     _offerData.offeredPrice         =   _offeredPriceTextField.text;
     _offerData.deliveryTime         =   _offeredDeliveryTextField.text;
     _offerData.initiatorID          =   [PFUser currentUser].objectId;
     _offerData.transactionStatus    =   TRANSACTION_STATUS_ONGOING;
     
-    if (_offerData.offeredPrice == nil || _offerData.offeredPrice.length == 0) {
+    if (_offerData.offeredPrice == nil || _offerData.offeredPrice.length == 0)
+    {
         _offerData.offeredPrice = _offerData.originalDemandedPrice;
     }
     
-    if (_offerData.deliveryTime == nil || _offerData.deliveryTime.length == 0) {
+    if (_offerData.deliveryTime == nil || _offerData.deliveryTime.length == 0)
+    {
         _offerData.deliveryTime = @"5";
     }
     
     BOOL offerChanged = _offerData.objectID.length > 0;
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if (!error) {
+    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error)
+        {
             [_offerData setObjectID:offerObj.objectId];
             
-            if (!offerChanged && ![_offerFrom isEqualToString:OFFER_FROM_CHAT_VIEW]) {
-                StartPrivateChat([PFUser currentUser], _user2, _offerData);
+            if (!offerChanged && ![_offerFrom isEqualToString:OFFER_FROM_CHAT_VIEW])
+            {
+                CompletionHandler handler = ^() {
+                    [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
+                };
+                
+                StartPrivateChat([PFUser currentUser], _user2, _offerData, handler);
             }
-            
-            [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
-        } else {
+            else
+            {
+                [_delegate buyersOrSellersOfferViewController:self didOffer:_offerData];
+            }
+        }
+        else
+        {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
