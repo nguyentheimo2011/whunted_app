@@ -210,11 +210,11 @@
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
-#define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
-#define     NOTIFICATION_NEW_OFFER_MADE         @"NotificationNewOfferMade"
-#define     NOTIFICATION_OFFER_CANCELLED        @"NotificationOfferCancelled"
-#define     NOTIFICATION_OFFER_DECLINED         @"NotificationOfferDeclined"
+#define		NOTIFICATION_USER_LOGGED_IN             @"NCUserLoggedIn"
+#define		NOTIFICATION_USER_LOGGED_OUT            @"NCUserLoggedOut"
+#define     NOTIFICATION_NEW_OFFER_MADE             @"NotificationNewOfferMade"
+#define     NOTIFICATION_OFFER_CANCELLED            @"NotificationOfferCancelled"
+#define     NOTIFICATION_OFFER_DECLINED_BY_OTHER    @"NotificationOfferDeclinedByOther"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     ESCROW_PAYMENT_METHOD               @"escrow"

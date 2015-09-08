@@ -614,14 +614,22 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatMessageType messageType = [Utilities chatMessageTypeFromString:lastMessageType];
-    if (messageType == ChatMessageTypeMakingOffer) {
+    if (messageType == ChatMessageTypeMakingOffer)
+    {
         _offerData.transactionStatus = TRANSACTION_STATUS_ONGOING;
         _offerData.initiatorID = senderID;
-    } else if (messageType == ChatMessageTypeCancellingOffer) {
+    }
+    else if (messageType == ChatMessageTypeCancellingOffer)
+    {
         _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
-    } else if (messageType == ChatMessageTypeDecliningOffer) {
+    }
+    else if (messageType == ChatMessageTypeDecliningOffer)
+    {
         _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
-    } else if (messageType == ChatMessageTypeAcceptingOffer) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_DECLINED_BY_OTHER object:nil];
+    }
+    else if (messageType == ChatMessageTypeAcceptingOffer)
+    {
         _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     }
     
@@ -954,6 +962,7 @@
 	else return 0;
 }
 
+
 #pragma mark - Responding to collection view tap events
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -996,6 +1005,7 @@
 	NSLog(@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation));
 }
 
+
 #pragma mark - User actions
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1018,6 +1028,7 @@
 	[[UIPasteboard generalPasteboard] setString:item[@"text"]];
 }
 
+
 #pragma mark - RNGridMenuDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1028,6 +1039,7 @@
 	if ([item.title isEqualToString:@"Camera"])		PresentMultiCamera(self, YES);
 	if ([item.title isEqualToString:@"Pictures"])	PresentPhotoLibrary(self, YES);
 }
+
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -1042,6 +1054,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 #pragma mark - Helper methods
 
@@ -1059,6 +1072,7 @@
 	return ([message.senderId isEqualToString:self.senderId] == YES);
 }
 
+
 #pragma mark - Delegation methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1075,6 +1089,7 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 #pragma mark - Backend methods
 
