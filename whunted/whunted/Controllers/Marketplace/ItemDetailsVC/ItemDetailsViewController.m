@@ -506,9 +506,13 @@
     _viewOffersButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 45)];
     
     if (_wantData.isFulfilled)
-        [_viewOffersButton createTitle:NSLocalizedString(@"View Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
-    else
+    {
         [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    }
+    else
+    {
+        [_viewOffersButton createTitle:NSLocalizedString(@"View Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    }
     
     _viewOffersButton.cornerRadius = 0;
     _viewOffersButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
