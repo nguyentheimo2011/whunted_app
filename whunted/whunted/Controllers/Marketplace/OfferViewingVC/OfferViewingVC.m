@@ -151,47 +151,6 @@
 }
 
 
-#pragma mark - Backend methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void)loadRecents
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFUser *user = [PFUser currentUser];
-    if ((user != nil) && (_firebase == nil))
-    {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-        FQuery *query = [[_firebase queryOrderedByChild:FB_ITEM_ID] queryEqualToValue:_wantData.itemID];
-        [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
-         {
-             [_recentTransactionalMessages removeAllObjects];
-             if (snapshot.value != [NSNull null])
-             {
-                 NSArray *sorted = [[snapshot.value allValues] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
-                                    {
-                                        NSDictionary *recent1 = (NSDictionary *)obj1;
-                                        NSDictionary *recent2 = (NSDictionary *)obj2;
-                                        NSDate *date1 = String2Date(recent1[FB_TIMESTAMP]);
-                                        NSDate *date2 = String2Date(recent2[FB_TIMESTAMP]);
-                                        return [date2 compare:date1];
-                                    }];
-                 
-                 for (NSDictionary *recent in sorted)
-                 {
-                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId] && ![recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ACCEPTED])
-                         [_recentTransactionalMessages addObject:recent];
-                 }
-             }
-             
-             [_offersTableView reloadData];
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
-         }];
-    }
-}
-
-
 #pragma mark - UITableView Datasource Delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -277,8 +236,45 @@
 }
 
 
-#pragma mark - Event Handlers
+#pragma mark - Backend methods
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)loadRecents
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [PFUser currentUser];
+    if ((user != nil) && (_firebase == nil))
+    {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
+        FQuery *query = [[_firebase queryOrderedByChild:FB_ITEM_ID] queryEqualToValue:_wantData.itemID];
+        [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
+         {
+             [_recentTransactionalMessages removeAllObjects];
+             if (snapshot.value != [NSNull null])
+             {
+                 NSArray *sorted = [[snapshot.value allValues] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+                                    {
+                                        NSDictionary *recent1 = (NSDictionary *)obj1;
+                                        NSDictionary *recent2 = (NSDictionary *)obj2;
+                                        NSDate *date1 = String2Date(recent1[FB_TIMESTAMP]);
+                                        NSDate *date2 = String2Date(recent2[FB_TIMESTAMP]);
+                                        return [date2 compare:date1];
+                                    }];
+                 
+                 for (NSDictionary *recent in sorted)
+                 {
+                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId] && [recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ONGOING])
+                         [_recentTransactionalMessages addObject:recent];
+                 }
+             }
+             
+             [_offersTableView reloadData];
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+         }];
+    }
+}
 
 
 @end
