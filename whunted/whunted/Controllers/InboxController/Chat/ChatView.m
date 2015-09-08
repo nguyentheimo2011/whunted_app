@@ -524,24 +524,51 @@
 - (void) acceptingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // update transactional data
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData createPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self adjustButtonsVisibility];
-        
-        // Update recent message
-        NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-        NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
-        
-        [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
-        
-        PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-        [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!succeeded) {
-                [pfObj deleteEventually];
-            }
-        }];
+        if (succeeded) {
+            [self adjustButtonsVisibility];
+            
+            // Update recent message
+            NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
+            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+            
+            [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
+            
+            PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+            [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!succeeded) {
+                    [pfObj deleteEventually];
+                }
+            }];
+        } else {
+            NSLog(@"Error: %@ %@", error, error.userInfo);
+        }
     }];
+    
+    // update wantData
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_OBJECT_ID equalTo:_offerData.itemID];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"%@ %@", error, [error userInfo]);
+        } else {
+            if (objects.count > 1)
+                NSLog(@"Error in acceptingOfferButtonTapEventHandler");
+            else {
+                PFObject *object = [objects objectAtIndex:0];
+                object[PF_ITEM_IS_FULFILLED] = STRING_OF_YES;
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (!succeeded) {
+                        NSLog(@"Error: %@ %@", error, error.userInfo);
+                    }
+                }];
+            }
+        }
+    }];
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

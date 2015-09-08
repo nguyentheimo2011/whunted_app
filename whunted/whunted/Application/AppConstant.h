@@ -151,6 +151,7 @@
 #define     PF_ITEM_HASHTAG_LIST                @"hashtaglist"
 #define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
 #define     PF_ITEM_LIKES_NUM                   @"likesNum"
+#define     PF_ITEM_IS_FULFILLED                @"isFulfilled"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_OFFER_ID                         @"offerID"

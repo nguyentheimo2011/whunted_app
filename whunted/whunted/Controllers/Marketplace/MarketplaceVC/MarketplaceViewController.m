@@ -528,6 +528,7 @@
 {
     _wantDataList = [[NSMutableArray alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
