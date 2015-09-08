@@ -39,6 +39,8 @@
     UIPageControl           *_pageControl;
     UIScrollView            *_scrollView;
     
+    NSString                *_secondBottomButtonTitle;
+    
     NSMutableArray          *_itemImageList;
     CGFloat                 _nextXPos;
     CGFloat                 _nextYPos;
@@ -81,6 +83,13 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self updateSecondBottomButtonTitle];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -96,7 +105,17 @@
     
     [self retrieveItemImages];
     [self retrieveItemOffers];
+    
+    [self addNotificationObserver];
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationObserver
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_NEW_OFFER_MADE object:nil];
+}
+
 
 #pragma mark - UI Handlers
 
@@ -465,9 +484,15 @@
         [backgroundView addSubview:_secondBottomButton];
     } else {
         if (_currOffer)
-            [_secondBottomButton createTitle:NSLocalizedString(@"Change your offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+        {
+            _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
+            [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+        }
         else
-            [_secondBottomButton createTitle:NSLocalizedString(@"Offer your price", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+        {
+            _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
+            [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+        }
         
         [_secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
         _secondBottomButton.cornerRadius = 0;
@@ -612,6 +637,28 @@
     [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateTransactionalData:(NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFObject *obj = notification.object;
+    if (obj)
+    {
+        _currOffer = [[TransactionData alloc] initWithPFObject:obj];
+        _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateSecondBottomButtonTitle
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_secondBottomButtonTitle.length > 0) {
+        [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _secondBottomButton.cornerRadius = 0;
+    }
+}
+
 
 #pragma mark - Data Handlers
 
@@ -692,7 +739,6 @@
     [_delegate itemDetailsViewController:self didCompleteOffer:YES];
     
     _currOffer = offer;
-    [_secondBottomButton setTitle:NSLocalizedString(@"Change your offer", nil) forState:UIControlStateNormal];
     
     NSString *id1 = [PFUser currentUser].objectId;
     NSString *id2 = _wantData.buyerID;
