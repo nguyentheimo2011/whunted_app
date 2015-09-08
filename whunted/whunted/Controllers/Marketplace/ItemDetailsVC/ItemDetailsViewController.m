@@ -114,6 +114,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_NEW_OFFER_MADE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_CANCELLED object:nil];
 }
 
 
@@ -642,10 +643,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFObject *obj = notification.object;
-    if (obj)
-    {
+    if (obj) {
         _currOffer = [[TransactionData alloc] initWithPFObject:obj];
         _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
+    } else {
+        _currOffer = nil;
+        _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
     }
 }
 

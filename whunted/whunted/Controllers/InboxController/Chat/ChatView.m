@@ -471,6 +471,9 @@
         
         [self adjustButtonsVisibility];
         
+        // post notification to notify ItemDetails
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_CANCELLED object:nil];
+        
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
