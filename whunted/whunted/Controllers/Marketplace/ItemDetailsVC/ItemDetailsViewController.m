@@ -474,32 +474,25 @@
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    PFUser *curUser = [PFUser currentUser];
     _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
     _secondBottomButton.borderColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
     _secondBottomButton.bgColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
     _secondBottomButton.titleColor = [UIColor whiteColor];
     
-    if ([_wantData.buyerID isEqualToString:curUser.objectId]) {
-        [_secondBottomButton createTitle:NSLocalizedString(@"Promote your post", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
-        _secondBottomButton.cornerRadius = 0;
-        [backgroundView addSubview:_secondBottomButton];
-    } else {
-        if (_currOffer)
-        {
-            _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
-            [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
-        }
-        else
-        {
-            _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
-            [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
-        }
-        
-        [_secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-        _secondBottomButton.cornerRadius = 0;
-        [backgroundView addSubview:_secondBottomButton];
+    if (_currOffer)
+    {
+        _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
+        [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     }
+    else
+    {
+        _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
+        [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
+    }
+    
+    [_secondBottomButton addTarget:self action:@selector(sellerOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    _secondBottomButton.cornerRadius = 0;
+    [backgroundView addSubview:_secondBottomButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
