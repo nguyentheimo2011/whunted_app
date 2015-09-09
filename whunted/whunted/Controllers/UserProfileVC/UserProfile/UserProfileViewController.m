@@ -1052,13 +1052,28 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _mySellDataList = [[NSMutableArray alloc] init];
+    
+    // retrieve TransactionData from ongoing table
+    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
+    
+    // retrieve TransactionData from completed table
+    [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveSellingTransactionDataFromTable: (NSString *) tableName
+//-------------------------------------------------------------------------------------------------------------------------------
+{
     PFUser *currentUser = _profileOwner;
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+    
+    PFQuery *query = [PFQuery queryWithClassName:tableName];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
-        if (!error) {
-            for (int i=0; i<[offerObjects count]; i++) {
+        if (!error)
+        {
+            for (int i=0; i<[offerObjects count]; i++)
+            {
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
                 PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
@@ -1068,9 +1083,9 @@
                     [_historyCollectionView reloadData];
                 }];
             }
-            
-        } else {
-            // Log details of the failure
+        }
+        else
+        {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
