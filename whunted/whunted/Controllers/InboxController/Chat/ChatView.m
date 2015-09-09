@@ -472,7 +472,7 @@
         [self adjustButtonsVisibility];
         
         // post notification to notify ItemDetails
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_CANCELLED object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_CANCELLED_BY_ME object:nil];
         
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];

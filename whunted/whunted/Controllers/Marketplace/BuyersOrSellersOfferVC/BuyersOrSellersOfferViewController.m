@@ -321,7 +321,7 @@
         if (!error)
         {
             // post notification to notify ItemDetails of the new offer
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_OFFER_MADE object:offerObj];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_OFFER_MADE_BY_ME object:offerObj];
             
             // update data and chat message
             [_offerData setObjectID:offerObj.objectId];
