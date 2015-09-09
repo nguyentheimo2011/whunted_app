@@ -11,7 +11,8 @@
 
 @interface HistoryCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) WantData      *wantData;
+@property (nonatomic, strong)   WantData        *wantData;
+
 
 - (void) initCell;
 

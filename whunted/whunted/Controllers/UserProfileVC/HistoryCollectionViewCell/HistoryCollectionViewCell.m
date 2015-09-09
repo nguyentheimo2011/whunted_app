@@ -21,6 +21,8 @@
     UIButton        *_likeButton;
     UIImageView     *_itemImageView;
     
+    UILabel         *_boughtOrSoldLabel;
+    
     UIView          *_likesNumContainer;
     
     UIImageView     *_likeImageView;
@@ -33,7 +35,7 @@
 }
 
 
-@synthesize wantData = _wantData;
+@synthesize wantData        =   _wantData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -42,10 +44,12 @@
     [self initData];
     [self customizeCell];
     [self addItemImageView];
+    [self addBoughtOrSoldLabel];
     [self addItemNameLabel];
     [self addPriceLabel];
     [self addSellerNumButton];
     [self addLikeButton];
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -88,6 +92,11 @@
     
     if (!_itemImageView.image)
         [self downloadItemImage];
+    
+    if (_wantData.isFulfilled)
+        _boughtOrSoldLabel.hidden = NO;
+    else
+        _boughtOrSoldLabel.hidden = YES;
 }
 
 #pragma mark - UI Handlers
@@ -121,6 +130,29 @@
     _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
     
     _itemImageView.image = nil;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addBoughtOrSoldLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _boughtOrSoldLabel = [[UILabel alloc] init];
+    _boughtOrSoldLabel.text = NSLocalizedString(@"Bought", nil);
+    _boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _boughtOrSoldLabel.textColor = [UIColor whiteColor];
+    _boughtOrSoldLabel.backgroundColor = FLAT_FRESH_RED_COLOR;
+    _boughtOrSoldLabel.layer.cornerRadius = 4.0f;
+    _boughtOrSoldLabel.clipsToBounds = YES;
+    [_boughtOrSoldLabel sizeToFit];
+    
+    CGFloat const kLabelWidth   =   _boughtOrSoldLabel.frame.size.width + 10.0f;
+    CGFloat const kLabelHeight  =   _boughtOrSoldLabel.frame.size.height;
+    CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 8.0f;
+    CGFloat const kLabelOriginY =   8.0f;
+    _boughtOrSoldLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+    _boughtOrSoldLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [_itemImageView addSubview:_boughtOrSoldLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

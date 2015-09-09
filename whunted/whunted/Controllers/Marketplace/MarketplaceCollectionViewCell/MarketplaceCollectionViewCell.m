@@ -44,6 +44,7 @@
     [self initData];
     [self customizeCell];
     [self addItemImageView];
+    [self addBoughtOrSoldLabel];
     [self addItemNameLabel];
     [self addPriceLabel];
     [self addBuyerProfilePic];
@@ -140,6 +141,28 @@
     [self addSubview:_itemImageView];
     
     _itemImageView.image = nil;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addBoughtOrSoldLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_wantData.isFulfilled)
+    {
+        UILabel *boughtOrSoldLabel = [[UILabel alloc] init];
+        boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
+        boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        boughtOrSoldLabel.textColor = [UIColor whiteColor];
+        boughtOrSoldLabel.backgroundColor = FLAT_FRESH_RED_COLOR;
+        [boughtOrSoldLabel sizeToFit];
+        
+        CGFloat const kLabelWidth   =   boughtOrSoldLabel.frame.size.width + 5.0f;
+        CGFloat const kLabelHeight  =   boughtOrSoldLabel.frame.size.height;
+        CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 5.0f;
+        CGFloat const kLabelOriginY =   kLabelHeight + 5.0f;
+        boughtOrSoldLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+        [_itemImageView addSubview:boughtOrSoldLabel];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
