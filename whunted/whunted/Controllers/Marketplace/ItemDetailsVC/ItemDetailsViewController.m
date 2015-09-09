@@ -598,8 +598,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     OfferViewingVC  *offerViewingVC = [[OfferViewingVC alloc] init];
-    offerViewingVC.itemImage = _itemImageList.count > 0 ? [_itemImageList objectAtIndex:0] : nil;
-    offerViewingVC.wantData = _wantData;
+    offerViewingVC.itemImage    =   _itemImageList.count > 0 ? [_itemImageList objectAtIndex:0] : nil;
+    offerViewingVC.wantData     =   _wantData;
     [self.navigationController pushViewController:offerViewingVC animated:YES];
 }
 
@@ -666,47 +666,6 @@
 }
 
 
-#pragma mark - Data Handlers
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveItemImages
-//------------------------------------------------------------------------------------------------------------------------------
-{    
-    _itemImageList = [[NSMutableArray alloc] init];
-    
-    PFRelation *picRelation = _wantData.itemPictureList;
-    PFQuery *query = [picRelation query];
-    [query orderByAscending:PF_CREATED_AT];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
-        for (PFObject *pfObj in pfObjList) {
-            PFFile *imageFile = pfObj[@"itemPicture"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                UIImage *image = [UIImage imageWithData:data];
-                [_itemImageList addObject:image];
-                ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
-                NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
-                [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-            }];
-        }
-        
-        _pageControl.numberOfPages = [pfObjList count];
-    }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveItemOffers
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *countingQuery = [[PFQuery alloc] initWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [countingQuery whereKey:PF_ITEM_ID equalTo:_wantData.itemID];
-    [countingQuery countObjectsInBackgroundWithBlock:^(int num, NSError *error) {
-        _numOfOffers = num;
-        [self updateViewingOfferButton];
-    }];
-}
-
-
 #pragma mark - PageViewControllerDatasource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -766,6 +725,54 @@
     };
     
     [chatView messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:handler];
+}
+
+
+#pragma mark - Backend
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveItemImages
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _itemImageList = [[NSMutableArray alloc] init];
+    
+    PFRelation *picRelation = _wantData.itemPictureList;
+    PFQuery *query = [picRelation query];
+    [query orderByAscending:PF_CREATED_AT];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
+        for (PFObject *pfObj in pfObjList) {
+            PFFile *imageFile = pfObj[@"itemPicture"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                [_itemImageList addObject:image];
+                ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
+                NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
+                [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+            }];
+        }
+        
+        _pageControl.numberOfPages = [pfObjList count];
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveItemOffers
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_wantData.isFulfilled)
+    {
+        _numOfOffers = 1;
+    }
+    else
+    {
+        PFQuery *countingQuery = [[PFQuery alloc] initWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+        [countingQuery whereKey:PF_ITEM_ID equalTo:_wantData.itemID];
+        [countingQuery countObjectsInBackgroundWithBlock:^(int num, NSError *error) {
+            _numOfOffers = num;
+            [self updateViewingOfferButton];
+        }];
+    }
 }
 
 

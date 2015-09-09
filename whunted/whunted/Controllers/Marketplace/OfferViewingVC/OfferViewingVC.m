@@ -25,8 +25,8 @@
     NSMutableArray          *_recentTransactionalMessages;
 }
 
-@synthesize itemImage   =   _itemImage;
-@synthesize wantData    =   _wantData;
+@synthesize itemImage    =   _itemImage;
+@synthesize wantData     =   _wantData;
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -265,8 +265,19 @@
                  
                  for (NSDictionary *recent in sorted)
                  {
-                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId] && [recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ONGOING])
-                         [_recentTransactionalMessages addObject:recent];
+                     if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId])
+                     {
+                         // if the want is fulfilled, then display only 1 seller
+                         if (_wantData.isFulfilled && [recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ACCEPTED])
+                         {
+                             [_recentTransactionalMessages addObject:recent];
+                         }
+                         else if (!_wantData.isFulfilled && [recent[FB_TRANSACTION_STATUS] isEqualToString:TRANSACTION_STATUS_ONGOING])
+                         {
+                             [_recentTransactionalMessages addObject:recent];
+                         }
+                     }
+                     
                  }
              }
              
