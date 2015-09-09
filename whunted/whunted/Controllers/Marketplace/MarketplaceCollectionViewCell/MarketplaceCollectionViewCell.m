@@ -25,6 +25,8 @@
     UIImageView         *_buyerProfilePic;
     UIImageView         *_itemImageView;
     
+    UILabel             *_boughtOrSoldLabel;
+    
     UIImageView         *_likeImageView;
     UILabel             *_likesNumLabel;
     UIView              *_likesNumContainer;
@@ -81,9 +83,12 @@
     [_sellerNumButton setTitle:[NSString stringWithFormat:@"%ld", wantData.sellersNum] forState:UIControlStateNormal];
     
     NSString *text;
-    if (_wantData.sellersNum <= 1) {
+    if (_wantData.sellersNum <= 1)
+    {
         text = [NSString stringWithFormat:@"%ld %@", (long)_wantData.sellersNum, NSLocalizedString(@"seller", nil)];
-    } else {
+    }
+    else
+    {
         text = [NSString stringWithFormat:@"%ld %@", (long)_wantData.sellersNum, NSLocalizedString(@"sellers", nil)];
     }
     
@@ -97,12 +102,20 @@
         [self downloadItemImage];
     
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
-    if ([[TemporaryCache sharedCache] objectForKey:imageKey]) {
+    if ([[TemporaryCache sharedCache] objectForKey:imageKey])
+    {
         UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:imageKey];
         [_buyerProfilePic setImage:profileImage];
-    } else {
+    }
+    else
+    {
         [self downloadProfileImage];
     }
+    
+    if (_wantData.isFulfilled)
+        _boughtOrSoldLabel.hidden = NO;
+    else
+        _boughtOrSoldLabel.hidden = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -147,22 +160,23 @@
 - (void) addBoughtOrSoldLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_wantData.isFulfilled)
-    {
-        UILabel *boughtOrSoldLabel = [[UILabel alloc] init];
-        boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
-        boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-        boughtOrSoldLabel.textColor = [UIColor whiteColor];
-        boughtOrSoldLabel.backgroundColor = FLAT_FRESH_RED_COLOR;
-        [boughtOrSoldLabel sizeToFit];
-        
-        CGFloat const kLabelWidth   =   boughtOrSoldLabel.frame.size.width + 5.0f;
-        CGFloat const kLabelHeight  =   boughtOrSoldLabel.frame.size.height;
-        CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 5.0f;
-        CGFloat const kLabelOriginY =   kLabelHeight + 5.0f;
-        boughtOrSoldLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
-        [_itemImageView addSubview:boughtOrSoldLabel];
-    }
+    _boughtOrSoldLabel = [[UILabel alloc] init];
+    _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
+    _boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _boughtOrSoldLabel.textColor = [UIColor whiteColor];
+    _boughtOrSoldLabel.backgroundColor = FLAT_FRESH_RED_COLOR;
+    _boughtOrSoldLabel.layer.cornerRadius = 4.0f;
+    _boughtOrSoldLabel.clipsToBounds = YES;
+    [_boughtOrSoldLabel sizeToFit];
+    
+    CGFloat const kLabelWidth   =   _boughtOrSoldLabel.frame.size.width + 10.0f;
+    CGFloat const kLabelHeight  =   _boughtOrSoldLabel.frame.size.height;
+    CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 8.0f;
+    CGFloat const kLabelOriginY =   8.0f;
+    _boughtOrSoldLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+    _boughtOrSoldLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [_itemImageView addSubview:_boughtOrSoldLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
