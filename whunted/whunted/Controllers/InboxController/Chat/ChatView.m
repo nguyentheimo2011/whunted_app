@@ -563,8 +563,6 @@
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!succeeded) {
                         NSLog(@"Error: %@ %@", error, error.userInfo);
-                    } else {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED_BY_ME object:nil];
                     }
                 }];
             }
@@ -637,6 +635,9 @@
     else if (messageType == ChatMessageTypeAcceptingOffer)
     {
         _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
+        
+        // post notification to notify ItemDetails
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED object:nil];
     }
     
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)

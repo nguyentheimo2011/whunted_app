@@ -123,7 +123,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_NEW_OFFER_MADE_BY_ME object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_CANCELLED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_DECLINED object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWantDataUponOfferAccepted) name:NOTIFICATION_OFFER_ACCEPTED_BY_ME object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWantDataUponOfferAccepted) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
 }
 
 
