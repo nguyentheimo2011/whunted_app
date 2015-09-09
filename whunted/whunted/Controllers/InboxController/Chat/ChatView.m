@@ -471,9 +471,6 @@
         
         [self adjustButtonsVisibility];
         
-        // post notification to notify ItemDetails
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_CANCELLED_BY_ME object:nil];
-        
         // Update recent message
         NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
         NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
@@ -625,12 +622,17 @@
     {
         _offerData = [_offerData createNewDataObject];
         _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
+        
+        // post notification to notify ItemDetails
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_CANCELLED object:nil];
     }
     else if (messageType == ChatMessageTypeDecliningOffer)
     {
         _offerData = [_offerData createNewDataObject];
         _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_DECLINED_BY_OTHER object:nil];
+        
+        // post notification to notify ItemDetails
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_DECLINED object:nil];
     }
     else if (messageType == ChatMessageTypeAcceptingOffer)
     {
