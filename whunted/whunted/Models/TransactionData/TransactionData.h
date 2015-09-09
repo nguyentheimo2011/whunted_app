@@ -26,4 +26,6 @@
 - (PFObject *)  getPFObjectWithClassName: (NSString *) className;
 - (PFObject *)  createPFObjectWithClassName: (NSString *) className;
 
+- (TransactionData *) createNewDataObject;
+
 @end

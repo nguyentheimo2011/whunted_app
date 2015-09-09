@@ -96,6 +96,22 @@
     return pfObj;
 }
 
-
+//------------------------------------------------------------------------------------------------------------------------------
+- (TransactionData *) createNewDataObject
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    TransactionData *newDataObj = [[TransactionData alloc] init];
+    newDataObj.itemID                   =   _itemID;
+    newDataObj.itemName                 =   _itemName;
+    newDataObj.buyerID                  =   _buyerID;
+    newDataObj.sellerID                 =   _sellerID;
+    newDataObj.initiatorID              =   _initiatorID;
+    newDataObj.originalDemandedPrice    =   _originalDemandedPrice;
+    newDataObj.offeredPrice             =   _offeredPrice;
+    newDataObj.deliveryTime             =   _deliveryTime;
+    newDataObj.transactionStatus        =   _transactionStatus;
+    
+    return newDataObj;
+}
 
 @end

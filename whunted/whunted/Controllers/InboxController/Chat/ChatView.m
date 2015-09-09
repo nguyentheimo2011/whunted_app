@@ -623,10 +623,12 @@
     }
     else if (messageType == ChatMessageTypeCancellingOffer)
     {
+        _offerData = [_offerData createNewDataObject];
         _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
     }
     else if (messageType == ChatMessageTypeDecliningOffer)
     {
+        _offerData = [_offerData createNewDataObject];
         _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_DECLINED_BY_OTHER object:nil];
     }
