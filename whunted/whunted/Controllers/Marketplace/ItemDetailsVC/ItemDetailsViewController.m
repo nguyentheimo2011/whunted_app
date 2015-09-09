@@ -121,6 +121,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_NEW_OFFER_MADE_BY_ME object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveItemOffers) name:NOTIFICATION_NEW_OFFER_MADE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_CANCELLED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_DECLINED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWantDataUponOfferAccepted) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
@@ -668,9 +669,12 @@
         _currOffer = nil;
         _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
         
-        _numOfOffers--;
+        // if cancel or decline offer, then decrease numOfOffers by 1
+        if (_numOfOffers > 0)
+            _numOfOffers--;
     }
 }
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) updateWantDataUponOfferAccepted
