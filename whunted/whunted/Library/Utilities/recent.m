@@ -52,7 +52,8 @@ void CreateRecentItem1(PFUser *user, NSString *groupId, NSArray *members, NSStri
 		{
 			for (NSDictionary *recent in [snapshot.value allValues])
 			{
-				if ([recent[@"userId"] isEqualToString:user.objectId]) create = NO;
+				if ([recent[FB_SELF_USER_ID] isEqualToString:user.objectId])
+                    create = NO;
 			}
 		}
         
