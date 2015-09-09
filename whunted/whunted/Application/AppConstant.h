@@ -215,6 +215,7 @@
 #define     NOTIFICATION_NEW_OFFER_MADE             @"NotificationNewOfferMade"
 #define     NOTIFICATION_OFFER_CANCELLED            @"NotificationOfferCancelled"
 #define     NOTIFICATION_OFFER_DECLINED_BY_OTHER    @"NotificationOfferDeclinedByOther"
+#define     NOTIFICATION_OFFER_ACCEPTED_BY_ME       @"NotificationOfferAcceptedByMe"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     ESCROW_PAYMENT_METHOD               @"escrow"

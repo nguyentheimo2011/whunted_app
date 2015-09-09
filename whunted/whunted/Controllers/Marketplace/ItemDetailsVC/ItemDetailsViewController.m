@@ -86,7 +86,14 @@
 - (void) viewWillAppear:(BOOL)animated
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self updateSecondBottomButtonTitle];
+    if (_itemPostedByMe)
+    {
+        [self updateViewingOfferButtonTitle];
+    }
+    else
+    {
+        [self updateSecondBottomButtonTitle];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -116,6 +123,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_NEW_OFFER_MADE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_CANCELLED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTransactionalData:) name:NOTIFICATION_OFFER_DECLINED_BY_OTHER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateWantDataUponOfferAccepted) name:NOTIFICATION_OFFER_ACCEPTED_BY_ME object:nil];
 }
 
 
@@ -634,11 +642,18 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) updateViewingOfferButton
+- (void) updateViewingOfferButtonTitle
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *title = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"View Offer", nil), _numOfOffers];
-    [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    if (_wantData.isFulfilled)
+    {
+        [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    }
+    else
+    {
+        NSString *title = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"View Offer", nil), _numOfOffers];
+        [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -653,6 +668,13 @@
         _currOffer = nil;
         _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateWantDataUponOfferAccepted
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _wantData.isFulfilled = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -770,7 +792,7 @@
         [countingQuery whereKey:PF_ITEM_ID equalTo:_wantData.itemID];
         [countingQuery countObjectsInBackgroundWithBlock:^(int num, NSError *error) {
             _numOfOffers = num;
-            [self updateViewingOfferButton];
+            [self updateViewingOfferButtonTitle];
         }];
     }
 }

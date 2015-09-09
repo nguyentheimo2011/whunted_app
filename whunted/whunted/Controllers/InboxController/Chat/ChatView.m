@@ -566,6 +566,8 @@
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!succeeded) {
                         NSLog(@"Error: %@ %@", error, error.userInfo);
+                    } else {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED_BY_ME object:nil];
                     }
                 }];
             }
