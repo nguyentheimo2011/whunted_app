@@ -53,11 +53,16 @@
 	
 	NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
 	
-	item[@"userId"]         =   user.objectId;
-	item[@"name"]           =   user[PF_USER_USERNAME];
-	item[@"date"]           =   Date2String([NSDate date]);
-	item[@"status"]         =   @"Delivered";
-    item[CHAT_MESSAGE_TYPE] =   [Utilities stringFromChatMessageType:type];
+	item[@"userId"]             =   user.objectId;
+	item[@"name"]               =   user[PF_USER_USERNAME];
+	item[@"date"]               =   Date2String([NSDate date]);
+	item[@"status"]             =   @"Delivered";
+    item[CHAT_MESSAGE_TYPE]     =   [Utilities stringFromChatMessageType:type];
+    
+    if ([[details allKeys] containsObject:FB_CURRENT_OFFER_ID])
+        item[FB_CURRENT_OFFER_ID]   =   details[FB_CURRENT_OFFER_ID];
+    else
+        item[FB_CURRENT_OFFER_ID]   =   @"";
 	
 	item[@"video"] = item[@"thumbnail"] = item[@"picture"] = item[@"audio"] = item[@"latitude"] = item[@"longitude"] = @"";
 	item[@"video_duration"] = item[@"audio_duration"] = @0;

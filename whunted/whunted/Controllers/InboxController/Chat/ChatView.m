@@ -607,12 +607,14 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) updateOfferStatus: (NSString *) lastMessageType messageFromSender:  (NSString *) senderID
+- (void) updateOfferStatus: (NSString *) lastMessageType messageFromSender:  (NSString *) senderID andCurrOfferID: (NSString *) offerID
 //------------------------------------------------------------------------------------------------------------------------------
 {
     ChatMessageType messageType = [Utilities chatMessageTypeFromString:lastMessageType];
     if (messageType == ChatMessageTypeMakingOffer)
     {
+        _offerData = [_offerData createNewDataObject];
+        _offerData.objectID = offerID;        
         _offerData.transactionStatus = TRANSACTION_STATUS_ONGOING;
         _offerData.initiatorID = senderID;
     }
@@ -674,7 +676,7 @@
 			[self finishReceivingMessage];
             
             NSDictionary *item = snapshot.value;
-            [self updateOfferStatus:item[CHAT_MESSAGE_TYPE] messageFromSender:item[@"userId"]];
+            [self updateOfferStatus:item[CHAT_MESSAGE_TYPE] messageFromSender:item[@"userId"] andCurrOfferID:item[FB_CURRENT_OFFER_ID]];
 		}
 	}];
 	
