@@ -517,15 +517,16 @@
     if (_wantData.isFulfilled)
     {
         [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _viewOffersButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
     }
     else
     {
         [_viewOffersButton createTitle:NSLocalizedString(@"View Offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _viewOffersButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     }
     
     _viewOffersButton.cornerRadius = 0;
-    _viewOffersButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
-    _viewOffersButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _viewOffersButton.borderWidth = 0;
     _viewOffersButton.titleColor = [UIColor whiteColor];
     [_viewOffersButton addTarget:self action:@selector(viewOffersButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:_viewOffersButton];
@@ -649,11 +650,17 @@
     if (_wantData.isFulfilled)
     {
         [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _viewOffersButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
+        _viewOffersButton.borderWidth = 0;
+        _viewOffersButton.cornerRadius = 0;
     }
     else
     {
         NSString *title = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"View Offer", nil), _numOfOffers];
         [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _viewOffersButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+        _viewOffersButton.borderWidth = 0;
+        _viewOffersButton.cornerRadius = 0;
     }
 }
 
