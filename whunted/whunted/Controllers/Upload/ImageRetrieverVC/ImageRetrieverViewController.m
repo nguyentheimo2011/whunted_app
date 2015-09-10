@@ -13,7 +13,7 @@
 #import <MBProgressHUD.h>
 #import <JTImageButton.h>
 
-#define kLeftMargin             15.0f
+#define     kLeftMargin             15.0f
 
 @implementation ImageRetrieverViewController
 {

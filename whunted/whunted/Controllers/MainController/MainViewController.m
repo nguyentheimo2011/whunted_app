@@ -315,8 +315,10 @@
                   usingCropRect:(CGRect)cropRect
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    UIImage *resizedImage = [Utilities resizeImage:croppedImage toSize:CGSizeMake(WINSIZE.width, WINSIZE.width) scalingProportionally:YES];
+    
     if (_imageEdittingNeeded) {
-        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
+        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:resizedImage];
         editor.delegate = self;
         editor.hidesBottomBarWhenPushed = YES;
         
@@ -324,7 +326,7 @@
         
         [_uploadingNavController pushViewController:editor animated:YES];
     } else {
-        [self addItemImageToWantDetailVC:croppedImage];
+        [self addItemImageToWantDetailVC:resizedImage];
     }
     
 }
