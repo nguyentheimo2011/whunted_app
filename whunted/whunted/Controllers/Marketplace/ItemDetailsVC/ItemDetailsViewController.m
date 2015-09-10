@@ -776,18 +776,25 @@
     [query orderByAscending:PF_CREATED_AT];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
-        for (PFObject *pfObj in pfObjList) {
-            PFFile *imageFile = pfObj[@"itemPicture"];
-            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                UIImage *image = [UIImage imageWithData:data];
-                [_itemImageList addObject:image];
-                ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
-                NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
-                [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-            }];
+        if (error) {
+            NSLog(@"Error: %@ %@", error, error.userInfo);
         }
-        
-        _pageControl.numberOfPages = [pfObjList count];
+        else
+        {            
+            for (PFObject *pfObj in pfObjList)
+            {
+                PFFile *imageFile = pfObj[@"itemPicture"];
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    [_itemImageList addObject:image];
+                    ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
+                    NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
+                    [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+                }];
+            }
+            
+            _pageControl.numberOfPages = [pfObjList count];
+        }
     }];
 }
 

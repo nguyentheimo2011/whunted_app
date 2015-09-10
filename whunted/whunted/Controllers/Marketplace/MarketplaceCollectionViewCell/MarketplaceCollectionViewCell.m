@@ -327,12 +327,15 @@
 - (void) likeButtonClickedEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_likedByMe) {
+    if (_likedByMe)
+    {
         _likedByMe = NO;
         _likesNum -= 1;
         [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
         [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    } else {
+    }
+    else
+    {
         _likedByMe = YES;
         _likesNum += 1;
         [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
@@ -367,7 +370,8 @@
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-        if (!error) {
+        if (!error)
+        {
             PFFile *firstPicture = firstObject[@"itemPicture"];
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2)
@@ -396,7 +400,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
-        if ([user.objectId isEqualToString:_wantData.buyerID]) {
+        if ([user.objectId isEqualToString:_wantData.buyerID])
+        {
             [_buyerProfilePic setImage:image];
             
             NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
