@@ -99,7 +99,7 @@
     
     
     if (!_itemImageView.image)
-        [self downloadItemImage];
+        [self retrieveItemImage];
     
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
     if ([[TemporaryCache sharedCache] objectForKey:imageKey])
@@ -109,7 +109,7 @@
     }
     else
     {
-        [self downloadProfileImage];
+        [self retrieveProfileImage];
     }
     
     if (_wantData.isFulfilled)
@@ -363,7 +363,7 @@
 #pragma mark - Backend
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) downloadItemImage
+- (void) retrieveItemImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFRelation *picRelation = _wantData.itemPictureList;
@@ -376,6 +376,7 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2)
                 {
+                    
                     UIImage *image = [UIImage imageWithData:data];
                     [_itemImageView setImage:image];
                     
@@ -396,7 +397,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) downloadProfileImage
+- (void) retrieveProfileImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
     FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
