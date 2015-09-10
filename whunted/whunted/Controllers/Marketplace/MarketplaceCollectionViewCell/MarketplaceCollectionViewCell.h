@@ -11,7 +11,8 @@
 
 @interface MarketplaceCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) WantData *wantData;
+@property (nonatomic, strong)   WantData        *wantData;
+@property (nonatomic)           NSInteger       cellIndex;
 
 - (void) initCell;
 

@@ -322,6 +322,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+    cell.cellIndex = indexPath.row;
     
     if (cell.wantData == nil) 
         [cell initCell];

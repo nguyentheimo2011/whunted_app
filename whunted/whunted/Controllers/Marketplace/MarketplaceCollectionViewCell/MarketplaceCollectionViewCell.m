@@ -37,7 +37,8 @@
     NSInteger           _likesNum;
 }
 
-@synthesize wantData = _wantData;
+@synthesize wantData    =   _wantData;
+@synthesize cellIndex   =   _cellIndex;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -369,6 +370,9 @@
     PFRelation *picRelation = _wantData.itemPictureList;
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
+    
+    __block NSInteger cellIndex = _cellIndex;
+    
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
         if (!error)
         {
@@ -376,12 +380,14 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2)
                 {
-                    
-                    UIImage *image = [UIImage imageWithData:data];
-                    [_itemImageView setImage:image];
-                    
-                    NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-                    [[TemporaryCache sharedCache] setObject:image forKey:key];
+                    // check if it is setting image for the right cell
+                    if (_cellIndex == cellIndex) {
+                        UIImage *image = [UIImage imageWithData:data];
+                        [_itemImageView setImage:image];
+                        
+                        NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
+                        [[TemporaryCache sharedCache] setObject:image forKey:key];
+                    }
                 }
                 else
                 {
@@ -400,8 +406,12 @@
 - (void) retrieveProfileImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
-        if ([user.objectId isEqualToString:_wantData.buyerID])
+    __block NSInteger cellIndex = _cellIndex;
+    
+    FetchedUserHandler handler = ^(PFUser *user, UIImage *image)
+    {
+        // check if it is setting buyerProfileImage for the right cell
+        if (_cellIndex == cellIndex)
         {
             [_buyerProfilePic setImage:image];
             
