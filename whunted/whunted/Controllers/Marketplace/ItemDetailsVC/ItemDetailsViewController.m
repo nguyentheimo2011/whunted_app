@@ -780,13 +780,18 @@
             NSLog(@"Error: %@ %@", error, error.userInfo);
         }
         else
-        {            
-            for (PFObject *pfObj in pfObjList)
+        {
+            for (int i=0; i<pfObjList.count; i++)
+                [_itemImageList addObject:[[UIImage alloc] init]];
+            
+            for (int i=0; i<pfObjList.count; i++)
             {
+                PFObject *pfObj = [pfObjList objectAtIndex:i];
+                
                 PFFile *imageFile = pfObj[@"itemPicture"];
                 [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     UIImage *image = [UIImage imageWithData:data];
-                    [_itemImageList addObject:image];
+                    [_itemImageList replaceObjectAtIndex:i withObject:image];
                     ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
                     NSArray *viewControllers = [NSArray arrayWithObject:itemImageVC];
                     [_pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
