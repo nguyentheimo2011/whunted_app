@@ -50,6 +50,8 @@
 
 @property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
 
+
 - (void) setImage: (UIImage *) image forButton: (NSUInteger) buttonIndex;
+
 
 @end

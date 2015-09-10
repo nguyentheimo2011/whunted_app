@@ -82,6 +82,7 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size
+#define     IPHONE_6_PLUS_WIDTH                 414.0f
 #define     FLAT_BUTTON_HEIGHT                  35.0f
 #define     kOFFSET_FOR_KEYBOARD                200.0f
 #define     NEWSFEED_CELL_HEIGHT                WINSIZE.width + 105.0f

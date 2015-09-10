@@ -13,14 +13,14 @@
 #import "KLCPopup.h"
 #import <MBProgressHUD.h>
 
-#define     kCellHeight             40.0f
-#define     kIconWidth              20.0f
-#define     kIconHeight             20.0f
-#define     kIconLeftMargin         15.0f
-#define     kIconTopMargin          10.0f
+#define     kCellHeight                 40.0f
+#define     kIconWidth                  20.0f
+#define     kIconHeight                 20.0f
+#define     kIconLeftMargin             15.0f
+#define     kIconTopMargin              10.0f
 
-#define     PRODUCT_ORIGIN_TAG      110
-#define     MEETING_LOCATION_TAG    120
+#define     PRODUCT_ORIGIN_TAG          110
+#define     MEETING_LOCATION_TAG        120
 
 @implementation UploadingWantDetailsViewController
 {
