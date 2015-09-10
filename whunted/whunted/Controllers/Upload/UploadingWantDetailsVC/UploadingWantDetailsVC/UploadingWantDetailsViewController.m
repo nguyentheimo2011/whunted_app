@@ -316,6 +316,9 @@
         if (!_wantData.meetingLocation)
             _wantData.meetingLocation = @"";
         
+        if (!_wantData.itemOrigins)
+            _wantData.itemOrigins = [NSArray array];
+        
         _wantData.sellersNum = 0;
         _wantData.itemPicturesNum = [_wantData.itemPictures count];
         
