@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong)   WantData        *wantData;
 
+@property (nonatomic)           NSInteger       cellIndex;
+
 
 - (void) initCell;
 

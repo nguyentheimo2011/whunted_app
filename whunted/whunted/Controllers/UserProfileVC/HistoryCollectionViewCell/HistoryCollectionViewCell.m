@@ -10,8 +10,8 @@
 #import "AppConstant.h"
 #import "TemporaryCache.h"
 
-#define kCellLeftMagin      4.0f
-#define kCellRightMargin    4.0f
+#define     kCellLeftMagin              4.0f
+#define     kCellRightMargin            4.0f
 
 @implementation HistoryCollectionViewCell
 {
@@ -36,6 +36,7 @@
 
 
 @synthesize wantData        =   _wantData;
+@synthesize cellIndex       =   _cellIndex;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -67,6 +68,7 @@
     _wantData = nil;
 }
 
+
 #pragma mark - Setters
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -79,7 +81,8 @@
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     
     NSString *text;
-    if (_wantData.sellersNum <= 1) {
+    if (_wantData.sellersNum <= 1)
+    {
         text = [NSString stringWithFormat:@"%ld %@", (long)_wantData.sellersNum, NSLocalizedString(@"seller", nil)];
     } else {
         text = [NSString stringWithFormat:@"%ld %@", (long)_wantData.sellersNum, NSLocalizedString(@"sellers", nil)];
@@ -98,6 +101,7 @@
     else
         _boughtOrSoldLabel.hidden = YES;
 }
+
 
 #pragma mark - UI Handlers
 
@@ -247,18 +251,22 @@
     [self addSubview:_sellerNumButton];
 }
 
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) likeButtonClickedEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_likedByMe) {
+    if (_likedByMe)
+    {
         _likedByMe = NO;
         _likesNum -= 1;
         [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
         [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    } else {
+    }
+    else
+    {
         _likedByMe = YES;
         _likesNum += 1;
         [_likeImageView setImage:[UIImage imageNamed:@"heart_red.png"]];
@@ -290,6 +298,8 @@
 - (void) downloadItemImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    __block NSInteger cellIndex = _cellIndex;
+    
     PFRelation *picRelation = _wantData.itemPictureList;
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
@@ -301,11 +311,14 @@
             [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                 if (!error_2)
                 {
-                    UIImage *image = [UIImage imageWithData:data];
-                    [_itemImageView setImage:image];
-                    
-                    NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-                    [[TemporaryCache sharedCache] setObject:image forKey:key];
+                    if (cellIndex == _cellIndex)
+                    {
+                        UIImage *image = [UIImage imageWithData:data];
+                        [_itemImageView setImage:image];
+                        
+                        NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
+                        [[TemporaryCache sharedCache] setObject:image forKey:key];
+                    }
                 }
                 else
                 {
