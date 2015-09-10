@@ -168,12 +168,17 @@
              PFFile *userPicture = user[PF_USER_PICTURE];
              
              [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                 if (!error) {
+                 if (!error)
+                 {
                      UIImage *image = [UIImage imageWithData:data];
                      [_userProfileImage setImage:image];
                      
                      NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
                      [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+                 }
+                 else
+                 {
+                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                  }
              }];
          }
@@ -188,20 +193,30 @@
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_ITEM_ID]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
         if (!error) {
-            PFRelation *pictureRelation = obj[PF_ITEM_PICTURE_LIST];
-            [[pictureRelation query] getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-                if (!error) {
+            PFRelation *picRelation = obj[PF_ITEM_PICTURE_LIST];
+            PFQuery *query = [picRelation query];
+            [query orderByAscending:PF_CREATED_AT];
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+                if (!error)
+                {
                     PFFile *firstPicture = firstObject[@"itemPicture"];
                     [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
-                        if (!error_2) {
+                        if (!error_2)
+                        {
                             UIImage *image = [UIImage imageWithData:data];
                             [_itemImageView setImage:image];
-                            [[PersistedCache sharedCache] setImage:image forKey:_message[PF_ITEM_ID]];
-                        } else {
+                            
+                            NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_ITEM_ID], ITEM_FIRST_IMAGE];
+                            [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+                        }
+                        else
+                        {
                             NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
                         }
                     }];
-                } else {
+                }
+                else
+                {
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
             }];
