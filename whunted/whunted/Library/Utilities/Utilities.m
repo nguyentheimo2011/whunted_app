@@ -75,7 +75,7 @@
         CGFloat hRatio = newSize.height * 1.0 / originalImage.size.height;
         CGFloat minRatio = MIN(wRatio, hRatio);
         
-        if (minRatio <= 1)
+        if (minRatio >= 1)
             return originalImage;
         
         newWidth = originalImage.size.width * minRatio;

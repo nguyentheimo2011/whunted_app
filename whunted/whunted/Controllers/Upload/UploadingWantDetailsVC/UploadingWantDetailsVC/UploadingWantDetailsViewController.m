@@ -899,8 +899,10 @@
                   usingCropRect:(CGRect)cropRect
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    UIImage *resizedImage = [Utilities resizeImage:croppedImage toSize:CGSizeMake(IPHONE_6_PLUS_WIDTH, IPHONE_6_PLUS_WIDTH) scalingProportionally:YES];
+    
     if (_imageEdittingNeeded) {
-        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:croppedImage];
+        CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:resizedImage];
         editor.delegate = self;
         editor.hidesBottomBarWhenPushed = YES;
         
@@ -908,7 +910,7 @@
         
         [self.navigationController pushViewController:editor animated:YES];
     } else {
-        [self addItemImageToWantDetailVC:croppedImage];
+        [self addItemImageToWantDetailVC:resizedImage];
     }
     
 }
