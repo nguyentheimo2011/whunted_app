@@ -63,14 +63,25 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize
-//------------------------------------------------------------------------------------------------------------------------------s
++ (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize scalingProportionally: (BOOL) scalingProportionally
+//------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat wRatio = newSize.width * 1.0 / originalImage.size.width;
-    CGFloat hRatio = newSize.height * 1.0 / originalImage.size.height;
-    CGFloat minRatio = MIN(wRatio, hRatio);
-    CGFloat newWidth = originalImage.size.width * minRatio;
-    CGFloat newHeight = originalImage.size.height * minRatio;
+    CGFloat newWidth;
+    CGFloat newHeight;
+    
+    if (scalingProportionally)
+    {
+        CGFloat wRatio = newSize.width * 1.0 / originalImage.size.width;
+        CGFloat hRatio = newSize.height * 1.0 / originalImage.size.height;
+        CGFloat minRatio = MIN(wRatio, hRatio);
+        newWidth = originalImage.size.width * minRatio;
+        newHeight = originalImage.size.height * minRatio;
+    }
+    else
+    {
+        newWidth    =   newSize.width;
+        newHeight   =   newSize.height;
+    }
     
     CGRect rect = CGRectMake(0,0,newWidth,newHeight);
     UIGraphicsBeginImageContext( rect.size );
@@ -78,7 +89,7 @@
     UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    NSData *imageData = UIImagePNGRepresentation(picture1);
+    NSData *imageData = UIImageJPEGRepresentation(picture1, 0.5);
     UIImage *newImage=[UIImage imageWithData:imageData];
     return newImage;
 }

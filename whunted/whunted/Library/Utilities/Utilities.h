@@ -21,11 +21,11 @@
 #pragma mark - UI Image
 //-----------------------------------------------------------------------------------------------------------------------------
 
-+ (UIImage *)   resizeImage:            (UIImage *) originalImage   toSize: (CGSize) newSize;
++ (UIImage *)   resizeImage:    (UIImage *) originalImage toSize: (CGSize) newSize scalingProportionally: (BOOL) scalingProportionally;
 
-+ (UIImage *)   imageFromColor:         (UIColor *) color       forSize:(CGSize)size    withCornerRadius:(CGFloat)radius;
++ (UIImage *)   imageFromColor: (UIColor *) color forSize:(CGSize)size withCornerRadius:(CGFloat)radius;
 
-+ (UIImage *)   imageWithColor:         (UIColor *)color;
++ (UIImage *)   imageWithColor: (UIColor *)color;
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
