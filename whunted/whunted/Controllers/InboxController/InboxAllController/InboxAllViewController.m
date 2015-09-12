@@ -48,14 +48,21 @@
 {
     [super viewDidLoad];
     
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Chat", nil) forViewController:self];
-    
+    [self customizeUI];
     [self addSegmentedControl];
     [self addInboxTableView];
 
     [self loadRecents];
-    
-    [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
+}
+
+
+#pragma mark - UI Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Chat", nil) forViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -103,6 +110,8 @@
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
     [self.view addSubview:_inboxTableView];
+    
+    [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
 }
 
 #pragma mark - Backend methods
