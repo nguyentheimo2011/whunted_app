@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CityViewController.h"
+
 @class ItemInfoTableViewController;
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -19,7 +21,7 @@
 @end
 
 //-----------------------------------------------------------------------------------------------------------------------------
-@interface ItemInfoTableViewController : UITableViewController<UITextFieldDelegate>
+@interface ItemInfoTableViewController : UITableViewController<UITextFieldDelegate, CityViewDelegate>
 //-----------------------------------------------------------------------------------------------------------------------------
 
 - (id) initWithItemInfoDict: (NSDictionary *) infoDict;

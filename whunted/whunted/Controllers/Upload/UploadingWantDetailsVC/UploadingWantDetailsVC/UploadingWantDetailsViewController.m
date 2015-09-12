@@ -19,15 +19,12 @@
 #define     kIconLeftMargin             15.0f
 #define     kIconTopMargin              10.0f
 
-#define     PRODUCT_ORIGIN_TAG          110
-#define     MEETING_LOCATION_TAG        120
 
 @implementation UploadingWantDetailsViewController
 {
     UITableViewCell             *_buttonListCell;
     UITableViewCell             *_categoryCell;
     UITableViewCell             *_itemInfoCell;
-    UITableViewCell             *_productOriginCell;
     UITableViewCell             *_priceCell;
     UITableViewCell             *_locationCell;
     UITableViewCell             *_escrowRequestCell;
@@ -122,7 +119,6 @@
 {
     [self initializeCategoryCell];
     [self initializeItemInfoCell];
-    [self initializeProductOriginCell];
     [self initializePriceCell];
     [self initializeLocationCell];
     [self initializeEscrowRequestCell];
@@ -166,26 +162,6 @@
     UIImage *infoImage = [UIImage imageNamed:@"info_icon.png"];
     [infoImageView setImage:infoImage];
     [_itemInfoCell addSubview:infoImageView];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) initializeProductOriginCell
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
-    _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
-    _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _productOriginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _productOriginCell.indentationLevel = 3;
-    _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
-    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
-    
-    // add origin icon
-    UIImageView *originImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
-    UIImage *originImage = [UIImage imageNamed:@"product_origin_icon.png"];
-    [originImageView setImage:originImage];
-    [_productOriginCell addSubview:originImageView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -385,22 +361,14 @@
 - (void) pushItemInfoViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSDictionary *itemBasicInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
+    NSMutableDictionary *itemBasicInfoDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
+    
+    if (_wantData.itemOrigins.count > 0)
+        [itemBasicInfoDict setObject:_wantData.itemOrigins forKey:ITEM_ORIGINS_KEY];
+    
     ItemInfoTableViewController *itemInfoVC = [[ItemInfoTableViewController alloc] initWithItemInfoDict:itemBasicInfoDict];
     itemInfoVC.delegate = self;
     [self.navigationController pushViewController:itemInfoVC animated:YES];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) pushProductOriginViewController
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CityViewController *productOriginVC = [[CityViewController alloc] init];
-    productOriginVC.tag = PRODUCT_ORIGIN_TAG;
-    productOriginVC.currentLocation = (_wantData.itemOrigins.count > 0) ? [_wantData.itemOrigins objectAtIndex:0] : nil;
-    productOriginVC.delegate = self;
-    
-    [self.navigationController pushViewController:productOriginVC animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -408,7 +376,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CityViewController *meetingLocationVC = [[CityViewController alloc] init];
-    meetingLocationVC.tag = MEETING_LOCATION_TAG;
     meetingLocationVC.currentLocation = _wantData.meetingLocation;
     meetingLocationVC.delegate = self;
     
@@ -458,7 +425,7 @@
     {
         case 0: return 0;   // section 0 has 0 row. Use footer of section i as the header of section i+1
         case 1:  return 1;  // section 0 has 1 row
-        case 2:  return 6;  // section 1 has 6 rows
+        case 2:  return 5;  // section 1 has 5 rows
         default: return 0;
     };
 }
@@ -477,10 +444,9 @@
             {
                 case 0: return _categoryCell;
                 case 1: return _itemInfoCell;
-                case 2: return _productOriginCell;
-                case 3: return _priceCell;
-                case 4: return _locationCell;
-                case 5: return _escrowRequestCell;
+                case 2: return _priceCell;
+                case 3: return _locationCell;
+                case 4: return _escrowRequestCell;
             }
     }
     return nil;
@@ -578,9 +544,7 @@
             [self pushCategoryViewController];
         else if (indexPath.row == 1)
             [self pushItemInfoViewController];
-        else if (indexPath.row == 2)
-            [self pushProductOriginViewController];
-        else if (indexPath.row == 4)
+        else if (indexPath.row == 3)
             [self pushMeetingLocationViewController];
     }
     
@@ -612,37 +576,28 @@
 - (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (controller.tag == PRODUCT_ORIGIN_TAG)
-    {
-        _wantData.itemOrigins = [NSArray arrayWithObject:location];
-        
-        if (location.length > 0)
-            _productOriginCell.detailTextLabel.text = location;
-        else
-            _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
-    }
+    _wantData.meetingLocation = location;
+    
+    if (location.length > 0)
+        _locationCell.detailTextLabel.text = location;
     else
-    {
-        _wantData.meetingLocation = location;
-        
-        if (location.length > 0)
-            _locationCell.detailTextLabel.text = location;
-        else
-            _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
-    }
+        _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
 }
 
 
-#pragma mark - ItemInfoTableViewController methods
+#pragma mark - ItemInfoTableViewControllerDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) itemInfoTableViewController:(ItemInfoTableViewController *)controller didPressDone:(NSDictionary *)itemInfo
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantData.itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
-    _wantData.itemDesc = [itemInfo objectForKey:ITEM_DESC_KEY];
-    _wantData.acceptedSecondHand = [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
-    _wantData.referenceURL = [itemInfo objectForKey:ITEM_REFERENCE_LINK];
+    _wantData.itemName              =   [itemInfo objectForKey:ITEM_NAME_KEY];
+    _wantData.itemDesc              =   [itemInfo objectForKey:ITEM_DESC_KEY];
+    _wantData.acceptedSecondHand    =   [(NSNumber *)[itemInfo objectForKey:ITEM_SECONDHAND_OPTION] boolValue];
+    _wantData.referenceURL          =   [itemInfo objectForKey:ITEM_REFERENCE_LINK];
+    
+    if ([[itemInfo allKeys] containsObject:ITEM_ORIGINS_KEY])
+        _wantData.itemOrigins = [itemInfo objectForKey:ITEM_ORIGINS_KEY];
     
     _hashtagString = [itemInfo objectForKey:ITEM_HASH_TAG_KEY];
     if (_hashtagString.length > 0)

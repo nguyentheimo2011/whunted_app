@@ -95,6 +95,7 @@
 #define     ITEM_PRICE_KEY                      @"itemPrice"
 #define     ITEM_PAYMENT_METHOD                 @"paymentMethod"
 #define     ITEM_LOCATION_KEY                   @"location"
+#define     ITEM_ORIGINS_KEY                    @"itemOrigins"
 #define     ITEM_ESCROW_OPTION_KEY              @"escrowOption"
 #define     ITEM_SECONDHAND_OPTION              @"secondHandOption"
 #define     ITEM_REFERENCE_LINK                 @"referenceLink"

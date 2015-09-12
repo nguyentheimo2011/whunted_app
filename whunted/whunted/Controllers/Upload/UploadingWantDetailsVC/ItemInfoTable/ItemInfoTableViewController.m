@@ -13,6 +13,10 @@
 #import <SZTextView/SZTextView.h>
 
 #define     kReferenceLinkCellHeight    80.0f
+#define     kIconWidth                  20.0f
+#define     kIconHeight                 20.0f
+#define     kIconLeftMargin             15.0f
+#define     kIconTopMargin              10.0f
 
 @implementation ItemInfoTableViewController
 {
@@ -21,6 +25,7 @@
     UITableViewCell         *_hashtagCell;
     UITableViewCell         *_secondHandOptionCell;
     UITableViewCell         *_referenceLinkCell;
+    UITableViewCell         *_productOriginCell;
     
     UITextField             *_itemNameTextField;
     SZTextView              *_descriptionTextView;
@@ -44,6 +49,7 @@
         [self initializeHashtagCell];
         [self initializeSecondHandOptionCell];
         [self initReferenceLinkCell];
+        [self initializeProductOriginCell];
     }
     
     return self;
@@ -175,6 +181,35 @@
     [_referenceLinkCell addSubview:_referenceLinkTextView];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) initializeProductOriginCell
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"productOrigin"];
+    _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
+    _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _productOriginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _productOriginCell.indentationLevel = 3;
+    _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if ([[_itemInfoDict allKeys] containsObject:ITEM_ORIGINS_KEY])
+    {
+        NSArray *origins = [_itemInfoDict objectForKey:ITEM_ORIGINS_KEY];
+        if (origins.count > 0)
+            _productOriginCell.detailTextLabel.text = [origins objectAtIndex:0];
+    }
+    else
+        _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    
+    // add origin icon
+    UIImageView *originImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *originImage = [UIImage imageNamed:@"product_origin_icon.png"];
+    [originImageView setImage:originImage];
+    [_productOriginCell addSubview:originImageView];
+}
+
+
 #pragma mark - Event Handling
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -187,7 +222,22 @@
     [_itemInfoDict setObject:[NSNumber numberWithBool:_secondHandOptionSwitch.on] forKey:ITEM_SECONDHAND_OPTION];
     [_itemInfoDict setObject:_referenceLinkTextView.text forKey:ITEM_REFERENCE_LINK];
     
+    if (![[_itemInfoDict allKeys] containsObject:ITEM_ORIGINS_KEY])
+        [_itemInfoDict setObject:[NSArray array] forKey:ITEM_ORIGINS_KEY];
+    
     [self.delegate itemInfoTableViewController:self didPressDone:_itemInfoDict];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) pushProductOriginViewController
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CityViewController *productOriginVC = [[CityViewController alloc] init];
+    NSArray *productOrigins = [_itemInfoDict objectForKey:ITEM_ORIGINS_KEY];
+    productOriginVC.currentLocation = (productOrigins.count > 0) ? [productOrigins objectAtIndex:0] : nil;
+    productOriginVC.delegate = self;
+    
+    [self.navigationController pushViewController:productOriginVC animated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -197,7 +247,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - Table view data source
+
+#pragma mark - UITableViewDataSource methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -212,24 +263,25 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // Return the number of rows in the section.
-    return 5;
+    return 6;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0)
         return _itemNameCell;
-    } else if (indexPath.row == 1) {
+    else if (indexPath.row == 1)
         return _descriptionCell;
-    } else if (indexPath.row == 2) {
+    else if (indexPath.row == 2)
         return _hashtagCell;
-    } else if (indexPath.row == 3) {
+    else if (indexPath.row == 3)
         return _referenceLinkCell;
-    } else if (indexPath.row == 4) {
+    else if (indexPath.row == 4)
+        return _productOriginCell;
+    else if (indexPath.row == 5)
         return _secondHandOptionCell;
-    }
     
     return nil;
 }
@@ -241,24 +293,25 @@
     return @" ";
 }
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0)
         return 35;
-    }else if (indexPath.row == 1) {
+    else if (indexPath.row == 1)
         return windowSize.height * 0.3;
-    } else if (indexPath.row == 2) {
+    else if (indexPath.row == 2)
         return windowSize.height/6;
-    } else if (indexPath.row == 3) {
+    else if (indexPath.row == 3)
         return kReferenceLinkCellHeight;
-    } else if (indexPath.row == 4) {
+    else if (indexPath.row == 4)
         return 45;
-    }
+    else if (indexPath.row == 5)
+        return 45;
     
     return 0;
 }
@@ -271,12 +324,36 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 4)
+        [self pushProductOriginViewController];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
 {
     [_itemNameTextField endEditing:YES];
     return YES;
 }
 
 
+#pragma mark - CityViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_itemInfoDict setObject:[NSArray arrayWithObject:location] forKey:ITEM_ORIGINS_KEY] ;
+    
+    if (location.length > 0)
+        _productOriginCell.detailTextLabel.text = location;
+    else
+        _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+}
 
 @end
