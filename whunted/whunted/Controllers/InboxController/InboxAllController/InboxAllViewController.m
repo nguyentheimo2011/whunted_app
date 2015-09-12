@@ -16,6 +16,7 @@
 
 #define     kControlContainerHeight         60.0f
 
+
 @implementation InboxAllViewController
 {
     UITableView             *_inboxTableView;
@@ -35,8 +36,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {
-        _recentMessages = [NSMutableArray array];
+    if (self != nil)
+    {
+        [self customizeUI];
+        [self addSegmentedControl];
+        [self addInboxTableView];
+        
+        [self loadRecents];
     }
     
     return self;
@@ -47,12 +53,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    
-    [self customizeUI];
-    [self addSegmentedControl];
-    [self addInboxTableView];
-
-    [self loadRecents];
 }
 
 
@@ -69,8 +69,7 @@
 - (void) addSegmentedControl
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kContainerYPos = [Utilities getHeightOfNavigationAndStatusBars:self];
-    UIView *segmentContainer = [[UIView alloc] initWithFrame:CGRectMake(0, kContainerYPos, WINSIZE.width, kControlContainerHeight)];
+    UIView *segmentContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WINSIZE.width, kControlContainerHeight)];
     [segmentContainer setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:segmentContainer];
     
@@ -103,7 +102,7 @@
 {
     CGFloat const kTableHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self] - [Utilities getHeightOfBottomTabBar:self] - kControlContainerHeight;
     
-    CGFloat const kTableYPos = kControlContainerHeight + [Utilities getHeightOfNavigationAndStatusBars:self];
+    CGFloat const kTableYPos = kControlContainerHeight + STATUS_BAR_AND_NAV_BAR_HEIGHT;
     
     _inboxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
     [_inboxTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
@@ -119,6 +118,8 @@
 - (void)loadRecents
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _recentMessages = [NSMutableArray array];
+    
     PFUser *user = [PFUser currentUser];
     if ((user != nil) && (_firebase == nil))
     {
