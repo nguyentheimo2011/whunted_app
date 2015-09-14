@@ -40,6 +40,14 @@
     [self customizeUI];
     [self setViewController];
     
+    // register push notification
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+    
     return YES;
 }
 
@@ -50,14 +58,35 @@
     [FBSDKAppEvents activateApp];
 }
 
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
+         annotation:(id)annotation
+//------------------------------------------------------------------------------------------------------------------------------
+{
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [PFPush handlePush:userInfo];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
