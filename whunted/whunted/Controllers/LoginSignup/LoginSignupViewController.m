@@ -16,24 +16,18 @@
 #import <Parse/Parse.h>
 #import <MBProgressHUD.h>
 
-@interface LoginSignupViewController ()
-
-@property (nonatomic, strong) UIButton *_FBLoginButton;
-@property (nonatomic, strong) UIButton *_emailLoginButton;
-
-@end
 
 @implementation LoginSignupViewController
-
-@synthesize _FBLoginButton;
-@synthesize _emailLoginButton;
+{
+    UIButton            *_FBLoginButton;
+    UIButton            *_emailLoginButton;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self addBackgroundImage];
     [self addFacebookLoginOrSignupButton];
@@ -45,7 +39,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -104,10 +97,14 @@
     NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
     
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        if (!user) {
-            if (!error) {
+        if (!user)
+        {
+            if (!error)
+            {
                 NSLog(@"The user cancelled the Facebook login.");
-            } else {
+            }
+            else
+            {
                 NSLog(@"An error occurred: %@", error.localizedDescription);
             }
             
@@ -119,13 +116,16 @@
                                                   cancelButtonTitle:nil
                                                   otherButtonTitles:@"Dismiss", nil];
             [alert show];
-            
-        } else {
-            if (user.isNew) {
+        }
+        else
+        {
+            if (user.isNew)
+            {
                 NSLog(@"User signed up and logged in through Facebook!");
                 [self addDataToUser];
             }
-            else {
+            else
+            {
                 NSLog(@"User logged in through Facebook!");
             }
             
@@ -150,7 +150,8 @@
 {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
+        if (!error)
+        {
             // result is a dictionary with the user's Facebook data
             NSDictionary *userData = (NSDictionary *)result;
             PFUser *user = [PFUser currentUser];
@@ -158,44 +159,53 @@
             NSString *facebookID = userData[@"id"];
             
             NSString *email = userData[@"email"];
-            if (email) {
+            if (email)
+            {
                 user[@"email"] =email ;
                 user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
             }
             
             NSString *firstName = userData[@"first_name"];
-            if (firstName) {
+            if (firstName)
+            {
                 user[@"firstName"] = firstName;
             }
             
             NSString *lastName = userData[@"last_name"];
-            if (lastName) {
+            if (lastName)
+            {
                 user[@"lastName"] = lastName;
             }
             
             NSString *gender = userData[@"gender"];
-            if (gender) {
+            if (gender)
+            {
                 user[@"gender"] = gender;
             }
             
             NSString *location = userData[@"location"][@"name"];
-            if (location) {
+            if (location)
+            {
                 NSArray *addresses = [Utilities extractCountry:location];
-                if (addresses[0]) {
+                if (addresses[0])
+                {
                     user[@"city"] = addresses[0];
                 }
                 
-                if (addresses[1]) {
+                if (addresses[1])
+                {
                     user[@"country"] = addresses[1];
                     
-                    if (!addresses[0] || ((NSString *)addresses[0]).length == 0) {
+                    if (!addresses[0] || ((NSString *)addresses[0]).length == 0)
+                    {
                         user[@"city"] = addresses[1];
                     }
                 }
             }
             
             NSString *dob = userData[@"birthday"];
-            if (dob) {
+            if (dob)
+            {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"MM/dd/yyyy"];
                 [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
@@ -219,17 +229,23 @@
              ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                  if (connectionError == nil && data != nil) {
                      PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
-                     if (profilePictureFile) {
+                     if (profilePictureFile)
+                     {
                          user[PF_USER_PICTURE] = profilePictureFile;
                          [user saveInBackground];
                          [user pinInBackground];
                      }
                 }
              }];
-        }  else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+        }
+        else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
+        {
+            // Since the request failed, we can check if it was due to an invalid session
             NSLog(@"The facebook session was invalidated");
             [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
-        } else {
+        }
+        else
+        {
             NSLog(@"Some other error: %@", error);
         }
     }];
