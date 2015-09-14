@@ -10,7 +10,6 @@
 #import "ItemImageViewController.h"
 #import "ChatView.h"
 #import "recent.h"
-#import "PersistedCache.h"
 #import "UserProfileViewController.h"
 #import "OfferViewingVC.h"
 #import "AppConstant.h"
@@ -578,15 +577,16 @@
     user2.objectId = _wantData.buyerID;
     user2[PF_USER_USERNAME] = _wantData.buyerUsername;
     
-    [[PersistedCache sharedCache] setImage:[_itemImageList objectAtIndex:0] forKey:_wantData.itemID];
-    
-    if (_currOffer) {
+    if (_currOffer)
+    {
         NSString *id1 = user1.objectId;
         NSString *id2 = user2.objectId;
         
         NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", _currOffer.itemID, id2, id1];;
         [self actionChat:groupId withUser2:user2 andOfferData:_currOffer];
-    } else {
+    }
+    else
+    {
         TransactionData *offerData = [[TransactionData alloc] init];
         offerData.itemID = _wantData.itemID;
         offerData.itemName = _wantData.itemName;

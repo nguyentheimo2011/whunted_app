@@ -9,8 +9,6 @@
 #import "LoginSignupViewController.h"
 #import "MainViewController.h"
 #import "AppConstant.h"
-#import "SyncEngine.h"
-#import "PersistedCache.h"
 #import "Utilities.h"
 
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
@@ -133,7 +131,6 @@
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            [[SyncEngine sharedEngine] startSync];
             [self presentMainViewController];
         }
     }];
@@ -227,10 +224,7 @@
                          [user saveInBackground];
                          [user pinInBackground];
                      }
-                     
-                     UIImage *image = [UIImage imageWithData:data];
-                     [[PersistedCache sharedCache] setImage:image forKey:user.objectId];
-                 }
+                }
              }];
         }  else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
             NSLog(@"The facebook session was invalidated");

@@ -15,7 +15,6 @@
 #import "LoginSignupViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
-#import "SyncEngine.h"
 
 @interface AppDelegate ()
 
@@ -98,11 +97,11 @@
         
         LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
         [self.window setRootViewController:loginVC];
-    } else {
+    }
+    else
+    {
         MainViewController *mainVC = [[MainViewController alloc] init];
         [self.window setRootViewController:mainVC];
-        
-        [[SyncEngine sharedEngine] startSync];
     }
 }
 

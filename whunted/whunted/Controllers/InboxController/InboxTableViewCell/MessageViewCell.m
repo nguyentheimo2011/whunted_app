@@ -13,7 +13,6 @@
 #import <ParseUI/ParseUI.h>
 
 #import "converter.h"
-#import "PersistedCache.h"
 #import "TemporaryCache.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -130,11 +129,7 @@
 - (void) setItemPicture: (NSString *) itemID
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *image = (UIImage *) [[PersistedCache sharedCache] imageForKey:itemID];
-    if (image)
-        [_itemImageView setImage:image];
-    else
-        [self downloadItemImageFromRemoteServer];
+    [self downloadItemImageFromRemoteServer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

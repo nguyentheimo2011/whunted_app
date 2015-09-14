@@ -11,7 +11,6 @@
 #import "TransactionData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
-#import "SyncEngine.h"
 
 #import "MBProgressHUD.h"
 

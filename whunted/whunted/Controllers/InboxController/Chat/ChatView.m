@@ -21,7 +21,6 @@
 #import "camera.h"
 #import "common.h"
 #import "recent.h"
-#import "PersistedCache.h"
 #import "TemporaryCache.h"
 #import "Utilities.h"
 #import "converter.h"
