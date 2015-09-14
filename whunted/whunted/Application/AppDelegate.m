@@ -34,13 +34,7 @@
     [self customizeUI];
     [self setViewController];
     
-    // register push notification
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge |
-                                                    UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
+    [self addNotificationListeners];
     
     return YES;
 }
@@ -73,6 +67,7 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation[PF_INSTALLATION_USER] = [PFUser currentUser].objectId;
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded)
         {
@@ -134,6 +129,28 @@
     [Utilities customizeHeaderFooterLabels];
     [Utilities customizeTabBar];
     [Utilities customizeNavigationBar];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListeners
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerPushNotifications) name:NOTIFICATION_USER_SIGNED_UP object:nil];
+}
+
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) registerPushNotifications
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+    UIApplication *application = [UIApplication sharedApplication];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
 }
 
 @end

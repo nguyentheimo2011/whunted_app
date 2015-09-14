@@ -213,6 +213,7 @@
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     NOTIFICATION_USER_SIGNED_UP             @"NCUserSignedUp"
 #define		NOTIFICATION_USER_LOGGED_IN             @"NCUserLoggedIn"
 #define		NOTIFICATION_USER_LOGGED_OUT            @"NCUserLoggedOut"
 #define     NOTIFICATION_NEW_OFFER_MADE_BY_ME       @"NotificationNewOfferMadeByMe"

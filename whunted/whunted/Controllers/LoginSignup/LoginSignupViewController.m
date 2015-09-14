@@ -41,6 +41,9 @@
     [super didReceiveMemoryWarning];
 }
 
+
+#pragma mark - UI Handlers
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addBackgroundImage
 //------------------------------------------------------------------------------------------------------------------------------
@@ -78,6 +81,7 @@
     _emailLoginButton.layer.cornerRadius = 5;
     [self.view addSubview:_emailLoginButton];
 }
+
 
 #pragma mark - Event Handling
 
@@ -121,13 +125,11 @@
         {
             if (user.isNew)
             {
-                NSLog(@"User signed up and logged in through Facebook!");
                 [self addDataToUser];
+                
             }
-            else
-            {
-                NSLog(@"User logged in through Facebook!");
-            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_SIGNED_UP object:nil];
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
@@ -250,6 +252,7 @@
         }
     }];
 }
+
 
 #pragma mark - Supporting functions
 
