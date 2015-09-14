@@ -16,11 +16,6 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-@interface AppDelegate ()
-
-- (void) setViewController;
-
-@end
 
 @implementation AppDelegate
 
@@ -78,7 +73,23 @@
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded)
+        {
+            
+        }
+        else
+        {
+            NSLog(@"Error in didRegisterForRemoteNotificationsWithDeviceToken %@ %@", error, error.userInfo);
+        }
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) application:(UIApplication *) application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@ %@", error, error.userInfo);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
