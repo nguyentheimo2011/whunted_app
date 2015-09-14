@@ -72,14 +72,15 @@ void SendPushNotification2(NSArray *members, NSString *text)
 {
 	PFUser *user = [PFUser currentUser];
 	NSString *message = [NSString stringWithFormat:@"%@: %@", user[PF_USER_USERNAME], text];
-	
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID containedIn:members];
-	[query whereKey:PF_USER_OBJECTID notEqualTo:user.objectId];
-	[query setLimit:1000];
+    
+    NSString *targetUser;
+    if ([members[0] isEqualToString:user.objectId])
+        targetUser = members[1];
+    else
+        targetUser = members[0];
 
 	PFQuery *queryInstallation = [PFInstallation query];
-	[queryInstallation whereKey:PF_INSTALLATION_USER matchesQuery:query];
+	[queryInstallation whereKey:PF_INSTALLATION_USER equalTo:targetUser];
 
 	PFPush *push = [[PFPush alloc] init];
 	[push setQuery:queryInstallation];
