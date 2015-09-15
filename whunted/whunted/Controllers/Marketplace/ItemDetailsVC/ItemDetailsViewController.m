@@ -141,6 +141,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
+    
+    if ([_wantData.buyerID isEqualToString:[PFUser currentUser].objectId])
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editInfoOfMyWantData)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -694,10 +697,18 @@
 - (void) updateSecondBottomButtonTitle
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_secondBottomButtonTitle.length > 0) {
+    if (_secondBottomButtonTitle.length > 0)
+    {
         [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
         _secondBottomButton.cornerRadius = 0;
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) editInfoOfMyWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 
