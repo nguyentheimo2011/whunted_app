@@ -82,9 +82,14 @@ void SendPushNotification2(NSArray *members, NSString *text)
 	PFQuery *queryInstallation = [PFInstallation query];
 	[queryInstallation whereKey:PF_INSTALLATION_USER equalTo:targetUser];
 
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          message, @"alert",
+                          @"Increment", @"badge",
+                          nil];
+    
 	PFPush *push = [[PFPush alloc] init];
 	[push setQuery:queryInstallation];
-	[push setMessage:message];
+	[push setData:data];
 	[push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil)
