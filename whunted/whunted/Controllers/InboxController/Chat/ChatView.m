@@ -34,7 +34,6 @@
 #import "ChatView.h"
 
 #import "TransactionData.h"
-#import "LeaveFeedbackVC.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -586,7 +585,8 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else {
             LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] initWithOfferData:_offerData];
-            [leaveFeedbackVC setReceiverUsername:_user2Username];
+            leaveFeedbackVC.delegate = self;
+            leaveFeedbackVC.receiverUsername = _user2Username;
             
             if ([objects count] > 0) {
                 if ([objects count] > 1) {
@@ -1081,7 +1081,7 @@
 }
 
 
-#pragma mark - Delegation methods
+#pragma mark - BuyersOrSellerOfferDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(TransactionData *)offer
@@ -1096,6 +1096,18 @@
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:nil];
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - LeaveFeedbackViewDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) leaveFeedBackViewController:(UIViewController *)controller didCompleteGivingFeedBack:(FeedbackData *)feedbackData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *action = NSLocalizedString(@"has left a feedback", nil);
+    NSString *message = [NSString stringWithFormat:@"%@\n %@", [PFUser currentUser][PF_USER_USERNAME], action];
+    [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeLeavingFeeback TransactionDetails:nil CompletionBlock:nil];
 }
 
 

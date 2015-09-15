@@ -18,6 +18,7 @@
 
 #import "TransactionData.h"
 #import "BuyersOrSellersOfferViewController.h"
+#import "LeaveFeedbackVC.h"
 #import "AppConstant.h"
 
 @class BuyersOrSellersOfferViewController;
@@ -31,17 +32,15 @@
 
 @end
 
+
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate>
+@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate, LeaveFeedbackViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic)           id<ChatViewDelegate>    delegate;
-
-@property (nonatomic, strong)   TransactionData         *offerData;
-
-@property (nonatomic, strong)   NSString                *user2Username;
-
-@property (nonatomic)           BOOL                    isUnread;
+@property (nonatomic)           id<ChatViewDelegate>        delegate;
+@property (nonatomic, strong)   TransactionData             *offerData;
+@property (nonatomic, strong)   NSString                    *user2Username;
+@property (nonatomic)           BOOL                        isUnread;
 
 
 - (id) initWith: (NSString *) groupId_;

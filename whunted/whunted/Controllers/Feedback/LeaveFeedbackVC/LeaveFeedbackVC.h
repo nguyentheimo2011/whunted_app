@@ -11,13 +11,25 @@
 #import "FeedbackData.h"
 #import "TransactionData.h"
 
+@class LeaveFeedbackVC;
+
+//----------------------------------------------------------------------------------------------------------------------------
+@protocol LeaveFeedbackViewDelegate <NSObject>
+//----------------------------------------------------------------------------------------------------------------------------
+
+- (void) leaveFeedBackViewController: (UIViewController *) controller didCompleteGivingFeedBack: (FeedbackData *) feedbackData;
+
+@end
+
+//----------------------------------------------------------------------------------------------------------------------------
 @interface LeaveFeedbackVC : UITableViewController <UITextViewDelegate>
+//----------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong) TransactionData   *offerData;
+@property (nonatomic, weak)     id<LeaveFeedbackViewDelegate>   delegate;
 
-@property (nonatomic, strong) FeedbackData      *feedbackData;
-
-@property (nonatomic, strong) NSString          *receiverUsername;
+@property (nonatomic, strong)   TransactionData       *offerData;
+@property (nonatomic, strong)   FeedbackData          *feedbackData;
+@property (nonatomic, strong)   NSString              *receiverUsername;
 
 - (id) initWithOfferData: (TransactionData *) offerData;
 

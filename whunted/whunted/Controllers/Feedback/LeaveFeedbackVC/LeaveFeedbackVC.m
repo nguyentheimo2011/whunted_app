@@ -11,41 +11,46 @@
 #import "AppConstant.h"
 
 #import <SZTextView.h>
+#import <MBProgressHUD.h>
 
-#define kRatingCellHeight       95.0f
-#define kSecondCellHeight       50.0f
-#define kFeedbackCommentHeight  150.0f
-#define kFourthCellHeight       32.0f
+#define     kRatingCellHeight           95.0f
+#define     kSecondCellHeight           50.0f
+#define     kFeedbackCommentHeight      150.0f
+#define     kFourthCellHeight           32.0f
 
-#define kHeaderHeight           10.0f
-#define kFooterHeight           0.01f;
+#define     kHeaderHeight               10.0f
+#define     kFooterHeight               0.01f;
 
-#define kMaxNumOfChars          500
+#define     kMaxNumOfChars              500
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @implementation LeaveFeedbackVC
+//-----------------------------------------------------------------------------------------------------------------------------
 {
-    UITableViewCell     *_ratingCell;
-    UITableViewCell     *_secondCell;
-    UITableViewCell     *_feedbackCommentCell;
-    UITableViewCell     *_numOfCharsLeftCell;
+    UITableViewCell         *_ratingCell;
+    UITableViewCell         *_secondCell;
+    UITableViewCell         *_feedbackCommentCell;
+    UITableViewCell         *_numOfCharsLeftCell;
     
-    SZTextView          *_feedbackCommentTextView;
+    SZTextView              *_feedbackCommentTextView;
     
-    UISegmentedControl  *_ratingSegmentedControl;
+    UISegmentedControl      *_ratingSegmentedControl;
     
-    NSInteger           _numOfCharsLeft;
+    NSInteger               _numOfCharsLeft;
 }
 
-@synthesize offerData = _offerData;
-@synthesize receiverUsername = _receiverUsername;
-@synthesize feedbackData = _feedbackData;
+@synthesize delegate            =   _delegate;
+@synthesize offerData           =   _offerData;
+@synthesize receiverUsername    =   _receiverUsername;
+@synthesize feedbackData        =   _feedbackData;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithOfferData: (TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _offerData = offerData;
     }
     
@@ -74,6 +79,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark - Data Init
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -90,7 +96,8 @@
     _feedbackData = feedbackData;
 }
 
-#pragma mark - UI
+
+#pragma mark - UI Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
@@ -251,6 +258,7 @@
         return _numOfCharsLeftCell;
 }
 
+
 #pragma mark - UITableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -302,13 +310,14 @@
     [_feedbackCommentTextView resignFirstResponder];
 }
 
+
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) submitBarButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     PFUser *currUser = [PFUser currentUser];
     
@@ -316,11 +325,13 @@
         _feedbackData = [[FeedbackData alloc] init];
     
     _feedbackData.writerID = currUser.objectId;
-    if ([Utilities amITheBuyer:_offerData]) {
+    if ([Utilities amITheBuyer:_offerData])
+    {
         _feedbackData.receiverID = _offerData.sellerID;
         _feedbackData.isWriterTheBuyer = YES;
     }
-    else {
+    else
+    {
         _feedbackData.receiverID = _offerData.buyerID;
         _feedbackData.isWriterTheBuyer = NO;
     }
@@ -347,6 +358,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 #pragma mark - UITextViewDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -362,12 +374,14 @@
     
     NSUInteger newLength = [textView.text length] + [text length] - range.length;
     
-    if (newLength <= kMaxNumOfChars) {
+    if (newLength <= kMaxNumOfChars)
+    {
         // if the new text has the length of less than kMaxNumOfChars chars, then apply the changes
         _numOfCharsLeft = kMaxNumOfChars - newLength;
         _numOfCharsLeftCell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)_numOfCharsLeft];
         return YES;
-    } else {
+    } else
+    {
         // otherwise, take only part of the text
         NSUInteger maxAddedLen = kMaxNumOfChars - (textView.text.length - range.length);
         NSString *subText = [text substringToIndex:maxAddedLen];
@@ -381,6 +395,7 @@
     }
 }
 
+
 #pragma mark - Backend
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -391,6 +406,11 @@
     [obj saveInBackgroundWithBlock:^(BOOL success, NSError *error) {
         if (!success)
             NSLog(@"%@ %@", error, [error userInfo]);
+        else
+            [_delegate leaveFeedBackViewController:self didCompleteGivingFeedBack:feedbackData];
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 

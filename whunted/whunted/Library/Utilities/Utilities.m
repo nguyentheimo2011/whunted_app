@@ -568,6 +568,8 @@
         return @"ChatMessageTypeMakingOffer";
     else if (type == ChatMessageTypeNormal)
         return @"ChatMessageTypeNormal";
+    else if (type == ChatMessageTypeLeavingFeeback)
+        return @"ChatMessageTypeLeavingFeeback";
     else
         return @"";
 }
@@ -588,6 +590,8 @@
         return ChatMessageTypeMakingOffer;
     else if ([type isEqualToString:@"ChatMessageTypeNormal"])
         return ChatMessageTypeNormal;
+    else if ([type isEqualToString:@"ChatMessageTypeLeavingFeeback"])
+        return ChatMessageTypeLeavingFeeback;
     else
         return ChatMessageTypeNone;
 }
