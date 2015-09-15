@@ -1022,15 +1022,15 @@
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E92EC5071B688EBF00AABB72 /* Feedback */,
-				E9A07BE81B313B5400904DE9 /* InboxController */,
-				E9D9C5071B1BFFCE00222E0C /* Marketplace */,
-				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
 				E916F4421B00A95F005055E3 /* Main Controller */,
-				E94D17EA1AF9B28700E31B01 /* WantSell */,
+				E9D9C5071B1BFFCE00222E0C /* Marketplace */,
 				E94D17CD1AF8B56400E31B01 /* NewsFeed */,
 				E916F4511B01AAAD005055E3 /* Upload */,
+				E9A07BE81B313B5400904DE9 /* InboxController */,
 				E98113221B25892C00ECAA0C /* UserProfileVC */,
+				E92EC5071B688EBF00AABB72 /* Feedback */,
+				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
+				E94D17EA1AF9B28700E31B01 /* WantSell */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1384,11 +1384,11 @@
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9D432F51B54F2E800530492 /* UserProfile */,
+				E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */,
 				E9D264C11B674BA800CBEAFF /* Settings */,
 				E9D264B51B65E76B00CBEAFF /* ResidingCityTableVC */,
 				E9D264A21B6226A700CBEAFF /* ResidingCountryTableVC */,
-				E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */,
-				E9D432F51B54F2E800530492 /* UserProfile */,
 				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
 				E9D433081B55162200530492 /* PreferenceVC */,
 			);

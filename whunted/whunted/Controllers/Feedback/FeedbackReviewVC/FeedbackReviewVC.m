@@ -12,20 +12,22 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-#define kControlContainerHeight     60.0f
-#define kFeedbackCellIdentifier     @"FeedbackTableViewCell"
+#define     kControlContainerHeight         60.0f
+#define     kFeedbackCellIdentifier         @"FeedbackTableViewCell"
 
+//----------------------------------------------------------------------------------------------------------------------------
 @implementation FeedbackReviewVC
+//----------------------------------------------------------------------------------------------------------------------------
 {
-    UITableView         *_feedbackTableView;
+    UITableView             *_feedbackTableView;
     
-    UISegmentedControl  *_categorySegmentedControl;
+    UISegmentedControl      *_categorySegmentedControl;
     
-    NSArray             *_categorizedFeedbackList;
+    NSArray                 *_categorizedFeedbackList;
 }
 
-@synthesize feedbackList = _feedbackList;
-@synthesize ratingDict = _ratingDict;
+@synthesize feedbackList    =   _feedbackList;
+@synthesize ratingDict      =   _ratingDict;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -46,6 +48,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark - Data Init
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -54,6 +57,7 @@
 {    
     _categorizedFeedbackList = [NSMutableArray arrayWithArray:_feedbackList];
 }
+
 
 #pragma mark - UI Handlers
 
@@ -115,6 +119,7 @@
     [self.view addSubview:_feedbackTableView];
 }
 
+
 #pragma mark - UITableViewDataSource methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -137,7 +142,8 @@
 {
     FeedbackTableViewCell *cell = (FeedbackTableViewCell *) [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier];
     
-    if (!cell) {
+    if (!cell)
+    {
         cell = [[FeedbackTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFeedbackCellIdentifier];
     }
     
@@ -145,7 +151,8 @@
     
     return cell;
 }
- 
+
+
 #pragma mark - UITableViewDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -176,19 +183,25 @@
     return cell.cellHeight;
 }
 
+
 #pragma mark - Event Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) categorySegmentedControlSelectedIndexChange
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_categorySegmentedControl.selectedSegmentIndex == 0) {
+    if (_categorySegmentedControl.selectedSegmentIndex == 0)
+    {
         _categorizedFeedbackList = [NSArray arrayWithArray:_feedbackList];
         [_feedbackTableView reloadData];
-    } else if (_categorySegmentedControl.selectedSegmentIndex == 1) {
+    }
+    else if (_categorySegmentedControl.selectedSegmentIndex == 1)
+    {
         _categorizedFeedbackList = [NSArray arrayWithArray:[self getFeedbacksAsSeller:_feedbackList]];
         [_feedbackTableView reloadData];
-    } else {
+    }
+    else
+    {
         _categorizedFeedbackList = [NSArray arrayWithArray:[self getFeedbacksAsBuyer:_feedbackList]];
         [_feedbackTableView reloadData];
     }
@@ -201,6 +214,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 #pragma mark - Helpers
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -209,7 +223,8 @@
 {
     NSMutableArray *array = [NSMutableArray array];
     
-    for (FeedbackData *feedback in feedbackList) {
+    for (FeedbackData *feedback in feedbackList)
+    {
         if (feedback.isWriterTheBuyer)
             [array addObject:feedback];
     }
@@ -223,7 +238,8 @@
 {
     NSMutableArray *array = [NSMutableArray array];
     
-    for (FeedbackData *feedback in feedbackList) {
+    for (FeedbackData *feedback in feedbackList)
+    {
         if (!feedback.isWriterTheBuyer)
             [array addObject:feedback];
     }

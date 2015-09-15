@@ -736,11 +736,13 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_curViewMode == HistoryCollectionViewModeBuying) {
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+    {
         [self resizeHistoryCollectionView];
         return [_myWantDataList count];
     }
-    else {
+    else
+    {
         [self resizeHistoryCollectionView];
         return [_mySellDataList count];
     }
@@ -754,7 +756,8 @@
     {
         HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
         
-        if (cell.wantData == nil) {
+        if (cell.wantData == nil)
+        {
             [cell initCell];
         }
         
@@ -786,7 +789,9 @@
         CGFloat const kCellHeight   =   kCellWidth + 85.0;
         
         return CGSizeMake(kCellWidth, kCellHeight);
-    } else {
+    }
+    else
+    {
         CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
         CGFloat const kCellHeight   =   kCellWidth + 115.0f;
         
@@ -837,11 +842,15 @@
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
     [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if (objects.count > 0) {
+        if (!error)
+        {
+            if (objects.count > 0)
+            {
                 itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:[objects objectAtIndex:0]];
             }
-        } else {
+        }
+        else
+        {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         
@@ -860,10 +869,13 @@
     CGFloat const kIconHeight = 25;
     
     JTImageButton *listGridViewControl = (JTImageButton *) sender;
-    if (listGridViewControl.tag == 0) {
+    if (listGridViewControl.tag == 0)
+    {
         [listGridViewControl createTitle:nil withIcon:[UIImage imageNamed:@"list_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
         listGridViewControl.tag = 1;
-    } else {
+    }
+    else
+    {
         [listGridViewControl createTitle:@"" withIcon:[UIImage imageNamed:@"grid_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
         listGridViewControl.tag = 0;
     }
@@ -883,7 +895,8 @@
 {
     if (segmentedControl.selectedSegmentIndex == 0)
         _curViewMode = HistoryCollectionViewModeBuying;
-    else {
+    else
+    {
         _curViewMode = HistoryCollectionViewModeSelling;
         
         if (!_mySellDataList)
@@ -902,10 +915,13 @@
     CGFloat const kYDistanceBetweenCell     =   16.0f;
     CGFloat const kCellWidth                =   WINSIZE.width/2 - 12.0f;
     
-    if (_curViewMode == HistoryCollectionViewModeBuying) {
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+    {
         CGFloat const kCellHeight = kCellWidth + 85.0f;
         _collectionViewCurrHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + (([_myWantDataList count]/2+1) + 1) * kYDistanceBetweenCell;
-    } else {
+    }
+    else
+    {
         CGFloat const kCellHeight = kCellWidth + 115.0f;
         NSInteger listSize = [_mySellDataList count];
         _collectionViewCurrHeight = (listSize + 1)/2 * kCellHeight + ((listSize + 1)/2) * kYDistanceBetweenCell;
@@ -935,15 +951,20 @@
     [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [query orderByAscending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error) {
-        if (error) {
+        if (error)
+        {
             NSLog(@"%@ %@", error, [error userInfo]);
-        } else {
+        }
+        else
+        {
             FeedbackReviewVC *feedbackVC = [[FeedbackReviewVC alloc] init];
             feedbackVC.ratingDict = _ratingDict;
             
             NSMutableArray *feedbackList = [NSMutableArray array];
             for (PFObject *obj in array)
+            {
                 [feedbackList addObject:[[FeedbackData alloc] initWithPFObject:obj]];
+            }
             
             feedbackVC.feedbackList = feedbackList;
             [self.navigationController pushViewController:feedbackVC animated:YES];
@@ -991,7 +1012,8 @@
     [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
             NSLog(@"%@ %@", error, [error userInfo]);
-        else {
+        else
+        {
             _positiveFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
             [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_POSITIVE];
         }
@@ -1004,7 +1026,8 @@
     [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
             NSLog(@"%@ %@", error, [error userInfo]);
-        else {
+        else
+        {
             _mehFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
             [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_NEUTRAL];
         }
@@ -1017,7 +1040,8 @@
     [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
             NSLog(@"%@ %@", error, [error userInfo]);
-        else {
+        else
+        {
             _negativeFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
             [_ratingDict setValue:[NSNumber numberWithInt:count] forKey:FEEDBACK_RATING_NEGATIVE];
         }
@@ -1033,14 +1057,17 @@
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
+        if (!error)
+        {
+            for (PFObject *object in objects)
+            {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [_myWantDataList addObject:wantData];
             }
             [_historyCollectionView reloadData];
-            
-        } else {
+        }
+        else
+        {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
@@ -1099,11 +1126,14 @@
     [query whereKey:@"buyerID" equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
-        if (!error) {
+        if (!error)
+        {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
             [_myWantDataList insertObject:wantData atIndex:0];
             [_historyCollectionView reloadData];
-        } else {
+        }
+        else
+        {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
@@ -1118,7 +1148,8 @@
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
-        if (!error) {
+        if (!error)
+        {
             NSString *itemID = offerObject[@"itemID"];
             PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
@@ -1126,7 +1157,9 @@
                 [_mySellDataList insertObject:wantData atIndex:0];
                 [_historyCollectionView reloadData];
             }];
-        } else {
+        }
+        else
+        {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }

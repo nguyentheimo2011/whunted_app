@@ -12,29 +12,31 @@
 
 #import <JTImageButton.h>
 
-#define kProfilePictureWidth            40.0f
-#define kProfilePictureMargin           10.0f
-#define kProfilePictureContainerWidth   60.0f
+#define kProfilePictureWidth                    40.0f
+#define kProfilePictureMargin                   10.0f
+#define kProfilePictureContainerWidth           60.0f
 
-#define kRatingContainerWidth           40.0f
+#define kRatingContainerWidth                   40.0f
 
-#define kClockImageWidth                12.0f
-#define kClockImageHeight               12.0f
+#define kClockImageWidth                        12.0f
+#define kClockImageHeight                       12.0f
 
+
+//----------------------------------------------------------------------------------------------------------------------------
 @implementation FeedbackTableViewCell
+//----------------------------------------------------------------------------------------------------------------------------
 {
-    UIImageView     *_userProfilePicture;
-    UIImageView     *_ratingImageView;
-    UIImageView     *_clockImageView;
-    UITextView      *_commentTextView;
-    UIButton        *_writerUsernameButton;
-    UILabel         *_timestampLabel;
-    UILabel         *_purchasingRoleLabel;
+    UIImageView             *_userProfilePicture;
+    UIImageView             *_ratingImageView;
+    UIImageView             *_clockImageView;
+    UITextView              *_commentTextView;
+    UIButton                *_writerUsernameButton;
+    UILabel                 *_timestampLabel;
+    UILabel                 *_purchasingRoleLabel;
 }
 
-@synthesize cellHeight = _cellHeight;
-
-@synthesize feedbackData = _feedbackData;
+@synthesize cellHeight      =   _cellHeight;
+@synthesize feedbackData    =   _feedbackData;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -42,7 +44,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
-    if (self) {
+    if (self)
+    {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -57,6 +60,7 @@
     
     [self initUI];
 }
+
 
 #pragma mark - UI Handlers
 
@@ -144,11 +148,16 @@
     
     _ratingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kRatingImageViewXPos, kProfilePictureMargin, kRatingImageViewWidth, kRatingImageViewWidth)];
     UIImage *ratingImage;
-    if (_feedbackData.rating == FeedbackRatingPositive) {
+    if (_feedbackData.rating == FeedbackRatingPositive)
+    {
         ratingImage = [UIImage imageNamed:@"smiling_face.png"];
-    } else if (_feedbackData.rating == FeedbackRatingNeutral) {
+    }
+    else if (_feedbackData.rating == FeedbackRatingNeutral)
+    {
         ratingImage = [UIImage imageNamed:@"meh_face.png"];
-    } else {
+    }
+    else
+    {
         ratingImage = [UIImage imageNamed:@"sad_face.png"];
     }
     
@@ -214,6 +223,7 @@
     [_timestampLabel removeFromSuperview];
     [_purchasingRoleLabel removeFromSuperview];
 }
+
 
 #pragma mark - Event Handler
 

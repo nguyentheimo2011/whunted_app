@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+//----------------------------------------------------------------------------------------------------------------------------
 @interface FeedbackReviewVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+//----------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong) NSArray       *feedbackList;
-
-@property (nonatomic, strong) NSDictionary  *ratingDict;
+@property (nonatomic, strong)   NSArray              *feedbackList;
+@property (nonatomic, strong)   NSDictionary         *ratingDict;
 
 @end
