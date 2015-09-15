@@ -44,6 +44,17 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [FBSDKAppEvents activateApp];
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error)
+            {
+                NSLog(@"%@ %@", error, error.userInfo);
+            }
+        }];
+    }
 }
 
 
