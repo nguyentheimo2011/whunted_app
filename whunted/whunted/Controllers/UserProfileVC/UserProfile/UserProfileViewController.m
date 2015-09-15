@@ -50,6 +50,9 @@
     
     UIView                      *_bottomLabelContainer;
     
+    UIView                      *_leftHorizontalLine;
+    UIView                      *_rightHorizontalLine;
+    
     CGFloat                     _statusAndNavBarHeight;
     CGFloat                     _tabBarHeight;
     CGFloat                     _currHeight;
@@ -642,7 +645,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _totalListingsNumLabel = [[UILabel alloc] init];
-    _totalListingsNumLabel.text = @"0 Listings";
+    _totalListingsNumLabel.text = NSLocalizedString(@" Listings", nil);
     _totalListingsNumLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
     _totalListingsNumLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_totalListingsNumLabel sizeToFit];
@@ -661,13 +664,13 @@
     CGFloat const kLineYPos = kLabelYPos + kLabelHeight / 2.0;
     CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
     
-    UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
-    leftLine.backgroundColor = LIGHT_GRAY_COLOR;
-    [_scrollView addSubview:leftLine];
+    _leftHorizontalLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
+    _leftHorizontalLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:_leftHorizontalLine];
     
-    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
-    rightLine.backgroundColor = LIGHT_GRAY_COLOR;
-    [_scrollView addSubview:rightLine];
+    _rightHorizontalLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
+    _rightHorizontalLine.backgroundColor = LIGHT_GRAY_COLOR;
+    [_scrollView addSubview:_rightHorizontalLine];
     
     _currHeight += kLabelTopMargin + kLabelHeight;
 }
@@ -727,6 +730,30 @@
     
     _currHeight +=  kContainerHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) updateTotalListingNumLabel: (NSInteger) listingsNum
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *text = [NSString  stringWithFormat:@"%ld %@", listingsNum, [self getListingTextBasedOnNum:listingsNum]];
+    _totalListingsNumLabel.text = text;
+    [_totalListingsNumLabel sizeToFit];
+
+    CGFloat const kLabelWidth = _totalListingsNumLabel.frame.size.width;
+    CGFloat const kLabelHeight = _totalListingsNumLabel.frame.size.height;
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
+    CGFloat const kLabelYPos = _totalListingsNumLabel.frame.origin.y;
+    _totalListingsNumLabel.frame = CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight);
+    [_scrollView addSubview:_totalListingsNumLabel];
+
+    CGFloat const kFirstLineLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLineWidth = kLabelLeftMargin - 5 - kFirstLineLeftMargin;
+    CGFloat const kLineYPos = kLabelYPos + kLabelHeight / 2.0;
+    CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
+
+    _leftHorizontalLine.frame = CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1);
+    _rightHorizontalLine.frame = CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1);
 }
 
 
@@ -894,13 +921,18 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     if (segmentedControl.selectedSegmentIndex == 0)
+    {
         _curViewMode = HistoryCollectionViewModeBuying;
+        [self updateTotalListingNumLabel:_myWantDataList.count];
+    }
     else
     {
         _curViewMode = HistoryCollectionViewModeSelling;
         
         if (!_mySellDataList)
             [self retrieveMySellList];
+        else
+            [self updateTotalListingNumLabel:_mySellDataList.count];
     }
     
     [_historyCollectionView reloadData];
@@ -997,6 +1029,19 @@
 }
 
 
+#pragma mark - Helper methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (NSString *) getListingTextBasedOnNum: (NSInteger) num
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (num <= 1)
+        return NSLocalizedString(@"Listing", nil);
+    else
+        return NSLocalizedString(@"Listings", nil);
+}
+
+
 #pragma mark - Backend
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1053,6 +1098,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _myWantDataList = [[NSMutableArray alloc] init];
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
@@ -1064,6 +1110,9 @@
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [_myWantDataList addObject:wantData];
             }
+            
+            [self updateTotalListingNumLabel:_myWantDataList.count];
+            
             [_historyCollectionView reloadData];
         }
         else
@@ -1108,6 +1157,9 @@
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [_mySellDataList addObject:wantData];
                     [_historyCollectionView reloadData];
+                    
+                    if (i == offerObjects.count-1)
+                        [self updateTotalListingNumLabel:_mySellDataList.count];
                 }];
             }
         }
