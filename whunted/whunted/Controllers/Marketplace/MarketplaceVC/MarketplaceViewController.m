@@ -16,8 +16,9 @@
 
 #define     kSortAndFilterBarHeight     50.0f
 
-
+//-----------------------------------------------------------------------------------------------------------------------------
 @implementation MarketplaceViewController
+//-----------------------------------------------------------------------------------------------------------------------------
 {
     UICollectionView        *_wantCollectionView;
     
@@ -56,9 +57,9 @@
 {
     [super viewDidLoad];
     
-    [self customizeView];
     [self addSortAndFilterBar];
     [self addWantCollectionView];
+    [self customizeView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -100,7 +101,11 @@
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, WINSIZE.width, 44.0)];
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    searchBar.delegate = self;
+    searchBar.tintColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1];
+    self.navigationItem.titleView = searchBar;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -674,7 +679,6 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (BOOL) isOfOneOfCorrectCategories: (NSString *) category
-
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
@@ -705,6 +709,16 @@
         return YES;
     else
         return NO;
+}
+
+
+#pragma mark - UISearchBarDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return YES;
 }
 
 @end
