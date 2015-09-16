@@ -275,8 +275,11 @@
     {
         for (int i=0; i<_wantData.itemPictures.count; i++)
         {
-            UIImage *image = [_wantData.itemPictures objectAtIndex:i];
-            [[_addingButtonList objectAtIndex:i] setImage: image];
+            PFFile *imageFile = [_wantData.itemPictures objectAtIndex:i][PF_ITEM_PICTURE];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                [[_addingButtonList objectAtIndex:i] setImage: image];
+            }];
         }
     }
     

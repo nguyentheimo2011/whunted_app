@@ -708,7 +708,6 @@
 - (void) editInfoOfMyWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantData.itemPictures = [NSMutableArray arrayWithArray:_itemImageList];
     ItemDetailsEditingVC *editingVC = [[ItemDetailsEditingVC alloc] initWithWantData:_wantData];
     [self.navigationController pushViewController:editingVC animated:YES];
 }
@@ -783,6 +782,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageList = [[NSMutableArray alloc] init];
+    _wantData.itemPictures = [[NSMutableArray alloc] init];
     
     PFRelation *picRelation = _wantData.itemPictureList;
     PFQuery *query = [picRelation query];
@@ -795,13 +795,16 @@
         else
         {
             for (int i=0; i<pfObjList.count; i++)
+            {
                 [_itemImageList addObject:[[UIImage alloc] init]];
+                [_wantData.itemPictures addObject:[pfObjList objectAtIndex:i]];
+            }
             
             for (int i=0; i<pfObjList.count; i++)
             {
                 PFObject *pfObj = [pfObjList objectAtIndex:i];
                 
-                PFFile *imageFile = pfObj[@"itemPicture"];
+                PFFile *imageFile = pfObj[PF_ITEM_PICTURE];
                 [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     UIImage *image = [UIImage imageWithData:data];
                     [_itemImageList replaceObjectAtIndex:i withObject:image];
