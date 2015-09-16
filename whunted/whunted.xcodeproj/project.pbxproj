@@ -239,6 +239,7 @@
 		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
+		E9DE82E21BA82AE10060C79B /* ItemDetailsEditingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E11BA82AE10060C79B /* ItemDetailsEditingVC.m */; };
 		E9E31F651B849710008D6A3D /* camera_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F5F1B849710008D6A3D /* camera_upload_icon@2x.png */; };
 		E9E31F671B849710008D6A3D /* gallery_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F611B849710008D6A3D /* gallery_upload_icon@2x.png */; };
 		E9E31F691B849710008D6A3D /* image_link_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F631B849710008D6A3D /* image_link_upload_icon@2x.png */; };
@@ -617,6 +618,8 @@
 		E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceCollectionViewCell.m; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.m; sourceTree = "<group>"; };
 		E9D9C5111B1DA51F00222E0C /* ItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailsViewController.h; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.h; sourceTree = "<group>"; };
 		E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailsViewController.m; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.m; sourceTree = "<group>"; };
+		E9DE82E01BA82AE10060C79B /* ItemDetailsEditingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailsEditingVC.h; path = Controllers/Marketplace/ItemDetailsEditingVC/ItemDetailsEditingVC.h; sourceTree = "<group>"; };
+		E9DE82E11BA82AE10060C79B /* ItemDetailsEditingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailsEditingVC.m; path = Controllers/Marketplace/ItemDetailsEditingVC/ItemDetailsEditingVC.m; sourceTree = "<group>"; };
 		E9E31F5F1B849710008D6A3D /* camera_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_upload_icon@2x.png"; path = "Resources/UploadPopup/camera_upload_icon@2x.png"; sourceTree = "<group>"; };
 		E9E31F611B849710008D6A3D /* gallery_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gallery_upload_icon@2x.png"; path = "Resources/UploadPopup/gallery_upload_icon@2x.png"; sourceTree = "<group>"; };
 		E9E31F631B849710008D6A3D /* image_link_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image_link_upload_icon@2x.png"; path = "Resources/UploadPopup/image_link_upload_icon@2x.png"; sourceTree = "<group>"; };
@@ -1634,6 +1637,7 @@
 				E9D9C50C1B1C052F00222E0C /* MarketplaceCollectionViewCell */,
 				E9D9C5101B1DA43700222E0C /* ItemDetailsVC */,
 				E94A03711B1E9B3A00339BC4 /* ItemImageVC */,
+				E9DE82DF1BA82AAD0060C79B /* ItemDetailsEditingVC */,
 				E9FB2E931B1F0DC700F8C435 /* BuyersOrSellersOfferVC */,
 				E9FC1D721B8DC82A001226C5 /* SortAndFilter */,
 				E9F1ACBA1B941AAE009819DE /* CityViewController */,
@@ -1667,6 +1671,15 @@
 				E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */,
 			);
 			name = ItemDetailsVC;
+			sourceTree = "<group>";
+		};
+		E9DE82DF1BA82AAD0060C79B /* ItemDetailsEditingVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9DE82E01BA82AE10060C79B /* ItemDetailsEditingVC.h */,
+				E9DE82E11BA82AE10060C79B /* ItemDetailsEditingVC.m */,
+			);
+			name = ItemDetailsEditingVC;
 			sourceTree = "<group>";
 		};
 		E9E31F5D1B8496F7008D6A3D /* UploadPopup */ = {
@@ -2258,6 +2271,7 @@
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9A07C181B31623C00904DE9 /* image.m in Sources */,
 				E9D264C01B6640EE00CBEAFF /* UserData.m in Sources */,
+				E9DE82E21BA82AE10060C79B /* ItemDetailsEditingVC.m in Sources */,
 				E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9A07C241B3165E300904DE9 /* emoji.m in Sources */,

@@ -708,7 +708,8 @@
 - (void) editInfoOfMyWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    ItemDetailsEditingVC *editingVC = [[ItemDetailsEditingVC alloc] init];
+    [self.navigationController pushViewController:editingVC animated:YES];
 }
 
 
