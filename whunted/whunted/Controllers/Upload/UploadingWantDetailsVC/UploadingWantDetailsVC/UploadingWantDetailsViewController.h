@@ -48,10 +48,16 @@
                                                  RSKImageCropViewControllerDataSource>
 
 
-@property (weak, nonatomic) id<UploadingWantDetailsViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<UploadingWantDetailsViewControllerDelegate> delegate;
+
+@property (nonatomic, strong)   WantData                *wantData;
 
 
 - (void) setImage: (UIImage *) image forButton: (NSUInteger) buttonIndex;
+
+- (void) customizeBarButtons;
+
+- (id) initWithWantData: (WantData *) wantData;
 
 
 @end

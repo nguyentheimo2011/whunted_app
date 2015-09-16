@@ -33,8 +33,6 @@
     UISwitch                    *_escrowSwitch;
     KLCPopup                    *_popup;
     
-    WantData                    *_wantData;
-    
     NSMutableArray              *_addingButtonList;
     
     NSString                    *_hashtagString;
@@ -42,13 +40,16 @@
     BOOL                        _imageEdittingNeeded;
 }
 
+@synthesize wantData        =   _wantData;
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
     
-    if (self != nil) {
+    if (self != nil)
+    {
         [self customizeUI];
         [self initializeButtonListCell];
         [self initializeSecondSection];
@@ -57,6 +58,26 @@
     
     return self;
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (id) initWithWantData: (WantData *) wantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    
+    if (self != nil)
+    {
+        _wantData = wantData;
+        
+        [self customizeUI];
+        [self initializeButtonListCell];
+        [self initializeSecondSection];
+        [self populateData];
+    }
+    
+    return self;
+}
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initData
@@ -83,6 +104,13 @@
     // hide bottom bar when uploading a new want
     self.hidesBottomBarWhenPushed = YES;
     
+    [self customizeBarButtons];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) customizeBarButtons
+//------------------------------------------------------------------------------------------------------------------------------
+{
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
@@ -239,6 +267,35 @@
     [_escrowRequestCell addSubview:paymentImageView];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) populateData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_wantData.itemPictures.count > 0)
+    {
+        for (int i=0; i<_wantData.itemPictures.count; i++)
+        {
+            UIImage *image = [_wantData.itemPictures objectAtIndex:i];
+            [[_addingButtonList objectAtIndex:i] setImage: image];
+        }
+    }
+    
+    if (_wantData.itemCategory.length > 0)
+        _categoryCell.detailTextLabel.text = _wantData.itemCategory;
+    
+    if (_wantData.itemName.length > 0)
+        _itemInfoCell.detailTextLabel.text = _wantData.itemName;
+    
+    if (_wantData.demandedPrice.length > 0)
+        _priceTextField.text = _wantData.demandedPrice;
+    
+    if (_wantData.meetingLocation.length > 0)
+        _locationCell.detailTextLabel.text = _wantData.meetingLocation;
+    
+    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
+        _escrowSwitch.on = YES;
+}
+
 
 #pragma mark - Event Handlers
 
@@ -334,9 +391,9 @@
 {
     BOOL state = [_escrowSwitch isOn];
     if (state) {
-        _wantData.paymentMethod = @"escrow";
+        _wantData.paymentMethod = PAYMENT_METHOD_ESCROW;
     } else {
-        _wantData.paymentMethod = @"non-escrow";
+        _wantData.paymentMethod = PAYMENT_METHOD_NON_ESCROW;
     }
 }
 

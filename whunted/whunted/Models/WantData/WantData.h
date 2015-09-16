@@ -42,7 +42,7 @@
 @property (nonatomic)           NSInteger         sellersNum;
 
 @property (nonatomic)           BOOL              isFulfilled;
-@property (nonatomic, strong)   TransactionData         *acceptedOffer;
+@property (nonatomic, strong)   TransactionData   *acceptedOffer;
 
 // Temprary data sturetures
 @property (nonatomic, strong)   PFRelation        *itemPictureList;

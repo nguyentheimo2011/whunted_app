@@ -223,7 +223,8 @@
 #define     NOTIFICATION_OFFER_ACCEPTED             @"NotificationOfferAccepted"
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     ESCROW_PAYMENT_METHOD               @"escrow"
+#define     PAYMENT_METHOD_ESCROW               @"escrow"
+#define     PAYMENT_METHOD_NON_ESCROW           @"non-escrow"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     FIREBASE                            @"https://incandescent-heat-6966.firebaseio.com/"

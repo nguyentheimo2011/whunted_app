@@ -411,7 +411,7 @@
     CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
     NSString *paymentMethodText;
-    if ([_wantData.paymentMethod isEqualToString:ESCROW_PAYMENT_METHOD]) {
+    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW]) {
         paymentMethodText = @"Request for Escrow";
     } else {
         paymentMethodText = @"Not request for Escrow";
@@ -708,7 +708,8 @@
 - (void) editInfoOfMyWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    ItemDetailsEditingVC *editingVC = [[ItemDetailsEditingVC alloc] init];
+    _wantData.itemPictures = [NSMutableArray arrayWithArray:_itemImageList];
+    ItemDetailsEditingVC *editingVC = [[ItemDetailsEditingVC alloc] initWithWantData:_wantData];
     [self.navigationController pushViewController:editingVC animated:YES];
 }
 
