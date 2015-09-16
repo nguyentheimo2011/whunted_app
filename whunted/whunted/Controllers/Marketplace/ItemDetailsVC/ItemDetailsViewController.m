@@ -708,7 +708,7 @@
 - (void) editInfoOfMyWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    ItemDetailsEditingVC *editingVC = [[ItemDetailsEditingVC alloc] initWithWantData:_wantData];
+    UploadingWantDetailsViewController *editingVC = [[UploadingWantDetailsViewController alloc] initWithWantData:_wantData forEditing:YES];
     [self.navigationController pushViewController:editingVC animated:YES];
 }
 

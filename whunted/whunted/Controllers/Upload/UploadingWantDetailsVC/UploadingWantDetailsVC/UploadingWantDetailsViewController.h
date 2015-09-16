@@ -55,9 +55,7 @@
 
 - (void) setImage: (UIImage *) image forButton: (NSUInteger) buttonIndex;
 
-- (void) customizeBarButtons;
-
-- (id) initWithWantData: (WantData *) wantData;
+- (id) initWithWantData: (WantData *) wantData forEditing: (BOOL) isEditing;
 
 
 @end

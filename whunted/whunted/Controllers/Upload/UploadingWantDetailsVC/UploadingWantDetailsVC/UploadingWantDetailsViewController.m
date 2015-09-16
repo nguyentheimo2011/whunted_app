@@ -38,6 +38,8 @@
     NSString                    *_hashtagString;
     NSInteger                   _prevTappedButtonIndex;
     BOOL                        _imageEdittingNeeded;
+    
+    BOOL                        _isEditing;
 }
 
 @synthesize wantData        =   _wantData;
@@ -50,7 +52,7 @@
     
     if (self != nil)
     {
-        [self customizeUI];
+        [self customizeUI:NO];
         [self initializeButtonListCell];
         [self initializeSecondSection];
         [self initData];
@@ -60,7 +62,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (id) initWithWantData: (WantData *) wantData
+- (id) initWithWantData: (WantData *) wantData forEditing: (BOOL) isEditing
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
@@ -68,8 +70,9 @@
     if (self != nil)
     {
         _wantData = wantData;
+        _isEditing = isEditing;
         
-        [self customizeUI];
+        [self customizeUI:isEditing];
         [self initializeButtonListCell];
         [self initializeSecondSection];
         [self populateData];
@@ -94,7 +97,7 @@
 #pragma mark - UI Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeUI
+- (void) customizeUI: (BOOL) editing
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
@@ -104,16 +107,25 @@
     // hide bottom bar when uploading a new want
     self.hidesBottomBarWhenPushed = YES;
     
-    [self customizeBarButtons];
+    [self customizeBarButtons:editing];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) customizeBarButtons
+- (void) customizeBarButtons: (BOOL) editing
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+    if (editing)
+    {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(completeEditingWantData)];
+    }
+    else
+    {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topCancelButtonTapEventHandler)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -375,8 +387,76 @@
 - (void) topCancelButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel your listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
-    [alertView show];
+    if (_isEditing)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to discard your changes?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+        [alertView show];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure you want to cancel your listing?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, I'm sure!", nil];
+        [alertView show];
+    }
+}
+
+//---------------------------------------------------------------------------------------------------------------------------
+- (void) completeEditingWantData
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *submissionAlertView;
+    if (_wantData.itemCategory == nil)
+    {
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please choose a category!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [submissionAlertView show];
+    }
+    else if (_wantData.itemName == nil || [_wantData.itemName length] == 0)
+    {
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please fill in item name!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [submissionAlertView show];
+    }
+    else if (_wantData.demandedPrice == nil || [_wantData.demandedPrice length] == 0)
+    {
+        submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please state a price!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
+        [submissionAlertView show];
+    }
+    else
+    {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        if (!_wantData.itemDesc)
+            _wantData.itemDesc = @"";
+        
+        if (!_wantData.hashTagList)
+            _wantData.hashTagList = [NSArray array];
+        
+        if (!_wantData.referenceURL)
+            _wantData.referenceURL = @"";
+        
+        if (!_wantData.demandedPrice)
+            _wantData.demandedPrice = @"0";
+        
+        if (!_wantData.paymentMethod)
+            _wantData.paymentMethod = @"non-escrow";
+        
+        if (!_wantData.meetingLocation)
+            _wantData.meetingLocation = @"";
+        
+        if (!_wantData.itemOrigins)
+            _wantData.itemOrigins = [NSArray array];
+        
+        _wantData.itemPicturesNum = [_wantData.itemPictures count];
+        
+        PFObject *pfObj = [_wantData getPFObject];
+        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error)
+            {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -385,7 +465,15 @@
 {
     _wantData.demandedPrice = _priceTextField.text;
     [_priceTextField resignFirstResponder];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
+    
+    if (_isEditing)
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(completeEditingWantData)];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -393,9 +481,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BOOL state = [_escrowSwitch isOn];
-    if (state) {
+    if (state)
+    {
         _wantData.paymentMethod = PAYMENT_METHOD_ESCROW;
-    } else {
+    }
+    else
+    {
         _wantData.paymentMethod = PAYMENT_METHOD_NON_ESCROW;
     }
 }
@@ -458,10 +549,13 @@
     PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];
     itemPictureObj[@"itemPicture"] = imageFile;
     [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if (succeeded) {
+        if (succeeded)
+        {
             [_wantData.itemPictureList addObject:itemPictureObj];
             [_wantData.itemPictures addObject:itemPictureObj];
-        } else {
+        }
+        else
+        {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
@@ -599,7 +693,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 2)
+    {
         if (indexPath.row == 0)
             [self pushCategoryViewController];
         else if (indexPath.row == 1)
@@ -609,11 +704,21 @@
     }
     
     // stop editing price
-    if (indexPath.section != 3) {
+    if (indexPath.section != 3)
+    {
         [_priceTextField resignFirstResponder];
-        if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)]) {
+        if ([[self.navigationItem.rightBarButtonItem title] isEqualToString:NSLocalizedString(@"Done", nil)])
+        {
             _wantData.demandedPrice = _priceTextField.text;
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
+            
+            if (_isEditing)
+            {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(completeEditingWantData)];
+            }
+            else
+            {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
+            }
         }
     }
 }
@@ -664,9 +769,12 @@
         _wantData.hashTagList = [_hashtagString componentsSeparatedByString:WHITE_SPACE_CHARACTER];
     
     NSString *itemName = [itemInfo objectForKey:ITEM_NAME_KEY];
-    if (itemName != nil && itemName.length > 0) {
+    if (itemName != nil && itemName.length > 0)
+    {
         _itemInfoCell.detailTextLabel.text = itemName;
-    } else {
+    }
+    else
+    {
         _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
     }
     
@@ -680,8 +788,10 @@
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (textField.tag == 102) {
-        if ([textField.text length] == 0) {
+    if (textField.tag == 102)
+    {
+        if ([textField.text length] == 0)
+        {
             NSString *text = [TAIWAN_CURRENCY stringByAppendingString:textField.text];
             textField.text = text;
         }
@@ -694,13 +804,18 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (textField.tag == 102) {
-        if (range.location >= [TAIWAN_CURRENCY length]) {
+    if (textField.tag == 102)
+    {
+        if (range.location >= [TAIWAN_CURRENCY length])
+        {
             NSString *resultantString = [Utilities getResultantStringFromText:textField.text andRange:range andReplacementString:string];
             return [Utilities checkIfIsValidPrice:resultantString];
-        } else
+        }
+        else
             return NO;
-    } else {
+    }
+    else
+    {
         return YES;
     }
 }
@@ -709,7 +824,8 @@
 - (void) textFieldDidEndEditing:(UITextField *)textField
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (textField.tag == 102) {
+    if (textField.tag == 102)
+    {
         NSString *text = [Utilities removeLastDotCharacterIfNeeded:textField.text];
         [textField setText:text];
     }
@@ -729,8 +845,12 @@
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (buttonIndex == 1) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if (buttonIndex == 1)
+    {
+        if (_isEditing)
+            [self.navigationController popViewControllerAnimated:YES];
+        else
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
