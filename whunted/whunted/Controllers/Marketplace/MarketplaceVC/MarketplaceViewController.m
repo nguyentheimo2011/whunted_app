@@ -14,7 +14,7 @@
 
 #import "MBProgressHUD.h"
 
-#define     kSortAndFilterBarHeight     50.0f
+#define     kSortAndFilterBarHeight         50.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 @implementation MarketplaceViewController
@@ -26,6 +26,7 @@
     UILabel                 *_currProductOriginLabel;
     UILabel                 *_currCategoryLabel;
     UILabel                 *_currSortFilterLabel;
+    UISearchBar             *_searchBar;
     
     NSString                *_currProductOrigin;
     NSString                *_currCategory;
@@ -101,11 +102,14 @@
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-5.0, 0.0, WINSIZE.width, 44.0)];
-    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    searchBar.delegate = self;
-    searchBar.tintColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1];
-    self.navigationItem.titleView = searchBar;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 44.0)];
+    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _searchBar.delegate = self;
+    _searchBar.tintColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1];
+    self.navigationItem.titleView = _searchBar;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -718,7 +722,25 @@
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSearch)];
+    
     return YES;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSLog(@"%@", searchBar.text);
+    [searchBar resignFirstResponder];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cancelSearch
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_searchBar resignFirstResponder];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 }
 
 @end
