@@ -400,7 +400,7 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
-    itemDetailsVC.wantData = [_wantDataList objectAtIndex:indexPath.row];
+    itemDetailsVC.wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.delegate = self;
     
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
@@ -410,11 +410,15 @@
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
     [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if (objects.count > 0) {
+        if (!error)
+        {
+            if (objects.count > 0)
+            {
                 itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:[objects objectAtIndex:0]];
             }
-        } else {
+        }
+        else
+        {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         
