@@ -98,27 +98,32 @@
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
     UIImage *image = [[ProfileImageCache sharedCache] objectForKey:imageKey];
     
-    if (image) {
+    if (image)
+    {
         [_userProfileImage setImage:image];
-    } else {
+    }
+    else
+    {
         [self getProfileImageFromRemoteServer];
     }
 	
-	_usernameLabel.text = _message[FB_OPPOSING_USER_USERNAME];
-    _itemNameLabel.text = _message[PF_ITEM_NAME];
-	_lastMessageLabel.text = _message[FB_LAST_MESSAGE];
+	_usernameLabel.text     =   _message[FB_OPPOSING_USER_USERNAME];
+    _itemNameLabel.text     =   _message[PF_ITEM_NAME];
+	_lastMessageLabel.text  =   _message[FB_LAST_MESSAGE];
     
-    [self setItemPicture:_message[PF_ITEM_ID]];
+    [self setItemPicture];
 	
 	NSDate *date = String2Date(_message[FB_TIMESTAMP]);
 	_timestampLabel.text = [Utilities timestampStringFromDate:date];
 	
 	int counter = [_message[FB_UNREAD_MESSAGES_COUNTER] intValue];
-    if (counter == 0) {
+    if (counter == 0)
+    {
         _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
         _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
-        
-    } else {
+    }
+    else
+    {
         _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
         _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     }
@@ -127,10 +132,20 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) setItemPicture: (NSString *) itemID
+- (void) setItemPicture
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self downloadItemImageFromRemoteServer];
+    NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_ITEM_ID], ITEM_FIRST_IMAGE];
+    UIImage *itemImage = [[ItemImageCache sharedCache] objectForKey:imageKey];
+    
+    if (itemImage)
+    {
+        [_itemImageView setImage:itemImage];
+    }
+    else
+    {
+        [self downloadItemImageFromRemoteServer];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -195,7 +210,7 @@
             [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
                 if (!error)
                 {
-                    PFFile *firstPicture = firstObject[@"itemPicture"];
+                    PFFile *firstPicture = firstObject[PF_ITEM_PICTURE];
                     [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
                         if (!error_2)
                         {
