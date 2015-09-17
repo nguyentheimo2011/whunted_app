@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TemporaryCache : NSCache
+@interface ItemImageCache : NSCache
 
-+ (TemporaryCache *) sharedCache;
++ (ItemImageCache *) sharedCache;
 
 @end

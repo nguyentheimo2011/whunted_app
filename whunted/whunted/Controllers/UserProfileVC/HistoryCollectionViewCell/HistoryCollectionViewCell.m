@@ -8,7 +8,7 @@
 
 #import "HistoryCollectionViewCell.h"
 #import "AppConstant.h"
-#import "TemporaryCache.h"
+#import "ItemImageCache.h"
 
 #define     kCellLeftMagin              4.0f
 #define     kCellRightMargin            4.0f
@@ -91,7 +91,7 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-    _itemImageView.image = [[TemporaryCache sharedCache] objectForKey:key];
+    _itemImageView.image = [[ItemImageCache sharedCache] objectForKey:key];
     
     if (!_itemImageView.image)
         [self downloadItemImage];
@@ -317,7 +317,7 @@
                         [_itemImageView setImage:image];
                         
                         NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-                        [[TemporaryCache sharedCache] setObject:image forKey:key];
+                        [[ItemImageCache sharedCache] setObject:image forKey:key];
                     }
                 }
                 else

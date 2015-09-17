@@ -13,7 +13,7 @@
 #import "FeedbackData.h"
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
-#import "TemporaryCache.h"
+#import "ProfileImageCache.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -183,7 +183,7 @@
     [_scrollView addSubview:profileBg];
     
     NSString *key = [NSString stringWithFormat:@"%@%@", _profileOwner.objectId, USER_PROFILE_IMAGE];
-    UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:key];
+    UIImage *profileImage = [[ProfileImageCache sharedCache] objectForKey:key];
     
     CGFloat const kMarginWidth = WINSIZE.width / 30.0;
     CGFloat const kImageWidth = WINSIZE.width * 0.3 - 2 * kMarginWidth;

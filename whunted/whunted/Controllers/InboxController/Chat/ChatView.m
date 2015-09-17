@@ -21,7 +21,7 @@
 #import "camera.h"
 #import "common.h"
 #import "recent.h"
-#import "TemporaryCache.h"
+#import "ProfileImageCache.h"
 #import "Utilities.h"
 #import "converter.h"
 
@@ -708,7 +708,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
-    UIImage *image = [[TemporaryCache sharedCache] objectForKey:imageKey];
+    UIImage *image = [[ProfileImageCache sharedCache] objectForKey:imageKey];
     
     if (image)
         avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
@@ -1136,7 +1136,7 @@
                           [self.collectionView reloadData];
                           
                           NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
-                          [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+                          [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
                       }
                   }];
              }

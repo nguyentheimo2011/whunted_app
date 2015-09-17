@@ -10,7 +10,8 @@
 #import "WantData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
-#import "TemporaryCache.h"
+#import "ItemImageCache.h"
+#import "ProfileImageCache.h"
 
 #import <JTImageButton.h>
 
@@ -282,7 +283,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     NSString *key = [NSString stringWithFormat:@"%@%@", _transactionData.buyerID, USER_PROFILE_IMAGE];
-    UIImage *buyerImage = [[TemporaryCache sharedCache] objectForKey:key];
+    UIImage *buyerImage = [[ProfileImageCache sharedCache] objectForKey:key];
     
     if (buyerImage)
         _buyerProfileImageView.image = buyerImage;
@@ -294,7 +295,7 @@
     }
     
     key = [NSString stringWithFormat:@"%@%@", _transactionData.sellerID, USER_PROFILE_IMAGE];
-    UIImage *sellerImage = [[TemporaryCache sharedCache] objectForKey:key];
+    UIImage *sellerImage = [[ProfileImageCache sharedCache] objectForKey:key];
     
     if (sellerImage)
         _sellerProfileImageView.image = sellerImage;
@@ -348,7 +349,7 @@
                     [_itemImageView setImage:image];
                     
                     NSString *key = [NSString stringWithFormat:@"%@%@", wantData.itemID, ITEM_FIRST_IMAGE];
-                    [[TemporaryCache sharedCache] setObject:image forKey:key];
+                    [[ItemImageCache sharedCache] setObject:image forKey:key];
                 }
                 else
                 {

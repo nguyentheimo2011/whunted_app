@@ -7,7 +7,8 @@
 //
 
 #import "MarketplaceCollectionViewCell.h"
-#import "TemporaryCache.h"
+#import "ItemImageCache.h"
+#import "ProfileImageCache.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -96,16 +97,16 @@
     [_sellerNumButton setTitle:text forState:UIControlStateNormal];
     
     NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-    _itemImageView.image = [[TemporaryCache sharedCache] objectForKey:key];
+    _itemImageView.image = [[ItemImageCache sharedCache] objectForKey:key];
     
     
     if (!_itemImageView.image)
         [self retrieveItemImage];
     
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
-    if ([[TemporaryCache sharedCache] objectForKey:imageKey])
+    if ([[ProfileImageCache sharedCache] objectForKey:imageKey])
     {
-        UIImage *profileImage = [[TemporaryCache sharedCache] objectForKey:imageKey];
+        UIImage *profileImage = [[ProfileImageCache sharedCache] objectForKey:imageKey];
         [_buyerProfilePic setImage:profileImage];
     }
     else
@@ -386,7 +387,7 @@
                         [_itemImageView setImage:image];
                         
                         NSString *key = [NSString stringWithFormat:@"%@%@", _wantData.itemID, ITEM_FIRST_IMAGE];
-                        [[TemporaryCache sharedCache] setObject:image forKey:key];
+                        [[ItemImageCache sharedCache] setObject:image forKey:key];
                     }
                 }
                 else
@@ -416,7 +417,7 @@
             [_buyerProfilePic setImage:image];
             
             NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
-            [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+            [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
         }
     };
     

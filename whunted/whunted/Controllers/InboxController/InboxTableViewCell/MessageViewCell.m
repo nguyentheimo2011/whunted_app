@@ -13,9 +13,10 @@
 #import <ParseUI/ParseUI.h>
 
 #import "converter.h"
-#import "TemporaryCache.h"
 #import "AppConstant.h"
 #import "Utilities.h"
+#import "ProfileImageCache.h"
+#import "ItemImageCache.h"
 
 #import "MessageViewCell.h"
 
@@ -95,7 +96,7 @@
 	_message = message;
     
     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
-    UIImage *image = [[TemporaryCache sharedCache] objectForKey:imageKey];
+    UIImage *image = [[ProfileImageCache sharedCache] objectForKey:imageKey];
     
     if (image) {
         [_userProfileImage setImage:image];
@@ -169,7 +170,7 @@
                      [_userProfileImage setImage:image];
                      
                      NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
-                     [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+                     [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
                  }
                  else
                  {
@@ -202,7 +203,7 @@
                             [_itemImageView setImage:image];
                             
                             NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_ITEM_ID], ITEM_FIRST_IMAGE];
-                            [[TemporaryCache sharedCache] setObject:image forKey:imageKey];
+                            [[ItemImageCache sharedCache] setObject:image forKey:imageKey];
                         }
                         else
                         {
