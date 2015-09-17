@@ -106,11 +106,12 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 44.0)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 28.0)];
     _searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
     _searchBar.returnKeyType = UIReturnKeyDone;
     _searchBar.delegate = self;
     _searchBar.tintColor = LIGHT_GRAY_COLOR;
+    _searchBar.barTintColor = [UIColor colorWithRed:77.0/255 green:124.0/255 blue:194.0/255 alpha:0.5f];
     self.navigationItem.titleView = _searchBar;
     
     UITextField *txfSearchField = [_searchBar valueForKey:@"_searchField"];
@@ -119,7 +120,9 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
         txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for whunts" attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
-    } else {
+    }
+    else
+    {
         NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
