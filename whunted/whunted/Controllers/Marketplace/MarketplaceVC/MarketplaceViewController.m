@@ -35,6 +35,7 @@
 
     NSMutableArray          *_wantDataList;
     NSArray                 *_sortedAndFilteredWantDataList;
+    NSMutableArray          *_displayedWantDataList;
 }
 
 @synthesize delegate        =   _delegate;
@@ -106,7 +107,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 44.0)];
-    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
+    _searchBar.returnKeyType = UIReturnKeyDone;
     _searchBar.delegate = self;
     _searchBar.tintColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:1];
     self.navigationItem.titleView = _searchBar;
@@ -322,7 +324,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_sortedAndFilteredWantDataList count];
+    return [_displayedWantDataList count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -337,7 +339,7 @@
     else
         [cell clearCellUI];
     
-    WantData *wantData = [_sortedAndFilteredWantDataList objectAtIndex:indexPath.row];
+    WantData *wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
     [cell setWantData:wantData];
     
     return cell;
@@ -659,6 +661,7 @@
     _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byProductOrigin:_currProductOrigin];
     _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byBuyerLocation:_currBuyerLocation];
     _sortedAndFilteredWantDataList = [self sortArray:_sortedAndFilteredWantDataList by:_currSortingBy];
+    _displayedWantDataList = [NSMutableArray arrayWithArray:_sortedAndFilteredWantDataList];
     
     [_wantCollectionView reloadData];
 }
@@ -731,12 +734,41 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSLog(@"%@", searchBar.text);
-    [searchBar resignFirstResponder];
+    [self completeSearch];    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self searchWantDataBasedOnTerm:searchBar.text];
+    
+    [_wantCollectionView reloadData];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) searchWantDataBasedOnTerm: (NSString *) searchTerm
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _displayedWantDataList = [NSMutableArray array];
+    
+    for (WantData *wantData in _sortedAndFilteredWantDataList)
+    {
+        if ([wantData matchSearchTerm:searchTerm])
+            [_displayedWantDataList addObject:wantData];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) cancelSearch
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_searchBar resignFirstResponder];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) completeSearch
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [_searchBar resignFirstResponder];

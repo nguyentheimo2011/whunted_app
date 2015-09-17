@@ -56,4 +56,6 @@
 - (NSComparisonResult) compareBasedOnAscendingPrice: (WantData *) otherWantData;
 - (NSComparisonResult) compareBasedOnDescendingPrice: (WantData *) otherWantData;
 
+- (BOOL) matchSearchTerm: (NSString *) searchTerm;
+
 @end

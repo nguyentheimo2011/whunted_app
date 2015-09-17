@@ -149,4 +149,28 @@
         return NSOrderedDescending;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) matchSearchTerm: (NSString *) searchTerm
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (searchTerm.length == 0)
+        return YES;
+    
+    NSString *lowercasedSearchTerm = [searchTerm lowercaseString];
+    
+    if ([[_itemName lowercaseString] containsString:lowercasedSearchTerm])
+        return YES;
+    else if ([[_itemDesc lowercaseString] containsString:lowercasedSearchTerm])
+        return YES;
+    else
+    {
+        for (NSString *hashtag in _hashTagList)
+            if ([[hashtag lowercaseString] containsString:lowercasedSearchTerm])
+                return YES;
+    }
+    
+    return NO;
+}
+
+
 @end
