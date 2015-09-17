@@ -10,71 +10,68 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 #import "AIDatePickerController.h"
-#import "PersistedCache.h"
 
 #import <SZTextView.h>
 #import <MMPickerView.h>
 #import <MBProgressHUD.h>
 
-#define kCancelButtonAlertViewTag               101
-#define kEmailTextFieldTag                      102
-#define kMobileTextFieldTag                     103
+#define     kCancelButtonAlertViewTag               101
+#define     kEmailTextFieldTag                      102
+#define     kMobileTextFieldTag                     103
 
-#define kTextFieldHeight                        30
-#define kTextFieldWidthRatio                    0.6
+#define     kTextFieldHeight                        30
+#define     kTextFieldWidthRatio                    0.6
 
-#define kUserPhotoHeightRatio                   2.5
+#define     kUserPhotoHeightRatio                   2.5
 
-#define kTableNarrowHeaderFooterHeightRatio     0.025
-#define kTableMediumHeaderFooterHeightRatio     0.04
+#define     kTableNarrowHeaderFooterHeightRatio     0.025
+#define     kTableMediumHeaderFooterHeightRatio     0.04
 
-#define kAverageCellHeight                      40
+#define     kAverageCellHeight                      40
 
-#define kTitleFontSize                          16
-#define kDetailFontSize                         16
+#define     kTitleFontSize                          16
+#define     kDetailFontSize                         16
 
-#define kOffsetForKeyboard                      100
+#define     kOffsetForKeyboard                      100
 
-@interface EditProfileViewController ()
-
-@end
-
+//-----------------------------------------------------------------------------------------------------------------------------
 @implementation EditProfileViewController
+//-----------------------------------------------------------------------------------------------------------------------------
 {
-    UITableView     *_tableView;
+    UITableView             *_tableView;
     
-    UITableViewCell *_usernameCell;
-    UITableViewCell *_firstNameCell;
-    UITableViewCell *_lastNameCell;
-    UITableViewCell *_myCityCell;
-    UITableViewCell *_bioCell;
-    UITableViewCell *_userPhotoCell;
+    UITableViewCell         *_usernameCell;
+    UITableViewCell         *_firstNameCell;
+    UITableViewCell         *_lastNameCell;
+    UITableViewCell         *_myCityCell;
+    UITableViewCell         *_bioCell;
+    UITableViewCell         *_userPhotoCell;
     
-    UITableViewCell *_passwordChangingCell;
-    UITableViewCell *_emailCell;
-    UITableViewCell *_mobileCell;
-    UITableViewCell *_genderCell;
-    UITableViewCell *_birthdayCell;
+    UITableViewCell         *_passwordChangingCell;
+    UITableViewCell         *_emailCell;
+    UITableViewCell         *_mobileCell;
+    UITableViewCell         *_genderCell;
+    UITableViewCell         *_birthdayCell;
     
-    UITextField     *_usernameTextField;
-    UITextField     *_firstNameTextField;
-    UITextField     *_lastNameTextField;
-    UITextField     *_emailTextField;
-    UITextField     *_mobileTextField;
+    UITextField             *_usernameTextField;
+    UITextField             *_firstNameTextField;
+    UITextField             *_lastNameTextField;
+    UITextField             *_emailTextField;
+    UITextField             *_mobileTextField;
     
-    UILabel         *_myCityLabel;
-    UILabel         *_genderLabel;
-    UILabel         *_birthdayLabel;
-    SZTextView      *_myBioTextView;
-    UIImageView     *_userProfileImageView;
+    UILabel                 *_myCityLabel;
+    UILabel                 *_genderLabel;
+    UILabel                 *_birthdayLabel;
+    SZTextView              *_myBioTextView;
+    UIImageView             *_userProfileImageView;
     
-    BOOL            _isProfileModfified;
-    BOOL            _isExpandingContentSize;
+    BOOL                    _isProfileModfified;
+    BOOL                    _isExpandingContentSize;
     
-    NSString        *_newCity;
-    NSString        *_newCountry;
+    NSString                *_newCity;
+    NSString                *_newCountry;
     
-    NSInteger       _currTextFieldTag;
+    NSInteger               _currTextFieldTag;
 }
 
 @synthesize userData = _userData;
@@ -132,6 +129,7 @@
     NSLog(@"EditProfileViewController didReceiveMemoryWarning");
 }
 
+
 #pragma mark - Data initialization
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -141,6 +139,7 @@
     _isProfileModfified = NO;
     _isExpandingContentSize = NO;
 }
+
 
 #pragma mark - Notification Registration
 
@@ -172,7 +171,8 @@
                                                   object:nil];
 }
 
-#pragma mark - UI
+
+#pragma mark - UI Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
@@ -447,22 +447,27 @@
     _birthdayCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-#pragma mark - UIAlertView Delegate methods
+
+#pragma mark - UIAlertViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (alertView.tag == kCancelButtonAlertViewTag) {
+    if (alertView.tag == kCancelButtonAlertViewTag)
+    {
         if (buttonIndex == 0) {
             // Do nothing because user chooses NO
-        } else {
+        }
+        else
+        {
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }
 
-#pragma mark - UITableView Datasource
+
+#pragma mark - UITableViewDataSource methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -475,13 +480,20 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (section == 0) {
+    if (section == 0)
+    {
         return 6;
-    } else if (section == 1) {
+    }
+    else if (section == 1)
+    {
         return 1;
-    } else if (section == 2) {
+    }
+    else if (section == 2)
+    {
         return 4;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
@@ -490,30 +502,53 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
             return _usernameCell;
-        } else if (indexPath.row == 1) {
+        }
+        else if (indexPath.row == 1)
+        {
             return _firstNameCell;
-        } else if (indexPath.row == 2) {
+        }
+        else if (indexPath.row == 2)
+        {
             return _lastNameCell;
-        } else if (indexPath.row == 3) {
+        }
+        else if (indexPath.row == 3)
+        {
             return _myCityCell;
-        } else if (indexPath.row == 4) {
+        }
+        else if (indexPath.row == 4)
+        {
             return _bioCell;
-        } else if (indexPath.row == 5) {
+        }
+        else if (indexPath.row == 5)
+        {
             return _userPhotoCell;
         }
-    } else if (indexPath.section == 1) {
+    }
+    else if (indexPath.section == 1)
+    {
         return _passwordChangingCell;
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
+    }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0)
+        {
             return _emailCell;
-        } else if (indexPath.row == 1) {
+        }
+        else if (indexPath.row == 1)
+        {
             return _mobileCell;
-        } else if (indexPath.row == 2) {
+        }
+        else if (indexPath.row == 2)
+        {
             return _genderCell;
-        } else if (indexPath.row == 3) {
+        }
+        else if (indexPath.row == 3)
+        {
             return _birthdayCell;
         }
     }
@@ -535,7 +570,8 @@
         return nil;
 }
 
-#pragma mark - UITableView Delegate methods
+
+#pragma mark - UITableViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -567,18 +603,25 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
         if (indexPath.row == 4)
             return 3 * kTextFieldHeight + 20;
         else if (indexPath.row == 5)
             return kUserPhotoHeightRatio * kTextFieldHeight + 5;
         else
             return kAverageCellHeight;
-    } else if (indexPath.section == 1) {
+    }
+    else if (indexPath.section == 1)
+    {
         return kAverageCellHeight;
-    } else if (indexPath.section == 2) {
+    }
+    else if (indexPath.section == 2)
+    {
         return kAverageCellHeight;
-    } else {
+    }
+    else
+    {
         return 0.0f;
     }
 }
@@ -601,18 +644,27 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 3) {
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 3)
+        {
             ResidingCountryTableVC *countryTableVC = [[ResidingCountryTableVC alloc] init];
             countryTableVC.delegate = self;
             [self.navigationController pushViewController:countryTableVC animated:YES];
         }
-    } else if (indexPath.section == 1) {
+    }
+    else if (indexPath.section == 1)
+    {
         
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 2) {
+    }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 2)
+        {
             [self presentGenderPicker];
-        } else if (indexPath.row == 3) {
+        }
+        else if (indexPath.row == 3)
+        {
             [self presentDatePicker];
         }
     }
@@ -647,11 +699,13 @@
                                          MMvalueY: @5,
                                          MMselectedObject:selectedGender}
                             completion:^(NSString *selectedString) {
-                                if ([selectedString isEqualToString:USER_PROFILE_GENDER_NONE]) {
+                                if ([selectedString isEqualToString:USER_PROFILE_GENDER_NONE])
+                                {
                                     _genderLabel.text = USER_PROFILE_GENDER_SELECT;
                                     _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
                                 }
-                                else {
+                                else
+                                {
                                     _genderLabel.text = selectedString;
                                     _genderLabel.textColor = TEXT_COLOR_DARK_GRAY;
                                 }
@@ -710,9 +764,12 @@
         NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
         CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
     
-    if (_currTextFieldTag == kEmailTextFieldTag || _currTextFieldTag == kMobileTextFieldTag) {
+    if (_currTextFieldTag == kEmailTextFieldTag || _currTextFieldTag == kMobileTextFieldTag)
+    {
         [self setViewMovedUp:YES scrollDown:YES withKeyboardHeight:keyboardFrame.size.height];
-    } else {
+    }
+    else
+    {
         [self setViewMovedUp:YES scrollDown:NO withKeyboardHeight:keyboardFrame.size.height];
     }
 }
@@ -742,8 +799,10 @@
     CGFloat bottomTabBarHeight = self.tabBarController.tabBar.frame.size.height;
     CGFloat addedHeight = keyboardHeight - bottomTabBarHeight;
     
-    if (movedUp) {
-        if (!_isExpandingContentSize) {
+    if (movedUp)
+    {
+        if (!_isExpandingContentSize)
+        {
             contentSize.height += addedHeight;
             [_tableView setContentSize:contentSize];
             _isExpandingContentSize = YES;
@@ -751,8 +810,11 @@
             if (scrollDown)
                 [Utilities scrollToBottom:_tableView];
         }
-    } else {
-        if (_isExpandingContentSize) {
+    }
+    else
+    {
+        if (_isExpandingContentSize)
+        {
             contentSize.height -= addedHeight;
             [_tableView setContentSize:contentSize];
             _isExpandingContentSize = NO;
@@ -766,11 +828,14 @@
 - (void) cancelBarButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_isProfileModfified) {
+    if (_isProfileModfified)
+    {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard changes to your edits?", nil) message:NSLocalizedString(@"Changes will not be saved.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure", nil), nil];
         alertView.tag = kCancelButtonAlertViewTag;
         [alertView show];
-    } else {
+    }
+    else
+    {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -801,12 +866,10 @@
     if (![_myBioTextView.text isEqualToString:_userData.description])
         currUser[PF_USER_DESCRIPTION] = _myBioTextView.text;
     
-    if (![_userProfileImageView.image isEqual:_userData.profileImage]) {
+    if (![_userProfileImageView.image isEqual:_userData.profileImage])
+    {
         NSData *imageData = UIImagePNGRepresentation(_userProfileImageView.image);
         currUser[PF_USER_PICTURE] = [PFFile fileWithData:imageData];
-        
-        UIImage *profileImage = [UIImage imageWithData:imageData];
-        [[PersistedCache sharedCache] setImage:profileImage forKey:currUser.objectId];
     }
     
     if (![_emailTextField.text isEqualToString:_userData.emailAddress])
@@ -815,7 +878,8 @@
     if (![_mobileTextField.text isEqualToString:_userData.phoneNumber])
         currUser[PF_USER_PHONE_NUMBER] = _mobileTextField.text;
     
-    if (![_genderLabel.text isEqualToString:_userData.gender]) {
+    if (![_genderLabel.text isEqualToString:_userData.gender])
+    {
         if ([_genderLabel.text isEqualToString:USER_PROFILE_GENDER_SELECT])
             currUser[PF_USER_GENDER] = @"";
         else
@@ -842,6 +906,7 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+
 #pragma mark - ResidingCityDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -852,6 +917,7 @@
     _newCity = [countryCity objectForKey:USER_PROFILE_USER_CITY];
     _myCityLabel.text = [NSString stringWithFormat:@"%@, %@", _newCity, _newCountry];
 }
+
 
 #pragma mark - UIImagePickerControllerDelegate methods
 

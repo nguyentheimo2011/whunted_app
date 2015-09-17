@@ -16,7 +16,6 @@
 #import "TemporaryCache.h"
 #import "Utilities.h"
 #import "AppConstant.h"
-#import "PersistedCache.h"
 
 #import <JTImageButton.h>
 #import <HMSegmentedControl.h>
@@ -1018,8 +1017,7 @@
 - (void) updateUserData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *profileImage = [[PersistedCache sharedCache] imageForKey:_profileOwner.objectId];
-    [_profileImageView setImage:profileImage];
+//    [_profileImageView setImage:profileImage];
     
     _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
     

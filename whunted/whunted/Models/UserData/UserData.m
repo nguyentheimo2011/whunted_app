@@ -8,7 +8,6 @@
 
 #import "UserData.h"
 #import "AppConstant.h"
-#import "PersistedCache.h"
 #import "Utilities.h"
 
 @implementation UserData
@@ -45,9 +44,7 @@
         _dateOfBirth = [Utilities commonlyFormattedStringFromDate:user[PF_USER_DOB]];
         _residingCity = user[PF_USER_CITY];
         _residingCountry = user[PF_USER_COUNTRY];
-        _userDescription = user[PF_USER_DESCRIPTION];
-        
-        _profileImage = [[PersistedCache sharedCache] imageForKey:[PFUser currentUser].objectId];;
+        _userDescription = user[PF_USER_DESCRIPTION];        
     }
     
     return self;

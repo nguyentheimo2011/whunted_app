@@ -274,7 +274,6 @@
 		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
 		E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9391B5D203800815D56 /* HashtagData.m */; };
 		E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1ACBC1B941B14009819DE /* CityViewController.m */; };
-		E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22931B43A38D00395062 /* PersistedCache.m */; };
 		E9FB22981B43A62000395062 /* TemporaryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22971B43A62000395062 /* TemporaryCache.m */; };
 		E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB2E991B20481E00F8C435 /* WantData.m */; };
 		E9FC1D601B8C5D09001226C5 /* category_small_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D5A1B8C5D09001226C5 /* category_small_icon@1x.png */; };
@@ -659,8 +658,6 @@
 		E9EEB9391B5D203800815D56 /* HashtagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HashtagData.m; path = Models/Hashtag/HashtagData.m; sourceTree = "<group>"; };
 		E9F1ACBB1B941B14009819DE /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = Controllers/Marketplace/CityViewController/CityViewController.h; sourceTree = "<group>"; };
 		E9F1ACBC1B941B14009819DE /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityViewController.m; path = Controllers/Marketplace/CityViewController/CityViewController.m; sourceTree = "<group>"; };
-		E9FB22921B43A38D00395062 /* PersistedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistedCache.h; path = Library/PersistedCache/PersistedCache.h; sourceTree = "<group>"; };
-		E9FB22931B43A38D00395062 /* PersistedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistedCache.m; path = Library/PersistedCache/PersistedCache.m; sourceTree = "<group>"; };
 		E9FB22961B43A62000395062 /* TemporaryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemporaryCache.h; path = Library/TemporaryCache/TemporaryCache.h; sourceTree = "<group>"; };
 		E9FB22971B43A62000395062 /* TemporaryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemporaryCache.m; path = Library/TemporaryCache/TemporaryCache.m; sourceTree = "<group>"; };
 		E9FB2E981B20481E00F8C435 /* WantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantData.h; path = Models/WantData/WantData.h; sourceTree = "<group>"; };
@@ -866,7 +863,6 @@
 			children = (
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
-				E9B5CAC81B427DE80004CDC9 /* PersistedCache */,
 				E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */,
 				E916F4461B00AEE1005055E3 /* Utilities */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
@@ -1522,15 +1518,6 @@
 				E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */,
 			);
 			name = SyncEngine;
-			sourceTree = "<group>";
-		};
-		E9B5CAC81B427DE80004CDC9 /* PersistedCache */ = {
-			isa = PBXGroup;
-			children = (
-				E9FB22921B43A38D00395062 /* PersistedCache.h */,
-				E9FB22931B43A38D00395062 /* PersistedCache.m */,
-			);
-			name = PersistedCache;
 			sourceTree = "<group>";
 		};
 		E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */ = {
@@ -2261,7 +2248,6 @@
 				E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9A07C241B3165E300904DE9 /* emoji.m in Sources */,
-				E9FB22941B43A38D00395062 /* PersistedCache.m in Sources */,
 				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
 				E9D0E6781B96AFC30061AE8E /* TransactionData.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
