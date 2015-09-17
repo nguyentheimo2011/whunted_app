@@ -236,8 +236,8 @@
 #define		VIDEO_LENGTH						5
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     TAIWAN_CURRENCY                     @"TWD "
-#define     PROPER_TAIWAN_CURRENCY              @"TWD"
+#define     TAIWAN_CURRENCY                     @"NT$ "
+#define     PROPER_TAIWAN_CURRENCY              @"NT$"
 #define     DOT_CHARACTER                       @"."
 #define     COMMA_CHARACTER                     @","
 #define     WHITE_SPACE_CHARACTER               @" "
