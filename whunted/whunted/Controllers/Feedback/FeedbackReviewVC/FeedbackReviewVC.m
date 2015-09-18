@@ -182,12 +182,9 @@
 - (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    static FeedbackTableViewCell *cell = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cell = [_feedbackTableView dequeueReusableCellWithIdentifier:kFeedbackCellIdentifier];
-        [cell setFeedbackData:[_categorizedFeedbackList objectAtIndex:indexPath.row]];
-    });
+    
+    FeedbackTableViewCell *cell = [[FeedbackTableViewCell alloc] init];
+    [cell setFeedbackData:[_categorizedFeedbackList objectAtIndex:indexPath.row]];
     
     return cell.cellHeight;
 }
