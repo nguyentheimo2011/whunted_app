@@ -342,6 +342,8 @@
 - (void) submittingButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"UploadNewWhuntEvent" label:@"SubmitButton" value:nil];
+    
     UIAlertView *submissionAlertView;
     if (_wantData.itemCategory == nil) {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please choose a category!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
@@ -412,6 +414,8 @@
 - (void) completeEditingWantData
 //---------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CompleteEditingWhuntEvent" label:@"DoneButton" value:nil];
+    
     UIAlertView *submissionAlertView;
     if (_wantData.itemCategory == nil)
     {
@@ -857,9 +861,17 @@
     if (buttonIndex == 1)
     {
         if (_isEditing)
+        {
+            [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CancelEditingWhuntEvent" label:@"CancelButton" value:nil];
+            
             [self.navigationController popViewControllerAnimated:YES];
+        }
         else
+        {
+            [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CancelPostingNewWhunt" label:@"CancelButton" value:nil];
+            
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
     }
 }
 

@@ -555,9 +555,16 @@
     sellersOfferVC.user2 = user2;
     sellersOfferVC.offerFrom = OFFER_FROM_ITEM_DETAILS;
     
-    if (_currOffer) {
+    if (_currOffer)
+    {
+        [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"EditOfferFromItemDetailsEvent" label:@"OfferButton" value:nil];
+        
         sellersOfferVC.offerData = _currOffer;
-    } else {
+    }
+    else
+    {
+        [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"MakeOfferFromItemDetailsEvent" label:@"OfferButton" value:nil];
+        
         TransactionData *offerData = [[TransactionData alloc] init];
         offerData.itemID = _wantData.itemID;
         offerData.itemName = _wantData.itemName;
@@ -578,6 +585,8 @@
 - (void) chatButtonClickedEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ChatFromItemDetailsEvent" label:@"ChatButton" value:nil];
+    
     PFUser *user1 = [PFUser currentUser];
     PFUser *user2 = [[PFUser alloc] init];
     user2.objectId = _wantData.buyerID;
@@ -613,6 +622,8 @@
 - (void) viewOffersButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewOffersEvent" label:@"ViewOffersButton" value:nil];
+    
     OfferViewingVC  *offerViewingVC = [[OfferViewingVC alloc] init];
     offerViewingVC.itemImage    =   _itemImageList.count > 0 ? [_itemImageList objectAtIndex:0] : nil;
     offerViewingVC.wantData     =   _wantData;
@@ -641,6 +652,8 @@
 - (void) buyerUsernameButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
+    
     UserHandler handler = ^(PFUser *user) {
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [self.navigationController pushViewController:userProfileVC animated:YES];
@@ -711,6 +724,8 @@
 - (void) editInfoOfMyWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"EditWantDataEvent" label:@"EditButton" value:nil];
+    
     UploadingWantDetailsViewController *editingVC = [[UploadingWantDetailsViewController alloc] initWithWantData:_wantData forEditing:YES];
     [self.navigationController pushViewController:editingVC animated:YES];
 }

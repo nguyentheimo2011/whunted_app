@@ -287,7 +287,8 @@
     
     if (buyerImage)
         _buyerProfileImageView.image = buyerImage;
-    else {
+    else
+    {
         FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
             _buyerProfileImageView.image = image;
         };
@@ -299,7 +300,8 @@
     
     if (sellerImage)
         _sellerProfileImageView.image = sellerImage;
-    else {
+    else
+    {
         FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
             _sellerProfileImageView.image = image;
         };

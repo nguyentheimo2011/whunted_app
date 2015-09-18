@@ -242,6 +242,9 @@
 #define     COMMA_CHARACTER                     @","
 #define     WHITE_SPACE_CHARACTER               @" "
 
+//----------------------------------------------------------------------------------------------------------------------------
+#define     UI_ACTION                           @"ui_action"
+
 
 #pragma mark - Font
 

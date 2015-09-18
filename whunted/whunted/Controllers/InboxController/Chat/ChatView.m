@@ -412,14 +412,20 @@
     DeleteRecentItems(groupId);
     
     NSInteger viewControllersNum = [self.navigationController.viewControllers count];
-    if (viewControllersNum >= 3) {
-        if ([[self.navigationController.viewControllers objectAtIndex:viewControllersNum-2] isKindOfClass:[BuyersOrSellersOfferViewController class]]) {
+    if (viewControllersNum >= 3)
+    {
+        if ([[self.navigationController.viewControllers objectAtIndex:viewControllersNum-2] isKindOfClass:[BuyersOrSellersOfferViewController class]])
+        {
             UIViewController *viewController = [self.navigationController.viewControllers objectAtIndex:viewControllersNum-3];
             [self.navigationController popToViewController:viewController animated:YES];
-        } else {
+        }
+        else
+        {
             [self.navigationController popViewControllerAnimated:YES];
         }
-    } else {
+    }
+    else
+    {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -428,15 +434,20 @@
 - (void) makingOfferButtonTapEventHanlder
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"MakeOfferFromChatEvent" label:@"MakeOfferButton" value:nil];
+    
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
     offerVC.offerData = _offerData;
     offerVC.offerFrom = OFFER_FROM_CHAT_VIEW;
     offerVC.delegate = self;
     
-    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID])
+    {
         // current user is the seller
         [offerVC setBuyerName:_user2Username];
-    } else {
+    }
+    else
+    {
         // current user is the buyer
         [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
     }
@@ -448,15 +459,20 @@
 - (void) edittingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"EditOfferFromChatEvent" label:@"EditOfferButton" value:nil];
+    
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
     offerVC.offerData = _offerData;
     offerVC.offerFrom = OFFER_FROM_CHAT_VIEW;
     offerVC.delegate = self;
     
-    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID])
+    {
         // current user is the seller
         [offerVC setBuyerName:_user2Username];
-    } else {
+    }
+    else
+    {
         // current user is the buyer
         [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
     }
@@ -468,6 +484,8 @@
 - (void) cancellingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CancelOfferFromChatEvent" label:@"CancelOfferButton" value:nil];
+    
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         _offerData.objectID = @"";
@@ -490,14 +508,19 @@
 - (void) makingAnotherOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"MakeAnotherOfferFromChatEvent" label:@"MakeAnotherOfferButton" value:nil];
+    
     BuyersOrSellersOfferViewController *offerVC = [[BuyersOrSellersOfferViewController alloc] init];
     [offerVC setOfferData:_offerData];
     [offerVC setDelegate:self];
     
-    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID]) {
+    if ([[PFUser currentUser].objectId isEqualToString:_offerData.sellerID])
+    {
         // current user is the seller
         [offerVC setBuyerName:_user2Username];
-    } else {
+    }
+    else
+    {
         // current user is the buyer
         [offerVC setBuyerName:[PFUser currentUser][PF_USER_USERNAME]];
     }
@@ -509,6 +532,8 @@
 - (void) decliningOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"DeclineOfferFromChatEvent" label:@"DeclineOfferButton" value:nil];
+    
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         _offerData.objectID = @"";
@@ -531,11 +556,14 @@
 - (void) acceptingOfferButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"AcceptOfferFromChatEvent" label:@"AcceptOfferButton" value:nil];
+    
     // update transactional data
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData createPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
+        if (succeeded)
+        {
             [self adjustButtonsVisibility];
             
             // Update recent message
@@ -546,11 +574,14 @@
             
             PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
             [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!succeeded) {
+                if (!succeeded)
+                {
                     [pfObj deleteEventually];
                 }
             }];
-        } else {
+        }
+        else
+        {
             NSLog(@"Error: %@ %@", error, error.userInfo);
         }
     }];
@@ -559,16 +590,21 @@
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_OBJECT_ID equalTo:_offerData.itemID];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
+        if (error)
+        {
             NSLog(@"%@ %@", error, [error userInfo]);
-        } else {
+        }
+        else
+        {
             if (objects.count > 1)
                 NSLog(@"Error in acceptingOfferButtonTapEventHandler");
-            else {
+            else
+            {
                 PFObject *object = [objects objectAtIndex:0];
                 object[PF_ITEM_IS_FULFILLED] = STRING_OF_YES;
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (!succeeded) {
+                    if (!succeeded)
+                    {
                         NSLog(@"Error: %@ %@", error, error.userInfo);
                     }
                 }];
@@ -584,23 +620,32 @@
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"LeaveOfferFromChatEvent" label:@"LeaveOfferButton" value:nil];
+    
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [query whereKey:PF_FEEDBACK_WRITER_ID equalTo:[PFUser currentUser].objectId];
     [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:[Utilities idOfDealerDealingWithMe:_offerData]];
     [query whereKey:PF_FEEDBACK_IS_WRITER_THE_BUYER equalTo:[Utilities stringFromBoolean:[Utilities amITheBuyer:_offerData]]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
+        if (error)
+        {
             NSLog(@"%@ %@", error, [error userInfo]);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-        } else {
+        }
+        else
+        {
             LeaveFeedbackVC *leaveFeedbackVC = [[LeaveFeedbackVC alloc] initWithOfferData:_offerData];
             leaveFeedbackVC.delegate = self;
             leaveFeedbackVC.receiverUsername = _user2Username;
             
-            if ([objects count] > 0) {
-                if ([objects count] > 1) {
+            if ([objects count] > 0)
+            {
+                if ([objects count] > 1)
+                {
                     NSLog(@"leavingFeedbackButtonTapEventHandler duplicate feedback");
-                } else {
+                }
+                else
+                {
                     PFObject *obj = [objects objectAtIndex:0];
                     FeedbackData *feedback = [[FeedbackData alloc] initWithPFObject:obj];
                     [leaveFeedbackVC setFeedbackData:feedback];
@@ -771,7 +816,8 @@
 	if ([self outgoing:messages[indexPath.item]])
 	{
         NSString *key = (NSString *) items[indexPath.item][@"key"];
-        if ([messageStatusDict objectForKey:key]) {
+        if ([messageStatusDict objectForKey:key])
+        {
             BOOL isSuccessful = [messageStatusDict[key] boolValue];
             if (!isSuccessful)
                 return _bubbleImageOutgoingSending;
@@ -807,15 +853,19 @@
 	{
 		JSQMessage *message = messages[indexPath.item];
 		return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
-    } else {
+    }
+    else
+    {
         NSDate *currMessageDate = String2Date(items[indexPath.item][@"date"]);
         NSDate *prevMessageDate = String2Date(items[indexPath.item - 1][@"date"]);
         NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
         NSDate *prevMessageRoundDate = [Utilities getRoundMinuteDateFromDate:prevMessageDate];
         int timePeriod = [currMessageRoundDate timeIntervalSinceDate:prevMessageRoundDate];
-        if (timePeriod > 0) {
+        if (timePeriod > 0)
+        {
             return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:currMessageDate];
-        } else
+        }
+        else
             return nil;
     }
 }
@@ -933,7 +983,9 @@
     if (indexPath.item == 0)
     {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
-    } else {
+    }
+    else
+    {
         NSDate *currMessageDate = String2Date(items[indexPath.item][@"date"]);
         NSDate *prevMessageDate = String2Date(items[indexPath.item - 1][@"date"]);
         NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
@@ -1150,7 +1202,8 @@
                   }];
              }
          }
-         else NSLog(@"ChatView loadAvatar query error.");
+         else
+             NSLog(@"ChatView loadAvatar query error.");
      }];
 }
 

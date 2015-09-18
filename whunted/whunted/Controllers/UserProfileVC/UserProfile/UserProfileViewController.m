@@ -933,6 +933,8 @@
 - (void) segmentedControlSwitchEventHandler: (HMSegmentedControl *) segmentedControl
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"SwitchSegmentedControlInUserProfileEvent" label:@"SegmentedControl" value:nil];
+    
     if (segmentedControl.selectedSegmentIndex == 0)
     {
         _curViewMode = HistoryCollectionViewModeBuying;

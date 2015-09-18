@@ -446,7 +446,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) productOriginViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
-{    
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByProductOriginEvent" label:@"SortAndFilterBar" value:nil];
+    
     CityViewController *cityViewController = [[CityViewController alloc] init];
     cityViewController.isToSetProductOrigin = YES;
     cityViewController.delegate = self;
@@ -463,6 +465,8 @@
 - (void) categoryViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByCategoryEvent" label:@"SortAndFilterBar" value:nil];
+    
     CategoryTableViewController *categoryTableView = [[CategoryTableViewController alloc] initWithCategory:_currCategoryLabel.text usedForFiltering:YES];
     categoryTableView.delegte = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:categoryTableView];
@@ -474,6 +478,8 @@
 - (void) sortAndFilterViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"Sort" label:@"SortAndFilterBar" value:nil];
+    
     SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
     sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
     sortAndFilterTableVC.buyerLocationFilter = _currBuyerLocation;
