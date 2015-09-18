@@ -8,6 +8,7 @@
 
 #import "ResidingCityTableVC.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @interface ResidingCityTableVC ()
 
@@ -43,11 +44,21 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"ResidingCityTableScreen"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
 }
+
 
 #pragma mark - UI Handler
 
@@ -59,6 +70,7 @@
     
     self.hidesBottomBarWhenPushed = YES;
 }
+
 
 #pragma mark - Table view data source
 
@@ -93,6 +105,7 @@
     return cell;
 }
 
+
 #pragma mark - UITableView Delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -103,10 +116,9 @@
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:_countryName, USER_PROFILE_USER_COUNTRY, selectedCity, USER_PROFILE_USER_CITY, nil];
     [_delegate residingCity:self didSelectCity:dict];
     
-//    [self.navigationController popViewControllerAnimated:YES];
-//    [self.navigationController popViewControllerAnimated:NO];
     [self.navigationController popToViewController:_delegate animated:YES];
 }
+
 
 #pragma mark - Event Handler
 

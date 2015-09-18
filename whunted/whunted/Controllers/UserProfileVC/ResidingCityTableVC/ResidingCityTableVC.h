@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSString  *countryName;
 @property (nonatomic, strong) NSArray   *cityList;
 
-@property (nonatomic) id<ResidingCityDelegate> delegate;
+@property (nonatomic, strong) id<ResidingCityDelegate> delegate;
 
 - (id) initWithCountry: (NSString *) country andCities: (NSArray *) cityList;
 

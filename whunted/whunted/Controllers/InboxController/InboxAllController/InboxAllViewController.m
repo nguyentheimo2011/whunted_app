@@ -55,6 +55,15 @@
     [super viewDidLoad];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"InboxScreen"];
+}
+
 
 #pragma mark - UI Handlers
 

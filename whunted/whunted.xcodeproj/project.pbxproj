@@ -21,7 +21,6 @@
 		E90ACE221B73250700DC9768 /* profile_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE1F1B73250700DC9768 /* profile_tab_icon@1x.png */; };
 		E90ACE231B73250700DC9768 /* profile_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE201B73250700DC9768 /* profile_tab_icon@2x.png */; };
 		E90ACE241B73250700DC9768 /* profile_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE211B73250700DC9768 /* profile_tab_icon@3x.png */; };
-		E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */; };
 		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
 		E915F82C1B3A6EE400D0A2F8 /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
@@ -164,7 +163,6 @@
 		E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */; };
 		E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A639291B2813C40085C54F /* CategoryTableViewController.m */; };
 		E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */; };
-		E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392F1B2814070085C54F /* LocationTableViewController.m */; };
 		E9A639321B298A500085C54F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639311B298A500085C54F /* placeholder.png */; };
 		E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */; };
 		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
@@ -336,8 +334,6 @@
 		E90ACE1F1B73250700DC9768 /* profile_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@1x.png"; sourceTree = "<group>"; };
 		E90ACE201B73250700DC9768 /* profile_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@2x.png"; sourceTree = "<group>"; };
 		E90ACE211B73250700DC9768 /* profile_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@3x.png"; sourceTree = "<group>"; };
-		E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PriceOptionViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.h; sourceTree = "<group>"; };
-		E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PriceOptionViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/PriceOptionVC/PriceOptionViewController.m; sourceTree = "<group>"; };
 		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
 		E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
@@ -523,8 +519,6 @@
 		E9A639291B2813C40085C54F /* CategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/CategoryTable/CategoryTableViewController.m; sourceTree = "<group>"; };
 		E9A6392B1B2813F40085C54F /* ItemInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.h; sourceTree = "<group>"; };
 		E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
-		E9A6392E1B2814070085C54F /* LocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/LocationTable/LocationTableViewController.h; sourceTree = "<group>"; };
-		E9A6392F1B2814070085C54F /* LocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/LocationTable/LocationTableViewController.m; sourceTree = "<group>"; };
 		E9A639311B298A500085C54F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = "Resources/Want Details/placeholder.png"; sourceTree = "<group>"; };
 		E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Resources/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
@@ -787,15 +781,6 @@
 			name = UploadingViewController;
 			sourceTree = "<group>";
 		};
-		E915F8151B38024900D0A2F8 /* PriceOptionVC */ = {
-			isa = PBXGroup;
-			children = (
-				E915F8161B3802C400D0A2F8 /* PriceOptionViewController.h */,
-				E915F8171B3802C400D0A2F8 /* PriceOptionViewController.m */,
-			);
-			name = PriceOptionVC;
-			sourceTree = "<group>";
-		};
 		E915F8191B3908CE00D0A2F8 /* pList-Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,8 +942,8 @@
 		E92EC5071B688EBF00AABB72 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				E92EC51D1B6A3CD300AABB72 /* FeedbackTableViewCell */,
 				E92EC5121B6A0D2A00AABB72 /* FeedbackReviewVC */,
+				E92EC51D1B6A3CD300AABB72 /* FeedbackTableViewCell */,
 				E92EC5081B688EE700AABB72 /* LeaveFeedbackVC */,
 			);
 			name = Feedback;
@@ -1273,8 +1258,6 @@
 				E9A639231B2813670085C54F /* CategoryTable */,
 				E915F81C1B39162B00D0A2F8 /* CountryTableVC */,
 				E9A639221B2813550085C54F /* ItemInfoTable */,
-				E9A639211B2813450085C54F /* LocationTable */,
-				E915F8151B38024900D0A2F8 /* PriceOptionVC */,
 			);
 			name = WantDetailsVC;
 			sourceTree = "<group>";
@@ -1468,15 +1451,6 @@
 				E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */,
 			);
 			name = ImageRetrieverVC;
-			sourceTree = "<group>";
-		};
-		E9A639211B2813450085C54F /* LocationTable */ = {
-			isa = PBXGroup;
-			children = (
-				E9A6392E1B2814070085C54F /* LocationTableViewController.h */,
-				E9A6392F1B2814070085C54F /* LocationTableViewController.m */,
-			);
-			name = LocationTable;
 			sourceTree = "<group>";
 		};
 		E9A639221B2813550085C54F /* ItemInfoTable */ = {
@@ -2216,7 +2190,6 @@
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
-				E9A639301B2814070085C54F /* LocationTableViewController.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */,
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
@@ -2230,7 +2203,6 @@
 				E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
-				E915F8181B3802C400D0A2F8 /* PriceOptionViewController.m in Sources */,
 				E9A07C171B31623C00904DE9 /* common.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */,

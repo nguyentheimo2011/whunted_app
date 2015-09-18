@@ -37,38 +37,35 @@
 #define kBuyingPreferenceHashtagList    @"buyingPreferenceHashtagList"
 #define kSellingPreferenceHashtagList   @"sellingPreferenceHashtagList"
 
-@interface PreferenceViewController ()
-
-@end
 
 @implementation PreferenceViewController
 {
-    UITableView     *_preferenceTableView;
+    UITableView         *_preferenceTableView;
     
-    UITableViewCell *_travellingToCell;
-    UITableViewCell *_residingCountryCel;
-    UITableViewCell *_buyingHashTagCell;
-    UITableViewCell *_sellingHashTagCell;
+    UITableViewCell     *_travellingToCell;
+    UITableViewCell     *_residingCountryCel;
+    UITableViewCell     *_buyingHashTagCell;
+    UITableViewCell     *_sellingHashTagCell;
     
-    UITextField     *_buyingHashtagTextField;
-    UITextField     *_sellingHashtagTextField;
-    UIScrollView    *_buyingHashtagContainer;
-    UIScrollView    *_sellingHashtagContainer;
+    UITextField         *_buyingHashtagTextField;
+    UITextField         *_sellingHashtagTextField;
+    UIScrollView        *_buyingHashtagContainer;
+    UIScrollView        *_sellingHashtagContainer;
     
-    IGLDropDownMenu *_buyingDropDownMenu;
-    IGLDropDownMenu *_sellingDropDownMenu;
+    IGLDropDownMenu     *_buyingDropDownMenu;
+    IGLDropDownMenu     *_sellingDropDownMenu;
     
-    NSArray         *_travellingToCountryList;
-    NSArray         *_residingCountryList;
+    NSArray             *_travellingToCountryList;
+    NSArray             *_residingCountryList;
     
-    NSMutableArray  *_buyingPreferenceHashtagList;
-    NSMutableArray  *_sellingPreferenceHashtagList;
+    NSMutableArray      *_buyingPreferenceHashtagList;
+    NSMutableArray      *_sellingPreferenceHashtagList;
     
-    CGRect          _lastBuyingHashtagFrame;
-    CGRect          _lastSellingHashtagFrame;
+    CGRect              _lastBuyingHashtagFrame;
+    CGRect              _lastSellingHashtagFrame;
     
-    BOOL            _isExpandingContentSize;
-    NSInteger       _currTextFieldTag;
+    BOOL                _isExpandingContentSize;
+    NSInteger           _currTextFieldTag;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -76,7 +73,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self.hidesBottomBarWhenPushed = YES;
     }
     
@@ -90,6 +88,7 @@
     [super viewWillAppear:animated];
     
     [self registerNotification];
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"PreferenceScreen"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -123,6 +122,7 @@
     [super didReceiveMemoryWarning];
     NSLog(@"PreferenceViewController didReceiveMemoryWarning");
 }
+
 
 #pragma mark - Notification Registration
 
@@ -679,6 +679,7 @@
         return @"";
 }
 
+
 #pragma mark - UITableView delegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -739,6 +740,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
+
 
 #pragma mark - Delegate Methods
 

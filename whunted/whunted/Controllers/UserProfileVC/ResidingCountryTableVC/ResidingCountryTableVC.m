@@ -8,10 +8,8 @@
 
 #import "ResidingCountryTableVC.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
-@interface ResidingCountryTableVC ()
-
-@end
 
 @implementation ResidingCountryTableVC
 {
@@ -30,11 +28,21 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"ResidingCountryTableScreen"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
 }
+
 
 #pragma mark - UI
 
@@ -47,6 +55,7 @@
     self.hidesBottomBarWhenPushed = YES;
 }
 
+
 #pragma mark - Event Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -55,6 +64,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 #pragma mark - Data Handler
 
@@ -65,6 +75,7 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CountryAndCityList" ofType:@"plist"];
     _countryDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
 }
+
 
 #pragma mark - UITableView Data Souce
 

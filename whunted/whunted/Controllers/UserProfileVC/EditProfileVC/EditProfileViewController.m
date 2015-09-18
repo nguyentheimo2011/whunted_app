@@ -97,6 +97,7 @@
     [super viewWillAppear:animated];
     
     [self registerNotification];
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"EditProfileScreen"];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -422,7 +423,8 @@
     _genderLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _genderLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     
-    if (!_genderLabel.text || _genderLabel.text.length == 0) {
+    if (!_genderLabel.text || _genderLabel.text.length == 0)
+    {
         _genderLabel.text = USER_PROFILE_GENDER_SELECT;
         _genderLabel.textColor = PLACEHOLDER_TEXT_COLOR;
     }

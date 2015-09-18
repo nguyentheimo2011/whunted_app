@@ -75,7 +75,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _profileOwner = profileOwner;
         
         [self initData];
@@ -91,7 +92,15 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
     
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"UserProfileScreen"];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -145,7 +154,8 @@
     NSString *title = [NSString stringWithFormat:@"@%@", _profileOwner[PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
     
-    if (_isViewingMyProfile) {
+    if (_isViewingMyProfile)
+    {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
     }
 }
@@ -376,7 +386,8 @@
     CGFloat       kButtonLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
     
-    if (!_isViewingMyProfile) {
+    if (!_isViewingMyProfile)
+    {
         kButtonLeftMargin = WINSIZE.width * 0.1f;
         kButtonWidth = WINSIZE.width * (1 - 0.3) / 2.0;
     }
@@ -424,7 +435,8 @@
 - (void) addPreferencesButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_isViewingMyProfile) {
+    if (_isViewingMyProfile)
+    {
         CGFloat const kButtonWidth = WINSIZE.width * (6/7.0 - 2/3.6);
         CGFloat const kButtonHeight = 60;
         CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.6;
@@ -531,7 +543,8 @@
     [backgroundView addSubview:verifiedLabel];
     
     BOOL facebookVerified = (BOOL) _profileOwner[PF_USER_FACEBOOK_VERIFIED];
-    if (facebookVerified) {
+    if (facebookVerified)
+    {
         UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
         
         CGFloat const kImageWith = 16;
@@ -543,7 +556,8 @@
     }
     
     BOOL emailVerified = (BOOL) _profileOwner[PF_USER_EMAIL_VERIFICATION];
-    if (emailVerified) {
+    if (emailVerified)
+    {
         UIImage *emailImage = [UIImage imageNamed:@"email_verification.png"];
         
         CGFloat const kImageWith = 20;
