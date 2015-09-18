@@ -41,7 +41,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {
+    
+    if (self != nil)
+    {
         [self initData:infoDict];
         [self customizeUI];
         [self initializeItemNameCell];
@@ -60,6 +62,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemInfoDict = [NSMutableDictionary dictionaryWithDictionary:infoDict];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"UploadItemInfoScreen"];
 }
 
 

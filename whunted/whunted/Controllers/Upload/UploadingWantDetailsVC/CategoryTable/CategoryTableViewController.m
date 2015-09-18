@@ -48,6 +48,15 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"CategoryScreen"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -58,14 +67,18 @@
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_usedForFiltering) {
+    if (_usedForFiltering)
+    {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingCategory)];
-    } else {
+    }
+    else
+    {
         [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     }
     
     [Utilities customizeTitleLabel:NSLocalizedString(@"Category", nil) forViewController:self];
 }
+
 
 #pragma mark - Table view data source
 
@@ -90,12 +103,14 @@
     NSString *cellID = @"CategoryCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
     cell.textLabel.text = [_categoryList objectAtIndex:indexPath.row];
-    if (indexPath.row == _selectedIndex) {
+    if (indexPath.row == _selectedIndex)
+    {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
@@ -108,7 +123,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (_selectedIndex != NSNotFound) {
+    if (_selectedIndex != NSNotFound)
+    {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedIndex inSection:0]];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }

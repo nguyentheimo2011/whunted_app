@@ -25,7 +25,8 @@
 {
     self = [super init];
     
-    if (self != nil) {
+    if (self != nil)
+    {
         _selectedCountries = [NSArray arrayWithArray:origins];
         _usedForFiltering = used;
         
@@ -43,6 +44,15 @@
     [super viewDidLoad];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"CountryTableScreen"];
+}
+
 #pragma mark - UI Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -51,7 +61,8 @@
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStyleDone target:self action:@selector(cancelChoosingOrigins)];
     
-    if (!_usedForFiltering) {
+    if (!_usedForFiltering)
+    {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self action:@selector(completeChoosingOrigins)];
     }
     
@@ -94,16 +105,20 @@
     NSString *cellID = @"ProductOriginCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
     cell.textLabel.text = [_fullCountryList objectAtIndex:indexPath.row];
     
     NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
-    if ([_selectedCountries containsObject:country]) {
+    if ([_selectedCountries containsObject:country])
+    {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
+    }
+    else
+    {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
@@ -117,13 +132,15 @@
     NSString *country = [_fullCountryList objectAtIndex:indexPath.row];
     
     if (_usedForFiltering)
-    {   // if country table is used for filtering, only on country can be chosen
+    {
+        // if country table is used for filtering, only on country can be chosen
         [_delegate countryTableView:self didCompleteChoosingACountry:country];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
     else
     {   // multiple countries can be chosen        
-        if ([_selectedCountries containsObject:country]) {
+        if ([_selectedCountries containsObject:country])
+        {
             // remove country from selected list
             NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
             [countries removeObject:country];
@@ -132,7 +149,9 @@
             // remove check mark
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryNone;
-        } else {
+        }
+        else
+        {
             // add country to selected list
             NSMutableArray *countries = [NSMutableArray arrayWithArray:_selectedCountries];
             [countries addObject:country];
@@ -153,7 +172,8 @@
 - (void) completeChoosingOrigins
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (!_usedForFiltering) {
+    if (!_usedForFiltering)
+    {
         [_delegate countryTableView:self didCompleteChoosingCountries:_selectedCountries];
         [self.navigationController popViewControllerAnimated:YES];
     }

@@ -71,7 +71,7 @@
 {
     [super viewWillAppear:animated];
     
-    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"Marketplace"];
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"MarketplaceScreen"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

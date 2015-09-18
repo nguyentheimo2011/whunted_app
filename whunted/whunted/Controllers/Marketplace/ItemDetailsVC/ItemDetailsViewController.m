@@ -95,7 +95,7 @@
         [self updateSecondBottomButtonTitle];
     }
     
-    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"ItemDetailsScreen"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

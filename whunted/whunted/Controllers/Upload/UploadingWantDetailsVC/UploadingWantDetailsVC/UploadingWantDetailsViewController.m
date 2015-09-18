@@ -93,6 +93,15 @@
     _wantData.itemPictures = [[NSMutableArray alloc] init];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"UploadDetailsScreen"];
+}
+
 
 #pragma mark - UI Handlers
 

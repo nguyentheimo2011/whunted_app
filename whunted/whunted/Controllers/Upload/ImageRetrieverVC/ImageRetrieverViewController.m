@@ -32,7 +32,8 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self.hidesBottomBarWhenPushed = YES;
     }
     
@@ -52,6 +53,15 @@
     [self addImageLinkTextView];
     [self addItemImageView];
     [self addProceedToEditButton];
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"ImageDownloaderScreen"];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -168,7 +178,8 @@
 - (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if([text isEqualToString:@"\n"]) {
+    if([text isEqualToString:@"\n"])
+    {
         [textView resignFirstResponder];
         return NO;
     }
@@ -186,10 +197,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         [MBProgressHUD hideAllHUDsForView:_itemImageView animated:YES];
-        if (data) {
+        if (data)
+        {
             _currItemImage = [UIImage imageWithData:data];
             [_itemImageView setImage:_currItemImage];
-        } else {
+        }
+        else
+        {
             // handle error
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
@@ -202,10 +216,13 @@
 - (void) topCancelButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_currItemImage) {
+    if (_currItemImage)
+    {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard the image?", nil) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure!", nil), nil];
         [alertView show];
-    } else {
+    }
+    else
+    {
         [_delegate imageRetrieverViewControllerDidCancel];
     }
 }
@@ -230,7 +247,8 @@
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (buttonIndex == 1) {
+    if (buttonIndex == 1)
+    {
         [_delegate imageRetrieverViewControllerDidCancel];
     }
 }

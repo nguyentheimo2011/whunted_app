@@ -71,14 +71,16 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if (_isToSetProductOrigin) {
+    if (_isToSetProductOrigin)
+    {
         [Utilities customizeTitleLabel:NSLocalizedString(@"Product Origin", nil) forViewController:self];
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSortAndFilter)];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Apply", nil) style:UIBarButtonItemStylePlain target:self action:@selector(applyNewSortingAndFilteringCriteria)];
     }
-    else {
+    else
+    {
         [Utilities customizeTitleLabel:NSLocalizedString(@"Location", nil) forViewController:self];
         
         [Utilities customizeBackButtonForViewController:self withAction:@selector(backToPreviousView)];
@@ -170,7 +172,8 @@
     NSString *cellID = @"CountryAndCityCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
@@ -270,9 +273,12 @@
 - (void) matchCountriesAndCitiesWithText: (NSString *) typedText
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (typedText.length == 0) {
+    if (typedText.length == 0)
+    {
         _matchedCitiesAndCountriesList = [_taiwaneseCountryAndCitiesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
-    } else {
+    }
+    else
+    {
         NSString *filter = @"SELF BEGINSWITH[cd] %@";
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:filter, typedText];
@@ -298,11 +304,13 @@
     NSArray *countries = [countriesToCitiesDict allKeys];
     _citiesAndCountriesList = [[NSMutableArray alloc] init];
     
-    for (NSString *country in countries) {
+    for (NSString *country in countries)
+    {
         [_citiesAndCountriesList addObject:country];
         
         NSArray *cities = [countriesToCitiesDict objectForKey:country];
-        for (NSString *city in cities) {
+        for (NSString *city in cities)
+        {
             NSString *newCity = [NSString stringWithFormat:@"%@, %@", city, country];
             [_citiesAndCountriesList addObject:newCity];
         }
@@ -311,7 +319,8 @@
     NSArray *taiwaneseCities = [countriesToCitiesDict objectForKey:@"Taiwan"];
     _taiwaneseCountryAndCitiesList = [NSMutableArray array];
     [_taiwaneseCountryAndCitiesList addObject:@"Taiwan"];
-    for (NSString *city in taiwaneseCities) {
+    for (NSString *city in taiwaneseCities)
+    {
         NSString *newCity = [NSString stringWithFormat:@"%@, Taiwan", city];
         [_taiwaneseCountryAndCitiesList addObject:newCity];
     }
