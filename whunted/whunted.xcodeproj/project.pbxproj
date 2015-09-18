@@ -105,7 +105,6 @@
 		E963614D1B16C7F000EB9D35 /* marketplace@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614A1B16C7F000EB9D35 /* marketplace@1x.png */; };
 		E963614E1B16C7F000EB9D35 /* marketplace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614B1B16C7F000EB9D35 /* marketplace@2x.png */; };
 		E963614F1B16C7F000EB9D35 /* marketplace@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614C1B16C7F000EB9D35 /* marketplace@3x.png */; };
-		E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E96361511B1815D400EB9D35 /* WantTableViewCell.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
 		E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */; };
@@ -135,7 +134,6 @@
 		E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E981130F1B2155CB00ECAA0C /* chat_with_seller@3x.png */; };
 		E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113191B21EB6C00ECAA0C /* SellerListViewController.m */; };
 		E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E981131C1B21EB7D00ECAA0C /* SellerListCell.m */; };
-		E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98113201B24B85F00ECAA0C /* SellTableViewCell.m */; };
 		E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE41B3009D800904DE9 /* libicucore.dylib */; };
 		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
 		E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */; };
@@ -254,16 +252,12 @@
 		E9E31F851B859305008D6A3D /* user_profile_image_placeholder_small@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F7F1B859305008D6A3D /* user_profile_image_placeholder_small@1x.png */; };
 		E9E31F861B859305008D6A3D /* user_profile_image_placeholder_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F801B859305008D6A3D /* user_profile_image_placeholder_small@2x.png */; };
 		E9E31F871B859305008D6A3D /* user_profile_image_placeholder_small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F811B859305008D6A3D /* user_profile_image_placeholder_small@3x.png */; };
-		E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E4565E1B0D863200E8B55D /* MyWantViewController.m */; };
-		E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456631B0D866F00E8B55D /* MySellViewController.m */; };
 		E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456671B0D8C7400E8B55D /* sell_icon@1x.png */; };
 		E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456681B0D8C7400E8B55D /* sell_icon@2x.png */; };
 		E9E4566F1B0D8C7400E8B55D /* sell_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456691B0D8C7400E8B55D /* sell_icon@3x.png */; };
 		E9E456701B0D8C7400E8B55D /* want_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E4566A1B0D8C7400E8B55D /* want_icon@1x.png */; };
 		E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E4566B1B0D8C7400E8B55D /* want_icon@2x.png */; };
 		E9E456721B0D8C7400E8B55D /* want_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E4566C1B0D8C7400E8B55D /* want_icon@3x.png */; };
-		E9E456841B0DE8E100E8B55D /* HorizontalLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E456831B0DE8E100E8B55D /* HorizontalLineViewController.xib */; };
-		E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E456861B0DE92300E8B55D /* HorizontalLineViewController.m */; };
 		E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E4568F1B0F0DA500E8B55D /* likes_icon.png */; };
 		E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456901B0F0DA500E8B55D /* view_icon.png */; };
 		E9E456941B0F20CE00E8B55D /* promote_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456931B0F20CE00E8B55D /* promote_icon.png */; };
@@ -432,8 +426,6 @@
 		E963614A1B16C7F000EB9D35 /* marketplace@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@1x.png"; path = "Resources/Tab Bar Icons/marketplace@1x.png"; sourceTree = "<group>"; };
 		E963614B1B16C7F000EB9D35 /* marketplace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@2x.png"; path = "Resources/Tab Bar Icons/marketplace@2x.png"; sourceTree = "<group>"; };
 		E963614C1B16C7F000EB9D35 /* marketplace@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@3x.png"; path = "Resources/Tab Bar Icons/marketplace@3x.png"; sourceTree = "<group>"; };
-		E96361501B1815D400EB9D35 /* WantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WantTableViewCell.h; path = Controllers/WantSell/MyWantTableViewCell/WantTableViewCell.h; sourceTree = "<group>"; };
-		E96361511B1815D400EB9D35 /* WantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WantTableViewCell.m; path = Controllers/WantSell/MyWantTableViewCell/WantTableViewCell.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
 		E97A95191B454072003796DD /* chat_pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_pictures.png; path = Resources/Chat/chat_pictures.png; sourceTree = "<group>"; };
 		E97A95251B463BCF003796DD /* BuyersOrSellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyersOrSellersOfferViewController.h; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.h; sourceTree = "<group>"; };
@@ -466,8 +458,6 @@
 		E98113191B21EB6C00ECAA0C /* SellerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellerListViewController.m; path = Controllers/WantSell/SellerListVC/SellerListViewController.m; sourceTree = "<group>"; };
 		E981131B1B21EB7D00ECAA0C /* SellerListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellerListCell.h; path = Controllers/WantSell/SellerListCell/SellerListCell.h; sourceTree = "<group>"; };
 		E981131C1B21EB7D00ECAA0C /* SellerListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellerListCell.m; path = Controllers/WantSell/SellerListCell/SellerListCell.m; sourceTree = "<group>"; };
-		E981131F1B24B85F00ECAA0C /* SellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellTableViewCell.h; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.h; sourceTree = "<group>"; };
-		E98113201B24B85F00ECAA0C /* SellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellTableViewCell.m; path = Controllers/WantSell/MySellTableViewCell/SellTableViewCell.m; sourceTree = "<group>"; };
 		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
 		E9A07BE41B3009D800904DE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		E9A07BE61B3009F500904DE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -630,19 +620,12 @@
 		E9E31F7F1B859305008D6A3D /* user_profile_image_placeholder_small@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_profile_image_placeholder_small@1x.png"; path = "Resources/User Profile/user_profile_image_placeholder_small@1x.png"; sourceTree = "<group>"; };
 		E9E31F801B859305008D6A3D /* user_profile_image_placeholder_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_profile_image_placeholder_small@2x.png"; path = "Resources/User Profile/user_profile_image_placeholder_small@2x.png"; sourceTree = "<group>"; };
 		E9E31F811B859305008D6A3D /* user_profile_image_placeholder_small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_profile_image_placeholder_small@3x.png"; path = "Resources/User Profile/user_profile_image_placeholder_small@3x.png"; sourceTree = "<group>"; };
-		E9E4565D1B0D863200E8B55D /* MyWantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyWantViewController.h; path = Controllers/WantSell/MyWantVC/MyWantViewController.h; sourceTree = "<group>"; };
-		E9E4565E1B0D863200E8B55D /* MyWantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyWantViewController.m; path = Controllers/WantSell/MyWantVC/MyWantViewController.m; sourceTree = "<group>"; };
-		E9E456621B0D866F00E8B55D /* MySellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySellViewController.h; path = Controllers/WantSell/MySellVC/MySellViewController.h; sourceTree = "<group>"; };
-		E9E456631B0D866F00E8B55D /* MySellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MySellViewController.m; path = Controllers/WantSell/MySellVC/MySellViewController.m; sourceTree = "<group>"; };
 		E9E456671B0D8C7400E8B55D /* sell_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sell_icon@1x.png"; path = "Resources/Tab Bar Icons/sell_icon@1x.png"; sourceTree = "<group>"; };
 		E9E456681B0D8C7400E8B55D /* sell_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sell_icon@2x.png"; path = "Resources/Tab Bar Icons/sell_icon@2x.png"; sourceTree = "<group>"; };
 		E9E456691B0D8C7400E8B55D /* sell_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sell_icon@3x.png"; path = "Resources/Tab Bar Icons/sell_icon@3x.png"; sourceTree = "<group>"; };
 		E9E4566A1B0D8C7400E8B55D /* want_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "want_icon@1x.png"; path = "Resources/Tab Bar Icons/want_icon@1x.png"; sourceTree = "<group>"; };
 		E9E4566B1B0D8C7400E8B55D /* want_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "want_icon@2x.png"; path = "Resources/Tab Bar Icons/want_icon@2x.png"; sourceTree = "<group>"; };
 		E9E4566C1B0D8C7400E8B55D /* want_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "want_icon@3x.png"; path = "Resources/Tab Bar Icons/want_icon@3x.png"; sourceTree = "<group>"; };
-		E9E456831B0DE8E100E8B55D /* HorizontalLineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HorizontalLineViewController.xib; path = Controllers/WantSell/CustomVC/HorizontalLineViewController.xib; sourceTree = "<group>"; };
-		E9E456851B0DE92300E8B55D /* HorizontalLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HorizontalLineViewController.h; path = Controllers/WantSell/CustomVC/HorizontalLineViewController.h; sourceTree = "<group>"; };
-		E9E456861B0DE92300E8B55D /* HorizontalLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HorizontalLineViewController.m; path = Controllers/WantSell/CustomVC/HorizontalLineViewController.m; sourceTree = "<group>"; };
 		E9E4568F1B0F0DA500E8B55D /* likes_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = likes_icon.png; path = Resources/WantSellCell/likes_icon.png; sourceTree = "<group>"; };
 		E9E456901B0F0DA500E8B55D /* view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_icon.png; path = Resources/WantSellCell/view_icon.png; sourceTree = "<group>"; };
 		E9E456931B0F20CE00E8B55D /* promote_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = promote_icon.png; path = Resources/WantSellCell/promote_icon.png; sourceTree = "<group>"; };
@@ -1016,7 +999,7 @@
 				E98113221B25892C00ECAA0C /* UserProfileVC */,
 				E92EC5071B688EBF00AABB72 /* Feedback */,
 				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
-				E94D17EA1AF9B28700E31B01 /* WantSell */,
+				E94D17EA1AF9B28700E31B01 /* SellerList */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1071,18 +1054,13 @@
 			name = "Navigation Icons";
 			sourceTree = "<group>";
 		};
-		E94D17EA1AF9B28700E31B01 /* WantSell */ = {
+		E94D17EA1AF9B28700E31B01 /* SellerList */ = {
 			isa = PBXGroup;
 			children = (
 				E98113171B21EB3900ECAA0C /* SellerListVC */,
 				E98113161B21EB0A00ECAA0C /* SellerListCell */,
-				E9E4567D1B0DDC9500E8B55D /* CustomVC */,
-				E9E456561B0D84E200E8B55D /* MySellVC */,
-				E981131E1B24B73B00ECAA0C /* MySellTableViewCell */,
-				E9E456551B0D84D800E8B55D /* MyWantVC */,
-				E9E456881B0F095000E8B55D /* MyWantTableViewCell */,
 			);
-			name = WantSell;
+			name = SellerList;
 			sourceTree = "<group>";
 		};
 		E94D18211AF9CFB400E31B01 /* App Icons */ = {
@@ -1355,15 +1333,6 @@
 				E98113191B21EB6C00ECAA0C /* SellerListViewController.m */,
 			);
 			name = SellerListVC;
-			sourceTree = "<group>";
-		};
-		E981131E1B24B73B00ECAA0C /* MySellTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				E981131F1B24B85F00ECAA0C /* SellTableViewCell.h */,
-				E98113201B24B85F00ECAA0C /* SellTableViewCell.m */,
-			);
-			name = MySellTableViewCell;
 			sourceTree = "<group>";
 		};
 		E98113221B25892C00ECAA0C /* UserProfileVC */ = {
@@ -1652,43 +1621,6 @@
 			name = UploadPopup;
 			sourceTree = "<group>";
 		};
-		E9E456551B0D84D800E8B55D /* MyWantVC */ = {
-			isa = PBXGroup;
-			children = (
-				E9E4565D1B0D863200E8B55D /* MyWantViewController.h */,
-				E9E4565E1B0D863200E8B55D /* MyWantViewController.m */,
-			);
-			name = MyWantVC;
-			sourceTree = "<group>";
-		};
-		E9E456561B0D84E200E8B55D /* MySellVC */ = {
-			isa = PBXGroup;
-			children = (
-				E9E456621B0D866F00E8B55D /* MySellViewController.h */,
-				E9E456631B0D866F00E8B55D /* MySellViewController.m */,
-			);
-			name = MySellVC;
-			sourceTree = "<group>";
-		};
-		E9E4567D1B0DDC9500E8B55D /* CustomVC */ = {
-			isa = PBXGroup;
-			children = (
-				E9E456851B0DE92300E8B55D /* HorizontalLineViewController.h */,
-				E9E456861B0DE92300E8B55D /* HorizontalLineViewController.m */,
-				E9E456831B0DE8E100E8B55D /* HorizontalLineViewController.xib */,
-			);
-			name = CustomVC;
-			sourceTree = "<group>";
-		};
-		E9E456881B0F095000E8B55D /* MyWantTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				E96361501B1815D400EB9D35 /* WantTableViewCell.h */,
-				E96361511B1815D400EB9D35 /* WantTableViewCell.m */,
-			);
-			name = MyWantTableViewCell;
-			sourceTree = "<group>";
-		};
 		E9E4568E1B0F0D9300E8B55D /* WantSellCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1968,7 +1900,6 @@
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
 				E951C3FC1B81F26300A1B384 /* category_icon@1x.png in Resources */,
 				E90ACE0C1B71F04400DC9768 /* activity_tab_icon@2x.png in Resources */,
-				E9E456841B0DE8E100E8B55D /* HorizontalLineViewController.xib in Resources */,
 				E90ACE241B73250700DC9768 /* profile_tab_icon@3x.png in Resources */,
 				E918062D1B7C85C7009C1F2D /* location_icon@2x.png in Resources */,
 				E97A95491B528F18003796DD /* move_to_next_icon@2x.png in Resources */,
@@ -2179,13 +2110,11 @@
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,
-				E98113211B24B85F00ECAA0C /* SellTableViewCell.m in Sources */,
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
-				E9E456871B0DE92300E8B55D /* HorizontalLineViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
@@ -2209,19 +2138,16 @@
 				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */,
-				E9E456651B0D866F00E8B55D /* MySellViewController.m in Sources */,
 				E9A07C281B31660B00904DE9 /* push.m in Sources */,
 				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
 				E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */,
-				E9E456601B0D863200E8B55D /* MyWantViewController.m in Sources */,
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
-				E96361521B1815D400EB9D35 /* WantTableViewCell.m in Sources */,
 				E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */,
 				E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
