@@ -12,7 +12,7 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#import "MBProgressHUD.h"
+#import <MBProgressHUD.h>
 
 #define     kSortAndFilterBarHeight         50.0f
 
@@ -45,7 +45,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {
+    if (self != nil)
+    {
         [self initData];
         [self retrieveWantDataList];
     }
@@ -62,6 +63,15 @@
     [self addSortAndFilterBar];
     [self addWantCollectionView];
     [self customizeView];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) viewWillAppear:(BOOL)animated
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewWillAppear:animated];
+    
+    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"Marketplace"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

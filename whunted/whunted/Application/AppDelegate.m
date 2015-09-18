@@ -9,6 +9,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Parse/Parse.h>
+#import <Google/Analytics.h>
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
@@ -35,6 +36,8 @@
     [self setViewController];
     
     [self addNotificationListeners];
+    
+    [self addGoogleAnalyticsTracker];
     
     return YES;
 }
@@ -147,6 +150,21 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerPushNotifications) name:NOTIFICATION_USER_SIGNED_UP object:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addGoogleAnalyticsTracker
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // Configure tracker from GoogleService-Info.plist.
+    NSError *configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    // Optional: configure GAI options.
+    GAI *gai = [GAI sharedInstance];
+    gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
+    gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
 }
 
 

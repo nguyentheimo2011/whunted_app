@@ -148,4 +148,17 @@
 
 + (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice andDeliveryTime: (NSString *) deliveryTime;
 
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Google Analytics
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (void)        sendScreenNameToGoogleAnalyticsTracker: (NSString *) screenName;
+
++ (void)        sendEventToGoogleAnalyticsTrackerWithEventCategory: (NSString *) category action: (NSString *) action label: (NSString *) label value: (NSNumber*) value;
+
++ (void)        sendLoadingTimeToGoogleAnalyticsTrackerWithCategory: (NSString *) category interval: (NSNumber *) loadTime name: (NSString *) name label: (NSString *) label;
+
++ (void)        sendExceptionInfoToGoogleAnalyticsTrackerWithDescription: (NSString *) description fatal: (NSNumber *) fatal;
+
 @end

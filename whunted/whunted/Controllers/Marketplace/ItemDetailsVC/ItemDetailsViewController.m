@@ -17,6 +17,7 @@
 
 #import <MBProgressHUD.h>
 #import <JTImageButton.h>
+#import <Google/Analytics.h>
 
 @implementation ItemDetailsViewController
 {
@@ -93,6 +94,8 @@
     {
         [self updateSecondBottomButtonTitle];
     }
+    
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

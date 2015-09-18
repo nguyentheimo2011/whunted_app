@@ -7,6 +7,7 @@
 //
 
 #import "Utilities.h"
+#import <Google/Analytics.h>
 
 @implementation Utilities
 
@@ -686,6 +687,7 @@
     }];
 }
 
+
 #pragma mark - Data Specifics
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -707,5 +709,54 @@
     else
         return offerData.buyerID;
 }
+
+
+#pragma mark - Google Analytics
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendScreenNameToGoogleAnalyticsTracker:(NSString *)screenName
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:screenName];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendEventToGoogleAnalyticsTrackerWithEventCategory:(NSString *)category action:(NSString *)action label:(NSString *)label value: (NSNumber*) value
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
+                                                          action:action
+                                                           label:label
+                                                           value:value] build]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendLoadingTimeToGoogleAnalyticsTrackerWithCategory:(NSString *)category interval:(NSNumber *)loadTime name:(NSString *)name label:(NSString *)label
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:category
+                                                         interval:loadTime
+                                                             name:name
+                                                            label:label] build]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:(NSString *)description fatal:(NSNumber *)fatal
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder
+                    createExceptionWithDescription:description
+                    withFatal:fatal] build]];
+}
+
+
 
 @end
