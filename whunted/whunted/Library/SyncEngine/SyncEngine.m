@@ -77,8 +77,8 @@
 {
     PFUser *currUser = [PFUser currentUser];
     PFFile *imageFile = currUser[PF_USER_PICTURE];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        UIImage *profileImage = [UIImage imageWithData:data];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+    {
         [self executeSyncCompletionOperations];
     }];
 }

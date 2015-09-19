@@ -806,9 +806,11 @@
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error ) {
-        if (error) {
-            NSLog(@"Error: %@ %@", error, error.userInfo);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *pfObjList, NSError *error )
+    {
+        if (error)
+        {
+            [Utilities handleError:error];
         }
         else
         {

@@ -326,7 +326,8 @@
     BOOL offerChanged = _offerData.objectID.length > 0;
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
         if (!error)
         {
             // post notification to notify ItemDetails of the new offer
@@ -350,7 +351,7 @@
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

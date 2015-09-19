@@ -8,6 +8,7 @@
 
 #import "HistoryCollectionViewCell.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 #import "ItemImageCache.h"
 
 #define     kCellLeftMagin              4.0f
@@ -304,7 +305,8 @@
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error)
+    {
         if (!error)
         {
             PFFile *firstPicture = firstObject[@"itemPicture"];
@@ -322,13 +324,13 @@
                 }
                 else
                 {
-                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                    [Utilities handleError:error_2];
                 }
             }];
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

@@ -320,7 +320,8 @@
 {
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_OBJECT_ID equalTo:_transactionData.itemID];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+    {
         if (!error)
         {
             WantData *wantData = [[WantData alloc] initWithPFObject:object];
@@ -331,7 +332,7 @@
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -343,10 +344,13 @@
     PFRelation *picRelation = wantData.itemPictureList;
     PFQuery *query = [picRelation query];
     [query orderByAscending:PF_CREATED_AT];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
-        if (!error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error)
+    {
+        if (!error)
+        {
             PFFile *firstPicture = firstObject[@"itemPicture"];
-            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2)
+            {
                 if (!error_2)
                 {
                     UIImage *image = [UIImage imageWithData:data];
@@ -357,11 +361,13 @@
                 }
                 else
                 {
-                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                    [Utilities handleError:error_2];
                 }
             }];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        else
+        {
+            [Utilities handleError:error];
         }
     }];
 }

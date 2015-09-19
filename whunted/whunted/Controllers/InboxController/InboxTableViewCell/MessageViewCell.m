@@ -178,7 +178,8 @@
              PFUser *user = [objects firstObject];
              PFFile *userPicture = user[PF_USER_PICTURE];
              
-             [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+             [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+             {
                  if (!error)
                  {
                      UIImage *image = [UIImage imageWithData:data];
@@ -189,7 +190,7 @@
                  }
                  else
                  {
-                     NSLog(@"Error: %@ %@", error, [error userInfo]);
+                     [Utilities handleError:error];
                  }
              }];
          }
@@ -202,16 +203,20 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_ITEM_ID]];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
-        if (!error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)
+    {
+        if (!error)
+        {
             PFRelation *picRelation = obj[PF_ITEM_PICTURE_LIST];
             PFQuery *query = [picRelation query];
             [query orderByAscending:PF_CREATED_AT];
-            [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error)
+            {
                 if (!error)
                 {
                     PFFile *firstPicture = firstObject[PF_ITEM_PICTURE];
-                    [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+                    [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2)
+                    {
                         if (!error_2)
                         {
                             UIImage *image = [UIImage imageWithData:data];
@@ -222,17 +227,19 @@
                         }
                         else
                         {
-                            NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                            [Utilities handleError:error_2];
                         }
                     }];
                 }
                 else
                 {
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    [Utilities handleError:error];
                 }
             }];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        else
+        {
+            [Utilities handleError:error];
         }
     }];
 }

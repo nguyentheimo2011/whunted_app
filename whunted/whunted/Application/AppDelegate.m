@@ -51,10 +51,11 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     if (currentInstallation.badge != 0) {
         currentInstallation.badge = 0;
-        [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
             if (error)
             {
-                NSLog(@"%@ %@", error, error.userInfo);
+                [Utilities handleError:error];
             }
         }];
     }
@@ -82,14 +83,10 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation[PF_INSTALLATION_USER] = [PFUser currentUser].objectId;
-    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded)
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
         {
-            
-        }
-        else
-        {
-            NSLog(@"Error in didRegisterForRemoteNotificationsWithDeviceToken %@ %@", error, error.userInfo);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -98,7 +95,7 @@
 - (void) application:(UIApplication *) application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@ %@", error, error.userInfo);
+    [Utilities handleError:error];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

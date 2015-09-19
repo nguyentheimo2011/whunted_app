@@ -382,11 +382,15 @@
         _wantData.itemPicturesNum = [_wantData.itemPictures count];
         
         PFObject *pfObj = [_wantData getPFObject];
-        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
+        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            if (succeeded)
+            {
                 [self.delegate uploadingWantDetailsViewController:self didCompleteSubmittingWantData:_wantData];
-            } else {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+            else
+            {
+                [Utilities handleError:error];
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -460,10 +464,11 @@
         _wantData.itemPicturesNum = [_wantData.itemPictures count];
         
         PFObject *pfObj = [_wantData getPFObject];
-        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
             if (error)
             {
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                [Utilities handleError:error];
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];

@@ -1121,7 +1121,8 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
         if (!error)
         {
             for (PFObject *object in objects)
@@ -1136,8 +1137,7 @@
         }
         else
         {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -1164,7 +1164,8 @@
     PFQuery *query = [PFQuery queryWithClassName:tableName];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:PF_UPDATED_AT];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error)
+    {
         if (!error)
         {
             for (int i=0; i<[offerObjects count]; i++)
@@ -1172,7 +1173,8 @@
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
                 PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-                [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
+                [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error)
+                {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [_mySellDataList addObject:wantData];
                     [_historyCollectionView reloadData];
@@ -1184,7 +1186,7 @@
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -1196,7 +1198,8 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:@"buyerID" equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)
+    {
         if (!error)
         {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
@@ -1205,7 +1208,7 @@
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -1218,7 +1221,8 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
     [query orderByDescending:@"updatedAt"];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *offerObject, NSError *error)
+    {
         if (!error)
         {
             NSString *itemID = offerObject[@"itemID"];
@@ -1231,8 +1235,7 @@
         }
         else
         {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

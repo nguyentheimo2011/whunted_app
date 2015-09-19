@@ -575,18 +575,21 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query orderByDescending:PF_CREATED_AT];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
         if (!error) {
-            for (PFObject *object in objects) {
+            for (PFObject *object in objects)
+            {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
                 [_wantDataList addObject:wantData];
             }
             
             [self updateMatchedWantData];
-            
-        } else {
+        }
+        else
+        {
             // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
@@ -597,13 +600,17 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query orderByDescending:PF_CREATED_AT];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error) {
-        if (!error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)
+    {
+        if (!error)
+        {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
             [_wantDataList insertObject:wantData atIndex:0];
             [_wantCollectionView reloadData];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        else
+        {
+            [Utilities handleError:error];
         }
     }];
 }

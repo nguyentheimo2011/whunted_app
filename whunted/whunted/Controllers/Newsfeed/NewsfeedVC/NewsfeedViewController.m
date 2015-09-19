@@ -139,7 +139,8 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     [query orderByDescending:PF_UPDATED_AT];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *transactionObjects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *transactionObjects, NSError *error)
+    {
         if (!error)
         {
             for (PFObject *object in transactionObjects) {
@@ -151,7 +152,7 @@
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

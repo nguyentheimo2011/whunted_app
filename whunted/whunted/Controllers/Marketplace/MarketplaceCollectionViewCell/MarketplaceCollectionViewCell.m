@@ -374,15 +374,18 @@
     
     __block NSInteger cellIndex = _cellIndex;
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *firstObject, NSError *error)
+    {
         if (!error)
         {
             PFFile *firstPicture = firstObject[@"itemPicture"];
-            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2) {
+            [firstPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error_2)
+            {
                 if (!error_2)
                 {
                     // check if it is setting image for the right cell
-                    if (_cellIndex == cellIndex) {
+                    if (_cellIndex == cellIndex)
+                    {
                         UIImage *image = [UIImage imageWithData:data];
                         [_itemImageView setImage:image];
                         
@@ -392,13 +395,13 @@
                 }
                 else
                 {
-                    NSLog(@"Error: %@ %@", error_2, [error_2 userInfo]);
+                    [Utilities handleError:error_2];
                 }
             }];
         }
         else
         {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }
