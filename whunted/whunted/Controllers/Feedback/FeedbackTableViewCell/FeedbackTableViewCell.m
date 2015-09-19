@@ -7,6 +7,7 @@
 //
 
 #import "FeedbackTableViewCell.h"
+#import "ProfileImageCache.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -88,6 +89,17 @@
     _userProfilePicture.clipsToBounds = YES;
     _userProfilePicture.backgroundColor = MAIN_BLUE_COLOR;
     [self addSubview:_userProfilePicture];
+    
+    NSString *key = [NSString stringWithFormat:@"%@%@", _feedbackData.writerID, USER_PROFILE_IMAGE];
+    UIImage *image = [[ProfileImageCache sharedCache] objectForKey:key];
+    if (image)
+    {
+        _userProfilePicture.image = image;
+    }
+    else
+    {
+        _userProfilePicture.image = [UIImage imageNamed:@"user_profile_image_placeholder_small@.png"];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
