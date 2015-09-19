@@ -289,10 +289,11 @@
         _buyerProfileImageView.image = buyerImage;
     else
     {
-        FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+        FetchedUserHandler handler = ^(PFUser *user, UIImage *image)
+        {
             _buyerProfileImageView.image = image;
         };
-        [Utilities getUserWithID:_transactionData.buyerID andRunBlock:handler];
+        [Utilities getUserWithID:_transactionData.buyerID imageNeeded:YES andRunBlock:handler];
     }
     
     key = [NSString stringWithFormat:@"%@%@", _transactionData.sellerID, USER_PROFILE_IMAGE];
@@ -302,10 +303,11 @@
         _sellerProfileImageView.image = sellerImage;
     else
     {
-        FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+        FetchedUserHandler handler = ^(PFUser *user, UIImage *image)
+        {
             _sellerProfileImageView.image = image;
         };
-        [Utilities getUserWithID:_transactionData.sellerID andRunBlock:handler];
+        [Utilities getUserWithID:_transactionData.sellerID imageNeeded:YES andRunBlock:handler];
     }
 }
 

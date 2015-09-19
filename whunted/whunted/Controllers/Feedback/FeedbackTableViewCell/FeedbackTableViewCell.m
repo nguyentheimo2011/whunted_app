@@ -34,6 +34,8 @@
     UIButton                *_writerUsernameButton;
     UILabel                 *_timestampLabel;
     UILabel                 *_purchasingRoleLabel;
+    
+    BOOL                    _imageNeeded;
 }
 
 @synthesize cellHeight      =   _cellHeight;
@@ -87,7 +89,7 @@
     _userProfilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(kProfilePictureMargin, kProfilePictureMargin, kProfilePictureWidth, kProfilePictureWidth)];
     _userProfilePicture.layer.cornerRadius = kProfilePictureWidth / 2.0;
     _userProfilePicture.clipsToBounds = YES;
-    _userProfilePicture.backgroundColor = MAIN_BLUE_COLOR;
+//    _userProfilePicture.backgroundColor = MAIN_BLUE_COLOR;
     [self addSubview:_userProfilePicture];
     
     NSString *key = [NSString stringWithFormat:@"%@%@", _feedbackData.writerID, USER_PROFILE_IMAGE];
@@ -95,10 +97,12 @@
     if (image)
     {
         _userProfilePicture.image = image;
+        _imageNeeded = NO;
     }
     else
     {
-        _userProfilePicture.image = [UIImage imageNamed:@"user_profile_image_placeholder_small@.png"];
+        _userProfilePicture.image = [UIImage imageNamed:@"user_profile_image_placeholder_small.png"];
+        _imageNeeded = YES;
     }
 }
 
@@ -124,10 +128,11 @@
         [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateHighlighted];
         [_writerUsernameButton sizeToFit];
         
-        [_userProfilePicture setImage:image];
+        if (image)
+            [_userProfilePicture setImage:image];
     };
     
-    [Utilities getUserWithID:_feedbackData.writerID andRunBlock:handler];
+    [Utilities getUserWithID:_feedbackData.writerID imageNeeded:_imageNeeded andRunBlock:handler];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

@@ -133,7 +133,7 @@
 #pragma mark - Parse Backend
 //------------------------------------------------------------------------------------------------------------------------------
 
-+ (void) getUserWithID: (NSString *) userID andRunBlock: (FetchedUserHandler) handler;
++ (void) getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler;
 
 + (void) retrieveProfileImageForUser: (PFUser *) user andRunBlock: (ImageHandler) handler;
 

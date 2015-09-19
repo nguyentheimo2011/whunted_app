@@ -663,7 +663,7 @@
 #pragma mark - Parse Backend
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) getUserWithID:(NSString *)userID andRunBlock:(FetchedUserHandler) handler
++ (void) getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
@@ -672,20 +672,31 @@
         if (!error)
         {
             PFUser *fetchedUser = (PFUser *) object;
-            PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
-            [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
-                if (!error2)
-                {
-                    UIImage *image = [UIImage imageWithData:data];
-                    handler(fetchedUser, image);
-                } else {
-                    NSLog(@"%@ %@", error2, [error2 userInfo]);
-                }
-            }];
+            
+            if (imageNeeded)
+            {
+                PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
+                [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+                    if (!error2)
+                    {
+                        UIImage *image = [UIImage imageWithData:data];
+                        handler(fetchedUser, image);
+                    }
+                    else
+                    {
+                        [Utilities handleError:error2];
+                    }
+                }];
+            }
+            else
+            {
+                handler(fetchedUser, nil);
+            }
+            
         }
         else
         {
-            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

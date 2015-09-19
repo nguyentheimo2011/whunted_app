@@ -421,7 +421,7 @@
         }
     };
     
-    [Utilities getUserWithID:_wantData.buyerID andRunBlock:handler];
+    [Utilities getUserWithID:_wantData.buyerID imageNeeded:YES andRunBlock:handler];
 }
 
 @end
