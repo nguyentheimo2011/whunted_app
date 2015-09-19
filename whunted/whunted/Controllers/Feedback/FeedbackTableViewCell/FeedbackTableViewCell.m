@@ -89,7 +89,6 @@
     _userProfilePicture = [[UIImageView alloc] initWithFrame:CGRectMake(kProfilePictureMargin, kProfilePictureMargin, kProfilePictureWidth, kProfilePictureWidth)];
     _userProfilePicture.layer.cornerRadius = kProfilePictureWidth / 2.0;
     _userProfilePicture.clipsToBounds = YES;
-//    _userProfilePicture.backgroundColor = MAIN_BLUE_COLOR;
     [self addSubview:_userProfilePicture];
     
     NSString *key = [NSString stringWithFormat:@"%@%@", _feedbackData.writerID, USER_PROFILE_IMAGE];
@@ -98,6 +97,9 @@
     {
         _userProfilePicture.image = image;
         _imageNeeded = NO;
+        
+        // Update feedback data
+        _feedbackData.writerProfileImage = image;
     }
     else
     {
@@ -129,10 +131,29 @@
         [_writerUsernameButton sizeToFit];
         
         if (image)
+        {
             [_userProfilePicture setImage:image];
+            
+            // Update feedback data
+            _feedbackData.writerProfileImage = image;
+        }
+        
+        // Update feedback data
+        _feedbackData.writerUsername = user[PF_USER_USERNAME];
+        
     };
     
-    [Utilities getUserWithID:_feedbackData.writerID imageNeeded:_imageNeeded andRunBlock:handler];
+    if (_feedbackData.writerUsername && _feedbackData.writerProfileImage)
+    {
+        [_writerUsernameButton setTitle:_feedbackData.writerUsername forState:UIControlStateNormal];
+        [_writerUsernameButton setTitle:_feedbackData.writerUsername forState:UIControlStateHighlighted];
+        [_writerUsernameButton sizeToFit];
+        _userProfilePicture.image = _feedbackData.writerProfileImage;
+    }
+    else
+    {
+        [Utilities getUserWithID:_feedbackData.writerID imageNeeded:_imageNeeded andRunBlock:handler];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

@@ -10,7 +10,9 @@
 
 #import "AppConstant.h"
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface FeedbackData : NSObject
+//-----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong)   NSString            *feedbackID;
 @property (nonatomic, strong)   NSString            *writerID;
@@ -21,7 +23,10 @@
 @property (nonatomic, strong)   NSDate              *createdDate;
 @property (nonatomic, strong)   NSDate              *updatedDate;
 
-- (id)          initWithPFObject: (PFObject *) obj;
+@property (nonatomic, strong)   NSString            *writerUsername;
+@property (nonatomic, strong)   UIImage             *writerProfileImage;
+
+- (id) initWithPFObject: (PFObject *) obj;
 
 - (PFObject *)  pfObjectFromFeedbackData;
 
