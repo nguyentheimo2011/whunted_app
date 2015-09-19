@@ -119,13 +119,15 @@
 - (BOOL) tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (viewController.view.tag == kUPLOAD_TAB_BAR) {
+    if (viewController.view.tag == kUPLOAD_TAB_BAR)
+    {
         _uploadingNavController = [[UINavigationController alloc] init];
         _imageEdittingNeeded = YES;
         [self showImageGettingOptionPopup];
         
         return NO;
-    } else
+    }
+    else
         return YES;
 }
 
@@ -135,18 +137,22 @@
 - (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_popup != nil) {
+    if (_popup != nil)
+    {
         [_popup dismiss:YES];
     }
     
-    if (method == PhotoLibrary) {
+    if (method == PhotoLibrary)
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
-    } else if (method == Camera) {
+    }
+    else if (method == Camera)
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = NO;
@@ -155,7 +161,9 @@
         
         [self presentViewController:picker animated:YES completion:nil];
         
-    } else if (method == ImageURL) {
+    }
+    else if (method == ImageURL)
+    {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
         
@@ -366,7 +374,7 @@
 - (void)viewWillLayoutSubviews
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.tabBar.frame = CGRectMake(0, WINSIZE.height - 48, WINSIZE.width, 48);
+    self.tabBar.frame = CGRectMake(0, WINSIZE.height - BOTTOM_TAB_BAR_HEIGHT, WINSIZE.width, BOTTOM_TAB_BAR_HEIGHT);
 }
 
 

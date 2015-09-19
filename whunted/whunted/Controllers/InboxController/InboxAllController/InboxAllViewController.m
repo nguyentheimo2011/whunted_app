@@ -109,9 +109,8 @@
 - (void) addInboxTableView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTableHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self] - [Utilities getHeightOfBottomTabBar:self] - kControlContainerHeight;
-    
     CGFloat const kTableYPos = kControlContainerHeight + STATUS_BAR_AND_NAV_BAR_HEIGHT;
+    CGFloat const kTableHeight = WINSIZE.height - kTableYPos - BOTTOM_TAB_BAR_HEIGHT;
     
     _inboxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
     [_inboxTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
