@@ -9,6 +9,7 @@
 #import "FeedbackReviewVC.h"
 #import "FeedbackTableViewCell.h"
 #import "FeedbackData.h"
+#import "UserProfileViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -36,6 +37,7 @@
     [super viewDidLoad];
     
     [self initData];
+    [self addNotificationListener];
     [self customizeUI];
     [self addTableView];
     [self addSegmentedControl];
@@ -65,6 +67,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {    
     _categorizedFeedbackList = [NSMutableArray arrayWithArray:_feedbackList];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListener
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:nil];
 }
 
 
@@ -218,6 +227,21 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameButtonTapEventHandler: (NSNotification *) notification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
+    
+    UserHandler handler = ^(PFUser *user) {
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    NSString *userID = notification.object;
+    [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
 }
 
 

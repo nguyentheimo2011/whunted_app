@@ -224,6 +224,7 @@
 #define     NOTIFICATION_OFFER_CANCELLED            @"NotificationOfferCancelled"
 #define     NOTIFICATION_OFFER_DECLINED             @"NotificationOfferDeclined"
 #define     NOTIFICATION_OFFER_ACCEPTED             @"NotificationOfferAccepted"
+#define     NOTIFICATION_USERNAME_BUTTON_TAP_EVENT  @"NotificationUsernameButtonTapEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"

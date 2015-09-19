@@ -106,7 +106,8 @@
     [_writerUsernameButton addTarget:self action:@selector(usernameButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_writerUsernameButton];
     
-    FetchedUserHandler handler = ^(PFUser *user, UIImage *image) {
+    FetchedUserHandler handler = ^(PFUser *user, UIImage *image)
+    {
         [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateNormal];
         [_writerUsernameButton setTitle:user[PF_USER_USERNAME] forState:UIControlStateHighlighted];
         [_writerUsernameButton sizeToFit];
@@ -203,9 +204,9 @@
     
     _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
     if (!_feedbackData.isWriterTheBuyer)
-        _purchasingRoleLabel.text = @"As Buyer";
+        _purchasingRoleLabel.text = NSLocalizedString(@"As Buyer", nil);
     else
-        _purchasingRoleLabel.text = @"As Seller";
+        _purchasingRoleLabel.text = NSLocalizedString(@"As Seller", nil);
     _purchasingRoleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
     [_purchasingRoleLabel sizeToFit];
     [self addSubview:_purchasingRoleLabel];
@@ -231,7 +232,7 @@
 - (void) usernameButtonTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_feedbackData.writerID];
 }
 
 #pragma mark - Backend
