@@ -126,6 +126,8 @@
     // long timestamp examples: 1 second, 3 seconds, 1 minute, 15 minutes
 + (NSString *)  longTimestampStringFromDate:        (NSDate *) date;
 
++ (void)        handleError: (NSError *) error;
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Parse Backend

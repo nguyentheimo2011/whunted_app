@@ -289,6 +289,7 @@
     return viewController.tabBarController.tabBar.frame.size.height;
 }
 
+
 #pragma mark - Notification Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -307,11 +308,13 @@
     NSRange range = [price rangeOfString:DOT_CHARACTER];
     if (range.location == NSNotFound)
         return (price.length <= MAX_NUM_OF_CHARACTERS_FOR_PRICE);
-    else {
+    else
+    {
         NSString *subString = [price substringFromIndex:range.location + 1];
         if ([subString containsString:DOT_CHARACTER])
             return NO;
-        else {
+        else
+        {
             if (range.location < [price length]-3)
                 return NO;
             else
@@ -351,14 +354,20 @@
 + (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (range.location == [originalText length]) {
+    if (range.location == [originalText length])
+    {
         return [originalText stringByAppendingString:string];
-    } else {
-        if ([string length] == 0) { // User removes a character
+    }
+    else
+    {
+        if ([string length] == 0)
+        { // User removes a character
             NSString *firstSubstring = [originalText substringToIndex:range.location];
             NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
             return [firstSubstring stringByAppendingString:secondSubstring];
-        } else {
+        }
+        else
+        {
             NSString *firstSubstring = [originalText substringToIndex:range.location];
             NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
             return [[firstSubstring stringByAppendingString:string] stringByAppendingString:secondSubstring];
@@ -452,23 +461,32 @@
     NSDate *now = [NSDate date];
     NSTimeInterval timeInterval = [now timeIntervalSinceDate:date];
     
-    if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE) {
+    if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE)
+    {
         NSInteger numOfSecs = (NSInteger) timeInterval;
         NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfSecs, NSLocalizedString(@"s", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
-    } else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR)
+    {
         NSInteger numOfMins = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_MINUTE);
         NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfMins, NSLocalizedString(@"m", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
-    } else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY)
+    {
         NSInteger numOfHours = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_AN_HOUR);
         NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfHours, NSLocalizedString(@"h", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
-    } else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK)
+    {
         NSInteger numOfDays = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_DAY);
         NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfDays, NSLocalizedString(@"d", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
-    } else {
+    }
+    else
+    {
         NSInteger numOfWeeks = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_WEEK);
         NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
@@ -484,7 +502,8 @@
     NSDate *now = [NSDate date];
     NSTimeInterval timeInterval = [now timeIntervalSinceDate:date];
     
-    if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE) {
+    if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE)
+    {
         NSInteger numOfSecs = (NSInteger) timeInterval;
         
         NSString  *timeUnit;
@@ -496,8 +515,9 @@
         NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfSecs, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
-        
-    } else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR)
+    {
         NSInteger numOfMins = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_MINUTE);
         
         NSString  *timeUnit;
@@ -509,8 +529,9 @@
         NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfMins, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
-        
-    } else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY)
+    {
         NSInteger numOfHours = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_AN_HOUR);
         
         NSString  *timeUnit;
@@ -522,8 +543,9 @@
         NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfHours, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
-        
-    } else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK) {
+    }
+    else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK)
+    {
         NSInteger numOfDays = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_DAY);
         
         NSString  *timeUnit;
@@ -536,7 +558,9 @@
         
         return timestamp;
         
-    } else {
+    }
+    else
+    {
         NSInteger numOfWeeks = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_WEEK);
         
         NSString  *timeUnit;
@@ -551,6 +575,15 @@
     }
     
     return @"";
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) handleError:(NSError *)error
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
+    NSLog(@"%@", errorMessage);
+    [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -636,18 +669,22 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_OBJECTID equalTo:userID];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
+        if (!error)
+        {
             PFUser *fetchedUser = (PFUser *) object;
             PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
             [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
-                if (!error2) {
+                if (!error2)
+                {
                     UIImage *image = [UIImage imageWithData:data];
                     handler(fetchedUser, image);
                 } else {
                     NSLog(@"%@ %@", error2, [error2 userInfo]);
                 }
             }];
-        } else {
+        }
+        else
+        {
             NSLog(@"%@ %@", error, [error userInfo]);
         }
     }];
@@ -659,10 +696,13 @@
 {
     PFFile *profileImage = user[PF_USER_PICTURE];
     [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
-        if (!error2) {
+        if (!error2)
+        {
             UIImage *image = [UIImage imageWithData:data];
             handler(image);
-        } else {
+        }
+        else
+        {
             NSLog(@"%@ %@", error2, [error2 userInfo]);
         }
     }];

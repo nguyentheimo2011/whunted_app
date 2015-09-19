@@ -994,13 +994,18 @@
 - (void) ratingViewTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [query orderByAscending:PF_UPDATED_AT];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         if (error)
         {
-            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         else
         {
