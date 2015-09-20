@@ -219,7 +219,6 @@
     [self addLocationLabel];
     [self addItemDescLabel];
 //    [self addProductOrigin];
-    [self addPaymentMethodLabel];
     [self addSellersLabel];
 }
 
@@ -395,6 +394,7 @@
     [_scrollView addSubview:_productOriginLabel];
 }
 
+/*
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addPaymentMethodLabel
 //------------------------------------------------------------------------------------------------------------------------------
@@ -414,9 +414,12 @@
     CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
     
     NSString *paymentMethodText;
-    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW]) {
+    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
+    {
         paymentMethodText = @"Request for Escrow";
-    } else {
+    }
+    else
+    {
         paymentMethodText = @"Not request for Escrow";
     }
     _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPaymentImageYPos, kLabelWidth, kPaymentImageWidth)];
@@ -428,6 +431,7 @@
     _nextXPos = 10;
     _nextYPos += 35;
 }
+*/
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellersLabel

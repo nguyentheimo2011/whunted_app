@@ -27,7 +27,7 @@
 @property (nonatomic, strong)   NSString          *buyerID;
 @property (nonatomic, strong)   NSString          *buyerUsername;
 @property (nonatomic, strong)   NSString          *demandedPrice;
-@property (nonatomic, strong)   NSString          *paymentMethod;
+//@property (nonatomic, strong)   NSString          *paymentMethod;
 @property (nonatomic)           BOOL              acceptedSecondHand;
 @property (nonatomic, strong)   NSString          *meetingLocation;
 @property (nonatomic, strong)   NSDate            *createdDate;

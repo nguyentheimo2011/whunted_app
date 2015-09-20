@@ -27,10 +27,10 @@
     UITableViewCell             *_itemInfoCell;
     UITableViewCell             *_priceCell;
     UITableViewCell             *_locationCell;
-    UITableViewCell             *_escrowRequestCell;
+//    UITableViewCell             *_escrowRequestCell;
     
     UITextField                 *_priceTextField;
-    UISwitch                    *_escrowSwitch;
+//    UISwitch                    *_escrowSwitch;
     KLCPopup                    *_popup;
     
     NSMutableArray              *_addingButtonList;
@@ -170,7 +170,7 @@
     [self initializeItemInfoCell];
     [self initializePriceCell];
     [self initializeLocationCell];
-    [self initializeEscrowRequestCell];
+//    [self initializeEscrowRequestCell];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -267,6 +267,7 @@
     [_locationCell addSubview:locationImageView];
 }
 
+/*
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initializeEscrowRequestCell
 //------------------------------------------------------------------------------------------------------------------------------
@@ -287,6 +288,7 @@
     [paymentImageView setImage:paymentImage];
     [_escrowRequestCell addSubview:paymentImageView];
 }
+ */
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) populateData
@@ -316,8 +318,8 @@
     if (_wantData.meetingLocation.length > 0)
         _locationCell.detailTextLabel.text = _wantData.meetingLocation;
     
-    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
-        _escrowSwitch.on = YES;
+//    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
+//        _escrowSwitch.on = YES;
 }
 
 
@@ -369,8 +371,8 @@
         if (!_wantData.demandedPrice)
             _wantData.demandedPrice = @"0";
 
-        if (!_wantData.paymentMethod)
-            _wantData.paymentMethod = @"non-escrow";
+//        if (!_wantData.paymentMethod)
+//            _wantData.paymentMethod = @"non-escrow";
         
         if (!_wantData.meetingLocation)
             _wantData.meetingLocation = @"";
@@ -452,8 +454,8 @@
         if (!_wantData.demandedPrice)
             _wantData.demandedPrice = @"0";
         
-        if (!_wantData.paymentMethod)
-            _wantData.paymentMethod = @"non-escrow";
+//        if (!_wantData.paymentMethod)
+//            _wantData.paymentMethod = @"non-escrow";
         
         if (!_wantData.meetingLocation)
             _wantData.meetingLocation = @"";
@@ -494,6 +496,7 @@
     }
 }
 
+/*
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) escrowSwitchDidChangeState
 //------------------------------------------------------------------------------------------------------------------------------
@@ -507,7 +510,7 @@
     {
         _wantData.paymentMethod = PAYMENT_METHOD_NON_ESCROW;
     }
-}
+}*/
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) editorTopCancelButtonTapEventHandler
@@ -595,9 +598,9 @@
 {
     switch(section)
     {
-        case 0: return 0;   // section 0 has 0 row. Use footer of section i as the header of section i+1
-        case 1:  return 1;  // section 0 has 1 row
-        case 2:  return 5;  // section 1 has 5 rows
+        case 0: return 0;
+        case 1:  return 1;
+        case 2:  return 4;  
         default: return 0;
     };
 }
@@ -618,7 +621,7 @@
                 case 1: return _itemInfoCell;
                 case 2: return _priceCell;
                 case 3: return _locationCell;
-                case 4: return _escrowRequestCell;
+//                case 4: return _escrowRequestCell;
             }
     }
     return nil;
