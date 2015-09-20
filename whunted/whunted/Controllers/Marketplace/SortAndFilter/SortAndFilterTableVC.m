@@ -317,8 +317,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 0) {
-        if (indexPath.row != _selectedSortingIndex) {
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row != _selectedSortingIndex)
+        {
             // clear checkmark from the previous cell
             UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectedSortingIndex inSection:0]];
             prevCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
@@ -333,8 +335,11 @@
             _selectedSortingIndex = indexPath.row;
             _sortingCriterion = chosenCell.textLabel.text;
         }
-    } else {
+    }
+    else
+    {
         CityViewController *cityViewController = [[CityViewController alloc] init];
+        cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
         cityViewController.isToSetProductOrigin = NO;
         
         if (![_buyerLocationFilter isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])

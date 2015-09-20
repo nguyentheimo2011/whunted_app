@@ -548,6 +548,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CityViewController *meetingLocationVC = [[CityViewController alloc] init];
+    meetingLocationVC.labelText = NSLocalizedString(@"Meeting location:", nil);
     meetingLocationVC.currentLocation = _wantData.meetingLocation;
     meetingLocationVC.delegate = self;
     

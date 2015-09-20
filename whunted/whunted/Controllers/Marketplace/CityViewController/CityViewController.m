@@ -27,6 +27,7 @@
 
 @synthesize delegate                =   _delegate;
 @synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
+@synthesize labelText               =   _labelText;
 @synthesize currentLocation         =   _currentLocation;
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -99,12 +100,7 @@
     CGFloat const kLabelHeight      =   20.0f;
     
     _guidanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
-    
-    if (_isToSetProductOrigin)
-        _guidanceLabel.text = NSLocalizedString(@"Product origin:", nil);
-    else
-        _guidanceLabel.text = NSLocalizedString(@"Filter by buyer's location:", nil);
-    
+    _guidanceLabel.text = _labelText;    
     _guidanceLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _guidanceLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self.view addSubview:_guidanceLabel];

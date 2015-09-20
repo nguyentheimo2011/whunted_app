@@ -450,6 +450,7 @@
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByProductOriginEvent" label:@"SortAndFilterBar" value:nil];
     
     CityViewController *cityViewController = [[CityViewController alloc] init];
+    cityViewController.labelText = NSLocalizedString(@"Filter by product origin:", nil);
     cityViewController.isToSetProductOrigin = YES;
     cityViewController.delegate = self;
     
@@ -508,10 +509,13 @@
 - (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (location.length > 0) {
+    if (location.length > 0)
+    {
         _currProductOrigin = location;
         _currProductOriginLabel.text = location;
-    } else {
+    }
+    else
+    {
         _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
         _currProductOriginLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
     }

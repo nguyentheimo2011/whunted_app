@@ -245,6 +245,7 @@
 {
     CityViewController *productOriginVC = [[CityViewController alloc] init];
     NSArray *productOrigins = [_itemInfoDict objectForKey:ITEM_ORIGINS_KEY];
+    productOriginVC.labelText = NSLocalizedString(@"Product origin:", nil);
     productOriginVC.currentLocation = (productOrigins.count > 0) ? [productOrigins objectAtIndex:0] : nil;
     productOriginVC.delegate = self;
     
