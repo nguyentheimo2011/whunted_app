@@ -47,8 +47,6 @@
     UILabel                     *_countryLabel;
     UILabel                     *_userDescriptionLabel;
     
-    UIView                      *_bottomLabelContainer;
-    
     UIView                      *_leftHorizontalLine;
     UIView                      *_rightHorizontalLine;
     
@@ -142,7 +140,6 @@
     [self addControls];
     [self addTotalListingsNumLabel];
     [self addHistoryCollectionView];
-    [self addAllDisplayedLabel];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -694,14 +691,12 @@
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
-    CGFloat const kCollectionViewHeight =   0;
     CGFloat const kCollectionTopMargin  =   WINSIZE.height / 48.0;
     CGFloat const kCollectionYPos       =   _currHeight + kCollectionTopMargin;
     _collectionViewOriginY              =   kCollectionYPos;
-    _collectionViewCurrHeight           =   kCollectionViewHeight;
+    _collectionViewCurrHeight           =   0;
     
-    _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
-    _historyCollectionView.frame = CGRectMake(0, kCollectionYPos, WINSIZE.width, kCollectionViewHeight);
+    _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, 0) collectionViewLayout:layout];
     _historyCollectionView.dataSource       =   self;
     _historyCollectionView.delegate         =   self;
     _historyCollectionView.backgroundColor  =   LIGHTEST_GRAY_COLOR;
@@ -710,39 +705,6 @@
     [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     
     [_scrollView addSubview:_historyCollectionView];
-    
-    _currHeight += kCollectionViewHeight + kCollectionTopMargin;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addAllDisplayedLabel
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *allDisplayedLabel = [[UILabel alloc] init];
-    allDisplayedLabel.text = NSLocalizedString(@"All displayed", nil);
-    allDisplayedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
-    allDisplayedLabel.textColor = LIGHT_GRAY_COLOR;
-    [allDisplayedLabel sizeToFit];
-    
-    CGFloat const kContainerTopMargin   =   WINSIZE.height / 24.0;
-    CGFloat const kContainerWidth       =   WINSIZE.width;
-    CGFloat const kContainerHeight      =   2 * kContainerTopMargin;
-    CGFloat const kYPos                 =   _currHeight;
-    
-    _bottomLabelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, kContainerWidth, kContainerHeight)];
-    _bottomLabelContainer.backgroundColor = LIGHTEST_GRAY_COLOR;
-    [_scrollView addSubview:_bottomLabelContainer];
-    
-    CGFloat const kLabelTopMargin   =   (kContainerHeight - allDisplayedLabel.frame.size.height)/2;
-    CGFloat const kLabelLeftMargin  =   (kContainerWidth - allDisplayedLabel.frame.size.width) / 2;
-    
-    allDisplayedLabel.frame = CGRectMake(kLabelLeftMargin, kLabelTopMargin, allDisplayedLabel.frame.size.width, allDisplayedLabel.frame.size.height);
-    allDisplayedLabel.backgroundColor = LIGHTEST_GRAY_COLOR;
-    allDisplayedLabel.textAlignment = NSTextAlignmentCenter;
-    [_bottomLabelContainer addSubview:allDisplayedLabel];
-    
-    _currHeight +=  kContainerHeight;
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -971,20 +933,19 @@
     if (_curViewMode == HistoryCollectionViewModeBuying)
     {
         CGFloat const kCellHeight = kCellWidth + 85.0f;
-        _collectionViewCurrHeight = ([_myWantDataList count] + 1)/2 * kCellHeight + (([_myWantDataList count]/2+1) + 1) * kYDistanceBetweenCell;
+        NSInteger listSize = _myWantDataList.count;
+        _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
     }
     else
     {
         CGFloat const kCellHeight = kCellWidth + 115.0f;
-        NSInteger listSize = [_mySellDataList count];
-        _collectionViewCurrHeight = (listSize + 1)/2 * kCellHeight + ((listSize + 1)/2) * kYDistanceBetweenCell;
+        NSInteger listSize = _mySellDataList.count;
+        _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
     }
     
     _historyCollectionView.frame = CGRectMake(0, _collectionViewOriginY, WINSIZE.width, _collectionViewCurrHeight);
-    _currHeight += _collectionViewCurrHeight;
+    _currHeight = _collectionViewOriginY + _collectionViewCurrHeight;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currHeight)];
-    
-    _bottomLabelContainer.frame = CGRectMake(_bottomLabelContainer.frame.origin.x, _currHeight - _bottomLabelContainer.frame.size.height, _bottomLabelContainer.frame.size.width, _bottomLabelContainer.frame.size.height);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
