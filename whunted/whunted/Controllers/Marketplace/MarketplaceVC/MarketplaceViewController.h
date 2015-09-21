@@ -31,4 +31,6 @@
 
 - (void) updateWantDataTable;
 
+- (void) refreshWantData;
+
 @end

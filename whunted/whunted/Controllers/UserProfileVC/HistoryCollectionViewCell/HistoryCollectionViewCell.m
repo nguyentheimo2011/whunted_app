@@ -67,6 +67,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantData = nil;
+    _itemImageView.image = nil;
+    _itemNameLabel.text = nil;
+    _demandedPriceLabel.text = nil;
 }
 
 

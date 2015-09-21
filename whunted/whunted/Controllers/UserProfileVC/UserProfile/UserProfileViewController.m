@@ -800,6 +800,10 @@
         {
             [cell initCell];
         }
+        else
+        {
+            [cell clearCellUI];
+        }
         
         WantData *wantData = [_myWantDataList objectAtIndex:indexPath.row];
         [cell setWantData:wantData];

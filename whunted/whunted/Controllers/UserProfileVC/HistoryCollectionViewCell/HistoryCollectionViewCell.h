@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "WantData.h"
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface HistoryCollectionViewCell : UICollectionViewCell
+//-----------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong)   WantData        *wantData;
-
 @property (nonatomic)           NSInteger       cellIndex;
 
 
 - (void) initCell;
+
+- (void) clearCellUI;
 
 @end

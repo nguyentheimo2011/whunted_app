@@ -40,7 +40,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self != nil) {
+    if (self != nil)
+    {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
@@ -252,7 +253,7 @@
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [_brController updateWantDataTable];
+    [_brController refreshWantData];
     [_userProfileVC retrieveLatestWantData];
     
     [self setSelectedIndex:4];
@@ -325,7 +326,8 @@
 {
     UIImage *resizedImage = [Utilities resizeImage:croppedImage toSize:CGSizeMake(IPHONE_6_PLUS_WIDTH, IPHONE_6_PLUS_WIDTH) scalingProportionally:YES];
     
-    if (_imageEdittingNeeded) {
+    if (_imageEdittingNeeded)
+    {
         CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:resizedImage];
         editor.delegate = self;
         editor.hidesBottomBarWhenPushed = YES;
@@ -333,7 +335,9 @@
         editor.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(editorTopCancelButtonTapEventHandler)];
         
         [_uploadingNavController pushViewController:editor animated:YES];
-    } else {
+    }
+    else
+    {
         [self addItemImageToWantDetailVC:resizedImage];
     }
     
