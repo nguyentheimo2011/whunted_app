@@ -28,6 +28,8 @@
     UILabel                 *_currSortFilterLabel;
     UISearchBar             *_searchBar;
     
+    UIRefreshControl        *_topRefreshControl;
+    
     NSString                *_currProductOrigin;
     NSString                *_currCategory;
     NSString                *_currSortingBy;
@@ -128,7 +130,8 @@
     txfSearchField.backgroundColor = MAIN_BLUE_COLOR;
     txfSearchField.textColor = [UIColor whiteColor];
     
-    if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)]) {
+    if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
+    {
         txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for whunts" attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
     }
     else
@@ -169,6 +172,11 @@
     
     [_wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [self.view addSubview:_wantCollectionView];
+    
+    _topRefreshControl = [[UIRefreshControl alloc] init];
+    [_topRefreshControl addTarget:self action:@selector(refreshWantData)
+             forControlEvents:UIControlEventValueChanged];
+    [_wantCollectionView addSubview:_topRefreshControl];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -422,7 +430,8 @@
     [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
     
-    [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
         if (!error)
         {
             if (objects.count > 0)
@@ -576,12 +585,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantDataList = [[NSMutableArray alloc] init];
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
-        if (!error) {
+        if (!error)
+        {
             for (PFObject *object in objects)
             {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
@@ -596,6 +607,41 @@
             [Utilities handleError:error];
         }
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) refreshWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    
+    if (_wantDataList.count > 0)
+    {
+        WantData *wantData = [_wantDataList objectAtIndex:0];
+        [query whereKey:PF_CREATED_AT greaterThan:wantData.createdDate];
+    }
+        
+    [query orderByDescending:PF_CREATED_AT];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             for (PFObject *object in objects)
+             {
+                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                 [_wantDataList insertObject:wantData atIndex:0];
+             }
+             
+             [self updateMatchedWantData];
+         }
+         else
+         {
+             [Utilities handleError:error];
+         }
+         
+         [_topRefreshControl endRefreshing];
+     }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
