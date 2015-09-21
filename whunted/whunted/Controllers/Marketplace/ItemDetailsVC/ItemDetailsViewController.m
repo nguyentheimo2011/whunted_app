@@ -42,8 +42,9 @@
     NSString                *_secondBottomButtonTitle;
     
     NSMutableArray          *_itemImageList;
-    CGFloat                 _nextXPos;
-    CGFloat                 _nextYPos;
+    
+    CGFloat                 _currOccupiedYPos;
+
     NSInteger               _currImageIndex;
     
     BOOL                    _itemPostedByMe;
@@ -315,126 +316,105 @@
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_demandedPriceLabel];
+    
+    _currOccupiedYPos = _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addLocationLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLocationImageLeftMargin     =   10.0f;
-    CGFloat const kLocationImageTopMargin      =   15.0f;
-    CGFloat const kLocationImageYPos           =   _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height + kLocationImageTopMargin;
-    CGFloat const kLocationImageWidth          =   23.0f;
-    
-    UIImage *locationImage = [UIImage imageNamed:@"location_icon.png"];
-    UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLocationImageLeftMargin, kLocationImageYPos, kLocationImageWidth, kLocationImageWidth)];
-    [locationImageView setImage:locationImage];
-    [_scrollView addSubview:locationImageView];
-    
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    
-    _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLocationImageYPos, kLabelWidth, kLocationImageWidth)];
-    [_locationLabel setText:_wantData.meetingLocation];
-    [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_locationLabel setTextColor:TEXT_COLOR_GRAY];
-    [_scrollView addSubview:_locationLabel];
+    if (_wantData.meetingLocation.length > 0)
+    {
+        CGFloat const kLocationImageLeftMargin     =   10.0f;
+        CGFloat const kLocationImageTopMargin      =   15.0f;
+        CGFloat const kLocationImageYPos           =   _currOccupiedYPos + kLocationImageTopMargin;
+        CGFloat const kLocationImageWidth          =   23.0f;
+        CGFloat const kLocationImageHeight         =   23.0f;
+        
+        UIImage *locationImage = [UIImage imageNamed:@"location_icon.png"];
+        UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLocationImageLeftMargin, kLocationImageYPos, kLocationImageWidth, kLocationImageHeight)];
+        [locationImageView setImage:locationImage];
+        [_scrollView addSubview:locationImageView];
+        
+        CGFloat const kLabelLeftMargin      =   15.0f;
+        CGFloat const kLabelXPos            =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
+        CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+        
+        _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLocationImageYPos, kLabelWidth, kLocationImageHeight)];
+        [_locationLabel setText:_wantData.meetingLocation];
+        [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+        [_locationLabel setTextColor:TEXT_COLOR_GRAY];
+        [_scrollView addSubview:_locationLabel];
+        
+        _currOccupiedYPos = _locationLabel.frame.origin.y + _locationLabel.frame.size.height;
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemDescLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kDescImageLeftMargin     =   10.0f;
-    CGFloat const kDescImageTopMargin      =   15.0f;
-    CGFloat const kDescImageYPos           =   _locationLabel.frame.origin.y + _locationLabel.frame.size.height + kDescImageTopMargin;
-    CGFloat const kDescImageWidth          =   23.0f;
-    
-    UIImage *descriptionImage = [UIImage imageNamed:@"info_icon.png"];
-    UIImageView *descriptionImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kDescImageLeftMargin, kDescImageYPos, kDescImageWidth, kDescImageWidth)];
-    [descriptionImageView setImage:descriptionImage];
-    [_scrollView addSubview:descriptionImageView];
-    
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kDescImageLeftMargin + kDescImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    
-    _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
-    [_itemDescLabel setText:_wantData.itemDesc];
-    [_itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_itemDescLabel setTextColor:TEXT_COLOR_GRAY];
-    _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _itemDescLabel.numberOfLines = 0;
-    [_scrollView addSubview:_itemDescLabel];
+    if (_wantData.itemDesc.length > 0)
+    {
+        CGFloat const kDescImageLeftMargin     =   10.0f;
+        CGFloat const kDescImageTopMargin      =   15.0f;
+        CGFloat const kDescImageYPos           =   _currOccupiedYPos + kDescImageTopMargin;
+        CGFloat const kDescImageWidth          =   23.0f;
+        
+        UIImage *descriptionImage = [UIImage imageNamed:@"info_icon.png"];
+        UIImageView *descriptionImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kDescImageLeftMargin, kDescImageYPos, kDescImageWidth, kDescImageWidth)];
+        [descriptionImageView setImage:descriptionImage];
+        [_scrollView addSubview:descriptionImageView];
+        
+        CGFloat const kLabelLeftMargin      =   15.0f;
+        CGFloat const kLabelXPos            =   kDescImageLeftMargin + kDescImageWidth + kLabelLeftMargin;
+        CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+        CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
+        
+        _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
+        [_itemDescLabel setText:_wantData.itemDesc];
+        [_itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+        [_itemDescLabel setTextColor:TEXT_COLOR_GRAY];
+        _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _itemDescLabel.numberOfLines = 0;
+        [_scrollView addSubview:_itemDescLabel];
+        
+        _currOccupiedYPos = _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height;
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addProductOrigin
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kOriginImageLeftMargin     =   10.0f;
-    CGFloat const kOriginImageTopMargin      =   15.0f;
-    CGFloat const kOriginImageYPos           =   _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height + kOriginImageTopMargin;
-    CGFloat const kOriginImageWidth          =   23.0f;
-    
-    UIImage *originIconImage = [UIImage imageNamed:@"product_origin_icon.png"];
-    UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kOriginImageLeftMargin, kOriginImageYPos, kOriginImageWidth, kOriginImageWidth)];
-    [originIconImageView setImage:originIconImage];
-    [_scrollView addSubview:originIconImageView];
-    
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    
-    NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
-    CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-    _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
-    [_productOriginLabel setText:productOriginText];
-    [_productOriginLabel setFont:DEFAULT_FONT];
-    [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
-    [_scrollView addSubview:_productOriginLabel];
-}
-
-/*
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addPaymentMethodLabel
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kPaymentImageLeftMargin     =   10.0f;
-    CGFloat const kPaymentImageTopMargin      =   15.0f;
-    CGFloat const kPaymentImageYPos           =   _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height + kPaymentImageTopMargin;
-    CGFloat const kPaymentImageWidth          =   23.0f;
-    
-    UIImage *paymentMethodIconImage = [UIImage imageNamed:@"payment_method_icon.png"];
-    UIImageView *paymentMethodIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPaymentImageLeftMargin, kPaymentImageYPos, kPaymentImageWidth, kPaymentImageWidth)];
-    [paymentMethodIconImageView setImage:paymentMethodIconImage];
-    [_scrollView addSubview:paymentMethodIconImageView];
-    
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kPaymentImageLeftMargin + kPaymentImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    
-    NSString *paymentMethodText;
-    if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
+    if (_wantData.itemOrigins.count > 0)
     {
-        paymentMethodText = @"Request for Escrow";
+        CGFloat const kOriginImageLeftMargin     =   10.0f;
+        CGFloat const kOriginImageTopMargin      =   15.0f;
+        CGFloat const kOriginImageYPos           =   _currOccupiedYPos + kOriginImageTopMargin;
+        CGFloat const kOriginImageWidth          =   23.0f;
+        
+        UIImage *originIconImage = [UIImage imageNamed:@"product_origin_icon.png"];
+        UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kOriginImageLeftMargin, kOriginImageYPos, kOriginImageWidth, kOriginImageWidth)];
+        [originIconImageView setImage:originIconImage];
+        [_scrollView addSubview:originIconImageView];
+        
+        CGFloat const kLabelLeftMargin      =   15.0f;
+        CGFloat const kLabelXPos            =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
+        CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+        
+        NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
+        CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
+        _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
+        [_productOriginLabel setText:productOriginText];
+        [_productOriginLabel setFont:DEFAULT_FONT];
+        [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
+        [_scrollView addSubview:_productOriginLabel];
+        
+        _currOccupiedYPos = _productOriginLabel.frame.origin.y + _productOriginLabel.frame.size.height;
     }
-    else
-    {
-        paymentMethodText = @"Not request for Escrow";
-    }
-    _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPaymentImageYPos, kLabelWidth, kPaymentImageWidth)];
-    [_paymentMethodLabel setText:paymentMethodText];
-    [_paymentMethodLabel setFont:DEFAULT_FONT];
-    [_paymentMethodLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:_paymentMethodLabel];
-    
-    _nextXPos = 10;
-    _nextYPos += 35;
 }
-*/
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addSellersLabel
@@ -442,7 +422,7 @@
 {
     CGFloat const kSellerImageLeftMargin     =   10.0f;
     CGFloat const kSellerImageTopMargin      =   15.0f;
-    CGFloat const kSellerImageYPos           =   _paymentMethodLabel.frame.origin.y + _paymentMethodLabel.frame.size.height + kSellerImageTopMargin;
+    CGFloat const kSellerImageYPos           =   _currOccupiedYPos + kSellerImageTopMargin;
     CGFloat const kSellerImageWidth          =   23.0f;
     
     UIImage *sellersIconImage = [UIImage imageNamed:@"sellers_icon"];
@@ -466,7 +446,8 @@
     [_sellersLabel setTextColor:[UIColor grayColor]];
     [_scrollView addSubview:_sellersLabel];
     
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, kSellerImageYPos + kSellerImageWidth + 60.0f)];
+    _currOccupiedYPos = _sellersLabel.frame.origin.y + _sellersLabel.frame.size.height + 60.0f;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currOccupiedYPos)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -886,5 +867,44 @@
     
     return itemImageVC;
 }
+
+/*
+ //------------------------------------------------------------------------------------------------------------------------------
+ - (void) addPaymentMethodLabel
+ //------------------------------------------------------------------------------------------------------------------------------
+ {
+ CGFloat const kPaymentImageLeftMargin     =   10.0f;
+ CGFloat const kPaymentImageTopMargin      =   15.0f;
+ CGFloat const kPaymentImageYPos           =   _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height + kPaymentImageTopMargin;
+ CGFloat const kPaymentImageWidth          =   23.0f;
+ 
+ UIImage *paymentMethodIconImage = [UIImage imageNamed:@"payment_method_icon.png"];
+ UIImageView *paymentMethodIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPaymentImageLeftMargin, kPaymentImageYPos, kPaymentImageWidth, kPaymentImageWidth)];
+ [paymentMethodIconImageView setImage:paymentMethodIconImage];
+ [_scrollView addSubview:paymentMethodIconImageView];
+ 
+ CGFloat const kLabelLeftMargin      =   15.0f;
+ CGFloat const kLabelXPos            =   kPaymentImageLeftMargin + kPaymentImageWidth + kLabelLeftMargin;
+ CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+ 
+ NSString *paymentMethodText;
+ if ([_wantData.paymentMethod isEqualToString:PAYMENT_METHOD_ESCROW])
+ {
+ paymentMethodText = @"Request for Escrow";
+ }
+ else
+ {
+ paymentMethodText = @"Not request for Escrow";
+ }
+ _paymentMethodLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPaymentImageYPos, kLabelWidth, kPaymentImageWidth)];
+ [_paymentMethodLabel setText:paymentMethodText];
+ [_paymentMethodLabel setFont:DEFAULT_FONT];
+ [_paymentMethodLabel setTextColor:[UIColor grayColor]];
+ [_scrollView addSubview:_paymentMethodLabel];
+ 
+ _nextXPos = 10;
+ _nextYPos += 35;
+ }
+ */
 
 @end
