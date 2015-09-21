@@ -816,6 +816,8 @@
         
         if (cell.wantData == nil)
             [cell initCell];
+        else
+            [cell clearCellUI];
         
         WantData *wantData = [_mySellDataList objectAtIndex:indexPath.row];
         [cell setWantData:wantData];
