@@ -61,7 +61,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super init];
-    if (self != nil) {
+    if (self != nil)
+    {
         [self hideBottomTabBar];
     }
     
@@ -218,7 +219,6 @@
     [self addDemandedPriceLabel];
     [self addLocationLabel];
     [self addItemDescLabel];
-//    [self addProductOrigin];
     [self addSellersLabel];
 }
 
@@ -226,9 +226,12 @@
 - (void) addFunctionalButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_itemPostedByMe) {
+    if (_itemPostedByMe)
+    {
         [self addViewOfferButton];
-    } else {
+    }
+    else
+    {
         [self addChatButton];
         [self addOfferButton];
     }
@@ -658,7 +661,12 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
     
-    UserHandler handler = ^(PFUser *user) {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    UserHandler handler = ^(PFUser *user)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [self.navigationController pushViewController:userProfileVC animated:YES];
     };
