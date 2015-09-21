@@ -645,27 +645,6 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) updateWantDataTable
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query orderByDescending:PF_CREATED_AT];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)
-    {
-        if (!error)
-        {
-            WantData *wantData = [[WantData alloc] initWithPFObject:obj];
-            [_wantDataList insertObject:wantData atIndex:0];
-            [_wantCollectionView reloadData];
-        }
-        else
-        {
-            [Utilities handleError:error];
-        }
-    }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (NSArray *) sortArray: (NSArray *) array by: (NSString *) sortingBy
 //------------------------------------------------------------------------------------------------------------------------------
 {

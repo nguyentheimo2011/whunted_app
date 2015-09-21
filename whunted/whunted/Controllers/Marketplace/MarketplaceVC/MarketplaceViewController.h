@@ -29,8 +29,6 @@
 
 @property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 
-- (void) updateWantDataTable;
-
 - (void) refreshWantData;
 
 @end
