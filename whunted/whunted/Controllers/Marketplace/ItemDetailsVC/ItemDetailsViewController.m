@@ -28,6 +28,7 @@
     UILabel                 *_demandedPriceLabel;
     UILabel                 *_locationLabel;
     UILabel                 *_itemDescLabel;
+    UILabel                 *_itemHashtagLabel;
     UILabel                 *_productOriginLabel;
     UILabel                 *_paymentMethodLabel;
     UILabel                 *_sellersLabel;
@@ -355,7 +356,7 @@
 - (void) addItemDescLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_wantData.itemDesc.length > 0)
+    if (_wantData.itemDesc.length > 0 || _wantData.hashTagList.count > 0)
     {
         CGFloat const kDescImageLeftMargin     =   10.0f;
         CGFloat const kDescImageTopMargin      =   15.0f;
@@ -370,17 +371,38 @@
         CGFloat const kLabelLeftMargin      =   15.0f;
         CGFloat const kLabelXPos            =   kDescImageLeftMargin + kDescImageWidth + kLabelLeftMargin;
         CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-        CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
         
-        _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
-        [_itemDescLabel setText:_wantData.itemDesc];
-        [_itemDescLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-        [_itemDescLabel setTextColor:TEXT_COLOR_GRAY];
-        _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _itemDescLabel.numberOfLines = 0;
-        [_scrollView addSubview:_itemDescLabel];
+        if (_wantData.itemDesc.length > 0)
+        {
+            CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+            
+            _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
+            _itemDescLabel.text = _wantData.itemDesc;
+            _itemDescLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            _itemDescLabel.textColor = TEXT_COLOR_GRAY;
+            _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            _itemDescLabel.numberOfLines = 0;
+            [_scrollView addSubview:_itemDescLabel];
+            
+            _currOccupiedYPos = _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height;
+        } else
+            _currOccupiedYPos = kDescImageYPos;
         
-        _currOccupiedYPos = _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height;
+        if (_wantData.hashTagList.count > 0)
+        {
+            NSString *hashtagString = [_wantData.hashTagList componentsJoinedByString:@" "];
+            CGSize expectedSize = [hashtagString sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+            
+            _itemHashtagLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, _currOccupiedYPos, kLabelWidth, expectedSize.height)];
+            _itemHashtagLabel.text = hashtagString;
+            _itemHashtagLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            _itemHashtagLabel.textColor = MAIN_BLUE_COLOR;
+            _itemHashtagLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            _itemHashtagLabel.numberOfLines = 0;
+            [_scrollView addSubview:_itemHashtagLabel];
+            
+            _currOccupiedYPos = _itemHashtagLabel.frame.origin.y + _itemHashtagLabel.frame.size.height;
+        }
     }
 }
 
