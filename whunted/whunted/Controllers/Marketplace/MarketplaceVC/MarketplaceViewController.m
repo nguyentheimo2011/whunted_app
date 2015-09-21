@@ -13,6 +13,7 @@
 #import "Utilities.h"
 
 #import <MBProgressHUD.h>
+#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
 #define     kSortAndFilterBarHeight         50.0f
 
@@ -29,6 +30,7 @@
     UISearchBar             *_searchBar;
     
     UIRefreshControl        *_topRefreshControl;
+    UIRefreshControl        *_bottomRefreshControl;
     
     NSString                *_currProductOrigin;
     NSString                *_currCategory;
@@ -177,6 +179,11 @@
     [_topRefreshControl addTarget:self action:@selector(refreshWantData)
              forControlEvents:UIControlEventValueChanged];
     [_wantCollectionView addSubview:_topRefreshControl];
+    
+    _bottomRefreshControl = [UIRefreshControl new];
+    _bottomRefreshControl.triggerVerticalOffset = 100.;
+    [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
+    _wantCollectionView.bottomRefreshControl = _bottomRefreshControl;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -245,13 +252,18 @@
 {
     UIImageView *iconImageView = [[UIImageView alloc] init];
     
-    if (tag == 0) {
+    if (tag == 0)
+    {
         iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
         [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
-    } else if (tag == 1) {
+    }
+    else if (tag == 1)
+    {
         iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
         [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
-    } else if (tag == 2) {
+    }
+    else if (tag == 2)
+    {
         iconImageView.frame = CGRectMake(6.0f, 6.0f, 20.0f, 20.0f);
         [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
     }
@@ -267,13 +279,18 @@
     titleLabel.textColor = TEXT_COLOR_DARK_GRAY;
     titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     
-    if (tag == 0) {
+    if (tag == 0)
+    {
         titleLabel.text = NSLocalizedString(@"ORIGIN", nil);
         titleLabel.frame = CGRectMake(26.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
-    } else if (tag == 1) {
+    }
+    else if (tag == 1)
+    {
         titleLabel.text = NSLocalizedString(@"CATEGORY", nil);
         titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 36.0f, 20.0f);
-    } else if (tag == 2) {
+    }
+    else if (tag == 2)
+    {
         titleLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
         titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 38.0f, 20.0f);
     }
@@ -290,15 +307,20 @@
     curLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
     [container addSubview:curLabel];
     
-    if (tag == 0) {
+    if (tag == 0)
+    {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
         curLabel.text = _currProductOrigin;
         _currProductOriginLabel = curLabel;
-    } else if (tag == 1) {
+    }
+    else if (tag == 1)
+    {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
         curLabel.text = _currCategory;
         _currCategoryLabel = curLabel;
-    } else if (tag == 2) {
+    }
+    else if (tag == 2)
+    {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
         curLabel.text = _currSortingBy;
         _currSortFilterLabel = curLabel;
@@ -312,11 +334,16 @@
     UIImageView *downArrowImageView = [[UIImageView alloc] init];
     [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
     
-    if (tag == 0) {
+    if (tag == 0)
+    {
         downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
-    } else if (tag == 1) {
+    }
+    else if (tag == 1)
+    {
         downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
-    } else if (tag == 2) {
+    }
+    else if (tag == 2)
+    {
         downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
     }
     
@@ -338,11 +365,16 @@
 {
     UITapGestureRecognizer *tapGesture;
     
-    if (tag == 0) {
+    if (tag == 0)
+    {
         tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(productOriginViewTouchEventHandler)];
-    } else if (tag == 1) {
+    }
+    else if (tag == 1)
+    {
         tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(categoryViewTouchEventHandler)];
-    } else if (tag == 2) {
+    }
+    else if (tag == 2)
+    {
         tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortAndFilterViewTouchEventHandler)];
     }
     
@@ -589,6 +621,7 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query orderByDescending:PF_CREATED_AT];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
         if (!error)
@@ -623,6 +656,7 @@
     }
         
     [query orderByDescending:PF_CREATED_AT];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (!error)
@@ -641,6 +675,42 @@
          }
          
          [_topRefreshControl endRefreshing];
+     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveMoreWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    
+    if (_wantDataList.count > 0)
+    {
+        WantData *wantData = [_wantDataList objectAtIndex:_wantDataList.count-1];
+        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
+    }
+    
+    [query orderByDescending:PF_CREATED_AT];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             for (PFObject *object in objects)
+             {
+                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                 [_wantDataList addObject:wantData];
+             }
+             
+             [self updateMatchedWantData];
+         }
+         else
+         {
+             [Utilities handleError:error];
+         }
+         
+         [_bottomRefreshControl endRefreshing];
      }];
 }
 
@@ -670,10 +740,12 @@
 {
     if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
         return array;
-    else {
+    else
+    {
         NSMutableArray *filteredArray = [NSMutableArray array];
         
-        for (WantData *wantData in array) {
+        for (WantData *wantData in array)
+        {
             if ([wantData.itemCategory isEqualToString:category])
                 [filteredArray addObject:wantData];
         }
@@ -688,11 +760,14 @@
 {
     if ([productOrigin isEqualToString:NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil)])
         return array;
-    else {
+    else
+    {
         NSMutableArray *filteredArray = [NSMutableArray array];
         
-        for (WantData *wantData in array) {
-            if ([wantData.itemOrigins containsObject:productOrigin] || [wantData.itemOrigins containsObject:NSLocalizedString(productOrigin, nil)]) {
+        for (WantData *wantData in array)
+        {
+            if ([wantData.itemOrigins containsObject:productOrigin] || [wantData.itemOrigins containsObject:NSLocalizedString(productOrigin, nil)])
+            {
                 [filteredArray addObject:wantData];
             }
         }
@@ -707,11 +782,14 @@
 {
     if ([buyerLocation isEqualToString:NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil)])
         return array;
-    else {
+    else
+    {
         NSMutableArray *filteredArray = [NSMutableArray array];
         
-        for (WantData *wantData in array) {
-            if ([wantData.meetingLocation isEqualToString:buyerLocation]) {
+        for (WantData *wantData in array)
+        {
+            if ([wantData.meetingLocation isEqualToString:buyerLocation])
+            {
                 [filteredArray addObject:wantData];
             }
         }
