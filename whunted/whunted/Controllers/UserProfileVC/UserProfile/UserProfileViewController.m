@@ -792,18 +792,13 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_curViewMode == HistoryCollectionViewModeBuying) {
-        CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
-        CGFloat const kCellHeight   =   kCellWidth + 85.0;
-        
-        return CGSizeMake(kCellWidth, kCellHeight);
+    if (_curViewMode == HistoryCollectionViewModeBuying)
+    {
+        return [Utilities sizeOfSimplifiedCollectionCell];
     }
     else
     {
-        CGFloat const kCellWidth    =   WINSIZE.width/2 - 12.0f;
-        CGFloat const kCellHeight   =   kCellWidth + 115.0f;
-        
-        return CGSizeMake(kCellWidth, kCellHeight);
+        return [Utilities sizeOfFullCollectionCell];
     }
 }
 
@@ -928,17 +923,17 @@
     _currHeight -= _collectionViewCurrHeight;
     
     CGFloat const kYDistanceBetweenCell     =   16.0f;
-    CGFloat const kCellWidth                =   WINSIZE.width/2 - 12.0f;
+    CGFloat const kCellWidth                =   [Utilities sizeOfFullCollectionCell].width;
     
     if (_curViewMode == HistoryCollectionViewModeBuying)
     {
-        CGFloat const kCellHeight = kCellWidth + 85.0f;
+        CGFloat const kCellHeight = [Utilities sizeOfSimplifiedCollectionCell].height;
         NSInteger listSize = _myWantDataList.count;
         _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
     }
     else
     {
-        CGFloat const kCellHeight = kCellWidth + 115.0f;
+        CGFloat const kCellHeight = [Utilities sizeOfFullCollectionCell].height;
         NSInteger listSize = _mySellDataList.count;
         _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
     }

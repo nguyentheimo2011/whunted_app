@@ -54,8 +54,6 @@
     [self addBuyerProfilePic];
     [self addBuyerUsername];
     [self addTimestampLabel];
-    [self addLikeButton];
-    [self addSellerNumButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -258,71 +256,6 @@
     [self addSubview:_timestampLabel];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addLikeButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kButtonXPos   =   0;
-    CGFloat const kButtonYPos   =   _cellWidth + 90.0f;
-    CGFloat const kButtonWidth  =   _cellWidth/2;
-    CGFloat const kButtonHeight =   25.0f;
-    
-    _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
-    [_likeButton setBackgroundColor:[UIColor whiteColor]];
-    _likeButton.layer.borderWidth = 0.5f;
-    _likeButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
-    [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_likeButton];
-    
-    CGFloat const kImageTopMargin   =   5.5f;
-    CGFloat const kImageWdith       =   14.0f;
-    
-    _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, kImageTopMargin, kImageWdith, kImageWdith)];
-    [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
-    
-    CGFloat const kLabelLeftMargin  =   5.0f;
-    CGFloat const kLabelXPos        =   kImageWdith + kLabelLeftMargin;
-    CGFloat const kLabelYPos        =   5.0f;
-    CGFloat const kLabelHeight      =   15.0f;
-    
-    _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, 0, kLabelHeight)];
-    [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
-    [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
-    [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
-    [_likesNumLabel sizeToFit];
-    
-    CGFloat const kContainerWidth = kImageWdith + kLabelLeftMargin + _likesNumLabel.frame.size.width;
-    CGFloat const kContainerXPos  = (kButtonWidth - kContainerWidth) / 2.0;
-    
-    _likesNumContainer = [[UIView alloc] initWithFrame:CGRectMake(kContainerXPos, 0, kContainerWidth, kButtonHeight)];
-    [_likesNumContainer addSubview:_likeImageView];
-    [_likesNumContainer addSubview:_likesNumLabel];
-    UITapGestureRecognizer *tapGesRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likeButtonClickedEvent)];
-    [_likesNumContainer addGestureRecognizer:tapGesRec];
-    
-    [_likeButton addSubview:_likesNumContainer];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addSellerNumButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kButtonXPos   =   _cellWidth/2 - 0.5f;
-    CGFloat const kButtonYPos   =   _likeButton.frame.origin.y;
-    CGFloat const kButtonWidth  =   _cellWidth/2 + 0.5f;
-    CGFloat const kButtonHeight =   _likeButton.frame.size.height;
-    
-    _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
-    [_sellerNumButton setBackgroundColor:[UIColor whiteColor]];
-    _sellerNumButton.layer.borderWidth = 0.5f;
-    _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
-    [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
-    _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
-    [_sellerNumButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
-    [self addSubview:_sellerNumButton];
-}
-
-
 #pragma mark - Event Handlers
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -426,5 +359,73 @@
     
     [Utilities getUserWithID:_wantData.buyerID imageNeeded:YES andRunBlock:handler];
 }
+
+#pragma mark - Next version
+
+/*
+ //------------------------------------------------------------------------------------------------------------------------------
+ - (void) addLikeButton
+ //------------------------------------------------------------------------------------------------------------------------------
+ {
+ CGFloat const kButtonXPos   =   0;
+ CGFloat const kButtonYPos   =   _cellWidth + 90.0f;
+ CGFloat const kButtonWidth  =   _cellWidth/2;
+ CGFloat const kButtonHeight =   25.0f;
+ 
+ _likeButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+ [_likeButton setBackgroundColor:[UIColor whiteColor]];
+ _likeButton.layer.borderWidth = 0.5f;
+ _likeButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+ [_likeButton addTarget:self action:@selector(likeButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
+ [self addSubview:_likeButton];
+ 
+ CGFloat const kImageTopMargin   =   5.5f;
+ CGFloat const kImageWdith       =   14.0f;
+ 
+ _likeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, kImageTopMargin, kImageWdith, kImageWdith)];
+ [_likeImageView setImage:[UIImage imageNamed:@"heart_white.png"]];
+ 
+ CGFloat const kLabelLeftMargin  =   5.0f;
+ CGFloat const kLabelXPos        =   kImageWdith + kLabelLeftMargin;
+ CGFloat const kLabelYPos        =   5.0f;
+ CGFloat const kLabelHeight      =   15.0f;
+ 
+ _likesNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, 0, kLabelHeight)];
+ [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", (long)_likesNum]];
+ [_likesNumLabel setTextColor:TEXT_COLOR_GRAY];
+ [_likesNumLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+ [_likesNumLabel sizeToFit];
+ 
+ CGFloat const kContainerWidth = kImageWdith + kLabelLeftMargin + _likesNumLabel.frame.size.width;
+ CGFloat const kContainerXPos  = (kButtonWidth - kContainerWidth) / 2.0;
+ 
+ _likesNumContainer = [[UIView alloc] initWithFrame:CGRectMake(kContainerXPos, 0, kContainerWidth, kButtonHeight)];
+ [_likesNumContainer addSubview:_likeImageView];
+ [_likesNumContainer addSubview:_likesNumLabel];
+ UITapGestureRecognizer *tapGesRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likeButtonClickedEvent)];
+ [_likesNumContainer addGestureRecognizer:tapGesRec];
+ 
+ [_likeButton addSubview:_likesNumContainer];
+ }
+ 
+ //------------------------------------------------------------------------------------------------------------------------------
+ - (void) addSellerNumButton
+ //------------------------------------------------------------------------------------------------------------------------------
+ {
+ CGFloat const kButtonXPos   =   _cellWidth/2 - 0.5f;
+ CGFloat const kButtonYPos   =   _likeButton.frame.origin.y;
+ CGFloat const kButtonWidth  =   _cellWidth/2 + 0.5f;
+ CGFloat const kButtonHeight =   _likeButton.frame.size.height;
+ 
+ _sellerNumButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
+ [_sellerNumButton setBackgroundColor:[UIColor whiteColor]];
+ _sellerNumButton.layer.borderWidth = 0.5f;
+ _sellerNumButton.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+ [_sellerNumButton setTitle:[NSString stringWithFormat: @"0 %@", NSLocalizedString(@"seller", nil)] forState:UIControlStateNormal];
+ _sellerNumButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
+ [_sellerNumButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
+ [self addSubview:_sellerNumButton];
+ }
+ */
 
 @end

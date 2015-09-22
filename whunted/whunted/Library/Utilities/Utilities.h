@@ -40,6 +40,10 @@
 
 + (CGFloat)     widthOfText: (NSString *) text withFont: (UIFont *) font andMaxWidth: (CGFloat) maxWidth;
 
++ (CGSize)      sizeOfFullCollectionCell;
+
++ (CGSize)      sizeOfSimplifiedCollectionCell;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UI Customization
