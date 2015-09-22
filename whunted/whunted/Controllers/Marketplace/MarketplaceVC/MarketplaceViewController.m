@@ -491,10 +491,8 @@
     cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
     cityViewController.viewTitle = NSLocalizedString(@"Location", nil);
     cityViewController.viewControllerIsPresented = YES;
+    cityViewController.currentLocation = _currBuyerLocation;
     cityViewController.delegate = self;
-    
-    if (![_currBuyerLocation isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])
-        cityViewController.currentLocation = _currBuyerLocation;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
