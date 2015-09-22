@@ -7,10 +7,12 @@
 //
 
 #import "EditWantDataVC.h"
+#import "Utilities.h"
+
+#import <MBProgressHUD.h>
 
 
 @implementation EditWantDataVC
-
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithWantData: (WantData *) wantData forEditing: (BOOL) isEditing
@@ -59,7 +61,7 @@
     deletionButton.borderWidth = 0;
     deletionButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
     deletionButton.titleColor = [UIColor whiteColor];
-    [deletionButton addTarget:self action:@selector(deletionButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [deletionButton addTarget:self action:@selector(confirmToDelete) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:deletionButton];
 }
 
@@ -67,10 +69,45 @@
 #pragma mark - Event Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) confirmToDelete
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure that you want to delete your post?", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:@"OK", nil];
+    alertView.delegate = self;
+    [alertView show];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) deletionButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    PFObject *pfObj = [self.wantData getPFObject];
+    [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (error)
+         {
+             [Utilities handleError:error];
+             [pfObj deleteEventually];
+         }
+         
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         [self.navigationController popViewControllerAnimated:YES];
+     }];
+}
+
+
+#pragma mark - UIAlertViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (buttonIndex == 1)
+    {
+        [self deletionButtonTapEventHandler];
+    }
 }
 
 

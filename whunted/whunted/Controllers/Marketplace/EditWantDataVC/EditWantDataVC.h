@@ -10,7 +10,7 @@
 
 #import "UploadingWantDetailsViewController.h"
 
-@interface EditWantDataVC : UploadingWantDetailsViewController
+@interface EditWantDataVC : UploadingWantDetailsViewController <UIAlertViewDelegate>
 
 - (id) initWithWantData: (WantData *) wantData forEditing: (BOOL) isEditing;
 
