@@ -25,10 +25,11 @@
     NSMutableArray          *_taiwaneseCountryAndCitiesList;
 }
 
-@synthesize delegate                =   _delegate;
-@synthesize isToSetProductOrigin    =   _isToSetProductOrigin;
-@synthesize labelText               =   _labelText;
-@synthesize currentLocation         =   _currentLocation;
+@synthesize delegate                    =   _delegate;
+@synthesize viewTitle                   =   _viewTitle;
+@synthesize labelText                   =   _labelText;
+@synthesize currentLocation             =   _currentLocation;
+@synthesize viewControllerIsPresented   =   _viewControllerIsPresented;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -72,18 +73,16 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if (_isToSetProductOrigin)
+    [Utilities customizeTitleLabel:_viewTitle forViewController:self];
+    
+    if (_viewControllerIsPresented)
     {
-        [Utilities customizeTitleLabel:NSLocalizedString(@"Product Origin", nil) forViewController:self];
-        
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSortAndFilter)];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Apply", nil) style:UIBarButtonItemStylePlain target:self action:@selector(applyNewSortingAndFilteringCriteria)];
     }
     else
     {
-        [Utilities customizeTitleLabel:NSLocalizedString(@"Location", nil) forViewController:self];
-        
         [Utilities customizeBackButtonForViewController:self withAction:@selector(backToPreviousView)];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(topDoneButtonTapEventHandler)];

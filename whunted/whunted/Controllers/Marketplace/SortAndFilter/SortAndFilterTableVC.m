@@ -340,7 +340,7 @@
     {
         CityViewController *cityViewController = [[CityViewController alloc] init];
         cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
-        cityViewController.isToSetProductOrigin = NO;
+        cityViewController.viewControllerIsPresented = NO;
         
         if (![_buyerLocationFilter isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])
             cityViewController.currentLocation = _buyerLocationFilter;

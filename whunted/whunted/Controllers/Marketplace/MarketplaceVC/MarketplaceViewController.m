@@ -24,7 +24,7 @@
     UICollectionView        *_wantCollectionView;
     
     UIView                  *_sortAndFilterBar;
-    UILabel                 *_currProductOriginLabel;
+    UILabel                 *_currBuyerLocationLabel;
     UILabel                 *_currCategoryLabel;
     UILabel                 *_currSortFilterLabel;
     UISearchBar             *_searchBar;
@@ -93,9 +93,9 @@
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-    if (_currProductOrigin.length == 0)
-        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+    _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
+    if (_currBuyerLocation.length == 0)
+        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
     
     _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
     if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
@@ -105,9 +105,9 @@
     if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
         _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
     
-    _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
-    if (_currBuyerLocation.length == 0)
-        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
+    _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    if (_currProductOrigin.length == 0)
+        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
 }
 
 
@@ -311,7 +311,7 @@
     {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
         curLabel.text = _currProductOrigin;
-        _currProductOriginLabel = curLabel;
+        _currBuyerLocationLabel = curLabel;
     }
     else if (tag == 1)
     {
@@ -367,7 +367,7 @@
     
     if (tag == 0)
     {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(productOriginViewTouchEventHandler)];
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyerLocationViewTouchEventHandler)];
     }
     else if (tag == 1)
     {
@@ -482,18 +482,19 @@
 #pragma mark - Event Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) productOriginViewTouchEventHandler
+- (void) buyerLocationViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByProductOriginEvent" label:@"SortAndFilterBar" value:nil];
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByBuyerLocationEvent" label:@"SortAndFilterBar" value:nil];
     
     CityViewController *cityViewController = [[CityViewController alloc] init];
-    cityViewController.labelText = NSLocalizedString(@"Filter by product origin:", nil);
-    cityViewController.isToSetProductOrigin = YES;
+    cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
+    cityViewController.viewTitle = NSLocalizedString(@"Location", nil);
+    cityViewController.viewControllerIsPresented = YES;
     cityViewController.delegate = self;
     
-    if (![_currProductOrigin isEqualToString:ITEM_PRODUCT_ORIGIN_ALL])
-        cityViewController.currentLocation = _currProductOrigin;
+    if (![_currBuyerLocation isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])
+        cityViewController.currentLocation = _currBuyerLocation;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     
@@ -549,16 +550,16 @@
 {
     if (location.length > 0)
     {
-        _currProductOrigin = location;
-        _currProductOriginLabel.text = location;
+        _currBuyerLocation = location;
+        _currBuyerLocationLabel.text = location;
     }
     else
     {
-        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
-        _currProductOriginLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+        _currBuyerLocation = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+        _currBuyerLocationLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
     
     [self updateMatchedWantData];
 }
