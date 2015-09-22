@@ -10,6 +10,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
+#import <JTImageButton.h>
+
 #define     MAX_NUM_OF_MATCHES      20
 
 
@@ -42,6 +44,7 @@
     [self customizeUI];
     [self addGuidanceLabel];
     [self addTextField];
+    [self addClearButton];
     [self addCityTable];
 }
 
@@ -126,6 +129,25 @@
     _cityTextField.delegate = self;
     [Utilities customizeTextField:_cityTextField];
     [self.view addSubview:_cityTextField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addClearButton
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonWidth      =   80.0f;
+    CGFloat const kButtonHeight     =   40.0f;
+    CGFloat const kButtonOriginX    =   WINSIZE.width - kButtonWidth - WINSIZE.width/10.0f;
+    CGFloat const kBUttonOriginY    =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height + 20.0f;
+    
+    JTImageButton *clearButton      =   [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kBUttonOriginY, kButtonWidth, kButtonHeight)];
+    [clearButton createTitle:NSLocalizedString(@"Clear", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    clearButton.titleColor = [UIColor whiteColor];
+    clearButton.bgColor = FLAT_FRESH_RED_COLOR;
+    clearButton.borderWidth = 0;
+    clearButton.cornerRadius = 8.0f;
+    [clearButton addTarget:self action:@selector(clearButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:clearButton];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -262,6 +284,14 @@
 {
     [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) clearButtonTapEventHandler
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _currentLocation = NSLocalizedString(@"All", nil);
+    _cityTextField.text = _currentLocation;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
