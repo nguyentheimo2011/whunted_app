@@ -522,7 +522,7 @@
     
     SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
     sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
-    sortAndFilterTableVC.buyerLocationFilter = _currBuyerLocation;
+    sortAndFilterTableVC.productOriginFilter = _currProductOrigin;
     sortAndFilterTableVC.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
@@ -583,7 +583,7 @@
 #pragma mark - SortAndFilterTableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion andBuyerLocation:(NSString *)buyerLocation
+- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion andProductOrigin:(NSString *)productOrigin
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currSortFilterLabel.text = criterion;
@@ -591,8 +591,8 @@
     _currSortingBy = criterion;
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
     
-    _currBuyerLocation = buyerLocation;
-    [[NSUserDefaults standardUserDefaults] setObject:buyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
+    _currProductOrigin = productOrigin;
+    [[NSUserDefaults standardUserDefaults] setObject:productOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
     
     [self updateMatchedWantData];
 }

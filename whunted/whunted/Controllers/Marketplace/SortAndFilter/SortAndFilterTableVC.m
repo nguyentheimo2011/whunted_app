@@ -22,9 +22,8 @@
     UITableViewCell         *_recentSortCell;
     UITableViewCell         *_lowestPriceSortCell;
     UITableViewCell         *_highestPriceSortCell;
-    UITableViewCell         *_nearestSortCell;
     
-    UITableViewCell         *_buyerLocationCell;
+    UITableViewCell         *_productOriginCell;
     
     UITextField             *_cityTextField;
     
@@ -33,7 +32,7 @@
 
 @synthesize delegate            =   _delegate;
 @synthesize sortingCriterion    =   _sortingCriterion;
-@synthesize buyerLocationFilter =   _buyerLocationFilter;
+@synthesize productOriginFilter =   _productOriginFilter;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -72,7 +71,7 @@
 - (void) initData
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil), NSLocalizedString(@"Nearest Price", nil)];
+    NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil)];
     _selectedSortingIndex = [array indexOfObject:_sortingCriterion];
 }
 
@@ -100,8 +99,7 @@
     [self initRecentSortCell];
     [self initLowestPriceSortCell];
     [self initHighestPriceSortCell];
-    [self initNearestSortCell];
-    [self initBuyerLocationCell];
+    [self initProductOrignCell];
     [self addCheckMarkToSelectedSortingCell];
 }
 
@@ -174,27 +172,10 @@
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) initNearestSortCell
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    _nearestSortCell = [[UITableViewCell alloc] init];
-    _nearestSortCell.textLabel.text = NSLocalizedString(SORTING_BY_NEAREST, nil);
-    _nearestSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _nearestSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _nearestSortCell.indentationLevel = 3;
-    
-    // add popular sort icon
-    UIImageView *nearestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
-    UIImage *nearestImage = [UIImage imageNamed:@"nearest_icon.png"];
-    [nearestImageView setImage:nearestImage];
-    [_nearestSortCell addSubview:nearestImageView];
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
 - (void) addCheckMarkToSelectedSortingCell
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    NSArray *cells = @[_popularSortCell, _recentSortCell, _lowestPriceSortCell, _highestPriceSortCell, _nearestSortCell];
+    NSArray *cells = @[_popularSortCell, _recentSortCell, _lowestPriceSortCell, _highestPriceSortCell];
     
     if (_selectedSortingIndex != NSNotFound) {
         UITableViewCell *cell = [cells objectAtIndex:_selectedSortingIndex];
@@ -204,24 +185,24 @@
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) initBuyerLocationCell
+- (void) initProductOrignCell
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    _buyerLocationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"BuyerLocationCell"];
-    _buyerLocationCell.textLabel.text = NSLocalizedString(@"Location", nil);
-    _buyerLocationCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _buyerLocationCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _buyerLocationCell.indentationLevel = 3;
-    _buyerLocationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ProductOriginCell"];
+    _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
+    _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _productOriginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _productOriginCell.indentationLevel = 3;
+    _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    _buyerLocationCell.detailTextLabel.text = _buyerLocationFilter;
-    _buyerLocationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _productOriginCell.detailTextLabel.text = _productOriginFilter;
+    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     
     // add popular sort icon
-    UIImageView *buyerLocationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
-    UIImage *buyerLocationImage = [UIImage imageNamed:@"buyer_location_icon.png"];
-    [buyerLocationImageView setImage:buyerLocationImage];
-    [_buyerLocationCell addSubview:buyerLocationImageView];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *iconImage = [UIImage imageNamed:@"product_origin_small_icon.png"];
+    [iconImageView setImage:iconImage];
+    [_productOriginCell addSubview:iconImageView];
 }
 
 
@@ -239,7 +220,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return 5;
+        return 4;
     else
         return 1;
 }
@@ -248,19 +229,19 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
+    {
         if (indexPath.row == 0)
             return _popularSortCell;
         else if (indexPath.row == 1)
             return _recentSortCell;
         else if (indexPath.row == 2)
             return _lowestPriceSortCell;
-        else if (indexPath.row == 3)
-            return _highestPriceSortCell;
         else
-            return _nearestSortCell;
-    } else
-        return _buyerLocationCell;
+            return _highestPriceSortCell;
+    }
+    else
+        return _productOriginCell;
 }
 
 
@@ -294,7 +275,7 @@
     if (section == 0)
         return NSLocalizedString(@"SORT BY", nil);
     else
-        return NSLocalizedString(@"FILTER BY BUYER'S LOCATION", nil);
+        return NSLocalizedString(@"FILTER BY PRODUCT ORIGIN", nil);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -339,11 +320,12 @@
     else
     {
         CityViewController *cityViewController = [[CityViewController alloc] init];
-        cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
+        cityViewController.labelText = NSLocalizedString(@"Filter by product origin:", nil);
         cityViewController.viewControllerIsPresented = NO;
+        cityViewController.viewTitle = NSLocalizedString(@"Product origin", nil);
         
-        if (![_buyerLocationFilter isEqualToString:ITEM_BUYER_LOCATION_DEFAULT])
-            cityViewController.currentLocation = _buyerLocationFilter;
+        if (![_productOriginFilter isEqualToString:ITEM_PRODUCT_ORIGIN_ALL])
+            cityViewController.currentLocation = _productOriginFilter;
         
         cityViewController.delegate = self;
         [self.navigationController pushViewController:cityViewController animated:YES];
@@ -364,7 +346,7 @@
 - (void) applyNewSortingAndFilteringCriteria
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion andBuyerLocation:_buyerLocationFilter];
+    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion andProductOrigin:_productOriginFilter];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -394,9 +376,31 @@
 - (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    _buyerLocationCell.detailTextLabel.text = location;
+    _productOriginCell.detailTextLabel.text = location;
     
-    _buyerLocationFilter = location;
+    _productOriginFilter = location;
 }
+
+
+#pragma mark - Next version
+
+/*
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initNearestSortCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _nearestSortCell = [[UITableViewCell alloc] init];
+    _nearestSortCell.textLabel.text = NSLocalizedString(SORTING_BY_NEAREST, nil);
+    _nearestSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _nearestSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _nearestSortCell.indentationLevel = 3;
+    
+    // add popular sort icon
+    UIImageView *nearestImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *nearestImage = [UIImage imageNamed:@"nearest_icon.png"];
+    [nearestImageView setImage:nearestImage];
+    [_nearestSortCell addSubview:nearestImageView];
+}
+*/
 
 @end

@@ -16,7 +16,7 @@
 @protocol SortAndFilterTableViewDelegate <NSObject>
 //------------------------------------------------------------------------------------------------------------------------------
 
-- (void) sortAndFilterTableView: (SortAndFilterTableVC *) controller didCompleteChoosingSortingCriterion: (NSString *) criterion andBuyerLocation: (NSString *) buyerLocation;
+- (void) sortAndFilterTableView: (SortAndFilterTableVC *) controller didCompleteChoosingSortingCriterion: (NSString *) criterion andProductOrigin: (NSString *) productOrigin;
 
 @end
 
@@ -29,6 +29,6 @@
 
 @property (nonatomic, strong)   NSString        *sortingCriterion;
 
-@property (nonatomic, strong)   NSString        *buyerLocationFilter;
+@property (nonatomic, strong)   NSString        *productOriginFilter;
 
 @end
