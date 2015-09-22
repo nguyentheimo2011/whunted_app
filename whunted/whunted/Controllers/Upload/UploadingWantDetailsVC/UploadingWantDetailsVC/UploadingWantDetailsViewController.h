@@ -25,7 +25,10 @@
 @protocol UploadingWantDetailsViewControllerDelegate <NSObject>
 //-------------------------------------------------------------------------------------------------------------------------------
 
+@optional
+
 - (void) uploadingWantDetailsViewController: (UploadingWantDetailsViewController *) controller didCompleteSubmittingWantData: (WantData *) wantData;
+- (void) completeEditingWantData;
 
 @end
 
@@ -48,7 +51,7 @@
                                                  RSKImageCropViewControllerDataSource>
 
 
-@property (nonatomic, weak) id<UploadingWantDetailsViewControllerDelegate> delegate;
+@property (nonatomic, weak)     id<UploadingWantDetailsViewControllerDelegate> delegate;
 
 @property (nonatomic, strong)   WantData                *wantData;
 

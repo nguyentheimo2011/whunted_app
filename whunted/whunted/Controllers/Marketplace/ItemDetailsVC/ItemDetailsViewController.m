@@ -586,6 +586,50 @@
     [backgroundView addSubview:_viewOffersButton];
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_itemNameLabel setText:_wantData.itemName];
+    
+    [_demandedPriceLabel setText:_wantData.demandedPrice];
+    
+    if (_wantData.meetingLocation.length > 0)
+        [_locationLabel setText:_wantData.meetingLocation];
+    
+    
+    CGFloat heightDiff = 0;
+    if (_wantData.itemDesc.length > 0 || _wantData.hashTagList.count > 0)
+    {
+        CGFloat currPosY = _itemDescLabel.frame.origin.y;
+        
+        if (_wantData.itemDesc.length > 0)
+        {
+            CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+            heightDiff = expectedSize.height - _itemDescLabel.frame.size.height;
+            
+            _itemDescLabel.frame = CGRectMake(_itemDescLabel.frame.origin.x, _itemDescLabel.frame.origin.y, _itemDescLabel.frame.size.width, expectedSize.height);
+            _itemDescLabel.text = _wantData.itemDesc;
+            
+            currPosY += expectedSize.height;
+        }
+        else
+        {
+            _itemDescLabel.text = @"";
+        }
+        
+        if (_wantData.hashTagList.count > 0)
+        {
+            NSString *hashtagString = [_wantData.hashTagList componentsJoinedByString:@" "];
+            CGSize expectedSize = [hashtagString sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+            heightDiff += expectedSize.height - _itemHashtagLabel.frame.size.height;
+            
+            _itemHashtagLabel.frame = CGRectMake(_itemHashtagLabel.frame.origin.x, currPosY, _itemHashtagLabel.frame.size.width, expectedSize.height);
+            
+        }
+    }
+}
+
 
 #pragma mark - Event Handlers
 
@@ -742,10 +786,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFObject *obj = notification.object;
-    if (obj) {
+    if (obj)
+    {
         _currOffer = [[TransactionData alloc] initWithPFObject:obj];
         _secondBottomButtonTitle = NSLocalizedString(@"Change your offer", nil);
-    } else {
+    }
+    else
+    {
         _currOffer = nil;
         _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
         
@@ -781,6 +828,7 @@
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"EditWantDataEvent" label:@"EditButton" value:nil];
     
     EditWantDataVC *editingVC = [[EditWantDataVC alloc] initWithWantData:_wantData forEditing:YES];
+    editingVC.delegate = self;
     [self.navigationController pushViewController:editingVC animated:YES];
 }
 
@@ -857,6 +905,16 @@
     };
     
     [chatView messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:handler];
+}
+
+
+#pragma mark - UploadingWantDetailsViewControllerDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) completeEditingWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self updateUI];
 }
 
 
@@ -941,6 +999,9 @@
     
     return itemImageVC;
 }
+
+
+#pragma mark - Next version
 
 /*
 //------------------------------------------------------------------------------------------------------------------------------

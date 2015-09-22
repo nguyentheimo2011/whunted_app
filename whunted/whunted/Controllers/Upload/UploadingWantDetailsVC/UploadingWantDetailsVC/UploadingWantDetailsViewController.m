@@ -27,10 +27,8 @@
     UITableViewCell             *_itemInfoCell;
     UITableViewCell             *_priceCell;
     UITableViewCell             *_locationCell;
-//    UITableViewCell             *_escrowRequestCell;
     
     UITextField                 *_priceTextField;
-//    UISwitch                    *_escrowSwitch;
     KLCPopup                    *_popup;
     
     NSMutableArray              *_addingButtonList;
@@ -170,7 +168,6 @@
     [self initializeItemInfoCell];
     [self initializePriceCell];
     [self initializeLocationCell];
-//    [self initializeEscrowRequestCell];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -474,6 +471,7 @@
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [_delegate completeEditingWantData];
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }

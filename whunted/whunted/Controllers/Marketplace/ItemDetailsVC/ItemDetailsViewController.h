@@ -27,7 +27,7 @@
 @end
 
 //------------------------------------------------------------------------------------------------------------------------------
-@interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate>
+@interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate, UploadingWantDetailsViewControllerDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
