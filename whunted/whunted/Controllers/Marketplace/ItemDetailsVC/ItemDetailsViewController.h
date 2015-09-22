@@ -11,7 +11,7 @@
 #import "WantData.h"
 #import "BuyersOrSellersOfferViewController.h"
 #import "TransactionData.h"
-#import "UploadingWantDetailsViewController.h"
+#import "EditWantDataVC.h"
 
 #import <JTImageButton.h>
 

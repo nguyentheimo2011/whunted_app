@@ -12,6 +12,7 @@
 #import "recent.h"
 #import "UserProfileViewController.h"
 #import "OfferViewingVC.h"
+
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -514,11 +515,11 @@
 - (void) addChatButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 45, WINSIZE.width/2, 45)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
+    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
     chatButton.cornerRadius = 0;
     chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
@@ -532,11 +533,11 @@
 - (void) addOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - 45, WINSIZE.width/2, 45)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, 45)];
+    _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     _secondBottomButton.borderColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
     _secondBottomButton.bgColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.9f];
     _secondBottomButton.titleColor = [UIColor whiteColor];
@@ -561,11 +562,11 @@
 - (void) addViewOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - 45, WINSIZE.width, 45)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    _viewOffersButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 45)];
+    _viewOffersButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
     
     if (_wantData.isFulfilled)
     {
@@ -779,7 +780,7 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"EditWantDataEvent" label:@"EditButton" value:nil];
     
-    UploadingWantDetailsViewController *editingVC = [[UploadingWantDetailsViewController alloc] initWithWantData:_wantData forEditing:YES];
+    EditWantDataVC *editingVC = [[EditWantDataVC alloc] initWithWantData:_wantData forEditing:YES];
     [self.navigationController pushViewController:editingVC animated:YES];
 }
 
