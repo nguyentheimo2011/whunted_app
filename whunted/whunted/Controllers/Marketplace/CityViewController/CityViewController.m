@@ -267,8 +267,17 @@
 - (void) applyNewSortingAndFilteringCriteria
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if ([self isValidLocation:_cityTextField.text])
+    {
+        [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Location must be selected from drop down suggestion", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -282,8 +291,16 @@
 - (void) topDoneButtonTapEventHandler
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self isValidLocation:_cityTextField.text])
+    {
+        [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Location must be selected from drop down suggestion", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -292,27 +309,6 @@
 {
     _currentLocation = NSLocalizedString(@"All", nil);
     _cityTextField.text = _currentLocation;
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) matchCountriesAndCitiesWithText: (NSString *) typedText
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    if (typedText.length == 0)
-    {
-        _matchedCitiesAndCountriesList = [_taiwaneseCountryAndCitiesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
-    }
-    else
-    {
-        NSString *filter = @"SELF BEGINSWITH[cd] %@";
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:filter, typedText];
-        
-        _matchedCitiesAndCountriesList = [_citiesAndCountriesList filteredArrayUsingPredicate:predicate];
-        
-        if (_matchedCitiesAndCountriesList.count > MAX_NUM_OF_MATCHES)
-            _matchedCitiesAndCountriesList = [_matchedCitiesAndCountriesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
-    }
 }
 
 
@@ -349,6 +345,37 @@
         NSString *newCity = [NSString stringWithFormat:@"%@, Taiwan", city];
         [_taiwaneseCountryAndCitiesList addObject:newCity];
     }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) matchCountriesAndCitiesWithText: (NSString *) typedText
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    if (typedText.length == 0)
+    {
+        _matchedCitiesAndCountriesList = [_taiwaneseCountryAndCitiesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
+    }
+    else
+    {
+        NSString *filter = @"SELF BEGINSWITH[cd] %@";
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:filter, typedText];
+        
+        _matchedCitiesAndCountriesList = [_citiesAndCountriesList filteredArrayUsingPredicate:predicate];
+        
+        if (_matchedCitiesAndCountriesList.count > MAX_NUM_OF_MATCHES)
+            _matchedCitiesAndCountriesList = [_matchedCitiesAndCountriesList subarrayWithRange:NSMakeRange(0, MAX_NUM_OF_MATCHES)];
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) isValidLocation: (NSString *) typedLocation
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    if ([typedLocation isEqualToString:NSLocalizedString(@"All", nil)])
+        return YES;
+    else
+        return [_citiesAndCountriesList containsObject:typedLocation];
 }
 
 @end

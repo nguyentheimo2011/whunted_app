@@ -19,8 +19,11 @@
 @end
 
 //------------------------------------------------------------------------------------------------------------------------------
-@interface CityViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CityViewController : UIViewController <UITextFieldDelegate,
 //------------------------------------------------------------------------------------------------------------------------------
+                                                  UITableViewDataSource,
+                                                  UITableViewDelegate,
+                                                  UIAlertViewDelegate>
 
 @property (nonatomic, weak) id<CityViewDelegate>    delegate;
 
