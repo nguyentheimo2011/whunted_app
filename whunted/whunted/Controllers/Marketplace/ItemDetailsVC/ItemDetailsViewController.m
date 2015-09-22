@@ -502,7 +502,7 @@
     _secondHandLabel.textColor = TEXT_COLOR_GRAY;
     
     if (_wantData.acceptedSecondHand)
-        _secondHandLabel.text = NSLocalizedString(@"Accept both new and second-hand item", nil);
+        _secondHandLabel.text = NSLocalizedString(@"Accept both new and second-hand", nil);
     else
         _secondHandLabel.text = NSLocalizedString(@"Accept only new item", nil);
     
@@ -590,44 +590,11 @@
 - (void) updateUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_itemNameLabel setText:_wantData.itemName];
+    [_scrollView removeFromSuperview];
     
-    [_demandedPriceLabel setText:_wantData.demandedPrice];
-    
-    if (_wantData.meetingLocation.length > 0)
-        [_locationLabel setText:_wantData.meetingLocation];
-    
-    
-    CGFloat heightDiff = 0;
-    if (_wantData.itemDesc.length > 0 || _wantData.hashTagList.count > 0)
-    {
-        CGFloat currPosY = _itemDescLabel.frame.origin.y;
-        
-        if (_wantData.itemDesc.length > 0)
-        {
-            CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
-            heightDiff = expectedSize.height - _itemDescLabel.frame.size.height;
-            
-            _itemDescLabel.frame = CGRectMake(_itemDescLabel.frame.origin.x, _itemDescLabel.frame.origin.y, _itemDescLabel.frame.size.width, expectedSize.height);
-            _itemDescLabel.text = _wantData.itemDesc;
-            
-            currPosY += expectedSize.height;
-        }
-        else
-        {
-            _itemDescLabel.text = @"";
-        }
-        
-        if (_wantData.hashTagList.count > 0)
-        {
-            NSString *hashtagString = [_wantData.hashTagList componentsJoinedByString:@" "];
-            CGSize expectedSize = [hashtagString sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
-            heightDiff += expectedSize.height - _itemHashtagLabel.frame.size.height;
-            
-            _itemHashtagLabel.frame = CGRectMake(_itemHashtagLabel.frame.origin.x, currPosY, _itemHashtagLabel.frame.size.width, expectedSize.height);
-            
-        }
-    }
+    [self addScrollView];
+    [self addPageViewController];
+    [self addItemDetails];
 }
 
 
