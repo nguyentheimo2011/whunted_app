@@ -36,6 +36,7 @@
     JTImageButton           *_buyerUsernameButton;
     JTImageButton           *_secondBottomButton;
     JTImageButton           *_viewOffersButton;
+    JTImageButton           *_referenceLinkButton;
     
     UIPageControl           *_pageControl;
     UIScrollView            *_scrollView;
@@ -221,6 +222,8 @@
     [self addDemandedPriceLabel];
     [self addLocationLabel];
     [self addItemDescLabel];
+    [self addReferenceLink];
+    [self addProductOrigin];
     [self addSellersLabel];
 }
 
@@ -407,10 +410,43 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) addReferenceLink
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_wantData.referenceURL.length > 0)
+    {
+        CGFloat const kLinkImageLeftMargin     =   10.0f;
+        CGFloat const kLinkImageTopMargin      =   15.0f;
+        CGFloat const kLinkImageYPos           =   _currOccupiedYPos + kLinkImageTopMargin;
+        CGFloat const kLinkImageWidth          =   23.0f;
+        CGFloat const kLinkImageHeight         =   23.0f;
+        
+        UIImage *linkIconImage = [UIImage imageNamed:@"reference_link_icon.png"];
+        UIImageView *linkIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kLinkImageLeftMargin, kLinkImageYPos, kLinkImageWidth, kLinkImageHeight)];
+        [linkIconImageView setImage:linkIconImage];
+        [_scrollView addSubview:linkIconImageView];
+        
+        CGFloat const kButtonLeftMargin      =   15.0f;
+        CGFloat const kButtonXPos            =   kLinkImageLeftMargin + kLinkImageWidth + kButtonLeftMargin;
+        CGFloat const kButtonWidth           =   WINSIZE.width - kButtonXPos - 10.0f;
+        
+        _referenceLinkButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kLinkImageYPos, kButtonWidth, kLinkImageHeight)];
+        [_referenceLinkButton createTitle:_wantData.referenceURL withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        _referenceLinkButton.titleColor = MAIN_BLUE_COLOR;
+        _referenceLinkButton.bgColor = [UIColor whiteColor];
+        _referenceLinkButton.borderWidth = 0;
+        [_referenceLinkButton addTarget:self action:@selector(referenceLinkButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+        [_scrollView addSubview:_referenceLinkButton];
+        
+        _currOccupiedYPos = _referenceLinkButton.frame.origin.y + _referenceLinkButton.frame.size.height;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addProductOrigin
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_wantData.itemOrigins.count > 0)
+    if (_wantData.itemOrigins.count > 0 && ((NSString *)[_wantData.itemOrigins objectAtIndex:0]).length > 0)
     {
         CGFloat const kOriginImageLeftMargin     =   10.0f;
         CGFloat const kOriginImageTopMargin      =   15.0f;
@@ -743,6 +779,19 @@
     
     UploadingWantDetailsViewController *editingVC = [[UploadingWantDetailsViewController alloc] initWithWantData:_wantData forEditing:YES];
     [self.navigationController pushViewController:editingVC animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) referenceLinkButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:_wantData.referenceURL]];
+    [webView loadRequest:request];
+    
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view = webView;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

@@ -191,6 +191,12 @@
 		E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A01B16B5BC006D9133 /* app_icon@1x.png */; };
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
+		E9CF95701BB01E89007272F3 /* reference_link_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956A1BB01E89007272F3 /* reference_link_icon@1x.png */; settings = {ASSET_TAGS = (); }; };
+		E9CF95711BB01E89007272F3 /* reference_link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956B1BB01E89007272F3 /* reference_link_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		E9CF95721BB01E89007272F3 /* reference_link_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956C1BB01E89007272F3 /* reference_link_icon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		E9CF95731BB01E89007272F3 /* secondhand_option_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956D1BB01E89007272F3 /* secondhand_option_icon@1x.png */; settings = {ASSET_TAGS = (); }; };
+		E9CF95741BB01E89007272F3 /* secondhand_option_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956E1BB01E89007272F3 /* secondhand_option_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		E9CF95751BB01E89007272F3 /* secondhand_option_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956F1BB01E89007272F3 /* secondhand_option_icon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		E9D0E66D1B95BCE00061AE8E /* buyer_location_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D0E66A1B95BCE00061AE8E /* buyer_location_icon@1x.png */; };
 		E9D0E66E1B95BCE00061AE8E /* buyer_location_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D0E66B1B95BCE00061AE8E /* buyer_location_icon@2x.png */; };
 		E9D0E66F1B95BCE00061AE8E /* buyer_location_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D0E66C1B95BCE00061AE8E /* buyer_location_icon@3x.png */; };
@@ -540,6 +546,12 @@
 		E9B800A01B16B5BC006D9133 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@1x.png"; path = "Resources/App Icons/App Icon/app_icon@1x.png"; sourceTree = "<group>"; };
 		E9B800A11B16B5BC006D9133 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/App Icons/App Icon/app_icon@2x.png"; sourceTree = "<group>"; };
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
+		E9CF956A1BB01E89007272F3 /* reference_link_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@1x.png"; path = "Resources/Want Details/reference_link_icon@1x.png"; sourceTree = "<group>"; };
+		E9CF956B1BB01E89007272F3 /* reference_link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@2x.png"; path = "Resources/Want Details/reference_link_icon@2x.png"; sourceTree = "<group>"; };
+		E9CF956C1BB01E89007272F3 /* reference_link_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@3x.png"; path = "Resources/Want Details/reference_link_icon@3x.png"; sourceTree = "<group>"; };
+		E9CF956D1BB01E89007272F3 /* secondhand_option_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "secondhand_option_icon@1x.png"; path = "Resources/Want Details/secondhand_option_icon@1x.png"; sourceTree = "<group>"; };
+		E9CF956E1BB01E89007272F3 /* secondhand_option_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "secondhand_option_icon@2x.png"; path = "Resources/Want Details/secondhand_option_icon@2x.png"; sourceTree = "<group>"; };
+		E9CF956F1BB01E89007272F3 /* secondhand_option_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "secondhand_option_icon@3x.png"; path = "Resources/Want Details/secondhand_option_icon@3x.png"; sourceTree = "<group>"; };
 		E9D0E66A1B95BCE00061AE8E /* buyer_location_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buyer_location_icon@1x.png"; path = "Resources/SortAndFilter/buyer_location_icon@1x.png"; sourceTree = "<group>"; };
 		E9D0E66B1B95BCE00061AE8E /* buyer_location_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buyer_location_icon@2x.png"; path = "Resources/SortAndFilter/buyer_location_icon@2x.png"; sourceTree = "<group>"; };
 		E9D0E66C1B95BCE00061AE8E /* buyer_location_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buyer_location_icon@3x.png"; path = "Resources/SortAndFilter/buyer_location_icon@3x.png"; sourceTree = "<group>"; };
@@ -865,6 +877,12 @@
 		E91A5A581B0484CA008382E2 /* Want Details */ = {
 			isa = PBXGroup;
 			children = (
+				E9CF956A1BB01E89007272F3 /* reference_link_icon@1x.png */,
+				E9CF956B1BB01E89007272F3 /* reference_link_icon@2x.png */,
+				E9CF956C1BB01E89007272F3 /* reference_link_icon@3x.png */,
+				E9CF956D1BB01E89007272F3 /* secondhand_option_icon@1x.png */,
+				E9CF956E1BB01E89007272F3 /* secondhand_option_icon@2x.png */,
+				E9CF956F1BB01E89007272F3 /* secondhand_option_icon@3x.png */,
 				E951C3F91B81F26300A1B384 /* category_icon@1x.png */,
 				E951C3FA1B81F26300A1B384 /* category_icon@2x.png */,
 				E951C3FB1B81F26300A1B384 /* category_icon@3x.png */,
@@ -1881,12 +1899,14 @@
 				E9D432EF1B53C89400530492 /* grid_view_icon@2x.png in Resources */,
 				E91806161B7B1613009C1F2D /* heart_red@3x.png in Resources */,
 				E918062F1B7C85C7009C1F2D /* payment_method_icon@1x.png in Resources */,
+				E9CF95711BB01E89007272F3 /* reference_link_icon@2x.png in Resources */,
 				E90ACE0D1B71F04400DC9768 /* activity_tab_icon@3x.png in Resources */,
 				E92A0BF41B706F0E000D66BD /* sad_face_small@1x.png in Resources */,
 				E92A0BF61B706F0E000D66BD /* sad_face_small@3x.png in Resources */,
 				E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */,
 				E91A5A6A1B049A2D008382E2 /* square_dashed@3x.png in Resources */,
 				E9E31F741B849989008D6A3D /* image_link_upload_icon@1x.png in Resources */,
+				E9CF95731BB01E89007272F3 /* secondhand_option_icon@1x.png in Resources */,
 				E9E31F851B859305008D6A3D /* user_profile_image_placeholder_small@1x.png in Resources */,
 				E9E456941B0F20CE00E8B55D /* promote_icon.png in Resources */,
 				E98113101B2155CB00ECAA0C /* accept@1x.png in Resources */,
@@ -1945,6 +1965,7 @@
 				E97A95431B528973003796DD /* sad_face@2x.png in Resources */,
 				E92A0BF21B706F0E000D66BD /* meh_face_small@2x.png in Resources */,
 				E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */,
+				E9CF95721BB01E89007272F3 /* reference_link_icon@3x.png in Resources */,
 				E9E31F861B859305008D6A3D /* user_profile_image_placeholder_small@2x.png in Resources */,
 				E9D264A71B62295D00CBEAFF /* CountryAndCityList.plist in Resources */,
 				E9E31F691B849710008D6A3D /* image_link_upload_icon@2x.png in Resources */,
@@ -1968,6 +1989,7 @@
 				E9E31F651B849710008D6A3D /* camera_upload_icon@2x.png in Resources */,
 				E9A639201B28131F0085C54F /* ImageGetterViewController.xib in Resources */,
 				E98113071B2155AB00ECAA0C /* userprofile@2x.png in Resources */,
+				E9CF95741BB01E89007272F3 /* secondhand_option_icon@2x.png in Resources */,
 				E94D18381AF9F18300E31B01 /* newsfeed@2x.png in Resources */,
 				E9FC1D891B8EBA2E001226C5 /* highest_price_icon@2x.png in Resources */,
 				E9D432EE1B53C89400530492 /* grid_view_icon@1x.png in Resources */,
@@ -2024,7 +2046,9 @@
 				E97A954A1B528F18003796DD /* move_to_next_icon@3x.png in Resources */,
 				E9E456701B0D8C7400E8B55D /* want_icon@1x.png in Resources */,
 				E918062E1B7C85C7009C1F2D /* location_icon@3x.png in Resources */,
+				E9CF95701BB01E89007272F3 /* reference_link_icon@1x.png in Resources */,
 				E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */,
+				E9CF95751BB01E89007272F3 /* secondhand_option_icon@3x.png in Resources */,
 				E91A5A681B049A2D008382E2 /* square_dashed@1x.png in Resources */,
 				E9D432E51B536D0500530492 /* email_verification@1x.png in Resources */,
 				E9D0E66E1B95BCE00061AE8E /* buyer_location_icon@2x.png in Resources */,
