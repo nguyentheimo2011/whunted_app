@@ -84,7 +84,7 @@
 {
     self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
     
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Sort & Filter", nil) forViewController:self];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Sort/Filter", nil) forViewController:self];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSortAndFilter)];
     

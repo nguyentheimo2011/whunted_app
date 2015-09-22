@@ -16,6 +16,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "Details"                   =           "DETAILS";
 "Category"                  =           "Category";
+"CATEGORY"                  =           "CATEGORY";
 "Choose category"           =           "Choose category";
 "Item info"                 =           "Item info";
 "What are you buying?"      =           "What are you buying?";
@@ -24,6 +25,7 @@
 "Product origin"            =           "Product origin";
 "Choose origin"             =           "Choose origin";
 "Location"                  =           "Location";
+"LOCATION"                  =           "LOCATION";
 "Where to meet?"            =           "Where to meet?";
 "Request for Escrow"        =           "Request for Escrow";
 "Allow second-hand item"    =           "Allow second-hand item";
@@ -119,6 +121,18 @@
 "Cancel Offer"                      =   "Cancel offer";
 "Deliver in"                        =   "Deliver in";
 //------------------------------------------------------------------------------------------------------------------------------
+
+// Sort & Filter
+//------------------------------------------------------------------------------------------------------------------------------
+"Sort/Filter"                       =   "Sort/Filter";
+"SORT/FILTER"                       =   "SORT/FILTER";
+"Apply"                             =   "Apply";
+"SORT BY"                           =   "SORT BY";
+"Popular"                           =   "Popular";
+"Recent"                            =   "Recent";
+"Lowest Price"                      =   "Lowest Price";
+"Highest Price"                     =   "Highest Price";
+"FILTER BY PRODUCT ORIGIN"          =   "FILTER BY PRODUCT ORIGIN";
 
 
 
