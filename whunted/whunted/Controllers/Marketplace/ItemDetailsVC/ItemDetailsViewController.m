@@ -30,7 +30,7 @@
     UILabel                 *_itemDescLabel;
     UILabel                 *_itemHashtagLabel;
     UILabel                 *_productOriginLabel;
-    UILabel                 *_paymentMethodLabel;
+    UILabel                 *_secondHandLabel;
     UILabel                 *_sellersLabel;
     
     JTImageButton           *_buyerUsernameButton;
@@ -224,6 +224,7 @@
     [self addItemDescLabel];
     [self addReferenceLink];
     [self addProductOrigin];
+    [self addSecondHandUI];
     [self addSellersLabel];
 }
 
@@ -465,13 +466,46 @@
         NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
         CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
         _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
-        [_productOriginLabel setText:productOriginText];
-        [_productOriginLabel setFont:DEFAULT_FONT];
+        _productOriginLabel.text = productOriginText;
+        _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
         [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
         [_scrollView addSubview:_productOriginLabel];
         
         _currOccupiedYPos = _productOriginLabel.frame.origin.y + _productOriginLabel.frame.size.height;
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSecondHandUI
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kImageLeftMargin     =   10.0f;
+    CGFloat const kImageTopMargin      =   15.0f;
+    CGFloat const kImageYPos           =   _currOccupiedYPos + kImageTopMargin;
+    CGFloat const kImageWidth          =   23.0f;
+    CGFloat const kImageHeight         =   23.0f;
+    
+    UIImage *iconImage = [UIImage imageNamed:@"secondhand_option_icon.png"];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, kImageYPos, kImageWidth, kImageHeight)];
+    [iconImageView setImage:iconImage];
+    [_scrollView addSubview:iconImageView];
+    
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kImageLeftMargin + kImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+    
+    _secondHandLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kImageYPos, kLabelWidth, kImageHeight)];
+    _secondHandLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _secondHandLabel.textColor = TEXT_COLOR_GRAY;
+    
+    if (_wantData.acceptedSecondHand)
+        _secondHandLabel.text = NSLocalizedString(@"Accept both new and second-hand item", nil);
+    else
+        _secondHandLabel.text = NSLocalizedString(@"Accept only new item", nil);
+    
+    [_scrollView addSubview:_secondHandLabel];
+    
+    _currOccupiedYPos = _secondHandLabel.frame.origin.y + _secondHandLabel.frame.size.height;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
