@@ -247,6 +247,7 @@
     NSArray *productOrigins = [_itemInfoDict objectForKey:ITEM_ORIGINS_KEY];
     productOriginVC.labelText = NSLocalizedString(@"Product origin:", nil);
     productOriginVC.currentLocation = (productOrigins.count > 0) ? [productOrigins objectAtIndex:0] : nil;
+    productOriginVC.viewTitle = NSLocalizedString(@"Product origin", nil);
     productOriginVC.delegate = self;
     
     [self.navigationController pushViewController:productOriginVC animated:YES];
