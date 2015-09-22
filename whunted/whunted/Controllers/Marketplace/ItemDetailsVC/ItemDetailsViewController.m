@@ -225,7 +225,9 @@
     [self addReferenceLink];
     [self addProductOrigin];
     [self addSecondHandUI];
-    [self addSellersLabel];
+    
+    _currOccupiedYPos += 60.0f;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currOccupiedYPos)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -506,40 +508,6 @@
     [_scrollView addSubview:_secondHandLabel];
     
     _currOccupiedYPos = _secondHandLabel.frame.origin.y + _secondHandLabel.frame.size.height;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addSellersLabel
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kSellerImageLeftMargin     =   10.0f;
-    CGFloat const kSellerImageTopMargin      =   15.0f;
-    CGFloat const kSellerImageYPos           =   _currOccupiedYPos + kSellerImageTopMargin;
-    CGFloat const kSellerImageWidth          =   23.0f;
-    
-    UIImage *sellersIconImage = [UIImage imageNamed:@"sellers_icon"];
-    UIImageView *sellersIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSellerImageLeftMargin, kSellerImageYPos, kSellerImageWidth, kSellerImageWidth)];
-    [sellersIconImageView setImage:sellersIconImage];
-    [_scrollView addSubview:sellersIconImageView];
-    
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kSellerImageLeftMargin + kSellerImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    
-    NSString *sellersText;
-    if (_wantData.sellersNum <= 0)
-        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
-    else
-        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
-    
-    _sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kSellerImageYPos, kLabelWidth, kSellerImageWidth)];
-    [_sellersLabel setText:sellersText];
-    [_sellersLabel setFont:DEFAULT_FONT];
-    [_sellersLabel setTextColor:[UIColor grayColor]];
-    [_scrollView addSubview:_sellersLabel];
-    
-    _currOccupiedYPos = _sellersLabel.frame.origin.y + _sellersLabel.frame.size.height + 60.0f;
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, _currOccupiedYPos)];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -972,6 +940,40 @@
     
     return itemImageVC;
 }
+
+/*
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSellersLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kSellerImageLeftMargin     =   10.0f;
+    CGFloat const kSellerImageTopMargin      =   15.0f;
+    CGFloat const kSellerImageYPos           =   _currOccupiedYPos + kSellerImageTopMargin;
+    CGFloat const kSellerImageWidth          =   23.0f;
+
+    UIImage *sellersIconImage = [UIImage imageNamed:@"sellers_icon"];
+    UIImageView *sellersIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSellerImageLeftMargin, kSellerImageYPos, kSellerImageWidth, kSellerImageWidth)];
+    [sellersIconImageView setImage:sellersIconImage];
+    [_scrollView addSubview:sellersIconImageView];
+
+    CGFloat const kLabelLeftMargin      =   15.0f;
+    CGFloat const kLabelXPos            =   kSellerImageLeftMargin + kSellerImageWidth + kLabelLeftMargin;
+    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+
+    NSString *sellersText;
+    if (_wantData.sellersNum <= 0)
+        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
+    else
+        sellersText = [NSString stringWithFormat:@"%ld seller", _wantData.sellersNum];
+
+    _sellersLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kSellerImageYPos, kLabelWidth, kSellerImageWidth)];
+    [_sellersLabel setText:sellersText];
+    [_sellersLabel setFont:DEFAULT_FONT];
+    [_sellersLabel setTextColor:[UIColor grayColor]];
+    [_scrollView addSubview:_sellersLabel];
+
+    _currOccupiedYPos = _sellersLabel.frame.origin.y + _sellersLabel.frame.size.height + 60.0f;
+}*/
 
 /*
  //------------------------------------------------------------------------------------------------------------------------------
