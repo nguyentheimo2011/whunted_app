@@ -440,7 +440,7 @@
         CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
         
         _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-        [_preferencesButton createTitle:@"Preferences" withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+        [_preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
         
         // TODO: colors are likely to change
         _preferencesButton.bgColor = DARK_BLUE_COLOR;

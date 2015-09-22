@@ -549,7 +549,7 @@
     }
     else
     {
-        _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
+        _secondBottomButtonTitle = NSLocalizedString(@"Offer to sell", nil);
         [_secondBottomButton createTitle:_secondBottomButtonTitle withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconOffsetY:0];
     }
     
@@ -761,7 +761,7 @@
     else
     {
         _currOffer = nil;
-        _secondBottomButtonTitle = NSLocalizedString(@"Offer your price", nil);
+        _secondBottomButtonTitle = NSLocalizedString(@"Offer to sell", nil);
         
         // if cancel or decline offer, then decrease numOfOffers by 1
         if (_numOfOffers > 0)

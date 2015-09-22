@@ -190,7 +190,7 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [Utilities customizeTitleLabel:@"Preferences" forViewController:self];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Preferences", nil) forViewController:self];
     [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
     
     [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:17]];

@@ -72,7 +72,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "listed"                =           "listed";
 "Chat"                  =           "Chat";
-"Offer your price"      =           "Offer your price";
+"Offer to sell"         =           "Offer to sell";
 "Change your offer"     =           "Change your offer";
 "Accepted"              =           "Accepted";
 "Promote your post"     =           "Promote your post";
@@ -111,6 +111,15 @@
 "Where are you living?"             =   "Where are you living?";
 "What would you like to buy?"       =   "What would you like to buy?";
 "What would you like to sell?"      =   "What would you like to sell?";
+"Preferences"                       =   "Preferences";
+"Buying"                            =   "Buying";
+"Selling"                           =   "Selling";
+"Listing"                           =   "Listing";
+"Listings"                          =   "Listings";
+"Edit Profile"                      =   "Edit Profile";
+"Bought"                            =   "Bought";
+"Sold"                              =   "Sold";
+
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Chats
@@ -133,6 +142,11 @@
 "Lowest Price"                      =   "Lowest Price";
 "Highest Price"                     =   "Highest Price";
 "FILTER BY PRODUCT ORIGIN"          =   "FILTER BY PRODUCT ORIGIN";
+
+// Item Details
+//------------------------------------------------------------------------------------------------------------------------------
+"View Offer"                        =   "View Offer";
+"Edit"                              =   "Edit";
 
 
 
