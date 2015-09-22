@@ -154,7 +154,7 @@
     [self.view addSubview:_sortAndFilterBar];
     
     [self addHorizontalLineToSortAndFilterBar];
-    [self addProductOriginFilterToSortAndFilterBar];
+    [self addBuyerLocationFilterToSortAndFilterBar];
     [self addCategoryFilterToSortAndFilterBar];
     [self addSortAndFilterOptionToSortAndFilterBar];
 }
@@ -196,7 +196,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addProductOriginFilterToSortAndFilterBar
+- (void) addBuyerLocationFilterToSortAndFilterBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *container = [self createContainerView:0];
@@ -255,7 +255,7 @@
     if (tag == 0)
     {
         iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
-        [iconImageView setImage:[UIImage imageNamed:@"product_origin_small_icon.png"]];
+        [iconImageView setImage:[UIImage imageNamed:@"buyer_location_icon.png"]];
     }
     else if (tag == 1)
     {
@@ -281,7 +281,7 @@
     
     if (tag == 0)
     {
-        titleLabel.text = NSLocalizedString(@"ORIGIN", nil);
+        titleLabel.text = NSLocalizedString(@"LOCATION", nil);
         titleLabel.frame = CGRectMake(26.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
     }
     else if (tag == 1)
