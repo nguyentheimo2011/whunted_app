@@ -1136,6 +1136,8 @@
             _count += offerObjects.count;
             [self updateTotalListingNumLabel:_count];
             
+            __block NSInteger count = 0;
+            
             for (int i=0; i<offerObjects.count; i++)
             {
                 PFObject *object = [offerObjects objectAtIndex:i];
@@ -1145,7 +1147,11 @@
                 {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [_mySellDataList addObject:wantData];
-                    [_historyCollectionView reloadData];
+                    
+                    count++;
+                    
+                    if (count == offerObjects.count)
+                        [_historyCollectionView reloadData];
                 }];
             }
         }
