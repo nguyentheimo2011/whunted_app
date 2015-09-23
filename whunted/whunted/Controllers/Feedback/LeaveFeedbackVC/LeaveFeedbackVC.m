@@ -118,7 +118,7 @@
     
     [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Skip", nil) style:UIBarButtonItemStylePlain target:self action:@selector(skipBarButtonTapEventHandler)];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(skipBarButtonTapEventHandler)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submitBarButtonTapEventHandler)];
     
