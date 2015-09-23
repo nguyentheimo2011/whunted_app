@@ -134,7 +134,7 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search for whunts" attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
+        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
     }
     else
     {

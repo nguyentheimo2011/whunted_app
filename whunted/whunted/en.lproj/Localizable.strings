@@ -34,6 +34,9 @@
 "Are you sure you want to cancel your listing?"     =   "Are you sure you want to cancel your listing?";
 "Yes, I'm sure!"            =           "Yes, I'm sure!";
 "Enter reference link. http://..."  =   "Enter reference link. http://...";
+"Meeting location:"         =           "Meeting location:";
+"Product origin:"           =           "Product origin:";
+"Proceed to edit"           =           "Proceed to edit";
 
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,6 +85,10 @@
 "Accepted"              =           "Accepted";
 "Promote your post"     =           "Promote your post";
 "Promote"               =           "Promote";
+"Offered"               =           "Offered";
+"Declined"              =           "Declined";
+"Cancelled"             =           "Cancelled";
+"Negotiating"           =           "Negotiating";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -157,6 +164,8 @@
 "Lowest Price"                      =   "Lowest Price";
 "Highest Price"                     =   "Highest Price";
 "FILTER BY PRODUCT ORIGIN"          =   "FILTER BY PRODUCT ORIGIN";
+"Filter by product origin:"         =   "Filter by product origin:";
+"Filter by buyer's location:"       =   "Filter by buyer's location:";
 
 // Item Details
 //------------------------------------------------------------------------------------------------------------------------------
@@ -176,6 +185,31 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "Location must be selected from drop down suggestion"   =   "Location must be selected from drop down suggestion";
 "Are you sure that you want to delete your post?"       =   "Are you sure that you want to delete your post?";
+"Are you sure you want to discard your changes?"        =   "Are you sure you want to discard your changes?";
+"Are you sure you want to discard the image?"           =   "Are you sure you want to discard the image?";
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Search for whunts"                     =   "Search for whunts";
+
+// Timestamp
+//------------------------------------------------------------------------------------------------------------------------------
+"s"                                     =   "s";
+"second"                                =   "second";
+"seconds"                               =   "seconds";
+"m"                                     =   "m";
+"minute"                                =   "minute";
+"minutes"                               =   "minutes";
+"h"                                     =   "h";
+"hour"                                  =   "hour";
+"hours"                                 =   "hours";
+"d"                                     =   "d";
+"day"                                   =   "day";
+"days"                                  =   "days";
+"w"                                     =   "w";
+"week"                                  =   "week";
+"weeks"                                 =   "weeks";
+"ago"                                   =   "ago";
+
 
 
 
