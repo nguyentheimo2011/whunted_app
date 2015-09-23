@@ -142,7 +142,8 @@
 "Cancel Offer"                      =   "Cancel offer";
 "Decline Offer"                     =   "Decline Offer";
 "Accept Offer"                      =   "Accept Offer";
-"Make another offer"                =   "Make another offer";
+"Make another offer buyer"          =   "Make another offer";
+"Make another offer seller"         =   "Make another offer";
 "Deliver in"                        =   "Deliver in";
 "dayString"                         =   "day";
 "daysString"                        =   "days";

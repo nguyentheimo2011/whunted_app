@@ -321,7 +321,11 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.03, 5, WINSIZE.width * 0.46, FLAT_BUTTON_HEIGHT)];
-    [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    if ([Utilities amITheBuyer:_offerData])
+        [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer buyer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    else
+        [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer seller", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+        
     _makingAnotherOfferButton.cornerRadius = 6.0;
     _makingAnotherOfferButton.borderColor = FLAT_BLUE_COLOR;
     _makingAnotherOfferButton.bgColor = FLAT_BLUE_COLOR;

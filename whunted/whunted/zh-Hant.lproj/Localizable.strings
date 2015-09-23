@@ -140,7 +140,8 @@
 "Cancel Offer"                      =   "取消出價";
 "Decline Offer"                     =   "拒絕交易";
 "Accept Offer"                      =   "接受交易";
-"Make another offer"                =   "另出賣價";
+"Make another offer buyer"          =   "向賣家重新出價";
+"Make another offer seller"         =   "向買家重新出價";
 "Deliver in"                        =   "";
 "dayString"                         =   "日內寄出";
 "daysString"                        =   "日內寄出";
