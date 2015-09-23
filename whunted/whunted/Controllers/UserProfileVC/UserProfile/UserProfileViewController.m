@@ -923,7 +923,6 @@
     _currHeight -= _collectionViewCurrHeight;
     
     CGFloat const kYDistanceBetweenCell     =   16.0f;
-    CGFloat const kCellWidth                =   [Utilities sizeOfFullCollectionCell].width;
     
     if (_curViewMode == HistoryCollectionViewModeBuying)
     {
@@ -1111,7 +1110,7 @@
     _mySellDataList = [[NSMutableArray alloc] init];
     
     // retrieve TransactionData from ongoing table
-    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
+//    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
     
     // retrieve TransactionData from completed table
     [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS];
@@ -1130,8 +1129,10 @@
     {
         if (!error)
         {
-            for (int i=0; i<[offerObjects count]; i++)
+            for (int i=0; i<offerObjects.count; i++)
             {
+                [self updateTotalListingNumLabel:offerObjects.count];
+                
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
                 PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
@@ -1140,9 +1141,6 @@
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     [_mySellDataList addObject:wantData];
                     [_historyCollectionView reloadData];
-                    
-                    if (i == offerObjects.count-1)
-                        [self updateTotalListingNumLabel:_mySellDataList.count];
                 }];
             }
         }
