@@ -904,25 +904,31 @@
 - (void) imageGetterViewController:(ImageGetterViewController *)controller didChooseAMethod:(ImageGettingMethod)method
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_popup != nil) {
+    if (_popup != nil)
+    {
         [_popup dismiss:YES];
     }
     
-    if (method == PhotoLibrary) {
+    if (method == PhotoLibrary)
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
         [self presentViewController:picker animated:YES completion:nil];
-    } else if (method == Camera) {
+    }
+    else if (method == Camera)
+    {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
         [self presentViewController:picker animated:YES completion:nil];
-    } else if (method == ImageURL) {
+    }
+    else if (method == ImageURL)
+    {
         ImageRetrieverViewController *retrieverVC = [[ImageRetrieverViewController alloc] init];
         retrieverVC.delegate = self;
         
