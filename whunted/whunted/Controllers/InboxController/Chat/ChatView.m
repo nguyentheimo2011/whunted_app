@@ -496,6 +496,7 @@
         if (error)
         {
             [Utilities handleError:error];
+            [offerObj deleteEventually];
         }
         else
         {
@@ -552,6 +553,7 @@
         if (error)
         {
             [Utilities handleError:error];
+            [offerObj deleteEventually];
         }
         else
         {
@@ -605,6 +607,7 @@
         else
         {
             [Utilities handleError:error];
+            [offerObj saveEventually];
         }
     }];
     
