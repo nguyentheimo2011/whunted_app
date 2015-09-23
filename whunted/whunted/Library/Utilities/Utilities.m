@@ -484,31 +484,31 @@
     if (timeInterval < NUM_OF_SECONDS_IN_A_MINUTE)
     {
         NSInteger numOfSecs = (NSInteger) timeInterval;
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfSecs, NSLocalizedString(@"s", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfSecs, NSLocalizedString(@"s", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
     }
     else if (timeInterval < NUM_OF_SECONDS_IN_AN_HOUR)
     {
         NSInteger numOfMins = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_MINUTE);
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfMins, NSLocalizedString(@"m", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfMins, NSLocalizedString(@"m", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
     }
     else if (timeInterval < NUM_OF_SECONDS_IN_A_DAY)
     {
         NSInteger numOfHours = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_AN_HOUR);
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfHours, NSLocalizedString(@"h", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfHours, NSLocalizedString(@"h", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
     }
     else if (timeInterval < NUM_OF_SECONDS_IN_A_WEEK)
     {
         NSInteger numOfDays = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_DAY);
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfDays, NSLocalizedString(@"d", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfDays, NSLocalizedString(@"d", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
     }
     else
     {
         NSInteger numOfWeeks = (NSInteger) (timeInterval / NUM_OF_SECONDS_IN_A_WEEK);
-        NSString *timestamp = [NSString stringWithFormat:@"%ld%@ %@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
         return timestamp;
     }
     
@@ -532,7 +532,7 @@
         else
             timeUnit = @"seconds";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfSecs, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfSecs, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
     }
@@ -546,7 +546,7 @@
         else
             timeUnit = @"minutes";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfMins, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfMins, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
     }
@@ -560,7 +560,7 @@
         else
             timeUnit = @"hours";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfHours, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfHours, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
     }
@@ -574,7 +574,7 @@
         else
             timeUnit = @"days";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfDays, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfDays, NSLocalizedString(timeUnit, nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
         
@@ -589,7 +589,7 @@
         else
             timeUnit = @"weeks";
         
-        NSString *timestamp = [NSString stringWithFormat:@"%ld %@ %@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
+        NSString *timestamp = [NSString stringWithFormat:@"%ld%@%@", (long) numOfWeeks, NSLocalizedString(@"w", nil), NSLocalizedString(@"ago", nil)];
         
         return timestamp;
     }

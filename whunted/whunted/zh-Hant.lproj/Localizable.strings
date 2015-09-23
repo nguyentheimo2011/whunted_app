@@ -81,10 +81,12 @@
 "Chat"                  =           "對話";
 "Offer to sell"         =           "立即賣";
 "Change your offer"     =           "修改出價";
+"Accept"                =           "接受了報價";
 "Accepted"              =           "接受了報價";
 "Promote your post"     =           "跟朋友分享";
 "Promote"               =           "分享";
 "Offered"               =           "交易出價";
+"Decline"               =           "拒絕交易";
 "Declined"              =           "拒絕交易";
 "Cancelled"             =           "取消";
 "Negotiating"           =           "談判中";
@@ -112,7 +114,6 @@
 "Info"                              =   "關於我";
 "Date joined"                       =   "加入日期";
 "Verified"                          =   "已驗證";
-"Bought"                            =   "在買";
 "Sold"                              =   "在賣";
 "All displayed"                     =   "全部都已顯示";
 "All"                               =   "全部";
@@ -130,6 +131,7 @@
 "Edit Profile"                      =   "編輯檔案";
 "Bought"                            =   "已購買";
 "Sold"                              =   "已售出";
+"Item Bought"                       =   "已購買";
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Chats

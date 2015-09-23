@@ -1,0 +1,5 @@
+/Users/Thomas/Documents/Whunted_Company/whunted_app/whunted/Pods/APNumberPad/APNumberPad/APNumberPad.bundle
+/Users/Thomas/Documents/Whunted_Company/whunted_app/whunted/Pods/CLImageEditor/CLImageEditor/CLImageEditor.bundle
+/Users/Thomas/Documents/Whunted_Company/whunted_app/whunted/Pods/IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle
+/Users/Thomas/Documents/Whunted_Company/whunted_app/whunted/Pods/IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle
+/Users/Thomas/Documents/Whunted_Company/whunted_app/whunted/Pods/JSQMessagesViewController/JSQMessagesViewController/Assets/JSQMessagesAssets.bundle

@@ -113,7 +113,7 @@
 "Info"                              =   "Info";
 "Date joined"                       =   "Date joined";
 "Verified"                          =   "Verified";
-"Bought"                            =   "Bought";
+"Item Bought"                       =   "Item Bought";
 "Sold"                              =   "Sold";
 "All displayed"                     =   "All displayed";
 "All"                               =   "All";
@@ -195,21 +195,21 @@
 // Timestamp
 //------------------------------------------------------------------------------------------------------------------------------
 "s"                                     =   "s";
-"second"                                =   "second";
-"seconds"                               =   "seconds";
+"second"                                =   " second";
+"seconds"                               =   " seconds";
 "m"                                     =   "m";
-"minute"                                =   "minute";
-"minutes"                               =   "minutes";
+"minute"                                =   " minute";
+"minutes"                               =   " minutes";
 "h"                                     =   "h";
-"hour"                                  =   "hour";
-"hours"                                 =   "hours";
+"hour"                                  =   " hour";
+"hours"                                 =   " hours";
 "d"                                     =   "d";
-"day"                                   =   "day";
-"days"                                  =   "days";
+"day"                                   =   " day";
+"days"                                  =   " days";
 "w"                                     =   "w";
-"week"                                  =   "week";
-"weeks"                                 =   "weeks";
-"ago"                                   =   "ago";
+"week"                                  =   " week";
+"weeks"                                 =   " weeks";
+"ago"                                   =   " ago";
 
 
 
