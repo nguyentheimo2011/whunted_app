@@ -63,6 +63,8 @@
     NSMutableArray              *_mySellDataList;
     
     BOOL                        _isViewingMyProfile;
+    
+    NSInteger                   _count;
 }
 
 @synthesize delegate        =   _delegate;
@@ -1109,8 +1111,10 @@
 {
     _mySellDataList = [[NSMutableArray alloc] init];
     
+    _count = 0;
+    
     // retrieve TransactionData from ongoing table
-//    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
+    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
     
     // retrieve TransactionData from completed table
     [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS];
@@ -1129,10 +1133,11 @@
     {
         if (!error)
         {
+            _count += offerObjects.count;
+            [self updateTotalListingNumLabel:_count];
+            
             for (int i=0; i<offerObjects.count; i++)
             {
-                [self updateTotalListingNumLabel:offerObjects.count];
-                
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
                 PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
