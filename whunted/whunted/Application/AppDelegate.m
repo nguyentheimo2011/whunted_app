@@ -102,7 +102,14 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [PFPush handlePush:userInfo];
+    if (application.applicationState == UIApplicationStateActive)
+    {
+        
+    }
+    else
+    {
+        [PFPush handlePush:userInfo];
+    }
 }
  
 
