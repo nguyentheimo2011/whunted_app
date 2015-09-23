@@ -178,13 +178,20 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *purchasingRole;
+    NSString *description;
     if ([Utilities amITheBuyer:_offerData])
+    {
+        description = NSLocalizedString(@"Describe your experience with seller", nil);
         purchasingRole = NSLocalizedString(@"as a seller", nil);
+    }
     else
+    {
+        description = NSLocalizedString(@"Describe your experience with buyer", nil);
         purchasingRole = NSLocalizedString(@"as a buyer", nil);
+    }
     
     _secondCell = [[UITableViewCell alloc] init];
-    _secondCell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"Describe your experience with", nil), _receiverUsername, purchasingRole];
+    _secondCell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", description, _receiverUsername, purchasingRole];
     _secondCell.textLabel.font = DEFAULT_FONT;
     _secondCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _secondCell.textLabel.numberOfLines = 2;

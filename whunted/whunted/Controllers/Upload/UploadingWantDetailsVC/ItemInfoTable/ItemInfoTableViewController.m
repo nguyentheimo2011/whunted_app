@@ -145,7 +145,7 @@
     _hashTagTextView = [[SZTextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, 0, kTextViewWidth, kTextViewHeight)];
     _hashTagTextView.text = [_itemInfoDict objectForKey:ITEM_HASH_TAG_KEY];
     _hashTagTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    NSString *placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc.", nil);
+    NSString *placeholder = NSLocalizedString(@"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc.", nil);
     _hashTagTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
     [_hashtagCell addSubview:_hashTagTextView];
 }

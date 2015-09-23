@@ -11,6 +11,7 @@
 "Submit"                    =           "Submit";
 "Done"                      =           "Done";
 "Back"                      =           "Back";
+"OK"                        =           "OK";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -32,13 +33,14 @@
 "Paste image link here"     =           "Paste image link here";
 "Are you sure you want to cancel your listing?"     =   "Are you sure you want to cancel your listing?";
 "Yes, I'm sure!"            =           "Yes, I'm sure!";
+"Enter reference link. http://..."  =   "Enter reference link. http://...";
 
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
 "Item name"             =           "Item name";
 "Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "Describe more about the item that you want. \nE.g. Size, condition, color, etc.";
-"Enter hashtags for the item to help sellers find you. \nE.g. shoes bag book, etc." =   "Enter hashtags for the item to help sellers find you. \nE.g. Coach LV Prada, etc.";
+"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc." =   "Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc.";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -139,6 +141,8 @@
 "daysString"                        =   "days";
 "Make Offer"                        =   "Make Offer";
 "Made An Offer"                     =   "Made An Offer";
+"Leave feedback"                    =   "Leave feedback";
+"has left a feedback"               =   "has left a feedback";
 
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -158,6 +162,23 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "View Offer"                        =   "View Offer";
 "Edit"                              =   "Edit";
+"Accept only new item"              =   "Accept only new item";
+"Accept both new and second-hand"   =   "Accept both new and second-hand";
+
+// Feedback
+//------------------------------------------------------------------------------------------------------------------------------
+"How was your experience?"              =   "How was your experience?";
+"Describe your experience with seller"  =   "Describe your experience with ";
+"Describe your experience with buyer"   =   "Describe your experience with ";
+"as a seller"                           =   "as a seller";
+"as a buyer"                            =   "as a buyer";
+
+//------------------------------------------------------------------------------------------------------------------------------
+"Location must be selected from drop down suggestion"   =   "Location must be selected from drop down suggestion";
+"Are you sure that you want to delete your post?"       =   "Are you sure that you want to delete your post?";
+
+
+
 
 
 
