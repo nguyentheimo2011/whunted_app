@@ -22,7 +22,7 @@
     
     if (self)
     {
-        [self addDeletionButton];
+//        [self addDeletionButton];
     }
     
     return self;
