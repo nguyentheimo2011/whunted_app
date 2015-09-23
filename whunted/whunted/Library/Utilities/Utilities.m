@@ -668,8 +668,8 @@
     NSString *message = @"";
     NSString *string1 = NSLocalizedString(@"Made An Offer", nil);
     NSString *string2 = NSLocalizedString(@"Deliver in", nil);
-    NSString *day     = NSLocalizedString(@"day", nil);
-    NSString *days    = NSLocalizedString(@"days", nil);
+    NSString *day     = NSLocalizedString(@"dayString", nil);
+    NSString *days    = NSLocalizedString(@"daysString", nil);
     
     if ([deliveryTime integerValue] <= 1)
         message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, day];

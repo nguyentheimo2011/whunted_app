@@ -24,12 +24,14 @@
 "Set a price"               =           "開個價";
 "Product origin"            =           "商品產地";
 "Choose origin"             =           "從哪買?";
-"Location"                  =           "居住地";
-"LOCATION"                  =           "居住地";
+"Location"                  =           "交易地點";
+"LOCATION"                  =           "交易地點";
 "Where to meet?"            =           "選擇交易地點?";
 "Request for Escrow"        =           "第三方支付";
 "Allow second-hand item"    =           "不介意二手物品";
 "Paste image link here"     =           "貼圖片鏈接";
+"Are you sure you want to cancel your listing?" =   "確定取消發佈?";
+"Yes, I'm sure!"            =           "確定";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -99,7 +101,7 @@
 "follower"                          =   "粉絲";
 "following"                         =   "追蹤中";
 "Info"                              =   "關於我";
-"Date joined"                       =   "在date加入";
+"Date joined"                       =   "加入日期";
 "Verified"                          =   "已驗證";
 "Bought"                            =   "在買";
 "Sold"                              =   "在賣";
@@ -127,7 +129,14 @@
 "Make Offer"                        =   "出價";
 "Edit Offer"                        =   "編輯出價";
 "Cancel Offer"                      =   "取消出價";
-"Deliver in"                        =   "天內交貨";
+"Decline Offer"                     =   "拒絕交易";
+"Accept Offer"                      =   "接受交易";
+"Make another offer"                =   "另出賣價";
+"Deliver in"                        =   "";
+"dayString"                         =   "日內寄出";
+"daysString"                        =   "日內寄出";
+"Make Offer"                        =   "交易出價";
+"Made An Offer"                     =   "交易出價";
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Sort & Filter

@@ -30,6 +30,9 @@
 "Request for Escrow"        =           "Request for Escrow";
 "Allow second-hand item"    =           "Allow second-hand item";
 "Paste image link here"     =           "Paste image link here";
+"Are you sure you want to cancel your listing?"     =   "Are you sure you want to cancel your listing?";
+"Yes, I'm sure!"            =           "Yes, I'm sure!";
+
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -128,7 +131,15 @@
 "Make Offer"                        =   "Make Offer";
 "Edit Offer"                        =   "Edit offer";
 "Cancel Offer"                      =   "Cancel offer";
+"Decline Offer"                     =   "Decline Offer";
+"Accept Offer"                      =   "Accept Offer";
+"Make another offer"                =   "Make another offer";
 "Deliver in"                        =   "Deliver in";
+"dayString"                         =   "day";
+"daysString"                        =   "days";
+"Make Offer"                        =   "Make Offer";
+"Made An Offer"                     =   "Made An Offer";
+
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Sort & Filter

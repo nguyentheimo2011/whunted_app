@@ -553,8 +553,8 @@
     }
     else
     {
-        _currBuyerLocation = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
-        _currBuyerLocationLabel.text = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
+        _currBuyerLocationLabel.text = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
