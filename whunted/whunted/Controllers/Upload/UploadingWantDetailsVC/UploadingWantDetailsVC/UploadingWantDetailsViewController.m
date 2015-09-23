@@ -531,7 +531,9 @@
 - (void) pushItemInfoViewController
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSMutableDictionary *itemBasicInfoDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _hashtagString, ITEM_HASH_TAG_KEY, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, nil];
+    _hashtagString = [_wantData.hashTagList componentsJoinedByString:WHITE_SPACE_CHARACTER];
+    
+    NSMutableDictionary *itemBasicInfoDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:_wantData.itemName, ITEM_NAME_KEY, _wantData.itemDesc, ITEM_DESC_KEY, _wantData.referenceURL, ITEM_REFERENCE_LINK, [NSNumber numberWithBool:_wantData.acceptedSecondHand], ITEM_SECONDHAND_OPTION, _hashtagString, ITEM_HASH_TAG_KEY, nil];
     
     if (_wantData.itemOrigins.count > 0)
         [itemBasicInfoDict setObject:_wantData.itemOrigins forKey:ITEM_ORIGINS_KEY];

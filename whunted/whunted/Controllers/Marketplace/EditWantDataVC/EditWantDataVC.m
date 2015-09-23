@@ -100,15 +100,15 @@
 
 #pragma mark - UIAlertViewDelegate methods
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (buttonIndex == 1)
-    {
-        [self deletionButtonTapEventHandler];
-    }
-}
+////------------------------------------------------------------------------------------------------------------------------------
+//- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+////------------------------------------------------------------------------------------------------------------------------------
+//{
+//    if (buttonIndex == 1)
+//    {
+//        [self deletionButtonTapEventHandler];
+//    }
+//}
 
 
 @end
