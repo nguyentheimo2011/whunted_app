@@ -48,17 +48,7 @@
 {
     [FBSDKAppEvents activateApp];
     
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    if (currentInstallation.badge != 0) {
-        currentInstallation.badge = 0;
-        [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-        {
-            if (error)
-            {
-                [Utilities handleError:error];
-            }
-        }];
-    }
+    [self clearBadgeOfPushNotification];
 }
 
 
@@ -104,7 +94,7 @@
 {
     if (application.applicationState == UIApplicationStateActive)
     {
-        
+        [self clearBadgeOfPushNotification];
     }
     else
     {
@@ -185,6 +175,23 @@
     UIApplication *application = [UIApplication sharedApplication];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) clearBadgeOfPushNotification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+
+    currentInstallation.badge = 0;
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (error)
+         {
+             [Utilities handleError:error];
+             [currentInstallation saveEventually];
+         }
+     }];
 }
 
 @end
