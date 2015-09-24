@@ -7,6 +7,7 @@
 //
 
 #import "EditProfileViewController.h"
+#import "ProfileImageCache.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 #import "AIDatePickerController.h"
@@ -855,6 +856,9 @@
         UIImage *resizedImage = [Utilities resizeImage:_userProfileImageView.image toSize:CGSizeMake(300, 300) scalingProportionally:YES];
         NSData *imageData = UIImagePNGRepresentation(resizedImage);
         currUser[PF_USER_PICTURE] = [PFFile fileWithName:currUser.objectId data:imageData];
+        
+        NSString *key = [NSString stringWithFormat:@"%@%@", currUser.objectId, USER_PROFILE_IMAGE];
+        [[ProfileImageCache sharedCache] setObject:resizedImage forKey:key];
     }
     
     if (![_emailTextField.text isEqualToString:_userData.emailAddress])
