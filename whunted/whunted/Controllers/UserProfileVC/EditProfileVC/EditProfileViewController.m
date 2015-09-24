@@ -83,7 +83,8 @@
 {
     self = [super init];
     
-    if (self) {
+    if (self)
+    {
         _userData = userData;
     }
     
@@ -293,7 +294,8 @@
     _myCityLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _myCityLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
     
-    if (!_myCityLabel.text || _myCityLabel.text.length == 0) {
+    if (!_myCityLabel.text || _myCityLabel.text.length == 0)
+    {
         _myCityLabel.text = USER_PROFILE_SELECT_CITY;
         _myCityLabel.textColor = PLACEHOLDER_TEXT_COLOR;
     }
@@ -718,12 +720,14 @@
 - (void) presentDatePicker
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    AIDatePickerController *datePickerViewController = [AIDatePickerController pickerWithDate:[NSDate date] selectedBlock:^(NSDate *selectedDate) {
+    AIDatePickerController *datePickerViewController = [AIDatePickerController pickerWithDate:[NSDate date] selectedBlock:^(NSDate *selectedDate)
+    {
         NSString *string = [Utilities commonlyFormattedStringFromDate:selectedDate];
         _birthdayLabel.text = string;
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    } cancelBlock:^{
+    } cancelBlock:^
+    {
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
@@ -762,9 +766,9 @@
 -(void) keyboardWillShow: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
-        NSDictionary* keyboardInfo = [notification userInfo];
-        NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardFrameBegin CGRectValue];
     
     if (_currTextFieldTag == kEmailTextFieldTag || _currTextFieldTag == kMobileTextFieldTag)
     {
@@ -830,16 +834,16 @@
 - (void) cancelBarButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_isProfileModfified)
-    {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard changes to your edits?", nil) message:NSLocalizedString(@"Changes will not be saved.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure", nil), nil];
-        alertView.tag = kCancelButtonAlertViewTag;
-        [alertView show];
-    }
-    else
-    {
+//    if (_isProfileModfified)
+//    {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to discard changes to your edits?", nil) message:NSLocalizedString(@"Changes will not be saved.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes, I'm sure", nil), nil];
+//        alertView.tag = kCancelButtonAlertViewTag;
+//        [alertView show];
+//    }
+//    else
+//    {
         [self.navigationController popViewControllerAnimated:YES];
-    }
+//    }
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------

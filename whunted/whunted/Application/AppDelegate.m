@@ -29,10 +29,7 @@
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     
-    [Parse enableLocalDatastore];
-    [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
-    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    
+    [self setUpParseAsBackend:launchOptions];
     [self customizeUI];
     [self setViewController];
     
@@ -138,6 +135,16 @@
     [Utilities customizeHeaderFooterLabels];
     [Utilities customizeTabBar];
     [Utilities customizeNavigationBar];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setUpParseAsBackend:(NSDictionary *)launchOptions
+//------------------------------------------------------------------------------------------------------------------------------
+{
+//    [Parse enableLocalDatastore];
+    [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
