@@ -15,6 +15,7 @@
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
 #import <Parse/Parse.h>
 #import <MBProgressHUD.h>
+#import <JTImageButton.h>
 
 
 @implementation LoginSignupViewController
@@ -31,6 +32,7 @@
     
     [self addBackgroundImage];
     [self addFacebookLoginOrSignupButton];
+    [self addDisclaimerLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -65,7 +67,7 @@
 - (void) addFacebookLoginOrSignupButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.75, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
+    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.8, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
     [_FBLoginButton setBackgroundColor:[UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0]];
     [_FBLoginButton setTitle:@"Sign up or Log in with Facebook" forState:UIControlStateNormal];
     [_FBLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
@@ -74,6 +76,36 @@
     _FBLoginButton.layer.cornerRadius = 5;
     [_FBLoginButton addTarget:self action:@selector(loginButtonTouchHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_FBLoginButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addDisclaimerLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *disclaimerLabel = [[UILabel alloc] init];
+    disclaimerLabel.text = NSLocalizedString(@"By signing up, you agree to our ", nil);
+    disclaimerLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
+    disclaimerLabel.textColor = [UIColor whiteColor];
+    [disclaimerLabel sizeToFit];
+    
+    JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
+    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
+    termOfServiceButton.titleColor = GRAY_COLOR_LIGHT;
+    termOfServiceButton.borderWidth = 0;
+    [termOfServiceButton sizeToFit];
+    
+    CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
+    CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
+    CGFloat kLabelOriginY   =   WINSIZE.height * 0.89f + 15.0f;
+    
+    disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
+    [self.view addSubview:disclaimerLabel];
+    
+    CGFloat kButtonOriginX  =   kLabelOriginX + disclaimerLabel.frame.size.width;
+    CGFloat kButtonOriginY  =   kLabelOriginY - 5.0f;
+    
+    termOfServiceButton.frame = CGRectMake(kButtonOriginX, kButtonOriginY, termOfServiceButton.frame.size.width, termOfServiceButton.frame.size.height);
+    [self.view addSubview:termOfServiceButton];
 }
 
 
