@@ -476,7 +476,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 3;
+    return 2;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -488,10 +488,6 @@
         return 6;
     }
     else if (section == 1)
-    {
-        return 1;
-    }
-    else if (section == 2)
     {
         return 4;
     }
@@ -534,10 +530,6 @@
     }
     else if (indexPath.section == 1)
     {
-        return _passwordChangingCell;
-    }
-    else if (indexPath.section == 2)
-    {
         if (indexPath.row == 0)
         {
             return _emailCell;
@@ -564,11 +556,9 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return @"Public Profile";
+        return @"PUBLIC PROFILE";
     else if (section == 1)
-        return @"";
-    else if (section == 2)
-        return @"Private Profile";
+        return @"PRIVATE PROFILE";
     else
         return nil;
 }
@@ -581,11 +571,9 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return WINSIZE.height * kTableMediumHeaderFooterHeightRatio;
+        return 35.0f;
     else if (section == 1)
-        return 0.0f;
-    else if (section == 2)
-        return WINSIZE.height * kTableMediumHeaderFooterHeightRatio;
+        return 35.0f;
     else
         return 0.0f;
 }
@@ -594,12 +582,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    if (section == 0 || section == 1)
-        return WINSIZE.height * kTableNarrowHeaderFooterHeightRatio;
-    else if (section == 2)
-        return WINSIZE.height * kTableMediumHeaderFooterHeightRatio;
-    else
-        return 0.0f;
+    return 0.0f;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -616,10 +599,6 @@
             return kAverageCellHeight;
     }
     else if (indexPath.section == 1)
-    {
-        return kAverageCellHeight;
-    }
-    else if (indexPath.section == 2)
     {
         return kAverageCellHeight;
     }
