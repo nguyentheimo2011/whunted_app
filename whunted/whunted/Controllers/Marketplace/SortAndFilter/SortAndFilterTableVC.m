@@ -18,7 +18,7 @@
 
 @implementation SortAndFilterTableVC
 {
-    UITableViewCell         *_popularSortCell;
+//    UITableViewCell         *_popularSortCell;
     UITableViewCell         *_recentSortCell;
     UITableViewCell         *_lowestPriceSortCell;
     UITableViewCell         *_highestPriceSortCell;
@@ -95,29 +95,11 @@
 - (void) initCells
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [self initPopularSortCell];
     [self initRecentSortCell];
     [self initLowestPriceSortCell];
     [self initHighestPriceSortCell];
     [self initProductOrignCell];
     [self addCheckMarkToSelectedSortingCell];
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) initPopularSortCell
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    _popularSortCell = [[UITableViewCell alloc] init];
-    _popularSortCell.textLabel.text = NSLocalizedString(SORTING_BY_POPULAR, nil);
-    _popularSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _popularSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _popularSortCell.indentationLevel = 3;
-    
-    // add popular sort icon
-    UIImageView *popImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
-    UIImage *popImage = [UIImage imageNamed:@"popular_icon.png"];
-    [popImageView setImage:popImage];
-    [_popularSortCell addSubview:popImageView];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -175,7 +157,7 @@
 - (void) addCheckMarkToSelectedSortingCell
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    NSArray *cells = @[_popularSortCell, _recentSortCell, _lowestPriceSortCell, _highestPriceSortCell];
+    NSArray *cells = @[_recentSortCell, _lowestPriceSortCell, _highestPriceSortCell];
     
     if (_selectedSortingIndex != NSNotFound) {
         UITableViewCell *cell = [cells objectAtIndex:_selectedSortingIndex];
@@ -220,7 +202,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return 4;
+        return 3;
     else
         return 1;
 }
@@ -232,10 +214,8 @@
     if (indexPath.section == 0)
     {
         if (indexPath.row == 0)
-            return _popularSortCell;
-        else if (indexPath.row == 1)
             return _recentSortCell;
-        else if (indexPath.row == 2)
+        else if (indexPath.row == 1)
             return _lowestPriceSortCell;
         else
             return _highestPriceSortCell;
@@ -400,5 +380,24 @@
     [_nearestSortCell addSubview:nearestImageView];
 }
 */
+
+/*
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initPopularSortCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _popularSortCell = [[UITableViewCell alloc] init];
+    _popularSortCell.textLabel.text = NSLocalizedString(SORTING_BY_POPULAR, nil);
+    _popularSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _popularSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _popularSortCell.indentationLevel = 3;
+    
+    // add popular sort icon
+    UIImageView *popImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
+    UIImage *popImage = [UIImage imageNamed:@"popular_icon.png"];
+    [popImageView setImage:popImage];
+    [_popularSortCell addSubview:popImageView];
+}
+ */
 
 @end

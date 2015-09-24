@@ -60,8 +60,9 @@
 - (void) addBackgroundImage
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIImage *originalBackground = [UIImage imageNamed:@"background_image.jpg"];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:originalBackground];
+    UIImage *originalBackground = [UIImage imageNamed:@"background_image.png"];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
+    backgroundImageView.image = originalBackground;
     [self.view addSubview:backgroundImageView];
 }
 
@@ -69,7 +70,7 @@
 - (void) addFacebookLoginOrSignupButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.8, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
+    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.85, WINSIZE.width * 0.9, 50.0f)];
     [_FBLoginButton setBackgroundColor:[UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0]];
     [_FBLoginButton setTitle:@"Sign up or Log in with Facebook" forState:UIControlStateNormal];
     [_FBLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
@@ -92,14 +93,14 @@
     
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = GRAY_COLOR_LIGHT;
+    termOfServiceButton.titleColor = LIGHT_GRAY_COLOR;
     termOfServiceButton.borderWidth = 0;
     [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
     CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
-    CGFloat kLabelOriginY   =   WINSIZE.height * 0.89f + 15.0f;
+    CGFloat kLabelOriginY   =   _FBLoginButton.frame.origin.y + _FBLoginButton.frame.size.height + 5.0f;
     
     disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
     [self.view addSubview:disclaimerLabel];
