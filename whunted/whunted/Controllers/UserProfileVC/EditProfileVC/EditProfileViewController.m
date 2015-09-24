@@ -460,7 +460,8 @@
 {
     if (alertView.tag == kCancelButtonAlertViewTag)
     {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 0)
+        {
             // Do nothing because user chooses NO
         }
         else
@@ -557,9 +558,9 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return @"PUBLIC PROFILE";
+        return NSLocalizedString(@"PUBLIC PROFILE", nil);
     else if (section == 1)
-        return @"PRIVATE PROFILE";
+        return NSLocalizedString(@"PRIVATE PROFILE", nil);
     else
         return nil;
 }

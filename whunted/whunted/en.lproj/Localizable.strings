@@ -217,8 +217,20 @@
 "Terms of Service"                      =   "Terms of Service";
 "Log Out"                               =   "Log Out";
 
-
-
+// Edit Profile
+//------------------------------------------------------------------------------------------------------------------------------
+"PUBLIC PROFILE"                        =   "PUBLIC PROFILE";
+"PRIVATE PROFILE"                       =   "PRIVATE PROFILE";
+"Username"                              =   "Username";
+"First Name"                            =   "First Name";
+"Last Name"                             =   "Last Name";
+"My City"                               =   "My City";
+"Biography"                             =   "Biography";
+"Photo"                                 =   "Photo";
+"Email"                                 =   "Email";
+"Mobile"                                =   "Mobile";
+"Gender"                                =   "Gender";
+"Birthday"                              =   "Birthday";
 
 
 

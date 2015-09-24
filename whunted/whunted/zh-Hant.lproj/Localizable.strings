@@ -216,7 +216,20 @@
 "Terms of Service"                      =   "服務條款";
 "Log Out"                               =   "登出";
 
-
+// Edit Profile
+//------------------------------------------------------------------------------------------------------------------------------
+"PUBLIC PROFILE"                        =   "個人資料(公開)";
+"PRIVATE PROFILE"                       =   "個人資料(不公開)";
+"Username"                              =   "使用者名稱";
+"First Name"                            =   "名";
+"Last Name"                             =   "姓";
+"My City"                               =   "我的城市";
+"Biography"                             =   "個人簡介";
+"Photo"                                 =   "照片";
+"Email"                                 =   "Email";
+"Mobile"                                =   "手機";
+"Gender"                                =   "性別";
+"Birthday"                              =   "生日";
 
 
 
