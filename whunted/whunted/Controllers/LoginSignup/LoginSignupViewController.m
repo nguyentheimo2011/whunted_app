@@ -292,7 +292,7 @@
     [webView loadRequest:request];
     
     UIViewController *viewController = [[UIViewController alloc] init];
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Serive", nil) forViewController:viewController];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Service", nil) forViewController:viewController];
     viewController.view = webView;
     UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacer.width = -11.0f;
