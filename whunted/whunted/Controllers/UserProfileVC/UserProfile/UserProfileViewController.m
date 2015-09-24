@@ -369,8 +369,8 @@
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, WINSIZE.width, kBackgroundHeight)];
     [_scrollView addSubview:backgroundView];
     
-    [self addFollowerButton:backgroundView];
-    [self addFollowingButton:backgroundView];
+//    [self addFollowerButton:backgroundView];
+//    [self addFollowingButton:backgroundView];
     [self addPreferencesButton:backgroundView];
     
     _currHeight += kBackgroundHeight;
@@ -436,9 +436,9 @@
 {
     if (_isViewingMyProfile)
     {
-        CGFloat const kButtonWidth = WINSIZE.width * (6/7.0 - 2/3.6);
-        CGFloat const kButtonHeight = 60;
-        CGFloat const kButtonXPos = 3 * WINSIZE.width / 28.0 + 2 * WINSIZE.width / 3.6;
+        CGFloat const kButtonWidth = WINSIZE.width * 0.8f;
+        CGFloat const kButtonHeight = 40;
+        CGFloat const kButtonXPos = WINSIZE.width * 0.1f;
         CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
         
         _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
