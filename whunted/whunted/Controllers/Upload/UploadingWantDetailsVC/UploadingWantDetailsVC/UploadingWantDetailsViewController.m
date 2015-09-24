@@ -570,7 +570,7 @@
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
     PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyerID] data:data];
     
-    // Did supporting changing image 
+    // Did supporting changing image
     PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];
     itemPictureObj[@"itemPicture"] = imageFile;
     

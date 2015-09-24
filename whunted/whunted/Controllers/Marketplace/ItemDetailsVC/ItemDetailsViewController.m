@@ -592,6 +592,7 @@
 {
     [_scrollView removeFromSuperview];
     
+    [self retrieveItemImages];
     [self addScrollView];
     [self addPageViewController];
     [self addItemDetails];
@@ -917,7 +918,8 @@
                 PFObject *pfObj = [pfObjList objectAtIndex:i];
                 
                 PFFile *imageFile = pfObj[PF_ITEM_PICTURE];
-                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+                {
                     UIImage *image = [UIImage imageWithData:data];
                     [_itemImageList replaceObjectAtIndex:i withObject:image];
                     ItemImageViewController *itemImageVC = [self viewControllerAtIndex:_currImageIndex];
@@ -960,7 +962,8 @@
     ItemImageViewController *itemImageVC = [[ItemImageViewController alloc] init];
     itemImageVC.index = index;
     _currImageIndex = index;
-    if (index < [_itemImageList count]) {
+    if (index < [_itemImageList count])
+    {
         [itemImageVC.itemImageView setImage:[_itemImageList objectAtIndex:index]];
     }
     
