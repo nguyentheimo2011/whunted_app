@@ -27,6 +27,20 @@
 @synthesize delegate = _delegate;
 
 //--------------------------------------------------------------------------------------------------------------------------------
+- (id) init
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.hidesBottomBarWhenPushed = YES;
+    }
+    
+    return self;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
 //--------------------------------------------------------------------------------------------------------------------------------
 {
@@ -77,12 +91,6 @@
 {
     [self initEditingProfileCell];
     
-    [self initGettingStartedCell];
-    [self initHelpFAQCell];
-    [self initCommunityRulesCell];
-    [self initAboutWhuntedCell];
-    
-    [self initNotificationSettingsCell];
     [self initLogoutCell];
 }
 
@@ -163,7 +171,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 3;
+    return 2;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -172,10 +180,8 @@
 {
     if (section == 0)
         return 1;
-    else if (section == 1)
-        return 4;
     else
-        return 2;
+        return 1;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -188,21 +194,7 @@
     }
     else if (indexPath.section == 1)
     {
-        if (indexPath.row == 0)
-            return _gettingStartedCell;
-        else if (indexPath.row == 1)
-            return _helpFAQCell;
-        else if (indexPath.row == 2)
-            return _communityRulesCell;
-        else if (indexPath.row == 3)
-            return _aboutWhuntedCell;
-    }
-    else if (indexPath.section == 2)
-    {
-        if (indexPath.row == 0)
-            return _notificationSettingsCell;
-        else if (indexPath.row == 1)
-            return _logoutCell;
+        return _logoutCell;
     }
     
     return [[UITableViewCell alloc] init];
