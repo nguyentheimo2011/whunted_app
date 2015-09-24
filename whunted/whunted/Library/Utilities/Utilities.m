@@ -602,7 +602,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
-    NSLog(@"%@", errorMessage);
+//    NSLog(@"%@", errorMessage);
     [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
 }
 
@@ -734,7 +734,7 @@
         }
         else
         {
-            NSLog(@"%@ %@", error2, [error2 userInfo]);
+//            NSLog(@"%@ %@", error2, [error2 userInfo]);
         }
     }];
 }
@@ -753,7 +753,7 @@
         }
         else
         {
-            NSLog(@"%@ %@", error, [error userInfo]);
+//            NSLog(@"%@ %@", error, [error userInfo]);
         }
     }];
 }

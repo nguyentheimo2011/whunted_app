@@ -108,7 +108,9 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	[reference setValue:recent withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
 		if (error)
-            NSLog(@"CreateRecentItem2 save error.");
+        {
+//            NSLog(@"CreateRecentItem2 save error.");
+        }
         else
         {
             NSNumber *num = [handlerExecuted objectForKey:HANDLER_EXECUTED];
@@ -159,7 +161,10 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
     
     [firebase updateChildValues:values withCompletionBlock:^(NSError *error, Firebase *ref)
      {
-         if (error != nil) NSLog(@"UpdateRecentCounter2 save error.");
+         if (error != nil)
+         {
+//             NSLog(@"UpdateRecentCounter2 save error.");
+         }
      }];
 }
 
@@ -193,7 +198,10 @@ void ClearRecentCounter2(NSDictionary *recent)
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
 	[firebase updateChildValues:@{FB_UNREAD_MESSAGES_COUNTER:@0} withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
-		if (error != nil) NSLog(@"ClearRecentCounter2 save error.");
+		if (error != nil)
+        {
+//            NSLog(@"ClearRecentCounter2 save error.");
+        }
 	}];
 }
 
@@ -225,6 +233,9 @@ void DeleteRecentItem(NSDictionary *recent)
 	Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
 	[firebase removeValueWithCompletionBlock:^(NSError *error, Firebase *ref)
 	{
-		if (error != nil) NSLog(@"DeleteRecentItem delete error.");
+		if (error != nil)
+        {
+//            NSLog(@"DeleteRecentItem delete error.");
+        }
 	}];
 }

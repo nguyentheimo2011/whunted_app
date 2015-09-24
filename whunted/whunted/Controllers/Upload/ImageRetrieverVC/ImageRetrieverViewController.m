@@ -70,7 +70,7 @@
 {
     [super didReceiveMemoryWarning];
     
-    NSLog(@"ImageRetrieverViewController didReceiveMemoryWarning");
+//    NSLog(@"ImageRetrieverViewController didReceiveMemoryWarning");
 }
 
 
@@ -205,7 +205,7 @@
         else
         {
             // handle error
-            NSLog(@"Error %@ %@", error, [error userInfo]);
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
 }

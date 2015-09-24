@@ -108,7 +108,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"ItemDetailsViewController didReceiveMemoryWarning");
+//    NSLog(@"ItemDetailsViewController didReceiveMemoryWarning");
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

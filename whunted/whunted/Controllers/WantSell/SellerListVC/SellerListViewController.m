@@ -102,17 +102,17 @@
     _wantData.isFulfilled = YES;
     [[_wantData getPFObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"Update successfully");
+//            NSLog(@"Update successfully");
         } else {
-            NSLog(@"Update unsuccessfully");
+//            NSLog(@"Update unsuccessfully");
         }
         
         PFObject *obj = [offerData getPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
         [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                NSLog(@"Upload to AcceptedOffer successfully");
+//                NSLog(@"Upload to AcceptedOffer successfully");
             } else {
-                NSLog(@"Upload to AcceptedOffer unsuccessfully");
+//                NSLog(@"Upload to AcceptedOffer unsuccessfully");
             }
             
             [_delegate sellerListViewController:self didAcceptOfferFromSeller:_wantData];

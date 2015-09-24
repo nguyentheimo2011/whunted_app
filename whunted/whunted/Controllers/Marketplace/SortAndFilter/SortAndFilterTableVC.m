@@ -61,7 +61,7 @@
 {
     [super didReceiveMemoryWarning];
     
-    NSLog(@"SortAndFilterTableVC didReceiveMemoryWarning");
+//    NSLog(@"SortAndFilterTableVC didReceiveMemoryWarning");
 }
 
 

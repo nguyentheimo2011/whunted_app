@@ -84,7 +84,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
+//    NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -146,7 +146,7 @@
     }
     else
     {
-        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
+//        NSLog(@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0");
         // TODO: Add fall-back code to set placeholder color.
     }
 }
@@ -478,7 +478,7 @@
         }
         else
         {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         
         [self.navigationController pushViewController:itemDetailsVC animated:YES];

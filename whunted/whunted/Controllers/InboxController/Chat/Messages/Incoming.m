@@ -111,7 +111,9 @@
 			mediaItem.image = image;
 			[chatView.collectionView reloadData];
 		}
-		else NSLog(@"Incoming createVideoMessage picture load error.");
+        else {
+//            NSLog(@"Incoming createVideoMessage picture load error.");
+        }
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return message;
@@ -138,7 +140,10 @@
 			mediaItem.image = image;
 			[chatView.collectionView reloadData];
 		}
-		else NSLog(@"Incoming createPictureMessage picture load error.");
+        else
+        {
+//            NSLog(@"Incoming createPictureMessage picture load error.");
+        }
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return message;

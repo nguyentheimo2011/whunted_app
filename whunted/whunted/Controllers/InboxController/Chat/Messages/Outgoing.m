@@ -112,14 +112,20 @@
 					item[@"type"] = @"video";
 					[self sendMessage:item TransactionDetails:nil CompletionBlock:nil];
 				}
-				else NSLog(@"Outgoing sendVideoMessage video save error.");
+				else
+                {
+                    NSLog(@"Outgoing sendVideoMessage video save error.");
+                }
 			}
 			progressBlock:^(int percentDone)
 			{
 				hud.progress = (float) percentDone/100;
 			}];
 		}
-		else NSLog(@"Outgoing sendVideoMessage picture save error.");
+		else
+        {
+//            NSLog(@"Outgoing sendVideoMessage picture save error.");
+        }
 	}];
 }
 
@@ -145,7 +151,10 @@
 			item[@"type"] = @"picture";
 			[self sendMessage:item TransactionDetails:nil CompletionBlock:nil];
 		}
-		else NSLog(@"Outgoing sendPictureMessage picture save error.");
+		else
+        {
+//            NSLog(@"Outgoing sendPictureMessage picture save error.");
+        }
 	}
 	progressBlock:^(int percentDone)
 	{
@@ -180,7 +189,9 @@
 	[reference setValue:item withCompletionBlock:^(NSError *error, Firebase *ref)
 	{
 		if (error)
-            NSLog(@"Outgoing sendMessage network error.");
+        {
+//            NSLog(@"Outgoing sendMessage network error.");
+        }
         else {
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:item[@"key"]];
             if (completionBlock)

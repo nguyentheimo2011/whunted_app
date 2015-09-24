@@ -128,7 +128,7 @@
 {
     [super didReceiveMemoryWarning];
     
-    NSLog(@"EditProfileViewController didReceiveMemoryWarning");
+//    NSLog(@"EditProfileViewController didReceiveMemoryWarning");
 }
 
 

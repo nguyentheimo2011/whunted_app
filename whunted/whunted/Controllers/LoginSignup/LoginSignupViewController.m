@@ -136,11 +136,11 @@
         {
             if (!error)
             {
-                NSLog(@"The user cancelled the Facebook login.");
+//                NSLog(@"The user cancelled the Facebook login.");
             }
             else
             {
-                NSLog(@"An error occurred: %@", error.localizedDescription);
+//                NSLog(@"An error occurred: %@", error.localizedDescription);
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -274,12 +274,12 @@
         else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
         {
             // Since the request failed, we can check if it was due to an invalid session
-            NSLog(@"The facebook session was invalidated");
+//            NSLog(@"The facebook session was invalidated");
             [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
         }
         else
         {
-            NSLog(@"Some other error: %@", error);
+//            NSLog(@"Some other error: %@", error);
         }
     }];
 }

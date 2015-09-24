@@ -108,7 +108,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"UserProfileViewController didReceiveMemoryWarning");
+//    NSLog(@"UserProfileViewController didReceiveMemoryWarning");
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -874,7 +874,7 @@
         }
         else
         {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
@@ -1041,7 +1041,9 @@
     [posQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_POSITIVE];
     [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
-            NSLog(@"%@ %@", error, [error userInfo]);
+        {
+//            NSLog(@"%@ %@", error, [error userInfo]);
+        }
         else
         {
             _positiveFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
@@ -1055,7 +1057,9 @@
     [neuQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEUTRAL];
     [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
-            NSLog(@"%@ %@", error, [error userInfo]);
+        {
+//            NSLog(@"%@ %@", error, [error userInfo]);
+        }
         else
         {
             _mehFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];
@@ -1069,7 +1073,9 @@
     [negQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEGATIVE];
     [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (error)
-            NSLog(@"%@ %@", error, [error userInfo]);
+        {
+//            NSLog(@"%@ %@", error, [error userInfo]);
+        }
         else
         {
             _negativeFeedbackLabel.text = [NSString stringWithFormat:@"%d", count];

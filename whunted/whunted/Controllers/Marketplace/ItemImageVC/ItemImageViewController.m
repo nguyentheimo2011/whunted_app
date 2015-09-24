@@ -37,7 +37,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"ItemImageViewController didReceiveMemoryWarning");
+//    NSLog(@"ItemImageViewController didReceiveMemoryWarning");
 }
 
 #pragma mark - UI Handlers

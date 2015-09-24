@@ -623,7 +623,9 @@
         else
         {
             if (objects.count > 1)
-                NSLog(@"Error in acceptingOfferButtonTapEventHandler");
+            {
+//                NSLog(@"Error in acceptingOfferButtonTapEventHandler");
+            }
             else
             {
                 PFObject *object = [objects objectAtIndex:0];
@@ -670,7 +672,7 @@
             {
                 if ([objects count] > 1)
                 {
-                    NSLog(@"leavingFeedbackButtonTapEventHandler duplicate feedback");
+//                    NSLog(@"leavingFeedbackButtonTapEventHandler duplicate feedback");
                 }
                 else
                 {
@@ -1073,7 +1075,7 @@
 				header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	NSLog(@"didTapLoadEarlierMessagesButton");
+//	NSLog(@"didTapLoadEarlierMessagesButton");
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1105,7 +1107,7 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-	NSLog(@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation));
+//	NSLog(@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation));
 }
 
 

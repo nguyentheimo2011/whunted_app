@@ -590,7 +590,7 @@
         }
         else
         {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
+//            NSLog(@"Error %@ %@", error, [error userInfo]);
         }
         
         UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];

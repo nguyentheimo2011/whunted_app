@@ -26,7 +26,7 @@ void ParsePushUserAssign(void)
 	{
 		if (error != nil)
 		{
-			NSLog(@"ParsePushUserAssign save error.");
+//			NSLog(@"ParsePushUserAssign save error.");
 		}
 	}];
 }
@@ -41,7 +41,7 @@ void ParsePushUserResign(void)
 	{
 		if (error != nil)
 		{
-			NSLog(@"ParsePushUserResign save error.");
+//			NSLog(@"ParsePushUserResign save error.");
 		}
 	}];
 }
@@ -94,7 +94,7 @@ void SendPushNotification2(NSArray *members, NSString *text)
 	{
 		if (error != nil)
 		{
-			NSLog(@"SendPushNotification2 send error.");
+//			NSLog(@"SendPushNotification2 send error.");
 		}
 	}];
 }

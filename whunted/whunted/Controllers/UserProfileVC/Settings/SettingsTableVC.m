@@ -62,7 +62,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-    NSLog(@"SettingsTableVC didReceiveMemoryWarning");
+//    NSLog(@"SettingsTableVC didReceiveMemoryWarning");
 }
 
 
