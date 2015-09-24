@@ -204,8 +204,10 @@
     
     if (!_profileImageView.image)
     {
-        ImageHandler handler = ^(UIImage *image) {
+        ImageHandler handler = ^(UIImage *image)
+        {
             _profileImageView.image = image;
+            [[ProfileImageCache sharedCache] setObject:image forKey:key];
         };
         [Utilities retrieveProfileImageForUser:_profileOwner andRunBlock:handler];
     }
