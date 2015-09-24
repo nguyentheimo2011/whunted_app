@@ -437,7 +437,7 @@
     if (_isViewingMyProfile)
     {
         CGFloat const kButtonWidth = WINSIZE.width * 0.8f;
-        CGFloat const kButtonHeight = 40;
+        CGFloat const kButtonHeight = 50.0f;
         CGFloat const kButtonXPos = WINSIZE.width * 0.1f;
         CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
         
