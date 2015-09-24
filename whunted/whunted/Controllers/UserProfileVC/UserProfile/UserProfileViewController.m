@@ -130,6 +130,15 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [self retrieveMyWantList];
+    [self retrieveMySellList];
 }
 
 
