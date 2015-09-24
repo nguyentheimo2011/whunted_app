@@ -241,6 +241,11 @@
     {
         [self pushEditProfileViewController];
     }
+    else if (indexPath.section == 1)
+    {
+        if (indexPath.row == 0)
+            [self logoutButtonTapEventHandler];
+    }
 }
 
 
@@ -268,6 +273,13 @@
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
     editProfileVC.delegate = self;
     [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) logoutButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_LOGGED_OUT object:nil];
 }
 
 

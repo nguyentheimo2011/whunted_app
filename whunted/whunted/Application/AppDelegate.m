@@ -10,6 +10,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Parse/Parse.h>
 #import <Google/Analytics.h>
+#import <MBProgressHUD.h>
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
@@ -144,6 +145,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerPushNotifications) name:NOTIFICATION_USER_SIGNED_UP object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutOfApp) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -175,6 +177,22 @@
     UIApplication *application = [UIApplication sharedApplication];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) logoutOfApp
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
+    
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error)
+    {
+        LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
+        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        [self.window setRootViewController:loginVC];
+        
+        [MBProgressHUD hideHUDForView:self.window.rootViewController.view animated:YES];
+    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
