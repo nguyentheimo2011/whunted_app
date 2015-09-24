@@ -874,8 +874,9 @@
     
     if (![_userProfileImageView.image isEqual:_userData.profileImage])
     {
-        NSData *imageData = UIImagePNGRepresentation(_userProfileImageView.image);
-        currUser[PF_USER_PICTURE] = [PFFile fileWithData:imageData];
+        UIImage *resizedImage = [Utilities resizeImage:_userProfileImageView.image toSize:CGSizeMake(300, 300) scalingProportionally:YES];
+        NSData *imageData = UIImagePNGRepresentation(resizedImage);
+        currUser[PF_USER_PICTURE] = [PFFile fileWithName:currUser.objectId data:imageData];
     }
     
     if (![_emailTextField.text isEqualToString:_userData.emailAddress])
