@@ -28,12 +28,10 @@
     
     if (self != nil)
     {
-        [self initData];
-        [self retrieveTransactionDataList];
-        
         [self customizeUI];
-        [self addNewsfeedTableView];
+        [self addTextView];
     }
+    
     return self;
 }
 
@@ -61,25 +59,34 @@
 }
 
 
-#pragma mark - Data Initialization
-
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) initData
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    
-}
-
-
 #pragma mark - UI
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Newsfeed", nil) forViewController:self];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Mystery Function", nil) forViewController:self];
+    
+    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addTextView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20.0f, 15.0f, WINSIZE.width - 40.0f, WINSIZE.height)];
+    textView.editable = NO;
+    textView.text = NSLocalizedString(@"NewsFeed Message", nil);
+    textView.textColor = TEXT_COLOR_DARK_GRAY;
+    textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    textView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    [self.view addSubview:textView];
+}
+
+
+#pragma mark - Next version
+
+/*
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) addNewsfeedTableView
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -156,6 +163,7 @@
         }
     }];
 }
+ */
 
 
 @end

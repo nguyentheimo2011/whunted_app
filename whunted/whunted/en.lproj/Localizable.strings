@@ -232,6 +232,11 @@
 "Gender"                                =   "Gender";
 "Birthday"                              =   "Birthday";
 
+// Newsfeed
+//------------------------------------------------------------------------------------------------------------------------------
+"NewsFeed Message"                      =   "Do you:\n   -  Wonder what your friends have been buying?\n   -  Feel curious about the latest trends?\n   -  Want to get the best deals from reputable sellers?\n\nIf you answered ‘YES!” to any of those questions, stay tuned!";
+"Mystery Function"                      =   "Mystery Function";
+
 
 
 
