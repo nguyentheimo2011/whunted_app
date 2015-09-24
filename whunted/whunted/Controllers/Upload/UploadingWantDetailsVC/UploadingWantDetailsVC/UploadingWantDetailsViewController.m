@@ -87,7 +87,6 @@
     _wantData = [[WantData alloc] init];
     _wantData.buyerID = [PFUser currentUser].objectId;
     _wantData.buyerUsername = [PFUser currentUser][PF_USER_USERNAME];
-    _wantData.itemPictureList = [[PFRelation alloc] init];
     _wantData.itemPictures = [[NSMutableArray alloc] init];
 }
 
@@ -563,24 +562,39 @@
 - (void) setImage:(UIImage *)image forButton:(NSUInteger)buttonIndex
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
+    [MBProgressHUD showHUDAddedTo:button animated:YES];
+    
     [[_addingButtonList objectAtIndex: buttonIndex] setImage: image];
     
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
     PFFile *imageFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.jpg", _wantData.buyerID] data:data];
     
-    // Temporary code. Not handle changing image yet
+    // Did supporting changing image 
     PFObject *itemPictureObj = [PFObject objectWithClassName:@"ItemPicture"];
     itemPictureObj[@"itemPicture"] = imageFile;
+    
+    if (_wantData.itemPictures.count >= buttonIndex + 1) // replace one photo by another
+    {
+        PFObject *replacedObj = [_wantData.itemPictures objectAtIndex:buttonIndex];
+        itemPictureObj.objectId = replacedObj.objectId;
+    }
+    
     [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded)
         {
-            [_wantData.itemPictureList addObject:itemPictureObj];
-            [_wantData.itemPictures addObject:itemPictureObj];
+            if (buttonIndex + 1 > _wantData.itemPictures.count)
+                [_wantData.itemPictures addObject:itemPictureObj];
+            else
+                [_wantData.itemPictures replaceObjectAtIndex:buttonIndex withObject:itemPictureObj];
         }
         else
         {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
+        
+        UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
+        [MBProgressHUD hideHUDForView:button animated:YES];
     }];
 }
 
