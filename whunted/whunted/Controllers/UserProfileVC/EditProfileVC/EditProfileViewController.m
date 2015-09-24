@@ -75,7 +75,6 @@
 }
 
 @synthesize userData = _userData;
-@synthesize delegate = _delegate;
 
 //--------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithUserData:(UserData *)userData
@@ -897,7 +896,9 @@
         currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
     
     [currUser saveInBackground];
-    [_delegate editProfile:self didCompleteEditing:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

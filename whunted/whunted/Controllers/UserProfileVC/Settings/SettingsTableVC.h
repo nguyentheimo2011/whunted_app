@@ -10,21 +10,9 @@
 
 #import "EditProfileViewController.h"
 
-@class SettingsTableVC;
-
 //------------------------------------------------------------------------------------------------------------------------------
-@protocol SettingsTableViewDelegate <NSObject>
+@interface SettingsTableVC : UITableViewController
 //------------------------------------------------------------------------------------------------------------------------------
 
-- (void) didUpdateProfileInfo;
-
-@end
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-@interface SettingsTableVC : UITableViewController <EditProfileDelegate>
-//------------------------------------------------------------------------------------------------------------------------------
-
-@property (nonatomic, strong)   id<SettingsTableViewDelegate>   delegate;
 
 @end

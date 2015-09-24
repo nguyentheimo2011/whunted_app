@@ -82,6 +82,7 @@
         [self initData];
         [self initUI];
         [self retrieveMyWantList];
+        [self addNotificationListener];
     }
     
     return self;
@@ -123,6 +124,13 @@
         _isViewingMyProfile = YES;
     else
         _isViewingMyProfile = NO;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListener
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
 }
 
 
@@ -951,7 +959,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     SettingsTableVC *settingsVC = [[SettingsTableVC alloc] init];
-    settingsVC.delegate = self;
     [self.navigationController pushViewController:settingsVC animated:YES];
 }
 
@@ -989,27 +996,13 @@
     }];
 }
 
-
-#pragma mark - SettingsTableViewDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) didUpdateProfileInfo
-//------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) updateUserProfile
+//-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self updateUserData];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) updateUserData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-//    [_profileImageView setImage:profileImage];
+    [_scrollView removeFromSuperview];
     
-    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
-    
-    _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
-    
-    _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
+    [self initUI];
 }
 
 

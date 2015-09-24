@@ -24,8 +24,6 @@
     UITableViewCell     *_logoutCell;
 }
 
-@synthesize delegate = _delegate;
-
 //--------------------------------------------------------------------------------------------------------------------------------
 - (id) init
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -271,7 +269,6 @@
 {
     UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
-    editProfileVC.delegate = self;
     [self.navigationController pushViewController:editProfileVC animated:YES];
 }
 
@@ -282,14 +279,5 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_LOGGED_OUT object:nil];
 }
 
-
-#pragma mark - EditProfileDelegate methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) editProfile:(UIViewController *)controller didCompleteEditing:(BOOL)edited
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [_delegate didUpdateProfileInfo];
-}
 
 @end

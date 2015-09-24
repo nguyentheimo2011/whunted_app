@@ -24,7 +24,7 @@
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, SettingsTableViewDelegate>
+@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, weak)     id<UserProfileViewControllerDelegate>   delegate;
