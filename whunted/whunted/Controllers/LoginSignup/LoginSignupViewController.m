@@ -20,8 +20,10 @@
 
 @implementation LoginSignupViewController
 {
-    UIButton            *_FBLoginButton;
-    UIButton            *_emailLoginButton;
+    UIButton                *_FBLoginButton;
+    UIButton                *_emailLoginButton;
+    
+    UINavigationController  *_termOfServiceNavController;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -92,6 +94,7 @@
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
     termOfServiceButton.titleColor = GRAY_COLOR_LIGHT;
     termOfServiceButton.borderWidth = 0;
+    [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
@@ -278,6 +281,34 @@
             NSLog(@"Some other error: %@", error);
         }
     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) disclaimerButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/Termsofservice.html"]];
+    [webView loadRequest:request];
+    
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Serive", nil) forViewController:viewController];
+    viewController.view = webView;
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -11.0f;
+    
+    viewController.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissTermOfServiceView)]];
+    
+    _termOfServiceNavController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    [self presentViewController:_termOfServiceNavController animated:YES completion:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) dismissTermOfServiceView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_termOfServiceNavController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
