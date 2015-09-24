@@ -53,6 +53,7 @@
     {
         [self initData];
         [self retrieveWantDataList];
+        [self addNotificationListener];
     }
     
     return self;
@@ -84,6 +85,13 @@
 {
     [super didReceiveMemoryWarning];
     NSLog(@"MarketplaceViewController didReceiveMemoryWarning");
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListener
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveWantDataList) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
 }
 
 
