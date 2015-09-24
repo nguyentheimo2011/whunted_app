@@ -12,28 +12,15 @@
 
 #import <Parse/Parse.h>
 
-@class UserProfileViewController;
-
-//-------------------------------------------------------------------------------------------------------------------------------
-@protocol UserProfileViewControllerDelegate <NSObject>
-//-------------------------------------------------------------------------------------------------------------------------------
-
-- (void) userProfileViewController: (UserProfileViewController *) controller didPressLogout: (BOOL) pressed;
-
-@end
-
-
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, weak)     id<UserProfileViewControllerDelegate>   delegate;
-
 @property (nonatomic, strong)   PFUser      *profileOwner;
-
 
 - (void) retrieveLatestWantData;
 - (void) retrieveLatestSellData;
-- (id) initWithProfileOwner: (PFUser *) profileOwner;
+
+- (id)   initWithProfileOwner: (PFUser *) profileOwner;
 
 @end

@@ -67,7 +67,6 @@
     NSInteger                   _count;
 }
 
-@synthesize delegate        =   _delegate;
 @synthesize profileOwner    =   _profileOwner;
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -228,8 +227,8 @@
     _topRightView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.3, 0, WINSIZE.width * 0.7, WINSIZE.width * 0.3)];
     [_scrollView addSubview:_topRightView];
     
-    CGFloat const kLabelHeight = WINSIZE.width / 16.0;
-    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.5, kLabelHeight)];
+    CGFloat const kLabelHeight = WINSIZE.width / 16.0 + 2.0f;
+    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.6, kLabelHeight)];
     _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
     _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
