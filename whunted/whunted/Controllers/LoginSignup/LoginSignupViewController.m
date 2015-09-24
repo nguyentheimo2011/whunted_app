@@ -31,7 +31,6 @@
     
     [self addBackgroundImage];
     [self addFacebookLoginOrSignupButton];
-    [self addEmailLoginOrSignupButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -77,19 +76,6 @@
     [self.view addSubview:_FBLoginButton];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addEmailLoginOrSignupButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.87, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
-    [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:235.0/255 green:235.0/255 blue:235.0/255 alpha:1.0]];
-    [_emailLoginButton setTitle:@"Sign up or Log in with Email" forState:UIControlStateNormal];
-    [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_emailLoginButton setTitleColor:[UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0] forState:UIControlStateNormal];
-    [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
-    _emailLoginButton.layer.cornerRadius = 5;
-    [self.view addSubview:_emailLoginButton];
-}
 
 
 #pragma mark - Event Handling
@@ -273,5 +259,23 @@
     NSString *username = [email substringToIndex:atCharRange.location];
     return username;
 }
+
+
+#pragma mark - Next version
+
+////------------------------------------------------------------------------------------------------------------------------------
+//- (void) addEmailLoginOrSignupButton
+////------------------------------------------------------------------------------------------------------------------------------
+//{
+//    _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.87, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
+//    [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:235.0/255 green:235.0/255 blue:235.0/255 alpha:1.0]];
+//    [_emailLoginButton setTitle:@"Sign up or Log in with Email" forState:UIControlStateNormal];
+//    [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+//    [_emailLoginButton setTitleColor:[UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0] forState:UIControlStateNormal];
+//    [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
+//    _emailLoginButton.layer.cornerRadius = 5;
+//    [self.view addSubview:_emailLoginButton];
+//}
+
 
 @end
