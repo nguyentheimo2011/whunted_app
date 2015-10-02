@@ -394,7 +394,25 @@
 - (void) handleLoginEvent
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    if (_emailLoginTextField.text.length == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (![Utilities isEmailValid:_emailLoginTextField.text])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Invalid email!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (_passwordLoginTextField.text.length < 6)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Password must be at least 6 characters!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        [self loginWithEmail:_emailLoginTextField.text password:_passwordLoginTextField.text];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -511,7 +529,7 @@
             {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Email is already in use", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email is already in use", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alertView show];
             }
             else
@@ -546,6 +564,57 @@
         {
             [Utilities handleError:error];
         }
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) loginWithEmail: (NSString *) email password: (NSString *) password
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_EMAIL equalTo:email];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+       if (!error)
+       {
+           if (objects.count > 0)
+           {
+               PFObject *object = [objects objectAtIndex:0];
+               NSString *username = object[PF_USER_USERNAME];
+               [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+                   if (!error)
+                   {
+                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                       
+                       MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+                       [self presentViewController:mainVC animated:NO completion:^{}];
+                   }
+                   else
+                   {
+                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                       
+                       [Utilities handleError:error];
+                       
+                       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email and password do not match", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                       [alertView show];
+                   }
+               }];
+           }
+           else
+           {
+               [MBProgressHUD hideHUDForView:self.view animated:YES];
+               
+               UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email and password do not match", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+               [alertView show];
+           }
+       }
+       else
+       {
+           [Utilities handleError:error];
+           [MBProgressHUD hideHUDForView:self.view animated:YES];
+       }
     }];
 }
 
