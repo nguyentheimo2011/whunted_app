@@ -104,9 +104,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) setViewController
 //------------------------------------------------------------------------------------------------------------------------------
-{
-    if (![PFUser currentUser] || // Check if user is cached
-        ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
+{    
+    if (![PFUser currentUser]) // Check if user is cached
+//        ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
     {
         LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
         [self.window setRootViewController:loginVC];
