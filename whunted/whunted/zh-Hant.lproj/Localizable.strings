@@ -215,6 +215,23 @@
 "By signing up, you agree to our "      =   "執行次註冊步驟,及代表你同意我們的";
 "Terms of Service"                      =   "服務條款";
 "Log Out"                               =   "登出";
+"Sign up"                               =   "註冊";
+"Log in"                                =   "登入";
+"Password"                              =   "密碼";
+"By proceeding, you agree to Whunted's" =   "繼續執行,即代表你同意Whunted的";
+"Privacy Policy"                        =   "隱私政策";
+"Choose a username"                     =   "選擇使用者名稱";
+"Your email"                            =   "電郵地址";
+"Choose a password"                     =   "選擇密碼";
+"Username cannot be blank"              =   "使用者名稱不可留空";
+"Email cannot be blank"                 =   "Email 不可留空";
+"Invalid email"                         =   "請輸入有效的email";
+"Password must be at least 6 characters"=   "密碼必須至少６個字元";
+"Email and password do not match"       =   "Email和密碼不符";
+"Email is already in use"               =   "已被使用";
+"and"                                   =   "和";
+"Sign up or Log in with Facebook"       =   "註冊或登入帳號臉書";
+"Sign up or Log in with Email"          =   "註冊或登入帳號Email";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------

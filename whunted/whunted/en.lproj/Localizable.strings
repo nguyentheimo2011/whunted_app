@@ -216,6 +216,23 @@
 "By signing up, you agree to our "      =   "By signing up, you agree to our ";
 "Terms of Service"                      =   "Terms of Service";
 "Log Out"                               =   "Log Out";
+"Sign up"                               =   "Sign up";
+"Log in"                                =   "Log in";
+"Password"                              =   "Password";
+"By proceeding, you agree to Whunted's" =   "By proceeding, you agree to Whunted's";
+"Privacy Policy"                        =   "Privacy Policy";
+"Choose a username"                     =   "Choose a username";
+"Your email"                            =   "Your email";
+"Choose a password"                     =   "Choose a password";
+"Username cannot be blank"              =   "Username cannot be blank";
+"Email cannot be blank"                 =   "Email cannot be blank";
+"Invalid email"                         =   "Invalid email";
+"Password must be at least 6 characters"=   "Password must be at least 6 characters";
+"Email and password do not match"       =   "Email and password do not match";
+"Email is already in use"               =   "Email is already in use";
+"and"                                   =   "and";
+"Sign up or Log in with Facebook"       =   "Sign up or Log in with Facebook";
+"Sign up or Log in with Email"          =   "Sign up or Log in with Email";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------

@@ -76,7 +76,7 @@
     
     _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, kButtonOriginY, WINSIZE.width * 0.8, 50.0f)];
     [_FBLoginButton setBackgroundColor:[UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0]];
-    [_FBLoginButton setTitle:@"Sign up or Log in with Facebook" forState:UIControlStateNormal];
+    [_FBLoginButton setTitle:NSLocalizedString(@"Sign up or Log in with Facebook", nil) forState:UIControlStateNormal];
     [_FBLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_FBLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_FBLoginButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -91,7 +91,7 @@
 {
     _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, _FBLoginButton.frame.origin.y + 58.0f, WINSIZE.width * 0.8, 50.0f)];
     [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]];
-    [_emailLoginButton setTitle:@"Sign up or Log in with Email" forState:UIControlStateNormal];
+    [_emailLoginButton setTitle:NSLocalizedString(@"Sign up or Log in with Email", nil) forState:UIControlStateNormal];
     [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_emailLoginButton setTitleColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateNormal];
     [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
