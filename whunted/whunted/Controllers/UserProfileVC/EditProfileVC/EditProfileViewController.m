@@ -834,22 +834,22 @@
     
     PFUser *currUser = [PFUser currentUser];
     
-    if (![_usernameTextField.text isEqualToString:_userData.username])
+    if (_usernameTextField.text.length > 0 && ![_usernameTextField.text isEqualToString:_userData.username])
         currUser[PF_USER_USERNAME] = _usernameTextField.text;
     
-    if (![_firstNameTextField.text isEqualToString:_userData.firstName])
+    if (_firstNameTextField.text.length > 0 && ![_firstNameTextField.text isEqualToString:_userData.firstName])
         currUser[PF_USER_FIRSTNAME] = _firstNameTextField.text;
     
-    if (![_lastNameTextField.text isEqualToString:_userData.lastName])
+    if (_lastNameTextField.text.length > 0 && ![_lastNameTextField.text isEqualToString:_userData.lastName])
         currUser[PF_USER_LASTNAME] = _lastNameTextField.text;
     
-    if (_newCity && ![_newCity isEqualToString:_userData.residingCity])
+    if (_newCity.length > 0 && ![_newCity isEqualToString:_userData.residingCity])
         currUser[PF_USER_CITY] = _newCity;
     
-    if (_newCountry && ![_newCountry isEqualToString:_userData.residingCountry])
+    if (_newCountry .length > 0 && ![_newCountry isEqualToString:_userData.residingCountry])
         currUser[PF_USER_COUNTRY] = _newCountry;
     
-    if (![_myBioTextView.text isEqualToString:_userData.description])
+    if (_myBioTextView.text.length > 0 && ![_myBioTextView.text isEqualToString:_userData.description])
         currUser[PF_USER_DESCRIPTION] = _myBioTextView.text;
     
     if (![_userProfileImageView.image isEqual:_userData.profileImage])
@@ -858,17 +858,20 @@
         NSData *imageData = UIImagePNGRepresentation(resizedImage);
         currUser[PF_USER_PICTURE] = [PFFile fileWithName:currUser.objectId data:imageData];
         
-        NSString *key = [NSString stringWithFormat:@"%@%@", currUser.objectId, USER_PROFILE_IMAGE];
-        [[ProfileImageCache sharedCache] setObject:resizedImage forKey:key];
+        if (resizedImage)
+        {
+            NSString *key = [NSString stringWithFormat:@"%@%@", currUser.objectId, USER_PROFILE_IMAGE];
+            [[ProfileImageCache sharedCache] setObject:resizedImage forKey:key];
+        }
     }
     
-    if (![_emailTextField.text isEqualToString:_userData.emailAddress])
+    if (_emailTextField.text.length > 0 && ![_emailTextField.text isEqualToString:_userData.emailAddress])
         currUser[PF_USER_EMAIL] = _emailTextField.text;
     
-    if (![_mobileTextField.text isEqualToString:_userData.phoneNumber])
+    if (_mobileTextField.text.length > 0 && ![_mobileTextField.text isEqualToString:_userData.phoneNumber])
         currUser[PF_USER_PHONE_NUMBER] = _mobileTextField.text;
     
-    if (![_genderLabel.text isEqualToString:_userData.gender])
+    if (_genderLabel.text > 0 && ![_genderLabel.text isEqualToString:_userData.gender])
     {
         if ([_genderLabel.text isEqualToString:USER_PROFILE_GENDER_SELECT])
             currUser[PF_USER_GENDER] = @"";
@@ -876,7 +879,7 @@
             currUser[PF_USER_GENDER] = _genderLabel.text;
     }
     
-    if (![_birthdayLabel.text isEqualToString:_userData.dateOfBirth])
+    if (_birthdayLabel.text.length > 0 && ![_birthdayLabel.text isEqualToString:_userData.dateOfBirth])
         currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
     
     [currUser saveInBackground];
