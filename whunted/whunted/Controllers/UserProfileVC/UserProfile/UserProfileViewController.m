@@ -220,10 +220,17 @@
     
     if (!_profileImageView.image)
     {
+        _profileImageView.image = [UIImage imageNamed:@"default_profile_image.png"];
+        
         ImageHandler handler = ^(UIImage *image)
         {
             _profileImageView.image = image;
             [[ProfileImageCache sharedCache] setObject:image forKey:key];
+            
+            if (!image)
+            {
+                _profileImageView.image = [UIImage imageNamed:@"default_profile_image.png"];
+            }
         };
         [Utilities retrieveProfileImageForUser:_profileOwner andRunBlock:handler];
     }
