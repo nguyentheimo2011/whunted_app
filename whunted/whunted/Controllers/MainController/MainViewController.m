@@ -18,7 +18,12 @@
 #import <Parse/Parse.h>
 #import "KLCPopup.h"
 
-#define     kUPLOAD_TAB_BAR     101
+#define     kUPLOAD_TAB_BAR                     101
+
+#define     kMARKETPLACE_VIEW_TAB_INDEX         0
+#define     kUPLOAD_VIEW_TAB_INDEX              1
+#define     kCHAT_VIEW_TAB_INDEX                2
+#define     kPROFILE_PAGE_VIEW_TAB_INDEX        3
 
 @implementation MainViewController
 {
@@ -40,6 +45,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self != nil)
     {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
@@ -49,11 +55,11 @@
         browserNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         _brController.delegate = self;
         
-        UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
-        _newsFeedVC = [[NewsfeedViewController alloc] init];
-        [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
-        [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
-        newsFeedfNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+//        UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
+//        _newsFeedVC = [[NewsfeedViewController alloc] init];
+//        [newsFeedfNavController setViewControllers:[NSArray arrayWithObject:_newsFeedVC]];
+//        [newsFeedfNavController.tabBarItem setImage:[UIImage imageNamed:@"newsfeed.png"]];
+//        newsFeedfNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
         UINavigationController *uploadingNavController = [[UINavigationController alloc] init];
         _uploadingVC = [[UploadingViewController alloc] init];
@@ -75,7 +81,7 @@
         [userProfileNavController.tabBarItem setImage:[UIImage imageNamed:@"profile_tab_icon.png"]];
         userProfileNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         
-        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, newsFeedfNavController, uploadingNavController, chattingNavController, userProfileNavController, nil];
+        NSArray *controllers = [NSArray arrayWithObjects:browserNavController, uploadingNavController, chattingNavController, userProfileNavController, nil];
         [self setViewControllers:controllers];
         [self setSelectedIndex:0];
         
@@ -256,7 +262,7 @@
     [_brController refreshWantData];
     [_userProfileVC retrieveLatestWantData];
     
-    [self setSelectedIndex:4];
+    [self setSelectedIndex:kPROFILE_PAGE_VIEW_TAB_INDEX];
     
     [_uploadingNavController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -367,7 +373,7 @@
 - (void) viewOffersForItem:(NSString *)itemID
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setSelectedIndex:3];
+    [self setSelectedIndex:kCHAT_VIEW_TAB_INDEX];
 }
 
 
