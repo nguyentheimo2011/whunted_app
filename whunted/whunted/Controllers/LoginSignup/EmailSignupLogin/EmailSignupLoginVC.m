@@ -325,14 +325,28 @@
 - (void) termsOfServiceButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/Termsofservice.html"]];
+    [webView loadRequest:request];
     
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Service", nil) forViewController:viewController];
+    viewController.view = webView;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) privacyPoliciesButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/privacy.html"]];
+    [webView loadRequest:request];
     
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Privacy Policy", nil) forViewController:viewController];
+    viewController.view = webView;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
