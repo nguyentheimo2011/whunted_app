@@ -34,6 +34,7 @@
     
     [self addBackgroundImage];
     [self addFacebookLoginOrSignupButton];
+    [self addEmailLoginOrSignupButton];
     [self addDisclaimerLabel];
 }
 
@@ -70,7 +71,9 @@
 - (void) addFacebookLoginOrSignupButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.85, WINSIZE.width * 0.9, 50.0f)];
+    CGFloat const kButtonOriginY    =   WINSIZE.height - 140.0f;
+    
+    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, kButtonOriginY, WINSIZE.width * 0.8, 50.0f)];
     [_FBLoginButton setBackgroundColor:[UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0]];
     [_FBLoginButton setTitle:@"Sign up or Log in with Facebook" forState:UIControlStateNormal];
     [_FBLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
@@ -79,6 +82,20 @@
     _FBLoginButton.layer.cornerRadius = 5;
     [_FBLoginButton addTarget:self action:@selector(loginButtonTouchHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_FBLoginButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addEmailLoginOrSignupButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, _FBLoginButton.frame.origin.y + 58.0f, WINSIZE.width * 0.8, 50.0f)];
+    [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]];
+    [_emailLoginButton setTitle:@"Sign up or Log in with Email" forState:UIControlStateNormal];
+    [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
+    [_emailLoginButton setTitleColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateNormal];
+    [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
+    _emailLoginButton.layer.cornerRadius = 5;
+    [self.view addSubview:_emailLoginButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -93,14 +110,14 @@
     
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = LIGHT_GRAY_COLOR;
+    termOfServiceButton.titleColor = LIGHTER_GRAY_COLOR;
     termOfServiceButton.borderWidth = 0;
     [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
     CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
-    CGFloat kLabelOriginY   =   _FBLoginButton.frame.origin.y + _FBLoginButton.frame.size.height + 5.0f;
+    CGFloat kLabelOriginY   =   _emailLoginButton.frame.origin.y + _emailLoginButton.frame.size.height + 5.0f;
     
     disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
     [self.view addSubview:disclaimerLabel];
@@ -327,19 +344,7 @@
 
 #pragma mark - Next version
 
-////------------------------------------------------------------------------------------------------------------------------------
-//- (void) addEmailLoginOrSignupButton
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, WINSIZE.height * 0.87, WINSIZE.width * 0.9, WINSIZE.height * 0.1)];
-//    [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:235.0/255 green:235.0/255 blue:235.0/255 alpha:1.0]];
-//    [_emailLoginButton setTitle:@"Sign up or Log in with Email" forState:UIControlStateNormal];
-//    [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-//    [_emailLoginButton setTitleColor:[UIColor colorWithRed:60.0/255 green:60.0/255 blue:60.0/255 alpha:1.0] forState:UIControlStateNormal];
-//    [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
-//    _emailLoginButton.layer.cornerRadius = 5;
-//    [self.view addSubview:_emailLoginButton];
-//}
+
 
 
 @end

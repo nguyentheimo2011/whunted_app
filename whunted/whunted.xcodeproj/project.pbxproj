@@ -1022,6 +1022,7 @@
 				E98113221B25892C00ECAA0C /* UserProfileVC */,
 				E92EC5071B688EBF00AABB72 /* Feedback */,
 				E94D17EA1AF9B28700E31B01 /* SellerList */,
+				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1553,7 +1554,6 @@
 		E9D264BD1B6640BB00CBEAFF /* UserData */ = {
 			isa = PBXGroup;
 			children = (
-				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
 				E9D264BE1B6640EE00CBEAFF /* UserData.h */,
 				E9D264BF1B6640EE00CBEAFF /* UserData.m */,
 			);
