@@ -262,6 +262,7 @@
     _passwordSignupTextField.delegate = self;
     _passwordSignupTextField.tag = kPasswordSignupTextFieldTag;
     [_passwordSignupTextField setKeyboardType:UIKeyboardTypeDefault];
+    _passwordSignupTextField.secureTextEntry = YES;
     _passwordSignupCell.accessoryView = _passwordSignupTextField;
     _passwordSignupCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -300,6 +301,7 @@
     _passwordLoginTextField.delegate = self;
     _passwordLoginTextField.tag = kPasswordSignupTextFieldTag;
     [_passwordLoginTextField setKeyboardType:UIKeyboardTypeDefault];
+    _passwordLoginTextField.secureTextEntry = YES;
     _passwordLoginCell.accessoryView = _passwordLoginTextField;
     _passwordLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -316,12 +318,14 @@
         [Utilities customizeTitleLabel:NSLocalizedString(@"Sign up", nil) forViewController:self];
         _containerSignup.hidden = NO;
         _containerLogin.hidden = YES;
+        [self resignFirstResponderForAll];
     }
     else
     {
         [Utilities customizeTitleLabel:NSLocalizedString(@"Log in", nil) forViewController:self];
         _containerSignup.hidden = YES;
         _containerLogin.hidden = NO;
+        [self resignFirstResponderForAll];
     }
 }
 
@@ -329,6 +333,7 @@
 - (void) cancelButtonEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self resignFirstResponderForAll];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -336,6 +341,7 @@
 - (void) doneButtonEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self resignFirstResponderForAll];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -365,6 +371,17 @@
     [Utilities customizeTitleLabel:NSLocalizedString(@"Privacy Policy", nil) forViewController:viewController];
     viewController.view = webView;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) resignFirstResponderForAll
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [_usernameSignupTextField resignFirstResponder];
+    [_emailSignupTextField resignFirstResponder];
+    [_passwordSignupTextField resignFirstResponder];
+    [_emailLoginTextField resignFirstResponder];
+    [_passwordLoginTextField resignFirstResponder];
 }
 
 
