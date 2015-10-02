@@ -8,6 +8,7 @@
 
 #import "LoginSignupViewController.h"
 #import "MainViewController.h"
+#import "EmailSignupLoginVC.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -95,6 +96,7 @@
     [_emailLoginButton setTitleColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateNormal];
     [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
     _emailLoginButton.layer.cornerRadius = 5;
+    [_emailLoginButton addTarget:self action:@selector(emailLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_emailLoginButton];
 }
 
@@ -140,6 +142,16 @@
     [_FBLoginButton setEnabled:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self loginOrSignUpWithFacebook];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) emailLoginButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    EmailSignupLoginVC *emailVC = [[EmailSignupLoginVC alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:emailVC];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
