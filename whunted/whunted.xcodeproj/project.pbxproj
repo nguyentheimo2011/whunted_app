@@ -194,6 +194,7 @@
 		E9C3E6491BB148270006BEB3 /* EditWantDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C3E6481BB148270006BEB3 /* EditWantDataVC.m */; settings = {ASSET_TAGS = (); }; };
 		E9C3E64D1BB405C00006BEB3 /* background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C3E64C1BB405C00006BEB3 /* background_image.png */; settings = {ASSET_TAGS = (); }; };
 		E9C6CD4F1BBEC0D70056D3B2 /* default_profile_image.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C6CD4E1BBEC0D70056D3B2 /* default_profile_image.png */; settings = {ASSET_TAGS = (); }; };
+		E9C6CD511BBEC66F0056D3B2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C6CD501BBEC66F0056D3B2 /* MessageUI.framework */; };
 		E9CF95701BB01E89007272F3 /* reference_link_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956A1BB01E89007272F3 /* reference_link_icon@1x.png */; settings = {ASSET_TAGS = (); }; };
 		E9CF95711BB01E89007272F3 /* reference_link_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956B1BB01E89007272F3 /* reference_link_icon@2x.png */; settings = {ASSET_TAGS = (); }; };
 		E9CF95721BB01E89007272F3 /* reference_link_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9CF956C1BB01E89007272F3 /* reference_link_icon@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -554,6 +555,7 @@
 		E9C3E6481BB148270006BEB3 /* EditWantDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditWantDataVC.m; path = Controllers/Marketplace/EditWantDataVC/EditWantDataVC.m; sourceTree = "<group>"; };
 		E9C3E64C1BB405C00006BEB3 /* background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_image.png; path = Resources/LoginSignup/background_image.png; sourceTree = "<group>"; };
 		E9C6CD4E1BBEC0D70056D3B2 /* default_profile_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_image.png; path = "Resources/User Profile/default_profile_image.png"; sourceTree = "<group>"; };
+		E9C6CD501BBEC66F0056D3B2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E9CF956A1BB01E89007272F3 /* reference_link_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@1x.png"; path = "Resources/Want Details/reference_link_icon@1x.png"; sourceTree = "<group>"; };
 		E9CF956B1BB01E89007272F3 /* reference_link_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@2x.png"; path = "Resources/Want Details/reference_link_icon@2x.png"; sourceTree = "<group>"; };
 		E9CF956C1BB01E89007272F3 /* reference_link_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reference_link_icon@3x.png"; path = "Resources/Want Details/reference_link_icon@3x.png"; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C6CD511BBEC66F0056D3B2 /* MessageUI.framework in Frameworks */,
 				E9B8008D1B1444DE006D9133 /* SystemConfiguration.framework in Frameworks */,
 				E9B800891B1444C7006D9133 /* Security.framework in Frameworks */,
 				E9B8007B1B144431006D9133 /* CFNetwork.framework in Frameworks */,
@@ -744,6 +747,7 @@
 		6FB553A10BCC9D1C8BA1C3B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9C6CD501BBEC66F0056D3B2 /* MessageUI.framework */,
 				E9A07BE61B3009F500904DE9 /* libc++.dylib */,
 				E9A07BE41B3009D800904DE9 /* libicucore.dylib */,
 				E9B8008E1B1444F2006D9133 /* libz.dylib */,

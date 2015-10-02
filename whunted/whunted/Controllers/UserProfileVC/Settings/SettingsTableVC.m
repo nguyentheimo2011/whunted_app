@@ -10,10 +10,10 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
-
 @implementation SettingsTableVC
 {
     UITableViewCell     *_editingProfileCell;
+    UITableViewCell     *_emailSupportCell;
     
     UITableViewCell     *_gettingStartedCell;
     UITableViewCell     *_helpFAQCell;
@@ -88,6 +88,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self initEditingProfileCell];
+    [self initEmailSupportCell];
     
     [self initLogoutCell];
 }
@@ -100,6 +101,16 @@
     _editingProfileCell.textLabel.text  =   NSLocalizedString(@"Edit Profile", nil);
     _editingProfileCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
     _editingProfileCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initEmailSupportCell
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _emailSupportCell = [[UITableViewCell alloc] init];
+    _emailSupportCell.textLabel.text  =   NSLocalizedString(@"Email Support/Feedback", nil);
+    _emailSupportCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _emailSupportCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -177,7 +188,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return 1;
+        return 2;
     else
         return 1;
 }
@@ -188,7 +199,10 @@
 {
     if (indexPath.section == 0)
     {
-        return _editingProfileCell;
+        if (indexPath.row == 0)
+            return _editingProfileCell;
+        else
+            return _emailSupportCell;
     }
     else if (indexPath.section == 1)
     {
@@ -237,7 +251,14 @@
     
     if (indexPath.section == 0)
     {
-        [self pushEditProfileViewController];
+        if (indexPath.row == 0)
+        {
+            [self pushEditProfileViewController];
+        }
+        else
+        {
+            [self handlerEmailSupport];
+        }
     }
     else if (indexPath.section == 1)
     {
@@ -277,6 +298,40 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_LOGGED_OUT object:nil];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) handlerEmailSupport
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    // Email Subject
+    NSString *emailTitle = NSLocalizedString(@"Email Support/Feedback", nil);
+    // Email Content
+    NSString *messageBody = @"";
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:@"hello@whunted.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    mc.mailComposeDelegate = self;
+    
+    mc.navigationBar.tintColor = [UIColor whiteColor];
+    mc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 

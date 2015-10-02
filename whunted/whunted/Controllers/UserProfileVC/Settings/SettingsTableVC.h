@@ -10,8 +10,10 @@
 
 #import "EditProfileViewController.h"
 
+#import <MessageUI/MessageUI.h>
+
 //------------------------------------------------------------------------------------------------------------------------------
-@interface SettingsTableVC : UITableViewController
+@interface SettingsTableVC : UITableViewController <MFMailComposeViewControllerDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
 
