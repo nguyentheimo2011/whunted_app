@@ -224,6 +224,7 @@
     _usernameSignupTextField.delegate = self;
     _usernameSignupTextField.tag = kUsernameSignupTextFieldTag;
     [_usernameSignupTextField setKeyboardType:UIKeyboardTypeDefault];
+    _usernameSignupTextField.returnKeyType = UIReturnKeyDone;
     _usernameSignUpCell.accessoryView = _usernameSignupTextField;
     _usernameSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -243,6 +244,7 @@
     _emailSignupTextField.delegate = self;
     _emailSignupTextField.tag = kEmailSignupTextFieldTag;
     [_emailSignupTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    _emailSignupTextField.returnKeyType = UIReturnKeyDone;
     _emailSignUpCell.accessoryView = _emailSignupTextField;
     _emailSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -263,6 +265,7 @@
     _passwordSignupTextField.tag = kPasswordSignupTextFieldTag;
     [_passwordSignupTextField setKeyboardType:UIKeyboardTypeDefault];
     _passwordSignupTextField.secureTextEntry = YES;
+    _passwordSignupTextField.returnKeyType = UIReturnKeyDone;
     _passwordSignupCell.accessoryView = _passwordSignupTextField;
     _passwordSignupCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -282,6 +285,7 @@
     _emailLoginTextField.delegate = self;
     _emailLoginTextField.tag = kEmailLoginTextFieldTag;
     [_emailLoginTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    _emailLoginTextField.returnKeyType = UIReturnKeyDone;
     _emailLoginCell.accessoryView = _emailLoginTextField;
     _emailLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -302,6 +306,7 @@
     _passwordLoginTextField.tag = kPasswordSignupTextFieldTag;
     [_passwordLoginTextField setKeyboardType:UIKeyboardTypeDefault];
     _passwordLoginTextField.secureTextEntry = YES;
+    _passwordLoginTextField.returnKeyType = UIReturnKeyDone;
     _passwordLoginCell.accessoryView = _passwordLoginTextField;
     _passwordLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -420,13 +425,24 @@
 }
 
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UITableViewDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
     return kTableViewCellHeight;
+}
+
+
+#pragma mark - UITextFieldDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 
