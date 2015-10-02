@@ -59,7 +59,8 @@
     [self customizeUI];
     [self addSegmentedControl];
     [self initCells];
-    [self initTableViews];
+    [self addTableView1];
+    [self addTableView2];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -103,7 +104,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) initTableViews
+- (void) addTableView1
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTableViewOriginY =   _segmentedControl.frame.origin.y + _segmentedControl.frame.size.height + 30.0f;
@@ -116,15 +117,21 @@
     _tableViewSignup.dataSource = self;
     _tableViewSignup.tag = kTableViewSignupTag;
     [_containerSignup addSubview:_tableViewSignup];
-    _containerSignup.hidden = NO;
     [self.view addSubview:_containerSignup];
     [self addSignupDisclaimerLabel1];
     [self addSignupDisclaimerLabel2];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addTableView2
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kTableViewOriginY =   _segmentedControl.frame.origin.y + _segmentedControl.frame.size.height + 30.0f;
     
     // Log in
-    _containerSignup = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 3 * kTableViewCellHeight)];
+    _containerLogin = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 2 * kTableViewCellHeight)];
     
-    _tableViewLogin = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 2 * kTableViewCellHeight)];
+    _tableViewLogin = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 2 * kTableViewCellHeight)];
     _tableViewLogin.delegate = self;
     _tableViewLogin.dataSource = self;
     _tableViewLogin.tag = kTableViewLoginTag;
@@ -304,7 +311,18 @@
 - (void) segmentedControlValueChanged
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    if (_segmentedControl.selectedSegmentIndex == 0)  // Sign up
+    {
+        [Utilities customizeTitleLabel:NSLocalizedString(@"Sign up", nil) forViewController:self];
+        _containerSignup.hidden = NO;
+        _containerLogin.hidden = YES;
+    }
+    else
+    {
+        [Utilities customizeTitleLabel:NSLocalizedString(@"Log in", nil) forViewController:self];
+        _containerSignup.hidden = YES;
+        _containerLogin.hidden = NO;
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
