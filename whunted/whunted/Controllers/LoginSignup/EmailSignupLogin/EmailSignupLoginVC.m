@@ -347,7 +347,52 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self resignFirstResponderForAll];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    
+    if (_segmentedControl.selectedSegmentIndex == 0) // Sign up
+    {
+        [self handleSignupEvent];
+    }
+    else
+    {
+        [self handleLoginEvent];
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) handleSignupEvent
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_usernameSignupTextField.text.length == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Username cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (_emailSignupTextField.text.length == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (![Utilities isEmailValid:_emailSignupTextField.text])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Invalid email!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (_passwordSignupTextField.text.length < 6)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Password must be at least 6 characters!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) handleLoginEvent
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

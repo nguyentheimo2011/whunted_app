@@ -132,6 +132,8 @@
 
 + (void)        handleError: (NSError *) error;
 
++ (BOOL)        isEmailValid: (NSString *) email;
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Parse Backend
