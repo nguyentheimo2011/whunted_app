@@ -583,11 +583,12 @@
     verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
-    [backgroundView addSubview:verifiedLabel];
     
     BOOL facebookVerified = (BOOL) _profileOwner[PF_USER_FACEBOOK_VERIFIED];
     if (facebookVerified)
     {
+        [backgroundView addSubview:verifiedLabel];
+        
         UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
         
         CGFloat const kImageWith = 16;
