@@ -74,6 +74,7 @@
 #define     FLAT_GRAY_COLOR                     [UIColor colorWithRed:108/255.0f green:108/255.0f blue:108/255.0f alpha:1.0f]
 #define     FLAT_BLUR_RED_COLOR                 [UIColor colorWithRed:236/255.0f green:66/255.0f blue:50/255.0f alpha:1.0f]
 #define     FLAT_FRESH_RED_COLOR                [UIColor colorWithRed:233/255.0f green:0/255.0f blue:19/255.0f alpha:1.0f]
+#define     LIGHTER_RED_COLOR                   [UIColor colorWithRed:200/255.0f green:0/255.0f blue:0/255.0f alpha:1.0f]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     TEXT_COLOR_DARK_GRAY                [UIColor colorWithRed:40/255.0 green:40/255.0 blue:40/255.0 alpha:1.0]
