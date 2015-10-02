@@ -104,7 +104,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) setViewController
 //------------------------------------------------------------------------------------------------------------------------------
-{    
+{
     if (![PFUser currentUser]) // Check if user is cached
 //        ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
     {
