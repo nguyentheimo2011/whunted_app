@@ -7,6 +7,7 @@
 //
 
 #import "EmailSignupLoginVC.h"
+#import "MainViewController.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -512,6 +513,33 @@
                 
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Email is already in use", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alertView show];
+            }
+            else
+            {
+                // Validation passed
+                PFUser *user = [PFUser user];
+                user.username = _usernameSignupTextField.text;
+                user.email = _emailSignupTextField.text;
+                user.password = _passwordSignupTextField.text;
+                
+                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                {
+                    if (!error)
+                    {
+                        // Hooray! Let them use the app now.
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_SIGNED_UP object:nil];
+                        
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        
+                        MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+                        [self presentViewController:mainVC animated:NO completion:^{}];
+                    }
+                    else
+                    {
+                        // Sign up failed
+                        [Utilities handleError:error];
+                    }
+                }];
             }
         }
         else
