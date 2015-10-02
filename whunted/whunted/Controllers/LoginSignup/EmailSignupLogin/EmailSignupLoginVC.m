@@ -11,6 +11,7 @@
 #import "Utilities.h"
 
 #import <JTImageButton.h>
+#import <MBProgressHUD.h>
 
 #define     kUsernameSignupTextFieldTag     102
 #define     kEmailSignupTextFieldTag        103
@@ -384,7 +385,7 @@
     }
     else
     {
-        
+        [self checkIfEmailAlreadyInUse:_emailSignupTextField.text];
     }
 }
 
@@ -488,6 +489,36 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+
+#pragma mark - Backend
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) checkIfEmailAlreadyInUse: (NSString *) email
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    PFQuery *query = [[PFQuery alloc] initWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_EMAIL equalTo:email];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        if (!error)
+        {
+            if (objects.count > 0)
+            {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Email is already in use", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                [alertView show];
+            }
+        }
+        else
+        {
+            [Utilities handleError:error];
+        }
+    }];
 }
 
 
