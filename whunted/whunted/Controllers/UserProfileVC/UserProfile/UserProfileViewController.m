@@ -238,7 +238,26 @@
     
     CGFloat const kLabelHeight = WINSIZE.width / 16.0 + 2.0f;
     _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.6, kLabelHeight)];
-    _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _profileOwner[PF_USER_FIRSTNAME], _profileOwner[PF_USER_LASTNAME]];
+    
+    NSString *firstName = _profileOwner[PF_USER_FIRSTNAME];
+    NSString *lastName = _profileOwner[PF_USER_LASTNAME];
+    if (firstName.length == 0 && lastName.length == 0)
+    {
+        _userFullNameLabel.text = _profileOwner[PF_USER_USERNAME];
+    }
+    else if (firstName.length == 0)
+    {
+        _userFullNameLabel.text = lastName;
+    }
+    else if (lastName.length == 0)
+    {
+        _userFullNameLabel.text = firstName;
+    }
+    else
+    {
+        _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    }
+    
     _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
     _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_topRightView addSubview:_userFullNameLabel];
