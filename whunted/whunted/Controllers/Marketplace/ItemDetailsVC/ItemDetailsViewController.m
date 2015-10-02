@@ -239,9 +239,13 @@
     {
         [self addViewOfferButton];
     }
+    else if (_wantData.isFulfilled)
+    {
+        [self addChatButton:YES];
+    }
     else
     {
-        [self addChatButton];
+        [self addChatButton:NO];
         [self addOfferButton];
     }
 }
@@ -512,14 +516,35 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addChatButton
+- (void) addChatButton: (BOOL) isFullWidth
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+    
+    UIView *backgroundView;
+    
+    if (isFullWidth)
+    {
+        backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
+    }
+    else
+    {
+        backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+    }
+    
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    JTImageButton *chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+    JTImageButton *chatButton;
+    
+    if (isFullWidth)
+    {
+        chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
+    }
+    else
+    {
+        chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+    }
+    
     [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
     chatButton.cornerRadius = 0;
     chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
@@ -584,6 +609,13 @@
     _viewOffersButton.titleColor = [UIColor whiteColor];
     [_viewOffersButton addTarget:self action:@selector(viewOffersButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:_viewOffersButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addItemSoldButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
