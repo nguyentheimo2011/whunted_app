@@ -174,6 +174,6 @@
 #pragma mark - Log
 //------------------------------------------------------------------------------------------------------------------------------
 
-+ (void)        logOutMemoryWarningMessage: (NSString *) message;
++ (void)        logOutMessage: (NSString *) message;
 
 @end

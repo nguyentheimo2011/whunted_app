@@ -61,7 +61,7 @@
 {
     [super didReceiveMemoryWarning];
     
-    [Utilities logOutMemoryWarningMessage:@"SortAndFilterTableVC didReceiveMemoryWarning"];
+    [Utilities logOutMessage:@"SortAndFilterTableVC didReceiveMemoryWarning"];
 }
 
 
