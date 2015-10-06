@@ -10,11 +10,11 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#define     kNormalCellHeight       42.0f
-#define     kIconWidth              20.0f
-#define     kIconHeight             20.0f
-#define     kIconLeftMargin         15.0f
-#define     kIconTopMargin          10.0f
+#define     kNormalCellHeight           42.0f
+#define     kIconWidth                  20.0f
+#define     kIconHeight                 20.0f
+#define     kIconLeftMargin             15.0f
+#define     kIconTopMargin              10.0f
 
 @implementation SortAndFilterTableVC
 {
@@ -30,9 +30,9 @@
     NSInteger               _selectedSortingIndex;
 }
 
-@synthesize delegate            =   _delegate;
-@synthesize sortingCriterion    =   _sortingCriterion;
-@synthesize productOriginFilter =   _productOriginFilter;
+@synthesize delegate                =   _delegate;
+@synthesize sortingCriterion        =   _sortingCriterion;
+@synthesize productOriginFilter     =   _productOriginFilter;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -61,7 +61,7 @@
 {
     [super didReceiveMemoryWarning];
     
-//    NSLog(@"SortAndFilterTableVC didReceiveMemoryWarning");
+    [Utilities logOutMemoryWarningMessage:@"SortAndFilterTableVC didReceiveMemoryWarning"];
 }
 
 
@@ -71,7 +71,7 @@
 - (void) initData
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    NSArray *array = @[NSLocalizedString(@"Popular", nil), NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil)];
+    NSArray *array = @[NSLocalizedString(@"Recent", nil), NSLocalizedString(@"Lowest Price", nil), NSLocalizedString(@"Highest Price", nil)];
     _selectedSortingIndex = [array indexOfObject:_sortingCriterion];
 }
 

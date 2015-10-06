@@ -169,4 +169,11 @@
 
 + (void)        sendExceptionInfoToGoogleAnalyticsTrackerWithDescription: (NSString *) description fatal: (NSNumber *) fatal;
 
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Log
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (void)        logOutMemoryWarningMessage: (NSString *) message;
+
 @end
