@@ -64,14 +64,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "Beauty products"       =           "美容產品";
 "Books and magazines"   =           "書籍雜誌";
-"Luxury branded"        =           "品牌產品";
+"Luxury branded"        =           "名牌產品";
 "Games & Toys"          =           "遊戲玩具";
 "Professional services" =           "專業服務";
 "Sporting equipment"    =           "體育器材";
 "Tickets and vouchers"  =           "門票優惠券";
 "Watches"               =           "手錶";
-"Customization"         =           "定制產品";
-"Borrowing"             =           "我想藉";
+"Customization"         =           "定製產品";
+"Borrowing"             =           "我想借";
 "Furniture"             =           "家具";
 "Others"                =           "其他";
 //------------------------------------------------------------------------------------------------------------------------------
