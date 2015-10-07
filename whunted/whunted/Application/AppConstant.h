@@ -339,6 +339,9 @@
 #define     ITEM_CATEGORY_OTHERS                        @"Others"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     LANGUAGE_USED_IN_LAST_SESSION               @"appLanguage"
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     CURRENT_PRODUCT_ORIGIN_FILTER               @"currProductOrigin"
 #define     ITEM_PRODUCT_ORIGIN_ALL                     @"All"
 

@@ -101,21 +101,60 @@
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
-    if (_currBuyerLocation.length == 0)
+    NSString *currLang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    NSString *lastLang = [[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_USED_IN_LAST_SESSION];
+    BOOL languageChanged = NO;
+    if (![currLang isEqualToString:lastLang])
+    {
+        languageChanged = YES;
+        [[NSUserDefaults standardUserDefaults] setObject:currLang forKey:LANGUAGE_USED_IN_LAST_SESSION];
+    }
+    
+    if (languageChanged)
+    {
+        // if phone language is changed, reset all to defaults.
         _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
-    
-    _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
-    if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
+        [[NSUserDefaults standardUserDefaults] setObject:_currBuyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
+        
         _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
-    
-    _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
-    if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
+        [[NSUserDefaults standardUserDefaults] setObject:_currCategory forKey:CURRENT_CATEGORY_FILTER];
+        
         _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
-    
-    _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-    if (_currProductOrigin.length == 0)
+        [[NSUserDefaults standardUserDefaults] setObject:_currSortingBy forKey:CURRENT_SORTING_BY];
+        
         _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+        [[NSUserDefaults standardUserDefaults] setObject:_currProductOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    }
+    else
+    {
+        _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
+        if (_currBuyerLocation.length == 0)
+        {
+            _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
+            [[NSUserDefaults standardUserDefaults] setObject:_currBuyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
+        }
+        
+        _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
+        if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
+        {
+            _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
+            [[NSUserDefaults standardUserDefaults] setObject:_currCategory forKey:CURRENT_CATEGORY_FILTER];
+        }
+        
+        _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
+        if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
+        {
+            _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
+            [[NSUserDefaults standardUserDefaults] setObject:_currSortingBy forKey:CURRENT_SORTING_BY];
+        }
+        
+        _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+        if (_currProductOrigin.length == 0)
+        {
+            _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
+            [[NSUserDefaults standardUserDefaults] setObject:_currProductOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+        }
+    }
 }
 
 
@@ -868,6 +907,14 @@
         return YES;
     else
         return NO;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) isOfOneOfCorrectLocation: (NSString *) location
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
+        
 }
 
 
