@@ -760,10 +760,15 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) updateTotalListingNumLabel: (NSInteger) listingsNum
+- (void) updateTotalListingNumLabel: (NSInteger) listingsNum numListingsDisplayed: (BOOL) displayed
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *text = [NSString  stringWithFormat:@"%ld %@", listingsNum, [self getListingTextBasedOnNum:listingsNum]];
+    NSString *text;
+    if (displayed)
+        text = [NSString  stringWithFormat:@"%ld %@", listingsNum, [self getListingTextBasedOnNum:listingsNum]];
+    else
+        text = [NSString  stringWithFormat:@"%@", [self getListingTextBasedOnNum:listingsNum]];
+    
     _totalListingsNumLabel.text = text;
     [_totalListingsNumLabel sizeToFit];
 
@@ -953,16 +958,19 @@
     if (segmentedControl.selectedSegmentIndex == 0)
     {
         _curViewMode = HistoryCollectionViewModeBuying;
-        [self updateTotalListingNumLabel:_myWantDataList.count];
+        [self updateTotalListingNumLabel:_myWantDataList.count numListingsDisplayed:YES];
     }
     else
     {
         _curViewMode = HistoryCollectionViewModeSelling;
         
         if (!_mySellDataList)
+        {
+            [self updateTotalListingNumLabel:0 numListingsDisplayed:NO];
             [self retrieveMySellList];
+        }
         else
-            [self updateTotalListingNumLabel:_mySellDataList.count];
+            [self updateTotalListingNumLabel:_mySellDataList.count numListingsDisplayed:YES];
     }
     
     [_historyCollectionView reloadData];
@@ -1135,7 +1143,7 @@
                 [_myWantDataList addObject:wantData];
             }
             
-            [self updateTotalListingNumLabel:_myWantDataList.count];
+            [self updateTotalListingNumLabel:_myWantDataList.count numListingsDisplayed:YES];
             
             [_historyCollectionView reloadData];
         }
@@ -1197,7 +1205,7 @@
             _count += offerObjects.count;
             if (_ongoingOrAcceptedTableLoaded)
             {
-                [self updateTotalListingNumLabel:_count];
+                [self updateTotalListingNumLabel:_count numListingsDisplayed:YES];
             }
             else
             {
