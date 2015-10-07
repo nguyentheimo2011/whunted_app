@@ -100,10 +100,12 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Delivery time"         =           "Delivery time";
-"wants to buy at"       =           "wants to buy at";
-"Your offer is "        =           "Your offer is ";
-"You can deliver in"    =           "You can deliver in";
+"Delivery time"                 =           "Delivery time";
+"originally wants to buy at"    =           "originally wants to buy at";
+"originally want to buy at"     =           "originally want to buy at";
+"Your offer is "                =           "Your offer is ";
+"You can deliver in"            =           "You can deliver in";
+"You"                           =           "You ";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //User profile page

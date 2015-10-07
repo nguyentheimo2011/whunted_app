@@ -97,7 +97,16 @@
     CGFloat const kLabelWidth       =   WINSIZE.width - 40;
     CGFloat const kLabelHeight      =   50.0f;
     
-    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"wants to buy at", nil), _offerData.originalDemandedPrice];
+    NSString *text;
+    if ([_offerData.buyerID isEqualToString:[PFUser currentUser].objectId])
+    {
+        text = [NSString stringWithFormat:@"%@%@ %@", NSLocalizedString(@"You", nil), NSLocalizedString(@"originally want to buy at", nil), _offerData.originalDemandedPrice];
+    }
+    else
+    {
+        text = [NSString stringWithFormat:@"%@ %@ %@", _buyerName, NSLocalizedString(@"originally wants to buy at", nil), _offerData.originalDemandedPrice];
+    }
+
     _summaryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight)];
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
