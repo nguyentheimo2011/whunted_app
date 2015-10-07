@@ -85,6 +85,7 @@ void SendPushNotification2(NSArray *members, NSString *text)
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           message, @"alert",
                           @"Increment", @"badge",
+                          @"default", @"sound",
                           nil];
     
 	PFPush *push = [[PFPush alloc] init];
