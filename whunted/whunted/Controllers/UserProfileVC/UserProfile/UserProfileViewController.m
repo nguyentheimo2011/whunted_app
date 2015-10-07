@@ -62,7 +62,11 @@
     NSMutableArray              *_myWantDataList;
     NSMutableArray              *_mySellDataList;
     
+    NSMutableArray              *_myCompletedSellDataList;
+    NSMutableArray              *_myOngoingSellDataList;
+    
     BOOL                        _isViewingMyProfile;
+    BOOL                        _loadingCompletedDataDone;
     
     NSInteger                   _count;
 }
@@ -1146,18 +1150,38 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _mySellDataList = [[NSMutableArray alloc] init];
+    _myOngoingSellDataList = [[NSMutableArray alloc] init];
+    _myCompletedSellDataList = [[NSMutableArray alloc] init];
     
     _count = 0;
     
+    _loadingCompletedDataDone = NO;
+    
     // retrieve TransactionData from ongoing table
-    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS];
+    [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS completionBlock:^{
+        [_mySellDataList addObjectsFromArray:_myOngoingSellDataList];
+        
+        if (_loadingCompletedDataDone)
+        {
+            [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
+            [_historyCollectionView reloadData];
+        }
+    }];
     
     // retrieve TransactionData from completed table
-    [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS];
+    [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS completionBlock:^{
+        if (_mySellDataList.count > 0)
+        {
+            [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
+            [_historyCollectionView reloadData];
+        }
+        else
+            _loadingCompletedDataDone = YES;
+    }];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveSellingTransactionDataFromTable: (NSString *) tableName
+- (void) retrieveSellingTransactionDataFromTable: (NSString *) tableName completionBlock: (CompletionHandler) handler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFUser *currentUser = _profileOwner;
@@ -1182,12 +1206,17 @@
                 [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error)
                 {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
-                    [_mySellDataList addObject:wantData];
+                    if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
+                        [_myOngoingSellDataList addObject:wantData];
+                    else
+                        [_myCompletedSellDataList addObject:wantData];
                     
                     count++;
                     
-                    if (count == offerObjects.count)
-                        [_historyCollectionView reloadData];
+                    if (count == offerObjects.count) // complete loading all whunts in selling section
+                    {
+                        handler();
+                    }
                 }];
             }
         }
