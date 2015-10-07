@@ -40,6 +40,8 @@
     NSMutableArray          *_wantDataList;
     NSArray                 *_sortedAndFilteredWantDataList;
     NSMutableArray          *_displayedWantDataList;
+    
+    CGFloat                 _lastContentOffset;
 }
 
 @synthesize delegate        =   _delegate;
@@ -976,6 +978,27 @@
 {
     [_searchBar resignFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+}
+
+
+#pragma mark - UIScrollViewDelegate method
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_lastContentOffset > scrollView.contentOffset.y) // Scroll up
+    {
+        if (_topRefreshControl.refreshing)
+            [_topRefreshControl endRefreshing];
+    }
+    else if (_lastContentOffset < scrollView.contentOffset.y) // Scroll down
+    {
+        if (_bottomRefreshControl.refreshing)
+            [_bottomRefreshControl endRefreshing];
+    }
+    
+    _lastContentOffset = scrollView.contentOffset.y;
 }
 
 @end
