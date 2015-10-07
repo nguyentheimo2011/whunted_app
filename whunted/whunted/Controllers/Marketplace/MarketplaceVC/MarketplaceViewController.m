@@ -763,13 +763,13 @@
 {
     NSArray *sortedArray;
     
-    if ([sortingBy isEqualToString:SORTING_BY_POPULAR])
+    if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_POPULAR, nil)])
         sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnPopular:)];
-    else if ([sortingBy isEqualToString:SORTING_BY_RECENT])
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
         sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnRecent:)];
-    else if ([sortingBy isEqualToString:SORTING_BY_LOWEST_PRICE])
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
         sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnAscendingPrice:)];
-    else if ([sortingBy isEqualToString:SORTING_BY_HIGHEST_PRICE])
+    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
         sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnDescendingPrice:)];
     else
         sortedArray = array;
