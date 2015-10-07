@@ -851,5 +851,66 @@
 }
 
 
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Mutiple Languages Support
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (NSString *) getSynonymOfWord:(NSString *)word
+{
+    // get chinese synonym
+    if ([word isEqualToString:ITEM_CATEGORY_BEAUTY_PRODUCTS])
+        return ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS;
+    else if ([word isEqualToString:ITEM_CATEGORY_BOOKS_AND_MAGAZINES])
+        return ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES;
+    else if ([word isEqualToString:ITEM_CATEGORY_LUXURY_BRANDED])
+        return ITEM_CHINESE_CATEGORY_LUXURY_BRANDED;
+    else if ([word isEqualToString:ITEM_CATEGORY_GAMES_AND_TOYS])
+        return ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS;
+    else if ([word isEqualToString:ITEM_CATEGORY_PROFESSIONAL_SERVICES])
+        return ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES;
+    else if ([word isEqualToString:ITEM_CATEGORY_SPORT_EQUIPMENTS])
+        return ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS;
+    else if ([word isEqualToString:ITEM_CATEGORY_TICKETS_AND_VOUCHERS])
+        return ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS;
+    else if ([word isEqualToString:ITEM_CATEGORY_WATCHES])
+        return ITEM_CHINESE_CATEGORY_WATCHES;
+    else if ([word isEqualToString:ITEM_CATEGORY_CUSTOMIZATION])
+        return ITEM_CHINESE_CATEGORY_CUSTOMIZATION;
+    else if ([word isEqualToString:ITEM_CATEGORY_BORROWING])
+        return ITEM_CHINESE_CATEGORY_BORROWING;
+    else if ([word isEqualToString:ITEM_CATEGORY_FUNITURE])
+        return ITEM_CHINESE_CATEGORY_FUNITURE;
+    else if ([word isEqualToString:ITEM_CATEGORY_OTHERS])
+        return ITEM_CHINESE_CATEGORY_OTHERS;
+    
+    // get english synonym
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS])
+        return ITEM_CATEGORY_BEAUTY_PRODUCTS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES])
+        return ITEM_CATEGORY_BOOKS_AND_MAGAZINES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_LUXURY_BRANDED])
+        return ITEM_CATEGORY_LUXURY_BRANDED;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS])
+        return ITEM_CATEGORY_GAMES_AND_TOYS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES])
+        return ITEM_CATEGORY_PROFESSIONAL_SERVICES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS])
+        return ITEM_CATEGORY_SPORT_EQUIPMENTS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS])
+        return ITEM_CATEGORY_TICKETS_AND_VOUCHERS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_WATCHES])
+        return ITEM_CATEGORY_WATCHES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_CUSTOMIZATION])
+        return ITEM_CATEGORY_CUSTOMIZATION;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BORROWING])
+        return ITEM_CATEGORY_BORROWING;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_FUNITURE])
+        return ITEM_CATEGORY_FUNITURE;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_OTHERS])
+        return ITEM_CATEGORY_OTHERS;
+    else
+        return nil;
+}
+
 
 @end

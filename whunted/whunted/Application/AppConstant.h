@@ -337,6 +337,19 @@
 #define     ITEM_CATEGORY_BORROWING                     @"Borrowing"
 #define     ITEM_CATEGORY_FUNITURE                      @"Furniture"
 #define     ITEM_CATEGORY_OTHERS                        @"Others"
+#define     ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS       @"美容產品"
+#define     ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES   @"書籍雜誌"
+#define     ITEM_CHINESE_CATEGORY_LUXURY_BRANDED        @"名牌產品"
+#define     ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS        @"遊戲玩具"
+#define     ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES @"專業服務"
+#define     ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS      @"體育器材"
+#define     ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS  @"門票優惠券"
+#define     ITEM_CHINESE_CATEGORY_WATCHES               @"手錶"
+#define     ITEM_CHINESE_CATEGORY_CUSTOMIZATION         @"定製產品"
+#define     ITEM_CHINESE_CATEGORY_BORROWING             @"我想借"
+#define     ITEM_CHINESE_CATEGORY_FUNITURE              @"家具"
+#define     ITEM_CHINESE_CATEGORY_OTHERS                @"其他"
+
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     LANGUAGE_USED_IN_LAST_SESSION               @"appLanguage"

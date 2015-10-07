@@ -789,7 +789,10 @@
         
         for (WantData *wantData in array)
         {
-            if ([wantData.itemCategory isEqualToString:category])
+            NSString *synonym = [Utilities getSynonymOfWord:category];
+            
+            // Filter by both chinese and english
+            if ([wantData.itemCategory isEqualToString:category] || [wantData.itemCategory isEqualToString:synonym])
                 [filteredArray addObject:wantData];
         }
         
