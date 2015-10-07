@@ -67,6 +67,7 @@
     
     BOOL                        _isViewingMyProfile;
     BOOL                        _loadingCompletedDataDone;
+    BOOL                        _ongoingOrAcceptedTableLoaded;
     
     NSInteger                   _count;
 }
@@ -1194,7 +1195,14 @@
         if (!error)
         {
             _count += offerObjects.count;
-            [self updateTotalListingNumLabel:_count];
+            if (_ongoingOrAcceptedTableLoaded)
+            {
+                [self updateTotalListingNumLabel:_count];
+            }
+            else
+            {
+                _ongoingOrAcceptedTableLoaded = YES;
+            }
             
             __block NSInteger count = 0;
             
