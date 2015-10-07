@@ -223,12 +223,13 @@
     [self.view addSubview:_wantCollectionView];
     
     _topRefreshControl = [[UIRefreshControl alloc] init];
+    _topRefreshControl.backgroundColor = BACKGROUND_GRAY_COLOR;
     [_topRefreshControl addTarget:self action:@selector(refreshWantData)
              forControlEvents:UIControlEventValueChanged];
     [_wantCollectionView addSubview:_topRefreshControl];
     
     _bottomRefreshControl = [UIRefreshControl new];
-    _bottomRefreshControl.triggerVerticalOffset = 100.;
+    _bottomRefreshControl.triggerVerticalOffset = 100;
     [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
     _wantCollectionView.bottomRefreshControl = _bottomRefreshControl;
 }
