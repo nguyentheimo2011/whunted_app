@@ -1200,6 +1200,14 @@
             
             for (int i=0; i<offerObjects.count; i++)
             {
+                if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
+                    [_myOngoingSellDataList addObject:[[WantData alloc] init]];
+                else
+                    [_myCompletedSellDataList addObject:[[WantData alloc] init]];
+            }
+            
+            for (int i=0; i<offerObjects.count; i++)
+            {
                 PFObject *object = [offerObjects objectAtIndex:i];
                 NSString *itemID = object[@"itemID"];
                 PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
@@ -1207,9 +1215,9 @@
                 {
                     WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
-                        [_myOngoingSellDataList addObject:wantData];
+                        [_myOngoingSellDataList replaceObjectAtIndex:i withObject:wantData];
                     else
-                        [_myCompletedSellDataList addObject:wantData];
+                        [_myCompletedSellDataList replaceObjectAtIndex:i withObject:wantData];
                     
                     count++;
                     
