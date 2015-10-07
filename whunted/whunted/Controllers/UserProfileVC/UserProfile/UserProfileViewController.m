@@ -50,6 +50,8 @@
     UIView                      *_leftHorizontalLine;
     UIView                      *_rightHorizontalLine;
     
+    HMSegmentedControl          *_segmentedControl;
+    
     CGFloat                     _statusAndNavBarHeight;
     CGFloat                     _tabBarHeight;
     CGFloat                     _currHeight;
@@ -681,23 +683,23 @@
     CGFloat const kControlWidth = WINSIZE.width / 2.0;
     CGFloat const kControlHeight = 35;
     
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
-    segmentedControl.sectionTitles = @[NSLocalizedString(@"Buying", nil), NSLocalizedString(@"Selling", nil)];
+    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
+    _segmentedControl.sectionTitles = @[NSLocalizedString(@"Buying", nil), NSLocalizedString(@"Selling", nil)];
     
-    segmentedControl.selectedSegmentIndex = 0;
+    _segmentedControl.selectedSegmentIndex = 0;
     
     /// TODO: colors are likely to change
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
-    segmentedControl.backgroundColor = DARK_BLUE_COLOR;
-    segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    _segmentedControl.backgroundColor = DARK_BLUE_COLOR;
+    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    _segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
     
-    segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
-    [segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.layer.cornerRadius = 5.0f;
+    _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    [_segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
+    _segmentedControl.layer.cornerRadius = 5.0f;
     
-    [_scrollView addSubview:segmentedControl];
+    [_scrollView addSubview:_segmentedControl];
     
     _currHeight += kControlTopMargin + kControlHeight;
 }
@@ -1166,14 +1168,20 @@
     
     _loadingCompletedDataDone = NO;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     // retrieve TransactionData from ongoing table
     [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS completionBlock:^{
         [_mySellDataList addObjectsFromArray:_myOngoingSellDataList];
         
         if (_loadingCompletedDataDone)
         {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
             [_historyCollectionView reloadData];
+            
+            _scrollView.contentOffset = CGPointMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - 200.0f);
         }
     }];
     
@@ -1181,8 +1189,12 @@
     [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS completionBlock:^{
         if (_mySellDataList.count > 0)
         {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
             [_historyCollectionView reloadData];
+            
+            _scrollView.contentOffset = CGPointMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - 200.0f);
         }
         else
             _loadingCompletedDataDone = YES;
