@@ -1279,6 +1279,7 @@
         {
             WantData *wantData = [[WantData alloc] initWithPFObject:obj];
             [_myWantDataList insertObject:wantData atIndex:0];
+            [self updateTotalListingNumLabel:_myWantDataList.count numListingsDisplayed:YES];
             [_historyCollectionView reloadData];
         }
         else
@@ -1305,6 +1306,7 @@
             [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                 [_mySellDataList insertObject:wantData atIndex:0];
+                [self updateTotalListingNumLabel:_mySellDataList.count numListingsDisplayed:YES];
                 [_historyCollectionView reloadData];
             }];
         }
