@@ -1218,6 +1218,9 @@
             if (_ongoingOrAcceptedTableLoaded)
             {
                 [self updateTotalListingNumLabel:_count numListingsDisplayed:YES];
+                
+                if (_count == 0)
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
             else
             {
