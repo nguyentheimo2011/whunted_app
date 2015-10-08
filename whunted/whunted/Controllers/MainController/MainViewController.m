@@ -86,6 +86,8 @@
         [self setSelectedIndex:0];
         
         self.delegate = self;
+        
+        [self addNotificationListener];
     }
     
     return self;
@@ -103,6 +105,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListener
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteringAppThroughPushNotificationEventHandler:) name:NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT object:nil];
 }
 
 
@@ -398,6 +407,16 @@
         [_inboxVC.navigationController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%ld", (long)num]];
     else
         [_inboxVC.navigationController.tabBarItem setBadgeValue:nil];
+}
+
+
+#pragma mark - Notification Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) enteringAppThroughPushNotificationEventHandler: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self setSelectedIndex:2];
 }
 
 @end

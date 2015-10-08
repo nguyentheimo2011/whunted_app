@@ -60,14 +60,14 @@ void SendPushNotification1(NSString *groupId, NSString *text)
 			NSDictionary *recent = [recents firstObject];
 			if (recent != nil)
 			{
-				SendPushNotification2(recent[FB_GROUP_MEMBERS], text);
+				SendPushNotification2(recent[FB_GROUP_MEMBERS], groupId, text);
 			}
 		}
 	}];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void SendPushNotification2(NSArray *members, NSString *text)
+void SendPushNotification2(NSArray *members, NSString *groupID, NSString *text)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
@@ -86,6 +86,7 @@ void SendPushNotification2(NSArray *members, NSString *text)
                           message, @"alert",
                           @"Increment", @"badge",
                           @"default", @"sound",
+                          groupID, FB_GROUP_ID,
                           nil];
     
 	PFPush *push = [[PFPush alloc] init];

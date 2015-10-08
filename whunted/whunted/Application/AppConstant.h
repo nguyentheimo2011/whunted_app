@@ -222,16 +222,17 @@
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     NOTIFICATION_USER_SIGNED_UP             @"NCUserSignedUp"
-#define		NOTIFICATION_USER_LOGGED_IN             @"NCUserLoggedIn"
-#define		NOTIFICATION_USER_LOGGED_OUT            @"NCUserLoggedOut"
-#define     NOTIFICATION_NEW_OFFER_MADE_BY_ME       @"NotificationNewOfferMadeByMe"
-#define     NOTIFICATION_NEW_OFFER_MADE             @"NotificationNewOfferMade"
-#define     NOTIFICATION_OFFER_CANCELLED            @"NotificationOfferCancelled"
-#define     NOTIFICATION_OFFER_DECLINED             @"NotificationOfferDeclined"
-#define     NOTIFICATION_OFFER_ACCEPTED             @"NotificationOfferAccepted"
-#define     NOTIFICATION_USERNAME_BUTTON_TAP_EVENT  @"NotificationUsernameButtonTapEvent"
-#define     NOTIFICATION_USER_PROFILE_EDITED_EVENT  @"NotificationUserProfileEditedEvent"
+#define     NOTIFICATION_USER_SIGNED_UP                 @"NCUserSignedUp"
+#define		NOTIFICATION_USER_LOGGED_IN                 @"NCUserLoggedIn"
+#define		NOTIFICATION_USER_LOGGED_OUT                @"NCUserLoggedOut"
+#define     NOTIFICATION_NEW_OFFER_MADE_BY_ME           @"NotificationNewOfferMadeByMe"
+#define     NOTIFICATION_NEW_OFFER_MADE                 @"NotificationNewOfferMade"
+#define     NOTIFICATION_OFFER_CANCELLED                @"NotificationOfferCancelled"
+#define     NOTIFICATION_OFFER_DECLINED                 @"NotificationOfferDeclined"
+#define     NOTIFICATION_OFFER_ACCEPTED                 @"NotificationOfferAccepted"
+#define     NOTIFICATION_USERNAME_BUTTON_TAP_EVENT      @"NotificationUsernameButtonTapEvent"
+#define     NOTIFICATION_USER_PROFILE_EDITED_EVENT      @"NotificationUserProfileEditedEvent"
+#define     NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT  @"NotificationEnterAppThroughPushNotificationEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"

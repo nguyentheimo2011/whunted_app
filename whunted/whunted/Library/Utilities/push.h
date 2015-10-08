@@ -17,6 +17,6 @@ void			ParsePushUserResign		(void);
 
 //------------------------------------------------------------------------------------------------------------------------------
 void			SendPushNotification1	(NSString *groupId, NSString *text);
-void			SendPushNotification2	(NSArray *members, NSString *text);
+void			SendPushNotification2	(NSArray *members, NSString *groupID, NSString *text);
 
 

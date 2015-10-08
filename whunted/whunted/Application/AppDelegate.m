@@ -97,6 +97,12 @@
     else
     {
         [PFPush handlePush:userInfo];
+        
+        if ([[userInfo allKeys] containsObject:FB_GROUP_ID])
+        {
+            NSString *groupID = [userInfo objectForKey:FB_GROUP_ID];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT object:groupID];
+        }
     }
 }
  
