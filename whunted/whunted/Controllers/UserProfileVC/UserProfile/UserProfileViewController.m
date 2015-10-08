@@ -817,6 +817,7 @@
     if (_curViewMode == HistoryCollectionViewModeBuying)
     {
         HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
+        cell.cellIndex = indexPath.row;
         
         if (cell.wantData == nil)
         {
@@ -835,6 +836,7 @@
     else
     {
        MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+        cell.cellIndex = indexPath.row;
         
         if (cell.wantData == nil)
             [cell initCell];
@@ -1167,6 +1169,10 @@
     }];
 }
 
+/*
+ * Sort my whunts list in such a way that unfulfilled whunts are on top and fulfilled whunts are at the bottom.
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) sortMyWhuntsList
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1185,6 +1191,10 @@
     [unfulfilledWhunts addObjectsFromArray:fulfilledWhunts];
     _myWantDataList = unfulfilledWhunts;
 }
+
+/*
+ * Retrieve a list of whunts in which I act as a seller. The whunts includes those already fulfilled and those not yet fulfilled.
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveMySellList
@@ -1295,6 +1305,9 @@
         }
     }];
 }
+
+
+#pragma mark - Backend Update
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveLatestWantData
