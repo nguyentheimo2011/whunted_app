@@ -416,7 +416,10 @@
 - (void) enteringAppThroughPushNotificationEventHandler: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self setSelectedIndex:2];
+    [self setSelectedIndex:kCHAT_VIEW_TAB_INDEX];
+    
+    NSString *groupID = notification.object;
+    [_inboxVC openChatConversationWithGroupID:groupID];
 }
 
 @end

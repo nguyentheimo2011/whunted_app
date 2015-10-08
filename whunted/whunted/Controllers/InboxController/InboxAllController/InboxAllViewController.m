@@ -233,28 +233,7 @@
     [_inboxTableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *recent = _categorizedMessages[indexPath.row];
-    ChatView *chatView = [[ChatView alloc] initWith:recent[FB_GROUP_ID]];
-    [chatView setUser2Username:recent[FB_OPPOSING_USER_USERNAME]];
-    chatView.delegate = self;
-    chatView.isUnread = [recent[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0;
-    
-    // re-create offerData from recent chat conversation 
-    TransactionData *offerData      =   [[TransactionData alloc] init];
-    offerData.objectID              =   recent[FB_CURRENT_OFFER_ID];
-    offerData.itemID                =   recent[FB_ITEM_ID];
-    offerData.itemName              =   recent[FB_ITEM_NAME];
-    offerData.sellerID              =   [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:0];
-    offerData.buyerID               =   [(NSArray *) recent[FB_GROUP_MEMBERS] objectAtIndex:1];
-    offerData.initiatorID           =   recent[FB_TRANSACTION_LAST_USER];
-    offerData.originalDemandedPrice =   recent[FB_ORIGINAL_DEMANDED_PRICE];
-    offerData.offeredPrice          =   recent[FB_CURRENT_OFFERED_PRICE];
-    offerData.deliveryTime          =   recent[FB_CURRENT_OFFERED_DELIVERY_TIME];
-    offerData.transactionStatus     =   recent[FB_TRANSACTION_STATUS];
-    
-    [chatView setOfferData:offerData];
-    
-    chatView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:chatView animated:YES];
+    [self navigateToChatConversation:recent];
 }
 
 
@@ -286,23 +265,94 @@
 - (void) updateCategorizedMessages
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_categorySegmentedControl.selectedSegmentIndex == 0) { // Display all messages
+    if (_categorySegmentedControl.selectedSegmentIndex == 0)
+    {
+        // Display all messages
         _categorizedMessages = [NSMutableArray arrayWithArray:_recentMessages];
-    } else if (_categorySegmentedControl.selectedSegmentIndex == 1) { // Display messages that acted as a seller
+    }
+    else if (_categorySegmentedControl.selectedSegmentIndex == 1)
+    {
+        // Display messages that acted as a seller
         _categorizedMessages = [NSMutableArray array];
         
         for (NSDictionary *recent in _recentMessages) {
             if ([[PFUser currentUser].objectId isEqualToString:recent[FB_ITEM_SELLER_ID]])
                 [_categorizedMessages addObject:recent];
         }
-    } else if (_categorySegmentedControl.selectedSegmentIndex == 2) { // Display message that acted as a buyer
+    }
+    else if (_categorySegmentedControl.selectedSegmentIndex == 2)
+    {
+        // Display message that acted as a buyer
         _categorizedMessages = [NSMutableArray array];
         
-        for (NSDictionary *recent in _recentMessages) {
+        for (NSDictionary *recent in _recentMessages)
+        {
             if ([[PFUser currentUser].objectId isEqualToString:recent[FB_ITEM_BUYER_ID]])
                 [_categorizedMessages addObject:recent];
         }
     }
+}
+
+/*
+ * Open ChatView of a conversation
+ */
+ 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) navigateToChatConversation: (NSDictionary *) chatDict
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    ChatView *chatView = [[ChatView alloc] initWith:chatDict[FB_GROUP_ID]];
+    [chatView setUser2Username:chatDict[FB_OPPOSING_USER_USERNAME]];
+    chatView.delegate = self;
+    chatView.isUnread = [chatDict[FB_UNREAD_MESSAGES_COUNTER] integerValue] > 0;
+    
+    // re-create offerData from recent chat conversation
+    TransactionData *offerData      =   [[TransactionData alloc] init];
+    offerData.objectID              =   chatDict[FB_CURRENT_OFFER_ID];
+    offerData.itemID                =   chatDict[FB_ITEM_ID];
+    offerData.itemName              =   chatDict[FB_ITEM_NAME];
+    offerData.sellerID              =   [(NSArray *) chatDict[FB_GROUP_MEMBERS] objectAtIndex:0];
+    offerData.buyerID               =   [(NSArray *) chatDict[FB_GROUP_MEMBERS] objectAtIndex:1];
+    offerData.initiatorID           =   chatDict[FB_TRANSACTION_LAST_USER];
+    offerData.originalDemandedPrice =   chatDict[FB_ORIGINAL_DEMANDED_PRICE];
+    offerData.offeredPrice          =   chatDict[FB_CURRENT_OFFERED_PRICE];
+    offerData.deliveryTime          =   chatDict[FB_CURRENT_OFFERED_DELIVERY_TIME];
+    offerData.transactionStatus     =   chatDict[FB_TRANSACTION_STATUS];
+    
+    [chatView setOfferData:offerData];
+    
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
+
+#pragma mark - Puclic methods
+
+/*
+ * Called when user enters app by swiping notification from log screen
+ * 1. switch to "All" tab to show all chat conversations  2. find chat conversation with groupID  3. Navigate to the appropriate
+ * chat conversation
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) openChatConversationWithGroupID:(NSString *)groupID
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // switch to "All" tab
+    [_categorySegmentedControl setSelectedSegmentIndex:0];
+    _categorizedMessages = [NSMutableArray arrayWithArray:_recentMessages];
+    
+    // find chat conversation
+    NSDictionary *targetedChatDict;
+    for (int i=0; i<_categorizedMessages.count; i++)
+    {
+        NSDictionary *chatDict = [_categorizedMessages objectAtIndex:i];
+        if ([[chatDict objectForKey:FB_GROUP_ID] isEqualToString:groupID])
+            targetedChatDict = chatDict;
+    }
+    
+    if (targetedChatDict)
+        [self navigateToChatConversation:targetedChatDict];
 }
 
 @end

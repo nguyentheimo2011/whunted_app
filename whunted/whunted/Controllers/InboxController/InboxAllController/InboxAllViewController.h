@@ -28,4 +28,6 @@
 
 @property (nonatomic)   NSInteger                   numOfUnreadConversations;
 
+- (void) openChatConversationWithGroupID: (NSString *) groupID;
+
 @end
