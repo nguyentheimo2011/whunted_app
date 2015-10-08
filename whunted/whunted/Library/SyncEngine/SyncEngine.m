@@ -8,6 +8,7 @@
 
 #import "SyncEngine.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 #import <Parse/Parse.h>
 
@@ -60,13 +61,18 @@
     [query setLimit:1000];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
-         if (!error) {
-             for (PFObject *obj in objects) {
+         if (!error)
+         {
+             for (PFObject *obj in objects)
+             {
                  [obj pinInBackgroundWithName:PF_ONGOING_TRANSACTION_CLASS];
              }
+             
              [self executeSyncCompletionOperations];
-         } else {
-//             NSLog(@"Error: %@ %@", error, [error userInfo]);
+         }
+         else
+         {
+             [Utilities handleError:error];
          }
      }];
 }

@@ -602,7 +602,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
-//    NSLog(@"%@", errorMessage);
+    NSLog(@"%@", errorMessage);
     [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
 }
 
@@ -738,7 +738,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFFile *profileImage = user[PF_USER_PICTURE];
-    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2)
+    {
         if (!error2)
         {
             UIImage *image = [UIImage imageWithData:data];
@@ -746,7 +747,7 @@
         }
         else
         {
-//            NSLog(@"%@ %@", error2, [error2 userInfo]);
+            [Utilities handleError:error2];
         }
     }];
 }
@@ -765,7 +766,7 @@
         }
         else
         {
-//            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
     }];
 }

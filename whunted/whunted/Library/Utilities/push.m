@@ -13,6 +13,7 @@
 #import <Firebase/Firebase.h>
 
 #import "AppConstant.h"
+#import "Utilities.h"
 
 #import "push.h"
 
@@ -26,7 +27,7 @@ void ParsePushUserAssign(void)
 	{
 		if (error != nil)
 		{
-//			NSLog(@"ParsePushUserAssign save error.");
+            [Utilities handleError:error];
 		}
 	}];
 }
@@ -41,7 +42,7 @@ void ParsePushUserResign(void)
 	{
 		if (error != nil)
 		{
-//			NSLog(@"ParsePushUserResign save error.");
+            [Utilities handleError:error];
 		}
 	}];
 }
@@ -96,7 +97,7 @@ void SendPushNotification2(NSArray *members, NSString *groupID, NSString *text)
 	{
 		if (error != nil)
 		{
-//			NSLog(@"SendPushNotification2 send error.");
+            [Utilities handleError:error];
 		}
 	}];
 }

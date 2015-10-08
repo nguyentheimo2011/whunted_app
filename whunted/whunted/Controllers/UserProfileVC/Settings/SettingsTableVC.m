@@ -62,7 +62,8 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"SettingsTableVC didReceiveMemoryWarning");
+    
+    [Utilities logOutMessage:@"SettingsTableVC didReceiveMemoryWarning"];
 }
 
 

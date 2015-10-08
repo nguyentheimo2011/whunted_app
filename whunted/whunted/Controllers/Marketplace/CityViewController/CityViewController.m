@@ -53,7 +53,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"CityViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"CityViewController didReceiveMemoryWarning"];
 }
 
 

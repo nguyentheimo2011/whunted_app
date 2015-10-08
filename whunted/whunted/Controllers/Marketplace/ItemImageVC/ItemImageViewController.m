@@ -8,6 +8,7 @@
 
 #import "ItemImageViewController.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @implementation ItemImageViewController
 
@@ -37,7 +38,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"ItemImageViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"ItemImageViewController didReceiveMemoryWarning"];
 }
 
 #pragma mark - UI Handlers

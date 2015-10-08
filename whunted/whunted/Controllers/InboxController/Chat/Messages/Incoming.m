@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 
 #import "AppConstant.h"
+#import "Utilities.h"
 #import "converter.h"
 
 #import "EmojiMediaItem.h"
@@ -111,8 +112,9 @@
 			mediaItem.image = image;
 			[chatView.collectionView reloadData];
 		}
-        else {
-//            NSLog(@"Incoming createVideoMessage picture load error.");
+        else
+        {
+            [Utilities logOutMessage:@"Incoming createVideoMessage picture load error."];
         }
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -142,7 +144,7 @@
 		}
         else
         {
-//            NSLog(@"Incoming createPictureMessage picture load error.");
+            [Utilities logOutMessage:@"Incoming createPictureMessage picture load error."];
         }
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------

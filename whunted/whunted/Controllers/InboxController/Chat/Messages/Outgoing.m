@@ -114,7 +114,7 @@
 				}
 				else
                 {
-                    NSLog(@"Outgoing sendVideoMessage video save error.");
+                    [Utilities handleError:error];
                 }
 			}
 			progressBlock:^(int percentDone)
@@ -124,7 +124,7 @@
 		}
 		else
         {
-//            NSLog(@"Outgoing sendVideoMessage picture save error.");
+            [Utilities handleError:error];
         }
 	}];
 }
@@ -153,7 +153,7 @@
 		}
 		else
         {
-//            NSLog(@"Outgoing sendPictureMessage picture save error.");
+            [Utilities handleError:error];
         }
 	}
 	progressBlock:^(int percentDone)
@@ -190,7 +190,7 @@
 	{
 		if (error)
         {
-//            NSLog(@"Outgoing sendMessage network error.");
+            [Utilities handleError:error];
         }
         else {
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:item[@"key"]];

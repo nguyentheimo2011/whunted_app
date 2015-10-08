@@ -106,7 +106,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 	{
 		if (error)
         {
-//            NSLog(@"CreateRecentItem2 save error.");
+            [Utilities handleError:error];
         }
         else
         {
@@ -160,7 +160,7 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
      {
          if (error != nil)
          {
-//             NSLog(@"UpdateRecentCounter2 save error.");
+             [Utilities handleError:error];
          }
      }];
 }
@@ -197,7 +197,7 @@ void ClearRecentCounter2(NSDictionary *recent)
 	{
 		if (error != nil)
         {
-//            NSLog(@"ClearRecentCounter2 save error.");
+            [Utilities handleError:error];
         }
 	}];
 }
@@ -232,7 +232,7 @@ void DeleteRecentItem(NSDictionary *recent)
 	{
 		if (error != nil)
         {
-//            NSLog(@"DeleteRecentItem delete error.");
+            [Utilities handleError:error];
         }
 	}];
 }

@@ -419,10 +419,11 @@
 //----------------------------------------------------------------------------------------------------------------------------
 {
     PFObject *obj = [feedbackData pfObjectFromFeedbackData];
-    [obj saveInBackgroundWithBlock:^(BOOL success, NSError *error) {
+    [obj saveInBackgroundWithBlock:^(BOOL success, NSError *error)
+    {
         if (!success)
         {
-//            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         else
             [_delegate leaveFeedBackViewController:self didCompleteGivingFeedBack:feedbackData];

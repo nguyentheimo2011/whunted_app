@@ -115,7 +115,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"UserProfileViewController didReceiveMemoryWarning");
+    
+    [Utilities logOutMessage:@"UserProfileViewController didReceiveMemoryWarning"];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -913,7 +914,7 @@
         }
         else
         {
-//            NSLog(@"Error %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
@@ -1081,10 +1082,11 @@
     PFQuery *posQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [posQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [posQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_POSITIVE];
-    [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+    [posQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error)
+    {
         if (error)
         {
-//            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         else
         {
@@ -1097,10 +1099,11 @@
     PFQuery *neuQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [neuQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [neuQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEUTRAL];
-    [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+    [neuQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error)
+    {
         if (error)
         {
-//            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         else
         {
@@ -1113,10 +1116,11 @@
     PFQuery *negQuery = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [negQuery whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [negQuery whereKey:PF_FEEDBACK_RATING equalTo:FEEDBACK_RATING_NEGATIVE];
-    [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+    [negQuery countObjectsInBackgroundWithBlock:^(int count, NSError *error)
+    {
         if (error)
         {
-//            NSLog(@"%@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         else
         {

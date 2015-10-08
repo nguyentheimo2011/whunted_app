@@ -120,7 +120,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"PreferenceViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"PreferenceViewController didReceiveMemoryWarning"];
 }
 
 

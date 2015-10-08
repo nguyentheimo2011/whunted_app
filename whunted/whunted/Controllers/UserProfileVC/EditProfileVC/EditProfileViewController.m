@@ -128,7 +128,7 @@
 {
     [super didReceiveMemoryWarning];
     
-//    NSLog(@"EditProfileViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"EditProfileViewController didReceiveMemoryWarning"];
 }
 
 

@@ -108,7 +108,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"ItemDetailsViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"ItemDetailsViewController didReceiveMemoryWarning"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

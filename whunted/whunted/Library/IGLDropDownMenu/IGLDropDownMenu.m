@@ -410,7 +410,6 @@
         } else {
             CGFloat buttonHeight = CGRectGetHeight(self.menuButton.frame);
             y = self.frame.size.height - buttonHeight - y;
-//            NSLog(@"bHeight: %f, height: %f", buttonHeight, self.frame.size.height);
         }
         
     }

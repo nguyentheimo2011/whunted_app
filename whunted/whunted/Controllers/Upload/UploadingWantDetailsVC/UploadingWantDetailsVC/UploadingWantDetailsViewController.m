@@ -580,7 +580,8 @@
         itemPictureObj.objectId = replacedObj.objectId;
     }
     
-    [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+    [itemPictureObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
         if (succeeded)
         {
             if (buttonIndex + 1 > _wantData.itemPictures.count)
@@ -590,7 +591,7 @@
         }
         else
         {
-//            NSLog(@"Error %@ %@", error, [error userInfo]);
+            [Utilities handleError:error];
         }
         
         UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];

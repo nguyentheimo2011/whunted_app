@@ -160,16 +160,17 @@
 {
     NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
     
-    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
+    {
         if (!user)
         {
             if (!error)
             {
-//                NSLog(@"The user cancelled the Facebook login.");
+                [Utilities logOutMessage:@"The user cancelled the Facebook login."];
             }
             else
             {
-//                NSLog(@"An error occurred: %@", error.localizedDescription);
+                [Utilities handleError:error];
             }
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -303,12 +304,12 @@
         else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
         {
             // Since the request failed, we can check if it was due to an invalid session
-//            NSLog(@"The facebook session was invalidated");
+            [Utilities logOutMessage:@"The facebook session was invalidated"];
             [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
         }
         else
         {
-//            NSLog(@"Some other error: %@", error);
+            [Utilities handleError:error];
         }
     }];
 }

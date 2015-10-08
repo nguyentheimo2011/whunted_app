@@ -624,7 +624,7 @@
         {
             if (objects.count > 1)
             {
-//                NSLog(@"Error in acceptingOfferButtonTapEventHandler");
+                [Utilities logOutMessage:@"Error in acceptingOfferButtonTapEventHandler"];
             }
             else
             {
@@ -672,7 +672,7 @@
             {
                 if ([objects count] > 1)
                 {
-//                    NSLog(@"leavingFeedbackButtonTapEventHandler duplicate feedback");
+                    [Utilities logOutMessage:@"leavingFeedbackButtonTapEventHandler duplicate feedback"];
                 }
                 else
                 {
@@ -1075,7 +1075,7 @@
 				header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-//	NSLog(@"didTapLoadEarlierMessagesButton");
+    [Utilities logOutMessage:@"didTapLoadEarlierMessagesButton"];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1107,7 +1107,7 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-//	NSLog(@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation));
+    [Utilities logOutMessage:[NSString stringWithFormat:@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation)]];
 }
 
 

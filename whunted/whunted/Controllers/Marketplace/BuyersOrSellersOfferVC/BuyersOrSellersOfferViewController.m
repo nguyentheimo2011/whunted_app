@@ -66,7 +66,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super didReceiveMemoryWarning];
-//    NSLog(@"BuyersOrSellersOfferViewController didReceiveMemoryWarning");
+    [Utilities logOutMessage:@"BuyersOrSellersOfferViewController didReceiveMemoryWarning"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
