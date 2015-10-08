@@ -154,11 +154,31 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editInfoOfMyWantData)];
 }
 
+/*
+ * Used in viewDidLoad. ScrollView is adjusted automatically to start from the bottom of navigation bar
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addScrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height)];
+    [_scrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:_scrollView];
+}
+
+/*
+ * Used when navigation bar has already been loaded. Used to re-add scrollview to ItemDetails view.
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addScrollView2
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat height = [Utilities getHeightOfNavigationAndStatusBars:self];
+    
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, height, WINSIZE.width, WINSIZE.height - height)];
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height)];
     [_scrollView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_scrollView];
@@ -612,22 +632,16 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addItemSoldButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (void) updateUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [_scrollView removeFromSuperview];
     
     [self retrieveItemImages];
-    [self addScrollView];
+    [self addScrollView2];
     [self addPageViewController];
     [self addItemDetails];
+    [self addFunctionalButtons];
 }
 
 
