@@ -913,4 +913,19 @@
 }
 
 
+#pragma mark - Messaging System
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) generateChatGroupIDFromItemID:(NSString *)itemID user1:(PFUser *)user1 user2:(PFUser *)user2
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *id1 = user1.objectId;
+    NSString *id2 = user2.objectId;
+    
+    NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", itemID, id2, id1];
+    
+    return groupId;
+}
+
+
 @end

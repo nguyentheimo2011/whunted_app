@@ -184,5 +184,10 @@
 + (NSString *) getSynonymOfWord: (NSString *) word;
 
 
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Messaging System
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (NSString *) generateChatGroupIDFromItemID: (NSString *) itemID user1: (PFUser *) user1 user2: (PFUser *) user2;
 
 @end

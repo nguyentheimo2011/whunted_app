@@ -25,10 +25,7 @@
 NSString* StartPrivateChat(PFUser *user1, PFUser *user2, TransactionData *offerData, CompletionHandler handler)
 //------------------------------------------------------------------------------------------------------------------------------
 {
-	NSString *id1 = user1.objectId;
-	NSString *id2 = user2.objectId;
-	
-	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", offerData.itemID, id2, id1];
+    NSString *groupId = [Utilities generateChatGroupIDFromItemID:offerData.itemID user1:user1 user2:user2];
 	
 	NSArray *members = @[user1.objectId, user2.objectId];
     NSMutableDictionary *handlerExecuted = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], HANDLER_EXECUTED, nil];
