@@ -1126,6 +1126,11 @@
     }];
 }
 
+/*
+ * Retrieve all whunts posted by one user. Sort it in such a way that unfulfilled whunts are on top and fulfilled whunts are 
+ * at the bottom.
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveMyWantList
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1145,6 +1150,8 @@
                 [_myWantDataList addObject:wantData];
             }
             
+            [self sortMyWhuntsList];
+            
             [self updateTotalListingNumLabel:_myWantDataList.count numListingsDisplayed:YES];
             
             [_historyCollectionView reloadData];
@@ -1154,6 +1161,25 @@
             [Utilities handleError:error];
         }
     }];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) sortMyWhuntsList
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableArray *unfulfilledWhunts = [[NSMutableArray alloc] init];
+    NSMutableArray *fulfilledWhunts = [[NSMutableArray alloc] init];
+    
+    for (WantData *wantData in _myWantDataList)
+    {
+        if (wantData.isFulfilled)
+            [fulfilledWhunts addObject:wantData];
+        else
+            [unfulfilledWhunts addObject:wantData];
+    }
+    
+    [unfulfilledWhunts addObjectsFromArray:fulfilledWhunts];
+    _myWantDataList = unfulfilledWhunts;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
