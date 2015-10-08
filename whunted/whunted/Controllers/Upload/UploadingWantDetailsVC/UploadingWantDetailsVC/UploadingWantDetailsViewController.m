@@ -472,10 +472,15 @@
             {
                 [Utilities handleError:error];
             }
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [_delegate completeEditingWantData];
-            [self.navigationController popViewControllerAnimated:YES];
+            else
+            {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+                [_delegate completeEditingWantData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:_wantData];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }];
     }
 }

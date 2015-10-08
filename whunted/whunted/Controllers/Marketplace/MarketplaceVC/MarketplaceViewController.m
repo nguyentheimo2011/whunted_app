@@ -94,6 +94,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveWantDataList) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
 }
 
 
@@ -574,6 +575,29 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
     
     [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+/*
+ * Update whunt details of the edited whunt in marketplace
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) whuntDetailsEditedEventHandler: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    WantData *editedWhunt = notification.object;
+    
+    for (int i=0; i<_wantDataList.count; i++)
+    {
+        WantData *wantData = [_wantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:editedWhunt.itemID])
+        {
+            [_wantDataList replaceObjectAtIndex:i withObject:editedWhunt];
+            [self updateMatchedWantData];
+            break;
+        }
+    }
 }
 
 
