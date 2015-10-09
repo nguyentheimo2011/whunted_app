@@ -139,6 +139,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1056,6 +1057,25 @@
     [_scrollView removeFromSuperview];
     
     [self initUI];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) whuntDetailsEditedEventHandler: (NSNotification *) notification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    WantData *editedWhunt = notification.object;
+    
+    for (int i=0; i<_myWantDataList.count; i++)
+    {
+        WantData *wantData = [_myWantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:editedWhunt.itemID])
+        {
+            [_myWantDataList replaceObjectAtIndex:i withObject:editedWhunt];
+            [_historyCollectionView reloadData];
+            break;
+        }
+    }
 }
 
 
