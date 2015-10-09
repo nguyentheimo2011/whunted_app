@@ -43,6 +43,9 @@
 //------------------------------------------------------------------------------------------------------------------------------
 @implementation MessageViewCell
 //------------------------------------------------------------------------------------------------------------------------------
+{
+    UIButton        *_userProfilePicButton;
+}
 
 @synthesize userProfileImage        =   _userProfileImage;
 @synthesize usernameLabel           =   _usernameLabel;
@@ -90,6 +93,19 @@
     [_itemImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     _itemImageView.layer.cornerRadius = 3;
     _itemImageView.layer.masksToBounds = YES;
+    
+    [self addUserProfilePicButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addUserProfilePicButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _userProfilePicButton = [[UIButton alloc] initWithFrame:_userProfileImage.frame];
+    _userProfilePicButton.layer.cornerRadius = _userProfileImage.frame.size.height/2;
+    _userProfilePicButton.clipsToBounds = YES;
+    [_userProfilePicButton addTarget:self action:@selector(userProfilePicButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_userProfilePicButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -103,7 +119,7 @@
     
     if (image)
     {
-        [_userProfileImage setImage:image];
+        [_userProfilePicButton setBackgroundImage:image forState:UIControlStateNormal];
     }
     else
     {
@@ -190,7 +206,7 @@
                      if (_cellIndex == cellIndex)
                      {
                          UIImage *image = [UIImage imageWithData:data];
-                         [_userProfileImage setImage:image];
+                         [_userProfilePicButton setBackgroundImage:image forState:UIControlStateNormal];
                          
                          NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
                          [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
@@ -256,5 +272,16 @@
         }
     }];
 }
+
+
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) userProfilePicButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
+}
+
 
 @end

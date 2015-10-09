@@ -7,6 +7,7 @@
 //
 
 #import "InboxAllViewController.h"
+#import "UserProfileViewController.h"
 #import "MessageViewCell.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -53,6 +54,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
+    
+    [self addNotificationListener];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -62,6 +65,13 @@
     [super viewWillAppear:animated];
     
     [Utilities sendScreenNameToGoogleAnalyticsTracker:@"InboxScreen"];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addNotificationListener
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:nil];
 }
 
 
@@ -122,6 +132,7 @@
 }
 
 #pragma mark - Backend methods
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)loadRecents
 //------------------------------------------------------------------------------------------------------------------------------
@@ -354,6 +365,31 @@
     
     if (targetedChatDict)
         [self navigateToChatConversation:targetedChatDict];
+}
+
+
+/*
+ * Display user's profile.
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameButtonTapEventHandler: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    UserHandler handler = ^(PFUser *user)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    NSString *userID = notification.object;
+    [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
 }
 
 @end

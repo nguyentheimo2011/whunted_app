@@ -237,6 +237,7 @@
 #define     NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT     @"NotificationWhuntDetailsEditedEvent"
 #define     NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT      @"NotificationUsernameButtonMarketplaceTapEvent"
 #define     NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT     @"NotificationUsernameButtonUserProfileTapEvent"
+#define     NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT             @"NotificationUsernameButtonChatTapEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"
