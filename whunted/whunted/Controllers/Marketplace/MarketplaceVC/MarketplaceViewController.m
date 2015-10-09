@@ -98,7 +98,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeFulfilledWhuntFromMarketplace:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT object:nil];
 }
 
 
@@ -451,6 +451,7 @@
 {
     MarketplaceCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     cell.cellIndex = indexPath.row;
+    cell.cellIdentifier = CELL_IN_MARKETPLACE;
     
     if (cell.wantData == nil) 
         [cell initCell];

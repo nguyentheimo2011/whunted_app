@@ -235,7 +235,8 @@
 #define     NOTIFICATION_USER_PROFILE_EDITED_EVENT      @"NotificationUserProfileEditedEvent"
 #define     NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT  @"NotificationEnterAppThroughPushNotificationEvent"
 #define     NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT     @"NotificationWhuntDetailsEditedEvent"
-#define     NOTIFICATION_USERNAME_BUTTON_TAP_EVENT      @"NotificationUsernameButtonTapEvent"
+#define     NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT      @"NotificationUsernameButtonMarketplaceTapEvent"
+#define     NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT     @"NotificationUsernameButtonUserProfileTapEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"
@@ -365,6 +366,10 @@
 //----------------------------------------------------------------------------------------------------------------------------
 #define     CURRENT_BUYER_LOCATION_FILTER               @"currBuyerLocationFilter"
 #define     ITEM_BUYER_LOCATION_DEFAULT                 @"All"
+
+//----------------------------------------------------------------------------------------------------------------------------
+#define     CELL_IN_MARKETPLACE                         @"cellInMarketplace"
+#define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60

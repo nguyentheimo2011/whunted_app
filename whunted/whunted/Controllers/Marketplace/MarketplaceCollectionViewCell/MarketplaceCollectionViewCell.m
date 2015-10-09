@@ -38,8 +38,9 @@
     NSInteger           _likesNum;
 }
 
-@synthesize wantData    =   _wantData;
-@synthesize cellIndex   =   _cellIndex;
+@synthesize wantData        =   _wantData;
+@synthesize cellIndex       =   _cellIndex;
+@synthesize cellIdentifier  =   _cellIdentifier;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -287,14 +288,29 @@
 - (void) usernameLabelTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_wantData.buyerID];
+    if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT object:_wantData.buyerID];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT object:_wantData.buyerID];
+    }
+    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) profilePictureTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_wantData.buyerID];
+    if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT object:_wantData.buyerID];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT object:_wantData.buyerID];
+    }
 }
 
 

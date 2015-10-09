@@ -141,6 +141,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntFulfilledEventHandler:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT object:nil];
 }
 
 /*
@@ -840,6 +841,7 @@
     {
        MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
         cell.cellIndex = indexPath.row;
+        cell.cellIdentifier = CELL_IN_USER_PROFILE;
         
         if (cell.wantData == nil)
             [cell initCell];
@@ -1112,6 +1114,30 @@
             break;
         }
     }
+}
+
+/*
+ * Display user's profile.
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameButtonTapEventHandler: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    UserHandler handler = ^(PFUser *user)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    NSString *userID = notification.object;
+    [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
 }
 
 
