@@ -716,7 +716,7 @@
     _currProductOrigin = productOrigin;
     [[NSUserDefaults standardUserDefaults] setObject:productOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
     
-    [self updateMatchedWantData];
+    [self retrieveWantDataList];
 }
 
 
