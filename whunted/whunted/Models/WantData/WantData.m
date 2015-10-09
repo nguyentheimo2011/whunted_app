@@ -44,7 +44,7 @@
         
         self.buyerID            =   wantDataPFObject[PF_ITEM_BUYER_ID];
         self.buyerUsername      =   wantDataPFObject[PF_ITEM_BUYER_USERNAME];
-        self.demandedPrice      =   wantDataPFObject[PF_ITEM_DEMANDED_PRICE];
+        self.demandedPrice      =   [Utilities formattedPriceFromNumber:wantDataPFObject[PF_ITEM_DEMANDED_PRICE]];
         self.acceptedSecondHand   =   [wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND] boolValue];
         self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
        
@@ -80,7 +80,7 @@
     
     wantDataPFObject[PF_ITEM_BUYER_ID]              =   self.buyerID;
     wantDataPFObject[PF_ITEM_BUYER_USERNAME]        =   self.buyerUsername;
-    wantDataPFObject[PF_ITEM_DEMANDED_PRICE]        =   self.demandedPrice;
+    wantDataPFObject[PF_ITEM_DEMANDED_PRICE]        =   [Utilities numberFromFormattedPrice:self.demandedPrice];
     wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND]   =   [Utilities stringFromBoolean:self.acceptedSecondHand];
     wantDataPFObject[PF_ITEM_MEETING_PLACE]         =   self.meetingLocation;
     
