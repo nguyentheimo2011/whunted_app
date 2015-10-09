@@ -309,8 +309,8 @@
     _leavingFeedbackButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
     [_leavingFeedbackButton createTitle:NSLocalizedString(@"Leave Feedback", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _leavingFeedbackButton.cornerRadius = 6.0;
-    _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR;
-    _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR;
+    _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR_LIGHTER;
+    _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR_LIGHTER;
     _leavingFeedbackButton.titleColor = [UIColor whiteColor];
     [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_background addSubview:_leavingFeedbackButton];
