@@ -744,7 +744,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query orderByDescending:PF_CREATED_AT];
+    [self setSortingBy:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
@@ -1077,6 +1077,33 @@
     }
     
     _lastContentOffset = scrollView.contentOffset.y;
+}
+
+
+#pragma mark - Helper functions
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setSortingBy: (PFQuery *) query
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+    {
+        [query orderByDescending:PF_CREATED_AT];
+    }
+    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+    {
+        [query orderByAscending:PF_ITEM_DEMANDED_PRICE];
+    }
+    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+    {
+        [query orderByDescending:PF_ITEM_DEMANDED_PRICE];
+    }
+    else
+    {
+        [query orderByDescending:PF_CREATED_AT];
+    }
+    
+    
 }
 
 @end
