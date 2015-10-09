@@ -1366,9 +1366,10 @@
         {
             NSString *itemID = offerObject[@"itemID"];
             PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-            [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error) {
+            [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error)
+            {
                 WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
-                [_mySellDataList insertObject:wantData atIndex:0];
+                [self replacePrevSellDataIfNecessary:wantData];
                 [self updateTotalListingNumLabel:_mySellDataList.count numListingsDisplayed:YES];
                 [_historyCollectionView reloadData];
             }];
@@ -1378,6 +1379,21 @@
             [Utilities handleError:error];
         }
     }];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) replacePrevSellDataIfNecessary: (WantData *) targetedWantData
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    for (WantData *wantData in _mySellDataList)
+    {
+        if ([wantData.itemID isEqualToString:targetedWantData.itemID])
+        {
+            [_mySellDataList removeObject:wantData];
+            [_mySellDataList insertObject:targetedWantData atIndex:0];
+            break;
+        }
+    }
 }
 
 @end
