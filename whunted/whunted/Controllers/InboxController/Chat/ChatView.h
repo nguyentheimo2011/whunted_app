@@ -34,7 +34,7 @@
 
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate, LeaveFeedbackViewDelegate>
+@interface ChatView : JSQMessagesViewController <RNGridMenuDelegate, UIImagePickerControllerDelegate, BuyersOrSellerOfferDelegate, LeaveFeedbackViewDelegate, UIAlertViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic)           id<ChatViewDelegate>        delegate;

@@ -580,67 +580,83 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"AcceptOfferFromChatEvent" label:@"AcceptOfferButton" value:nil];
     
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to accept this offer?", nil) message:NSLocalizedString(@"Offer will not be able to cancelled!", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    alertView.delegate = self;
+    [alertView show];
+}
+
+/*
+ * Update UI and Backend after accepting offer from a seller.
+ * 1. Add a new record to table AcceptedTransactionTable
+ * 2. Delete a record from OngoingTransactionData
+ * 3. Update table OngoingWantData
+ * 4. Update UI
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) acceptOffer
+//------------------------------------------------------------------------------------------------------------------------------
+{
     // update transactional data
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData createPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
     [offerObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-    {
-        if (succeeded)
-        {
-            [self adjustButtonsVisibility];
-            
-            // Update recent message
-            NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
-            
-            [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
-            
-            PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-            [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-            {
-                if (!succeeded)
-                {
-                    [pfObj deleteEventually];
-                }
-            }];
-        }
-        else
-        {
-            [Utilities handleError:error];
-            [offerObj saveEventually];
-        }
-    }];
+     {
+         if (succeeded)
+         {
+             [self adjustButtonsVisibility];
+             
+             // Update recent message
+             NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
+             NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+             
+             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
+             
+             PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+             [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+              {
+                  if (!succeeded)
+                  {
+                      [pfObj deleteEventually];
+                  }
+              }];
+         }
+         else
+         {
+             [Utilities handleError:error];
+             [offerObj saveEventually];
+         }
+     }];
     
     // update wantData
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_OBJECT_ID equalTo:_offerData.itemID];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-    {
-        if (error)
-        {
-            [Utilities handleError:error];
-        }
-        else
-        {
-            if (objects.count > 1)
-            {
-                [Utilities logOutMessage:@"Error in acceptingOfferButtonTapEventHandler"];
-            }
-            else
-            {
-                PFObject *object = [objects objectAtIndex:0];
-                object[PF_ITEM_IS_FULFILLED] = STRING_OF_YES;
-                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-                {
-                    if (!succeeded)
-                    {
-                        [Utilities handleError:error];
-                    }
-                }];
-            }
-        }
-    }];
-    
+     {
+         if (error)
+         {
+             [Utilities handleError:error];
+         }
+         else
+         {
+             if (objects.count > 1)
+             {
+                 [Utilities logOutMessage:@"Error in acceptingOfferButtonTapEventHandler"];
+             }
+             else
+             {
+                 PFObject *object = [objects objectAtIndex:0];
+                 object[PF_ITEM_IS_FULFILLED] = STRING_OF_YES;
+                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                  {
+                      if (!succeeded)
+                      {
+                          [Utilities handleError:error];
+                      }
+                  }];
+             }
+         }
+     }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -1207,6 +1223,23 @@
     NSString *action = NSLocalizedString(@"has left a feedback", nil);
     NSString *message = [NSString stringWithFormat:@"%@\n %@", [PFUser currentUser][PF_USER_USERNAME], action];
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeLeavingFeeback TransactionDetails:nil CompletionBlock:nil];
+}
+
+
+#pragma mark - UIAlertViewDelegate methods
+
+/*
+ * AlertView upon accepting offer
+ */
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (buttonIndex == 1) // Accept Offer
+    {
+        [self acceptOffer];
+    }
 }
 
 
