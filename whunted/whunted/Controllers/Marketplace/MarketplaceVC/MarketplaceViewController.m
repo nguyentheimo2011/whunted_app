@@ -8,6 +8,7 @@
 
 #import "MarketplaceViewController.h"
 #import "SellerListViewController.h"
+#import "UserProfileViewController.h"
 #import "TransactionData.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -95,6 +96,7 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveWantDataList) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:nil];
 }
 
 
@@ -598,6 +600,30 @@
             break;
         }
     }
+}
+
+/*
+ * Visit user's profile.
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameButtonTapEventHandler: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    UserHandler handler = ^(PFUser *user)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    NSString *userID = notification.object;
+    [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
 }
 
 

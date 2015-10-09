@@ -234,6 +234,7 @@
 #define     NOTIFICATION_USER_PROFILE_EDITED_EVENT      @"NotificationUserProfileEditedEvent"
 #define     NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT  @"NotificationEnterAppThroughPushNotificationEvent"
 #define     NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT     @"NotificationWhuntDetailsEditedEvent"
+#define     NOTIFICATION_USERNAME_BUTTON_TAP_EVENT      @"NotificationUsernameButtonTapEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"

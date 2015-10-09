@@ -19,7 +19,7 @@
 {
     UILabel             *_itemNameLabel;
     UILabel             *_demandedPriceLabel;
-    UILabel             *_buyerUsernameLabel;
+    UIButton            *_buyerUsernameButton;
     UILabel             *_timestampLabel;
     UIButton            *_sellerNumButton;
     UIButton            *_likeButton;
@@ -76,7 +76,7 @@
     
     [_itemNameLabel setText:_wantData.itemName];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
-    [_buyerUsernameLabel setText:_wantData.buyerUsername];
+    [_buyerUsernameButton setTitle:_wantData.buyerUsername forState:UIControlStateNormal];
     [_timestampLabel setText:[Utilities timestampStringFromDate:_wantData.createdDate]];
     [_likesNumLabel setText:[NSString stringWithFormat:@"%ld", wantData.likesNum]];
     [self resizeLikesNumContainer];
@@ -233,20 +233,22 @@
     CGFloat const kLabelWidth   =   _cellWidth - kLabelXPos - kCellRightMargin;
     CGFloat const kLabelHeight  =   15.0f;
     
-    _buyerUsernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
-    [_buyerUsernameLabel setText:@"Username"];
-    [_buyerUsernameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_buyerUsernameLabel setTextColor:TEXT_COLOR_GRAY];
-    [self addSubview:_buyerUsernameLabel];
+    _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
+    [_buyerUsernameButton setTitle:NSLocalizedString(@"Username", nil) forState:UIControlStateNormal];
+    [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
+    [_buyerUsernameButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
+    _buyerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_buyerUsernameButton addTarget:self action:@selector(usernameLabelTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_buyerUsernameButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelXPos    =   _buyerUsernameLabel.frame.origin.x;
+    CGFloat const kLabelXPos    =   _buyerUsernameButton.frame.origin.x;
     CGFloat const kLabelYPos    =   _cellWidth + 68.0f;
-    CGFloat const kLabelWidth   =   _buyerUsernameLabel.frame.size.width;
+    CGFloat const kLabelWidth   =   _buyerUsernameButton.frame.size.width;
     CGFloat const kLabelHeight  =   15.0f;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
@@ -278,6 +280,13 @@
     }
     
     [self resizeLikesNumContainer];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameLabelTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_wantData.buyerID];
 }
 
 
