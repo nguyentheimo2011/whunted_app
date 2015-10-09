@@ -176,7 +176,7 @@
     
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 28.0)];
     _searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
-    _searchBar.returnKeyType = UIReturnKeyDone;
+    _searchBar.returnKeyType = UIReturnKeySearch;
     _searchBar.delegate = self;
     _searchBar.tintColor = LIGHT_GRAY_COLOR;
     _searchBar.barTintColor = [UIColor colorWithRed:77.0/255 green:124.0/255 blue:194.0/255 alpha:0.5f];
@@ -1018,6 +1018,8 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self searchWantDataBasedOnTerm:searchBar.text];
+    
     [self completeSearch];    
 }
 
@@ -1025,22 +1027,43 @@
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self searchWantDataBasedOnTerm:searchBar.text];
-    
-    [_wantCollectionView reloadData];
+//    [_wantCollectionView reloadData];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) searchWantDataBasedOnTerm: (NSString *) searchTerm
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _displayedWantDataList = [NSMutableArray array];
+    _wantDataList = [[NSMutableArray alloc] init];
     
-    for (WantData *wantData in _sortedAndFilteredWantDataList)
-    {
-        if ([wantData matchSearchTerm:searchTerm])
-            [_displayedWantDataList addObject:wantData];
-    }
+    PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query1 whereKey:PF_ITEM_NAME containsString:searchTerm];
+    
+    PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query2 whereKey:PF_ITEM_DESC containsString:searchTerm];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             for (PFObject *object in objects)
+             {
+                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                 [_wantDataList addObject:wantData];
+             }
+             
+             [self updateMatchedWantData];
+         }
+         else
+         {
+             // Log details of the failure
+             [Utilities handleError:error];
+         }
+     }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
