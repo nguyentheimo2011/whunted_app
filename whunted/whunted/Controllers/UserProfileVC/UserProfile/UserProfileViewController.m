@@ -69,7 +69,8 @@
     
     BOOL                        _isViewingMyProfile;
     BOOL                        _loadingCompletedDataDone;
-    BOOL                        _ongoingOrAcceptedTableLoaded;
+    BOOL                        _loadingOngoingDataDone;
+    BOOL                        _ongoingOrAcceptedTableLoaded;  // Used to update listings num in Selling tab
     
     NSInteger                   _count;
 }
@@ -138,9 +139,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveData) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntFulfilledEventHandler:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
 }
+
+/*
+ * 1. Retrieve whunts posted by the profile owner  2. Retrieve whunts that profile owner has fulfiled or offered.
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveData
@@ -1075,6 +1080,40 @@
     }
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) whuntFulfilledEventHandler: (NSNotification *) notification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *itemID = notification.object;
+    
+    // Update whunt in Buying list
+    for (int i=0; i<_myWantDataList.count; i++)
+    {
+        WantData *wantData = [_myWantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:itemID])
+        {
+            wantData.isFulfilled = YES;
+            [self sortMyWhuntsList];
+            [_historyCollectionView reloadData];
+            break;
+        }
+    }
+    
+    // Update whunt in Selling list
+    for (int i=0; i<_mySellDataList.count; i++)
+    {
+        WantData *wantData = [_mySellDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:itemID])
+        {
+            wantData.isFulfilled = YES;
+            [_historyCollectionView reloadData];
+            break;
+        }
+    }
+}
+
 
 #pragma mark - Helper methods
 
@@ -1224,6 +1263,7 @@
     _count = 0;
     
     _loadingCompletedDataDone = NO;
+    _loadingOngoingDataDone = NO;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -1240,11 +1280,13 @@
             
             _scrollView.contentOffset = CGPointMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - 200.0f);
         }
+        else
+            _loadingOngoingDataDone = YES;
     }];
     
     // retrieve TransactionData from completed table
     [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS completionBlock:^{
-        if (_mySellDataList.count > 0)
+        if (_loadingOngoingDataDone)
         {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
@@ -1271,6 +1313,7 @@
     {
         if (!error)
         {
+            // Update listings number
             _count += offerObjects.count;
             if (_ongoingOrAcceptedTableLoaded)
             {
@@ -1284,36 +1327,47 @@
                 _ongoingOrAcceptedTableLoaded = YES;
             }
             
-            __block NSInteger count = 0;
-            
-            for (int i=0; i<offerObjects.count; i++)
+            // Update history collection view
+            if (offerObjects.count == 0)
             {
                 if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
-                    [_myOngoingSellDataList addObject:[[WantData alloc] init]];
+                    _loadingOngoingDataDone = YES;
                 else
-                    [_myCompletedSellDataList addObject:[[WantData alloc] init]];
+                    _loadingCompletedDataDone = YES;
             }
-            
-            for (int i=0; i<offerObjects.count; i++)
+            else
             {
-                PFObject *object = [offerObjects objectAtIndex:i];
-                NSString *itemID = object[@"itemID"];
-                PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-                [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error)
+                __block NSInteger count = 0;
+                
+                for (int i=0; i<offerObjects.count; i++)
                 {
-                    WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
                     if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
-                        [_myOngoingSellDataList replaceObjectAtIndex:i withObject:wantData];
+                        [_myOngoingSellDataList addObject:[[WantData alloc] init]];
                     else
-                        [_myCompletedSellDataList replaceObjectAtIndex:i withObject:wantData];
-                    
-                    count++;
-                    
-                    if (count == offerObjects.count) // complete loading all whunts in selling section
-                    {
-                        handler();
-                    }
-                }];
+                        [_myCompletedSellDataList addObject:[[WantData alloc] init]];
+                }
+                
+                for (int i=0; i<offerObjects.count; i++)
+                {
+                    PFObject *object = [offerObjects objectAtIndex:i];
+                    NSString *itemID = object[@"itemID"];
+                    PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+                    [sQuery getObjectInBackgroundWithId:itemID block:^(PFObject *wantPFObj, NSError *error)
+                     {
+                         WantData *wantData = [[WantData alloc] initWithPFObject:wantPFObj];
+                         if ([tableName isEqualToString:PF_ONGOING_TRANSACTION_CLASS])
+                             [_myOngoingSellDataList replaceObjectAtIndex:i withObject:wantData];
+                         else
+                             [_myCompletedSellDataList replaceObjectAtIndex:i withObject:wantData];
+                         
+                         count++;
+                         
+                         if (count == offerObjects.count) // complete loading all whunts in selling section
+                         {
+                             handler();
+                         }
+                     }];
+                }
             }
         }
         else
