@@ -422,11 +422,11 @@
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kYPos, WINSIZE.width, kBackgroundHeight)];
     [_scrollView addSubview:backgroundView];
     
-//    [self addFollowerButton:backgroundView];
-//    [self addFollowingButton:backgroundView];
-    [self addPreferencesButton:backgroundView];
-    
-    _currHeight += kBackgroundHeight;
+    if (_isViewingMyProfile)
+    {
+        [self addPreferencesButton:backgroundView];
+        _currHeight += kBackgroundHeight;
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -487,26 +487,23 @@
 - (void) addPreferencesButton: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_isViewingMyProfile)
-    {
-        CGFloat const kButtonWidth = WINSIZE.width * 0.8f;
-        CGFloat const kButtonHeight = 50.0f;
-        CGFloat const kButtonXPos = WINSIZE.width * 0.1f;
-        CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
-        
-        _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
-        [_preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
-        
-        // TODO: colors are likely to change
-        _preferencesButton.bgColor = DARK_BLUE_COLOR;
-        _preferencesButton.borderColor = DARK_BLUE_COLOR;
-        _preferencesButton.titleColor = [UIColor whiteColor];
-        
-        _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _preferencesButton.cornerRadius = 10.0;
-        [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-        [backgroundView addSubview:_preferencesButton];
-    }
+    CGFloat const kButtonWidth = WINSIZE.width * 0.8f;
+    CGFloat const kButtonHeight = 50.0f;
+    CGFloat const kButtonXPos = WINSIZE.width * 0.1f;
+    CGFloat const kButtonTopMargin = (backgroundView.frame.size.height - kButtonHeight)/2.0;
+    
+    _preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonTopMargin, kButtonWidth, kButtonHeight)];
+    [_preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    
+    // TODO: colors are likely to change
+    _preferencesButton.bgColor = DARK_BLUE_COLOR;
+    _preferencesButton.borderColor = DARK_BLUE_COLOR;
+    _preferencesButton.titleColor = [UIColor whiteColor];
+    
+    _preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _preferencesButton.cornerRadius = 10.0;
+    [_preferencesButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:_preferencesButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
