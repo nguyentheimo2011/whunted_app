@@ -37,6 +37,7 @@
     JTImageButton           *_buyerUsernameButton;
     JTImageButton           *_secondBottomButton;
     JTImageButton           *_viewOffersButton;
+    JTImageButton           *_chatButton;
     JTImageButton           *_referenceLinkButton;
     
     UIPageControl           *_pageControl;
@@ -554,24 +555,22 @@
     [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    JTImageButton *chatButton;
-    
     if (isFullWidth)
     {
-        chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
+        _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
     }
     else
     {
-        chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+        _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     }
     
-    [chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
-    chatButton.cornerRadius = 0;
-    chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
-    chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
-    chatButton.titleColor = [UIColor whiteColor];
-    [chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
-    [backgroundView addSubview:chatButton];
+    [_chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
+    _chatButton.cornerRadius = 0;
+    _chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _chatButton.titleColor = [UIColor whiteColor];
+    [_chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:_chatButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -822,6 +821,14 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _wantData.isFulfilled = YES;
+    
+    if (!_itemPostedByMe)
+    {
+        // if item is not posted by me, change the two bottom buttons to one Chat button
+        [_chatButton.superview removeFromSuperview];
+        [_secondBottomButton.superview removeFromSuperview];
+        [self addChatButton:YES];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
