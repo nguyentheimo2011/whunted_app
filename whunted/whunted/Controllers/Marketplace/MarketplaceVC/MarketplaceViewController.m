@@ -812,10 +812,11 @@
     if (_wantDataList.count > 0)
     {
         WantData *wantData = [_wantDataList objectAtIndex:_wantDataList.count-1];
-        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
+        [self setConditionsForQuery:query lastWantData:wantData];
+        [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
     }
     
-    [query orderByDescending:PF_CREATED_AT];
+    [self setSortingBy:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -1102,8 +1103,28 @@
     {
         [query orderByDescending:PF_CREATED_AT];
     }
-    
-    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setConditionsForQuery: (PFQuery *) query lastWantData: (WantData *) wantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+    {
+        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
+    }
+    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+    {
+        [query whereKey:PF_ITEM_DEMANDED_PRICE greaterThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
+    }
+    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+    {
+        [query whereKey:PF_ITEM_DEMANDED_PRICE lessThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
+    }
+    else
+    {
+        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
+    }
 }
 
 @end
