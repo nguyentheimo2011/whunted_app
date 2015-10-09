@@ -95,7 +95,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // Update whunts list after a whunt is fulfilled.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveWantDataList) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeFulfilledWhuntFromMarketplace:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:nil];
@@ -605,7 +605,30 @@
 }
 
 /*
- * Visit user's profile.
+ * When offer is accepted, fulfilled whunt is removed from Marketplace
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) removeFulfilledWhuntFromMarketplace: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *itemID = notification.object;
+    
+    for (int i=0; i<_wantDataList.count; i++)
+    {
+        WantData *wantData = [_wantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:itemID])
+        {
+            [_wantDataList removeObjectAtIndex:i];
+            [self updateMatchedWantData];
+            break;
+        }
+    }
+}
+
+/*
+ * Display user's profile.
  */
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -768,7 +768,7 @@
         _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
         
         // post notification to notify ItemDetails
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED object:_offerData.itemID];
     }
     
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
