@@ -15,6 +15,8 @@
 @interface MessageViewCell : UITableViewCell
 //------------------------------------------------------------------------------------------------------------------------------
 
+@property (nonatomic)       NSInteger    cellIndex;
+
 - (void)    customizeUI;
 - (void)    bindData:(NSDictionary *)message;
 

@@ -38,6 +38,8 @@
 
 @end
 
+
+
 //------------------------------------------------------------------------------------------------------------------------------
 @implementation MessageViewCell
 //------------------------------------------------------------------------------------------------------------------------------
@@ -50,6 +52,7 @@
 @synthesize itemImageView           =   _itemImageView;
 @synthesize transactionStatusLabel  =   _transactionStatusLabel;
 @synthesize detailedStatusLabel     =   _detailedStatusLabel;
+@synthesize cellIndex               =   _cellIndex;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
@@ -169,6 +172,8 @@
 - (void) getProfileImageFromRemoteServer
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    __block NSInteger cellIndex = _cellIndex;
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_OPPOSING_USER_ID]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -182,11 +187,14 @@
              {
                  if (!error)
                  {
-                     UIImage *image = [UIImage imageWithData:data];
-                     [_userProfileImage setImage:image];
-                     
-                     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
-                     [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+                     if (_cellIndex == cellIndex)
+                     {
+                         UIImage *image = [UIImage imageWithData:data];
+                         [_userProfileImage setImage:image];
+                         
+                         NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
+                         [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+                     }
                  }
                  else
                  {
@@ -201,6 +209,8 @@
 - (void) downloadItemImageFromRemoteServer
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    __block NSInteger cellIndex = _cellIndex;
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_ITEM_ID]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)
@@ -219,11 +229,14 @@
                     {
                         if (!error_2)
                         {
-                            UIImage *image = [UIImage imageWithData:data];
-                            [_itemImageView setImage:image];
-                            
-                            NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_ITEM_ID], ITEM_FIRST_IMAGE];
-                            [[ItemImageCache sharedCache] setObject:image forKey:imageKey];
+                            if (_cellIndex == cellIndex)
+                            {
+                                UIImage *image = [UIImage imageWithData:data];
+                                [_itemImageView setImage:image];
+                                
+                                NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_ITEM_ID], ITEM_FIRST_IMAGE];
+                                [[ItemImageCache sharedCache] setObject:image forKey:imageKey];
+                            }
                         }
                         else
                         {

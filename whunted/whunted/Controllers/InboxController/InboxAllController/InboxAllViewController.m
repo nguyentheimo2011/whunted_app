@@ -186,6 +186,7 @@
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.cellIndex = indexPath.row;
     [cell customizeUI];
     [cell bindData:_categorizedMessages[indexPath.row]];
     
