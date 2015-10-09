@@ -105,6 +105,10 @@
 
 + (NSString *)  removeLastDotCharacterIfNeeded: (NSString *) price;
 
++ (NSString *)  formattedPriceFromNumber: (NSNumber *) number;
+
++ (NSNumber *)  numberFromFormattedPrice: (NSString *) formattedPrice;
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Notification

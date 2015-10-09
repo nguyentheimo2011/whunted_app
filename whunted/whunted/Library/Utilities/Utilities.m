@@ -371,6 +371,44 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) formattedPriceFromNumber:(NSNumber *)number
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *originalPrice = [number stringValue];
+    
+    NSRange range = [originalPrice rangeOfString:DOT_CHARACTER];
+    NSString *fractional;
+    if (range.location == NSNotFound || range.location >= [originalPrice length])
+        fractional = @"";
+    else
+        fractional = [originalPrice substringFromIndex:range.location];
+    
+    NSInteger integerPrice;
+    if (range.location == NSNotFound || range.location >= [originalPrice length])
+        integerPrice = [originalPrice integerValue];
+    else
+        integerPrice = [[originalPrice substringToIndex:range.location] integerValue];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSString *formattedIntegerPrice = [formatter stringFromNumber:[NSNumber numberWithInteger:integerPrice]];
+    
+    return [TAIWAN_CURRENCY stringByAppendingString:[formattedIntegerPrice stringByAppendingString:fractional]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSNumber *) numberFromFormattedPrice:(NSString *)formattedPrice
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *simplifiedPrice = [formattedPrice substringFromIndex:TAIWAN_CURRENCY.length];
+    simplifiedPrice = [simplifiedPrice stringByReplacingOccurrencesOfString:COMMA_CHARACTER withString:@""];
+    
+    NSNumberFormatter *format = [[NSNumberFormatter alloc] init];
+    format.numberStyle = NSNumberFormatterDecimalStyle;
+    return [format numberFromString:simplifiedPrice];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
 //------------------------------------------------------------------------------------------------------------------------------
 {
