@@ -156,6 +156,7 @@
 "has left a feedback"               =   "已發表了評價";
 "Are you sure you want to accept this offer?"   =   "確定接受出價?";
 "Offer will not be able to cancelled!"          =   "旦同意之後,即不可取消!";
+"We are sorry! An error occurred while processing this request."    =   "很抱歉! 這行動出了錯誤";
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Sort & Filter

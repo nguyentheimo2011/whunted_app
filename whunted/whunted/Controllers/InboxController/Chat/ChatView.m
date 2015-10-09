@@ -490,12 +490,17 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CancelOfferFromChatEvent" label:@"CancelOfferButton" value:nil];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if (error)
         {
             [Utilities handleError:error];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities displayErrorAlertView];
+            
             [offerObj deleteEventually];
         }
         else
@@ -513,6 +518,8 @@
             NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails CompletionBlock:nil];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
 }
@@ -547,12 +554,17 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"DeclineOfferFromChatEvent" label:@"DeclineOfferButton" value:nil];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if (error)
         {
             [Utilities handleError:error];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities displayErrorAlertView];
+            
             [offerObj deleteEventually];
         }
         else
@@ -570,6 +582,8 @@
             NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails CompletionBlock:nil];
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
 }
@@ -597,6 +611,8 @@
 - (void) acceptOffer
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     // update transactional data
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
     PFObject *offerObj = [_offerData createPFObjectWithClassName:PF_ACCEPTED_TRANSACTION_CLASS];
@@ -620,11 +636,25 @@
                       [pfObj deleteEventually];
                   }
               }];
+             
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
          }
          else
          {
              [Utilities handleError:error];
+             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             [Utilities displayErrorAlertView];
+             
              [offerObj saveEventually];
+             
+             PFObject *pfObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
+             [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+              {
+                  if (!succeeded)
+                  {
+                      [pfObj deleteEventually];
+                  }
+              }];
          }
      }];
     

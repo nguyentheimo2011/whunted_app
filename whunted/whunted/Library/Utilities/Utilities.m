@@ -929,4 +929,15 @@
 }
 
 
+#pragma mark - Error Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) displayErrorAlertView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"We are sorry! An error occurred while processing this request.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
+}
+
+
 @end
