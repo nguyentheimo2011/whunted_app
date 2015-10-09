@@ -1436,13 +1436,23 @@
 - (void) replacePrevSellDataIfNecessary: (WantData *) targetedWantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    for (WantData *wantData in _mySellDataList)
+    for (int i=0; i<_mySellDataList.count; i++)
     {
+        WantData *wantData = [_mySellDataList objectAtIndex:i];
+        
         if ([wantData.itemID isEqualToString:targetedWantData.itemID])
         {
             [_mySellDataList removeObject:wantData];
             [_mySellDataList insertObject:targetedWantData atIndex:0];
             break;
+        }
+        else
+        {
+            if (i == _mySellDataList.count-1)
+            {
+                [_mySellDataList insertObject:targetedWantData atIndex:0];
+                break;
+            }
         }
     }
 }
