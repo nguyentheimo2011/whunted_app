@@ -94,7 +94,9 @@
 - (void) addNotificationListener
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // Update whunts list after a whunt is fulfilled.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrieveWantDataList) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:nil];
 }
@@ -706,6 +708,10 @@
 
 
 #pragma mark - Backend Handler
+
+/*
+ * Retrieve whunts that are not yet fulfilled.
+ */
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) retrieveWantDataList
