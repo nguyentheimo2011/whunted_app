@@ -232,6 +232,11 @@
             if (firstName)
             {
                 user[@"firstName"] = firstName;
+                
+                if (!email)
+                {
+                    user[@"username"] = [firstName stringByAppendingString:userData[@"last_name"]];
+                }
             }
             
             NSString *lastName = userData[@"last_name"];
@@ -279,6 +284,7 @@
             user[PF_USER_FACEBOOK_VERIFIED] = @YES;
             
             [user saveInBackground];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
             
             // retrieve and save profile picture
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
@@ -297,6 +303,8 @@
                          user[PF_USER_PICTURE] = profilePictureFile;
                          [user saveInBackground];
                          [user pinInBackground];
+                         
+                         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
                      }
                 }
              }];
