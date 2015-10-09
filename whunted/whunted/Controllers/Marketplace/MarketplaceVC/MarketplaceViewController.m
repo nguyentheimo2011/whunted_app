@@ -770,16 +770,11 @@
 - (void) refreshWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    _wantDataList = [[NSMutableArray alloc] init];
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    
-    if (_wantDataList.count > 0)
-    {
-        WantData *wantData = [_wantDataList objectAtIndex:0];
-        [query whereKey:PF_CREATED_AT greaterThan:wantData.createdDate];
-    }
-        
-    [query orderByDescending:PF_CREATED_AT];
+    [self setSortingBy:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -788,13 +783,14 @@
              for (PFObject *object in objects)
              {
                  WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_wantDataList insertObject:wantData atIndex:0];
+                 [_wantDataList addObject:wantData];
              }
              
              [self updateMatchedWantData];
          }
          else
          {
+             // Log details of the failure
              [Utilities handleError:error];
          }
          
