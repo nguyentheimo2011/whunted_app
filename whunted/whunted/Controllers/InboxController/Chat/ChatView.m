@@ -594,7 +594,7 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"AcceptOfferFromChatEvent" label:@"AcceptOfferButton" value:nil];
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to accept this offer?", nil) message:NSLocalizedString(@"Offer will not be able to cancelled!", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to accept this offer?", nil) message:NSLocalizedString(@"Once accepted, offer cannot be cancelled!", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     alertView.delegate = self;
     [alertView show];
 }
