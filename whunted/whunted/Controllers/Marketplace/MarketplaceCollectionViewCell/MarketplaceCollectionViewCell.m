@@ -23,7 +23,7 @@
     UILabel             *_timestampLabel;
     UIButton            *_sellerNumButton;
     UIButton            *_likeButton;
-    UIImageView         *_buyerProfilePic;
+    UIButton            *_buyerProfilePic;
     UIImageView         *_itemImageView;
     
     UILabel             *_boughtOrSoldLabel;
@@ -105,7 +105,7 @@
     if ([[ProfileImageCache sharedCache] objectForKey:imageKey])
     {
         UIImage *profileImage = [[ProfileImageCache sharedCache] objectForKey:imageKey];
-        [_buyerProfilePic setImage:profileImage];
+        [_buyerProfilePic setBackgroundImage:profileImage forState:UIControlStateNormal];
     }
     else
     {
@@ -122,7 +122,7 @@
 - (void) clearCellUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_buyerProfilePic setImage:nil];
+    [_buyerProfilePic setBackgroundImage:nil forState:UIControlStateNormal];
 }
 
 #pragma mark - UI Handlers
@@ -215,12 +215,13 @@
     CGFloat const kImageYPos = _cellWidth + 53.0f;
     CGFloat const kImageWidth = 30.0f;
     
-    _buyerProfilePic = [[UIImageView alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
+    _buyerProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
     [_buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     _buyerProfilePic.clipsToBounds = YES;
     _buyerProfilePic.layer.borderWidth = 0.5f;
     _buyerProfilePic.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    [_buyerProfilePic addTarget:self action:@selector(profilePictureTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_buyerProfilePic];
 }
 
@@ -284,6 +285,13 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) usernameLabelTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_wantData.buyerID];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) profilePictureTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_TAP_EVENT object:_wantData.buyerID];
@@ -359,7 +367,7 @@
         // check if it is setting buyerProfileImage for the right cell
         if (_cellIndex == cellIndex)
         {
-            [_buyerProfilePic setImage:image];
+            [_buyerProfilePic setBackgroundImage:image forState:UIControlStateNormal];
             
             NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
             [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
