@@ -19,6 +19,15 @@
 #define     kSortAndFilterBarHeight         50.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
+@interface MarketplaceViewController ()
+//-----------------------------------------------------------------------------------------------------------------------------
+
+@property (atomic)      BOOL    isLoadingMoreWhunts;
+
+@end
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
 @implementation MarketplaceViewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {
@@ -45,7 +54,8 @@
     CGFloat                 _lastContentOffset;
 }
 
-@synthesize delegate        =   _delegate;
+@synthesize     delegate                =   _delegate;
+@synthesize     isLoadingMoreWhunts     =   _isLoadingMoreWhunts;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -803,37 +813,44 @@
 - (void) retrieveMoreWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    
-    if (_wantDataList.count > 0)
+    // Only load more data if the last load-more-data request completed.
+    if (!_isLoadingMoreWhunts)
     {
-        WantData *wantData = [_wantDataList objectAtIndex:_wantDataList.count-1];
-        [self setConditionsForQuery:query lastWantData:wantData];
-        [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
-    }
-    
-    [self setSortingBy:query];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (!error)
+        _isLoadingMoreWhunts = YES;
+        
+        PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+        [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+        
+        if (_wantDataList.count > 0)
+        {
+            WantData *wantData = [_wantDataList objectAtIndex:_wantDataList.count-1];
+            [self setConditionsForQuery:query lastWantData:wantData];
+            [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
+        }
+        
+        [self setSortingBy:query];
+        [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
-             for (PFObject *object in objects)
+             if (!error)
              {
-                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_wantDataList addObject:wantData];
+                 for (PFObject *object in objects)
+                 {
+                     WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                     [_wantDataList addObject:wantData];
+                 }
+                 
+                 [self updateMatchedWantData];
+             }
+             else
+             {
+                 [Utilities handleError:error];
              }
              
-             [self updateMatchedWantData];
-         }
-         else
-         {
-             [Utilities handleError:error];
-         }
-         
-         [_bottomRefreshControl endRefreshing];
-     }];
+             [_bottomRefreshControl endRefreshing];
+             _isLoadingMoreWhunts = NO;
+         }];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
