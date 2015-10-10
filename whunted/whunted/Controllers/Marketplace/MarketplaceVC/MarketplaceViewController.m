@@ -364,7 +364,7 @@
     if (tag == 0)
     {
         curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
-        curLabel.text = _currProductOrigin;
+        curLabel.text = _currBuyerLocation;
         _currBuyerLocationLabel = curLabel;
     }
     else if (tag == 1)
