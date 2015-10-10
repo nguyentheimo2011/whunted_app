@@ -640,7 +640,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
-    NSLog(@"%@", errorMessage);
+//    NSLog(@"%@", errorMessage);
     [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
 }
 
@@ -883,10 +883,10 @@
 + (void) logOutMessage:(NSString *)message
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    BOOL debuggingMode = YES;
-    
-    if (debuggingMode)
-        NSLog(@"%@", message);
+//    BOOL debuggingMode = YES;
+//    
+//    if (debuggingMode)
+//        NSLog(@"%@", message);
 }
 
 
