@@ -207,6 +207,7 @@
 		E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6711B96A9EE0061AE8E /* NewsfeedViewController.m */; };
 		E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */; };
 		E9D0E6781B96AFC30061AE8E /* TransactionData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6771B96AFC30061AE8E /* TransactionData.m */; };
+		E9D21D281BCBA2A300912C2C /* MarketplaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */; settings = {ASSET_TAGS = (); }; };
 		E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */; };
 		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
 		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
@@ -571,6 +572,8 @@
 		E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsfeedTableViewCell.m; path = Controllers/Newsfeed/NewsfeedTableViewCell/NewsfeedTableViewCell.m; sourceTree = "<group>"; };
 		E9D0E6761B96AFC30061AE8E /* TransactionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransactionData.h; path = Models/TransactionData/TransactionData.h; sourceTree = "<group>"; };
 		E9D0E6771B96AFC30061AE8E /* TransactionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionData.m; path = Models/TransactionData/TransactionData.m; sourceTree = "<group>"; };
+		E9D21D261BCBA2A300912C2C /* MarketplaceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceHelper.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceHelper/MarketplaceHelper.h; sourceTree = "<group>"; };
+		E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceHelper.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceHelper/MarketplaceHelper.m; sourceTree = "<group>"; };
 		E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProfileViewController.h; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.h; sourceTree = "<group>"; };
 		E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProfileViewController.m; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.m; sourceTree = "<group>"; };
 		E9D2649F1B62268500CBEAFF /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/CountryTableVC/CountryTableViewController.h; sourceTree = "<group>"; };
@@ -1513,6 +1516,15 @@
 			name = EditWantDataVC;
 			sourceTree = "<group>";
 		};
+		E9D21D1F1BCB9FA500912C2C /* MarketplaceHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E9D21D261BCBA2A300912C2C /* MarketplaceHelper.h */,
+				E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */,
+			);
+			name = MarketplaceHelper;
+			sourceTree = "<group>";
+		};
 		E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1626,6 +1638,7 @@
 		E9D9C5081B1C009400222E0C /* MarketplaceVC */ = {
 			isa = PBXGroup;
 			children = (
+				E9D21D1F1BCB9FA500912C2C /* MarketplaceHelper */,
 				E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */,
 				E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */,
 			);
@@ -2169,6 +2182,7 @@
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
+				E9D21D281BCBA2A300912C2C /* MarketplaceHelper.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,

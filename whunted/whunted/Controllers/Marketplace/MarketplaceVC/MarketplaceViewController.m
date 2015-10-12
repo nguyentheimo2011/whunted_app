@@ -10,6 +10,7 @@
 #import "SellerListViewController.h"
 #import "UserProfileViewController.h"
 #import "TransactionData.h"
+#import "MarketplaceHelper.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -78,9 +79,10 @@
 {
     [super viewDidLoad];
     
+    [self customizeView];
+    [self initUI];
     [self addSortAndFilterBar];
     [self addWantCollectionView];
-    [self customizeView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -108,6 +110,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeFulfilledWhuntFromMarketplace:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT object:nil];
 }
 
@@ -178,32 +181,18 @@
 #pragma mark - UI Handlers
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) initUI
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _searchBar = [MarketplaceHelper addSearchBoxToViewController:self];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 28.0)];
-    _searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
-    _searchBar.returnKeyType = UIReturnKeySearch;
-    _searchBar.delegate = self;
-    _searchBar.tintColor = LIGHT_GRAY_COLOR;
-    _searchBar.barTintColor = [UIColor colorWithRed:77.0/255 green:124.0/255 blue:194.0/255 alpha:0.5f];
-    self.navigationItem.titleView = _searchBar;
-    
-    UITextField *txfSearchField = [_searchBar valueForKey:@"_searchField"];
-    txfSearchField.backgroundColor = MAIN_BLUE_COLOR;
-    txfSearchField.textColor = [UIColor whiteColor];
-    
-    if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
-    {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
-    }
-    else
-    {
-        [Utilities logOutMessage:@"Cannot set placeholder text's color, because deployment target is earlier than iOS 6.0"];
-    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1035,13 +1024,6 @@
     [self searchWantDataBasedOnTerm:searchBar.text];
     
     [self completeSearch];    
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//------------------------------------------------------------------------------------------------------------------------------
-{
-//    [_wantCollectionView reloadData];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
