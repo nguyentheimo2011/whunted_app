@@ -17,4 +17,6 @@
 
 + (UISearchBar *) addSearchBoxToViewController: (UIViewController<UISearchBarDelegate> *) viewController;
 
++ (UIView *) addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController;
+
 @end

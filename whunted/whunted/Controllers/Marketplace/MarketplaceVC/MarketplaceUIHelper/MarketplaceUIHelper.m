@@ -8,6 +8,7 @@
 
 #import "MarketplaceUIHelper.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @implementation MarketplaceUIHelper
 
@@ -35,6 +36,30 @@
     }
     
     return searchBar;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (UIView *) addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kBarYPos      =   [Utilities getHeightOfNavigationAndStatusBars:viewController];
+    
+    UIView *sortAndFilterBar = [[UIView alloc] initWithFrame:CGRectMake(0, kBarYPos, WINSIZE.width, height)];
+    sortAndFilterBar.backgroundColor = [UIColor whiteColor];
+    [viewController.view addSubview:sortAndFilterBar];
+    
+    [self addHorizontalLineToSortAndFilterBar:sortAndFilterBar];
+    
+    return sortAndFilterBar;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (void) addHorizontalLineToSortAndFilterBar: (UIView *) sortAndFilterBar
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *horizontalLine = [[UIView alloc] initWithFrame:CGRectMake(0, sortAndFilterBar.frame.size.height - 0.5f, WINSIZE.width, 0.5f)];
+    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    [sortAndFilterBar addSubview:horizontalLine];
 }
 
 @end

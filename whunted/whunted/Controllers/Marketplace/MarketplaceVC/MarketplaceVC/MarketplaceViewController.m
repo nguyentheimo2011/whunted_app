@@ -150,13 +150,8 @@
 - (void) addSortAndFilterBar
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kBarYPos      =   [Utilities getHeightOfNavigationAndStatusBars:self];
+    _sortAndFilterBar = [MarketplaceUIHelper addSortAndFilterBarWithHeight:kSortAndFilterBarHeight toViewController:self];
     
-    _sortAndFilterBar = [[UIView alloc] initWithFrame:CGRectMake(0, kBarYPos, WINSIZE.width, kSortAndFilterBarHeight)];
-    _sortAndFilterBar.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_sortAndFilterBar];
-    
-    [self addHorizontalLineToSortAndFilterBar];
     [self addBuyerLocationFilterToSortAndFilterBar];
     [self addCategoryFilterToSortAndFilterBar];
     [self addSortAndFilterOptionToSortAndFilterBar];
@@ -188,15 +183,6 @@
     _bottomRefreshControl.triggerVerticalOffset = 100;
     [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
     _wantCollectionView.bottomRefreshControl = _bottomRefreshControl;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addHorizontalLineToSortAndFilterBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *horizontalLine = [[UIView alloc] initWithFrame:CGRectMake(0, kSortAndFilterBarHeight - 0.5f, WINSIZE.width, 0.5f)];
-    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
-    [_sortAndFilterBar addSubview:horizontalLine];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
