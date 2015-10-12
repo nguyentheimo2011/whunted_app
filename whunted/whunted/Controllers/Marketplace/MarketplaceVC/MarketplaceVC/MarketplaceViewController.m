@@ -45,9 +45,8 @@
     NSString                *_currSortingBy;
     NSString                *_currBuyerLocation;
 
-    NSMutableArray          *_wantDataList;
-    NSArray                 *_sortedAndFilteredWantDataList;
-    NSMutableArray          *_displayedWantDataList;
+    NSMutableArray          *_retrievedWantDataList;
+    NSArray                 *_displayedWantDataList;
     
     CGFloat                 _lastContentOffset;
 }
@@ -368,13 +367,13 @@
 {
     WantData *editedWhunt = notification.object;
     
-    for (int i=0; i<_wantDataList.count; i++)
+    for (int i=0; i<_retrievedWantDataList.count; i++)
     {
-        WantData *wantData = [_wantDataList objectAtIndex:i];
+        WantData *wantData = [_retrievedWantDataList objectAtIndex:i];
         
         if ([wantData.itemID isEqualToString:editedWhunt.itemID])
         {
-            [_wantDataList replaceObjectAtIndex:i withObject:editedWhunt];
+            [_retrievedWantDataList replaceObjectAtIndex:i withObject:editedWhunt];
             [self updateMatchedWantData];
             break;
         }
@@ -391,13 +390,13 @@
 {
     NSString *itemID = notification.object;
     
-    for (int i=0; i<_wantDataList.count; i++)
+    for (int i=0; i<_retrievedWantDataList.count; i++)
     {
-        WantData *wantData = [_wantDataList objectAtIndex:i];
+        WantData *wantData = [_retrievedWantDataList objectAtIndex:i];
         
         if ([wantData.itemID isEqualToString:itemID])
         {
-            [_wantDataList removeObjectAtIndex:i];
+            [_retrievedWantDataList removeObjectAtIndex:i];
             [self updateMatchedWantData];
             break;
         }
@@ -517,7 +516,7 @@
 - (void) retrieveWantDataList
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantDataList = [[NSMutableArray alloc] init];
+    _retrievedWantDataList = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
@@ -530,7 +529,7 @@
             for (PFObject *object in objects)
             {
                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                [_wantDataList addObject:wantData];
+                [_retrievedWantDataList addObject:wantData];
             }
             
             [self updateMatchedWantData];
@@ -547,7 +546,7 @@
 - (void) refreshWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantDataList = [[NSMutableArray alloc] init];
+    _retrievedWantDataList = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
@@ -560,7 +559,7 @@
              for (PFObject *object in objects)
              {
                  WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_wantDataList addObject:wantData];
+                 [_retrievedWantDataList addObject:wantData];
              }
              
              [self updateMatchedWantData];
@@ -587,9 +586,9 @@
         PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
         [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
         
-        if (_wantDataList.count > 0)
+        if (_retrievedWantDataList.count > 0)
         {
-            WantData *wantData = [_wantDataList objectAtIndex:_wantDataList.count-1];
+            WantData *wantData = [_retrievedWantDataList objectAtIndex:_retrievedWantDataList.count-1];
             [self setConditionsForQuery:query lastWantData:wantData];
             [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
         }
@@ -603,7 +602,7 @@
                  for (PFObject *object in objects)
                  {
                      WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                     [_wantDataList addObject:wantData];
+                     [_retrievedWantDataList addObject:wantData];
                  }
                  
                  [self updateMatchedWantData];
@@ -713,75 +712,13 @@
 - (void) updateMatchedWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _sortedAndFilteredWantDataList = [self filterArray:_wantDataList byCategory:_currCategory];
-    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byProductOrigin:_currProductOrigin];
-    _sortedAndFilteredWantDataList = [self filterArray:_sortedAndFilteredWantDataList byBuyerLocation:_currBuyerLocation];
-    _sortedAndFilteredWantDataList = [self sortArray:_sortedAndFilteredWantDataList by:_currSortingBy];
-    _displayedWantDataList = [NSMutableArray arrayWithArray:_sortedAndFilteredWantDataList];
+    _displayedWantDataList = [self filterArray:_retrievedWantDataList byCategory:_currCategory];
+    _displayedWantDataList = [self filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
+    _displayedWantDataList = [self filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
+    _displayedWantDataList = [self sortArray:_displayedWantDataList by:_currSortingBy];
     
     [_wantCollectionView reloadData];
 }
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (BOOL) isOfOneOfCorrectSortingSchemes: (NSString *) sortingBy
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_POPULAR, nil)])
-        return YES;
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
-        return YES;
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
-        return YES;
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
-        return YES;
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_NEAREST, nil)])
-        return YES;
-    else
-        return NO;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (BOOL) isOfOneOfCorrectCategories: (NSString *) category
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BEAUTY_PRODUCTS, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BOOKS_AND_MAGAZINES, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_BORROWING, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_CUSTOMIZATION, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_FUNITURE, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_GAMES_AND_TOYS, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_LUXURY_BRANDED, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_OTHERS, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_PROFESSIONAL_SERVICES, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_SPORT_EQUIPMENTS, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_TICKETS_AND_VOUCHERS, nil)])
-        return YES;
-    else if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_WATCHES, nil)])
-        return YES;
-    else
-        return NO;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) isOfOneOfCorrectLocation: (NSString *) location
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    
-        
-}
-
 
 #pragma mark - UISearchBarDelegate methods
 
@@ -807,7 +744,7 @@
 - (void) searchWantDataBasedOnTerm: (NSString *) searchTerm
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _wantDataList = [[NSMutableArray alloc] init];
+    _retrievedWantDataList = [[NSMutableArray alloc] init];
     
     PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
@@ -826,7 +763,7 @@
              for (PFObject *object in objects)
              {
                  WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_wantDataList addObject:wantData];
+                 [_retrievedWantDataList addObject:wantData];
              }
              
              [self updateMatchedWantData];
