@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface MarketplaceHelper : NSObject
+@interface MarketplaceUIHelper : NSObject
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UI functions

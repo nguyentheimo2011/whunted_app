@@ -7,11 +7,10 @@
 //
 
 #import "MarketplaceViewController.h"
-#import "SellerListViewController.h"
 #import "UserProfileViewController.h"
 #import "TransactionData.h"
-#import "MarketplaceHelper.h"
-#import "AppConstant.h"
+#import "MarketplaceUIHelper.h"
+#import "MarketplaceLogicHelper.h"
 #import "Utilities.h"
 
 #import <MBProgressHUD.h>
@@ -121,14 +120,7 @@
 - (void) initData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *currLang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
-    NSString *lastLang = [[NSUserDefaults standardUserDefaults] objectForKey:LANGUAGE_USED_IN_LAST_SESSION];
-    BOOL languageChanged = NO;
-    if (![currLang isEqualToString:lastLang])
-    {
-        languageChanged = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:currLang forKey:LANGUAGE_USED_IN_LAST_SESSION];
-    }
+    BOOL languageChanged = [MarketplaceLogicHelper hasPhoneLanguageChangedRecently];
     
     if (languageChanged)
     {
@@ -184,13 +176,14 @@
 - (void) initUI
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _searchBar = [MarketplaceHelper addSearchBoxToViewController:self];
+    _searchBar = [MarketplaceUIHelper addSearchBoxToViewController:self];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    // init leftBarButtonItem and rightBarButtonItem to limit the space for title view (search bar) on navigation bar
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 }

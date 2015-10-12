@@ -6,10 +6,10 @@
 //  Copyright © 2015 Whunted. All rights reserved.
 //
 
-#import "MarketplaceHelper.h"
+#import "MarketplaceUIHelper.h"
 #import "AppConstant.h"
 
-@implementation MarketplaceHelper
+@implementation MarketplaceUIHelper
 
 #pragma mark - UI Functions
 

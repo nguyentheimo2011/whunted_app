@@ -207,7 +207,9 @@
 		E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6711B96A9EE0061AE8E /* NewsfeedViewController.m */; };
 		E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */; };
 		E9D0E6781B96AFC30061AE8E /* TransactionData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D0E6771B96AFC30061AE8E /* TransactionData.m */; };
-		E9D21D281BCBA2A300912C2C /* MarketplaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */; settings = {ASSET_TAGS = (); }; };
+		E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D21D2C1BCBB9F800912C2C /* MarketplaceViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D21D2F1BCBBA1B00912C2C /* MarketplaceUIHelper.m */; settings = {ASSET_TAGS = (); }; };
+		E9D21D331BCBBAA300912C2C /* MarketplaceLogicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D21D321BCBBAA300912C2C /* MarketplaceLogicHelper.m */; settings = {ASSET_TAGS = (); }; };
 		E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */; };
 		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
 		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
@@ -244,7 +246,6 @@
 		E9D433071B550EC200530492 /* setting_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D433011B550EC200530492 /* setting_icon@3x.png */; };
 		E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D4330A1B55167200530492 /* PreferenceViewController.m */; };
 		E9D5049A1B340F6F008ABDE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D5049C1B340F6F008ABDE4 /* Localizable.strings */; };
-		E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */; };
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
@@ -572,8 +573,12 @@
 		E9D0E6741B96AAC20061AE8E /* NewsfeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsfeedTableViewCell.m; path = Controllers/Newsfeed/NewsfeedTableViewCell/NewsfeedTableViewCell.m; sourceTree = "<group>"; };
 		E9D0E6761B96AFC30061AE8E /* TransactionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransactionData.h; path = Models/TransactionData/TransactionData.h; sourceTree = "<group>"; };
 		E9D0E6771B96AFC30061AE8E /* TransactionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionData.m; path = Models/TransactionData/TransactionData.m; sourceTree = "<group>"; };
-		E9D21D261BCBA2A300912C2C /* MarketplaceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceHelper.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceHelper/MarketplaceHelper.h; sourceTree = "<group>"; };
-		E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceHelper.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceHelper/MarketplaceHelper.m; sourceTree = "<group>"; };
+		E9D21D2B1BCBB9F800912C2C /* MarketplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceViewController.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceVC/MarketplaceViewController.h; sourceTree = "<group>"; };
+		E9D21D2C1BCBB9F800912C2C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
+		E9D21D2E1BCBBA1B00912C2C /* MarketplaceUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceUIHelper.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceUIHelper/MarketplaceUIHelper.h; sourceTree = "<group>"; };
+		E9D21D2F1BCBBA1B00912C2C /* MarketplaceUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceUIHelper.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceUIHelper/MarketplaceUIHelper.m; sourceTree = "<group>"; };
+		E9D21D311BCBBAA300912C2C /* MarketplaceLogicHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceLogicHelper.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceLogicHelper/MarketplaceLogicHelper.h; sourceTree = "<group>"; };
+		E9D21D321BCBBAA300912C2C /* MarketplaceLogicHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceLogicHelper.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceLogicHelper/MarketplaceLogicHelper.m; sourceTree = "<group>"; };
 		E9D2649B1B5FB29000CBEAFF /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditProfileViewController.h; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.h; sourceTree = "<group>"; };
 		E9D2649C1B5FB29000CBEAFF /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditProfileViewController.m; path = Controllers/UserProfileVC/EditProfileVC/EditProfileViewController.m; sourceTree = "<group>"; };
 		E9D2649F1B62268500CBEAFF /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/CountryTableVC/CountryTableViewController.h; sourceTree = "<group>"; };
@@ -622,8 +627,6 @@
 		E9D504971B340E00008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E9D5049B1B340F6F008ABDE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9D5049D1B340F74008ABDE4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceViewController.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.h; sourceTree = "<group>"; };
-		E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceViewController.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceViewController.m; sourceTree = "<group>"; };
 		E9D9C50D1B1C059D00222E0C /* MarketplaceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceCollectionViewCell.h; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.h; sourceTree = "<group>"; };
 		E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceCollectionViewCell.m; path = Controllers/Marketplace/MarketplaceCollectionViewCell/MarketplaceCollectionViewCell.m; sourceTree = "<group>"; };
 		E9D9C5111B1DA51F00222E0C /* ItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailsViewController.h; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.h; sourceTree = "<group>"; };
@@ -1516,13 +1519,31 @@
 			name = EditWantDataVC;
 			sourceTree = "<group>";
 		};
-		E9D21D1F1BCB9FA500912C2C /* MarketplaceHelper */ = {
+		E9D21D1F1BCB9FA500912C2C /* MarketplaceUIHelper */ = {
 			isa = PBXGroup;
 			children = (
-				E9D21D261BCBA2A300912C2C /* MarketplaceHelper.h */,
-				E9D21D271BCBA2A300912C2C /* MarketplaceHelper.m */,
+				E9D21D2E1BCBBA1B00912C2C /* MarketplaceUIHelper.h */,
+				E9D21D2F1BCBBA1B00912C2C /* MarketplaceUIHelper.m */,
 			);
-			name = MarketplaceHelper;
+			name = MarketplaceUIHelper;
+			sourceTree = "<group>";
+		};
+		E9D21D291BCBB91F00912C2C /* MarketplaceLogicHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E9D21D311BCBBAA300912C2C /* MarketplaceLogicHelper.h */,
+				E9D21D321BCBBAA300912C2C /* MarketplaceLogicHelper.m */,
+			);
+			name = MarketplaceLogicHelper;
+			sourceTree = "<group>";
+		};
+		E9D21D2A1BCBB93100912C2C /* MarketplaceVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9D21D2B1BCBB9F800912C2C /* MarketplaceViewController.h */,
+				E9D21D2C1BCBB9F800912C2C /* MarketplaceViewController.m */,
+			);
+			name = MarketplaceVC;
 			sourceTree = "<group>";
 		};
 		E9D2649A1B5FB23D00CBEAFF /* EditProfileVC */ = {
@@ -1638,9 +1659,9 @@
 		E9D9C5081B1C009400222E0C /* MarketplaceVC */ = {
 			isa = PBXGroup;
 			children = (
-				E9D21D1F1BCB9FA500912C2C /* MarketplaceHelper */,
-				E9D9C5091B1C012000222E0C /* MarketplaceViewController.h */,
-				E9D9C50A1B1C012000222E0C /* MarketplaceViewController.m */,
+				E9D21D2A1BCBB93100912C2C /* MarketplaceVC */,
+				E9D21D291BCBB91F00912C2C /* MarketplaceLogicHelper */,
+				E9D21D1F1BCB9FA500912C2C /* MarketplaceUIHelper */,
 			);
 			name = MarketplaceVC;
 			sourceTree = "<group>";
@@ -2172,6 +2193,7 @@
 			files = (
 				E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */,
 				E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */,
+				E9D21D331BCBBAA300912C2C /* MarketplaceLogicHelper.m in Sources */,
 				E9A07C1C1B3162AE00904DE9 /* recent.m in Sources */,
 				E9A07C191B31623C00904DE9 /* video.m in Sources */,
 				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
@@ -2180,9 +2202,9 @@
 				E9E74B721BBE626300C0777F /* EmailSignupLoginVC.m in Sources */,
 				E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
+				E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */,
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
-				E9D21D281BCBA2A300912C2C /* MarketplaceHelper.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
@@ -2191,6 +2213,7 @@
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
+				E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
@@ -2212,7 +2235,6 @@
 				E9A07C171B31623C00904DE9 /* common.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */,
-				E9D9C50B1B1C012000222E0C /* MarketplaceViewController.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */,
 				E9A07C281B31660B00904DE9 /* push.m in Sources */,
