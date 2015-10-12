@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+//-----------------------------------------------------------------------------------------------------------------------------
 @interface MarketplaceLogicHelper : NSObject
+//-----------------------------------------------------------------------------------------------------------------------------
 
-+ (BOOL) hasPhoneLanguageChangedRecently;
++ (BOOL)        hasPhoneLanguageChangedRecently;
 
-+ (NSString *) getBuyerLocationFilter: (BOOL) languageChanged;
++ (NSString *)  getBuyerLocationFilter: (BOOL) languageChanged;
 
-+ (NSString *) getCategoryFilter: (BOOL) languageChanged;
++ (NSString *)  getCategoryFilter: (BOOL) languageChanged;
 
-+ (NSString *) getSortingChoice: (BOOL) languageChanged;
++ (NSString *)  getSortingChoice: (BOOL) languageChanged;
 
-+ (NSString *) getProductOriginFilter: (BOOL) languageChanged;
++ (NSString *)  getProductOriginFilter: (BOOL) languageChanged;
 
 @end

@@ -8,8 +8,11 @@
 
 #import "MarketplaceUIHelper.h"
 #import "MarketplaceLogicHelper.h"
+#import "MarketplaceCollectionViewCell.h"
 #import "AppConstant.h"
 #import "Utilities.h"
+
+#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
 @implementation MarketplaceUIHelper
 
@@ -254,26 +257,48 @@
     [container addSubview:verticalLine];
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) addTapGestureRecognizerToView: (UIView *) container withTag: (NSInteger) tag inViewController: (UIViewController *) viewController
-//------------------------------------------------------------------------------------------------------------------------------
+
+#pragma mark - Collection View
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (UICollectionView *) addCollectionViewToViewController:(UIViewController<UICollectionViewDelegate, UICollectionViewDataSource> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
 {
-    UITapGestureRecognizer *tapGesture;
+    CGFloat const kCollectionViewYPos   =   [Utilities getHeightOfNavigationAndStatusBars:viewController] + SORT_FILTER_BAR_HEIGHT;
+    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos - [Utilities getHeightOfBottomTabBar:viewController];
     
-    if (tag == 0)
-    {
-        
-    }
-    else if (tag == 1)
-    {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:viewController action:@selector(categoryViewTouchEventHandler)];
-    }
-    else if (tag == 2)
-    {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:viewController action:@selector(sortAndFilterViewTouchEventHandler)];
-    }
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionView *wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
+    wantCollectionView.dataSource = viewController;
+    wantCollectionView.delegate = viewController;
+    wantCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
     
-    [container addGestureRecognizer:tapGesture];
+    [wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
+    [viewController.view addSubview:wantCollectionView];
+    
+    return wantCollectionView;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (UIRefreshControl *) addTopRefreshControlToCollectionView:(UICollectionView *)collectionView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UIRefreshControl *topRefreshControl = [UIRefreshControl new];
+    topRefreshControl.backgroundColor = BACKGROUND_GRAY_COLOR;
+    [collectionView addSubview:topRefreshControl];
+    
+    return topRefreshControl;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (UIRefreshControl *) addBottomRefreshControlToCollectionView:(UICollectionView *)collectionView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UIRefreshControl *bottomRefreshControl = [UIRefreshControl new];
+    bottomRefreshControl.triggerVerticalOffset = 100;
+    collectionView.bottomRefreshControl = bottomRefreshControl;
+    
+    return bottomRefreshControl;
 }
 
 

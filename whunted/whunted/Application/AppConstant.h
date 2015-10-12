@@ -377,6 +377,7 @@
 #define     BUYER_LOCATION_CONTAINER_TAG                301
 #define     CATEGORY_CONTAINER_TAG                      302
 #define     SORT_FILTER_CONTAINER_TAG                   303
+#define     SORT_FILTER_BAR_HEIGHT                      50.0f
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60

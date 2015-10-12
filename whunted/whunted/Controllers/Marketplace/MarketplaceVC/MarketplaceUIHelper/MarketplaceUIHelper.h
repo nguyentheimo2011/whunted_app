@@ -22,28 +22,38 @@
 #pragma mark - SortAndFilter bar
 //-----------------------------------------------------------------------------------------------------------------------------
 
-+ (UIView *) addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController;
++ (UIView *)    addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController;
 
-+ (void) addHorizontalLineToSortAndFilterBar: (UIView *) sortAndFilterBar;
++ (void)        addHorizontalLineToSortAndFilterBar: (UIView *) sortAndFilterBar;
 
-+ (UILabel *) addBuyerLocationFilterToSortAndFilterBar: (UIView *) sortAndFilterBar;
++ (UILabel *)   addBuyerLocationFilterToSortAndFilterBar: (UIView *) sortAndFilterBar;
 
-+ (UILabel *) addCategoryFilterToSortAndFilterBar: (UIView *) sortAndFilterBar;
++ (UILabel *)   addCategoryFilterToSortAndFilterBar: (UIView *) sortAndFilterBar;
 
-+ (UILabel *) addSortAndFilterOptionToSortAndFilterBar: (UIView *) sortAndFilterBar;
++ (UILabel *)   addSortAndFilterOptionToSortAndFilterBar: (UIView *) sortAndFilterBar;
 
-+ (UIView *) addContainerWithTag:(NSInteger)tag toSortAndFilterBar:(UIView *)sortAndFilterBar;
++ (UIView *)    addContainerWithTag:(NSInteger)tag toSortAndFilterBar:(UIView *)sortAndFilterBar;
 
-+ (void) addIconImageViewToContainer: (UIView *) container withTag: (NSInteger) tag;
++ (void)        addIconImageViewToContainer: (UIView *) container withTag: (NSInteger) tag;
 
-+ (void) addTitleLabelToContainer: (UIView *) container withTag: (NSInteger) tag;
++ (void)        addTitleLabelToContainer: (UIView *) container withTag: (NSInteger) tag;
 
-+ (UILabel *) addCurCriterionLabelToContainer: (UIView *) container withTag: (NSInteger) tag;
++ (UILabel *)   addCurCriterionLabelToContainer: (UIView *) container withTag: (NSInteger) tag;
 
-+ (void) addDownIconArrowToContainer: (UIView *) container withTag: (NSInteger) tag;
++ (void)        addDownIconArrowToContainer: (UIView *) container withTag: (NSInteger) tag;
 
-+ (void) addVerticalLineToContainer: (UIView *) container;
++ (void)        addVerticalLineToContainer: (UIView *) container;
 
-+ (void) addTapGestureRecognizerToView: (UIView *) container withTag: (NSInteger) tag inViewController: (UIViewController *) viewController;
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Collection View
+//-----------------------------------------------------------------------------------------------------------------------------
+
++ (UICollectionView *) addCollectionViewToViewController: (UIViewController<UICollectionViewDelegate, UICollectionViewDataSource> *) viewController;
+
++ (UIRefreshControl *) addTopRefreshControlToCollectionView: (UICollectionView *) collectionView;
+
++ (UIRefreshControl *) addBottomRefreshControlToCollectionView: (UICollectionView *) collectionView;
+
 
 @end

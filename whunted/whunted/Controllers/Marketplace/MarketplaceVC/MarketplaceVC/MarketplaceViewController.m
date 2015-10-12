@@ -14,9 +14,7 @@
 #import "Utilities.h"
 
 #import <MBProgressHUD.h>
-#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
-#define     kSortAndFilterBarHeight         50.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 @interface MarketplaceViewController ()
@@ -157,7 +155,7 @@
 - (void) addSortAndFilterBar
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _sortAndFilterBar = [MarketplaceUIHelper addSortAndFilterBarWithHeight:kSortAndFilterBarHeight toViewController:self];
+    _sortAndFilterBar = [MarketplaceUIHelper addSortAndFilterBarWithHeight:SORT_FILTER_BAR_HEIGHT toViewController:self];
     
     [self addBuyerLocationFilterToSortAndFilterBar];
     [self addCategoryFilterToSortAndFilterBar];
@@ -204,28 +202,13 @@
 - (void) addWantCollectionView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCollectionViewYPos   =   [Utilities getHeightOfNavigationAndStatusBars:self] + kSortAndFilterBarHeight;
-    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos - [Utilities getHeightOfBottomTabBar:self];
+    _wantCollectionView = [MarketplaceUIHelper addCollectionViewToViewController:self];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
-    _wantCollectionView.dataSource = self;
-    _wantCollectionView.delegate = self;
-    _wantCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _topRefreshControl = [MarketplaceUIHelper addTopRefreshControlToCollectionView:_wantCollectionView];
+    [_topRefreshControl addTarget:self action:@selector(refreshWantData) forControlEvents:UIControlEventValueChanged];
     
-    [_wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
-    [self.view addSubview:_wantCollectionView];
-    
-    _topRefreshControl = [[UIRefreshControl alloc] init];
-    _topRefreshControl.backgroundColor = BACKGROUND_GRAY_COLOR;
-    [_topRefreshControl addTarget:self action:@selector(refreshWantData)
-                 forControlEvents:UIControlEventValueChanged];
-    [_wantCollectionView addSubview:_topRefreshControl];
-    
-    _bottomRefreshControl = [UIRefreshControl new];
-    _bottomRefreshControl.triggerVerticalOffset = 100;
+    _bottomRefreshControl = [MarketplaceUIHelper addBottomRefreshControlToCollectionView:_wantCollectionView];
     [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
-    _wantCollectionView.bottomRefreshControl = _bottomRefreshControl;
 }
 
 
