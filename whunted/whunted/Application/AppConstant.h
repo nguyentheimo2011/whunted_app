@@ -374,6 +374,11 @@
 #define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     BUYER_LOCATION_CONTAINER_TAG                301
+#define     CATEGORY_CONTAINER_TAG                      302
+#define     SORT_FILTER_CONTAINER_TAG                   303
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60
 #define     NUM_OF_SECONDS_IN_AN_HOUR                   3600
 #define     NUM_OF_SECONDS_IN_A_DAY                     86400

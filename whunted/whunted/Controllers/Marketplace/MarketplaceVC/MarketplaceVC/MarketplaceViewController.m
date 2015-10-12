@@ -78,10 +78,7 @@
 {
     [super viewDidLoad];
     
-    [self customizeView];
     [self initUI];
-    [self addSortAndFilterBar];
-    [self addWantCollectionView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -134,7 +131,10 @@
 - (void) initUI
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _searchBar = [MarketplaceUIHelper addSearchBoxToViewController:self];
+    [self customizeView];
+    [self addSearchBar];
+    [self addSortAndFilterBar];
+    [self addWantCollectionView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -147,6 +147,13 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) addSearchBar
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _searchBar = [MarketplaceUIHelper addSearchBoxToViewController:self];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addSortAndFilterBar
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -155,6 +162,42 @@
     [self addBuyerLocationFilterToSortAndFilterBar];
     [self addCategoryFilterToSortAndFilterBar];
     [self addSortAndFilterOptionToSortAndFilterBar];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addBuyerLocationFilterToSortAndFilterBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currBuyerLocationLabel = [MarketplaceUIHelper addBuyerLocationFilterToSortAndFilterBar:_sortAndFilterBar];
+    _currBuyerLocationLabel.text = _currBuyerLocation;
+    
+    UIView *buyerLocationContainer = [Utilities getSubviewOfView:_sortAndFilterBar withTag:BUYER_LOCATION_CONTAINER_TAG];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyerLocationViewTouchEventHandler)];
+    [buyerLocationContainer addGestureRecognizer:tapGesture];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addCategoryFilterToSortAndFilterBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currCategoryLabel = [MarketplaceUIHelper addCategoryFilterToSortAndFilterBar:_sortAndFilterBar];
+    _currCategoryLabel.text = _currCategory;
+    
+    UIView *categoryContainer = [Utilities getSubviewOfView:_sortAndFilterBar withTag:CATEGORY_CONTAINER_TAG];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(categoryViewTouchEventHandler)];
+    [categoryContainer addGestureRecognizer:tapGesture];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSortAndFilterOptionToSortAndFilterBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currSortFilterLabel = [MarketplaceUIHelper addSortAndFilterOptionToSortAndFilterBar:_sortAndFilterBar];
+    _currSortFilterLabel.text = _currSortingBy;
+    
+    UIView *sortFilterContainer = [Utilities getSubviewOfView:_sortAndFilterBar withTag:SORT_FILTER_CONTAINER_TAG];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortAndFilterViewTouchEventHandler)];
+    [sortFilterContainer addGestureRecognizer:tapGesture];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -176,199 +219,13 @@
     _topRefreshControl = [[UIRefreshControl alloc] init];
     _topRefreshControl.backgroundColor = BACKGROUND_GRAY_COLOR;
     [_topRefreshControl addTarget:self action:@selector(refreshWantData)
-             forControlEvents:UIControlEventValueChanged];
+                 forControlEvents:UIControlEventValueChanged];
     [_wantCollectionView addSubview:_topRefreshControl];
     
     _bottomRefreshControl = [UIRefreshControl new];
     _bottomRefreshControl.triggerVerticalOffset = 100;
     [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
     _wantCollectionView.bottomRefreshControl = _bottomRefreshControl;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addBuyerLocationFilterToSortAndFilterBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *container = [self createContainerView:0];
-    
-    [self addIconImageViewToContainer:container withTag:0];
-    [self addTitleLabelToContainer:container withTag:0];
-    [self addCurCriterionLabelToContainer:container withTag:0];
-    [self addDownIconArrowToContainer:container withTag:0];
-    [self addVerticalLineToContainer:container];
-    [self addTapGestureRecognizerToView:container withTag:0];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addCategoryFilterToSortAndFilterBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *container = [self createContainerView:1];
-    
-    [self addIconImageViewToContainer:container withTag:1];
-    [self addTitleLabelToContainer:container withTag:1];
-    [self addCurCriterionLabelToContainer:container withTag:1];
-    [self addDownIconArrowToContainer:container withTag:1];
-    [self addVerticalLineToContainer:container];
-    [self addTapGestureRecognizerToView:container withTag:1];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addSortAndFilterOptionToSortAndFilterBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *container = [self createContainerView:2];
-    
-    [self addIconImageViewToContainer:container withTag:2];
-    [self addTitleLabelToContainer:container withTag:2];
-    [self addCurCriterionLabelToContainer:container withTag:2];
-    [self addDownIconArrowToContainer:container withTag:2];
-    [self addTapGestureRecognizerToView:container withTag:2];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (UIView *) createContainerView: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(tag * WINSIZE.width/3.0f, 0, WINSIZE.width/3.0f, kSortAndFilterBarHeight - 0.5f)];
-    [_sortAndFilterBar addSubview:container];
-    
-    return container;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addIconImageViewToContainer: (UIView *) container withTag: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIImageView *iconImageView = [[UIImageView alloc] init];
-    
-    if (tag == 0)
-    {
-        iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
-        [iconImageView setImage:[UIImage imageNamed:@"buyer_location_icon.png"]];
-    }
-    else if (tag == 1)
-    {
-        iconImageView.frame = CGRectMake(8.0f, 8.0f, 15.0f, 15.0f);
-        [iconImageView setImage:[UIImage imageNamed:@"category_small_icon.png"]];
-    }
-    else if (tag == 2)
-    {
-        iconImageView.frame = CGRectMake(6.0f, 6.0f, 20.0f, 20.0f);
-        [iconImageView setImage:[UIImage imageNamed:@"sort_filter_icon.png"]];
-    }
-    
-    [container addSubview:iconImageView];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addTitleLabelToContainer: (UIView *) container withTag: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
-    
-    if (tag == 0)
-    {
-        titleLabel.text = NSLocalizedString(@"LOCATION", nil);
-        titleLabel.frame = CGRectMake(26.0f, 7.0f, WINSIZE.width/3.0 - 30.0f, 20.0f);
-    }
-    else if (tag == 1)
-    {
-        titleLabel.text = NSLocalizedString(@"CATEGORY", nil);
-        titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 36.0f, 20.0f);
-    }
-    else if (tag == 2)
-    {
-        titleLabel.text = NSLocalizedString(@"SORT/FILTER", nil);
-        titleLabel.frame = CGRectMake(30.0f, 7.0f, WINSIZE.width/3.0 - 38.0f, 20.0f);
-    }
-    
-    [container addSubview:titleLabel];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addCurCriterionLabelToContainer: (UIView *) container withTag: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *curLabel = [[UILabel alloc] init];
-    curLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    curLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
-    [container addSubview:curLabel];
-    
-    if (tag == 0)
-    {
-        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 35.0f, 20.0f);
-        curLabel.text = _currBuyerLocation;
-        _currBuyerLocationLabel = curLabel;
-    }
-    else if (tag == 1)
-    {
-        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 20.0f, 20.0f);
-        curLabel.text = _currCategory;
-        _currCategoryLabel = curLabel;
-    }
-    else if (tag == 2)
-    {
-        curLabel.frame = CGRectMake(9.0f, 25.0f, WINSIZE.width/3.0 - 26.0f, 20.0f);
-        curLabel.text = _currSortingBy;
-        _currSortFilterLabel = curLabel;
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addDownIconArrowToContainer: (UIView *) container withTag: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIImageView *downArrowImageView = [[UIImageView alloc] init];
-    [downArrowImageView setImage:[UIImage imageNamed:@"down_arrow_icon.png"]];
-    
-    if (tag == 0)
-    {
-        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
-    }
-    else if (tag == 1)
-    {
-        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
-    }
-    else if (tag == 2)
-    {
-        downArrowImageView.frame = CGRectMake(WINSIZE.width/3.0 - 16.0f, 32.0f, 8.0f, 8.0f);
-    }
-    
-    [container addSubview:downArrowImageView];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addVerticalLineToContainer: (UIView *) container
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, 8.0f, 0.5f, kSortAndFilterBarHeight - 2 * 8.0f)];
-    verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
-    [container addSubview:verticalLine];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addTapGestureRecognizerToView: (UIView *) container withTag: (NSInteger) tag
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UITapGestureRecognizer *tapGesture;
-    
-    if (tag == 0)
-    {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buyerLocationViewTouchEventHandler)];
-    }
-    else if (tag == 1)
-    {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(categoryViewTouchEventHandler)];
-    }
-    else if (tag == 2)
-    {
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortAndFilterViewTouchEventHandler)];
-    }
-    
-    [container addGestureRecognizer:tapGesture];
 }
 
 

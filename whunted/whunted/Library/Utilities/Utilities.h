@@ -76,6 +76,8 @@
 
 + (void)        scrollToBottom: (UIScrollView *) scrollView;
 
++ (UIView *)    getSubviewOfView: (UIView *) parentView withTag: (NSInteger) tag;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Data Type Conversion
