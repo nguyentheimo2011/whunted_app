@@ -12,4 +12,12 @@
 
 + (BOOL) hasPhoneLanguageChangedRecently;
 
++ (NSString *) getBuyerLocationFilter: (BOOL) languageChanged;
+
++ (NSString *) getCategoryFilter: (BOOL) languageChanged;
+
++ (NSString *) getSortingChoice: (BOOL) languageChanged;
+
++ (NSString *) getProductOriginFilter: (BOOL) languageChanged;
+
 @end

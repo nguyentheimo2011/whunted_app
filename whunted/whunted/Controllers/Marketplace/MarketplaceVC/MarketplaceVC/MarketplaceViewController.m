@@ -121,52 +121,10 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     BOOL languageChanged = [MarketplaceLogicHelper hasPhoneLanguageChangedRecently];
-    
-    if (languageChanged)
-    {
-        // if phone language is changed, reset all to defaults.
-        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
-        [[NSUserDefaults standardUserDefaults] setObject:_currBuyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
-        
-        _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
-        [[NSUserDefaults standardUserDefaults] setObject:_currCategory forKey:CURRENT_CATEGORY_FILTER];
-        
-        _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
-        [[NSUserDefaults standardUserDefaults] setObject:_currSortingBy forKey:CURRENT_SORTING_BY];
-        
-        _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
-        [[NSUserDefaults standardUserDefaults] setObject:_currProductOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-    }
-    else
-    {
-        _currBuyerLocation = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_BUYER_LOCATION_FILTER];
-        if (_currBuyerLocation.length == 0)
-        {
-            _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
-            [[NSUserDefaults standardUserDefaults] setObject:_currBuyerLocation forKey:CURRENT_BUYER_LOCATION_FILTER];
-        }
-        
-        _currCategory = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_CATEGORY_FILTER];
-        if (_currCategory.length == 0 || ![self isOfOneOfCorrectCategories:_currCategory])
-        {
-            _currCategory = NSLocalizedString(ITEM_CATEGORY_ALL, nil);
-            [[NSUserDefaults standardUserDefaults] setObject:_currCategory forKey:CURRENT_CATEGORY_FILTER];
-        }
-        
-        _currSortingBy = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_SORTING_BY];
-        if (_currSortingBy.length == 0 || ![self isOfOneOfCorrectSortingSchemes:_currSortingBy])
-        {
-            _currSortingBy = NSLocalizedString(SORTING_BY_RECENT, nil);
-            [[NSUserDefaults standardUserDefaults] setObject:_currSortingBy forKey:CURRENT_SORTING_BY];
-        }
-        
-        _currProductOrigin = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-        if (_currProductOrigin.length == 0)
-        {
-            _currProductOrigin = NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil);
-            [[NSUserDefaults standardUserDefaults] setObject:_currProductOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-        }
-    }
+    _currBuyerLocation = [MarketplaceLogicHelper getBuyerLocationFilter:languageChanged];
+    _currCategory = [MarketplaceLogicHelper getCategoryFilter:languageChanged];
+    _currSortingBy = [MarketplaceLogicHelper getSortingChoice:languageChanged];
+    _currProductOrigin = [MarketplaceLogicHelper getProductOriginFilter:languageChanged];
 }
 
 
