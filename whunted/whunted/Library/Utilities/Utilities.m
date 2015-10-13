@@ -12,56 +12,7 @@
 @implementation Utilities
 
 
-#pragma mark - UI Handlers
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) addBorderAndShadow: (UIView *) view
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    // border radius
-    [view.layer setCornerRadius:10.0f];
-    [view clipsToBounds];
-    
-    // border
-    [view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [view.layer setBorderWidth:0.5f];
-    
-    // drop shadow
-    [view.layer setShadowColor:[UIColor blackColor].CGColor];
-    [view.layer setShadowOpacity:0.8];
-    [view.layer setShadowRadius:3.0];
-    [view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) setTopRoundedCorner:(UIView *)view
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
-                                     byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
-                                           cornerRadii:CGSizeMake(10.0f, 10.0f)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = view.bounds;
-    maskLayer.path = maskPath.CGPath;
-    view.layer.mask = maskLayer;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) setBottomRoundedCorner: (UIView *) view
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIBezierPath *maskPath;
-    maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
-                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerBottomRight)
-                                           cornerRadii:CGSizeMake(10.0f, 10.0f)];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = view.bounds;
-    maskLayer.path = maskPath.CGPath;
-    view.layer.mask = maskLayer;
-}
+#pragma mark - UI Image
 
 //------------------------------------------------------------------------------------------------------------------------------
 + (UIImage *) resizeImage: (UIImage *) originalImage toSize: (CGSize) newSize scalingProportionally: (BOOL) scalingProportionally
@@ -97,27 +48,6 @@
     NSData *imageData = UIImageJPEGRepresentation(picture1, 0.5);
     UIImage *newImage=[UIImage imageWithData:imageData];
     return newImage;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) addGradientToButton:(UIButton *)button
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = button.layer.bounds;
-    
-    gradientLayer.colors = [NSArray arrayWithObjects:
-                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
-                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
-                            nil];
-    
-    gradientLayer.locations = [NSArray arrayWithObjects:
-                               [NSNumber numberWithFloat:0.0f],
-                               [NSNumber numberWithFloat:1.0f],
-                               nil];
-    
-    gradientLayer.cornerRadius = button.layer.cornerRadius;
-    [button.layer addSublayer:gradientLayer];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -169,6 +99,9 @@
     return image;
 }
 
+
+#pragma mark - UI Size
+
 //-------------------------------------------------------------------------------------------------------------------------------
 + (CGFloat) getStatusBarHeight
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -177,71 +110,17 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController
++ (CGFloat) getHeightOfBottomTabBar:(UIViewController *)viewController
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
-    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.text = [NSString stringWithFormat:@"%@", title];
-    [titleLabel sizeToFit];
-    viewController.navigationItem.titleView = titleLabel;
+    return viewController.tabBarController.tabBar.frame.size.height;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeHeaderFooterLabels
++ (CGFloat) getHeightOfNavigationAndStatusBars: (UIViewController *) viewController
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
-    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:TEXT_COLOR_DARK_GRAY];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTextField:(UITextField *)textField
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, textField.frame.size.height)];
-    textField.leftView = paddingView;
-    textField.leftViewMode = UITextFieldViewModeAlways;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTabBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [[UITabBar appearance] setBackgroundImage:[Utilities imageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.95f]]];
-    
-    // set the text color for selected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : MAIN_BLUE_COLOR} forState:UIControlStateSelected];
-    // set the text color for unselected state
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : [UIColor grayColor]} forState:UIControlStateNormal];
-    
-    // set the selected icon color
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setSelectedImageTintColor:MAIN_BLUE_COLOR];
-    
-    [[UITabBar appearance] setShadowImage:[Utilities imageWithColor:[UIColor whiteColor]]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeNavigationBar
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [[UINavigationBar appearance] setBarTintColor:MAIN_BLUE_COLOR];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeBackButtonForViewController:(UIViewController *)controller withAction:(SEL)action
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = -11.0f;
-    
-    controller.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:controller action:action]];
+    return viewController.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -280,6 +159,150 @@
     return CGSizeMake(kCellWidth, kCellHeight);
 }
 
+
+#pragma mark - UI Customization
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeTabBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UITabBar appearance] setBackgroundImage:[Utilities imageWithColor:[[UIColor whiteColor] colorWithAlphaComponent:0.95f]]];
+    
+    // set the text color for selected state
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : MAIN_BLUE_COLOR} forState:UIControlStateSelected];
+    // set the text color for unselected state
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:12], NSForegroundColorAttributeName : [UIColor grayColor]} forState:UIControlStateNormal];
+    
+    // set the selected icon color
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:MAIN_BLUE_COLOR];
+    
+    [[UITabBar appearance] setShadowImage:[Utilities imageWithColor:[UIColor whiteColor]]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeNavigationBar
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UINavigationBar appearance] setBarTintColor:MAIN_BLUE_COLOR];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeBackButtonForViewController:(UIViewController *)controller withAction:(SEL)action
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -11.0f;
+    
+    controller.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:controller action:action]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeTitleLabel: (NSString *) title forViewController: (UIViewController *) viewController
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = [NSString stringWithFormat:@"%@", title];
+    [titleLabel sizeToFit];
+    viewController.navigationItem.titleView = titleLabel;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeHeaderFooterLabels
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:TEXT_COLOR_DARK_GRAY];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) customizeTextField:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, textField.frame.size.height)];
+    textField.leftView = paddingView;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+}
+
+
+#pragma mark - UI Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) addBorderAndShadow: (UIView *) view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // border radius
+    [view.layer setCornerRadius:10.0f];
+    [view clipsToBounds];
+    
+    // border
+    [view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [view.layer setBorderWidth:0.5f];
+    
+    // drop shadow
+    [view.layer setShadowColor:[UIColor blackColor].CGColor];
+    [view.layer setShadowOpacity:0.8];
+    [view.layer setShadowRadius:3.0];
+    [view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) addGradientToButton:(UIButton *)button
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = button.layer.bounds;
+    
+    gradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer.cornerRadius = button.layer.cornerRadius;
+    [button.layer addSublayer:gradientLayer];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) setTopRoundedCorner:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIBezierPath *maskPath;
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
+                                     byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight)
+                                           cornerRadii:CGSizeMake(10.0f, 10.0f)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) setBottomRoundedCorner: (UIView *) view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIBezierPath *maskPath;
+    maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds
+                                     byRoundingCorners:(UIRectCornerBottomLeft|UIRectCornerBottomRight)
+                                           cornerRadii:CGSizeMake(10.0f, 10.0f)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    view.layer.mask = maskLayer;
+}
+
 //------------------------------------------------------------------------------------------------------------------------------
 + (void) scrollToBottom:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
@@ -301,38 +324,229 @@
     return nil;
 }
 
+
+#pragma mark - Data Type Conversion
+
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeItemBarButton
++ (BOOL) booleanFromString:(NSString *)string
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
+    if ([string isEqualToString:STRING_OF_YES])
+        return YES;
+    else
+        return NO;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (CGFloat) getHeightOfNavigationAndStatusBars: (UIViewController *) viewController
++ (NSString *)  stringFromBoolean: (BOOL) boolean
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return viewController.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height;
+    if (boolean)
+        return STRING_OF_YES;
+    else
+        return STRING_OF_NO;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (CGFloat) getHeightOfBottomTabBar:(UIViewController *)viewController
++ (NSString *) stringFromChatMessageType:(ChatMessageType)type
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return viewController.tabBarController.tabBar.frame.size.height;
+    if (type == ChatMessageTypeNone)
+        return @"ChatMessageTypeNone";
+    else if (type == ChatMessageTypeAcceptingOffer)
+        return @"ChatMessageTypeAcceptingOffer";
+    else if (type == ChatMessageTypeCancellingOffer)
+        return @"ChatMessageTypeCancellingOffer";
+    else if (type == ChatMessageTypeDecliningOffer)
+        return @"ChatMessageTypeDecliningOffer";
+    else if (type == ChatMessageTypeMakingOffer)
+        return @"ChatMessageTypeMakingOffer";
+    else if (type == ChatMessageTypeNormal)
+        return @"ChatMessageTypeNormal";
+    else if (type == ChatMessageTypeLeavingFeeback)
+        return @"ChatMessageTypeLeavingFeeback";
+    else
+        return @"";
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (ChatMessageType) chatMessageTypeFromString:(NSString *)type
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([type isEqualToString:@"ChatMessageTypeNone"])
+        return ChatMessageTypeNone;
+    else if ([type isEqualToString:@"ChatMessageTypeAcceptingOffer"])
+        return ChatMessageTypeAcceptingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeCancellingOffer"])
+        return ChatMessageTypeCancellingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeDecliningOffer"])
+        return ChatMessageTypeDecliningOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeMakingOffer"])
+        return ChatMessageTypeMakingOffer;
+    else if ([type isEqualToString:@"ChatMessageTypeNormal"])
+        return ChatMessageTypeNormal;
+    else if ([type isEqualToString:@"ChatMessageTypeLeavingFeeback"])
+        return ChatMessageTypeLeavingFeeback;
+    else
+        return ChatMessageTypeNone;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (float) floatingNumFromDemandedPrice:(NSString *)demandedPrice
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *reducedString = [demandedPrice stringByReplacingOccurrencesOfString:PROPER_TAIWAN_CURRENCY withString:@""];
+    reducedString = [reducedString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    reducedString = [reducedString stringByReplacingOccurrencesOfString:@"," withString:@""];
+    
+    return [reducedString floatValue];
 }
 
 
-#pragma mark - Notification Handlers
+#pragma mark -  Transaction Data
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) postNotification: (NSString *) notification
++ (BOOL) amITheBuyer:(TransactionData *) offerData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
+    if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
+        return YES;
+    else
+        return NO;
 }
 
-#pragma mark - Data Handlers
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) idOfDealerDealingWithMe: (TransactionData *) offerData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
+        return offerData.sellerID;
+    else
+        return offerData.buyerID;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) makingOfferMessageFromOfferedPrice:(NSString *)offeredPrice andDeliveryTime:(NSString *)deliveryTime
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *message = @"";
+    NSString *string1 = NSLocalizedString(@"Made An Offer", nil);
+    NSString *string2 = NSLocalizedString(@"Deliver in", nil);
+    NSString *day     = NSLocalizedString(@"dayString", nil);
+    NSString *days    = NSLocalizedString(@"daysString", nil);
+    
+    if ([deliveryTime integerValue] <= 1)
+        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, day];
+    else
+        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, days];
+    
+    return message;
+}
+
+
+#pragma mark - Chat Data
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) generateChatGroupIDFromItemID:(NSString *)itemID user1:(PFUser *)user1 user2:(PFUser *)user2
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *id1 = user1.objectId;
+    NSString *id2 = user2.objectId;
+    
+    NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", itemID, id2, id1];
+    
+    return groupId;
+}
+
+
+#pragma mark - Mutiple Languages Support
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) getSynonymOfWord:(NSString *)word
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // get chinese synonym
+    if ([word isEqualToString:ITEM_CATEGORY_BEAUTY_PRODUCTS])
+        return ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS;
+    else if ([word isEqualToString:ITEM_CATEGORY_BOOKS_AND_MAGAZINES])
+        return ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES;
+    else if ([word isEqualToString:ITEM_CATEGORY_LUXURY_BRANDED])
+        return ITEM_CHINESE_CATEGORY_LUXURY_BRANDED;
+    else if ([word isEqualToString:ITEM_CATEGORY_GAMES_AND_TOYS])
+        return ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS;
+    else if ([word isEqualToString:ITEM_CATEGORY_PROFESSIONAL_SERVICES])
+        return ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES;
+    else if ([word isEqualToString:ITEM_CATEGORY_SPORT_EQUIPMENTS])
+        return ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS;
+    else if ([word isEqualToString:ITEM_CATEGORY_TICKETS_AND_VOUCHERS])
+        return ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS;
+    else if ([word isEqualToString:ITEM_CATEGORY_WATCHES])
+        return ITEM_CHINESE_CATEGORY_WATCHES;
+    else if ([word isEqualToString:ITEM_CATEGORY_CUSTOMIZATION])
+        return ITEM_CHINESE_CATEGORY_CUSTOMIZATION;
+    else if ([word isEqualToString:ITEM_CATEGORY_BORROWING])
+        return ITEM_CHINESE_CATEGORY_BORROWING;
+    else if ([word isEqualToString:ITEM_CATEGORY_FUNITURE])
+        return ITEM_CHINESE_CATEGORY_FUNITURE;
+    else if ([word isEqualToString:ITEM_CATEGORY_OTHERS])
+        return ITEM_CHINESE_CATEGORY_OTHERS;
+    
+    // get english synonym
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS])
+        return ITEM_CATEGORY_BEAUTY_PRODUCTS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES])
+        return ITEM_CATEGORY_BOOKS_AND_MAGAZINES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_LUXURY_BRANDED])
+        return ITEM_CATEGORY_LUXURY_BRANDED;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS])
+        return ITEM_CATEGORY_GAMES_AND_TOYS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES])
+        return ITEM_CATEGORY_PROFESSIONAL_SERVICES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS])
+        return ITEM_CATEGORY_SPORT_EQUIPMENTS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS])
+        return ITEM_CATEGORY_TICKETS_AND_VOUCHERS;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_WATCHES])
+        return ITEM_CATEGORY_WATCHES;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_CUSTOMIZATION])
+        return ITEM_CATEGORY_CUSTOMIZATION;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BORROWING])
+        return ITEM_CATEGORY_BORROWING;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_FUNITURE])
+        return ITEM_CATEGORY_FUNITURE;
+    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_OTHERS])
+        return ITEM_CATEGORY_OTHERS;
+    else
+        return nil;
+}
+
+
+#pragma mark - Whunt Details Helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (range.location == [originalText length])
+    {
+        return [originalText stringByAppendingString:string];
+    }
+    else
+    {
+        if ([string length] == 0)
+        { // User removes a character
+            NSString *firstSubstring = [originalText substringToIndex:range.location];
+            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
+            return [firstSubstring stringByAppendingString:secondSubstring];
+        }
+        else
+        {
+            NSString *firstSubstring = [originalText substringToIndex:range.location];
+            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
+            return [[firstSubstring stringByAppendingString:string] stringByAppendingString:secondSubstring];
+        }
+    }
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 + (BOOL) checkIfIsValidPrice: (NSString *) price
@@ -384,6 +598,36 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) extractCountry: (NSString *) location
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
+    NSString *specificAddress;
+    NSString *country;
+    
+    if (commaSignRange.location >= location.length)
+    {
+        specificAddress = @"";
+        country = location;
+    } else {
+        specificAddress = [location substringToIndex:commaSignRange.location];
+        country = [location substringFromIndex:commaSignRange.location + 1];
+    }
+    
+    return [NSArray arrayWithObjects:specificAddress, country, nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) removeLastDotCharacterIfNeeded:(NSString *)price
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([price characterAtIndex:[price length]-1] == '.')
+        return [price substringToIndex:[price length]-1];
+    else
+        return price;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 + (NSString *) formattedPriceFromNumber:(NSNumber *)number
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -421,91 +665,193 @@
     return [format numberFromString:simplifiedPrice];
 }
 
+
+#pragma mark - Notification
+
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) getResultantStringFromText: (NSString *) originalText andRange: (NSRange) range andReplacementString: (NSString *) string
++ (void) postNotification: (NSString *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (range.location == [originalText length])
-    {
-        return [originalText stringByAppendingString:string];
-    }
-    else
-    {
-        if ([string length] == 0)
-        { // User removes a character
-            NSString *firstSubstring = [originalText substringToIndex:range.location];
-            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
-            return [firstSubstring stringByAppendingString:secondSubstring];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notification object:nil];
+}
+
+
+#pragma mark - Parse Backend
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:userID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error)
+        {
+            PFUser *fetchedUser = (PFUser *) object;
+            
+            if (imageNeeded)
+            {
+                PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
+                [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+                    if (!error2)
+                    {
+                        UIImage *image = [UIImage imageWithData:data];
+                        handler(fetchedUser, image);
+                    }
+                    else
+                    {
+                        [Utilities handleError:error2];
+                    }
+                }];
+            }
+            else
+            {
+                handler(fetchedUser, nil);
+            }
+            
         }
         else
         {
-            NSString *firstSubstring = [originalText substringToIndex:range.location];
-            NSString *secondSubstring = [originalText substringFromIndex:range.location + 1];
-            return [[firstSubstring stringByAppendingString:string] stringByAppendingString:secondSubstring];
+            [Utilities handleError:error];
         }
-    }
+    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) removeLastDotCharacterIfNeeded:(NSString *)price
++ (void) retrieveProfileImageForUser:(PFUser *)user andRunBlock:(ImageHandler)handler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([price characterAtIndex:[price length]-1] == '.')
-        return [price substringToIndex:[price length]-1];
-    else
-        return price;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSArray *) extractCountry: (NSString *) location
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
-    NSString *specificAddress;
-    NSString *country;
-    
-    if (commaSignRange.location >= location.length)
+    PFFile *profileImage = user[PF_USER_PICTURE];
+    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2)
     {
-        specificAddress = @"";
-        country = location;
-    } else {
-        specificAddress = [location substringToIndex:commaSignRange.location];
-        country = [location substringFromIndex:commaSignRange.location + 1];
-    }
+        if (!error2)
+        {
+            UIImage *image = [UIImage imageWithData:data];
+            handler(image);
+        }
+        else
+        {
+            [Utilities handleError:error2];
+        }
+    }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) retrieveUserInfoByUserID: (NSString *) userID andRunBlock:(UserHandler)handler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    [query whereKey:PF_USER_OBJECTID equalTo:userID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error)
+        {
+            PFUser *fetchedUser = (PFUser *) object;
+            handler(fetchedUser);
+        }
+        else
+        {
+            [Utilities handleError:error];
+        }
+    }];
+}
+
+
+#pragma mark - Google Analytics
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendScreenNameToGoogleAnalyticsTracker:(NSString *)screenName
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:screenName];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) sendEventToGoogleAnalyticsTrackerWithEventCategory:(NSString *)category action:(NSString *)action label:(NSString *)label value: (NSNumber*) value
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
-    return [NSArray arrayWithObjects:specificAddress, country, nil];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
+                                                          action:action
+                                                           label:label
+                                                           value:value] build]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *)  stringFromBoolean: (BOOL) boolean
++ (void) sendLoadingTimeToGoogleAnalyticsTrackerWithCategory:(NSString *)category interval:(NSNumber *)loadTime name:(NSString *)name label:(NSString *)label
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (boolean)
-        return STRING_OF_YES;
-    else
-        return STRING_OF_NO;
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:category
+                                                         interval:loadTime
+                                                             name:name
+                                                            label:label] build]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (BOOL) booleanFromString:(NSString *)string
++ (void) sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:(NSString *)description fatal:(NSNumber *)fatal
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([string isEqualToString:STRING_OF_YES])
-        return YES;
-    else
-        return NO;
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder
+                    createExceptionWithDescription:description
+                    withFatal:fatal] build]];
 }
+
+
+#pragma mark - Log
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) logOutMessage:(NSString *)message
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    BOOL debuggingMode = YES;
+    
+    if (debuggingMode)
+        NSLog(@"%@", message);
+}
+
+
+#pragma mark - Error Handlers
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) displayErrorAlertView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"We are sorry! An error occurred while processing this request.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) handleError:(NSError *)error
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
+    //    NSLog(@"%@", errorMessage);
+    [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
+}
+
+
+#pragma mark - Data Validation
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (BOOL) isEmailValid:(NSString *)email
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 
 #pragma mark - Date Handlers
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSDate *) dateFromCommonlyFormattedString: (NSString *) string;
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    return [formatter dateFromString:string];
-}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 + (NSDate *) getRoundMinuteDateFromDate: (NSDate *) date
@@ -523,6 +869,15 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     return [formatter stringFromDate:date];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSDate *) dateFromCommonlyFormattedString: (NSString *) string;
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    return [formatter dateFromString:string];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -646,348 +1001,6 @@
     }
     
     return @"";
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) handleError:(NSError *)error
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
-//    NSLog(@"%@", errorMessage);
-    [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (BOOL) isEmailValid:(NSString *)email
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
-    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
-    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
-    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:email];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) stringFromChatMessageType:(ChatMessageType)type
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (type == ChatMessageTypeNone)
-        return @"ChatMessageTypeNone";
-    else if (type == ChatMessageTypeAcceptingOffer)
-        return @"ChatMessageTypeAcceptingOffer";
-    else if (type == ChatMessageTypeCancellingOffer)
-        return @"ChatMessageTypeCancellingOffer";
-    else if (type == ChatMessageTypeDecliningOffer)
-        return @"ChatMessageTypeDecliningOffer";
-    else if (type == ChatMessageTypeMakingOffer)
-        return @"ChatMessageTypeMakingOffer";
-    else if (type == ChatMessageTypeNormal)
-        return @"ChatMessageTypeNormal";
-    else if (type == ChatMessageTypeLeavingFeeback)
-        return @"ChatMessageTypeLeavingFeeback";
-    else
-        return @"";
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (ChatMessageType) chatMessageTypeFromString:(NSString *)type
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([type isEqualToString:@"ChatMessageTypeNone"])
-        return ChatMessageTypeNone;
-    else if ([type isEqualToString:@"ChatMessageTypeAcceptingOffer"])
-        return ChatMessageTypeAcceptingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeCancellingOffer"])
-        return ChatMessageTypeCancellingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeDecliningOffer"])
-        return ChatMessageTypeDecliningOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeMakingOffer"])
-        return ChatMessageTypeMakingOffer;
-    else if ([type isEqualToString:@"ChatMessageTypeNormal"])
-        return ChatMessageTypeNormal;
-    else if ([type isEqualToString:@"ChatMessageTypeLeavingFeeback"])
-        return ChatMessageTypeLeavingFeeback;
-    else
-        return ChatMessageTypeNone;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (float) floatingNumFromDemandedPrice:(NSString *)demandedPrice
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *reducedString = [demandedPrice stringByReplacingOccurrencesOfString:PROPER_TAIWAN_CURRENCY withString:@""];
-    reducedString = [reducedString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    reducedString = [reducedString stringByReplacingOccurrencesOfString:@"," withString:@""];
-    
-    return [reducedString floatValue];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) makingOfferMessageFromOfferedPrice:(NSString *)offeredPrice andDeliveryTime:(NSString *)deliveryTime
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *message = @"";
-    NSString *string1 = NSLocalizedString(@"Made An Offer", nil);
-    NSString *string2 = NSLocalizedString(@"Deliver in", nil);
-    NSString *day     = NSLocalizedString(@"dayString", nil);
-    NSString *days    = NSLocalizedString(@"daysString", nil);
-    
-    if ([deliveryTime integerValue] <= 1)
-        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, day];
-    else
-        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, days];
-    
-    return message;
-}
-
-
-#pragma mark - Parse Backend
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-    [query whereKey:PF_USER_OBJECTID equalTo:userID];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error)
-        {
-            PFUser *fetchedUser = (PFUser *) object;
-            
-            if (imageNeeded)
-            {
-                PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
-                [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
-                    if (!error2)
-                    {
-                        UIImage *image = [UIImage imageWithData:data];
-                        handler(fetchedUser, image);
-                    }
-                    else
-                    {
-                        [Utilities handleError:error2];
-                    }
-                }];
-            }
-            else
-            {
-                handler(fetchedUser, nil);
-            }
-            
-        }
-        else
-        {
-            [Utilities handleError:error];
-        }
-    }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) retrieveProfileImageForUser:(PFUser *)user andRunBlock:(ImageHandler)handler
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFFile *profileImage = user[PF_USER_PICTURE];
-    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2)
-    {
-        if (!error2)
-        {
-            UIImage *image = [UIImage imageWithData:data];
-            handler(image);
-        }
-        else
-        {
-            [Utilities handleError:error2];
-        }
-    }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) retrieveUserInfoByUserID: (NSString *) userID andRunBlock:(UserHandler)handler
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-    [query whereKey:PF_USER_OBJECTID equalTo:userID];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error)
-        {
-            PFUser *fetchedUser = (PFUser *) object;
-            handler(fetchedUser);
-        }
-        else
-        {
-            [Utilities handleError:error];
-        }
-    }];
-}
-
-
-#pragma mark - Data Specifics
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (BOOL) amITheBuyer:(TransactionData *) offerData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
-        return YES;
-    else
-        return NO;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) idOfDealerDealingWithMe: (TransactionData *) offerData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([[PFUser currentUser].objectId isEqualToString:offerData.buyerID])
-        return offerData.sellerID;
-    else
-        return offerData.buyerID;
-}
-
-
-#pragma mark - Google Analytics
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) sendScreenNameToGoogleAnalyticsTracker:(NSString *)screenName
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName value:screenName];
-    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) sendEventToGoogleAnalyticsTrackerWithEventCategory:(NSString *)category action:(NSString *)action label:(NSString *)label value: (NSNumber*) value
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
-                                                          action:action
-                                                           label:label
-                                                           value:value] build]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) sendLoadingTimeToGoogleAnalyticsTrackerWithCategory:(NSString *)category interval:(NSNumber *)loadTime name:(NSString *)name label:(NSString *)label
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:category
-                                                         interval:loadTime
-                                                             name:name
-                                                            label:label] build]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:(NSString *)description fatal:(NSNumber *)fatal
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder
-                    createExceptionWithDescription:description
-                    withFatal:fatal] build]];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) logOutMessage:(NSString *)message
-//------------------------------------------------------------------------------------------------------------------------------
-{
-//    BOOL debuggingMode = YES;
-//    
-//    if (debuggingMode)
-//        NSLog(@"%@", message);
-}
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-#pragma mark - Mutiple Languages Support
-//------------------------------------------------------------------------------------------------------------------------------
-
-+ (NSString *) getSynonymOfWord:(NSString *)word
-{
-    // get chinese synonym
-    if ([word isEqualToString:ITEM_CATEGORY_BEAUTY_PRODUCTS])
-        return ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS;
-    else if ([word isEqualToString:ITEM_CATEGORY_BOOKS_AND_MAGAZINES])
-        return ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES;
-    else if ([word isEqualToString:ITEM_CATEGORY_LUXURY_BRANDED])
-        return ITEM_CHINESE_CATEGORY_LUXURY_BRANDED;
-    else if ([word isEqualToString:ITEM_CATEGORY_GAMES_AND_TOYS])
-        return ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS;
-    else if ([word isEqualToString:ITEM_CATEGORY_PROFESSIONAL_SERVICES])
-        return ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES;
-    else if ([word isEqualToString:ITEM_CATEGORY_SPORT_EQUIPMENTS])
-        return ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS;
-    else if ([word isEqualToString:ITEM_CATEGORY_TICKETS_AND_VOUCHERS])
-        return ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS;
-    else if ([word isEqualToString:ITEM_CATEGORY_WATCHES])
-        return ITEM_CHINESE_CATEGORY_WATCHES;
-    else if ([word isEqualToString:ITEM_CATEGORY_CUSTOMIZATION])
-        return ITEM_CHINESE_CATEGORY_CUSTOMIZATION;
-    else if ([word isEqualToString:ITEM_CATEGORY_BORROWING])
-        return ITEM_CHINESE_CATEGORY_BORROWING;
-    else if ([word isEqualToString:ITEM_CATEGORY_FUNITURE])
-        return ITEM_CHINESE_CATEGORY_FUNITURE;
-    else if ([word isEqualToString:ITEM_CATEGORY_OTHERS])
-        return ITEM_CHINESE_CATEGORY_OTHERS;
-    
-    // get english synonym
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BEAUTY_PRODUCTS])
-        return ITEM_CATEGORY_BEAUTY_PRODUCTS;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BOOKS_AND_MAGAZINES])
-        return ITEM_CATEGORY_BOOKS_AND_MAGAZINES;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_LUXURY_BRANDED])
-        return ITEM_CATEGORY_LUXURY_BRANDED;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_GAMES_AND_TOYS])
-        return ITEM_CATEGORY_GAMES_AND_TOYS;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_PROFESSIONAL_SERVICES])
-        return ITEM_CATEGORY_PROFESSIONAL_SERVICES;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_SPORT_EQUIPMENTS])
-        return ITEM_CATEGORY_SPORT_EQUIPMENTS;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_TICKETS_AND_VOUCHERS])
-        return ITEM_CATEGORY_TICKETS_AND_VOUCHERS;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_WATCHES])
-        return ITEM_CATEGORY_WATCHES;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_CUSTOMIZATION])
-        return ITEM_CATEGORY_CUSTOMIZATION;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_BORROWING])
-        return ITEM_CATEGORY_BORROWING;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_FUNITURE])
-        return ITEM_CATEGORY_FUNITURE;
-    else if ([word isEqualToString:ITEM_CHINESE_CATEGORY_OTHERS])
-        return ITEM_CATEGORY_OTHERS;
-    else
-        return nil;
-}
-
-
-#pragma mark - Messaging System
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) generateChatGroupIDFromItemID:(NSString *)itemID user1:(PFUser *)user1 user2:(PFUser *)user2
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *id1 = user1.objectId;
-    NSString *id2 = user2.objectId;
-    
-    NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@%@", itemID, id1, id2] : [NSString stringWithFormat:@"%@%@%@", itemID, id2, id1];
-    
-    return groupId;
-}
-
-
-#pragma mark - Error Handlers
-
-//------------------------------------------------------------------------------------------------------------------------------
-+ (void) displayErrorAlertView
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"We are sorry! An error occurred while processing this request.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alertView show];
 }
 
 

@@ -93,6 +93,32 @@
 
 + (float)           floatingNumFromDemandedPrice:   (NSString *) demandedPrice;
 
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark -  Transaction Data
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (BOOL)        amITheBuyer: (TransactionData *) offerData;
+
++ (NSString *)  idOfDealerDealingWithMe: (TransactionData *) offerData;
+
++ (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice andDeliveryTime: (NSString *) deliveryTime;
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Chat Data
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (NSString *)  generateChatGroupIDFromItemID: (NSString *) itemID user1: (PFUser *) user1 user2: (PFUser *) user2;
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Mutiple Languages Support
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (NSString *)  getSynonymOfWord: (NSString *) word;
+
+
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Whunt Details Helpers
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -120,47 +146,14 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-#pragma mark - Date Handlers
-//------------------------------------------------------------------------------------------------------------------------------
-
-+ (NSDate *)    getRoundMinuteDateFromDate:         (NSDate *) date;
-
-+ (NSString *)  commonlyFormattedStringFromDate:    (NSDate *) date;
-
-    // commonly formatted string example 20/8/2015
-+ (NSDate *)    dateFromCommonlyFormattedString:    (NSString *) string;
-
-    // timestamp examples: 3s, 15m, 4h, 6d, 234w
-+ (NSString *)  timestampStringFromDate:            (NSDate *) date;
-
-    // long timestamp examples: 1 second, 3 seconds, 1 minute, 15 minutes
-+ (NSString *)  longTimestampStringFromDate:        (NSDate *) date;
-
-+ (void)        handleError: (NSError *) error;
-
-+ (BOOL)        isEmailValid: (NSString *) email;
-
-
-//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Parse Backend
 //------------------------------------------------------------------------------------------------------------------------------
 
-+ (void) getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler;
++ (void)        getUserWithID: (NSString *) userID imageNeeded: (BOOL) imageNeeded andRunBlock: (FetchedUserHandler) handler;
 
-+ (void) retrieveProfileImageForUser: (PFUser *) user andRunBlock: (ImageHandler) handler;
++ (void)        retrieveProfileImageForUser: (PFUser *) user andRunBlock: (ImageHandler) handler;
 
-+ (void) retrieveUserInfoByUserID: (NSString *) userID andRunBlock: (UserHandler) handler;
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-#pragma mark -  Transaction Data
-//------------------------------------------------------------------------------------------------------------------------------
-
-+ (BOOL)        amITheBuyer: (TransactionData *) offerData;
-
-+ (NSString *)  idOfDealerDealingWithMe: (TransactionData *) offerData;
-
-+ (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice andDeliveryTime: (NSString *) deliveryTime;
++ (void)        retrieveUserInfoByUserID: (NSString *) userID andRunBlock: (UserHandler) handler;
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -184,23 +177,37 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-#pragma mark - Mutiple Languages Support
-//------------------------------------------------------------------------------------------------------------------------------
-
-+ (NSString *) getSynonymOfWord: (NSString *) word;
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-#pragma mark - Messaging System
-//------------------------------------------------------------------------------------------------------------------------------
-
-+ (NSString *) generateChatGroupIDFromItemID: (NSString *) itemID user1: (PFUser *) user1 user2: (PFUser *) user2;
-
-
-//------------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Error Handlers
 //------------------------------------------------------------------------------------------------------------------------------
 
-+ (void) displayErrorAlertView;
++ (void)        displayErrorAlertView;
+
++ (void)        handleError: (NSError *) error;
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Data Validation
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (BOOL)        isEmailValid: (NSString *) email;
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Date Handlers
+//------------------------------------------------------------------------------------------------------------------------------
+
++ (NSDate *)    getRoundMinuteDateFromDate:         (NSDate *) date;
+
++ (NSString *)  commonlyFormattedStringFromDate:    (NSDate *) date;
+
+// commonly formatted string example 20/8/2015
++ (NSDate *)    dateFromCommonlyFormattedString:    (NSString *) string;
+
+// timestamp examples: 3s, 15m, 4h, 6d, 234w
++ (NSString *)  timestampStringFromDate:            (NSDate *) date;
+
+// long timestamp examples: 1 second, 3 seconds, 1 minute, 15 minutes
++ (NSString *)  longTimestampStringFromDate:        (NSDate *) date;
+
 
 @end
