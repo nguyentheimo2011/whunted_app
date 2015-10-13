@@ -11,6 +11,7 @@
 #import "TransactionData.h"
 #import "MarketplaceUIHelper.h"
 #import "MarketplaceLogicHelper.h"
+#import "MarketplaceBackend.h"
 #import "Utilities.h"
 
 #import <MBProgressHUD.h>
@@ -274,38 +275,32 @@
 
 #pragma mark - UICollectionViewDelegate methods
 
+/*
+ * When user clicks an item on marketplace, details of the item will be presented.
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
+    itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     itemDetailsVC.delegate = self;
     
-    itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
-    
-    PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
-    [sQuery whereKey:@"sellerID" equalTo:[PFUser currentUser].objectId];
-    [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
-    
-    [sQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    TransactionHandler tranHandler = ^(TransactionData *offer)
     {
-        if (!error)
+        if (offer)
         {
-            if (objects.count > 0)
-            {
-                itemDetailsVC.currOffer = [[TransactionData alloc] initWithPFObject:[objects objectAtIndex:0]];
-            }
+            itemDetailsVC.currOffer = offer;
         }
-        else
-        {
-            [Utilities handleError:error];
-        }
-        
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }];
+    };
+    
+    [MarketplaceBackend retrieveOfferByUser:[PFUser currentUser].objectId forItem:itemDetailsVC.wantData.itemID completionHandler:tranHandler];
 }
 
 

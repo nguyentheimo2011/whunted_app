@@ -249,6 +249,7 @@
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
+		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; settings = {ASSET_TAGS = (); }; };
 		E9E31F651B849710008D6A3D /* camera_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F5F1B849710008D6A3D /* camera_upload_icon@2x.png */; };
 		E9E31F671B849710008D6A3D /* gallery_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F611B849710008D6A3D /* gallery_upload_icon@2x.png */; };
 		E9E31F691B849710008D6A3D /* image_link_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F631B849710008D6A3D /* image_link_upload_icon@2x.png */; };
@@ -633,6 +634,8 @@
 		E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailsViewController.m; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.m; sourceTree = "<group>"; };
 		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
 		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
+		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
+		E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceBackend.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.m; sourceTree = "<group>"; };
 		E9E31F5F1B849710008D6A3D /* camera_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_upload_icon@2x.png"; path = "Resources/UploadPopup/camera_upload_icon@2x.png"; sourceTree = "<group>"; };
 		E9E31F611B849710008D6A3D /* gallery_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gallery_upload_icon@2x.png"; path = "Resources/UploadPopup/gallery_upload_icon@2x.png"; sourceTree = "<group>"; };
 		E9E31F631B849710008D6A3D /* image_link_upload_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "image_link_upload_icon@2x.png"; path = "Resources/UploadPopup/image_link_upload_icon@2x.png"; sourceTree = "<group>"; };
@@ -1662,6 +1665,7 @@
 				E9D21D2A1BCBB93100912C2C /* MarketplaceVC */,
 				E9D21D291BCBB91F00912C2C /* MarketplaceLogicHelper */,
 				E9D21D1F1BCB9FA500912C2C /* MarketplaceUIHelper */,
+				E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */,
 			);
 			name = MarketplaceVC;
 			sourceTree = "<group>";
@@ -1682,6 +1686,15 @@
 				E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */,
 			);
 			name = ItemDetailsVC;
+			sourceTree = "<group>";
+		};
+		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
+			isa = PBXGroup;
+			children = (
+				E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */,
+				E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */,
+			);
+			name = MarketplaceBackend;
 			sourceTree = "<group>";
 		};
 		E9E31F5D1B8496F7008D6A3D /* UploadPopup */ = {
@@ -2206,6 +2219,7 @@
 				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
+				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9A07C251B3165E300904DE9 /* fileutil.m in Sources */,

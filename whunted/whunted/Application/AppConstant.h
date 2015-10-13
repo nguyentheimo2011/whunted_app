@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "TransactionData.h"
 
 #ifndef whunted_AppConstant_h
 #define whunted_AppConstant_h
@@ -421,10 +422,12 @@ typedef enum {
 #define     FEEDBACK_RATING_NEGATIVE                    @"negative"
 
 //----------------------------------------------------------------------------------------------------------------------------
+typedef void (^CompletionHandler)   (void);
+typedef void (^FailureHandler)      (NSError *);
 typedef void (^FetchedUserHandler)  (PFUser *, UIImage *);
 typedef void (^UserHandler)         (PFUser *);
 typedef void (^ImageHandler)        (UIImage *);
-typedef void (^CompletionHandler)   (void);
+typedef void (^TransactionHandler)  (TransactionData *);
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {
