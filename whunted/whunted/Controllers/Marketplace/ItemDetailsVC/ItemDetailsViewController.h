@@ -15,22 +15,9 @@
 
 #import <JTImageButton.h>
 
-@class ItemDetailsViewController;
-
-//------------------------------------------------------------------------------------------------------------------------------
-@protocol ItemDetailsViewControllerDelegate <NSObject>
-//------------------------------------------------------------------------------------------------------------------------------
-
-- (void) itemDetailsViewController: (ItemDetailsViewController *) controller didCompleteOffer: (BOOL) completed;
-
-
-@end
-
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate, UploadingWantDetailsViewControllerDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
-
-@property (nonatomic, weak) id<ItemDetailsViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) WantData              *wantData;
 @property (nonatomic)         NSInteger             itemImagesNum;

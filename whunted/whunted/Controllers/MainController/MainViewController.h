@@ -25,7 +25,6 @@
                                                     UploadingWantDetailsViewControllerDelegate,
                                                     RSKImageCropViewControllerDataSource,
                                                     RSKImageCropViewControllerDelegate,
-                                                    MarketplaceViewDelegate,
                                                     InboxAllViewDelegate>
 
 @end

@@ -13,27 +13,15 @@
 #import "CityViewController.h"
 
 //----------------------------------------------------------------------------------------------------------------------------
-@protocol MarketplaceViewDelegate <NSObject>
-//----------------------------------------------------------------------------------------------------------------------------
-
-- (void) marketPlaceUserDidOfferForAnItem;
-
-@end
-
-
-//----------------------------------------------------------------------------------------------------------------------------
 @interface MarketplaceViewController : UIViewController
 //----------------------------------------------------------------------------------------------------------------------------
                                         <UICollectionViewDataSource,
                                          UICollectionViewDelegate,
                                          UIScrollViewDelegate,
-                                         ItemDetailsViewControllerDelegate,
                                          CategoryTableViewControllerDelegate,
                                          SortAndFilterTableViewDelegate,
                                          CityViewDelegate,
                                          UISearchBarDelegate>
-
-@property (nonatomic, weak) id<MarketplaceViewDelegate> delegate;
 
 - (void) refreshWantData;
 

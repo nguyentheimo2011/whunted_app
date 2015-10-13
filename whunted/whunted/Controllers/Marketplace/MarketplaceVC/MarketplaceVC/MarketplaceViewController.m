@@ -52,7 +52,6 @@
     CGFloat                 _lastContentOffset;
 }
 
-@synthesize     delegate                =   _delegate;
 @synthesize     isLoadingMoreWhunts     =   _isLoadingMoreWhunts;
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -288,7 +287,6 @@
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
-    itemDetailsVC.delegate = self;
     
     TransactionHandler tranHandler = ^(TransactionData *offer)
     {
@@ -395,19 +393,6 @@
     
     NSString *userID = notification.object;
     [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
-}
-
-
-#pragma mark - ItemDetailsViewControllerDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) itemDetailsViewController:(ItemDetailsViewController *)controller didCompleteOffer:(BOOL)completed
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (completed)
-    {
-        [_delegate marketPlaceUserDidOfferForAnItem];
-    }
 }
 
 

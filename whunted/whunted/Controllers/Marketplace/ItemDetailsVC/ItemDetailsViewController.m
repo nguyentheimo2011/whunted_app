@@ -59,7 +59,6 @@
 @synthesize wantData                =   _wantData;
 @synthesize itemImagesNum           =   _itemImagesNum;
 @synthesize currOffer               =   _currOffer;
-@synthesize delegate                =   _delegate;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -903,10 +902,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(TransactionData *)offer
 //------------------------------------------------------------------------------------------------------------------------------
-{
-    // update data in user profile page
-    [_delegate itemDetailsViewController:self didCompleteOffer:YES];
-    
+{    
     _currOffer = offer;
     
     NSString *id1 = [PFUser currentUser].objectId;

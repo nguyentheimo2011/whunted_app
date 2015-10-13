@@ -46,14 +46,13 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
-    if (self != nil)
+    if (self)
     {
         UINavigationController *browserNavController = [[UINavigationController alloc] init];
         _brController = [[MarketplaceViewController alloc] init];
         [browserNavController setViewControllers:[NSArray arrayWithObject:_brController]];
         [browserNavController.tabBarItem setImage:[UIImage imageNamed:@"marketplace.png"]];
         browserNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-        _brController.delegate = self;
         
 //        UINavigationController *newsFeedfNavController = [[UINavigationController alloc] init];
 //        _newsFeedVC = [[NewsfeedViewController alloc] init];
@@ -112,6 +111,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enteringAppThroughPushNotificationEventHandler:) name:NOTIFICATION_ENTER_APP_THROUGH_PUSH_NOTIFICATION_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSellingListInUserProfileAfterNewOfferMade) name:NOTIFICATION_NEW_OFFER_MADE_BY_ME object:nil];
 }
 
 
@@ -372,7 +372,7 @@
 #pragma mark - MarketplaceViewDelegate methods
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) marketPlaceUserDidOfferForAnItem
+- (void) updateSellingListInUserProfileAfterNewOfferMade
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [_userProfileVC retrieveLatestSellData];

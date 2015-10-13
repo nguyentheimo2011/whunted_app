@@ -1465,6 +1465,12 @@
 - (void) replacePrevSellDataIfNecessary: (WantData *) targetedWantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
+    if (_mySellDataList.count == 0)
+    {
+        [_mySellDataList addObject:targetedWantData];
+        return;
+    }
+    
     for (int i=0; i<_mySellDataList.count; i++)
     {
         WantData *wantData = [_mySellDataList objectAtIndex:i];
