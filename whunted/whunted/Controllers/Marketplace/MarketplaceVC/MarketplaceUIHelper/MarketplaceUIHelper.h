@@ -9,17 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "CityViewController.h"
+#import "CategoryTableViewController.h"
+#import "SortAndFilterTableVC.h"
+
 @interface MarketplaceUIHelper : NSObject
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#pragma mark - Search bar
+#pragma mark - Search Bar
 //-----------------------------------------------------------------------------------------------------------------------------
 
 + (UISearchBar *) addSearchBoxToViewController: (UIViewController<UISearchBarDelegate> *) viewController;
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#pragma mark - SortAndFilter bar
+#pragma mark - SortAndFilter Bar
 //-----------------------------------------------------------------------------------------------------------------------------
 
 + (UIView *)    addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController;
@@ -43,6 +47,17 @@
 + (void)        addDownIconArrowToContainer: (UIView *) container withTag: (NSInteger) tag;
 
 + (void)        addVerticalLineToContainer: (UIView *) container;
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#pragma mark - SortAndFilter Bar Event Handler
+//-----------------------------------------------------------------------------------------------------------------------------
+
++ (void) presentLocationSelectorInViewController: (UIViewController<CityViewDelegate> *) controller currLocation: (NSString *) location;
+
++ (void) presentCategorySelectorInViewController: (UIViewController<CategoryTableViewControllerDelegate> *) controller currCategory: (NSString *) category;
+
++ (void) presentSortAndFilterSelectorInViewController: (UIViewController<SortAndFilterTableViewDelegate> *) controller currSortingChoice: (NSString *) sortingChoice currProductOrigin: (NSString *) productOrigin;
 
 
 //-----------------------------------------------------------------------------------------------------------------------------

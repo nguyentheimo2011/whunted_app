@@ -258,6 +258,55 @@
 }
 
 
+#pragma mark - SortAndFilter Bar Event Handler
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (void) presentLocationSelectorInViewController:(UIViewController<CityViewDelegate> *)controller currLocation: (NSString *) location
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByBuyerLocationEvent" label:@"SortAndFilterBar" value:nil];
+    
+    CityViewController *cityViewController = [[CityViewController alloc] init];
+    cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
+    cityViewController.viewTitle = NSLocalizedString(@"Location", nil);
+    cityViewController.viewControllerIsPresented = YES;
+    cityViewController.currentLocation = location;
+    cityViewController.delegate = controller;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
+    
+    [controller.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (void) presentCategorySelectorInViewController:(UIViewController<CategoryTableViewControllerDelegate> *)controller currCategory:(NSString *)category
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByCategoryEvent" label:@"SortAndFilterBar" value:nil];
+    
+    CategoryTableViewController *categoryTableView = [[CategoryTableViewController alloc] initWithCategory:category usedForFiltering:YES];
+    categoryTableView.delegte = controller;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:categoryTableView];
+    
+    [controller.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (void) presentSortAndFilterSelectorInViewController:(UIViewController<SortAndFilterTableViewDelegate> *)controller currSortingChoice:(NSString *)sortingChoice currProductOrigin:(NSString *)productOrigin
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"Sort" label:@"SortAndFilterBar" value:nil];
+    
+    SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
+    sortAndFilterTableVC.sortingCriterion = sortingChoice;
+    sortAndFilterTableVC.productOriginFilter = productOrigin;
+    sortAndFilterTableVC.delegate = controller;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
+    
+    [controller.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+
 #pragma mark - Collection View
 
 //-----------------------------------------------------------------------------------------------------------------------------

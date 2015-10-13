@@ -310,46 +310,21 @@
 - (void) buyerLocationViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByBuyerLocationEvent" label:@"SortAndFilterBar" value:nil];
-    
-    CityViewController *cityViewController = [[CityViewController alloc] init];
-    cityViewController.labelText = NSLocalizedString(@"Filter by buyer's location:", nil);
-    cityViewController.viewTitle = NSLocalizedString(@"Location", nil);
-    cityViewController.viewControllerIsPresented = YES;
-    cityViewController.currentLocation = _currBuyerLocation;
-    cityViewController.delegate = self;
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
-    
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
+    [MarketplaceUIHelper presentLocationSelectorInViewController:self currLocation:_currBuyerLocation];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) categoryViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"FilterByCategoryEvent" label:@"SortAndFilterBar" value:nil];
-    
-    CategoryTableViewController *categoryTableView = [[CategoryTableViewController alloc] initWithCategory:_currCategoryLabel.text usedForFiltering:YES];
-    categoryTableView.delegte = self;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:categoryTableView];
-    
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
+    [MarketplaceUIHelper presentCategorySelectorInViewController:self currCategory:_currCategory];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) sortAndFilterViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"Sort" label:@"SortAndFilterBar" value:nil];
-    
-    SortAndFilterTableVC *sortAndFilterTableVC = [[SortAndFilterTableVC alloc] init];
-    sortAndFilterTableVC.sortingCriterion = _currSortFilterLabel.text;
-    sortAndFilterTableVC.productOriginFilter = _currProductOrigin;
-    sortAndFilterTableVC.delegate = self;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:sortAndFilterTableVC];
-    
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
+    [MarketplaceUIHelper presentSortAndFilterSelectorInViewController:self currSortingChoice:_currSortingBy currProductOrigin:_currProductOrigin];
 }
 
 /*
@@ -429,7 +404,8 @@
 - (void) itemDetailsViewController:(ItemDetailsViewController *)controller didCompleteOffer:(BOOL)completed
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (completed) {
+    if (completed)
+    {
         [_delegate marketPlaceUserDidOfferForAnItem];
     }
 }
