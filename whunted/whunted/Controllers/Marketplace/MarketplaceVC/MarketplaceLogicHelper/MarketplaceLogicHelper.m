@@ -7,7 +7,9 @@
 //
 
 #import "MarketplaceLogicHelper.h"
+#import "WantData.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @implementation MarketplaceLogicHelper
 
@@ -82,6 +84,96 @@
     }
     
     return productOrigin;
+}
+
+
+#pragma mark - Sort and Filter Functions
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) sortArray: (NSArray *) array by: (NSString *) sortingChoice
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSArray *sortedArray;
+    
+    if ([sortingChoice isEqualToString:NSLocalizedString(SORTING_BY_POPULAR, nil)])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnPopular:)];
+    else if ([sortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnRecent:)];
+    else if ([sortingChoice isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnAscendingPrice:)];
+    else if ([sortingChoice isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnDescendingPrice:)];
+    else
+        sortedArray = array;
+    
+    return sortedArray;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) filterArray: (NSArray *) array byCategory: (NSString *) category
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
+        return array;
+    else
+    {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array)
+        {
+            NSString *synonym = [Utilities getSynonymOfWord:category];
+            
+            // Filter by both chinese and english
+            if ([wantData.itemCategory isEqualToString:category] || [wantData.itemCategory isEqualToString:synonym])
+                [filteredArray addObject:wantData];
+        }
+        
+        return filteredArray;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) filterArray: (NSArray *) array byProductOrigin: (NSString *) productOrigin
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([productOrigin isEqualToString:NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil)])
+        return array;
+    else
+    {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array)
+        {
+            if ([wantData.itemOrigins containsObject:productOrigin] || [wantData.itemOrigins containsObject:NSLocalizedString(productOrigin, nil)])
+            {
+                [filteredArray addObject:wantData];
+            }
+        }
+        
+        return filteredArray;
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) filterArray: (NSArray *) array byBuyerLocation: (NSString *) buyerLocation
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([buyerLocation isEqualToString:NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil)])
+        return array;
+    else
+    {
+        NSMutableArray *filteredArray = [NSMutableArray array];
+        
+        for (WantData *wantData in array)
+        {
+            if ([wantData.meetingLocation isEqualToString:buyerLocation])
+            {
+                [filteredArray addObject:wantData];
+            }
+        }
+        
+        return filteredArray;
+    }
 }
 
 @end

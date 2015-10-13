@@ -43,7 +43,7 @@
     
     NSString                *_currProductOrigin;
     NSString                *_currCategory;
-    NSString                *_currSortingBy;
+    NSString                *_currSortingChoice;
     NSString                *_currBuyerLocation;
 
     NSMutableArray          *_retrievedWantDataList;
@@ -117,7 +117,7 @@
     BOOL languageChanged = [MarketplaceLogicHelper hasPhoneLanguageChangedRecently];
     _currBuyerLocation = [MarketplaceLogicHelper getBuyerLocationFilter:languageChanged];
     _currCategory = [MarketplaceLogicHelper getCategoryFilter:languageChanged];
-    _currSortingBy = [MarketplaceLogicHelper getSortingChoice:languageChanged];
+    _currSortingChoice = [MarketplaceLogicHelper getSortingChoice:languageChanged];
     _currProductOrigin = [MarketplaceLogicHelper getProductOriginFilter:languageChanged];
 }
 
@@ -190,7 +190,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _currSortFilterLabel = [MarketplaceUIHelper addSortAndFilterOptionToSortAndFilterBar:_sortAndFilterBar];
-    _currSortFilterLabel.text = _currSortingBy;
+    _currSortFilterLabel.text = _currSortingChoice;
     
     UIView *sortFilterContainer = [Utilities getSubviewOfView:_sortAndFilterBar withTag:SORT_FILTER_CONTAINER_TAG];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sortAndFilterViewTouchEventHandler)];
@@ -322,7 +322,7 @@
 - (void) sortAndFilterViewTouchEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MarketplaceUIHelper presentSortAndFilterSelectorInViewController:self currSortingChoice:_currSortingBy currProductOrigin:_currProductOrigin];
+    [MarketplaceUIHelper presentSortAndFilterSelectorInViewController:self currSortingChoice:_currSortingChoice currProductOrigin:_currProductOrigin];
 }
 
 /*
@@ -442,7 +442,7 @@
 {
     _currSortFilterLabel.text = criterion;
     
-    _currSortingBy = criterion;
+    _currSortingChoice = criterion;
     [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
     
     _currProductOrigin = productOrigin;
@@ -466,7 +466,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingBy:query];
+    [self setSortingChoice:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
@@ -496,7 +496,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingBy:query];
+    [self setSortingChoice:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -539,7 +539,7 @@
             [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
         }
         
-        [self setSortingBy:query];
+        [self setSortingChoice:query];
         [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
@@ -564,93 +564,6 @@
     }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *) sortArray: (NSArray *) array by: (NSString *) sortingBy
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSArray *sortedArray;
-    
-    if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_POPULAR, nil)])
-        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnPopular:)];
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
-        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnRecent:)];
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
-        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnAscendingPrice:)];
-    else if ([sortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
-        sortedArray = [array sortedArrayUsingSelector:@selector(compareBasedOnDescendingPrice:)];
-    else
-        sortedArray = array;
-    
-    return sortedArray;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *) filterArray: (NSArray *) array byCategory: (NSString *) category
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([category isEqualToString:NSLocalizedString(ITEM_CATEGORY_ALL, nil)])
-        return array;
-    else
-    {
-        NSMutableArray *filteredArray = [NSMutableArray array];
-        
-        for (WantData *wantData in array)
-        {
-            NSString *synonym = [Utilities getSynonymOfWord:category];
-            
-            // Filter by both chinese and english
-            if ([wantData.itemCategory isEqualToString:category] || [wantData.itemCategory isEqualToString:synonym])
-                [filteredArray addObject:wantData];
-        }
-        
-        return filteredArray;
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *) filterArray: (NSArray *) array byProductOrigin: (NSString *) productOrigin
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([productOrigin isEqualToString:NSLocalizedString(ITEM_PRODUCT_ORIGIN_ALL, nil)])
-        return array;
-    else
-    {
-        NSMutableArray *filteredArray = [NSMutableArray array];
-        
-        for (WantData *wantData in array)
-        {
-            if ([wantData.itemOrigins containsObject:productOrigin] || [wantData.itemOrigins containsObject:NSLocalizedString(productOrigin, nil)])
-            {
-                [filteredArray addObject:wantData];
-            }
-        }
-        
-        return filteredArray;
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *) filterArray: (NSArray *) array byBuyerLocation: (NSString *) buyerLocation
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([buyerLocation isEqualToString:NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil)])
-        return array;
-    else
-    {
-        NSMutableArray *filteredArray = [NSMutableArray array];
-        
-        for (WantData *wantData in array)
-        {
-            if ([wantData.meetingLocation isEqualToString:buyerLocation])
-            {
-                [filteredArray addObject:wantData];
-            }
-        }
-        
-        return filteredArray;
-    }
-}
-
 
 #pragma mark - Helpers
 
@@ -658,10 +571,10 @@
 - (void) updateMatchedWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _displayedWantDataList = [self filterArray:_retrievedWantDataList byCategory:_currCategory];
-    _displayedWantDataList = [self filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
-    _displayedWantDataList = [self filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
-    _displayedWantDataList = [self sortArray:_displayedWantDataList by:_currSortingBy];
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_retrievedWantDataList byCategory:_currCategory];
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
+    _displayedWantDataList = [MarketplaceLogicHelper sortArray:_displayedWantDataList by:_currSortingChoice];
     
     [_wantCollectionView reloadData];
 }
@@ -763,18 +676,18 @@
 #pragma mark - Helper functions
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) setSortingBy: (PFQuery *) query
+- (void) setSortingChoice: (PFQuery *) query
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+    if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
     {
         [query orderByDescending:PF_CREATED_AT];
     }
-    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
     {
         [query orderByAscending:PF_ITEM_DEMANDED_PRICE];
     }
-    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
     {
         [query orderByDescending:PF_ITEM_DEMANDED_PRICE];
     }
@@ -788,15 +701,15 @@
 - (void) setConditionsForQuery: (PFQuery *) query lastWantData: (WantData *) wantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
+    if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
     {
         [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
     }
-    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
+    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
     {
         [query whereKey:PF_ITEM_DEMANDED_PRICE greaterThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
     }
-    else if ([_currSortingBy isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
+    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
     {
         [query whereKey:PF_ITEM_DEMANDED_PRICE lessThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
     }
