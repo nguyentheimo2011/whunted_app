@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface BackendUtil : NSObject
+
+#pragma mark - User Profile
+
++ (void) presentUserProfileOfUser: (NSString *) userID fromViewController: (UIViewController *) controller;
 
 @end

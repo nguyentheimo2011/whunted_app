@@ -13,6 +13,7 @@
 #import "MarketplaceLogicHelper.h"
 #import "MarketplaceBackend.h"
 #import "Utilities.h"
+#import "BackendUtil.h"
 
 #import <MBProgressHUD.h>
 
@@ -302,6 +303,62 @@
 }
 
 
+#pragma mark - CityViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (location.length > 0)
+    {
+        _currBuyerLocation = location;
+        _currBuyerLocationLabel.text = location;
+    }
+    else
+    {
+        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
+        _currBuyerLocationLabel.text = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
+    
+    [self updateMatchedWantData];
+}
+
+
+#pragma mark - CategoryTableViewControllerDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currCategoryLabel.text = category;
+    
+    _currCategory = category;
+    [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
+    
+    [self updateMatchedWantData];
+}
+
+
+#pragma mark - SortAndFilterTableViewDelegate methods
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion andProductOrigin:(NSString *)productOrigin
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _currSortFilterLabel.text = criterion;
+    
+    _currSortingChoice = criterion;
+    [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
+    
+    _currProductOrigin = productOrigin;
+    [[NSUserDefaults standardUserDefaults] setObject:productOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
+    
+    [self retrieveWantDataList];
+}
+
+
 #pragma mark - Event Handler
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -379,76 +436,8 @@
 - (void) usernameButtonTapEventHandler: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    UserHandler handler = ^(PFUser *user)
-    {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
-        [self.navigationController pushViewController:userProfileVC animated:YES];
-    };
-    
     NSString *userID = notification.object;
-    [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
-}
-
-
-#pragma mark - CityViewDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) cityView:(CityViewController *)controller didSpecifyLocation:(NSString *)location
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (location.length > 0)
-    {
-        _currBuyerLocation = location;
-        _currBuyerLocationLabel.text = location;
-    }
-    else
-    {
-        _currBuyerLocation = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
-        _currBuyerLocationLabel.text = NSLocalizedString(ITEM_BUYER_LOCATION_DEFAULT, nil);
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
-    
-    [self updateMatchedWantData];
-}
-
-
-#pragma mark - CategoryTableViewControllerDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) categoryTableView:(CategoryTableViewController *)controller didSelectCategory:(NSString *)category
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _currCategoryLabel.text = category;
-    
-    _currCategory = category;
-    [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
-    
-    [self updateMatchedWantData];
-}
-
-
-#pragma mark - SortAndFilterTableViewDelegate methods
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) sortAndFilterTableView:(SortAndFilterTableVC *)controller didCompleteChoosingSortingCriterion:(NSString *)criterion andProductOrigin:(NSString *)productOrigin
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _currSortFilterLabel.text = criterion;
-    
-    _currSortingChoice = criterion;
-    [[NSUserDefaults standardUserDefaults] setObject:criterion forKey:CURRENT_SORTING_BY];
-    
-    _currProductOrigin = productOrigin;
-    [[NSUserDefaults standardUserDefaults] setObject:productOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
-    
-    [self retrieveWantDataList];
+    [BackendUtil presentUserProfileOfUser:userID fromViewController:self];
 }
 
 
