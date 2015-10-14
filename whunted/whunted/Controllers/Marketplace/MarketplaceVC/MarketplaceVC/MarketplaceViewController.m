@@ -441,126 +441,6 @@
 }
 
 
-#pragma mark - Backend Handler
-
-/*
- * Retrieve whunts that are not yet fulfilled.
- */
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveWantDataList
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [self setSortingCondition:query];
-    
-    WhuntsHandler succHandler = ^(NSArray *whunts)
-    {
-        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
-        [self updateMatchedWantData];
-    };
-    
-    FailureHandler failHandler = ^(NSError *error)
-    {
-        [Utilities displayErrorAlertView];
-    };
-    
-    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) refreshWantData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _retrievedWantDataList = [[NSMutableArray alloc] init];
-    
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingCondition:query];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (!error)
-         {
-             for (PFObject *object in objects)
-             {
-                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_retrievedWantDataList addObject:wantData];
-             }
-             
-             [self updateMatchedWantData];
-         }
-         else
-         {
-             // Log details of the failure
-             [Utilities handleError:error];
-         }
-         
-         [_topRefreshControl endRefreshing];
-     }];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveMoreWantData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    // Only load more data if the last load-more-data request completed.
-    if (!_isLoadingMoreWhunts)
-    {
-        _isLoadingMoreWhunts = YES;
-        
-        PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-        [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-        
-        if (_retrievedWantDataList.count > 0)
-        {
-            WantData *wantData = [_retrievedWantDataList objectAtIndex:_retrievedWantDataList.count-1];
-            [self setConditionsForQuery:query lastWantData:wantData];
-            [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
-        }
-        
-        [self setSortingCondition:query];
-        [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             if (!error)
-             {
-                 for (PFObject *object in objects)
-                 {
-                     WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                     [_retrievedWantDataList addObject:wantData];
-                 }
-                 
-                 [self updateMatchedWantData];
-             }
-             else
-             {
-                 [Utilities handleError:error];
-             }
-             
-             [_bottomRefreshControl endRefreshing];
-             _isLoadingMoreWhunts = NO;
-         }];
-    }
-}
-
-
-#pragma mark - Helpers
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) updateMatchedWantData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_retrievedWantDataList byCategory:_currCategory];
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
-    _displayedWantDataList = [MarketplaceLogicHelper sortArray:_displayedWantDataList by:_currSortingChoice];
-    
-    [_wantCollectionView reloadData];
-}
-
 #pragma mark - UISearchBarDelegate methods
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -655,7 +535,125 @@
 }
 
 
-#pragma mark - Helper functions
+#pragma mark - Whunt Data Handler
+
+/*
+ * Retrieve whunts that are not yet fulfilled.
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveWantDataList
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
+    [self setSortingCondition:query];
+    
+    WhuntsHandler succHandler = ^(NSArray *whunts)
+    {
+        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
+        [self updateMatchedWantData];
+    };
+    
+    FailureHandler failHandler = ^(NSError *error)
+    {
+        [Utilities displayErrorAlertView];
+    };
+    
+    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) refreshWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
+    [self setSortingCondition:query];
+    
+    WhuntsHandler succHandler = ^(NSArray *whunts)
+    {
+        [_topRefreshControl endRefreshing];
+        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
+        [self updateMatchedWantData];
+    };
+    
+    FailureHandler failHandler = ^(NSError *error)
+    {
+        [_topRefreshControl endRefreshing];
+        [Utilities displayErrorAlertView];
+    };
+    
+    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveMoreWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    // Only load more data if the last load-more-data request completed.
+    if (!_isLoadingMoreWhunts)
+    {
+        _isLoadingMoreWhunts = YES;
+        
+        PFQuery *query = [self queryForLoadingMoreWhunts];
+        
+        WhuntsHandler succHandler = ^(NSArray *whunts)
+        {
+            [_retrievedWantDataList addObjectsFromArray:whunts];
+            [self updateMatchedWantData];
+            
+            [_bottomRefreshControl endRefreshing];
+            _isLoadingMoreWhunts = NO;
+        };
+        
+        FailureHandler failHandler = ^(NSError *error)
+        {
+            [_bottomRefreshControl endRefreshing];
+            _isLoadingMoreWhunts = NO;
+            
+            [Utilities displayErrorAlertView];
+        };
+        
+        [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateMatchedWantData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_retrievedWantDataList byCategory:_currCategory];
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
+    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
+    _displayedWantDataList = [MarketplaceLogicHelper sortArray:_displayedWantDataList by:_currSortingChoice];
+    
+    [_wantCollectionView reloadData];
+}
+
+
+#pragma mark - Query helpers
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (PFQuery *) queryForLoadingMoreWhunts
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
+    [self setSortingCondition:query];
+    
+    if (_retrievedWantDataList.count > 0)
+    {
+        WantData *wantData = [_retrievedWantDataList objectAtIndex:_retrievedWantDataList.count-1];
+        [self setConditionsForQuery:query lastWantData:wantData];
+        [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
+    }
+    
+    return query;
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) setSortingCondition: (PFQuery *) query
