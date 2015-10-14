@@ -15,7 +15,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
 #import <Parse/Parse.h>
-#import <MBProgressHUD.h>
+#import <MRProgress.h>
 #import <JTImageButton.h>
 
 
@@ -81,7 +81,7 @@
     [_FBLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_FBLoginButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     _FBLoginButton.layer.cornerRadius = 5;
-    [_FBLoginButton addTarget:self action:@selector(loginButtonTouchHandler) forControlEvents:UIControlEventTouchUpInside];
+    [_FBLoginButton addTarget:self action:@selector(facebookLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_FBLoginButton];
 }
 
@@ -136,11 +136,10 @@
 #pragma mark - Event Handling
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) loginButtonTouchHandler
+- (void) facebookLoginButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_FBLoginButton setEnabled:YES];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     [self loginOrSignUpWithFacebook];
 }
 
@@ -173,27 +172,18 @@
                 [Utilities handleError:error];
             }
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                            message:@"Login error"
-                                                           delegate:nil
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"Dismiss", nil];
-            [alert show];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+            [Utilities displayErrorAlertView];
         }
         else
         {
             if (user.isNew)
             {
                 [self addDataToUser];
-                
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_SIGNED_UP object:nil];
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             [self presentMainViewController];
         }
     }];
