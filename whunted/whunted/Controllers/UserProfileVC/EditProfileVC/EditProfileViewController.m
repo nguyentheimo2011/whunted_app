@@ -14,7 +14,6 @@
 
 #import <SZTextView.h>
 #import <MMPickerView.h>
-#import <MBProgressHUD.h>
 
 #define     kCancelButtonAlertViewTag               101
 #define     kEmailTextFieldTag                      102

@@ -51,7 +51,6 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - JTImageButton (1.0.2)
   - Masonry (0.6.2)
-  - MBProgressHUD (0.9.1)
   - MMPickerView (0.0.1)
   - MRProgress (0.8.2):
     - MRProgress/ActivityIndicator (= 0.8.2)
@@ -100,7 +99,6 @@ DEPENDENCIES:
   - IDMPhotoBrowser
   - JSQMessagesViewController
   - JTImageButton
-  - MBProgressHUD (~> 0.9.1)
   - MMPickerView (~> 0.0.1)
   - MRProgress
   - RNGridMenu (~> 0.1.2)
@@ -126,7 +124,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   JTImageButton: d214ff9ee6e01865368a9f749c5a16e6abbf6409
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMPickerView: 6ba6bd5d0ef1fd60372d3f5e4fa80ad4237a86a0
   MRProgress: f4cfe862082418e8f542f077772283f425d6c699
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923

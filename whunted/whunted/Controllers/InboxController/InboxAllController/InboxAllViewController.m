@@ -12,8 +12,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 #import "converter.h"
+
 #import <Firebase/Firebase.h>
-#import <MBProgressHUD.h>
 
 #define     kControlContainerHeight         60.0f
 
@@ -142,7 +142,7 @@
     PFUser *user = [PFUser currentUser];
     if ((user != nil) && (_firebase == nil))
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
         FQuery *query = [[_firebase queryOrderedByChild:FB_SELF_USER_ID] queryEqualToValue:user.objectId];
@@ -176,7 +176,7 @@
              [_delegate inboxAllViewController:self didRetrieveNumOfUnreadConversations:_numOfUnreadConversations];
              
              [_inboxTableView reloadData];
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             [Utilities hideIndeterminateProgressIndicatorInView:self.view];
          }];
     }
 }
@@ -378,11 +378,11 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     UserHandler handler = ^(PFUser *user)
     {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [self.navigationController pushViewController:userProfileVC animated:YES];

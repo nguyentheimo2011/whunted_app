@@ -10,7 +10,6 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#import <MBProgressHUD.h>
 #import <JTImageButton.h>
 
 #define     kLeftMargin             15.0f
@@ -191,12 +190,12 @@
 - (void) textViewDidChange:(UITextView *)textView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:_itemImageView animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     NSURL *url = [NSURL URLWithString:_imageLinkTextView.text];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:_itemImageView animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         if (data)
         {
             _currItemImage = [UIImage imageWithData:data];

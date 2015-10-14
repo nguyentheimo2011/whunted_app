@@ -11,7 +11,6 @@
 #import "AppConstant.h"
 
 #import <SZTextView.h>
-#import <MBProgressHUD.h>
 
 #define     kRatingCellHeight           95.0f
 #define     kSecondCellHeight           50.0f
@@ -333,7 +332,7 @@
 - (void) submitBarButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFUser *currUser = [PFUser currentUser];
     
@@ -428,7 +427,7 @@
         else
             [_delegate leaveFeedBackViewController:self didCompleteGivingFeedBack:feedbackData];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

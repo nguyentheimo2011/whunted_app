@@ -13,7 +13,7 @@
 
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
-#import "MBProgressHUD.h"
+#import <MRProgress.h>
 
 #import "AppDelegate.h"
 #import "converter.h"
@@ -88,8 +88,7 @@
 - (void)sendVideoMessage:(NSMutableDictionary *)item Video:(NSURL *)video
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-	hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+	MRProgressOverlayView *hud = [MRProgressOverlayView showOverlayAddedTo:view title:@"" mode:MRProgressOverlayViewModeDeterminateHorizontalBar animated:YES];
 	
 	UIImage *picture = VideoThumbnail(video);
 	UIImage *squared = SquareImage(picture, 320);
@@ -133,8 +132,7 @@
 - (void)sendPictureMessage:(NSMutableDictionary *)item Picture:(UIImage *)picture
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-	hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+	MRProgressOverlayView *hud = [MRProgressOverlayView showOverlayAddedTo:view title:@"" mode:MRProgressOverlayViewModeDeterminateHorizontalBar animated:YES];
 	
 	int width = (int) picture.size.width;
 	int height = (int) picture.size.height;

@@ -16,7 +16,6 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#import <MBProgressHUD.h>
 #import <JTImageButton.h>
 #import <Google/Analytics.h>
 
@@ -759,11 +758,11 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     UserHandler handler = ^(PFUser *user)
     {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [self.navigationController pushViewController:userProfileVC animated:YES];

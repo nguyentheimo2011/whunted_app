@@ -19,9 +19,17 @@
 
 #import <JTImageButton.h>
 #import <HMSegmentedControl.h>
-#import <MBProgressHUD.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
+
+//-------------------------------------------------------------------------------------------------------------------------------
+@interface UserProfileViewController ()
+//-------------------------------------------------------------------------------------------------------------------------------
+
+@property (atomic)  BOOL        isLoadingWhuntsDetails;
+
+@end
+
 
 //-------------------------------------------------------------------------------------------------------------------------------
 @implementation UserProfileViewController
@@ -75,7 +83,8 @@
     NSInteger                   _count;
 }
 
-@synthesize profileOwner    =   _profileOwner;
+@synthesize profileOwner            =   _profileOwner;
+@synthesize isLoadingWhuntsDetails  =   _isLoadingWhuntsDetails;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id) initWithProfileOwner: (PFUser *) profileOwner
@@ -900,7 +909,14 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (_isLoadingWhuntsDetails)
+        return;
+    
+    _isLoadingWhuntsDetails = YES;
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [Utilities showSmallIndeterminateProgressIndicatorInView:cell];
+    
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     
     if (_curViewMode == HistoryCollectionViewModeBuying)
@@ -928,7 +944,8 @@
         }
         
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:cell];
+        _isLoadingWhuntsDetails = NO;
     }];
 }
 
@@ -1027,14 +1044,14 @@
 - (void) ratingViewTapEventHandler
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_FEEDBACK_DATA_CLASS];
     [query whereKey:PF_FEEDBACK_RECEIVER_ID equalTo:_profileOwner.objectId];
     [query orderByAscending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray * array, NSError *error)
     {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         
         if (error)
         {
@@ -1129,11 +1146,11 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     UserHandler handler = ^(PFUser *user)
     {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [self.navigationController pushViewController:userProfileVC animated:YES];
@@ -1294,7 +1311,7 @@
     _loadingCompletedDataDone = NO;
     _loadingOngoingDataDone = NO;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     // retrieve TransactionData from ongoing table
     [self retrieveSellingTransactionDataFromTable:PF_ONGOING_TRANSACTION_CLASS completionBlock:^{
@@ -1302,7 +1319,7 @@
         
         if (_loadingCompletedDataDone)
         {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             
             [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
             [_historyCollectionView reloadData];
@@ -1317,7 +1334,7 @@
     [self retrieveSellingTransactionDataFromTable:PF_ACCEPTED_TRANSACTION_CLASS completionBlock:^{
         if (_loadingOngoingDataDone)
         {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             
             [_mySellDataList addObjectsFromArray:_myCompletedSellDataList];
             [_historyCollectionView reloadData];
@@ -1349,7 +1366,7 @@
                 [self updateTotalListingNumLabel:_count numListingsDisplayed:YES];
                 
                 if (_count == 0)
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             }
             else
             {

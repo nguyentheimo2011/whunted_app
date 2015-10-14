@@ -12,7 +12,6 @@
 #import "Utilities.h"
 #import "recent.h"
 
-#import <MBProgressHUD.h>
 
 @implementation BuyersOrSellersOfferViewController
 {
@@ -315,7 +314,7 @@
 - (void) submitButtonClickedHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     _offerData.offeredPrice         =   _offeredPriceTextField.text;
     _offerData.deliveryTime         =   _offeredDeliveryTextField.text;

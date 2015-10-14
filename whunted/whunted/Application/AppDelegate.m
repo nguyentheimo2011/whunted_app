@@ -10,7 +10,6 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <Parse/Parse.h>
 #import <Google/Analytics.h>
-#import <MBProgressHUD.h>
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
@@ -196,7 +195,7 @@
 - (void) logoutOfApp
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.window.rootViewController.view];
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error)
     {
@@ -204,7 +203,7 @@
         [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         [self.window setRootViewController:loginVC];
         
-        [MBProgressHUD hideHUDForView:self.window.rootViewController.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.window.rootViewController.view];
     }];
 }
 

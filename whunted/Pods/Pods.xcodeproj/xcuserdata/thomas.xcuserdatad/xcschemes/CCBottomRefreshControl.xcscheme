@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0087348B49EE0961B68A1D69"
+               BlueprintIdentifier = "1571BA7535CEFC2397F83495"
                BuildableName = "libCCBottomRefreshControl.a"
                BlueprintName = "CCBottomRefreshControl"
                ReferencedContainer = "container:Pods.xcodeproj">

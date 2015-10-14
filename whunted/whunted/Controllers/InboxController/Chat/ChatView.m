@@ -11,7 +11,6 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <JTImageButton.h>
-#import <MBProgressHUD.h>
 
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
@@ -490,7 +489,7 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"CancelOfferFromChatEvent" label:@"CancelOfferButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -498,7 +497,7 @@
         if (error)
         {
             [Utilities handleError:error];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             [Utilities displayErrorAlertView];
             
             [offerObj deleteEventually];
@@ -519,7 +518,7 @@
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails CompletionBlock:nil];
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         }
     }];
 }
@@ -554,7 +553,7 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"DeclineOfferFromChatEvent" label:@"DeclineOfferButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFObject *offerObj = [_offerData getPFObjectWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [offerObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -562,7 +561,7 @@
         if (error)
         {
             [Utilities handleError:error];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             [Utilities displayErrorAlertView];
             
             [offerObj deleteEventually];
@@ -583,7 +582,7 @@
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails CompletionBlock:nil];
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         }
     }];
 }
@@ -611,7 +610,7 @@
 - (void) acceptOffer
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     // update transactional data
     _offerData.transactionStatus = TRANSACTION_STATUS_ACCEPTED;
@@ -637,12 +636,12 @@
                   }
               }];
              
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             [Utilities hideIndeterminateProgressIndicatorInView:self.view];
          }
          else
          {
              [Utilities handleError:error];
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             [Utilities hideIndeterminateProgressIndicatorInView:self.view];
              [Utilities displayErrorAlertView];
              
              [offerObj saveEventually];
@@ -693,7 +692,7 @@
 - (void) leavingFeedbackButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"LeaveOfferFromChatEvent" label:@"LeaveOfferButton" value:nil];
     
@@ -706,7 +705,7 @@
         if (error)
         {
             [Utilities handleError:error];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         }
         else
         {
@@ -728,7 +727,7 @@
                 }
             }
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             
             [self.navigationController pushViewController:leaveFeedbackVC animated:YES];
         }

@@ -11,7 +11,6 @@
 #import "Utilities.h"
 
 #import "KLCPopup.h"
-#import <MBProgressHUD.h>
 
 #define     kCellHeight                 40.0f
 #define     kIconWidth                  20.0f
@@ -343,17 +342,24 @@
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"UploadNewWhuntEvent" label:@"SubmitButton" value:nil];
     
     UIAlertView *submissionAlertView;
-    if (_wantData.itemCategory == nil) {
+    if (_wantData.itemCategory == nil)
+    {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please choose a category!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if (_wantData.itemName == nil || [_wantData.itemName length] == 0) {
+    }
+    else if (_wantData.itemName == nil || [_wantData.itemName length] == 0)
+    {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please fill in item name!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
-    } else if (_wantData.demandedPrice == nil || [_wantData.demandedPrice length] == 0) {
+    }
+    else if (_wantData.demandedPrice == nil || [_wantData.demandedPrice length] == 0)
+    {
         submissionAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Please state a price!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
         [submissionAlertView show];
-    } else {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }
+    else
+    {
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
         if (!_wantData.itemDesc)
             _wantData.itemDesc = @"";
@@ -391,7 +397,7 @@
                 [Utilities handleError:error];
             }
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         }];
     }
 }
@@ -440,7 +446,7 @@
     }
     else
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
         if (!_wantData.itemDesc)
             _wantData.itemDesc = @"";
@@ -474,7 +480,7 @@
             }
             else
             {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                 
                 [_delegate completeEditingWantData];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:_wantData];
@@ -572,7 +578,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
-    [MBProgressHUD showHUDAddedTo:button animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     [[_addingButtonList objectAtIndex: buttonIndex] setImage: image];
     
@@ -604,7 +610,7 @@
         }
         
         UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
-        [MBProgressHUD hideHUDForView:button animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
     }];
 }
 

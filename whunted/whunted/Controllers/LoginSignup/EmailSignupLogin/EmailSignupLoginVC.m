@@ -12,7 +12,6 @@
 #import "Utilities.h"
 
 #import <JTImageButton.h>
-#import <MBProgressHUD.h>
 
 #define     kUsernameSignupTextFieldTag     102
 #define     kEmailSignupTextFieldTag        103
@@ -517,7 +516,7 @@
 - (void) checkIfEmailAlreadyInUse: (NSString *) email
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_EMAIL equalTo:email];
@@ -527,7 +526,7 @@
         {
             if (objects.count > 0)
             {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                 
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email is already in use", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alertView show];
@@ -547,7 +546,7 @@
                         // Hooray! Let them use the app now.
                         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_SIGNED_UP object:nil];
                         
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                         
                         MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
                         [self presentViewController:mainVC animated:NO completion:^{}];
@@ -571,7 +570,7 @@
 - (void) loginWithEmail: (NSString *) email password: (NSString *) password
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_EMAIL equalTo:email];
@@ -586,14 +585,14 @@
                [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * _Nullable user, NSError * _Nullable error) {
                    if (!error)
                    {
-                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                       [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                        
                        MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
                        [self presentViewController:mainVC animated:NO completion:^{}];
                    }
                    else
                    {
-                       [MBProgressHUD hideHUDForView:self.view animated:YES];
+                       [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                        
                        [Utilities handleError:error];
                        
@@ -604,7 +603,7 @@
            }
            else
            {
-               [MBProgressHUD hideHUDForView:self.view animated:YES];
+               [Utilities hideIndeterminateProgressIndicatorInView:self.view];
                
                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email and password do not match", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                [alertView show];
@@ -613,7 +612,7 @@
        else
        {
            [Utilities handleError:error];
-           [MBProgressHUD hideHUDForView:self.view animated:YES];
+           [Utilities hideIndeterminateProgressIndicatorInView:self.view];
        }
     }];
 }

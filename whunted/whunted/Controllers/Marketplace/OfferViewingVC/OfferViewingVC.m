@@ -11,8 +11,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 #import "converter.h"
+
 #import <Firebase/Firebase.h>
-#import <MBProgressHUD.h>
 
 #define     kControlContainerHeight         60.0f
 
@@ -254,7 +254,7 @@
     PFUser *user = [PFUser currentUser];
     if ((user != nil) && (_firebase == nil))
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
         FQuery *query = [[_firebase queryOrderedByChild:FB_ITEM_ID] queryEqualToValue:_wantData.itemID];
@@ -291,7 +291,7 @@
              }
              
              [_offersTableView reloadData];
-             [MBProgressHUD hideHUDForView:self.view animated:YES];
+             [Utilities hideIndeterminateProgressIndicatorInView:self.view];
          }];
     }
 }

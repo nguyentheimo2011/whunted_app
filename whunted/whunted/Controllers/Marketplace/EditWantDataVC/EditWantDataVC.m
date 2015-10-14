@@ -9,8 +9,6 @@
 #import "EditWantDataVC.h"
 #import "Utilities.h"
 
-#import <MBProgressHUD.h>
-
 
 @implementation EditWantDataVC
 
@@ -81,7 +79,7 @@
 - (void) deletionButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFObject *pfObj = [self.wantData getPFObject];
     [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -92,7 +90,7 @@
              [pfObj deleteEventually];
          }
          
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
+         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
          [self.navigationController popViewControllerAnimated:YES];
      }];
 }
