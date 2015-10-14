@@ -49,9 +49,7 @@
 + (UIView *) addSortAndFilterBarWithHeight: (CGFloat) height toViewController: (UIViewController *) viewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kBarYPos      =   [Utilities getHeightOfNavigationAndStatusBars:viewController];
-    
-    UIView *sortAndFilterBar = [[UIView alloc] initWithFrame:CGRectMake(0, kBarYPos, WINSIZE.width, height)];
+    UIView *sortAndFilterBar = [[UIView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_AND_NAV_BAR_HEIGHT, WINSIZE.width, height)];
     sortAndFilterBar.backgroundColor = [UIColor whiteColor];
     [viewController.view addSubview:sortAndFilterBar];
     
@@ -313,8 +311,8 @@
 + (UICollectionView *) addCollectionViewToViewController:(UIViewController<UICollectionViewDelegate, UICollectionViewDataSource> *)viewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCollectionViewYPos   =   [Utilities getHeightOfNavigationAndStatusBars:viewController] + SORT_FILTER_BAR_HEIGHT;
-    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos - [Utilities getHeightOfBottomTabBar:viewController];
+    CGFloat const kCollectionViewYPos   =   STATUS_BAR_AND_NAV_BAR_HEIGHT + SORT_FILTER_BAR_HEIGHT;
+    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos - BOTTOM_TAB_BAR_HEIGHT;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     UICollectionView *wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];

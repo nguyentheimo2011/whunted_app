@@ -10,8 +10,6 @@
 #import "UserProfileViewController.h"
 #import "Utilities.h"
 
-#import <MBProgressHUD.h>
-
 @implementation BackendUtil
 
 #pragma mark - User Profile
@@ -22,14 +20,13 @@
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"ViewUserProfileEvent" label:@"BuyerUsernameButton" value:nil];
     
-    [MBProgressHUD showHUDAddedTo:controller.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:controller.view];
     
     UserHandler handler = ^(PFUser *user)
     {
-        [MBProgressHUD hideHUDForView:controller.view animated:YES];
-        
         UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
         [controller.navigationController pushViewController:userProfileVC animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:controller.view];
     };
     
     [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
