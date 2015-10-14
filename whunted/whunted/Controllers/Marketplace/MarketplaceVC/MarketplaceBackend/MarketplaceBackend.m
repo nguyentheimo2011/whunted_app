@@ -8,6 +8,7 @@
 
 #import "MarketplaceBackend.h"
 #import "TransactionData.h"
+#import "WantData.h"
 #import "Utilities.h"
 
 @implementation MarketplaceBackend
@@ -37,6 +38,34 @@
          }
          
          compHandler(offer);
+     }];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (void) retrieveWhuntsWithQuery:(PFQuery *)query successHandler:(WhuntsHandler)succHandler failureHandler:(FailureHandler)failHandler
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             NSMutableArray *whuntsList = [NSMutableArray array];
+             
+             for (PFObject *object in objects)
+             {
+                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
+                 [whuntsList addObject:wantData];
+             }
+             
+             succHandler(whuntsList);
+         }
+         else
+         {
+             // Log details of the failure
+             [Utilities handleError:error];
+             
+             failHandler(error);
+         }
      }];
 }
 

@@ -451,30 +451,23 @@
 - (void) retrieveWantDataList
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _retrievedWantDataList = [[NSMutableArray alloc] init];
-    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingCondition:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    [self setSortingCondition:query];
+    
+    WhuntsHandler succHandler = ^(NSArray *whunts)
     {
-        if (!error)
-        {
-            for (PFObject *object in objects)
-            {
-                WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                [_retrievedWantDataList addObject:wantData];
-            }
-            
-            [self updateMatchedWantData];
-        }
-        else
-        {
-            // Log details of the failure
-            [Utilities handleError:error];
-        }
-    }];
+        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
+        [self updateMatchedWantData];
+    };
+    
+    FailureHandler failHandler = ^(NSError *error)
+    {
+        [Utilities displayErrorAlertView];
+    };
+    
+    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

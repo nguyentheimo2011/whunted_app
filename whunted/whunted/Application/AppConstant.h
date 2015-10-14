@@ -428,6 +428,7 @@ typedef void (^FetchedUserHandler)  (PFUser *, UIImage *);
 typedef void (^UserHandler)         (PFUser *);
 typedef void (^ImageHandler)        (UIImage *);
 typedef void (^TransactionHandler)  (TransactionData *);
+typedef void (^WhuntsHandler)       (NSArray *whunts);
 
 //----------------------------------------------------------------------------------------------------------------------------
 typedef enum {

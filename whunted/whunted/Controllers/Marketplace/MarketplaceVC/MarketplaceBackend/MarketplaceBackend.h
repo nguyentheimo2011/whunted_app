@@ -15,4 +15,6 @@
 
 + (void) retrieveOfferByUser: (NSString *) userID forItem: (NSString *) itemID completionHandler: (TransactionHandler) compHandler;
 
++ (void) retrieveWhuntsWithQuery: (PFQuery *) query successHandler: (WhuntsHandler) succHandler failureHandler: (FailureHandler) failHandler;
+
 @end
