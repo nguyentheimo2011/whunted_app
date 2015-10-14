@@ -455,7 +455,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingChoice:query];
+    [self setSortingCondition:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
@@ -485,7 +485,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [self setSortingChoice:query];
+    [self setSortingCondition:query];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -528,7 +528,7 @@
             [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
         }
         
-        [self setSortingChoice:query];
+        [self setSortingCondition:query];
         [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
@@ -665,7 +665,7 @@
 #pragma mark - Helper functions
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) setSortingChoice: (PFQuery *) query
+- (void) setSortingCondition: (PFQuery *) query
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
