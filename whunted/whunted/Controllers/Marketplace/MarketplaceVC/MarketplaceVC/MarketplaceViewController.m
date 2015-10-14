@@ -16,6 +16,7 @@
 #import "BackendUtil.h"
 
 #import <MBProgressHUD.h>
+#import <MRProgress.h>
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -23,6 +24,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 
 @property (atomic)      BOOL    isLoadingMoreWhunts;
+@property (atomic)      BOOL    isLoadingWhuntsDetails;
 
 @end
 
@@ -54,6 +56,7 @@
 }
 
 @synthesize     isLoadingMoreWhunts     =   _isLoadingMoreWhunts;
+@synthesize     isLoadingWhuntsDetails  =   _isLoadingWhuntsDetails;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -283,7 +286,13 @@
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (_isLoadingWhuntsDetails)
+        return;
+    
+    _isLoadingWhuntsDetails = YES;
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [Utilities showSmallIndeterminateProgressIndicatorInView:cell];
     
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
@@ -296,7 +305,8 @@
             itemDetailsVC.currOffer = offer;
         }
         [self.navigationController pushViewController:itemDetailsVC animated:YES];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:cell];
+        _isLoadingWhuntsDetails = NO;
     };
     
     [MarketplaceBackend retrieveOfferByUser:[PFUser currentUser].objectId forItem:itemDetailsVC.wantData.itemID completionHandler:tranHandler];
@@ -530,7 +540,7 @@
 - (void) retrieveWantDataList
 //------------------------------------------------------------------------------------------------------------------------------
 {
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
@@ -539,14 +549,14 @@
     
     WhuntsHandler succHandler = ^(NSArray *whunts)
     {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
         [self updateMatchedWantData];
     };
     
     FailureHandler failHandler = ^(NSError *error)
     {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         [Utilities displayErrorAlertView];
     };
     

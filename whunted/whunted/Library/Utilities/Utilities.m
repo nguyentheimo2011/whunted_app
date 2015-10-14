@@ -8,6 +8,7 @@
 
 #import "Utilities.h"
 #import <Google/Analytics.h>
+#import <MRProgress.h>
 
 @implementation Utilities
 
@@ -228,6 +229,30 @@
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, textField.frame.size.height)];
     textField.leftView = paddingView;
     textField.leftViewMode = UITextFieldViewModeAlways;
+}
+
+
+#pragma mark - UI Progress Indicator
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) showStandardIndeterminateProgressIndicatorInView:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MRProgressOverlayView showOverlayAddedTo:view title:@"" mode:MRProgressOverlayViewModeIndeterminate animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) showSmallIndeterminateProgressIndicatorInView:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MRProgressOverlayView showOverlayAddedTo:view title:@"" mode:MRProgressOverlayViewModeIndeterminateSmall animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) hideIndeterminateProgressIndicatorInView:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [MRProgressOverlayView dismissOverlayForView:view animated:YES];
 }
 
 

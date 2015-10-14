@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AED5B158AB6DF966AEA7B431"
+               BlueprintIdentifier = "8ED41B6B2D3428894EC66612"
                BuildableName = "libAPNumberPad.a"
                BlueprintName = "APNumberPad"
                ReferencedContainer = "container:Pods.xcodeproj">
