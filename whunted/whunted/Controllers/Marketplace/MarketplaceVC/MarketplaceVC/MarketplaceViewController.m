@@ -465,36 +465,21 @@
 - (void) searchWantDataBasedOnTerm: (NSString *) searchTerm
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _retrievedWantDataList = [[NSMutableArray alloc] init];
+    PFQuery *query = [self queryForSearchingWithSearchTerm:searchTerm];
     
-    PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query1 whereKey:PF_ITEM_NAME containsString:searchTerm];
+    WhuntsHandler succHandler = ^(NSArray *whunts)
+    {
+        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
+        [self updateMatchedWantData];
+    };
     
-    PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query2 whereKey:PF_ITEM_DESC containsString:searchTerm];
+    FailureHandler failHandler = ^(NSError *error)
+    {
+        [Utilities displayErrorAlertView];
+    };
     
-    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (!error)
-         {
-             for (PFObject *object in objects)
-             {
-                 WantData *wantData = [[WantData alloc] initWithPFObject:object];
-                 [_retrievedWantDataList addObject:wantData];
-             }
-             
-             [self updateMatchedWantData];
-         }
-         else
-         {
-             // Log details of the failure
-             [Utilities handleError:error];
-         }
-     }];
+    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -545,6 +530,8 @@
 - (void) retrieveWantDataList
 //------------------------------------------------------------------------------------------------------------------------------
 {
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
@@ -552,12 +539,14 @@
     
     WhuntsHandler succHandler = ^(NSArray *whunts)
     {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
         _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
         [self updateMatchedWantData];
     };
     
     FailureHandler failHandler = ^(NSError *error)
     {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [Utilities displayErrorAlertView];
     };
     
@@ -652,6 +641,22 @@
         [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
     }
     
+    return query;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (PFQuery *) queryForSearchingWithSearchTerm: (NSString *) searchTerm
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query1 whereKey:PF_ITEM_NAME containsString:searchTerm];
+    
+    PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+    [query2 whereKey:PF_ITEM_DESC containsString:searchTerm];
+    
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
     return query;
 }
 
