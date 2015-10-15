@@ -455,7 +455,7 @@
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelSearch)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(searchCancelButtonTapEventHandler)];
     
     return YES;
 }
@@ -464,42 +464,30 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self searchWantDataBasedOnTerm:searchBar.text];
-    
-    [self completeSearch];    
+    [self searchForWhuntsBasedOnTerm:searchBar.text];
+    [self collapseSearchUI];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) searchWantDataBasedOnTerm: (NSString *) searchTerm
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [self queryForSearchingWithSearchTerm:searchTerm];
-    
-    WhuntsHandler succHandler = ^(NSArray *whunts)
+    if (searchText.length == 0)
     {
-        _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
-        [self updateMatchedWantData];
-    };
-    
-    FailureHandler failHandler = ^(NSError *error)
-    {
-        [Utilities displayErrorAlertView];
-    };
-    
-    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
-
+        [self retrieveWantDataList];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) cancelSearch
+- (void) searchCancelButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_searchBar resignFirstResponder];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    [self searchForWhuntsBasedOnTerm:_searchBar.text];
+    [self collapseSearchUI];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) completeSearch
+- (void) collapseSearchUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [_searchBar resignFirstResponder];
@@ -611,6 +599,33 @@
             [_bottomRefreshControl endRefreshing];
             _isLoadingMoreWhunts = NO;
             
+            [Utilities displayErrorAlertView];
+        };
+        
+        [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) searchForWhuntsBasedOnTerm: (NSString *) searchTerm
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (searchTerm.length > 0)
+    {
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+        
+        PFQuery *query = [self queryForSearchingWithSearchTerm:searchTerm];
+        
+        WhuntsHandler succHandler = ^(NSArray *whunts)
+        {
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+            _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
+            [self updateMatchedWantData];
+        };
+        
+        FailureHandler failHandler = ^(NSError *error)
+        {
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             [Utilities displayErrorAlertView];
         };
         
