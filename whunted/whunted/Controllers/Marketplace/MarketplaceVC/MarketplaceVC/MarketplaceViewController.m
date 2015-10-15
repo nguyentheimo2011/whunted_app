@@ -14,6 +14,7 @@
 #import "MarketplaceBackend.h"
 #import "Utilities.h"
 #import "BackendUtil.h"
+#import "SearchEngine.h"
 
 #import <MRProgress.h>
 
@@ -607,14 +608,14 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) searchForWhuntsBasedOnTerm: (NSString *) searchTerm
+- (void) searchForWhuntsBasedOnTerm: (NSString *) searchKeyword
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (searchTerm.length > 0)
+    if (searchKeyword.length > 0)
     {
         [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
-        PFQuery *query = [self queryForSearchingWithSearchTerm:searchTerm];
+        PFQuery *query = [self queryForSearchingWithsearchKeyword:searchKeyword];
         
         WhuntsHandler succHandler = ^(NSArray *whunts)
         {
@@ -668,16 +669,18 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (PFQuery *) queryForSearchingWithSearchTerm: (NSString *) searchTerm
+- (PFQuery *) queryForSearchingWithsearchKeyword: (NSString *) searchKeyword
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    NSString *regex = [SearchEngine createRegexFromSearchKeyword:searchKeyword];
+    
     PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query1 whereKey:PF_ITEM_NAME containsString:searchTerm];
+    [query1 whereKey:PF_ITEM_NAME matchesRegex:regex];
     
     PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query2 whereKey:PF_ITEM_DESC containsString:searchTerm];
+    [query2 whereKey:PF_ITEM_DESC matchesRegex:regex];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
     return query;
