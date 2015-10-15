@@ -145,8 +145,7 @@
         [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
         _firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
-//        FQuery *query = [[_firebase queryOrderedByChild:FB_SELF_USER_ID] queryEqualToValue:user.objectId];
-        FQuery *query = [_firebase queryOrderedByKey];
+        FQuery *query = [[_firebase queryOrderedByChild:FB_SELF_USER_ID] queryEqualToValue:user.objectId];
         [query observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
          {
              [_recentMessages removeAllObjects];

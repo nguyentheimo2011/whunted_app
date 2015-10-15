@@ -355,6 +355,7 @@
     {
         [self addItemImageToWantDetailVC:resizedImage];
     }
+    
 }
 
 
