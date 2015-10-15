@@ -502,6 +502,8 @@
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    NSLog(@"scrollViewDidScroll %f", scrollView.contentOffset.y);
+    
     if (_lastContentOffset > scrollView.contentOffset.y) // Scroll up
     {
         if (_topRefreshControl.refreshing)
