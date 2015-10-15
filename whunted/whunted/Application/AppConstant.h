@@ -379,6 +379,7 @@
 #define     CATEGORY_CONTAINER_TAG                      302
 #define     SORT_FILTER_CONTAINER_TAG                   303
 #define     SORT_FILTER_BAR_HEIGHT                      50.0f
+#define     SPACE_BETWEEN_CELLS                         8.0f
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUM_OF_SECONDS_IN_A_MINUTE                  60

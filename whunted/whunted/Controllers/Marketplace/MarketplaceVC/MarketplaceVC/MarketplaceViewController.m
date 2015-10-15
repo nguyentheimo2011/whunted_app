@@ -42,7 +42,6 @@
     UISearchBar             *_searchBar;
     
     UIRefreshControl        *_topRefreshControl;
-    UIRefreshControl        *_bottomRefreshControl;
     
     NSString                *_currProductOrigin;
     NSString                *_currCategory;
@@ -208,9 +207,6 @@
     
     _topRefreshControl = [MarketplaceUIHelper addTopRefreshControlToCollectionView:_wantCollectionView];
     [_topRefreshControl addTarget:self action:@selector(refreshWantData) forControlEvents:UIControlEventValueChanged];
-    
-    _bottomRefreshControl = [MarketplaceUIHelper addBottomRefreshControlToCollectionView:_wantCollectionView];
-    [_bottomRefreshControl addTarget:self action:@selector(retrieveMoreWantData) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -253,7 +249,7 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCellMargin   =   8.0f;
+    CGFloat const kCellMargin   =   SPACE_BETWEEN_CELLS;
     
     return UIEdgeInsetsMake(kCellMargin, kCellMargin, kCellMargin, kCellMargin);
 }
@@ -262,7 +258,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kCellMargin   =   8.0f;
+    CGFloat const kCellMargin   =   SPACE_BETWEEN_CELLS;
     
     return kCellMargin;
 }
@@ -271,7 +267,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return 8.0f;
+    return SPACE_BETWEEN_CELLS;
 }
 
 
@@ -498,21 +494,30 @@
 
 #pragma mark - UIScrollViewDelegate method
 
+/*
+ * Load new whunts when scroll to near the end of the scroll view
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSLog(@"scrollViewDidScroll %f", scrollView.contentOffset.y);
+    NSInteger numOfWhunts = _retrievedWantDataList.count;
+    NSInteger numOfRows = numOfWhunts/2;
+    float loadingPos = (numOfRows - 3) * ([Utilities sizeOfFullCollectionCell].height + SPACE_BETWEEN_CELLS);
+    
+    if (_retrievedWantDataList.count >= NUM_OF_WHUNTS_IN_EACH_LOADING_TIME && scrollView.contentOffset.y >= loadingPos)
+    {
+        if (!_isLoadingMoreWhunts)
+        {
+            [self retrieveMoreWantData];
+        }
+    }
     
     if (_lastContentOffset > scrollView.contentOffset.y) // Scroll up
     {
         if (_topRefreshControl.refreshing)
             [_topRefreshControl endRefreshing];
-    }
-    else if (_lastContentOffset < scrollView.contentOffset.y) // Scroll down
-    {
-        if (_bottomRefreshControl.refreshing)
-            [_bottomRefreshControl endRefreshing];
     }
     
     _lastContentOffset = scrollView.contentOffset.y;
@@ -593,13 +598,11 @@
             [_retrievedWantDataList addObjectsFromArray:whunts];
             [self updateMatchedWantData];
             
-            [_bottomRefreshControl endRefreshing];
             _isLoadingMoreWhunts = NO;
         };
         
         FailureHandler failHandler = ^(NSError *error)
         {
-            [_bottomRefreshControl endRefreshing];
             _isLoadingMoreWhunts = NO;
             
             [Utilities displayErrorAlertView];

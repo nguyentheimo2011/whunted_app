@@ -68,7 +68,5 @@
 
 + (UIRefreshControl *) addTopRefreshControlToCollectionView: (UICollectionView *) collectionView;
 
-+ (UIRefreshControl *) addBottomRefreshControlToCollectionView: (UICollectionView *) collectionView;
-
 
 @end

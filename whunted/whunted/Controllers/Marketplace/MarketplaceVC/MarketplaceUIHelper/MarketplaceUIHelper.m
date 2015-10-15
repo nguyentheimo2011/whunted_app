@@ -12,7 +12,6 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
 @implementation MarketplaceUIHelper
 
@@ -335,17 +334,6 @@
     [collectionView addSubview:topRefreshControl];
     
     return topRefreshControl;
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-+ (UIRefreshControl *) addBottomRefreshControlToCollectionView:(UICollectionView *)collectionView
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    UIRefreshControl *bottomRefreshControl = [UIRefreshControl new];
-    bottomRefreshControl.triggerVerticalOffset = 100;
-    collectionView.bottomRefreshControl = bottomRefreshControl;
-    
-    return bottomRefreshControl;
 }
 
 

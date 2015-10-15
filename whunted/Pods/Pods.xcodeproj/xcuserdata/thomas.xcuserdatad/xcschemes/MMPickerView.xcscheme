@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D08E8E3C634C313E79595391"
+               BlueprintIdentifier = "5B31844E5F6D6E0B02125C34"
                BuildableName = "libMMPickerView.a"
                BlueprintName = "MMPickerView"
                ReferencedContainer = "container:Pods.xcodeproj">
