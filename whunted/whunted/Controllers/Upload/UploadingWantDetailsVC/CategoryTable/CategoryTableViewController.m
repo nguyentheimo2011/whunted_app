@@ -154,12 +154,15 @@
 - (void) completeChoosingCategory: (NSString *) category
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegte categoryTableView:self didSelectCategory:category];
-    
     if (_usedForFiltering)
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            [_delegte categoryTableView:self didSelectCategory:category];
+        }];
     else
+    {
         [self.navigationController popViewControllerAnimated:YES];
+        [_delegte categoryTableView:self didSelectCategory:category];
+    }
 }
  
 

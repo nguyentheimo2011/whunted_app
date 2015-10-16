@@ -23,6 +23,6 @@
                                          CityViewDelegate,
                                          UISearchBarDelegate>
 
-- (void) refreshWantData;
+- (void) refreshWhuntsList;
 
 @end

@@ -268,7 +268,7 @@
 - (void) uploadingWantDetailsViewController:(UploadingWantDetailsViewController *)controller didCompleteSubmittingWantData:(WantData *)wantData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [_brController refreshWantData];
+    [_brController refreshWhuntsList];
     [_userProfileVC retrieveLatestWantData];
     
     [self setSelectedIndex:kPROFILE_PAGE_VIEW_TAB_INDEX];

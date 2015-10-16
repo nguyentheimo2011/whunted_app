@@ -324,8 +324,9 @@
 - (void) applyNewSortingAndFilteringCriteria
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion andProductOrigin:_productOriginFilter];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [_delegate sortAndFilterTableView:self didCompleteChoosingSortingCriterion:_sortingCriterion andProductOrigin:_productOriginFilter];
+    }];
 }
 
 

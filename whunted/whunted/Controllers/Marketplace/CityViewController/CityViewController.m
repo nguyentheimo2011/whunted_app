@@ -269,8 +269,9 @@
 {
     if ([self isValidLocation:_cityTextField.text])
     {
-        [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
+        }];
     }
     else
     {

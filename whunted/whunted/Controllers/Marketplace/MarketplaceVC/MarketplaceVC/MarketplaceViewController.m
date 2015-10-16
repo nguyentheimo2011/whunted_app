@@ -65,7 +65,7 @@
     {
         [self initData];
         [self initUI];
-        [self retrieveWantDataList];
+        [self retrieveWhuntsList];
         [self addNotificationListener];
     }
     
@@ -205,7 +205,7 @@
     _wantCollectionView = [MarketplaceUIHelper addCollectionViewToViewController:self];
     
     _topRefreshControl = [MarketplaceUIHelper addTopRefreshControlToCollectionView:_wantCollectionView];
-    [_topRefreshControl addTarget:self action:@selector(refreshWantData) forControlEvents:UIControlEventValueChanged];
+    [_topRefreshControl addTarget:self action:@selector(refreshWhuntsList) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -325,6 +325,8 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
+    
+    [self retrieveWhuntsList];
 }
 
 
@@ -338,6 +340,8 @@
     
     _currCategory = category;
     [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
+    
+    [self retrieveWhuntsList];
 }
 
 
@@ -355,7 +359,7 @@
     _currProductOrigin = productOrigin;
     [[NSUserDefaults standardUserDefaults] setObject:productOrigin forKey:CURRENT_PRODUCT_ORIGIN_FILTER];
     
-    [self retrieveWantDataList];
+    [self retrieveWhuntsList];
 }
 
 
@@ -466,7 +470,7 @@
 {
     if (searchText.length == 0)
     {
-        [self retrieveWantDataList];
+        [self retrieveWhuntsList];
     }
 }
 
@@ -505,7 +509,7 @@
     {
         if (!_isLoadingMoreWhunts)
         {
-            [self retrieveMoreWantData];
+            [self retrieveMoreWhunts];
         }
     }
     
@@ -526,7 +530,7 @@
  */
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveWantDataList
+- (void) retrieveWhuntsList
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
@@ -550,7 +554,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) refreshWantData
+- (void) refreshWhuntsList
 //------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [self queryForLoadingWhunts];
@@ -572,7 +576,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) retrieveMoreWantData
+- (void) retrieveMoreWhunts
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // Only load more data if the last load-more-data request completed.
