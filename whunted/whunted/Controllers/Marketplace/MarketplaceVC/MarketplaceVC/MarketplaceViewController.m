@@ -580,7 +580,7 @@
     {
         _isLoadingMoreWhunts = YES;
         
-        PFQuery *query = [self queryForLoadingWhunts];
+        PFQuery *query = [self queryForLoadingMoreWhunts];
         
         WhuntsHandler succHandler = ^(NSArray *whunts)
         {
@@ -635,9 +635,21 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSMutableDictionary *requirements = [NSMutableDictionary dictionaryWithObjectsAndKeys:_currBuyerLocation, BUYER_LOCATION_FILTER, _currCategory, ITEM_CATEGORY_FILTER, _currProductOrigin, PRODUCT_ORIGIN_FILTER, _currSortingChoice, SORTING_CHOICE, _searchBar.text, SEARCH_KEYWORD, nil];
+    
+    PFQuery *query = [MarketplaceBackend createQueryForWhuntsFromDictionary:requirements];
+    
+    return query;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (PFQuery *) queryForLoadingMoreWhunts
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableDictionary *requirements = [NSMutableDictionary dictionaryWithObjectsAndKeys:_currBuyerLocation, BUYER_LOCATION_FILTER, _currCategory, ITEM_CATEGORY_FILTER, _currProductOrigin, PRODUCT_ORIGIN_FILTER, _currSortingChoice, SORTING_CHOICE, _searchBar.text, SEARCH_KEYWORD, nil];
+    
     if (_retrievedWantDataList.count > 0)
     {
-        [requirements setObject:_retrievedWantDataList[0] forKey:LAST_LOADED_WHUNT];
+        [requirements setObject:_retrievedWantDataList[_retrievedWantDataList.count-1] forKey:LAST_LOADED_WHUNT];
     }
     
     PFQuery *query = [MarketplaceBackend createQueryForWhuntsFromDictionary:requirements];
