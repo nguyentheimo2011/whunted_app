@@ -19,5 +19,6 @@
 
 - (void)    customizeUI;
 - (void)    bindData:(NSDictionary *)message;
+- (void)    clearUI;
 
 @end

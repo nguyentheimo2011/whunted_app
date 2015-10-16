@@ -199,6 +199,7 @@
     MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.cellIndex = indexPath.row;
     [cell customizeUI];
+    [cell clearUI];
     [cell bindData:_categorizedMessages[indexPath.row]];
     
     return cell;
