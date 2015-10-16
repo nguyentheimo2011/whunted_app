@@ -154,8 +154,8 @@
 "Made An Offer"                     =   "交易出價";
 "Leave Feedback"                    =   "我要評價";
 "has left a feedback"               =   "已發表了評價";
-"Are you sure you want to accept this offer?"   =   "確定接受出價?";
-"Once accepted, offer cannot be cancelled!"     =   "旦同意之後,即不可取消!";
+"Are you sure you want to accept this offer?"   =   "確定交易?";
+"Once accepted, offer cannot be cancelled!"     =   "一旦確認即視同接受報價與雙方協議內容，不可取消!";
 "We are sorry! An error occurred while processing this request."    =   "很抱歉! 這行動出了錯誤";
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -218,7 +218,7 @@
 
 // Signup, Login
 //------------------------------------------------------------------------------------------------------------------------------
-"By signing up, you agree to our "      =   "執行次註冊步驟,及代表你同意我們的";
+"By signing up, you agree to our "      =   "執行此註冊/登入步驟,即代表你同意我們的";
 "Terms of Service"                      =   "服務條款";
 "Log Out"                               =   "登出";
 "Sign up"                               =   "註冊";
@@ -236,8 +236,8 @@
 "Email and password do not match"       =   "Email和密碼不符";
 "Email is already in use"               =   "Email 已被使用";
 "and"                                   =   "和";
-"Sign up or Log in with Facebook"       =   "註冊或登入帳號臉書";
-"Sign up or Log in with Email"          =   "註冊或登入帳號Email";
+"Sign up or Log in with Facebook"       =   "用臉書帳號註冊或登入";
+"Sign up or Log in with Email"          =   "用email帳號註冊或登入";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------
