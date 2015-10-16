@@ -578,7 +578,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
-    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    [Utilities showSmallIndeterminateProgressIndicatorInView:button];
     
     [[_addingButtonList objectAtIndex: buttonIndex] setImage: image];
     
@@ -610,7 +610,7 @@
         }
         
         UIButton *button = [_addingButtonList objectAtIndex:buttonIndex];
-        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        [Utilities hideIndeterminateProgressIndicatorInView:button];
     }];
 }
 
