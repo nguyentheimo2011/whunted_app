@@ -706,15 +706,15 @@
     _segmentedControl.selectedSegmentIndex = 0;
     
     /// TODO: colors are likely to change
-    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_DARK_GRAY};
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_LESS_DARK};
     _segmentedControl.backgroundColor = DARK_BLUE_COLOR;
     _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    _segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR;
-    
+    _segmentedControl.selectionIndicatorColor = DARKER_BLUE_COLOR;
+    _segmentedControl.layer.cornerRadius = 5.0f;
+    _segmentedControl.clipsToBounds = YES;
     _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
     _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
     [_segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
-    _segmentedControl.layer.cornerRadius = 5.0f;
     
     [_scrollView addSubview:_segmentedControl];
     
