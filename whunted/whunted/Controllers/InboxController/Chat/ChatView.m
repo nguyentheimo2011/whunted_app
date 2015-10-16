@@ -319,7 +319,7 @@
 - (void) addMakingAnotherOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.03, 5, WINSIZE.width * 0.46, FLAT_BUTTON_HEIGHT)];
+    _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.025, 5, WINSIZE.width * 0.43, FLAT_BUTTON_HEIGHT)];
     if ([Utilities amITheBuyer:_offerData])
         [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer buyer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     else
@@ -337,7 +337,7 @@
 - (void) addDecliningButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _decliningButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.52, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
+    _decliningButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.48, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
     [_decliningButton createTitle:NSLocalizedString(@"Decline", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _decliningButton.cornerRadius = 6.0;
     _decliningButton.borderColor = FLAT_GRAY_COLOR;
@@ -351,7 +351,7 @@
 - (void) addAcceptingButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _acceptingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.76, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
+    _acceptingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.715, 5, WINSIZE.width * 0.26, FLAT_BUTTON_HEIGHT)];
     [_acceptingButton createTitle:NSLocalizedString(@"Accept", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
     _acceptingButton.cornerRadius = 6.0;
     _acceptingButton.borderColor = FLAT_BLUR_RED_COLOR;
