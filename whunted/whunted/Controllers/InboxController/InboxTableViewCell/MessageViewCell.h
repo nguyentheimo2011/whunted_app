@@ -17,6 +17,8 @@
 
 @property (nonatomic)       NSInteger    cellIndex;
 
+@property (nonatomic)       BOOL         cellCreated;
+
 - (void)    customizeUI;
 - (void)    bindData:(NSDictionary *)message;
 - (void)    clearUI;

@@ -56,6 +56,7 @@
 @synthesize transactionStatusLabel  =   _transactionStatusLabel;
 @synthesize detailedStatusLabel     =   _detailedStatusLabel;
 @synthesize cellIndex               =   _cellIndex;
+@synthesize cellCreated             =   _cellCreated;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) customizeUI
@@ -95,6 +96,8 @@
     _itemImageView.layer.masksToBounds = YES;
     
     [self addUserProfilePicButton];
+    
+    _cellCreated = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -200,30 +203,44 @@
     PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
     [query whereKey:PF_USER_OBJECTID equalTo:_message[FB_OPPOSING_USER_ID]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (!error)
-         {
-             PFUser *user = [objects firstObject];
-             PFFile *userPicture = user[PF_USER_PICTURE];
+    {
+        if (!error)
+        {
+            PFUser *user = [objects firstObject];
+            PFFile *userPicture = user[PF_USER_PICTURE];
              
-             [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-             {
-                 if (!error)
+            if (userPicture)
+            {
+                [userPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
                  {
-                     if (_cellIndex == cellIndex)
+                     if (!error)
                      {
-                         UIImage *image = [UIImage imageWithData:data];
-                         [_userProfilePicButton setBackgroundImage:image forState:UIControlStateNormal];
-                         
-                         NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
-                         [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+                         if (_cellIndex == cellIndex)
+                         {
+                             UIImage *image = [UIImage imageWithData:data];
+                             [_userProfilePicButton setBackgroundImage:image forState:UIControlStateNormal];
+                             
+                             NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
+                             [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+                         }
                      }
-                 }
-                 else
-                 {
-                     [Utilities handleError:error];
-                 }
-             }];
+                     else
+                     {
+                         [Utilities handleError:error];
+                     }
+                 }];
+            }
+            else
+            {
+                if (_cellIndex == cellIndex)
+                {
+                    UIImage *image = [UIImage imageNamed:@"user_profile_image_placeholder_big.png"];
+                    [_userProfilePicButton setBackgroundImage:image forState:UIControlStateNormal];
+                
+                    NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];
+                    [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+                }
+            }
          }
          else
          {
