@@ -222,6 +222,13 @@
 #define     FB_CURRENT_OFFERED_DELIVERY_TIME    @"currentOfferedDeliveryTime"
 #define     FB_CHAT_MESSAGE_TYPE                @"chatMessageType"
 
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     BUYER_LOCATION_FILTER               @"buyerLocationFilter"
+#define     ITEM_CATEGORY_FILTER                @"itemCategoryFilter"
+#define     PRODUCT_ORIGIN_FILTER               @"productOriginFilter"
+#define     SORTING_CHOICE                      @"sortingChoice"
+#define     SEARCH_KEYWORD                      @"searchKeyword"
+#define     LAST_LOADED_WHUNT                   @"lastLoadedWhunt"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     NOTIFICATION_USER_SIGNED_UP                 @"NCUserSignedUp"

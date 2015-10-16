@@ -49,7 +49,6 @@
     NSString                *_currBuyerLocation;
 
     NSMutableArray          *_retrievedWantDataList;
-    NSArray                 *_displayedWantDataList;
     
     CGFloat                 _lastContentOffset;
 }
@@ -216,7 +215,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    return [_displayedWantDataList count];
+    return [_retrievedWantDataList count];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -232,7 +231,7 @@
     else
         [cell clearCellUI];
     
-    WantData *wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
+    WantData *wantData = [_retrievedWantDataList objectAtIndex:indexPath.row];
     [cell setWantData:wantData];
     
     return cell;
@@ -290,7 +289,7 @@
     [Utilities showSmallIndeterminateProgressIndicatorInView:cell];
     
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
-    itemDetailsVC.wantData = [_displayedWantDataList objectAtIndex:indexPath.row];
+    itemDetailsVC.wantData = [_retrievedWantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     
     TransactionHandler tranHandler = ^(TransactionData *offer)
@@ -326,8 +325,6 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:CURRENT_BUYER_LOCATION_FILTER];
-    
-    [self updateMatchedWantData];
 }
 
 
@@ -341,8 +338,6 @@
     
     _currCategory = category;
     [[NSUserDefaults standardUserDefaults] setObject:category forKey:CURRENT_CATEGORY_FILTER];
-    
-    [self updateMatchedWantData];
 }
 
 
@@ -404,7 +399,7 @@
         if ([wantData.itemID isEqualToString:editedWhunt.itemID])
         {
             [_retrievedWantDataList replaceObjectAtIndex:i withObject:editedWhunt];
-            [self updateMatchedWantData];
+            [_wantCollectionView reloadData];
             break;
         }
     }
@@ -427,7 +422,7 @@
         if ([wantData.itemID isEqualToString:itemID])
         {
             [_retrievedWantDataList removeObjectAtIndex:i];
-            [self updateMatchedWantData];
+            [_wantCollectionView reloadData];
             break;
         }
     }
@@ -461,7 +456,7 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self searchForWhuntsBasedOnTerm:searchBar.text];
+    [self searchForWhuntsBasedOnKeyword:searchBar.text];
     [self collapseSearchUI];
 }
 
@@ -479,7 +474,7 @@
 - (void) searchCancelButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self searchForWhuntsBasedOnTerm:_searchBar.text];
+    [self searchForWhuntsBasedOnKeyword:_searchBar.text];
     [self collapseSearchUI];
 }
 
@@ -536,16 +531,13 @@
 {
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [self setSortingCondition:query];
+    PFQuery *query = [self queryForLoadingWhunts];
     
     WhuntsHandler succHandler = ^(NSArray *whunts)
     {
         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
-        [self updateMatchedWantData];
+        [_wantCollectionView reloadData];
     };
     
     FailureHandler failHandler = ^(NSError *error)
@@ -561,16 +553,13 @@
 - (void) refreshWantData
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [self setSortingCondition:query];
+    PFQuery *query = [self queryForLoadingWhunts];
     
     WhuntsHandler succHandler = ^(NSArray *whunts)
     {
         [_topRefreshControl endRefreshing];
         _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
-        [self updateMatchedWantData];
+        [_wantCollectionView reloadData];
     };
     
     FailureHandler failHandler = ^(NSError *error)
@@ -591,13 +580,12 @@
     {
         _isLoadingMoreWhunts = YES;
         
-        PFQuery *query = [self queryForLoadingMoreWhunts];
+        PFQuery *query = [self queryForLoadingWhunts];
         
         WhuntsHandler succHandler = ^(NSArray *whunts)
         {
             [_retrievedWantDataList addObjectsFromArray:whunts];
-            [self updateMatchedWantData];
-            
+            [_wantCollectionView reloadData];
             _isLoadingMoreWhunts = NO;
         };
         
@@ -613,20 +601,20 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) searchForWhuntsBasedOnTerm: (NSString *) searchKeyword
+- (void) searchForWhuntsBasedOnKeyword: (NSString *) searchKeyword
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (searchKeyword.length > 0)
     {
         [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
         
-        PFQuery *query = [self queryForSearchingWithsearchKeyword:searchKeyword];
+        PFQuery *query = [self queryForLoadingWhunts];
         
         WhuntsHandler succHandler = ^(NSArray *whunts)
         {
             [Utilities hideIndeterminateProgressIndicatorInView:self.view];
             _retrievedWantDataList = [NSMutableArray arrayWithArray:whunts];
-            [self updateMatchedWantData];
+            [_wantCollectionView reloadData];
         };
         
         FailureHandler failHandler = ^(NSError *error)
@@ -639,100 +627,23 @@
     }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) updateMatchedWantData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_retrievedWantDataList byCategory:_currCategory];
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byProductOrigin:_currProductOrigin];
-    _displayedWantDataList = [MarketplaceLogicHelper filterArray:_displayedWantDataList byBuyerLocation:_currBuyerLocation];
-    _displayedWantDataList = [MarketplaceLogicHelper sortArray:_displayedWantDataList by:_currSortingChoice];
-    
-    [_wantCollectionView reloadData];
-}
-
 
 #pragma mark - Query helpers
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (PFQuery *) queryForLoadingMoreWhunts
+- (PFQuery *) queryForLoadingWhunts
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query setLimit:NUM_OF_WHUNTS_IN_EACH_LOADING_TIME];
-    [self setSortingCondition:query];
-    
+    NSMutableDictionary *requirements = [NSMutableDictionary dictionaryWithObjectsAndKeys:_currBuyerLocation, BUYER_LOCATION_FILTER, _currCategory, ITEM_CATEGORY_FILTER, _currProductOrigin, PRODUCT_ORIGIN_FILTER, _currSortingChoice, SORTING_CHOICE, _searchBar.text, SEARCH_KEYWORD, nil];
     if (_retrievedWantDataList.count > 0)
     {
-        WantData *wantData = [_retrievedWantDataList objectAtIndex:_retrievedWantDataList.count-1];
-        [self setConditionsForQuery:query lastWantData:wantData];
-        [query whereKey:PF_OBJECT_ID notEqualTo:wantData.itemID];
+        [requirements setObject:_retrievedWantDataList[0] forKey:LAST_LOADED_WHUNT];
     }
+    
+    PFQuery *query = [MarketplaceBackend createQueryForWhuntsFromDictionary:requirements];
     
     return query;
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-- (PFQuery *) queryForSearchingWithsearchKeyword: (NSString *) searchKeyword
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    NSString *regex = [SearchEngine createRegexFromSearchKeyword:searchKeyword];
-    
-    PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query1 whereKey:PF_ITEM_NAME matchesRegex:regex];
-    
-    PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
-    [query2 whereKey:PF_ITEM_DESC matchesRegex:regex];
-    
-    PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2]];
-    return query;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) setSortingCondition: (PFQuery *) query
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
-    {
-        [query orderByDescending:PF_CREATED_AT];
-    }
-    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
-    {
-        [query orderByAscending:PF_ITEM_DEMANDED_PRICE];
-    }
-    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
-    {
-        [query orderByDescending:PF_ITEM_DEMANDED_PRICE];
-    }
-    else
-    {
-        [query orderByDescending:PF_CREATED_AT];
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) setConditionsForQuery: (PFQuery *) query lastWantData: (WantData *) wantData
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_RECENT, nil)])
-    {
-        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
-    }
-    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil)])
-    {
-        [query whereKey:PF_ITEM_DEMANDED_PRICE greaterThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
-    }
-    else if ([_currSortingChoice isEqualToString:NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil)])
-    {
-        [query whereKey:PF_ITEM_DEMANDED_PRICE lessThanOrEqualTo:[Utilities numberFromFormattedPrice:wantData.demandedPrice]];
-    }
-    else
-    {
-        [query whereKey:PF_CREATED_AT lessThan:wantData.createdDate];
-    }
-}
 
 @end
