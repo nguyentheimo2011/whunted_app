@@ -159,6 +159,9 @@
 {
     NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
     
+    FBSDKLoginManager *loginManager = [PFFacebookUtils facebookLoginManager];
+    loginManager.loginBehavior = FBSDKLoginBehaviorSystemAccount;
+    
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
     {
         if (!user)
@@ -202,7 +205,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+    {
         if (!error)
         {
             // result is a dictionary with the user's Facebook data
@@ -351,11 +355,6 @@
     NSString *username = [email substringToIndex:atCharRange.location];
     return username;
 }
-
-
-#pragma mark - Next version
-
-
 
 
 @end

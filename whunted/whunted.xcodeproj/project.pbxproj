@@ -107,7 +107,6 @@
 		E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E955744B1AF86D2600F0B230 /* Images.xcassets */; };
 		E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E955744D1AF86D2600F0B230 /* LaunchScreen.xib */; };
 		E955745B1AF86D2600F0B230 /* whuntedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E955745A1AF86D2600F0B230 /* whuntedTests.m */; };
-		E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E95CFA4F1B141E3C003755E3 /* LoginSignupViewController.m */; };
 		E95CFA551B141EDE003755E3 /* facebook_login_button@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CFA521B141EDE003755E3 /* facebook_login_button@1x.png */; };
 		E95CFA561B141EDE003755E3 /* facebook_login_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CFA531B141EDE003755E3 /* facebook_login_button@2x.png */; };
 		E95CFA571B141EDE003755E3 /* facebook_login_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E95CFA541B141EDE003755E3 /* facebook_login_button@3x.png */; };
@@ -164,6 +163,7 @@
 		E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A639291B2813C40085C54F /* CategoryTableViewController.m */; };
 		E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */; };
 		E9A639321B298A500085C54F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639311B298A500085C54F /* placeholder.png */; };
+		E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */; };
 		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
 		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
@@ -453,8 +453,6 @@
 		E95574541AF86D2600F0B230 /* whuntedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whuntedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95574591AF86D2600F0B230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E955745A1AF86D2600F0B230 /* whuntedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = whuntedTests.m; sourceTree = "<group>"; };
-		E95CFA4E1B141E3C003755E3 /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginSignupViewController.h; path = Controllers/LoginSignup/LoginSignupViewController.h; sourceTree = "<group>"; };
-		E95CFA4F1B141E3C003755E3 /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginSignupViewController.m; path = Controllers/LoginSignup/LoginSignupViewController.m; sourceTree = "<group>"; };
 		E95CFA521B141EDE003755E3 /* facebook_login_button@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook_login_button@1x.png"; path = "Resources/LoginSignup/facebook_login_button@1x.png"; sourceTree = "<group>"; };
 		E95CFA531B141EDE003755E3 /* facebook_login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook_login_button@2x.png"; path = "Resources/LoginSignup/facebook_login_button@2x.png"; sourceTree = "<group>"; };
 		E95CFA541B141EDE003755E3 /* facebook_login_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook_login_button@3x.png"; path = "Resources/LoginSignup/facebook_login_button@3x.png"; sourceTree = "<group>"; };
@@ -530,6 +528,8 @@
 		E9A6392B1B2813F40085C54F /* ItemInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemInfoTableViewController.h; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.h; sourceTree = "<group>"; };
 		E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemInfoTableViewController.m; path = Controllers/Upload/UploadingWantDetailsVC/ItemInfoTable/ItemInfoTableViewController.m; sourceTree = "<group>"; };
 		E9A639311B298A500085C54F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = "Resources/Want Details/placeholder.png"; sourceTree = "<group>"; };
+		E9B063DA1BD55DA300C49D77 /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginSignupViewController.h; path = Controllers/LoginSignup/MainSignupLogin/LoginSignupViewController.h; sourceTree = "<group>"; };
+		E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginSignupViewController.m; path = Controllers/LoginSignup/MainSignupLogin/LoginSignupViewController.m; sourceTree = "<group>"; };
 		E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Resources/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Resources/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
@@ -1251,9 +1251,8 @@
 		E95CFA4D1B141E0B003755E3 /* LoginSignup */ = {
 			isa = PBXGroup;
 			children = (
+				E9B063D91BD55D8300C49D77 /* MainSignupLogin */,
 				E9E74B691BBE5DA100C0777F /* EmailSignupLogin */,
-				E95CFA4E1B141E3C003755E3 /* LoginSignupViewController.h */,
-				E95CFA4F1B141E3C003755E3 /* LoginSignupViewController.m */,
 			);
 			name = LoginSignup;
 			sourceTree = "<group>";
@@ -1517,6 +1516,15 @@
 				E9A639261B2813910085C54F /* UploadingWantDetailsViewController.m */,
 			);
 			name = UploadingWantDetailsVC;
+			sourceTree = "<group>";
+		};
+		E9B063D91BD55D8300C49D77 /* MainSignupLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E9B063DA1BD55DA300C49D77 /* LoginSignupViewController.h */,
+				E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */,
+			);
+			name = MainSignupLogin;
 			sourceTree = "<group>";
 		};
 		E9B5CAB31B3AA8240004CDC9 /* Fonts */ = {
@@ -2243,7 +2251,6 @@
 				E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */,
-				E95CFA501B141E3C003755E3 /* LoginSignupViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
@@ -2275,6 +2282,7 @@
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
+				E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */,
 				E944C5CE1BCD155E00E27337 /* video.m in Sources */,
 				E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */,
 				E944C5CB1BCD155E00E27337 /* image.m in Sources */,
