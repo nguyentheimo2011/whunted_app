@@ -295,13 +295,6 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) logoutButtonTapEventHandler
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_LOGGED_OUT object:nil];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) handlerEmailSupport
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -323,6 +316,27 @@
     
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) logoutButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log Out Of Whunted", nil) message:NSLocalizedString(@"Are you sure that you want to log out of Whunted?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    [alertView show];
+}
+
+
+#pragma mark - UIAlertViewDelegate method
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (buttonIndex == 1)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_LOGGED_OUT object:nil];
+    }
 }
 
 

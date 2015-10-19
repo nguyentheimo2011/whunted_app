@@ -13,7 +13,7 @@
 #import <MessageUI/MessageUI.h>
 
 //------------------------------------------------------------------------------------------------------------------------------
-@interface SettingsTableVC : UITableViewController <MFMailComposeViewControllerDelegate>
+@interface SettingsTableVC : UITableViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
 
