@@ -176,6 +176,7 @@
 // Item Details
 //------------------------------------------------------------------------------------------------------------------------------
 "View Offer"                        =   "View Offer";
+"Offers"                            =   "Offers";
 "Edit"                              =   "Edit";
 "Accept only new item"              =   "Accept only new item";
 "Accept both new and second-hand"   =   "Accept both new and second-hand";
