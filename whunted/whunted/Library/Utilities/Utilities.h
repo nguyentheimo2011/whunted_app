@@ -140,7 +140,11 @@
 
 + (NSString *)  formatPriceText:        (NSString *) originalPrice;
 
-+ (NSArray *)   extractCountry:         (NSString *) location;
++ (NSString *)  getCountryFromAddress:  (NSString *) address;
+
++ (NSString *)  getCityFromAddress:     (NSString *) address;
+
++ (NSString *)  getUsernameFromEmail:   (NSString *) email;
 
 + (NSString *)  removeLastDotCharacterIfNeeded: (NSString *) price;
 
@@ -213,6 +217,9 @@
 
 // commonly formatted string example 20/8/2015
 + (NSDate *)    dateFromCommonlyFormattedString:    (NSString *) string;
+
+// US date style example 8/20/2015
++ (NSDate *)    dateFromUSStyledString:             (NSString *) string;
 
 // timestamp examples: 3s, 15m, 4h, 6d, 234w
 + (NSString *)  timestampStringFromDate:            (NSDate *) date;

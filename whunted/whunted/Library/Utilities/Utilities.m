@@ -623,23 +623,36 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSArray *) extractCountry: (NSString *) location
++ (NSString *) getCountryFromAddress:(NSString *)address
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSRange commaSignRange = [location rangeOfString:@"," options:NSBackwardsSearch];
-    NSString *specificAddress;
-    NSString *country;
+    NSRange commaSignRange = [address rangeOfString:@"," options:NSBackwardsSearch];
     
-    if (commaSignRange.location >= location.length)
-    {
-        specificAddress = @"";
-        country = location;
-    } else {
-        specificAddress = [location substringToIndex:commaSignRange.location];
-        country = [location substringFromIndex:commaSignRange.location + 1];
-    }
+    if (commaSignRange.location >= address.length)
+        return address;
+    else
+        return [address substringFromIndex:commaSignRange.location + 1];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) getCityFromAddress:(NSString *)address
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSRange commaSignRange = [address rangeOfString:@"," options:NSBackwardsSearch];
     
-    return [NSArray arrayWithObjects:specificAddress, country, nil];
+    if (commaSignRange.location >= address.length)
+        return @"";
+    else
+        return [address substringToIndex:commaSignRange.location];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) getUsernameFromEmail:(NSString *)email
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSRange atCharRange = [email rangeOfString:@"@"];
+    NSString *username = [email substringToIndex:atCharRange.location];
+    return username;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -903,6 +916,17 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     return [formatter dateFromString:string];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSDate *) dateFromUSStyledString:(NSString *)string
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    return [dateFormatter dateFromString:string];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -159,9 +159,6 @@
 {
     NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
     
-    FBSDKLoginManager *loginManager = [PFFacebookUtils facebookLoginManager];
-    loginManager.loginBehavior = FBSDKLoginBehaviorSystemAccount;
-    
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
     {
         if (!user)
@@ -182,7 +179,7 @@
         {
             if (user.isNew)
             {
-                [self addDataToUser];
+                [self retrieveUserInfoAndSaveToParse];
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_SIGNED_UP object:nil];
@@ -198,122 +195,6 @@
 {
     MainViewController *mainVC = [[MainViewController alloc] initWithNibName:nil bundle:nil];
     [self presentViewController:mainVC animated:NO completion:^{}];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addDataToUser
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
-    {
-        if (!error)
-        {
-            // result is a dictionary with the user's Facebook data
-            NSDictionary *userData = (NSDictionary *)result;
-            PFUser *user = [PFUser currentUser];
-            
-            NSString *facebookID = userData[@"id"];
-            
-            NSString *email = userData[@"email"];
-            if (email)
-            {
-                user[@"email"] =email ;
-                user[@"username"] = [self extractUsernameFromEmail:user[@"email"]];
-            }
-            
-            NSString *firstName = userData[@"first_name"];
-            if (firstName)
-            {
-                user[@"firstName"] = firstName;
-                
-                if (!email)
-                {
-                    user[@"username"] = [firstName stringByAppendingString:userData[@"last_name"]];
-                }
-            }
-            
-            NSString *lastName = userData[@"last_name"];
-            if (lastName)
-            {
-                user[@"lastName"] = lastName;
-            }
-            
-            NSString *gender = userData[@"gender"];
-            if (gender)
-            {
-                user[@"gender"] = gender;
-            }
-            
-            NSString *location = userData[@"location"][@"name"];
-            if (location)
-            {
-                NSArray *addresses = [Utilities extractCountry:location];
-                if (addresses[0])
-                {
-                    user[@"city"] = addresses[0];
-                }
-                
-                if (addresses[1])
-                {
-                    user[@"country"] = addresses[1];
-                    
-                    if (!addresses[0] || ((NSString *)addresses[0]).length == 0)
-                    {
-                        user[@"city"] = addresses[1];
-                    }
-                }
-            }
-            
-            NSString *dob = userData[@"birthday"];
-            if (dob)
-            {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-                [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
-                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-                user[@"dob"] = [dateFormatter dateFromString:dob];
-            }
-            
-            user[PF_USER_FACEBOOK_VERIFIED] = @YES;
-            
-            [user saveInBackground];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
-            
-            // retrieve and save profile picture
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-            
-            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
-            
-            //Run network request asynchronously
-            [NSURLConnection sendAsynchronousRequest:urlRequest
-                                               queue:[NSOperationQueue mainQueue]
-                                   completionHandler:
-             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                 if (connectionError == nil && data != nil) {
-                     PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
-                     if (profilePictureFile)
-                     {
-                         user[PF_USER_PICTURE] = profilePictureFile;
-                         [user saveInBackground];
-                         [user pinInBackground];
-                         
-                         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
-                     }
-                }
-             }];
-        }
-        else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
-        {
-            // Since the request failed, we can check if it was due to an invalid session
-            [Utilities logOutMessage:@"The facebook session was invalidated"];
-            [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
-        }
-        else
-        {
-            [Utilities handleError:error];
-        }
-    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -345,15 +226,119 @@
 }
 
 
-#pragma mark - Supporting functions
+#pragma mark - Backend functions
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (NSString *) extractUsernameFromEmail: (NSString *) email
+- (void) retrieveUserInfoAndSaveToParse
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSRange atCharRange = [email rangeOfString:@"@"];
-    NSString *username = [email substringToIndex:atCharRange.location];
-    return username;
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+     {
+         if (!error)
+         {
+             // result is a dictionary with the user's Facebook data
+             NSDictionary *userData = (NSDictionary *)result;
+             [self retrieveGeneralUserInfoFromFacebook:userData];
+             [self retrieveUserProfileImageFromFacebook:userData];
+         }
+         else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
+         {
+             // Since the request failed, we can check if it was due to an invalid session
+             [Utilities logOutMessage:@"The facebook session was invalidated"];
+             [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
+         }
+         else
+         {
+             [Utilities handleError:error];
+         }
+     }];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveGeneralUserInfoFromFacebook: (NSDictionary *) userData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [PFUser currentUser];
+    
+    NSString *email = userData[@"email"];
+    if (email)
+    {
+        user[@"email"] = email ;
+        user[@"username"] = [Utilities getUsernameFromEmail:user[@"email"]];
+    }
+    
+    NSString *firstName = userData[@"first_name"];
+    if (firstName)
+    {
+        user[@"firstName"] = firstName;
+        
+        if (!email)
+        {
+            user[@"username"] = [firstName stringByAppendingString:userData[@"last_name"]];
+        }
+    }
+    
+    NSString *lastName = userData[@"last_name"];
+    if (lastName)
+    {
+        user[@"lastName"] = lastName;
+    }
+    
+    NSString *gender = userData[@"gender"];
+    if (gender)
+    {
+        user[@"gender"] = gender;
+    }
+    
+    NSString *location = userData[@"location"][@"name"];
+    if (location)
+    {
+        user[@"city"] = [Utilities getCityFromAddress:location];
+        user[@"country"] = [Utilities getCountryFromAddress:location];
+    }
+    
+    NSString *dob = userData[@"birthday"];
+    if (dob)
+    {
+        user[@"dob"] = [Utilities dateFromUSStyledString:dob];
+    }
+    
+    user[PF_USER_FACEBOOK_VERIFIED] = @YES;
+    
+    [user saveInBackground];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) retrieveUserProfileImageFromFacebook: (NSDictionary *) userData
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *user = [PFUser currentUser];
+    NSString *facebookID = userData[@"id"];
+    
+    // retrieve and save profile picture
+    NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+    
+    //Run network request asynchronously
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+         if (connectionError == nil && data != nil) {
+             PFFile *profilePictureFile = [PFFile fileWithName:[NSString stringWithFormat:@"%@.png", facebookID] data:data];
+             if (profilePictureFile)
+             {
+                 user[PF_USER_PICTURE] = profilePictureFile;
+                 [user saveInBackground];
+                 [user pinInBackground];
+                 
+                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
+             }
+         }
+     }];
 }
 
 
