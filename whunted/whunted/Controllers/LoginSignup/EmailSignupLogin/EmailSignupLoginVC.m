@@ -224,7 +224,8 @@
     _usernameSignupTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a username", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     _usernameSignupTextField.delegate = self;
     _usernameSignupTextField.tag = kUsernameSignupTextFieldTag;
-    [_usernameSignupTextField setKeyboardType:UIKeyboardTypeDefault];
+    _usernameSignupTextField.keyboardType = UIKeyboardTypeDefault;
+    _usernameSignupTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _usernameSignupTextField.returnKeyType = UIReturnKeyDone;
     _usernameSignUpCell.accessoryView = _usernameSignupTextField;
     _usernameSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -244,7 +245,8 @@
     _emailSignupTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     _emailSignupTextField.delegate = self;
     _emailSignupTextField.tag = kEmailSignupTextFieldTag;
-    [_emailSignupTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    _emailSignupTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    _emailSignupTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _emailSignupTextField.returnKeyType = UIReturnKeyDone;
     _emailSignUpCell.accessoryView = _emailSignupTextField;
     _emailSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -264,7 +266,7 @@
     _passwordSignupTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     _passwordSignupTextField.delegate = self;
     _passwordSignupTextField.tag = kPasswordSignupTextFieldTag;
-    [_passwordSignupTextField setKeyboardType:UIKeyboardTypeDefault];
+    _passwordSignupTextField.keyboardType = UIKeyboardTypeDefault;
     _passwordSignupTextField.secureTextEntry = YES;
     _passwordSignupTextField.returnKeyType = UIReturnKeyDone;
     _passwordSignupCell.accessoryView = _passwordSignupTextField;
@@ -285,7 +287,8 @@
     _emailLoginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     _emailLoginTextField.delegate = self;
     _emailLoginTextField.tag = kEmailLoginTextFieldTag;
-    [_emailLoginTextField setKeyboardType:UIKeyboardTypeEmailAddress];
+    _emailLoginTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    _emailLoginTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _emailLoginTextField.returnKeyType = UIReturnKeyDone;
     _emailLoginCell.accessoryView = _emailLoginTextField;
     _emailLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -305,7 +308,7 @@
     _passwordLoginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
     _passwordLoginTextField.delegate = self;
     _passwordLoginTextField.tag = kPasswordSignupTextFieldTag;
-    [_passwordLoginTextField setKeyboardType:UIKeyboardTypeDefault];
+    _passwordLoginTextField.keyboardType = UIKeyboardTypeDefault;
     _passwordLoginTextField.secureTextEntry = YES;
     _passwordLoginTextField.returnKeyType = UIReturnKeyDone;
     _passwordLoginCell.accessoryView = _passwordLoginTextField;
