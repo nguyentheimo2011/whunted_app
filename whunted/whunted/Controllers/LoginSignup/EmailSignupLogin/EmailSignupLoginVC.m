@@ -368,23 +368,19 @@
 {
     if (_usernameSignupTextField.text.length == 0)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Username cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Username cannot be blank", nil)];
     }
     else if (_emailSignupTextField.text.length == 0)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Email cannot be blank", nil)];
     }
     else if (![Utilities isEmailValid:_emailSignupTextField.text])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Invalid email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Invalid email", nil)];
     }
     else if (_passwordSignupTextField.text.length < 6)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Password must be at least 6 characters", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Password must be at least 6 characters", nil)];
     }
     else
     {
@@ -398,18 +394,15 @@
 {
     if (_emailLoginTextField.text.length == 0)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Email cannot be blank", nil)];
     }
     else if (![Utilities isEmailValid:_emailLoginTextField.text])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Invalid email!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Invalid email!", nil)];
     }
     else if (_passwordLoginTextField.text.length < 6)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Password must be at least 6 characters!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alertView show];
+        [self displayAlertForMissingInfo:NSLocalizedString(@"Password must be at least 6 characters!", nil)];
     }
     else
     {
@@ -454,6 +447,14 @@
     [_passwordSignupTextField resignFirstResponder];
     [_emailLoginTextField resignFirstResponder];
     [_passwordLoginTextField resignFirstResponder];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) displayAlertForMissingInfo: (NSString *) message
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
 }
 
 
