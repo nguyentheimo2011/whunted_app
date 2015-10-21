@@ -91,6 +91,7 @@
     _emailTextField.returnKeyType = UIReturnKeyDone;
     _emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
     _emailTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _emailTextField.delegate = self;
     [Utilities addLeftPaddingToTextField:_emailTextField];
     [_viewContainer addSubview:_emailTextField];
 }
@@ -107,6 +108,7 @@
     _sendButton.borderWidth = 0;
     _sendButton.cornerRadius = 5.0f;
     _sendButton.bgColor = MAIN_BLUE_COLOR;
+    [_sendButton addTarget:self action:@selector(sendingButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_viewContainer addSubview:_sendButton];
     
     _viewContainer.frame = CGRectMake(_viewContainer.frame.origin.x, _viewContainer.frame.origin.y, _viewContainer.frame.size.width, _sendButton.frame.origin.y + _sendButton.frame.size.height + 15.0f);
@@ -120,6 +122,41 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) sendingButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_emailTextField.text.length == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Email cannot be blank", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        if ([Utilities isEmailValid:_emailTextField.text])
+        {
+            
+        }
+        else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Invalid email!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+}
+
+
+#pragma mark - UITextFieldDelegate functions
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PasswordResetVC : UIViewController
+@interface PasswordResetVC : UIViewController <UITextFieldDelegate>
 
 
 
