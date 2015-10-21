@@ -164,6 +164,8 @@
 		E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6392C1B2813F40085C54F /* ItemInfoTableViewController.m */; };
 		E9A639321B298A500085C54F /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A639311B298A500085C54F /* placeholder.png */; };
 		E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */; settings = {ASSET_TAGS = (); }; };
+		E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */; settings = {ASSET_TAGS = (); }; };
 		E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */; };
 		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
 		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
@@ -276,7 +278,6 @@
 		E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E4568F1B0F0DA500E8B55D /* likes_icon.png */; };
 		E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456901B0F0DA500E8B55D /* view_icon.png */; };
 		E9E456941B0F20CE00E8B55D /* promote_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E456931B0F20CE00E8B55D /* promote_icon.png */; };
-		E9E74B721BBE626300C0777F /* EmailSignupLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E74B711BBE626300C0777F /* EmailSignupLoginVC.m */; settings = {ASSET_TAGS = (); }; };
 		E9E8E2391B80EB070041C30D /* back_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E8E2361B80EB060041C30D /* back_icon@1x.png */; };
 		E9E8E23A1B80EB070041C30D /* back_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E8E2371B80EB060041C30D /* back_icon@2x.png */; };
 		E9E8E23B1B80EB070041C30D /* back_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E8E2381B80EB060041C30D /* back_icon@3x.png */; };
@@ -530,6 +531,10 @@
 		E9A639311B298A500085C54F /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = "Resources/Want Details/placeholder.png"; sourceTree = "<group>"; };
 		E9B063DA1BD55DA300C49D77 /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginSignupViewController.h; path = Controllers/LoginSignup/MainSignupLogin/LoginSignupViewController.h; sourceTree = "<group>"; };
 		E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginSignupViewController.m; path = Controllers/LoginSignup/MainSignupLogin/LoginSignupViewController.m; sourceTree = "<group>"; };
+		E9B063E21BD6AE1300C49D77 /* EmailSignupLoginUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSignupLoginUIHelper.h; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginUIHelper/EmailSignupLoginUIHelper.h; sourceTree = "<group>"; };
+		E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginUIHelper.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginUIHelper/EmailSignupLoginUIHelper.m; sourceTree = "<group>"; };
+		E9B063E51BD6AE6E00C49D77 /* EmailSignupLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSignupLoginVC.h; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.h; sourceTree = "<group>"; };
+		E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginVC.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.m; sourceTree = "<group>"; };
 		E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Resources/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
 		E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Resources/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
@@ -666,8 +671,6 @@
 		E9E4568F1B0F0DA500E8B55D /* likes_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = likes_icon.png; path = Resources/WantSellCell/likes_icon.png; sourceTree = "<group>"; };
 		E9E456901B0F0DA500E8B55D /* view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = view_icon.png; path = Resources/WantSellCell/view_icon.png; sourceTree = "<group>"; };
 		E9E456931B0F20CE00E8B55D /* promote_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = promote_icon.png; path = Resources/WantSellCell/promote_icon.png; sourceTree = "<group>"; };
-		E9E74B701BBE626300C0777F /* EmailSignupLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSignupLoginVC.h; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC.h; sourceTree = "<group>"; };
-		E9E74B711BBE626300C0777F /* EmailSignupLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginVC.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC.m; sourceTree = "<group>"; };
 		E9E8E2361B80EB060041C30D /* back_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_icon@1x.png"; path = "Resources/Navigation Icons/back_icon@1x.png"; sourceTree = "<group>"; };
 		E9E8E2371B80EB060041C30D /* back_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_icon@2x.png"; path = "Resources/Navigation Icons/back_icon@2x.png"; sourceTree = "<group>"; };
 		E9E8E2381B80EB060041C30D /* back_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back_icon@3x.png"; path = "Resources/Navigation Icons/back_icon@3x.png"; sourceTree = "<group>"; };
@@ -1527,6 +1530,24 @@
 			name = MainSignupLogin;
 			sourceTree = "<group>";
 		};
+		E9B063DD1BD6AD3500C49D77 /* EmailSignupLoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				E9B063E51BD6AE6E00C49D77 /* EmailSignupLoginVC.h */,
+				E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */,
+			);
+			name = EmailSignupLoginVC;
+			sourceTree = "<group>";
+		};
+		E9B063E11BD6AD8E00C49D77 /* EmailSignupLoginUIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E9B063E21BD6AE1300C49D77 /* EmailSignupLoginUIHelper.h */,
+				E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */,
+			);
+			name = EmailSignupLoginUIHelper;
+			sourceTree = "<group>";
+		};
 		E9B5CAB31B3AA8240004CDC9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1766,8 +1787,8 @@
 		E9E74B691BBE5DA100C0777F /* EmailSignupLogin */ = {
 			isa = PBXGroup;
 			children = (
-				E9E74B701BBE626300C0777F /* EmailSignupLoginVC.h */,
-				E9E74B711BBE626300C0777F /* EmailSignupLoginVC.m */,
+				E9B063DD1BD6AD3500C49D77 /* EmailSignupLoginVC */,
+				E9B063E11BD6AD8E00C49D77 /* EmailSignupLoginUIHelper */,
 			);
 			name = EmailSignupLogin;
 			sourceTree = "<group>";
@@ -2247,7 +2268,6 @@
 				E944C5C81BCD155E00E27337 /* converter.m in Sources */,
 				E944C5CA1BCD155E00E27337 /* fileutil.m in Sources */,
 				E944C5C61BCD155E00E27337 /* camera.m in Sources */,
-				E9E74B721BBE626300C0777F /* EmailSignupLoginVC.m in Sources */,
 				E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */,
@@ -2270,6 +2290,7 @@
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */,
+				E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */,
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
 				E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */,
@@ -2281,6 +2302,7 @@
 				E916F46E1B033BDE005055E3 /* Utilities.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
 				E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */,
+				E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */,
 				E944C5CE1BCD155E00E27337 /* video.m in Sources */,

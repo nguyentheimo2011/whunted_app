@@ -13,24 +13,9 @@
 
 #import <JTImageButton.h>
 
-#define     kUsernameSignupTextFieldTag     102
-#define     kEmailSignupTextFieldTag        103
-#define     kPasswordSignupTextFieldTag     104
-
-#define     kEmailLoginTextFieldTag         105
-#define     kPasswordSLoginTextFieldTag     106
-
-#define     kTableViewCellHeight            40.0f
-
-#define     kTableViewSignupTag             202
-#define     kTableViewLoginTag              203
-
 @implementation EmailSignupLoginVC
 {
     UISegmentedControl          *_segmentedControl;
-    
-    UITableView                 *_tableViewSignup;
-    UITableView                 *_tableViewLogin;
     
     UIView                      *_containerSignup;
     UIView                      *_containerLogin;
@@ -60,8 +45,8 @@
     [self customizeUI];
     [self addSegmentedControl];
     [self initCells];
-    [self addTableView1];
-    [self addTableView2];
+    [self addSignupTableView];
+    [self addLoginTableView];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -90,22 +75,11 @@
 - (void) addSegmentedControl
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kControlWidth     =   WINSIZE.width * 0.6f;
-    CGFloat const kControlHeight    =   30.0f;
-    CGFloat const kControlOriginX   =   (WINSIZE.width - kControlWidth)/2;
-    CGFloat const kControlOriginY   =   20.0f + [Utilities getHeightOfNavigationAndStatusBars:self];
-    
-    NSArray *categories = @[NSLocalizedString(@"Sign up", nil), NSLocalizedString(@"Log in", nil)];
-    _segmentedControl = [[UISegmentedControl alloc] initWithItems:categories];
-    _segmentedControl.frame = CGRectMake(kControlOriginX, kControlOriginY, kControlWidth, kControlHeight);
-    [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]} forState:UIControlStateNormal];
-    _segmentedControl.selectedSegmentIndex = 0;
-    [_segmentedControl addTarget:self action:@selector(segmentedControlValueChanged) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:_segmentedControl];
+    _segmentedControl = [EmailSignupLoginUIHelper addSegmentedControlToViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addTableView1
+- (void) addSignupTableView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTableViewOriginY =   _segmentedControl.frame.origin.y + _segmentedControl.frame.size.height + 30.0f;
@@ -113,18 +87,19 @@
     // Sign up
     _containerSignup = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 3 * kTableViewCellHeight + 60.0f)];
     
-    _tableViewSignup = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 3 * kTableViewCellHeight)];
-    _tableViewSignup.delegate = self;
-    _tableViewSignup.dataSource = self;
-    _tableViewSignup.tag = kTableViewSignupTag;
-    [_containerSignup addSubview:_tableViewSignup];
+    UITableView *tableViewSignup = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 3 * kTableViewCellHeight)];
+    tableViewSignup.delegate = self;
+    tableViewSignup.dataSource = self;
+    tableViewSignup.tag = kTableViewSignupTag;
+    [_containerSignup addSubview:tableViewSignup];
     [self.view addSubview:_containerSignup];
+    
     [self addSignupDisclaimerLabel1];
     [self addSignupDisclaimerLabel2];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addTableView2
+- (void) addLoginTableView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTableViewOriginY =   _segmentedControl.frame.origin.y + _segmentedControl.frame.size.height + 30.0f;
@@ -132,11 +107,11 @@
     // Log in
     _containerLogin = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 2 * kTableViewCellHeight)];
     
-    _tableViewLogin = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 2 * kTableViewCellHeight)];
-    _tableViewLogin.delegate = self;
-    _tableViewLogin.dataSource = self;
-    _tableViewLogin.tag = kTableViewLoginTag;
-    [_containerLogin addSubview:_tableViewLogin];
+    UITableView *tableViewLogin = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 2 * kTableViewCellHeight)];
+    tableViewLogin.delegate = self;
+    tableViewLogin.dataSource = self;
+    tableViewLogin.tag = kTableViewLoginTag;
+    [_containerLogin addSubview:tableViewLogin];
     _containerLogin.hidden = YES;
     [self.view addSubview:_containerLogin];
 }
@@ -157,57 +132,14 @@
 - (void) addSignupDisclaimerLabel1
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _signupDisclaimerLabel1 = [[UILabel alloc] init];
-    _signupDisclaimerLabel1.text = NSLocalizedString(@"By proceeding, you agree to Whunted's", nil);
-    _signupDisclaimerLabel1.textColor = TEXT_COLOR_GRAY;
-    _signupDisclaimerLabel1.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
-    [_signupDisclaimerLabel1 sizeToFit];
-    
-    CGFloat const kLabelOriginX = (WINSIZE.width - _signupDisclaimerLabel1.frame.size.width) / 2;
-    CGFloat const kLabelOriginY = 3 * kTableViewCellHeight + 15.0f;
-    _signupDisclaimerLabel1.frame = CGRectMake(kLabelOriginX, kLabelOriginY, _signupDisclaimerLabel1.frame.size.width, _signupDisclaimerLabel1.frame.size.height);
-    [_containerSignup addSubview:_signupDisclaimerLabel1];
+    _signupDisclaimerLabel1 = [EmailSignupLoginUIHelper addSignupDisclaimerLabel1ToView:_containerSignup];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addSignupDisclaimerLabel2
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
-    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = LIGHTER_RED_COLOR;
-    termOfServiceButton.borderWidth = 0;
-    [termOfServiceButton addTarget:self action:@selector(termsOfServiceButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [termOfServiceButton sizeToFit];
-    
-    UILabel *disclaimerLabel = [[UILabel alloc] init];
-    disclaimerLabel.text = [NSString stringWithFormat:@" %@ ", NSLocalizedString(@"and", nil)];
-    disclaimerLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
-    disclaimerLabel.textColor = TEXT_COLOR_GRAY;
-    [disclaimerLabel sizeToFit];
-    
-    JTImageButton *privacyPoliciesButton = [[JTImageButton alloc] init];
-    [privacyPoliciesButton createTitle:NSLocalizedString(@"Privacy Policy", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    privacyPoliciesButton.titleColor = LIGHTER_RED_COLOR;
-    privacyPoliciesButton.borderWidth = 0;
-    [privacyPoliciesButton addTarget:self action:@selector(privacyPoliciesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [privacyPoliciesButton sizeToFit];
-    
-    CGFloat totalWidth =  termOfServiceButton.frame.size.width + disclaimerLabel.frame.size.width + privacyPoliciesButton.frame.size.width;
-    CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
-    CGFloat kLabelOriginY   =   _signupDisclaimerLabel1.frame.origin.y + _signupDisclaimerLabel1.frame.size.height + 2.0f;
-    
-    CGFloat kButtonOriginY  =   kLabelOriginY - 6.0f;
-    termOfServiceButton.frame = CGRectMake(kLabelOriginX, kButtonOriginY, termOfServiceButton.frame.size.width, termOfServiceButton.frame.size.height);
-    [_containerSignup addSubview:termOfServiceButton];
-    
-    CGFloat kDisclaimerLabelOriginX   =   kLabelOriginX + termOfServiceButton.frame.size.width;
-    disclaimerLabel.frame = CGRectMake(kDisclaimerLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
-    [_containerSignup addSubview:disclaimerLabel];
-    
-    CGFloat kButtonOriginX  =   disclaimerLabel.frame.origin.x + disclaimerLabel.frame.size.width;
-    privacyPoliciesButton.frame = CGRectMake(kButtonOriginX, kButtonOriginY, privacyPoliciesButton.frame.size.width, privacyPoliciesButton.frame.size.height);
-    [_containerSignup addSubview:privacyPoliciesButton];
+    [EmailSignupLoginUIHelper addSignupDisclaimerLabel2BehindLable1:_signupDisclaimerLabel1 toView:_containerSignup inViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
