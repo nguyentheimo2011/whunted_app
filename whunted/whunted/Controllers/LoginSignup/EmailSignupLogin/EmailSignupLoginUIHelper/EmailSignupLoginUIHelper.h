@@ -16,7 +16,7 @@
 #define     kEmailLoginTextFieldTag         105
 #define     kPasswordSLoginTextFieldTag     106
 
-#define     kTableViewCellHeight            40.0f
+#define     kTableViewCellHeight            45.0f
 
 #define     kTableViewSignupTag             202
 #define     kTableViewLoginTag              203
@@ -31,6 +31,8 @@
 
 - (void) privacyPoliciesButtonTapEventHandler;
 
+- (void) forgotPasswordButtonTapEventHandler;
+
 @end
 
 
@@ -43,6 +45,8 @@
 + (UILabel *) addSignupDisclaimerLabel1ToView: (UIView *) container;
 
 + (void) addSignupDisclaimerLabel2BehindLable1: (UILabel *) label1 toView: (UIView *) container inViewController: (UIViewController<EmailSignupLoginEventHandler> *) viewController;
+
++ (void) addForgotPasswordButtonToView: (UIView *) container inViewController: (UIViewController<EmailSignupLoginEventHandler> *) viewController;
 
 + (NSArray *) initUsernameSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
 

@@ -94,6 +94,23 @@
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
++ (void) addForgotPasswordButtonToView:(UIView *)container inViewController:(UIViewController<EmailSignupLoginEventHandler> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    JTImageButton *forgotPasswordButton = [[JTImageButton alloc] init];
+    [forgotPasswordButton createTitle:NSLocalizedString(@"Forgot Password?", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    forgotPasswordButton.titleColor = LIGHTER_RED_COLOR;
+    forgotPasswordButton.borderWidth = 0;
+    [forgotPasswordButton addTarget:viewController action:@selector(forgotPasswordButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [forgotPasswordButton sizeToFit];
+    
+    CGFloat kButtonOriginX = (WINSIZE.width - forgotPasswordButton.frame.size.width) / 2;
+    CGFloat kButtonOriginY = 2 * kTableViewCellHeight + 12.0f;
+    forgotPasswordButton.frame = CGRectMake(kButtonOriginX, kButtonOriginY, forgotPasswordButton.frame.size.width, forgotPasswordButton.frame.size.height);
+    [container addSubview:forgotPasswordButton];    
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
 + (NSArray *) initUsernameSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {

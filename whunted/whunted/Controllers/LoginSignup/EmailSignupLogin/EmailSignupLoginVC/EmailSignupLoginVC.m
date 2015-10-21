@@ -105,7 +105,7 @@
     CGFloat const kTableViewOriginY =   _segmentedControl.frame.origin.y + _segmentedControl.frame.size.height + 30.0f;
     
     // Log in
-    _containerLogin = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 2 * kTableViewCellHeight)];
+    _containerLogin = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 2 * kTableViewCellHeight + 50.0f)];
     
     UITableView *tableViewLogin = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 2 * kTableViewCellHeight)];
     tableViewLogin.delegate = self;
@@ -114,6 +114,8 @@
     [_containerLogin addSubview:tableViewLogin];
     _containerLogin.hidden = YES;
     [self.view addSubview:_containerLogin];
+    
+    [self addForgotPasswordButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -140,6 +142,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [EmailSignupLoginUIHelper addSignupDisclaimerLabel2BehindLable1:_signupDisclaimerLabel1 toView:_containerSignup inViewController:self];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addForgotPasswordButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [EmailSignupLoginUIHelper addForgotPasswordButtonToView:_containerLogin inViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -308,6 +317,13 @@
     [Utilities customizeTitleLabel:NSLocalizedString(@"Privacy Policy", nil) forViewController:viewController];
     viewController.view = webView;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) forgotPasswordButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSLog(@"forgotPasswordButtonTapEventHandler");
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
