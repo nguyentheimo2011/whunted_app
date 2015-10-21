@@ -93,4 +93,119 @@
     [container addSubview:privacyPoliciesButton];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) initUsernameSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *usernameSignUpCell = [[UITableViewCell alloc] init];
+    usernameSignUpCell.textLabel.text = NSLocalizedString(@"Username", nil);
+    usernameSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    usernameSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    [textField setTextAlignment:NSTextAlignmentLeft];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a username", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.delegate = viewController;
+    textField.tag = kUsernameSignupTextFieldTag;
+    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.returnKeyType = UIReturnKeyDone;
+    usernameSignUpCell.accessoryView = textField;
+    usernameSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return @[usernameSignUpCell, textField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) initEmailSignupCellInViewController:(UIViewController<UITextFieldDelegate> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *emailSignUpCell = [[UITableViewCell alloc] init];
+    emailSignUpCell.textLabel.text = NSLocalizedString(@"Email", nil);
+    emailSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    emailSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    [textField setTextAlignment:NSTextAlignmentLeft];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.delegate = viewController;
+    textField.tag = kEmailSignupTextFieldTag;
+    textField.keyboardType = UIKeyboardTypeEmailAddress;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.returnKeyType = UIReturnKeyDone;
+    emailSignUpCell.accessoryView = textField;
+    emailSignUpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return @[emailSignUpCell, textField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) initPasswordSignupCellInViewController:(UIViewController<UITextFieldDelegate> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *passwordSignupCell = [[UITableViewCell alloc] init];
+    passwordSignupCell.textLabel.text = NSLocalizedString(@"Password", nil);
+    passwordSignupCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    passwordSignupCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    [textField setTextAlignment:NSTextAlignmentLeft];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.delegate = viewController;
+    textField.tag = kPasswordSignupTextFieldTag;
+    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.secureTextEntry = YES;
+    textField.returnKeyType = UIReturnKeyDone;
+    passwordSignupCell.accessoryView = textField;
+    passwordSignupCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return @[passwordSignupCell, textField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) initEmailLoginCellInViewController:(UIViewController<UITextFieldDelegate> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *emailLoginCell = [[UITableViewCell alloc] init];
+    emailLoginCell.textLabel.text = NSLocalizedString(@"Email", nil);
+    emailLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    emailLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    [textField setTextAlignment:NSTextAlignmentLeft];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.delegate = viewController;
+    textField.tag = kEmailLoginTextFieldTag;
+    textField.keyboardType = UIKeyboardTypeEmailAddress;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.returnKeyType = UIReturnKeyDone;
+    emailLoginCell.accessoryView = textField;
+    emailLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return @[emailLoginCell, textField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
++ (NSArray *) initPasswordLoginCellInViewController:(UIViewController<UITextFieldDelegate> *)viewController
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UITableViewCell *passwordLoginCell = [[UITableViewCell alloc] init];
+    passwordLoginCell.textLabel.text = NSLocalizedString(@"Password", nil);
+    passwordLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    passwordLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    [textField setTextAlignment:NSTextAlignmentLeft];
+    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.delegate = viewController;
+    textField.tag = kPasswordSignupTextFieldTag;
+    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.secureTextEntry = YES;
+    textField.returnKeyType = UIReturnKeyDone;
+    passwordLoginCell.accessoryView = textField;
+    passwordLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return @[passwordLoginCell, textField];
+}
+
 @end

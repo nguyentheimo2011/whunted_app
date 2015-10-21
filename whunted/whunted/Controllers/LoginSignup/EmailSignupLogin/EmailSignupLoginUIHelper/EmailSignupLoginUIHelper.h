@@ -44,4 +44,14 @@
 
 + (void) addSignupDisclaimerLabel2BehindLable1: (UILabel *) label1 toView: (UIView *) container inViewController: (UIViewController<EmailSignupLoginEventHandler> *) viewController;
 
++ (NSArray *) initUsernameSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
+
++ (NSArray *) initEmailSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
+
++ (NSArray *) initPasswordSignupCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
+
++ (NSArray *) initEmailLoginCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
+
++ (NSArray *) initPasswordLoginCellInViewController: (UIViewController<UITextFieldDelegate> *) viewController;
+
 @end
