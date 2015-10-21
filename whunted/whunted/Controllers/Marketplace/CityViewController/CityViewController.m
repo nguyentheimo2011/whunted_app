@@ -127,7 +127,7 @@
     _cityTextField.layer.borderColor = [TEXT_COLOR_DARK_GRAY CGColor];
     _cityTextField.layer.cornerRadius = 8.0f;
     _cityTextField.delegate = self;
-    [Utilities customizeTextField:_cityTextField];
+    [Utilities addLeftPaddingToTextField:_cityTextField];
     [self.view addSubview:_cityTextField];
 }
 

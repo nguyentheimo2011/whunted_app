@@ -59,7 +59,7 @@
 
 + (void)        customizeHeaderFooterLabels;
 
-+ (void)        customizeTextField: (UITextField *) textField;
++ (void)        addLeftPaddingToTextField: (UITextField *) textField;
 
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -78,6 +78,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 
 + (void)        addBorderAndShadow:     (UIView *) view;
+
++ (void)        addShadowToView:        (UIView *) view;
 
 + (void)        addGradientToButton:    (UIButton *) button;
 

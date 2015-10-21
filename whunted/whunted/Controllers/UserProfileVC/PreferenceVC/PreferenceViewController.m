@@ -280,7 +280,7 @@
     [_buyingHashTagCell addSubview:_buyingHashtagTextField];
     
     // Add left padding
-    [Utilities customizeTextField:_buyingHashtagTextField];
+    [Utilities addLeftPaddingToTextField:_buyingHashtagTextField];
     
     // Add button to the right of the text field
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;
@@ -381,7 +381,7 @@
     [_sellingHashTagCell addSubview:_sellingHashtagTextField];
     
     // Add left padding
-    [Utilities customizeTextField:_sellingHashtagTextField];
+    [Utilities addLeftPaddingToTextField:_sellingHashtagTextField];
     
     // Add button to the right of the text field
     CGFloat const kButtonWidth = WINSIZE.width * 0.12;

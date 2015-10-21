@@ -223,7 +223,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) customizeTextField:(UITextField *)textField
++ (void) addLeftPaddingToTextField:(UITextField *)textField
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10.0f, textField.frame.size.height)];
@@ -275,6 +275,16 @@
     [view.layer setShadowOpacity:0.8];
     [view.layer setShadowRadius:3.0];
     [view.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) addShadowToView:(UIView *)view
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    view.layer.masksToBounds = NO;
+    view.layer.shadowOffset = CGSizeMake(-1, 1);
+    view.layer.shadowRadius = 5;
+    view.layer.shadowOpacity = 0.5;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
