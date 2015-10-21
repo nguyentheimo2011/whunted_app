@@ -21,6 +21,7 @@
 		E90ACE221B73250700DC9768 /* profile_tab_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE1F1B73250700DC9768 /* profile_tab_icon@1x.png */; };
 		E90ACE231B73250700DC9768 /* profile_tab_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE201B73250700DC9768 /* profile_tab_icon@2x.png */; };
 		E90ACE241B73250700DC9768 /* profile_tab_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90ACE211B73250700DC9768 /* profile_tab_icon@3x.png */; };
+		E90C4C7E1BD7C286002C22CD /* PasswordResetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */; settings = {ASSET_TAGS = (); }; };
 		E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = E915F81A1B39090D00D0A2F8 /* CountryNames.plist */; };
 		E915F82C1B3A6EE400D0A2F8 /* newsfeed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
@@ -345,6 +346,8 @@
 		E90ACE1F1B73250700DC9768 /* profile_tab_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@1x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@1x.png"; sourceTree = "<group>"; };
 		E90ACE201B73250700DC9768 /* profile_tab_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@2x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@2x.png"; sourceTree = "<group>"; };
 		E90ACE211B73250700DC9768 /* profile_tab_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile_tab_icon@3x.png"; path = "Resources/Tab Bar Icons/profile_tab_icon@3x.png"; sourceTree = "<group>"; };
+		E90C4C7C1BD7C286002C22CD /* PasswordResetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordResetVC.h; path = Controllers/LoginSignup/EmailSignupLogin/PasswordResetVC/PasswordResetVC.h; sourceTree = "<group>"; };
+		E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordResetVC.m; path = Controllers/LoginSignup/EmailSignupLogin/PasswordResetVC/PasswordResetVC.m; sourceTree = "<group>"; };
 		E915F81A1B39090D00D0A2F8 /* CountryNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryNames.plist; path = "Resources/pList-Files/CountryNames.plist"; sourceTree = "<group>"; };
 		E915F82A1B3A6EE400D0A2F8 /* newsfeed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newsfeed@3x.png"; path = "Resources/Tab Bar Icons/newsfeed@3x.png"; sourceTree = "<group>"; };
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
@@ -806,6 +809,15 @@
 				E90ACE131B71F1FF00DC9768 /* UploadingViewController.m */,
 			);
 			name = UploadingViewController;
+			sourceTree = "<group>";
+		};
+		E90C4C7B1BD7C240002C22CD /* PasswordResetVC */ = {
+			isa = PBXGroup;
+			children = (
+				E90C4C7C1BD7C286002C22CD /* PasswordResetVC.h */,
+				E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */,
+			);
+			name = PasswordResetVC;
 			sourceTree = "<group>";
 		};
 		E915F8191B3908CE00D0A2F8 /* pList-Files */ = {
@@ -1789,6 +1801,7 @@
 			children = (
 				E9B063DD1BD6AD3500C49D77 /* EmailSignupLoginVC */,
 				E9B063E11BD6AD8E00C49D77 /* EmailSignupLoginUIHelper */,
+				E90C4C7B1BD7C240002C22CD /* PasswordResetVC */,
 			);
 			name = EmailSignupLogin;
 			sourceTree = "<group>";
@@ -2320,6 +2333,7 @@
 				E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */,
 				E944C5C91BCD155E00E27337 /* emoji.m in Sources */,
 				E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */,
+				E90C4C7E1BD7C286002C22CD /* PasswordResetVC.m in Sources */,
 				E944C5D11BCD160600E27337 /* BackendUtil.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9C3E6491BB148270006BEB3 /* EditWantDataVC.m in Sources */,

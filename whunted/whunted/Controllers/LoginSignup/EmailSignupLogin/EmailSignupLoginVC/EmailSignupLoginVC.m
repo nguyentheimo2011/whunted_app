@@ -8,6 +8,7 @@
 
 #import "EmailSignupLoginVC.h"
 #import "MainViewController.h"
+#import "PasswordResetVC.h"
 #import "AppConstant.h"
 #import "Utilities.h"
 
@@ -323,7 +324,9 @@
 - (void) forgotPasswordButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSLog(@"forgotPasswordButtonTapEventHandler");
+    PasswordResetVC *passwordResetVC = [[PasswordResetVC alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:passwordResetVC];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
