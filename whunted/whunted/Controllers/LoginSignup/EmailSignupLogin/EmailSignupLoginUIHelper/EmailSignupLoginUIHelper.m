@@ -118,7 +118,7 @@
     usernameSignUpCell.textLabel.text = NSLocalizedString(@"Username", nil);
     usernameSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     usernameSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 150.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a username", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
@@ -141,7 +141,7 @@
     emailSignUpCell.textLabel.text = NSLocalizedString(@"Email", nil);
     emailSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     emailSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 150.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
@@ -164,7 +164,7 @@
     passwordSignupCell.textLabel.text = NSLocalizedString(@"Password", nil);
     passwordSignupCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     passwordSignupCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 150.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
@@ -187,7 +187,7 @@
     emailLoginCell.textLabel.text = NSLocalizedString(@"Email", nil);
     emailLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     emailLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 150.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
@@ -210,7 +210,7 @@
     passwordLoginCell.textLabel.text = NSLocalizedString(@"Password", nil);
     passwordLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
     passwordLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 150.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];

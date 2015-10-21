@@ -88,7 +88,7 @@
     // Sign up
     _containerSignup = [[UIView alloc] initWithFrame:CGRectMake(0, kTableViewOriginY, WINSIZE.width, 3 * kTableViewCellHeight + 60.0f)];
     
-    UITableView *tableViewSignup = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, 3 * kTableViewCellHeight)];
+    UITableView *tableViewSignup = [[UITableView alloc] initWithFrame:CGRectMake(15.0f, 0, WINSIZE.width - 30.0f, 3 * kTableViewCellHeight)];
     tableViewSignup.delegate = self;
     tableViewSignup.dataSource = self;
     tableViewSignup.tag = kTableViewSignupTag;
