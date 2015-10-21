@@ -16,7 +16,7 @@
 #define     kEmailLoginTextFieldTag         105
 #define     kPasswordSLoginTextFieldTag     106
 
-#define     kTableViewCellHeight            45.0f
+#define     kTableViewCellHeight            50.0f
 
 #define     kTableViewSignupTag             202
 #define     kTableViewLoginTag              203
