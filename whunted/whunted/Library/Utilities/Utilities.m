@@ -283,8 +283,8 @@
 {
     view.layer.masksToBounds = NO;
     view.layer.shadowOffset = CGSizeMake(-1, 1);
-    view.layer.shadowRadius = 5;
-    view.layer.shadowOpacity = 0.5;
+    view.layer.shadowRadius = 2;
+    view.layer.shadowOpacity = 0.25;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

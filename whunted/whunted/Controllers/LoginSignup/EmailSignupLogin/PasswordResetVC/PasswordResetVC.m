@@ -51,7 +51,7 @@
 - (void) addViewContainer
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat kOriginY = [Utilities getHeightOfNavigationAndStatusBars:self] + 20.0f;
+    CGFloat kOriginY = [Utilities getHeightOfNavigationAndStatusBars:self] + 30.0f;
     
     _viewContainer = [[UIView alloc] initWithFrame:CGRectMake(kLeftMargin, kOriginY, WINSIZE.width - 2 * kLeftMargin, 0)];
     _viewContainer.backgroundColor = [UIColor whiteColor];
@@ -121,6 +121,7 @@
 - (void) closePasswordResetView
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [_emailTextField resignFirstResponder];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

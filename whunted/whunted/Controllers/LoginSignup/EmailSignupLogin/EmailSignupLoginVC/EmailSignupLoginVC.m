@@ -114,7 +114,9 @@
     tableViewLogin.tag = kTableViewLoginTag;
     [_containerLogin addSubview:tableViewLogin];
     _containerLogin.hidden = YES;
-    [self.view addSubview:_containerLogin];    
+    [self.view addSubview:_containerLogin];
+    
+    [self addForgotPasswordButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
