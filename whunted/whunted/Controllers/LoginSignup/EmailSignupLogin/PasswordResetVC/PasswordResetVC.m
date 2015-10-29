@@ -138,7 +138,7 @@
     {
         if ([Utilities isEmailValid:_emailTextField.text])
         {
-            
+            [self sendResettingPasswordRequest];
         }
         else
         {
@@ -146,6 +146,24 @@
             [alertView show];
         }
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) sendResettingPasswordRequest
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [PFCloud callFunctionInBackground:@"hello" withParameters:@{} block:^(id  _Nullable object, NSError * _Nullable error)
+    {
+        if (error)
+        {
+            [Utilities handleError:error];
+        }
+        else
+        {
+            NSDictionary *result = object;
+            NSLog(@"sendResettingPasswordRequest");
+        }
+    }];
 }
 
 
