@@ -11,6 +11,7 @@
 #import "AppConstant.h"
 
 #import <JTImageButton.h>
+#import <AFNetworking.h>
 
 #define     kLeftMargin     15.0f
 
@@ -152,17 +153,15 @@
 - (void) sendResettingPasswordRequest
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [PFCloud callFunctionInBackground:@"hello" withParameters:@{} block:^(id  _Nullable object, NSError * _Nullable error)
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString *url = [BASE_URL stringByAppendingString:@"forgotPassword"];
+    [manager POST:url parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        if (error)
-        {
-            [Utilities handleError:error];
-        }
-        else
-        {
-            NSDictionary *result = object;
-            NSLog(@"sendResettingPasswordRequest");
-        }
+        NSLog(@"JSON: %@", responseObject);
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Error: %@", error);
     }];
 }
 
