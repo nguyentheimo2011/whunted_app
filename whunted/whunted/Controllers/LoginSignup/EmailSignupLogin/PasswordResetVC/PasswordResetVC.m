@@ -81,7 +81,7 @@
 {
     CGFloat const kOriginY = _askingForEmailLabel.frame.origin.y + _askingForEmailLabel.frame.size.height + 10.0f;
     
-    _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, kOriginY, _askingForEmailLabel.frame.size.width, 40.0f)];
+    _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, kOriginY, _askingForEmailLabel.frame.size.width, 50.0f)];
     _emailTextField.textColor = TEXT_COLOR_DARK_GRAY;
     _emailTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter your email address", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
@@ -155,7 +155,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *url = [BASE_URL stringByAppendingString:@"forgotPassword"];
-    [manager POST:url parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [manager POST:url parameters:@{@"email": _emailTextField.text} success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         NSLog(@"JSON: %@", responseObject);
     }

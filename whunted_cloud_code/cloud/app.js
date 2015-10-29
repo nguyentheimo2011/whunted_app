@@ -11,7 +11,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/forgotPassword', function(req, res) {
-	res.send({success:true});
+	res.send({'email': req.body.email});
 });
 
 app.listen();
