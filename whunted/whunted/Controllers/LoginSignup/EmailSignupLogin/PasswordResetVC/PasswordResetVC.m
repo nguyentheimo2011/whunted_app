@@ -72,6 +72,7 @@
     _askingForEmailLabel.numberOfLines = 2;
     _askingForEmailLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [_askingForEmailLabel sizeToFit];
+    _askingForEmailLabel.frame = CGRectMake(_askingForEmailLabel.frame.origin.x, _askingForEmailLabel.frame.origin.y, WINSIZE.width - 2 * kLeftMargin - 20.0f, _askingForEmailLabel.frame.size.height);
     [_viewContainer addSubview:_askingForEmailLabel];
 }
 
