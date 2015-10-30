@@ -154,7 +154,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *url = [BASE_URL stringByAppendingString:@"forgotPassword"];
+    NSString *url = [BASE_URL stringByAppendingString:@"/forgotPassword"];
     [manager POST:url parameters:@{@"email": _emailTextField.text} success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         NSLog(@"JSON: %@", responseObject);
