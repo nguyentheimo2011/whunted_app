@@ -154,11 +154,28 @@
 - (void) sendResettingPasswordRequest
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *url = [BASE_URL stringByAppendingString:@"/forgotPassword"];
     [manager POST:url parameters:@{@"email": _emailTextField.text} success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
-        NSLog(@"JSON: %@", responseObject);
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        
+        NSDictionary *resultDict = responseObject;
+        NSString *resultCode = resultDict[RESPONSE_RESULT_CODE];
+        if ([resultCode isEqualToString:@"400"])
+        {
+            [Utilities displayErrorAlertViewWithMessage:NSLocalizedString(@"It seems that you did not use this email to register with us.", nil)];
+        }
+        else if ([resultCode isEqualToString:@"500"])
+        {
+            [Utilities displayErrorAlertView];
+        }
+        else
+        {
+            
+        }
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {

@@ -359,6 +359,14 @@
     return nil;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (void) displayErrorAlertViewWithMessage:(NSString *)message
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
+}
+
 
 #pragma mark - Data Type Conversion
 

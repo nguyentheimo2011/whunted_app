@@ -366,6 +366,10 @@
 #define     ITEM_CHINESE_CATEGORY_FUNITURE              @"家具"
 #define     ITEM_CHINESE_CATEGORY_OTHERS                @"其他"
 
+//----------------------------------------------------------------------------------------------------------------------------
+#define     RESPONSE_RESULT_CODE                        @"resultCode"
+#define     RESPONSE_MESSAGE                            @"message"
+
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     LANGUAGE_USED_IN_LAST_SESSION               @"appLanguage"

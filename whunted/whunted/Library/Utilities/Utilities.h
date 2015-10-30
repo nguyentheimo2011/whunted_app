@@ -91,6 +91,8 @@
 
 + (UIView *)    getSubviewOfView: (UIView *) parentView withTag: (NSInteger) tag;
 
++ (void)        displayErrorAlertViewWithMessage: (NSString *) message;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Data Type Conversion
