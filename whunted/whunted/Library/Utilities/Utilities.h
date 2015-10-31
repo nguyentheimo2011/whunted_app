@@ -81,7 +81,7 @@
 
 + (void)        addShadowToView:        (UIView *) view;
 
-+ (void)        addGradientToButton:    (UIButton *) button;
++ (void)        addGradientToView:      (UIView *) view;
 
 + (void)        setTopRoundedCorner:    (UIView *) view;
 

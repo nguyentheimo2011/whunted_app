@@ -288,15 +288,15 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (void) addGradientToButton:(UIButton *)button
++ (void) addGradientToView:(UIView *) view
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = button.layer.bounds;
+    gradientLayer.frame = view.layer.bounds;
     
     gradientLayer.colors = [NSArray arrayWithObjects:
                             (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
-                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            (id)[UIColor colorWithWhite:0.9f alpha:0.9f].CGColor,
                             nil];
     
     gradientLayer.locations = [NSArray arrayWithObjects:
@@ -304,8 +304,8 @@
                                [NSNumber numberWithFloat:1.0f],
                                nil];
     
-    gradientLayer.cornerRadius = button.layer.cornerRadius;
-    [button.layer addSublayer:gradientLayer];
+    gradientLayer.cornerRadius = view.layer.cornerRadius;
+    [view.layer addSublayer:gradientLayer];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

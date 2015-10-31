@@ -44,6 +44,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     DARK_SPRING_GREEN_COLOR             [UIColor colorWithRed:23.0/255 green:114.0/255 blue:69.0/255 alpha:1.0]
 #define     PERSIAN_GREEN_COLOR                 [UIColor colorWithRed:0.0/255 green:166.0/255 blue:147.0/255 alpha:1.0]
+#define     BACKGROUND_GREEN_COLOR              [UIColor colorWithRed:200.0/255 green:240.0/255 blue:200.0/255 alpha:1.0]
+#define     TEXT_GREEN_COLOR                    [UIColor colorWithRed:100.0/255 green:156.0/255 blue:100.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     RED_ORAGNE_COLOR                    [UIColor colorWithRed:255.0/255 green:83.0/255 blue:73.0/255 alpha:1.0]

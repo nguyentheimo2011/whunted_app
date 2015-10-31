@@ -19,6 +19,8 @@
 {
     UIView          *_viewContainer;
     UILabel         *_askingForEmailLabel;
+    UILabel         *_successMessageLabel;
+    UIView          *_successMessageContainer;
     UITextField     *_emailTextField;
     JTImageButton   *_sendButton;
 }
@@ -31,6 +33,7 @@
     [self customizeUI];
     [self addViewContainer];
     [self addAskingForEmailLabel];
+    [self addSuccessMessageLabel];
     [self addTextFieldForEmail];
     [self addButtonForSendingPasswordResetLink];
 }
@@ -74,6 +77,30 @@
     [_askingForEmailLabel sizeToFit];
     _askingForEmailLabel.frame = CGRectMake(_askingForEmailLabel.frame.origin.x, _askingForEmailLabel.frame.origin.y, WINSIZE.width - 2 * kLeftMargin - 20.0f, _askingForEmailLabel.frame.size.height);
     [_viewContainer addSubview:_askingForEmailLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addSuccessMessageLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kOriginY = _askingForEmailLabel.frame.origin.y + _askingForEmailLabel.frame.size.height + 10.0f;
+    
+    _successMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 15.0f, WINSIZE.width - 2 * kLeftMargin - 80.0f, 0)];
+    _successMessageLabel.text = NSLocalizedString(@"Instructions on how to reset password has been sent to your email address.", nil);
+    _successMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];;
+    _successMessageLabel.textColor = TEXT_GREEN_COLOR;
+    _successMessageLabel.numberOfLines = 2;
+    _successMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [_successMessageLabel sizeToFit];
+    
+    _successMessageContainer = [[UIView alloc] initWithFrame:CGRectMake(20.0f, kOriginY, WINSIZE.width - 2 * kLeftMargin - 40.0f, _successMessageLabel.frame.size.height + 30.0f)];
+    _successMessageContainer.backgroundColor = BACKGROUND_GREEN_COLOR;
+    _successMessageContainer.layer.cornerRadius = 5.0f;
+    _successMessageContainer.clipsToBounds = YES;
+    [_successMessageContainer addSubview:_successMessageLabel];
+    [_viewContainer addSubview:_successMessageContainer];
+    
+    _successMessageLabel.hidden = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
