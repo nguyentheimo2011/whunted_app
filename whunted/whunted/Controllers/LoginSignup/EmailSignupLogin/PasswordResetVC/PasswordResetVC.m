@@ -174,7 +174,8 @@
         }
         else
         {
-            
+            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email sent!", nil) message:NSLocalizedString(@"Instructions on how to reset password has been sent to your email address.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [successAlertView show];
         }
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
