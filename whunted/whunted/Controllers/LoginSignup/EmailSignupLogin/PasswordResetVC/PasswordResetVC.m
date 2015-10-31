@@ -100,7 +100,7 @@
     [_successMessageContainer addSubview:_successMessageLabel];
     [_viewContainer addSubview:_successMessageContainer];
     
-    _successMessageLabel.hidden = YES;
+    _successMessageContainer.hidden = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -143,6 +143,24 @@
     _viewContainer.frame = CGRectMake(_viewContainer.frame.origin.x, _viewContainer.frame.origin.y, _viewContainer.frame.size.width, _sendButton.frame.origin.y + _sendButton.frame.size.height + 15.0f);
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) makeSuccessMessageLabelVisible
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (_successMessageContainer.hidden)
+    {
+        _successMessageContainer.hidden = NO;
+        
+        CGFloat const kTextFieldOriginY = _successMessageContainer.frame.origin.y + _successMessageContainer.frame.size.height + 15.0f;
+        _emailTextField.frame = CGRectMake(_emailTextField.frame.origin.x, kTextFieldOriginY, _emailTextField.frame.size.width, _emailTextField.frame.size.height);
+        
+        CGFloat const kButtonOriginY = _emailTextField.frame.origin.y + _emailTextField.frame.size.height + 15.0f;
+        _sendButton.frame = CGRectMake(_sendButton.frame.origin.x, kButtonOriginY, _sendButton.frame.size.width, _sendButton.frame.size.height);
+        
+        _viewContainer.frame = CGRectMake(_viewContainer.frame.origin.x, _viewContainer.frame.origin.y, _viewContainer.frame.size.width, _sendButton.frame.origin.y + _sendButton.frame.size.height + 15.0f);
+    }
+}
+
 
 #pragma mark - Event Handlers
 
@@ -181,6 +199,7 @@
 - (void) sendResettingPasswordRequest
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [_emailTextField resignFirstResponder];
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -201,8 +220,8 @@
         }
         else
         {
-            UIAlertView *successAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email sent!", nil) message:NSLocalizedString(@"Instructions on how to reset password has been sent to your email address.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [successAlertView show];
+            _emailTextField.text = nil;
+            [self makeSuccessMessageLabelVisible];
         }
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
