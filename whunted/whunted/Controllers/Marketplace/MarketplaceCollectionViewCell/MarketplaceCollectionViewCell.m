@@ -148,7 +148,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, _cellWidth)];
-    [_itemImageView setBackgroundColor:[UIColor whiteColor]];
+    [_itemImageView setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_1];
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     _itemImageView.layer.borderWidth = 0.5f;
     _itemImageView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_3 CGColor];
@@ -190,7 +190,8 @@
     
     _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_itemNameLabel setText:@"Item name"];
-    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_itemNameLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]];
+    _itemNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self addSubview:_itemNameLabel];
 }
 
@@ -204,7 +205,7 @@
     
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kCellLeftMagin, kPriceLabelPos, kPriceLabelWidth, kPriceLabelHeight)];
     [_demandedPriceLabel setText:@"Item price"];
-    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:14]];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:14]];
     [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [self addSubview:_demandedPriceLabel];
 }
@@ -213,10 +214,12 @@
 - (void) addBuyerProfilePic
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kImageYPos = _cellWidth + 53.0f;
-    CGFloat const kImageWidth = 30.0f;
+    CGFloat const kImageWidth = 45.0f;
+    CGFloat const kImageHeight = kImageWidth;
+    CGFloat const kImageOriginY = _cellWidth + 30.0f;
+    CGFloat const kImageOriginX = _cellWidth - kCellRightMargin - kImageWidth;
     
-    _buyerProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
+    _buyerProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(kImageOriginX, kImageOriginY, kImageWidth, kImageHeight)];
     [_buyerProfilePic setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     _buyerProfilePic.clipsToBounds = YES;
@@ -230,16 +233,16 @@
 - (void) addBuyerUsername
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelXPos    =   _buyerProfilePic.frame.size.width + 2 * kCellLeftMagin;
-    CGFloat const kLabelYPos    =   _buyerProfilePic.frame.origin.y - 2.0f;
-    CGFloat const kLabelWidth   =   _cellWidth - kLabelXPos - kCellRightMargin;
-    CGFloat const kLabelHeight  =   15.0f;
+    CGFloat const kLabelOriginX    =   kCellLeftMagin;
+    CGFloat const kLabelOriginY    =   _cellWidth + 50.0f;
+    CGFloat const kLabelWidth       =   _cellWidth - kCellLeftMagin - 2.5 * kCellRightMargin - _buyerProfilePic.frame.size.width;
+    CGFloat const kLabelHeight      =   15.0f;
     
-    _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
+    _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
     [_buyerUsernameButton setTitle:NSLocalizedString(@"Username", nil) forState:UIControlStateNormal];
-    [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
-    [_buyerUsernameButton setTitleColor:TEXT_COLOR_GRAY forState:UIControlStateNormal];
-    _buyerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_buyerUsernameButton.titleLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:13]];
+    [_buyerUsernameButton setTitleColor:TEXT_COLOR_LESS_DARK forState:UIControlStateNormal];
+    _buyerUsernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [_buyerUsernameButton addTarget:self action:@selector(usernameLabelTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_buyerUsernameButton];
 }
@@ -249,14 +252,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelXPos    =   _buyerUsernameButton.frame.origin.x;
-    CGFloat const kLabelYPos    =   _cellWidth + 68.0f;
+    CGFloat const kLabelYPos    =   _cellWidth + 65.0f;
     CGFloat const kLabelWidth   =   _buyerUsernameButton.frame.size.width;
     CGFloat const kLabelHeight  =   15.0f;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     [_timestampLabel setText:@"timestamp"];
-    [_timestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:13]];
+    [_timestampLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:13]];
     [_timestampLabel setTextColor:TEXT_COLOR_GRAY];
+    _timestampLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview:_timestampLabel];
 }
 
