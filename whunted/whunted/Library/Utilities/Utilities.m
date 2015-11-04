@@ -758,17 +758,25 @@
             if (imageNeeded)
             {
                 PFFile *profileImage = fetchedUser[PF_USER_PICTURE];
-                [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
-                    if (!error2)
-                    {
-                        UIImage *image = [UIImage imageWithData:data];
-                        handler(fetchedUser, image);
-                    }
-                    else
-                    {
-                        [Utilities handleError:error2];
-                    }
-                }];
+                if (!profileImage)
+                    handler(fetchedUser, nil);
+                else
+                {
+                    [profileImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error2) {
+                        if (!error2)
+                        {
+                            UIImage *image;
+                            if (data)
+                                image = [UIImage imageWithData:data];
+                            
+                            handler(fetchedUser, image);
+                        }
+                        else
+                        {
+                            [Utilities handleError:error2];
+                        }
+                    }];
+                }
             }
             else
             {

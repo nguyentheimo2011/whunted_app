@@ -391,10 +391,20 @@
         // check if it is setting buyerProfileImage for the right cell
         if (_cellIndex == cellIndex)
         {
-            [_buyerProfilePic setBackgroundImage:image forState:UIControlStateNormal];
-            
-            NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
-            [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+            if (image)
+            {
+                [_buyerProfilePic setBackgroundImage:image forState:UIControlStateNormal];
+                
+                NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
+                [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+            }
+            else
+            {
+                UIImage *placeHolder = [UIImage imageNamed:@"user_profile_image_placeholder_big.png"];
+                [_buyerProfilePic setBackgroundImage:placeHolder forState:UIControlStateNormal];
+                NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
+                [[ProfileImageCache sharedCache] setObject:placeHolder forKey:imageKey];
+            }
         }
     };
     
