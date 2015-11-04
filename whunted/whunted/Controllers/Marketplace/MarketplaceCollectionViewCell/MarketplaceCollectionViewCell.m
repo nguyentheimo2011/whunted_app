@@ -139,6 +139,8 @@
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
+    [Utilities addShadowToCollectionCell:self];
+    
     _cellWidth = self.frame.size.width;
     _cellHeight = self.frame.size.height;
 }
@@ -152,6 +154,8 @@
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     _itemImageView.layer.borderWidth = 0.5f;
     _itemImageView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_3 CGColor];
+    _itemImageView.layer.cornerRadius = 5;
+    _itemImageView.clipsToBounds = YES;
     [self addSubview:_itemImageView];
     
     _itemImageView.image = nil;

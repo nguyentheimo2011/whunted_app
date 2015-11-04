@@ -81,6 +81,8 @@
 
 + (void)        addShadowToView:        (UIView *) view;
 
++ (void)        addShadowToCollectionCell: (UICollectionViewCell *) cell;
+
 + (void)        addGradientToView:      (UIView *) view;
 
 + (void)        setTopRoundedCorner:    (UIView *) view;
