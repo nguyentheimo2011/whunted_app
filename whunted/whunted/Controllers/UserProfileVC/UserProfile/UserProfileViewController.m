@@ -325,7 +325,6 @@
     [self addSmilingViewToBackground:backgroundView];
     [self addMehViewToBackground:backgroundView];
     [self addSadViewToBackground:backgroundView];
-    [self addNextSignToBackground:backgroundView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -335,7 +334,7 @@
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
     CGFloat const kIconHeight = kBackgroundHeight * 0.8;
-    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.08;
     CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconHeight * 3, kIconHeight)];
@@ -361,7 +360,7 @@
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
     CGFloat const kIconHeight = kBackgroundHeight * 0.8;
-    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.1;
     CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
@@ -390,7 +389,7 @@
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
     CGFloat const kIconHeight = kBackgroundHeight * 0.8;
-    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.05;
+    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.12;
     CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
@@ -408,23 +407,6 @@
     [containerView addSubview:_negativeFeedbackLabel];
     
     [backgroundView addSubview:containerView];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addNextSignToBackground: (UIView *) backgroundView
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
-    CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
-    CGFloat const kIconHeight = kBackgroundHeight * 0.6;
-    CGFloat const kIconLeftMargin = kBackgroundWidth * 0.025;
-    CGFloat const kIconTopMargin = kBackgroundHeight * 0.2;
-    CGFloat kXPos = kBackgroundWidth - kIconLeftMargin - kIconHeight;
-    
-    UIImage *nextSignImage = [UIImage imageNamed:@"move_to_next_icon.png"];
-    UIImageView *nextSignImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kXPos, kIconTopMargin, kIconHeight, kIconHeight)];
-    [nextSignImageView setImage:nextSignImage];
-    [backgroundView addSubview:nextSignImageView];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
