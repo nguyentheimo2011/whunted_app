@@ -216,7 +216,7 @@
 {
     CGFloat const kImageWidth = 45.0f;
     CGFloat const kImageHeight = kImageWidth;
-    CGFloat const kImageOriginY = _cellWidth + 30.0f;
+    CGFloat const kImageOriginY = _cellWidth + 40.0f;
     CGFloat const kImageOriginX = _cellWidth - kCellRightMargin - kImageWidth;
     
     _buyerProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(kImageOriginX, kImageOriginY, kImageWidth, kImageHeight)];
@@ -234,8 +234,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelOriginX    =   kCellLeftMagin;
-    CGFloat const kLabelOriginY    =   _cellWidth + 50.0f;
-    CGFloat const kLabelWidth       =   _cellWidth - kCellLeftMagin - 2.5 * kCellRightMargin - _buyerProfilePic.frame.size.width;
+    CGFloat const kLabelOriginY    =   _cellWidth + 52.0f;
+    CGFloat const kLabelWidth       =   _cellWidth - kCellLeftMagin - 3 * kCellRightMargin - _buyerProfilePic.frame.size.width;
     CGFloat const kLabelHeight      =   15.0f;
     
     _buyerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
@@ -252,7 +252,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelXPos    =   _buyerUsernameButton.frame.origin.x;
-    CGFloat const kLabelYPos    =   _cellWidth + 65.0f;
+    CGFloat const kLabelYPos    =   _cellWidth + 68.0f;
     CGFloat const kLabelWidth   =   _buyerUsernameButton.frame.size.width;
     CGFloat const kLabelHeight  =   15.0f;
     
