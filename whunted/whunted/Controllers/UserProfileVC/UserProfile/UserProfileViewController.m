@@ -321,7 +321,7 @@
     [backgroundView addGestureRecognizer:tapRecognizer];
     
     // TODO: color is likely to change later
-    [backgroundView setBackgroundColor:BACKGROUND_GRAY_COLOR];
+    [backgroundView setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_3];
     
     backgroundView.layer.cornerRadius = 6.0f;
     backgroundView.clipsToBounds = YES;
@@ -549,11 +549,11 @@
     CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
     
     UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
-    leftLine.backgroundColor = LIGHT_GRAY_COLOR;
+    leftLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_scrollView addSubview:leftLine];
     
     UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
-    rightLine.backgroundColor = LIGHT_GRAY_COLOR;
+    rightLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_scrollView addSubview:rightLine];
     
     _currHeight += kLabelTopMargin + kLabelHeight;
@@ -746,11 +746,11 @@
     CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
     
     _leftHorizontalLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
-    _leftHorizontalLine.backgroundColor = LIGHT_GRAY_COLOR;
+    _leftHorizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_scrollView addSubview:_leftHorizontalLine];
     
     _rightHorizontalLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
-    _rightHorizontalLine.backgroundColor = LIGHT_GRAY_COLOR;
+    _rightHorizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_scrollView addSubview:_rightHorizontalLine];
     
     _currHeight += kLabelTopMargin + kLabelHeight;

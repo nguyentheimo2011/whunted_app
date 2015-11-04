@@ -207,7 +207,7 @@
     
     _feedbackCommentTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 32, kFeedbackCommentHeight - 10)];
     _feedbackCommentTextView.layer.borderWidth = 1.0f;
-    _feedbackCommentTextView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _feedbackCommentTextView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     _feedbackCommentTextView.layer.cornerRadius = 10.0f;
     _feedbackCommentTextView.font = DEFAULT_FONT;
     _feedbackCommentTextView.placeholder = NSLocalizedString(@"Example:\n Item was in great condition, very prompt delivery. Will deal again!\n\n kudos!:D", nil);

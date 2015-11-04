@@ -58,19 +58,11 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     GRAY_COLOR_WITH_WHITE_COLOR_1       [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_2       [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
-#define     GRAY_COLOR_LIGHT                    [UIColor colorWithRed:160.0/255 green:160.0/255 blue:160.0/255 alpha:1.0]
-#define     GRAY_COLOR_LIGHTER                  [UIColor colorWithRed:175.0/255 green:175.0/255 blue:175.0/255 alpha:1.0]
-#define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
-#define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
-#define     BACKGROUND_GRAY_COLOR               [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
-#define		COLOR_OUTGOING						[UIColor colorWithRed:0.0/255 green:122.0/255 blue:255.0/255 alpha:1.0]
-#define     COLOR_OUTGOING_SENDING              [UIColor colorWithRed:204.0/255 green:229.0/255 blue:255.0/255 alpha:1.0]
-#define		COLOR_INCOMING						[UIColor colorWithRed:230.0/255 green:229.0/255 blue:234.0/255 alpha:1.0]
-#define     ACCEPTED_BUTTON_BACKGROUND_COLOR    [UIColor colorWithRed:0.0/255 green:172.0/255 blue:113.0/255 alpha:1.0]
-#define     DARK_GRAY_COLOR                     [UIColor colorWithRed:54.0/255 green:60.0/255 blue:62.0/255 alpha:1.0]
-#define     DARKER_GRAY_COLOR                   [UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0]
-#define     CELL_SEPARATOR_GRAY_COLOR           [UIColor colorWithRed:188.0/255 green:186.0/255 blue:193.0/255 alpha:1.0]
-#define     COLLECTION_BACKGROUND_GRAY_COLOR    [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_3       [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_4       [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_5       [UIColor colorWithRed:190.0/255 green:190.0/255 blue:190.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_6       [UIColor colorWithRed:175.0/255 green:175.0/255 blue:175.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_7       [UIColor colorWithRed:160.0/255 green:160.0/255 blue:160.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     FLAT_BLUE_COLOR                     [UIColor colorWithRed:7/255.0f green:188/255.0f blue:248/255.0f alpha:1.0f]
@@ -86,6 +78,12 @@
 #define     TEXT_COLOR_LESS_DARK                [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1.0]
 #define     TEXT_COLOR_GRAY                     [UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0]
 #define     PLACEHOLDER_TEXT_COLOR              [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1.0]
+
+//-----------------------------------------------------------------------------------------------------------------------------
+#define		COLOR_OUTGOING						[UIColor colorWithRed:0.0/255 green:122.0/255 blue:255.0/255 alpha:1.0]
+#define     COLOR_OUTGOING_SENDING              [UIColor colorWithRed:204.0/255 green:229.0/255 blue:255.0/255 alpha:1.0]
+#define		COLOR_INCOMING						[UIColor colorWithRed:230.0/255 green:229.0/255 blue:234.0/255 alpha:1.0]
+#define     ACCEPTED_BUTTON_BACKGROUND_COLOR    [UIColor colorWithRed:0.0/255 green:172.0/255 blue:113.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     WINSIZE                             [[UIScreen mainScreen] bounds].size

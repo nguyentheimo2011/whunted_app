@@ -93,7 +93,7 @@
     CGFloat const kSeparatorLineWidth       =   WINSIZE.width - kSeparatorLineLeftMargin;
     CGFloat const kSeparatorLineYPos        =   kControlContainerHeight - kSeparatorLineHeight;
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMargin, kSeparatorLineYPos, kSeparatorLineWidth, kSeparatorLineHeight)];
-    separatorLine.backgroundColor = CELL_SEPARATOR_GRAY_COLOR;
+    separatorLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [itemInfoContainer addSubview:separatorLine];
 }
 

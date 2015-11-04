@@ -112,7 +112,7 @@
     
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = LIGHTER_GRAY_COLOR;
+    termOfServiceButton.titleColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
     termOfServiceButton.borderWidth = 0;
     [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];

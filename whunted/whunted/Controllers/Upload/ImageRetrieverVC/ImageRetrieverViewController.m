@@ -126,7 +126,7 @@
     [_imageLinkTextView setReturnKeyType:UIReturnKeyDone];
     _imageLinkTextView.layer.cornerRadius = 10.0f;
     _imageLinkTextView.layer.borderWidth = 1.0f;
-    _imageLinkTextView.layer.borderColor = [LIGHTER_GRAY_COLOR CGColor];
+    _imageLinkTextView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_4 CGColor];
     _imageLinkTextView.delegate = self;
     [_scrollView addSubview:_imageLinkTextView];
 }

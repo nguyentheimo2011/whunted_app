@@ -113,7 +113,7 @@
     [self setBackgroundColor:[UIColor whiteColor]];
     
     self.layer.borderWidth = 0.5f;
-    self.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    self.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     
     self.layer.cornerRadius = 5.0f;
     self.clipsToBounds = YES;
@@ -132,7 +132,7 @@
     [self addSubview:_itemImageView];
     
     _itemImageView.layer.borderWidth = 0.5f;
-    _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _itemImageView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     
     _itemImageView.image = nil;
 }

@@ -228,7 +228,7 @@
     CGFloat const kLineHeihgt   =   0.5f;
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, kLineYPos, WINSIZE.width, kLineHeihgt)];
-    view.backgroundColor = LIGHT_GRAY_COLOR;
+    view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_scrollView addSubview:view];
 }
 

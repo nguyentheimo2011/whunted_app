@@ -161,7 +161,7 @@
     
     _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(kTableViewOriginX, kTableViewOriginY, kTableViewWidth, kTableViewHeight)];
     _cityTableView.layer.borderWidth = 0.5f;
-    _cityTableView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _cityTableView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     _cityTableView.layer.cornerRadius = 8.0f;
     _cityTableView.dataSource = self;
     _cityTableView.delegate = self;

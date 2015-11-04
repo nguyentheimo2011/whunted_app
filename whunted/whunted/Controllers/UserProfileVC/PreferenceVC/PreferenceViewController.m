@@ -306,7 +306,7 @@
     _buyingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
     _buyingHashtagContainer.layer.cornerRadius = 10.0f;
     _buyingHashtagContainer.layer.borderWidth = 0.5f;
-    _buyingHashtagContainer.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
+    _buyingHashtagContainer.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_7 CGColor];
     _buyingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_buyingHashTagCell addSubview:_buyingHashtagContainer];
     
@@ -407,7 +407,7 @@
     _sellingHashtagContainer = [[UIScrollView alloc] initWithFrame:CGRectMake(kContainerLeftMargin, kYPos, kContainerWidth, kContainerHeight)];
     _sellingHashtagContainer.layer.cornerRadius = 10.0f;
     _sellingHashtagContainer.layer.borderWidth = 0.5f;
-    _sellingHashtagContainer.layer.borderColor = [GRAY_COLOR_LIGHT CGColor];
+    _sellingHashtagContainer.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_7 CGColor];
     _sellingHashtagContainer.contentSize = CGSizeMake(kTextFieldWidth, kContainerHeight);
     [_sellingHashTagCell addSubview:_sellingHashtagContainer];
     

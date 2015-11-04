@@ -171,7 +171,7 @@
     container.backgroundColor   =   [UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f];
     
     UIView *horizontalLine      =   [[UIView alloc] initWithFrame:CGRectMake(0, 49.5f, WINSIZE.width, 0.5f)];
-    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    horizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_7;
     [container addSubview:horizontalLine];
     
     UIButton *doneButton = [[UIButton alloc] init];
@@ -239,7 +239,7 @@
     container.backgroundColor   =   [UIColor colorWithRed:251/255.0f green:251/255.0f blue:251/255.0f alpha:1.0f];
     
     UIView *horizontalLine      =   [[UIView alloc] initWithFrame:CGRectMake(0, 49.5f, WINSIZE.width, 0.5f)];
-    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    horizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_7;
     [container addSubview:horizontalLine];
     
     UIButton *doneButton = [[UIButton alloc] init];

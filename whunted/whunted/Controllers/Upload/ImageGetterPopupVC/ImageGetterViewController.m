@@ -70,8 +70,8 @@
     
     [_choosingPhotoButton createTitle:NSLocalizedString(@"Choose from gallery", nil) withIcon:[UIImage imageNamed:@"gallery_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
     _choosingPhotoButton.cornerRadius = 0;
-    _choosingPhotoButton.bgColor = BACKGROUND_GRAY_COLOR;
-    _choosingPhotoButton.borderColor = BACKGROUND_GRAY_COLOR;
+    _choosingPhotoButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    _choosingPhotoButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     _choosingPhotoButton.titleColor = MAIN_BLUE_COLOR;
     
     [_postingImageLinkButton createTitle:NSLocalizedString(@"Paste image URL", nil) withIcon:[UIImage imageNamed:@"image_link_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];

@@ -25,7 +25,7 @@
     searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
     searchBar.returnKeyType = UIReturnKeySearch;
     searchBar.delegate = viewController;
-    searchBar.tintColor = LIGHT_GRAY_COLOR;
+    searchBar.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     searchBar.barTintColor = [UIColor colorWithRed:77.0/255 green:124.0/255 blue:194.0/255 alpha:0.5f];
     viewController.navigationItem.titleView = searchBar;
     
@@ -35,7 +35,7 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: LIGHT_GRAY_COLOR}];
+        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_5}];
     }
     
     return searchBar;
@@ -62,7 +62,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     UIView *horizontalLine = [[UIView alloc] initWithFrame:CGRectMake(0, sortAndFilterBar.frame.size.height - 0.5f, WINSIZE.width, 0.5f)];
-    horizontalLine.backgroundColor = GRAY_COLOR_LIGHT;
+    horizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_7;
     [sortAndFilterBar addSubview:horizontalLine];
 }
 
@@ -250,7 +250,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, 8.0f, 0.5f, container.frame.size.height - 2 * 8.0f)];
-    verticalLine.backgroundColor = GRAY_COLOR_LIGHTER;
+    verticalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_6;
     [container addSubview:verticalLine];
 }
 
@@ -317,7 +317,7 @@
     UICollectionView *wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     wantCollectionView.dataSource = viewController;
     wantCollectionView.delegate = viewController;
-    wantCollectionView.backgroundColor = COLLECTION_BACKGROUND_GRAY_COLOR;
+    wantCollectionView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     
     [wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [viewController.view addSubview:wantCollectionView];
@@ -330,7 +330,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     UIRefreshControl *topRefreshControl = [UIRefreshControl new];
-    topRefreshControl.backgroundColor = BACKGROUND_GRAY_COLOR;
+    topRefreshControl.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     [collectionView addSubview:topRefreshControl];
     
     return topRefreshControl;

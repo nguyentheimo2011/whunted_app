@@ -229,7 +229,7 @@
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kTimestampLabelXPos, kTimestampLabelYPos, 0, 0)];
     _timestampLabel.text = [Utilities timestampStringFromDate:_feedbackData.updatedDate];
     _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
-    _timestampLabel.textColor = LIGHT_GRAY_COLOR;
+    _timestampLabel.textColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_timestampLabel sizeToFit];
     [self addSubview:_timestampLabel];
 }

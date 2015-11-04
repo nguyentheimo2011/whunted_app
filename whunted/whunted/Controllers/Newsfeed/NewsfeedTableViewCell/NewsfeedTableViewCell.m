@@ -155,7 +155,7 @@
     CGFloat const kSeparatorOriginY = _itemImageView.frame.origin.y + _itemImageView.frame.size.height;
     
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, kSeparatorOriginY, WINSIZE.width, 0.5f)];
-    separatorLine.backgroundColor = LIGHTER_GRAY_COLOR;
+    separatorLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
     [_cellContainer addSubview:separatorLine];
 }
 
@@ -166,7 +166,7 @@
     CGFloat const kSeparatorOriginY = _cellContainer.frame.size.height - 1.0f;
     
     UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(15.0f, kSeparatorOriginY, WINSIZE.width-30.0f, 0.5f)];
-    separatorLine.backgroundColor = LIGHTER_GRAY_COLOR;
+    separatorLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
     [_cellContainer addSubview:separatorLine];
 }
 

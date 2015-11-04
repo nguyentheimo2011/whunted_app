@@ -135,7 +135,7 @@
     self.backgroundColor = [UIColor whiteColor];
     
     self.layer.borderWidth = 0.5f;
-    self.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    self.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     
@@ -151,7 +151,7 @@
     [_itemImageView setBackgroundColor:[UIColor whiteColor]];
     _itemImageView.contentMode = UIViewContentModeScaleAspectFit;
     _itemImageView.layer.borderWidth = 0.5f;
-    _itemImageView.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _itemImageView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     [self addSubview:_itemImageView];
     
     _itemImageView.image = nil;
@@ -221,7 +221,7 @@
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     _buyerProfilePic.clipsToBounds = YES;
     _buyerProfilePic.layer.borderWidth = 0.5f;
-    _buyerProfilePic.layer.borderColor = [LIGHT_GRAY_COLOR CGColor];
+    _buyerProfilePic.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_5 CGColor];
     [_buyerProfilePic addTarget:self action:@selector(profilePictureTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_buyerProfilePic];
 }
