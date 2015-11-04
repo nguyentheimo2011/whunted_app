@@ -60,8 +60,6 @@
     
     HMSegmentedControl          *_segmentedControl;
     
-    CGFloat                     _statusAndNavBarHeight;
-    CGFloat                     _tabBarHeight;
     CGFloat                     _currHeight;
     CGFloat                     _collectionViewOriginY;
     CGFloat                     _collectionViewCurrHeight;
@@ -206,11 +204,11 @@
 - (void) addScrollView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _statusAndNavBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    CGFloat statusAndNavBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
     
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - _statusAndNavBarHeight - _tabBarHeight)];
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - statusAndNavBarHeight - tabBarHeight)];
     [self.view addSubview:_scrollView];
 }
 
