@@ -66,7 +66,7 @@
 {
     [Utilities customizeTitleLabel:NSLocalizedString(@"Sign up", nil) forViewController:self];
     
-    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    self.view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonEventHandler)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonEventHandler)];

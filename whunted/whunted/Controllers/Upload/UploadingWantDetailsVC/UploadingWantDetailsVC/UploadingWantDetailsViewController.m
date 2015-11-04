@@ -105,7 +105,7 @@
 - (void) customizeUI: (BOOL) editing
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    self.view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     
     [Utilities customizeTitleLabel:NSLocalizedString(@"Upload", nil) forViewController:self];
     

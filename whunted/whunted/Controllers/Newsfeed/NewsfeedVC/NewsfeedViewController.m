@@ -67,7 +67,7 @@
 {
     [Utilities customizeTitleLabel:NSLocalizedString(@"Mystery Function", nil) forViewController:self];
     
-    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    self.view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@
     textView.text = NSLocalizedString(@"NewsFeed Message", nil);
     textView.textColor = TEXT_COLOR_DARK_GRAY;
     textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    textView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    textView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     [self.view addSubview:textView];
 }
 

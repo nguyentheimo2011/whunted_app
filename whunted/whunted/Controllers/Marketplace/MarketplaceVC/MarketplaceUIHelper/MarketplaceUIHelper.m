@@ -317,7 +317,7 @@
     UICollectionView *wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     wantCollectionView.dataSource = viewController;
     wantCollectionView.delegate = viewController;
-    wantCollectionView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    wantCollectionView.backgroundColor = COLLECTION_BACKGROUND_GRAY_COLOR;
     
     [wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [viewController.view addSubview:wantCollectionView];

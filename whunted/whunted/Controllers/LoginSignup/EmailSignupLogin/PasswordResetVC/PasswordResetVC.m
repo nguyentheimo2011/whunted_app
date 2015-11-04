@@ -47,7 +47,7 @@
 {
     [Utilities customizeTitleLabel:NSLocalizedString(@"Password Reset", nil) forViewController:self];
     
-    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    self.view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", nil) style:UIBarButtonItemStylePlain target:self action:@selector(closePasswordResetView)];
 }
 

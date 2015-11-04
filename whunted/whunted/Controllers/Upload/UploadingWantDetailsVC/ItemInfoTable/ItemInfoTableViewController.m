@@ -80,7 +80,7 @@
 - (void) customizeUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.view.backgroundColor = LIGHTEST_GRAY_COLOR;
+    self.view.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     
     [Utilities customizeTitleLabel:NSLocalizedString(@"Item info", nil) forViewController:self];
     

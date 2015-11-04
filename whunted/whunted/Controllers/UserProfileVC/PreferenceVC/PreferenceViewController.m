@@ -204,7 +204,7 @@
     _preferenceTableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _preferenceTableView.delegate = self;
     _preferenceTableView.dataSource = self;
-    _preferenceTableView.backgroundColor = WHITE_GRAY_COLOR;
+    _preferenceTableView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_1;
     [self.view addSubview:_preferenceTableView];
 }
 
@@ -712,14 +712,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *) tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

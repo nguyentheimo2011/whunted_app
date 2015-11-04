@@ -550,7 +550,7 @@
         backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     }
     
-    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
+    [backgroundView setBackgroundColor:[GRAY_COLOR_WITH_WHITE_COLOR_2 colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     if (isFullWidth)
@@ -576,7 +576,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/2, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
-    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
+    [backgroundView setBackgroundColor:[GRAY_COLOR_WITH_WHITE_COLOR_2 colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     _secondBottomButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
@@ -605,7 +605,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, WINSIZE.height - BOTTOM_BUTTON_HEIGHT, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
-    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
+    [backgroundView setBackgroundColor:[GRAY_COLOR_WITH_WHITE_COLOR_2 colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     _viewOffersButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];

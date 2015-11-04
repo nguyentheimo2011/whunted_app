@@ -770,7 +770,7 @@
     _historyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionYPos, WINSIZE.width, 0) collectionViewLayout:layout];
     _historyCollectionView.dataSource       =   self;
     _historyCollectionView.delegate         =   self;
-    _historyCollectionView.backgroundColor  =   LIGHTEST_GRAY_COLOR;
+    _historyCollectionView.backgroundColor  =   GRAY_COLOR_WITH_WHITE_COLOR_2;
     _historyCollectionView.scrollEnabled    =   NO;
     [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
     [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];

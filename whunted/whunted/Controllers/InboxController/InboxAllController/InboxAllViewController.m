@@ -123,7 +123,7 @@
     CGFloat const kTableHeight = WINSIZE.height - kTableYPos - BOTTOM_TAB_BAR_HEIGHT;
     
     _inboxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
-    [_inboxTableView setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [_inboxTableView setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
     [self.view addSubview:_inboxTableView];
@@ -237,14 +237,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

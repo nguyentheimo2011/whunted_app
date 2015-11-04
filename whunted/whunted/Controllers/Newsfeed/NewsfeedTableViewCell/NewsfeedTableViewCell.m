@@ -86,7 +86,7 @@
     CGFloat const kImageViewOriginY =   35.0f;
     
     _itemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, kImageViewOriginY, kImageViewWidth, kImageViewHeight)];
-    _itemImageView.backgroundColor = WHITE_GRAY_COLOR;
+    _itemImageView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_1;
     [_cellContainer addSubview:_itemImageView];
 }
 

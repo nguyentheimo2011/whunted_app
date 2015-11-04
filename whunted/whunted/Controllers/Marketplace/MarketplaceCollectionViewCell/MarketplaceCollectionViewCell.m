@@ -217,7 +217,7 @@
     CGFloat const kImageWidth = 30.0f;
     
     _buyerProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(kCellLeftMagin, kImageYPos, kImageWidth, kImageWidth)];
-    [_buyerProfilePic setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [_buyerProfilePic setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     _buyerProfilePic.layer.cornerRadius = kImageWidth/2;
     _buyerProfilePic.clipsToBounds = YES;
     _buyerProfilePic.layer.borderWidth = 0.5f;

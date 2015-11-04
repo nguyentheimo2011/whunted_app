@@ -196,7 +196,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    _tableView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _tableView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     [self.view addSubview:_tableView];
     
     [self initCells];
@@ -613,14 +613,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *) tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

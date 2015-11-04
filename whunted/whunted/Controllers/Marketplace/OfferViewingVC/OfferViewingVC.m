@@ -153,7 +153,7 @@
     CGFloat const kTableYPos    =  kControlContainerHeight + [Utilities getHeightOfNavigationAndStatusBars:self];
     
     _offersTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
-    _offersTableView.backgroundColor = LIGHTEST_GRAY_COLOR;
+    _offersTableView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     _offersTableView.delegate = self;
     _offersTableView.dataSource = self;
     [self.view addSubview:_offersTableView];
@@ -205,14 +205,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

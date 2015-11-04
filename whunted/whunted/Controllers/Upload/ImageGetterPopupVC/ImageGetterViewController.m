@@ -64,8 +64,8 @@
     
     [_takingPhotoButton createTitle:NSLocalizedString(@"Take a photo", nil) withIcon:[UIImage imageNamed:@"camera_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
     _takingPhotoButton.cornerRadius = 0;
-    _takingPhotoButton.bgColor = LIGHTEST_GRAY_COLOR;
-    _takingPhotoButton.borderColor = LIGHTEST_GRAY_COLOR;
+    _takingPhotoButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
+    _takingPhotoButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     _takingPhotoButton.titleColor = MAIN_BLUE_COLOR;
     
     [_choosingPhotoButton createTitle:NSLocalizedString(@"Choose from gallery", nil) withIcon:[UIImage imageNamed:@"gallery_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
@@ -76,8 +76,8 @@
     
     [_postingImageLinkButton createTitle:NSLocalizedString(@"Paste image URL", nil) withIcon:[UIImage imageNamed:@"image_link_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
     _postingImageLinkButton.cornerRadius = 0;
-    _postingImageLinkButton.bgColor = LIGHTEST_GRAY_COLOR;
-    _postingImageLinkButton.borderColor = LIGHTEST_GRAY_COLOR;
+    _postingImageLinkButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
+    _postingImageLinkButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
     _postingImageLinkButton.titleColor = MAIN_BLUE_COLOR;
 }
 

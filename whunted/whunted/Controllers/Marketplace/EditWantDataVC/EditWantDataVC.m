@@ -50,7 +50,7 @@
     CGFloat const kOriginY  =   WINSIZE.height - STATUS_BAR_AND_NAV_BAR_HEIGHT - BOTTOM_BUTTON_HEIGHT;
     
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kOriginY, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
-    [backgroundView setBackgroundColor:[LIGHTEST_GRAY_COLOR colorWithAlphaComponent:0.5f]];
+    [backgroundView setBackgroundColor:[GRAY_COLOR_WITH_WHITE_COLOR_2 colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
     JTImageButton *deletionButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];

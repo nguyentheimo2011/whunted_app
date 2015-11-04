@@ -115,7 +115,7 @@
     NSString *title = NSLocalizedString(@"Leave Feedback", nil);
     [Utilities customizeTitleLabel:title forViewController:self];
     
-    [self.view setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [self.view setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     
     [Utilities customizeBackButtonForViewController:self withAction:@selector(skipBarButtonTapEventHandler)];
     
@@ -308,14 +308,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    view.tintColor = LIGHTEST_GRAY_COLOR;
+    view.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

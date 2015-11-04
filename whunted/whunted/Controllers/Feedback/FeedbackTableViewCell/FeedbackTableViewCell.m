@@ -119,7 +119,7 @@
     [_writerUsernameButton setTitle:@" " forState:UIControlStateNormal];
     [_writerUsernameButton setTitle:@" " forState:UIControlStateHighlighted];
     [_writerUsernameButton setTitleColor:TEA_ROSE_COLOR forState:UIControlStateNormal];
-    [_writerUsernameButton setTitleColor:LIGHTEST_GRAY_COLOR forState:UIControlStateHighlighted];
+    [_writerUsernameButton setTitleColor:GRAY_COLOR_WITH_WHITE_COLOR_2 forState:UIControlStateHighlighted];
     [_writerUsernameButton sizeToFit];
     [_writerUsernameButton addTarget:self action:@selector(usernameButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_writerUsernameButton];

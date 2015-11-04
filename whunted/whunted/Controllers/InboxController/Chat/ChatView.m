@@ -196,7 +196,7 @@
 {
     CGFloat statusAndNavigationBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
     _background = [[UIView alloc] initWithFrame:CGRectMake(0, statusAndNavigationBarHeight, WINSIZE.width, FLAT_BUTTON_HEIGHT + 10)];
-    [_background setBackgroundColor:LIGHTEST_GRAY_COLOR];
+    [_background setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     [_background setAlpha:0.98];
     [self.view addSubview:_background];
     

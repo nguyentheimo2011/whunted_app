@@ -56,12 +56,12 @@
 #define     GOLDEN_YELLOW_COLOR                 [UIColor colorWithRed:255.0/255 green:223.0/255 blue:0.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
+#define     GRAY_COLOR_WITH_WHITE_COLOR_1       [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_2       [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
 #define     GRAY_COLOR_LIGHT                    [UIColor colorWithRed:160.0/255 green:160.0/255 blue:160.0/255 alpha:1.0]
 #define     GRAY_COLOR_LIGHTER                  [UIColor colorWithRed:175.0/255 green:175.0/255 blue:175.0/255 alpha:1.0]
 #define     LIGHT_GRAY_COLOR                    [UIColor colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0]
 #define     LIGHTER_GRAY_COLOR                  [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
-#define     LIGHTEST_GRAY_COLOR                 [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
-#define     WHITE_GRAY_COLOR                    [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
 #define     BACKGROUND_GRAY_COLOR               [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
 #define		COLOR_OUTGOING						[UIColor colorWithRed:0.0/255 green:122.0/255 blue:255.0/255 alpha:1.0]
 #define     COLOR_OUTGOING_SENDING              [UIColor colorWithRed:204.0/255 green:229.0/255 blue:255.0/255 alpha:1.0]
@@ -70,6 +70,7 @@
 #define     DARK_GRAY_COLOR                     [UIColor colorWithRed:54.0/255 green:60.0/255 blue:62.0/255 alpha:1.0]
 #define     DARKER_GRAY_COLOR                   [UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1.0]
 #define     CELL_SEPARATOR_GRAY_COLOR           [UIColor colorWithRed:188.0/255 green:186.0/255 blue:193.0/255 alpha:1.0]
+#define     COLLECTION_BACKGROUND_GRAY_COLOR    [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     FLAT_BLUE_COLOR                     [UIColor colorWithRed:7/255.0f green:188/255.0f blue:248/255.0f alpha:1.0f]
