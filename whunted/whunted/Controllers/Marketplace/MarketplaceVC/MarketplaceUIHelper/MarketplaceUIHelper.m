@@ -62,7 +62,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     UIView *horizontalLine = [[UIView alloc] initWithFrame:CGRectMake(0, sortAndFilterBar.frame.size.height - 0.5f, WINSIZE.width, 0.5f)];
-    horizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_7;
+    horizontalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     [sortAndFilterBar addSubview:horizontalLine];
 }
 
@@ -249,8 +249,8 @@
 + (void) addVerticalLineToContainer: (UIView *) container
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 0.5f, 8.0f, 0.5f, container.frame.size.height - 2 * 8.0f)];
-    verticalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_6;
+    UIView *verticalLine = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width/3.0 - 1.0f, 8.0f, 1.0f, container.frame.size.height - 2 * 8.0f)];
+    verticalLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
     [container addSubview:verticalLine];
 }
 
