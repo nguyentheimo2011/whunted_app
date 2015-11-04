@@ -365,6 +365,8 @@
     CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
+    NSLog(@"addMehViewToBackground Icon Height: %f", kIconHeight);
+    
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
     
     UIImage *mehFaceImage = [UIImage imageNamed:@"meh_face.png"];
