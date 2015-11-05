@@ -91,6 +91,7 @@
     _usernameButton.bgColor = [UIColor whiteColor];
     _usernameButton.borderWidth = 0;
     _usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_usernameButton addTarget:self action:@selector(usernameButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_usernameButton];
 }
 
@@ -100,7 +101,7 @@
 {
     CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
     CGFloat const kLabelOriginY = _usernameButton.frame.origin.y + _usernameButton.frame.size.height;
-    CGFloat const kLabelWidth = _usernameButton.frame.size.width;
+    CGFloat const kLabelWidth = _usernameButton.frame.size.width + 27.0f;
     CGFloat const kLabelHeight = 20.0f;
     
     _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
@@ -116,7 +117,7 @@
 {
     CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
     CGFloat const kLabelOriginY = _itemNameLabel.frame.origin.y + _itemNameLabel.frame.size.height;
-    CGFloat const kLabelWidth = _usernameButton.frame.size.width;
+    CGFloat const kLabelWidth = _usernameButton.frame.size.width + 27.0f;
     CGFloat const kLabelHeight = 40.0f;
     
     _lastMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
@@ -135,7 +136,7 @@
     CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
     CGFloat const kLabelOriginY = _lastMessageLabel.frame.origin.y + _lastMessageLabel.frame.size.height + 5.0f;
     CGFloat const kLabelWidth = 75.0f;
-    CGFloat const kLabelHeight = 20.0f;
+    CGFloat const kLabelHeight = 22.0f;
     
     _transactionStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
     _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_DISPLAY_NEGOTIATING, nil);
@@ -143,7 +144,7 @@
     _transactionStatusLabel.textColor = [UIColor whiteColor];
     _transactionStatusLabel.textAlignment = NSTextAlignmentCenter;
     _transactionStatusLabel.backgroundColor = MAIN_BLUE_COLOR;
-    _transactionStatusLabel.layer.cornerRadius = 2;
+    _transactionStatusLabel.layer.cornerRadius = 4.0f;
     _transactionStatusLabel.layer.masksToBounds = YES;
     [self addSubview:_transactionStatusLabel];
 }
@@ -382,6 +383,13 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) userProfilePicButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) usernameButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
