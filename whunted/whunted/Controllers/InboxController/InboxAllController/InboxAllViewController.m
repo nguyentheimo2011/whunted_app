@@ -89,7 +89,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIView *segmentContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 64, WINSIZE.width, kControlContainerHeight)];
-    [segmentContainer setBackgroundColor:[UIColor whiteColor]];
+    [segmentContainer setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_1];
     [self.view addSubview:segmentContainer];
     
     CGFloat const kControlTopMargin = 15.0f;
@@ -105,14 +105,6 @@
     _categorySegmentedControl.selectedSegmentIndex = 0;
     [_categorySegmentedControl addTarget:self action:@selector(categorySegmentedControlSelectedIndexChange) forControlEvents:UIControlEventValueChanged];
     [segmentContainer addSubview:_categorySegmentedControl];
-    
-    CGFloat const kSeparatorLineLeftMargin = 15.0f;
-    CGFloat const kSeparatorLineHeight = 0.75f;
-    CGFloat const kSeparatorLineWidth = WINSIZE.width - kSeparatorLineLeftMargin;
-    CGFloat const kSeparatorLineYPos = kControlContainerHeight - kSeparatorLineHeight;
-    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(kSeparatorLineLeftMargin, kSeparatorLineYPos, kSeparatorLineWidth, kSeparatorLineHeight)];
-    [separatorLine setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_5];
-    [segmentContainer addSubview:separatorLine];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
