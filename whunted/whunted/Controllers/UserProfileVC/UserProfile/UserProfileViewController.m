@@ -364,8 +364,6 @@
     CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
-    NSLog(@"addMehViewToBackground Icon Height: %f", kIconHeight);
-    
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
     
     UIImage *mehFaceImage = [UIImage imageNamed:@"meh_face.png"];
@@ -424,11 +422,11 @@
     if (_isViewingMyProfile)
     {
         [self addPreferencesButton:backgroundView];
-        [self addSettingsButtonToView:backgroundView takingUpAllSpace:NO];
+        [self addSettingsButtonToView:backgroundView];
     }
     else
     {
-        [self addSettingsButtonToView:backgroundView takingUpAllSpace:YES];
+        [self addFollowButtonToView:backgroundView];
     }
 }
 
@@ -444,8 +442,8 @@
     [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    preferencesButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3_5;
-    preferencesButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3_5;
+    preferencesButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_2_5;
+    preferencesButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_2_5;
     preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
     
     preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -455,23 +453,12 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) addSettingsButtonToView: (UIView *) backgroundView takingUpAllSpace: (BOOL) allSpaceTaken
+- (void) addSettingsButtonToView: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kButtonHeight = backgroundView.frame.size.height;
-    CGFloat kButtonWidth;
-    CGFloat kButtonOriginX;
-    
-    if (allSpaceTaken)
-    {
-        kButtonWidth = backgroundView.frame.size.width;
-        kButtonOriginX = 0;
-    }
-    else
-    {
-        kButtonWidth = (backgroundView.frame.size.width - 10) / 2;
-        kButtonOriginX = kButtonWidth + 10;
-    }
+    CGFloat kButtonWidth = (backgroundView.frame.size.width - 10) / 2;
+    CGFloat kButtonOriginX = kButtonWidth + 10;
     
     JTImageButton *settingsButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
     [settingsButton createTitle:NSLocalizedString(@"Settings", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
@@ -485,6 +472,29 @@
     settingsButton.cornerRadius = 6.0;
     [settingsButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:settingsButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addFollowButtonToView: (UIView *) backgroundView
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kButtonHeight = backgroundView.frame.size.height;
+    CGFloat const kButtonWidth = backgroundView.frame.size.width;
+    CGFloat kButtonOriginX = 0;
+    
+    JTImageButton *followButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
+    [followButton createTitle:NSLocalizedString(@"+ Follow", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:14] iconOffsetY:0];
+    
+    // TODO: colors are likely to change
+    followButton.bgColor = [UIColor whiteColor];
+    followButton.borderColor = MAIN_BLUE_COLOR_WITH_WHITE_2;
+    followButton.borderWidth = 1.3f;
+    followButton.titleColor = MAIN_BLUE_COLOR_WITH_WHITE_2;
+    
+    followButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    followButton.cornerRadius = 6.0;
+    followButton.enabled = NO;
+    [backgroundView addSubview:followButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
