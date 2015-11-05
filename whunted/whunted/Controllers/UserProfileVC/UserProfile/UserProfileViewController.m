@@ -307,7 +307,7 @@
 - (void) addRatingView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _topRightView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.3 + 10, 0, WINSIZE.width * 0.7, WINSIZE.width * 0.3)];
+    _topRightView = [[UIView alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.3 + 1.0/30), 0, WINSIZE.width * 0.7, WINSIZE.width * 0.3)];
     [_scrollView addSubview:_topRightView];
     
     CGFloat const kBackgroundHeight = (WINSIZE.width * 0.3 - 2 * kTopMargin) / 2 - 10.0f;
@@ -477,9 +477,9 @@
     [settingsButton createTitle:NSLocalizedString(@"Settings", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    settingsButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
-    settingsButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
-    settingsButton.titleColor = [UIColor whiteColor];
+    settingsButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    settingsButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    settingsButton.titleColor = TEXT_COLOR_DARK_GRAY;
     
     settingsButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     settingsButton.cornerRadius = 6.0;
