@@ -444,9 +444,9 @@
     [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    preferencesButton.bgColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
-    preferencesButton.borderColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
-    preferencesButton.titleColor = [UIColor whiteColor];
+    preferencesButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3_5;
+    preferencesButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3_5;
+    preferencesButton.titleColor = TEXT_COLOR_DARK_GRAY;
     
     preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     preferencesButton.cornerRadius = 6.0;

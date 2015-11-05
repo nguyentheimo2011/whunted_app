@@ -44,6 +44,7 @@
 #define     GRAY_COLOR_WITH_WHITE_COLOR_1       [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_2       [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_3       [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]
+#define     GRAY_COLOR_WITH_WHITE_COLOR_3_5     [UIColor colorWithRed:225.0/255 green:225.0/255 blue:225.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_4       [UIColor colorWithRed:215.0/255 green:215.0/255 blue:215.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_5       [UIColor colorWithRed:190.0/255 green:190.0/255 blue:190.0/255 alpha:1.0]
 #define     GRAY_COLOR_WITH_WHITE_COLOR_6       [UIColor colorWithRed:175.0/255 green:175.0/255 blue:175.0/255 alpha:1.0]
