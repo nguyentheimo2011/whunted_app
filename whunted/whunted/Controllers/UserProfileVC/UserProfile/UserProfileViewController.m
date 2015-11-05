@@ -21,6 +21,7 @@
 #import <HMSegmentedControl.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
+#define kLeftMargin     WINSIZE.width / 30.0
 
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface UserProfileViewController ()
@@ -220,8 +221,6 @@
     [self addCountryLabel];
     [self addRatingView];
     [self updateNumOfFeedbacks];
-    
-    _currHeight = WINSIZE.width * 0.3;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -258,49 +257,8 @@
         };
         [Utilities retrieveProfileImageForUser:_profileOwner andRunBlock:handler];
     }
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addUserFullNameLabel
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kLabelHeight = WINSIZE.width / 16.0 + 2.0f;
-    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin, WINSIZE.width * 0.6, kLabelHeight)];
     
-    NSString *firstName = _profileOwner[PF_USER_FIRSTNAME];
-    NSString *lastName = _profileOwner[PF_USER_LASTNAME];
-    if (firstName.length == 0 && lastName.length == 0)
-    {
-        _userFullNameLabel.text = _profileOwner[PF_USER_USERNAME];
-    }
-    else if (firstName.length == 0)
-    {
-        _userFullNameLabel.text = lastName;
-    }
-    else if (lastName.length == 0)
-    {
-        _userFullNameLabel.text = firstName;
-    }
-    else
-    {
-        _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-    }
-    
-    _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:BIG_FONT_SIZE];
-    _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    [_topRightView addSubview:_userFullNameLabel];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addCountryLabel
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kLabelHeight = WINSIZE.width / 16.0;
-    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTopMargin + kLabelHeight, WINSIZE.width * 0.5, kLabelHeight)];
-    _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
-    _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    [_topRightView addSubview:_countryLabel];
+    _currHeight = WINSIZE.width * 0.3;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -487,14 +445,64 @@
     
     // TODO: colors are likely to change
     followButton.bgColor = [UIColor whiteColor];
-    followButton.borderColor = MAIN_BLUE_COLOR_WITH_WHITE_2;
+    followButton.borderColor = MAIN_BLUE_COLOR_WITH_DARK_2;
     followButton.borderWidth = 1.3f;
-    followButton.titleColor = MAIN_BLUE_COLOR_WITH_WHITE_2;
+    followButton.titleColor = MAIN_BLUE_COLOR_WITH_DARK_2;
     
     followButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     followButton.cornerRadius = 6.0;
     followButton.enabled = NO;
     [backgroundView addSubview:followButton];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addUserFullNameLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelHeight = 20.0f;
+    CGFloat const kLabelOriginY = _currHeight;
+    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    
+    NSString *firstName = _profileOwner[PF_USER_FIRSTNAME];
+    NSString *lastName = _profileOwner[PF_USER_LASTNAME];
+    if (firstName.length == 0 && lastName.length == 0)
+    {
+        _userFullNameLabel.text = _profileOwner[PF_USER_USERNAME];
+    }
+    else if (firstName.length == 0)
+    {
+        _userFullNameLabel.text = lastName;
+    }
+    else if (lastName.length == 0)
+    {
+        _userFullNameLabel.text = firstName;
+    }
+    else
+    {
+        _userFullNameLabel.text = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    }
+    
+    _userFullNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _userFullNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_scrollView addSubview:_userFullNameLabel];
+    
+    _currHeight += kLabelHeight;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) addCountryLabel
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelHeight = 20.0f;
+    CGFloat const kLabelOriginY = _currHeight;
+    
+    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
+    _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];
+    _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_scrollView addSubview:_countryLabel];
+    
+    _currHeight += kLabelHeight;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
