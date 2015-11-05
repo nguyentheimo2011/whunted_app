@@ -36,7 +36,7 @@
 @implementation MessageViewCell
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    JTImageButton               *_userProfileImageButton;
+    UIButton                    *_userProfileImageButton;
     JTImageButton               *_usernameButton;
     UILabel                     *_itemNameLabel;
     UILabel                     *_lastMessageLabel;
@@ -64,13 +64,13 @@
 {
     CGFloat const kButtonWidth  = 50.0f;
     CGFloat const kButtonHeight = 50.0f;
-    CGFloat const kButtonOriginX = 2.0f;
-    CGFloat const kButtonOriginY = 10.0f;
+    CGFloat const kButtonOriginX = 10.0f;
+    CGFloat const kButtonOriginY = 20.0f;
     
-    _userProfileImageButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
-    [_userProfileImageButton createTitle:nil withIcon:[UIImage imageNamed:@"user_profile_image_placeholder_big.png"] font:nil iconOffsetY:0];
-    _userProfileImageButton.borderWidth = 0;
-    _userProfileImageButton.cornerRadius = kButtonHeight/2;
+    _userProfileImageButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_userProfileImageButton setBackgroundImage:[UIImage imageNamed:@"user_profile_image_placeholder_big.png"] forState:UIControlStateNormal];
+    _userProfileImageButton.layer.cornerRadius = kButtonHeight/2;
+    [_userProfileImageButton addTarget:self action:@selector(userProfilePicButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_userProfileImageButton];
 }
 
@@ -78,42 +78,108 @@
 - (void) addUsernameButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kButtonOriginX = 75.0f;
+    CGFloat const kButtonOriginY = 7.0f;
+    CGFloat const kButtonRightMargin = 92.0f;
+    CGFloat const kButtonWidth = WINSIZE.width - kButtonOriginX - kButtonRightMargin;
+    CGFloat const kButtonHeight = 15.0f;
     
+    _usernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_usernameButton createTitle:NSLocalizedString(@"username", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
+    _usernameButton.titleColor = TEXT_COLOR_GRAY;
+    _usernameButton.bgColor = [UIColor whiteColor];
+    _usernameButton.borderWidth = 0;
+    _usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self addSubview:_usernameButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemNameLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
+    CGFloat const kLabelOriginY = _usernameButton.frame.origin.y + _usernameButton.frame.size.height;
+    CGFloat const kLabelWidth = _usernameButton.frame.size.width;
+    CGFloat const kLabelHeight = 20.0f;
     
+    _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    _itemNameLabel.text = NSLocalizedString(@"Item name", nil);
+    _itemNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _itemNameLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [self addSubview:_itemNameLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addLastMessageLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
+    CGFloat const kLabelOriginY = _itemNameLabel.frame.origin.y + _itemNameLabel.frame.size.height;
+    CGFloat const kLabelWidth = _usernameButton.frame.size.width;
+    CGFloat const kLabelHeight = 40.0f;
     
+    _lastMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    _lastMessageLabel.text = NSLocalizedString(@"Last message\nAgree ya", nil);
+    _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];
+    _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _lastMessageLabel.numberOfLines = 2;
+    _lastMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self addSubview:_lastMessageLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addTransactionStatusLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLabelOriginX = _usernameButton.frame.origin.x;
+    CGFloat const kLabelOriginY = _lastMessageLabel.frame.origin.y + _lastMessageLabel.frame.size.height + 5.0f;
+    CGFloat const kLabelWidth = 75.0f;
+    CGFloat const kLabelHeight = 20.0f;
     
+    _transactionStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    _transactionStatusLabel.text = NSLocalizedString(TRANSACTION_STATUS_DISPLAY_NEGOTIATING, nil);
+    _transactionStatusLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
+    _transactionStatusLabel.textColor = [UIColor whiteColor];
+    _transactionStatusLabel.textAlignment = NSTextAlignmentCenter;
+    _transactionStatusLabel.backgroundColor = MAIN_BLUE_COLOR;
+    _transactionStatusLabel.layer.cornerRadius = 2;
+    _transactionStatusLabel.layer.masksToBounds = YES;
+    [self addSubview:_transactionStatusLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addTimestampLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kLabelOriginX = WINSIZE.width - 90.0f;
+    CGFloat const kLabelOriginY = _usernameButton.frame.origin.y;
+    CGFloat const kLabelWidth = 80.0f;
+    CGFloat const kLabelHeight = 15.0f;
     
+    _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    _timestampLabel.text = NSLocalizedString(@"Just now", nil);
+    _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:12];
+    _timestampLabel.textColor = MAIN_BLUE_COLOR_WITH_DARK_2;
+    _timestampLabel.textAlignment = NSTextAlignmentRight;
+    [self addSubview:_timestampLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addItemImageButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kButtonOriginX = WINSIZE.width - 58.0f;
+    CGFloat const kButtonOriginY = _timestampLabel.frame.origin.y + _timestampLabel.frame.size.height + 5;
+    CGFloat const kButtonWidth = 48.0f;
+    CGFloat const kButtonHeight = 48.0f;
     
+    _itemImageButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_itemImageButton createTitle:nil withIcon:[UIImage imageNamed:@"placeholder.png"] font:nil iconOffsetY:0];
+    _itemImageButton.cornerRadius = 3.0f;
+    _itemImageButton.clipsToBounds = YES;
+    _itemImageButton.borderWidth = 0;
+    _itemImageButton.bgColor = [UIColor whiteColor];
+    [self addSubview:_itemImageButton];
 }
 
 ////------------------------------------------------------------------------------------------------------------------------------
@@ -361,14 +427,14 @@
 //}
 //
 //
-//#pragma mark - Event Handler
-//
-////------------------------------------------------------------------------------------------------------------------------------
-//- (void) userProfilePicButtonTapEventHandler
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
-//}
+#pragma mark - Event Handler
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) userProfilePicButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
+}
 
 
 @end
