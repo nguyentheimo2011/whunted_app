@@ -21,28 +21,14 @@
 #define     MAIN_BLUE_COLOR_WITH_DARK_2         [UIColor colorWithRed:0.0/255 green:50.0/255 blue:90.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     MAIN_ORANGE_COLOR                   [UIColor colorWithRed:255.0/255 green:76.0/255 blue:0.0/255 alpha:1.0]
-#define     LIGHTEST_ORANGE_COLOR               [UIColor colorWithRed:255.0/255 green:123.0/255 blue:67.0/255 alpha:1.0]
-#define     LIGHT_ORANGE_COLOR                  [UIColor colorWithRed:255.0/255 green:88.0/255 blue:17.0/255 alpha:1.0]
-
-//-----------------------------------------------------------------------------------------------------------------------------
-#define     MAIN_YELLOW_COLOR                   [UIColor colorWithRed:255.0/255 green:192.0/255 blue:0.0/255 alpha:1.0]
-#define     LIGHTEST_YELLOW_COLOR               [UIColor colorWithRed:255.0/255 green:209.0/255 blue:67.0/255 alpha:1.0]
-#define     LIGHT_YELLOW_COLOR                  [UIColor colorWithRed:255.0/255 green:197.0/255 blue:17.0/255 alpha:1.0]
-
-//-----------------------------------------------------------------------------------------------------------------------------
-#define     BRIGHT_BLUE_COLOR                   [UIColor colorWithRed:30.0/255 green:181.0/255 blue:236.0/255 alpha:1.0]
-#define     CLASSY_BLUE_COLOR                   [UIColor colorWithRed:70.0/255 green:130.0/255 blue:180.0/255 alpha:1.0]
 #define     VIVID_SKY_BLUE_COLOR                [UIColor colorWithRed:0.0/255 green:204.0/255 blue:255.0/255 alpha:1.0]
 #define     PICTON_BLUE_COLOR                   [UIColor colorWithRed:69.0/255 green:177.0/255 blue:232.0/255 alpha:1.0]
 #define     COLUMBIA_BLUE_COLOR                 [UIColor colorWithRed:155.0/255 green:221.0/255 blue:255.0/255 alpha:1.0]
 #define     STAR_COMMAND_BLUE                   [UIColor colorWithRed:0.0/255 green:123.0/255 blue:184.0/255 alpha:1.0]
-#define     TUFTS_BLUE_COLOR                    [UIColor colorWithRed:65.0/255 green:125.0/255 blue:193.0/255 alpha:1.0]
 #define     CYAN_COLOR                          [UIColor colorWithRed:0.0/255 green:183.0/255 blue:235.0/255 alpha:1.0]
 #define     DARK_CYAN_COLOR                     [UIColor colorWithRed:33.0/255 green:107.0/255 blue:150.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     DARK_SPRING_GREEN_COLOR             [UIColor colorWithRed:23.0/255 green:114.0/255 blue:69.0/255 alpha:1.0]
 #define     PERSIAN_GREEN_COLOR                 [UIColor colorWithRed:0.0/255 green:166.0/255 blue:147.0/255 alpha:1.0]
 #define     BACKGROUND_GREEN_COLOR              [UIColor colorWithRed:200.0/255 green:240.0/255 blue:200.0/255 alpha:1.0]
 #define     TEXT_GREEN_COLOR                    [UIColor colorWithRed:100.0/255 green:156.0/255 blue:100.0/255 alpha:1.0]
@@ -53,7 +39,6 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     JASMINE_YELLOW_COLOR                [UIColor colorWithRed:248.0/255 green:222.0/255 blue:126.0/255 alpha:1.0]
-#define     GOLDEN_YELLOW_COLOR                 [UIColor colorWithRed:255.0/255 green:223.0/255 blue:0.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     GRAY_COLOR_WITH_WHITE_COLOR_1       [UIColor colorWithRed:250.0/255 green:250.0/255 blue:250.0/255 alpha:1.0]
@@ -66,7 +51,6 @@
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     FLAT_BLUE_COLOR                     [UIColor colorWithRed:7/255.0f green:188/255.0f blue:248/255.0f alpha:1.0f]
-#define     FLAT_GREEN_COLOR                    [UIColor colorWithRed:178/255.0f green:243/255.0f blue:88/255.0f alpha:1.0f]
 #define     FLAT_GRAY_COLOR                     [UIColor colorWithRed:108/255.0f green:108/255.0f blue:108/255.0f alpha:1.0f]
 #define     FLAT_GRAY_COLOR_LIGHTER             [UIColor colorWithRed:140/255.0f green:140/255.0f blue:140/255.0f alpha:1.0f]
 #define     FLAT_BLUR_RED_COLOR                 [UIColor colorWithRed:236/255.0f green:66/255.0f blue:50/255.0f alpha:1.0f]
