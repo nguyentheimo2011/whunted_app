@@ -126,9 +126,7 @@
     [_inboxTableView setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
-    [self.view addSubview:_inboxTableView];
-    
-    [_inboxTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
+    [self.view addSubview:_inboxTableView];    
 }
 
 #pragma mark - Backend methods
@@ -195,19 +193,19 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *cellIdentifier = @"MessageViewCell";
-    MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.cellIndex = indexPath.row;
+    MessageViewCell *cell = (MessageViewCell *) [_inboxTableView dequeueReusableCellWithIdentifier:@"MessageViewCell"];
     
-    if (!cell.cellCreated)
-    {
-        [cell customizeUI];
-    }
-    else
+    if (cell)
     {
         [cell clearUI];
     }
+    else
+    {
+        cell = [[MessageViewCell alloc] init];
+        [cell initCell];
+    }
     
+    cell.cellIndex = indexPath.row;
     [cell bindData:_categorizedMessages[indexPath.row]];
     
     return cell;

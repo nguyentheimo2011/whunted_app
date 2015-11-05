@@ -19,7 +19,7 @@
 
 @property (nonatomic)       BOOL         cellCreated;
 
-- (void)    customizeUI;
+- (void)    initCell;
 - (void)    bindData:(NSDictionary *)message;
 - (void)    clearUI;
 

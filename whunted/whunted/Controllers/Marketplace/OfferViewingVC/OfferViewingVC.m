@@ -175,7 +175,7 @@
 {
     NSString *cellIdentifier = @"MessageViewCell";
     MessageViewCell *cell = (MessageViewCell *) [_offersTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell customizeUI];
+    [cell initCell];
     [cell bindData:_recentTransactionalMessages[indexPath.row]];
     
     return cell;
