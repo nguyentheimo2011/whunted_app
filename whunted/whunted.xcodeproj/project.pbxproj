@@ -149,7 +149,6 @@
 		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
 		E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */; };
 		E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BF21B313EF200904DE9 /* MessageViewCell.m */; };
-		E9A07BF51B313EF200904DE9 /* MessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */; };
 		E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BFB1B315F0400904DE9 /* ChatView.m */; };
 		E9A07C031B315F5300904DE9 /* Incoming.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C001B315F5300904DE9 /* Incoming.m */; };
 		E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C021B315F5300904DE9 /* Outgoing.m */; };
@@ -504,7 +503,6 @@
 		E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboxAllViewController.m; path = Controllers/InboxController/InboxAllController/InboxAllViewController.m; sourceTree = "<group>"; };
 		E9A07BF11B313EF200904DE9 /* MessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageViewCell.h; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.h; sourceTree = "<group>"; };
 		E9A07BF21B313EF200904DE9 /* MessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewCell.m; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.m; sourceTree = "<group>"; };
-		E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewCell.xib; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.xib; sourceTree = "<group>"; };
 		E9A07BFA1B315F0400904DE9 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView.h; sourceTree = "<group>"; };
 		E9A07BFB1B315F0400904DE9 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView.m; sourceTree = "<group>"; };
 		E9A07BFF1B315F5300904DE9 /* Incoming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Incoming.h; path = Controllers/InboxController/Chat/Messages/Incoming.h; sourceTree = "<group>"; };
@@ -1454,7 +1452,6 @@
 			children = (
 				E9A07BF11B313EF200904DE9 /* MessageViewCell.h */,
 				E9A07BF21B313EF200904DE9 /* MessageViewCell.m */,
-				E9A07BF31B313EF200904DE9 /* MessageViewCell.xib */,
 			);
 			name = InboxTableViewCell;
 			sourceTree = "<group>";
@@ -2026,7 +2023,6 @@
 				E91A5A6E1B04C1E6008382E2 /* next@1x.png in Resources */,
 				E97A95441B528973003796DD /* sad_face@3x.png in Resources */,
 				E91A5A691B049A2D008382E2 /* square_dashed@2x.png in Resources */,
-				E9A07BF51B313EF200904DE9 /* MessageViewCell.xib in Resources */,
 				E97CE48C1B07745A0027C5FA /* squareplus@1x.png in Resources */,
 				E918062C1B7C85C7009C1F2D /* location_icon@1x.png in Resources */,
 				E9FC1D701B8CD404001226C5 /* down_arrow_icon@2x.png in Resources */,
