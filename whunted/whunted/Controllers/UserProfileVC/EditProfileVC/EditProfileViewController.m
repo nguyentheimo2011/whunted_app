@@ -677,7 +677,7 @@
                            withOptions:@{MMbackgroundColor: [UIColor whiteColor],
                                          MMtextColor: [UIColor blackColor],
                                          MMtoolbarColor: [UIColor whiteColor],
-                                         MMbuttonColor: LIGHT_BLUE_COLOR,
+                                         MMbuttonColor: MAIN_BLUE_COLOR_WITH_WHITE_2,
                                          MMfont: [UIFont systemFontOfSize:18],
                                          MMvalueY: @5,
                                          MMselectedObject:selectedGender}

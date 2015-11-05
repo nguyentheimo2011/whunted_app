@@ -76,7 +76,7 @@
     _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     
     _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:12];
-    _timestampLabel.textColor = DARKEST_BLUE_COLOR;
+    _timestampLabel.textColor = MAIN_BLUE_COLOR_WITH_DARK_2;
     
     _transactionStatusLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
     _transactionStatusLabel.backgroundColor = MAIN_BLUE_COLOR;

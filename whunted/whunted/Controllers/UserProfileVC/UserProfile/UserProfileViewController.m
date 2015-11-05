@@ -444,8 +444,8 @@
     [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    preferencesButton.bgColor = DARK_BLUE_COLOR;
-    preferencesButton.borderColor = DARK_BLUE_COLOR;
+    preferencesButton.bgColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
+    preferencesButton.borderColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
     preferencesButton.titleColor = [UIColor whiteColor];
     
     preferencesButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -670,9 +670,9 @@
     
     /// TODO: colors are likely to change
     _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_LESS_DARK};
-    _segmentedControl.backgroundColor = DARK_BLUE_COLOR;
+    _segmentedControl.backgroundColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
     _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    _segmentedControl.selectionIndicatorColor = DARKER_BLUE_COLOR;
+    _segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR_WITH_DARK_1;
     _segmentedControl.layer.cornerRadius = 5.0f;
     _segmentedControl.clipsToBounds = YES;
     _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
