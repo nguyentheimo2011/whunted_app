@@ -316,7 +316,7 @@
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query whereKey:PF_ITEM_ID equalTo:itemID];
+    [query whereKey:PF_OBJECT_ID equalTo:itemID];
     
     WhuntsHandler succHandler = ^(NSArray *whunts)
     {
