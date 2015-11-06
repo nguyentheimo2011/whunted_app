@@ -83,7 +83,7 @@
     CGFloat const kButtonOriginY = 7.0f;
     CGFloat const kButtonRightMargin = 92.0f;
     CGFloat const kButtonWidth = WINSIZE.width - kButtonOriginX - kButtonRightMargin;
-    CGFloat const kButtonHeight = 15.0f;
+    CGFloat const kButtonHeight = 18.0f;
     
     _usernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
     [_usernameButton createTitle:NSLocalizedString(@"username", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
@@ -226,11 +226,15 @@
     {
         _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
         _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
+        self.backgroundColor = [UIColor whiteColor];
+        _usernameButton.bgColor = [UIColor whiteColor];
     }
     else
     {
         _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
         _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
+        self.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+        _usernameButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     }
     
     [self updateTransactionStatus:_message[FB_TRANSACTION_STATUS]];
