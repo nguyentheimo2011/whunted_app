@@ -58,6 +58,7 @@
 @synthesize wantData                =   _wantData;
 @synthesize itemImagesNum           =   _itemImagesNum;
 @synthesize currOffer               =   _currOffer;
+@synthesize bottomButtonsNotNeeded  =   _bottomButtonsNotNeeded;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -254,18 +255,21 @@
 - (void) addFunctionalButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_itemPostedByMe)
+    if (!_bottomButtonsNotNeeded)
     {
-        [self addViewOfferButton];
-    }
-    else if (_wantData.isFulfilled)
-    {
-        [self addChatButton:YES];
-    }
-    else
-    {
-        [self addChatButton:NO];
-        [self addOfferButton];
+        if (_itemPostedByMe)
+        {
+            [self addViewOfferButton];
+        }
+        else if (_wantData.isFulfilled)
+        {
+            [self addChatButton:YES];
+        }
+        else
+        {
+            [self addChatButton:NO];
+            [self addOfferButton];
+        }
     }
 }
 

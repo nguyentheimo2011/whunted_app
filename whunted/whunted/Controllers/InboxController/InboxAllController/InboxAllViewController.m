@@ -325,6 +325,7 @@
             ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
             itemDetailsVC.wantData = whunts[0];
             itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
+            itemDetailsVC.bottomButtonsNotNeeded = YES;
             
             TransactionHandler tranHandler = ^(TransactionData *offer)
             {

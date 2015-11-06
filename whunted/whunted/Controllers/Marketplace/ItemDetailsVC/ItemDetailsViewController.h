@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) WantData              *wantData;
 @property (nonatomic)         NSInteger             itemImagesNum;
+@property (nonatomic)         BOOL                  bottomButtonsNotNeeded;
 
 @property (nonatomic)         TransactionData       *currOffer;
 
