@@ -193,11 +193,6 @@
     
     NSString *title = [NSString stringWithFormat:@"@%@", _profileOwner[PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
-    
-    if (_isViewingMyProfile)
-    {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
-    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -428,7 +423,7 @@
     
     settingsButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     settingsButton.cornerRadius = 6.0;
-    [settingsButton addTarget:self action:@selector(preferencesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [settingsButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:settingsButton];
 }
 
