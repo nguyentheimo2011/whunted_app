@@ -113,6 +113,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 "follower"                          =   "follower";
 "following"                         =   "following";
+"+ Follow"                          =   "+ Follow";
+"Settings"                          =   "Settings";
 "Info"                              =   "Info";
 "Date joined"                       =   "Date joined";
 "Verified"                          =   "Verified";
