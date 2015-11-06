@@ -73,7 +73,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kButtonOriginX    =   WINSIZE.width * 0.1 - 10.0f;
-    CGFloat const kButtonOriginY    =   WINSIZE.height - 140.0f;
+    CGFloat const kButtonOriginY    =   WINSIZE.height - 160.0f;
     CGFloat const kButtonHeight     =   50.0f;
     CGFloat const kButtonWidth      =   WINSIZE.width * 0.8 + 20.0f;
     
@@ -92,7 +92,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kButtonOriginX    =   WINSIZE.width * 0.1 - 10.0f;
-    CGFloat const kButtonOriginY    =   _FBLoginButton.frame.origin.y + 58.0f;
+    CGFloat const kButtonOriginY    =   _FBLoginButton.frame.origin.y + 60.0f;
     CGFloat const kButtonHeight     =   50.0f;
     CGFloat const kButtonWidth      =   WINSIZE.width * 0.8 + 20.0f;
     
@@ -112,26 +112,26 @@
 {
     UILabel *disclaimerLabel = [[UILabel alloc] init];
     disclaimerLabel.text = NSLocalizedString(@"By signing up, you agree to our ", nil);
-    disclaimerLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
+    disclaimerLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
     disclaimerLabel.textColor = [UIColor whiteColor];
     [disclaimerLabel sizeToFit];
     
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
-    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
+    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:13] iconOffsetY:0];
+    termOfServiceButton.titleColor = LIGHTEST_RED_COLOR;
     termOfServiceButton.borderWidth = 0;
     [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
     CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
-    CGFloat kLabelOriginY   =   _emailLoginButton.frame.origin.y + _emailLoginButton.frame.size.height + 5.0f;
+    CGFloat kLabelOriginY   =   _emailLoginButton.frame.origin.y + _emailLoginButton.frame.size.height + 10.0f;
     
     disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
     [self.view addSubview:disclaimerLabel];
     
     CGFloat kButtonOriginX  =   kLabelOriginX + disclaimerLabel.frame.size.width;
-    CGFloat kButtonOriginY  =   kLabelOriginY - 5.0f;
+    CGFloat kButtonOriginY  =   kLabelOriginY - 5.5f;
     
     termOfServiceButton.frame = CGRectMake(kButtonOriginX, kButtonOriginY, termOfServiceButton.frame.size.width, termOfServiceButton.frame.size.height);
     [self.view addSubview:termOfServiceButton];
