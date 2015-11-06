@@ -55,8 +55,6 @@
     [self addOffersTableView];
     
     [self loadRecents];
-    
-    [_offersTableView registerNib:[UINib nibWithNibName:@"MessageViewCell" bundle:nil] forCellReuseIdentifier:@"MessageViewCell"];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -173,9 +171,19 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *cellIdentifier = @"MessageViewCell";
-    MessageViewCell *cell = (MessageViewCell *) [_offersTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    [cell initCell];
+    MessageViewCell *cell = (MessageViewCell *) [_offersTableView dequeueReusableCellWithIdentifier:@"MessageViewCell"];
+    
+    if (cell)
+    {
+        [cell clearUI];
+    }
+    else
+    {
+        cell = [[MessageViewCell alloc] init];
+        [cell initCell];
+    }
+    
+    cell.cellIndex = indexPath.row;
     [cell bindData:_recentTransactionalMessages[indexPath.row]];
     
     return cell;

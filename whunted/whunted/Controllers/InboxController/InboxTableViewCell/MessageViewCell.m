@@ -179,6 +179,7 @@
     [_itemImageButton setBackgroundImage:[UIImage imageNamed:@"placeholder.png"] forState:UIControlStateNormal];
     _itemImageButton.layer.cornerRadius = 3.0f;
     _itemImageButton.clipsToBounds = YES;
+    [_itemImageButton addTarget:self action:@selector(itemImageButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_itemImageButton];
 }
 
@@ -397,6 +398,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:_message[FB_OPPOSING_USER_ID]];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) itemImageButtonTapEventHandler
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ITEM_IMAGE_BUTTON_TAP_EVENT object:_message[FB_ITEM_ID]];
 }
 
 

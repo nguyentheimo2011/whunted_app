@@ -8,6 +8,8 @@
 
 #import "InboxAllViewController.h"
 #import "UserProfileViewController.h"
+#import "ItemDetailsViewController.h"
+#import "MarketplaceBackend.h"
 #import "MessageViewCell.h"
 #import "AppConstant.h"
 #import "Utilities.h"
@@ -72,6 +74,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openItemDetailsViewController:) name:NOTIFICATION_ITEM_IMAGE_BUTTON_TAP_EVENT object:nil];
 }
 
 
@@ -302,6 +305,51 @@
                 [_categorizedMessages addObject:recent];
         }
     }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) openItemDetailsViewController: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *itemID = notification.object;
+    
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
+    PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_ID equalTo:itemID];
+    
+    WhuntsHandler succHandler = ^(NSArray *whunts)
+    {
+        if (whunts.count == 1)
+        {
+            ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
+            itemDetailsVC.wantData = whunts[0];
+            itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
+            
+            TransactionHandler tranHandler = ^(TransactionData *offer)
+            {
+                if (offer)
+                {
+                    itemDetailsVC.currOffer = offer;
+                }
+                
+                [self.navigationController pushViewController:itemDetailsVC animated:YES];
+                [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+            };
+            
+            [MarketplaceBackend retrieveOfferByUser:[PFUser currentUser].objectId forItem:itemDetailsVC.wantData.itemID completionHandler:tranHandler];
+        }
+    };
+    
+    FailureHandler failHandler = ^(NSError *error)
+    {
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        [Utilities displayErrorAlertView];
+    };
+    
+    [MarketplaceBackend retrieveWhuntsWithQuery:query successHandler:succHandler failureHandler:failHandler];
+    
+    
 }
 
 /*

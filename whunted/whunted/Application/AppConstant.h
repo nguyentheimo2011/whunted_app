@@ -236,6 +236,7 @@
 #define     NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT     @"NotificationUsernameButtonUserProfileTapEvent"
 #define     NOTIFICATION_USERNAME_BUTTON_CHAT_TAP_EVENT             @"NotificationUsernameButtonChatTapEvent"
 #define     NOTIFICATION_USER_PROFILE_UPDATED_EVENT     @"NotificationUserProfileUpdatedEvent"
+#define     NOTIFICATION_ITEM_IMAGE_BUTTON_TAP_EVENT    @"NotificationItemImageButtonTapEvent"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     PAYMENT_METHOD_ESCROW               @"escrow"
