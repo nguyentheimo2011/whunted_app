@@ -21,8 +21,8 @@
 
 @implementation LoginSignupViewController
 {
-    UIButton                *_FBLoginButton;
-    UIButton                *_emailLoginButton;
+    JTImageButton           *_FBLoginButton;
+    JTImageButton           *_emailLoginButton;
     
     UINavigationController  *_termOfServiceNavController;
 }
@@ -72,15 +72,17 @@
 - (void) addFacebookLoginOrSignupButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat const kButtonOriginX    =   WINSIZE.width * 0.1 - 10.0f;
     CGFloat const kButtonOriginY    =   WINSIZE.height - 140.0f;
+    CGFloat const kButtonHeight     =   50.0f;
+    CGFloat const kButtonWidth      =   WINSIZE.width * 0.8 + 20.0f;
     
-    _FBLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, kButtonOriginY, WINSIZE.width * 0.8, 50.0f)];
-    [_FBLoginButton setBackgroundColor:[UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0]];
-    [_FBLoginButton setTitle:NSLocalizedString(@"Sign up or Log in with Facebook", nil) forState:UIControlStateNormal];
-    [_FBLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_FBLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_FBLoginButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    _FBLoginButton.layer.cornerRadius = 5;
+    _FBLoginButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_FBLoginButton createTitle:NSLocalizedString(@"Sign up or Log in with Facebook", nil) withIcon:[UIImage imageNamed:@"facebook_icon.png"] font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:-15.0f];
+    _FBLoginButton.titleColor = [UIColor whiteColor];
+    _FBLoginButton.bgColor = [UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0];
+    _FBLoginButton.borderWidth = 0;
+    _FBLoginButton.cornerRadius = 5;
     [_FBLoginButton addTarget:self action:@selector(facebookLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_FBLoginButton];
 }
@@ -89,13 +91,17 @@
 - (void) addEmailLoginOrSignupButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _emailLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, _FBLoginButton.frame.origin.y + 58.0f, WINSIZE.width * 0.8, 50.0f)];
-    [_emailLoginButton setBackgroundColor:[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0]];
-    [_emailLoginButton setTitle:NSLocalizedString(@"Sign up or Log in with Email", nil) forState:UIControlStateNormal];
-    [_emailLoginButton.titleLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_emailLoginButton setTitleColor:[UIColor colorWithRed:100.0/255 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateNormal];
-    [_emailLoginButton setTitleColor:[UIColor colorWithRed:1.0 green:100.0/255 blue:100.0/255 alpha:1.0] forState:UIControlStateHighlighted];
-    _emailLoginButton.layer.cornerRadius = 5;
+    CGFloat const kButtonOriginX    =   WINSIZE.width * 0.1 - 10.0f;
+    CGFloat const kButtonOriginY    =   _FBLoginButton.frame.origin.y + 58.0f;
+    CGFloat const kButtonHeight     =   50.0f;
+    CGFloat const kButtonWidth      =   WINSIZE.width * 0.8 + 20.0f;
+    
+    _emailLoginButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_emailLoginButton createTitle:NSLocalizedString(@"Sign up or Log in with Email", nil) withIcon:[UIImage imageNamed:@"mail_icon.png"] font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:-15.0f];
+    _emailLoginButton.titleColor = TEXT_COLOR_DARK_GRAY;
+    _emailLoginButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    _emailLoginButton.borderWidth = 0;
+    _emailLoginButton.cornerRadius = 5;
     [_emailLoginButton addTarget:self action:@selector(emailLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_emailLoginButton];
 }
