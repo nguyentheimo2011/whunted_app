@@ -205,7 +205,7 @@
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    titleLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor whiteColor];

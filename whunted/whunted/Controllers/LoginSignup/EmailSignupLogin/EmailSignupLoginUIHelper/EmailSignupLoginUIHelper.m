@@ -26,7 +26,7 @@
     NSArray *categories = @[NSLocalizedString(@"Sign up", nil), NSLocalizedString(@"Log in", nil)];
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:categories];
     segmentedControl.frame = CGRectMake(kControlOriginX, kControlOriginY, kControlWidth, kControlHeight);
-    [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]} forState:UIControlStateNormal];
+    [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]} forState:UIControlStateNormal];
     segmentedControl.selectedSegmentIndex = 0;
     [segmentedControl addTarget:viewController action:@selector(segmentedControlValueChanged) forControlEvents:UIControlEventValueChanged];
     [viewController.view addSubview:segmentedControl];
@@ -41,7 +41,7 @@
     UILabel *signupDisclaimerLabel1 = [[UILabel alloc] init];
     signupDisclaimerLabel1.text = NSLocalizedString(@"By proceeding, you agree to Whunted's", nil);
     signupDisclaimerLabel1.textColor = TEXT_COLOR_GRAY;
-    signupDisclaimerLabel1.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
+    signupDisclaimerLabel1.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
     [signupDisclaimerLabel1 sizeToFit];
     
     CGFloat const kLabelOriginX = (WINSIZE.width - signupDisclaimerLabel1.frame.size.width) / 2;
@@ -57,21 +57,21 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
-    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    termOfServiceButton.titleColor = LIGHTER_RED_COLOR;
+    [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:BOLD_FONT_NAME size:13] iconOffsetY:0];
+    termOfServiceButton.titleColor = RED_COLOR_WITH_DARK_1;
     termOfServiceButton.borderWidth = 0;
     [termOfServiceButton addTarget:viewController action:@selector(termsOfServiceButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     UILabel *disclaimerLabel = [[UILabel alloc] init];
     disclaimerLabel.text = [NSString stringWithFormat:@" %@ ", NSLocalizedString(@"and", nil)];
-    disclaimerLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:13];
+    disclaimerLabel.font = [UIFont fontWithName:BOLD_FONT_NAME size:13];
     disclaimerLabel.textColor = TEXT_COLOR_GRAY;
     [disclaimerLabel sizeToFit];
     
     JTImageButton *privacyPoliciesButton = [[JTImageButton alloc] init];
-    [privacyPoliciesButton createTitle:NSLocalizedString(@"Privacy Policy", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:13] iconOffsetY:0];
-    privacyPoliciesButton.titleColor = LIGHTER_RED_COLOR;
+    [privacyPoliciesButton createTitle:NSLocalizedString(@"Privacy Policy", nil) withIcon:nil font:[UIFont fontWithName:BOLD_FONT_NAME size:13] iconOffsetY:0];
+    privacyPoliciesButton.titleColor = RED_COLOR_WITH_DARK_1;
     privacyPoliciesButton.borderWidth = 0;
     [privacyPoliciesButton addTarget:viewController action:@selector(privacyPoliciesButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [privacyPoliciesButton sizeToFit];
@@ -98,8 +98,8 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     JTImageButton *forgotPasswordButton = [[JTImageButton alloc] init];
-    [forgotPasswordButton createTitle:NSLocalizedString(@"Forgot Password?", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
-    forgotPasswordButton.titleColor = LIGHTER_RED_COLOR;
+    [forgotPasswordButton createTitle:NSLocalizedString(@"Forgot Password?", nil) withIcon:nil font:[UIFont fontWithName:BOLD_FONT_NAME size:13] iconOffsetY:0];
+    forgotPasswordButton.titleColor = RED_COLOR_WITH_DARK_1;
     forgotPasswordButton.borderWidth = 0;
     [forgotPasswordButton addTarget:viewController action:@selector(forgotPasswordButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [forgotPasswordButton sizeToFit];
@@ -117,11 +117,11 @@
     UITableViewCell *usernameSignUpCell = [[UITableViewCell alloc] init];
     usernameSignUpCell.textLabel.text = NSLocalizedString(@"Username", nil);
     usernameSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    usernameSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    usernameSignUpCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a username", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a username", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     textField.delegate = viewController;
     textField.tag = kUsernameSignupTextFieldTag;
     textField.keyboardType = UIKeyboardTypeDefault;
@@ -141,11 +141,11 @@
     UITableViewCell *emailSignUpCell = [[UITableViewCell alloc] init];
     emailSignUpCell.textLabel.text = NSLocalizedString(@"Email", nil);
     emailSignUpCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    emailSignUpCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    emailSignUpCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     textField.delegate = viewController;
     textField.tag = kEmailSignupTextFieldTag;
     textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -165,11 +165,11 @@
     UITableViewCell *passwordSignupCell = [[UITableViewCell alloc] init];
     passwordSignupCell.textLabel.text = NSLocalizedString(@"Password", nil);
     passwordSignupCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    passwordSignupCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    passwordSignupCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Choose a password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     textField.delegate = viewController;
     textField.tag = kPasswordSignupTextFieldTag;
     textField.keyboardType = UIKeyboardTypeDefault;
@@ -189,11 +189,11 @@
     UITableViewCell *emailLoginCell = [[UITableViewCell alloc] init];
     emailLoginCell.textLabel.text = NSLocalizedString(@"Email", nil);
     emailLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    emailLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    emailLoginCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Your email", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     textField.delegate = viewController;
     textField.tag = kEmailLoginTextFieldTag;
     textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -213,11 +213,11 @@
     UITableViewCell *passwordLoginCell = [[UITableViewCell alloc] init];
     passwordLoginCell.textLabel.text = NSLocalizedString(@"Password", nil);
     passwordLoginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    passwordLoginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    passwordLoginCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width - 120.0f, 30)];
     [textField setTextAlignment:NSTextAlignmentLeft];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Password", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     textField.delegate = viewController;
     textField.tag = kPasswordSignupTextFieldTag;
     textField.keyboardType = UIKeyboardTypeDefault;

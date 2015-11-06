@@ -92,6 +92,7 @@
     tableViewSignup.delegate = self;
     tableViewSignup.dataSource = self;
     tableViewSignup.tag = kTableViewSignupTag;
+    tableViewSignup.scrollEnabled = NO;
     [_containerSignup addSubview:tableViewSignup];
     [self.view addSubview:_containerSignup];
     
@@ -112,6 +113,7 @@
     tableViewLogin.delegate = self;
     tableViewLogin.dataSource = self;
     tableViewLogin.tag = kTableViewLoginTag;
+    tableViewLogin.scrollEnabled = NO;
     [_containerLogin addSubview:tableViewLogin];
     _containerLogin.hidden = YES;
     [self.view addSubview:_containerLogin];
