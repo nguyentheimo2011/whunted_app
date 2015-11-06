@@ -89,7 +89,7 @@
     _successMessageLabel.text = NSLocalizedString(@"Instructions on how to reset password has been sent to your email address.", nil);
     _successMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];;
     _successMessageLabel.textColor = TEXT_GREEN_COLOR;
-    _successMessageLabel.numberOfLines = 2;
+    _successMessageLabel.numberOfLines = 3;
     _successMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [_successMessageLabel sizeToFit];
     
