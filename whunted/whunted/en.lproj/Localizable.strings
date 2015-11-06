@@ -12,6 +12,7 @@
 "Done"                      =           "Done";
 "Back"                      =           "Back";
 "OK"                        =           "OK";
+"Close"                     =           "Close";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -230,6 +231,7 @@
 "Choose a username"                     =   "Choose a username";
 "Your email"                            =   "Your email";
 "Choose a password"                     =   "Choose a password";
+"Forgot Password?"                      =   "Forgot Password?";
 "Username cannot be blank"              =   "Username cannot be blank";
 "Email cannot be blank"                 =   "Email cannot be blank";
 "Invalid email"                         =   "Invalid email";
@@ -241,6 +243,10 @@
 "Sign up or Log in with Email"          =   " Sign up or Log in with Email";
 "Log Out Of Whunted"                    =   "Log Out Of Whunted";
 "Are you sure that you want to log out of Whunted?"         =   "Are you sure that you want to log out of Whunted?";
+"Please enter the email address of your account."           =   "Please enter the email address of your account.";
+"Enter your email address"              =   "Enter your email address";
+"Send me a password reset link."        =   "Send me a password reset link.";
+"Password Reset"                        =   "Password Reset";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------

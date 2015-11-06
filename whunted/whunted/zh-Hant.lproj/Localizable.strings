@@ -12,6 +12,7 @@
 "Done"                      =           "完成";
 "Back"                      =           "返回";
 "OK"                        =           "確定";
+"Close"                     =           "關閉";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -230,6 +231,7 @@
 "Choose a username"                     =   "選擇使用者名稱";
 "Your email"                            =   "電郵地址";
 "Choose a password"                     =   "選擇密碼";
+"Forgot Password?"                      =   "忘記密碼?";
 "Username cannot be blank"              =   "使用者名稱不可留空";
 "Email cannot be blank"                 =   "Email 不可留空";
 "Invalid email"                         =   "請輸入有效的email";
@@ -239,6 +241,12 @@
 "and"                                   =   "和";
 "Sign up or Log in with Facebook"       =   "用臉書帳號註冊或登入";
 "Sign up or Log in with Email"          =   " 用email帳號註冊或登入";
+"Log Out Of Whunted"                    =   "登出Whunted";
+"Are you sure that you want to log out of Whunted?"         =   "你確定要登出?";
+"Please enter the email address of your account."           =   "請在此輸入您註冊帳號的電子郵件信箱.";
+"Enter your email address"              =   "輸入email";
+"Send me a password reset link."        =   "將重設密碼的連結寄送給我.";
+"Password Reset"                        =   "重設密碼";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------
