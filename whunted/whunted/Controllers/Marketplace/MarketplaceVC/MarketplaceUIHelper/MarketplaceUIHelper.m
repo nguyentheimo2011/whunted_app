@@ -25,8 +25,8 @@
     searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
     searchBar.returnKeyType = UIReturnKeySearch;
     searchBar.delegate = viewController;
-    searchBar.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
-    searchBar.barTintColor = [UIColor colorWithRed:77.0/255 green:124.0/255 blue:194.0/255 alpha:0.5f];
+    searchBar.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
+    [searchBar setImage:[UIImage imageNamed:@"magnifying_glass_icon.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     viewController.navigationItem.titleView = searchBar;
     
     UITextField *txfSearchField = [searchBar valueForKey:@"_searchField"];
@@ -35,7 +35,7 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_5}];
+        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_4}];
     }
     
     return searchBar;
