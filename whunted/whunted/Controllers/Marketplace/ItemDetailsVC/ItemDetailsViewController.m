@@ -345,9 +345,10 @@
     CGFloat const kLabelLeftMargin      =   15.0f;
     CGFloat const kLabelXPos            =   kPriceImageLeftMargin + kPriceImageWidth + kLabelLeftMargin;
     CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+    NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Willing to pay", nil), _wantData.demandedPrice];
     
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPriceImageYPos, kLabelWidth, kPriceImageWidth)];
-    [_demandedPriceLabel setText:_wantData.demandedPrice];
+    [_demandedPriceLabel setText:text];
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
     [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_demandedPriceLabel];
@@ -566,7 +567,7 @@
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
     }
     
-    [_chatButton createTitle:NSLocalizedString(@"Chat", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
+    [_chatButton createTitle:NSLocalizedString(@"Chat with buyer", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:16] iconHeight:0 iconOffsetY:0];
     _chatButton.cornerRadius = 0;
     _chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
