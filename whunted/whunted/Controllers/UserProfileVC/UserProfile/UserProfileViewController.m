@@ -558,7 +558,7 @@
     CGFloat const kLabelHeight = 20;
     UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
     joiningDateLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld/%ld", NSLocalizedString(@"Date joined", nil), (long)components.day, (long)components.month, (long)components.year];
-    joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
+    joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:joiningDateLabel];
     
@@ -580,7 +580,7 @@
     
     UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
     verifiedLabel.text = NSLocalizedString(@"Verified", nil);
-    verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
+    verifiedLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
     
@@ -632,7 +632,7 @@
     _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
     _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
     _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:17];
+    _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _userDescriptionLabel.numberOfLines = kMaxNumOfLines;
     [_userDescriptionLabel sizeToFit];

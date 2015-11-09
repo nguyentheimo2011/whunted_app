@@ -104,7 +104,7 @@
     _categorySegmentedControl = [[UISegmentedControl alloc] initWithItems:categories];
     _categorySegmentedControl.frame = CGRectMake(kControlLeftMargin, kControlTopMargin, kControlWidth, kControlHeight);
     _categorySegmentedControl.tintColor = MAIN_BLUE_COLOR;
-    [_categorySegmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE]} forState:UIControlStateNormal];
+    [_categorySegmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE]} forState:UIControlStateNormal];
     _categorySegmentedControl.selectedSegmentIndex = 0;
     [_categorySegmentedControl addTarget:self action:@selector(categorySegmentedControlSelectedIndexChange) forControlEvents:UIControlEventValueChanged];
     [segmentContainer addSubview:_categorySegmentedControl];
