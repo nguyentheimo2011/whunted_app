@@ -350,7 +350,7 @@
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPriceImageYPos, kLabelWidth, kPriceImageWidth)];
     [_demandedPriceLabel setText:text];
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
+    [_demandedPriceLabel setTextColor:[UIColor colorWithRed:10.0/255 green:176.0/255 blue:171.0/255 alpha:1.0]];
     [_scrollView addSubview:_demandedPriceLabel];
     
     _currOccupiedYPos = _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height;
@@ -377,8 +377,10 @@
         CGFloat const kLabelXPos            =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
         CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
         
+        NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Buyer is located at", nil), _wantData.meetingLocation];
+        
         _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLocationImageYPos, kLabelWidth, kLocationImageHeight)];
-        [_locationLabel setText:_wantData.meetingLocation];
+        [_locationLabel setText:text];
         [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
         [_locationLabel setTextColor:TEXT_COLOR_GRAY];
         [_scrollView addSubview:_locationLabel];
@@ -495,9 +497,10 @@
         CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
         
         NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
-        CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
+        NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Product comes from", nil), productOriginText];
+        CGSize expectedSize = [text sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
         _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
-        _productOriginLabel.text = productOriginText;
+        _productOriginLabel.text = text;
         _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
         [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
         [_scrollView addSubview:_productOriginLabel];
