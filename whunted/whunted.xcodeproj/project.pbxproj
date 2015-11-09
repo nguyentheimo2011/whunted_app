@@ -176,6 +176,9 @@
 		E9B659AF1BF0564D002CF40B /* magnifying_glass_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659AD1BF0564D002CF40B /* magnifying_glass_icon@1x.png */; };
 		E9B659B01BF0564D002CF40B /* magnifying_glass_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659AE1BF0564D002CF40B /* magnifying_glass_icon@2x.png */; };
 		E9B659B21BF0586F002CF40B /* magnifying_glass_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B11BF0586F002CF40B /* magnifying_glass_icon@3x.png */; };
+		E9B659B81BF05C7E002CF40B /* cross_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B51BF05C7E002CF40B /* cross_icon@1x.png */; };
+		E9B659B91BF05C7E002CF40B /* cross_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B61BF05C7E002CF40B /* cross_icon@2x.png */; };
+		E9B659BA1BF05C7E002CF40B /* cross_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B71BF05C7E002CF40B /* cross_icon@3x.png */; };
 		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
 		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
@@ -551,6 +554,9 @@
 		E9B659AD1BF0564D002CF40B /* magnifying_glass_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass_icon@1x.png"; path = "Resources/Navigation Icons/magnifying_glass_icon@1x.png"; sourceTree = "<group>"; };
 		E9B659AE1BF0564D002CF40B /* magnifying_glass_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass_icon@2x.png"; path = "Resources/Navigation Icons/magnifying_glass_icon@2x.png"; sourceTree = "<group>"; };
 		E9B659B11BF0586F002CF40B /* magnifying_glass_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass_icon@3x.png"; path = "Resources/Navigation Icons/magnifying_glass_icon@3x.png"; sourceTree = "<group>"; };
+		E9B659B51BF05C7E002CF40B /* cross_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@1x.png"; path = "Resources/Navigation Icons/cross_icon@1x.png"; sourceTree = "<group>"; };
+		E9B659B61BF05C7E002CF40B /* cross_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@2x.png"; path = "Resources/Navigation Icons/cross_icon@2x.png"; sourceTree = "<group>"; };
+		E9B659B71BF05C7E002CF40B /* cross_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@3x.png"; path = "Resources/Navigation Icons/cross_icon@3x.png"; sourceTree = "<group>"; };
 		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
 		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -1117,6 +1123,9 @@
 		E94D17DB1AF8C0C400E31B01 /* Navigation Icons */ = {
 			isa = PBXGroup;
 			children = (
+				E9B659B51BF05C7E002CF40B /* cross_icon@1x.png */,
+				E9B659B61BF05C7E002CF40B /* cross_icon@2x.png */,
+				E9B659B71BF05C7E002CF40B /* cross_icon@3x.png */,
 				E9B659AD1BF0564D002CF40B /* magnifying_glass_icon@1x.png */,
 				E9B659AE1BF0564D002CF40B /* magnifying_glass_icon@2x.png */,
 				E9B659B11BF0586F002CF40B /* magnifying_glass_icon@3x.png */,
@@ -2028,6 +2037,7 @@
 				E9FC1D941B8EBA2E001226C5 /* recent_icon@1x.png in Resources */,
 				E9FC1D641B8C5D09001226C5 /* product_origin_small_icon@2x.png in Resources */,
 				E91A5A641B048590008382E2 /* cameraplus@3x.png in Resources */,
+				E9B659B91BF05C7E002CF40B /* cross_icon@2x.png in Resources */,
 				E9D433061B550EC200530492 /* setting_icon@2x.png in Resources */,
 				E9FC1D951B8EBA2E001226C5 /* recent_icon@2x.png in Resources */,
 				E92A0BF11B706F0E000D66BD /* meh_face_small@1x.png in Resources */,
@@ -2120,6 +2130,7 @@
 				E91806181B7B1613009C1F2D /* heart_white@2x.png in Resources */,
 				E9FC1D8A1B8EBA2E001226C5 /* highest_price_icon@3x.png in Resources */,
 				E9E31F871B859305008D6A3D /* user_profile_image_placeholder_small@3x.png in Resources */,
+				E9B659BA1BF05C7E002CF40B /* cross_icon@3x.png in Resources */,
 				E91806141B7B1613009C1F2D /* heart_red@1x.png in Resources */,
 				E918063B1B7C88EE009C1F2D /* sellers_icon@1x.png in Resources */,
 				E9E4566F1B0D8C7400E8B55D /* sell_icon@3x.png in Resources */,
@@ -2162,6 +2173,7 @@
 				E98113131B2155CB00ECAA0C /* chat_with_seller@1x.png in Resources */,
 				E91806331B7C85C7009C1F2D /* pricetag_icon@2x.png in Resources */,
 				E9FC1D691B8C6FE9001226C5 /* sort_filter_icon@1x.png in Resources */,
+				E9B659B81BF05C7E002CF40B /* cross_icon@1x.png in Resources */,
 				E963614F1B16C7F000EB9D35 /* marketplace@3x.png in Resources */,
 				E92A0BE71B6CD3B8000D66BD /* clock_icon@3x.png in Resources */,
 				E97CE48E1B07745A0027C5FA /* squareplus@3x.png in Resources */,

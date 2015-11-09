@@ -27,6 +27,7 @@
     searchBar.delegate = viewController;
     searchBar.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
     [searchBar setImage:[UIImage imageNamed:@"magnifying_glass_icon.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [searchBar setImage:[UIImage imageNamed:@"cross_icon.png"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     viewController.navigationItem.titleView = searchBar;
     
     UITextField *txfSearchField = [searchBar valueForKey:@"_searchField"];
