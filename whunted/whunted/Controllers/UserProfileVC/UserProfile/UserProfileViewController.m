@@ -682,7 +682,7 @@
     _segmentedControl.selectedSegmentIndex = 0;
     
     /// TODO: colors are likely to change
-    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : TEXT_COLOR_LESS_DARK};
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : [UIColor blackColor]};
     _segmentedControl.backgroundColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
     _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     _segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR_WITH_DARK_1;
