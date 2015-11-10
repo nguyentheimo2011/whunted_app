@@ -295,7 +295,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *timestamp = [Utilities longTimestampStringFromDate:_wantData.createdDate];
-    NSString *postedTimestampText = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"listed", nil), timestamp, NSLocalizedString(@"by", nil)];
+    NSString *postedTimestampText = [NSString stringWithFormat:@"%@ %@ %@", NSLocalizedString(@"posted", nil), timestamp, NSLocalizedString(@"by", nil)];
     
     CGFloat const kLabelLeftMargin  =   10.0f;
     CGFloat const kLabelYPos        =   _itemNameLabel.frame.origin.y + _itemNameLabel.frame.size.height;
