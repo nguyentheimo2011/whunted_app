@@ -21,7 +21,7 @@
 + (UISearchBar *) addSearchBoxToViewController:(UIViewController<UISearchBarDelegate> *)viewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 28.0)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, SEARCH_BAR_HEIGHT)];
     searchBar.placeholder = NSLocalizedString(@"Search for wants", nil);
     searchBar.returnKeyType = UIReturnKeySearch;
     searchBar.delegate = viewController;
@@ -36,7 +36,7 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for wants", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_4}];
+        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for wants", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_4, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE]}];
     }
     
     return searchBar;

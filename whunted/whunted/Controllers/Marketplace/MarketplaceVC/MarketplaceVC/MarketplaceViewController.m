@@ -485,7 +485,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [_searchBar resignFirstResponder];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 
