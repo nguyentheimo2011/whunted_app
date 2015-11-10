@@ -25,6 +25,8 @@
 
 @property (atomic)      BOOL    isLoadingMoreWhunts;
 @property (atomic)      BOOL    isLoadingWhuntsDetails;
+@property (atomic)      BOOL    searchClearButtonTouched;  // Used to record if search clear button is clicked to remove current
+                                                           // search keyword
 
 @end
 
@@ -53,8 +55,9 @@
     CGFloat                 _lastContentOffset;
 }
 
-@synthesize     isLoadingMoreWhunts     =   _isLoadingMoreWhunts;
-@synthesize     isLoadingWhuntsDetails  =   _isLoadingWhuntsDetails;
+@synthesize     isLoadingMoreWhunts         =   _isLoadingMoreWhunts;
+@synthesize     isLoadingWhuntsDetails      =   _isLoadingWhuntsDetails;
+@synthesize     searchClearButtonTouched    =  _searchClearButtonTouched;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -449,9 +452,18 @@
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(searchCancelButtonTapEventHandler)];
-    
-    return YES;
+    if (_searchClearButtonTouched)
+    {
+        // if keyboard is not currently display, press [x] wil not make keyboard appear.
+        _searchClearButtonTouched = NO;
+        return NO;
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(searchCancelButtonTapEventHandler)];
+        
+        return YES;
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -469,6 +481,8 @@
     if (searchText.length == 0)
     {
         [self retrieveWhuntsList];
+        if (!searchBar.isFirstResponder)
+            _searchClearButtonTouched = YES;
     }
 }
 
