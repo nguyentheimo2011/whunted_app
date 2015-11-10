@@ -135,6 +135,10 @@
 
 + (NSString *)  getSynonymOfWord: (NSString *) word;
 
++ (NSString *)  getCurrentLanguage;
+
++ (BOOL)        isCurrLanguageTraditionalChinese;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Whunt Details Helpers

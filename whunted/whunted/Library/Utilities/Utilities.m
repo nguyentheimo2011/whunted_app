@@ -573,6 +573,24 @@
         return nil;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) getCurrentLanguage
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    return [[NSLocale preferredLanguages] objectAtIndex:0];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (BOOL) isCurrLanguageTraditionalChinese
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *currLang = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([currLang containsString:LANGUAGE_TRADITIONAL_CHINESE])
+        return YES;
+    else
+        return NO;
+}
+
 
 #pragma mark - Whunt Details Helpers
 

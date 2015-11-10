@@ -377,6 +377,11 @@
 #define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#define     LANGUAGE_TRADITIONAL_CHINESE                @"zh-Hant"
+#define     LANGUAGE_ENGLISH                            @"en"
+
+
+//----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301
 #define     CATEGORY_CONTAINER_TAG                      302
 #define     SORT_FILTER_CONTAINER_TAG                   303
