@@ -22,7 +22,7 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, WINSIZE.width, 28.0)];
-    searchBar.placeholder = NSLocalizedString(@"Search for whunts", nil);
+    searchBar.placeholder = NSLocalizedString(@"Search for wants", nil);
     searchBar.returnKeyType = UIReturnKeySearch;
     searchBar.delegate = viewController;
     searchBar.tintColor = GRAY_COLOR_WITH_WHITE_COLOR_4;
@@ -36,7 +36,7 @@
     
     if ([txfSearchField respondsToSelector:@selector(setAttributedPlaceholder:)])
     {
-        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for whunts", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_4}];
+        txfSearchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Search for wants", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_4}];
     }
     
     return searchBar;

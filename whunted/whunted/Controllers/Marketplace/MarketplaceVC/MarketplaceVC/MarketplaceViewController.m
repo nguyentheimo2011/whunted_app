@@ -139,9 +139,7 @@
 - (void) customizeView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    // init leftBarButtonItem and rightBarButtonItem to limit the space for title view (search bar) on navigation bar
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
