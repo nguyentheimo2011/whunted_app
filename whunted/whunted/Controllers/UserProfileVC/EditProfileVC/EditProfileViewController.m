@@ -27,7 +27,7 @@
 #define     kTableNarrowHeaderFooterHeightRatio     0.025
 #define     kTableMediumHeaderFooterHeightRatio     0.04
 
-#define     kAverageCellHeight                      40
+#define     kAverageCellHeight                      45
 
 #define     kTitleFontSize                          16
 #define     kDetailFontSize                         16
@@ -225,7 +225,7 @@
 {
     _usernameCell = [[UITableViewCell alloc] init];
     _usernameCell.textLabel.text = NSLocalizedString(@"Username", nil);
-    _usernameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _usernameCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
      _usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _usernameTextField.text = _userData.username;
@@ -245,7 +245,7 @@
 {
     _firstNameCell = [[UITableViewCell alloc] init];
     _firstNameCell.textLabel.text = NSLocalizedString(@"First Name", nil);
-    _firstNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _firstNameCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _firstNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _firstNameTextField.text = _userData.firstName;
@@ -265,7 +265,7 @@
 {
     _lastNameCell = [[UITableViewCell alloc] init];
     _lastNameCell.textLabel.text = NSLocalizedString(@"Last Name", nil);
-    _lastNameCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _lastNameCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _lastNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _lastNameTextField.text = _userData.lastName;
@@ -285,7 +285,7 @@
 {
     _myCityCell = [[UITableViewCell alloc] init];
     _myCityCell.textLabel.text = NSLocalizedString(@"My City", nil);
-    _myCityCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _myCityCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _myCityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     _myCityLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
@@ -308,17 +308,17 @@
 {
     _bioCell = [[UITableViewCell alloc] init];
     _bioCell.textLabel.text = NSLocalizedString(@"Biography", nil);
-    _bioCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _bioCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _bioCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _myBioTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, 3 * kTextFieldHeight)];
     _myBioTextView.layer.borderWidth = 1.0f;
-    _myBioTextView.layer.borderColor = [PLACEHOLDER_TEXT_COLOR CGColor];
+    _myBioTextView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_4 CGColor];
     _myBioTextView.layer.cornerRadius = 10.0f;
     _myBioTextView.text = _userData.userDescription;
-    _myBioTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:16];
+    _myBioTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     _myBioTextView.placeholder = USER_PROFILE_BIO_PLACEHOLDER;
-    [_myBioTextView setContentInset:UIEdgeInsetsMake(-5, 0, 0, 0)];
+    [_myBioTextView setContentInset:UIEdgeInsetsMake(-2, 0, 0, 0)];
     
     _bioCell.accessoryView = _myBioTextView;
 }
@@ -329,7 +329,7 @@
 {
     _userPhotoCell = [[UITableViewCell alloc] init];
     _userPhotoCell.textLabel.text = NSLocalizedString(@"Photo", nil);
-    _userPhotoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _userPhotoCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _userPhotoCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIView *imageContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kUserPhotoHeightRatio * kTextFieldHeight)];
@@ -364,7 +364,7 @@
 {
     _passwordChangingCell = [[UITableViewCell alloc] init];
     _passwordChangingCell.textLabel.text = NSLocalizedString(@"Change Password", nil);
-    _passwordChangingCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _passwordChangingCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _passwordChangingCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -374,7 +374,7 @@
 {
     _emailCell = [[UITableViewCell alloc] init];
     _emailCell.textLabel.text = NSLocalizedString(@"Email", nil);
-    _emailCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _emailCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _emailTextField.text = _userData.emailAddress;
@@ -395,7 +395,7 @@
 {
     _mobileCell = [[UITableViewCell alloc] init];
     _mobileCell.textLabel.text = NSLocalizedString(@"Mobile", nil);
-    _mobileCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _mobileCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _mobileTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, kTextFieldHeight)];
     _mobileTextField.text = _userData.phoneNumber;
@@ -417,7 +417,7 @@
 {
     _genderCell = [[UITableViewCell alloc] init];
     _genderCell.textLabel.text = NSLocalizedString(@"Gender", nil);
-    _genderCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _genderCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _genderLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
     _genderLabel.text = _userData.gender;
@@ -439,7 +439,7 @@
 {
     _birthdayCell = [[UITableViewCell alloc] init];
     _birthdayCell.textLabel.text = NSLocalizedString(@"Birthday", nil);
-    _birthdayCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:kTitleFontSize];
+    _birthdayCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     
     _birthdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(WINSIZE.width * (0.96 - kTextFieldWidthRatio), 0, WINSIZE.width * kTextFieldWidthRatio, kAverageCellHeight)];
     _birthdayLabel.text = _userData.dateOfBirth;
