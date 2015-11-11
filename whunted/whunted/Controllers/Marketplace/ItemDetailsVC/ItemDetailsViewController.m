@@ -341,21 +341,32 @@
     CGFloat const kPriceImageTopMargin      =   15.0f;
     CGFloat const kPriceImageYPos           =   _postedTimestampLabel.frame.origin.y + _postedTimestampLabel.frame.size.height + kPriceImageTopMargin;
     CGFloat const kPriceImageWidth          =   23.0f;
+    CGFloat const kPriceImageHeight         =   kPriceImageWidth;
     
     UIImage *priceTagImage = [UIImage imageNamed:@"pricetag_icon.png"];
-    UIImageView *priceTagImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPriceImageLeftMargin, kPriceImageYPos, kPriceImageWidth, kPriceImageWidth)];
+    UIImageView *priceTagImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kPriceImageLeftMargin, kPriceImageYPos, kPriceImageWidth, kPriceImageHeight)];
     [priceTagImageView setImage:priceTagImage];
     [_scrollView addSubview:priceTagImageView];
     
-    CGFloat const kLabelLeftMargin      =   15.0f;
-    CGFloat const kLabelXPos            =   kPriceImageLeftMargin + kPriceImageWidth + kLabelLeftMargin;
-    CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
-    NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Willing to pay", nil), _wantData.demandedPrice];
+    CGFloat const kLabel1LeftMargin      =   15.0f;
+    CGFloat const kLabel1OriginX         =   kPriceImageLeftMargin + kPriceImageWidth + kLabel1LeftMargin;
+    CGFloat const kMaxWidth              =   WINSIZE.width - kLabel1OriginX - 10.0f;
     
-    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kPriceImageYPos, kLabelWidth, kPriceImageWidth)];
-    [_demandedPriceLabel setText:text];
-    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-    [_demandedPriceLabel setTextColor:[UIColor colorWithRed:10.0/255 green:176.0/255 blue:171.0/255 alpha:1.0]];
+    UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kPriceImageYPos, kMaxWidth, kPriceImageHeight)];
+    contextualLabel.text = NSLocalizedString(@"Willing to pay", nil);
+    contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+    [contextualLabel sizeToFit];
+    [_scrollView addSubview:contextualLabel];
+    
+    CGFloat const kLabel2OriginX    =   kLabel1OriginX + contextualLabel.frame.size.width;
+    CGFloat const kLabel2Width      =   kMaxWidth - contextualLabel.frame.size.width;
+    CGFloat const kLabel2Height     =   contextualLabel.frame.size.height;
+    
+    _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kPriceImageYPos, kLabel2Width, kLabel2Height)];
+    [_demandedPriceLabel setText:_wantData.demandedPrice];
+    [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
+    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
     [_scrollView addSubview:_demandedPriceLabel];
     
     _currOccupiedYPos = _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height;
