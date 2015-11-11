@@ -390,13 +390,22 @@
         [_scrollView addSubview:locationImageView];
         
         CGFloat const kLabelLeftMargin      =   15.0f;
-        CGFloat const kLabelXPos            =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
-        CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+        CGFloat const kLabel1OriginX        =   kLocationImageLeftMargin + kLocationImageWidth + kLabelLeftMargin;
+        CGFloat const kMaxWidth             =   WINSIZE.width - kLabel1OriginX - 10.0f;
         
-        NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Buyer is located at", nil), _wantData.meetingLocation];
+        UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kLocationImageYPos, kMaxWidth, kLocationImageHeight)];
+        contextualLabel.text = NSLocalizedString(@"Buyer is located at", nil);
+        contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+        [contextualLabel sizeToFit];
+        [_scrollView addSubview:contextualLabel];
         
-        _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLocationImageYPos, kLabelWidth, kLocationImageHeight)];
-        [_locationLabel setText:text];
+        CGFloat const kLabel2OriginX    =   kLabel1OriginX + contextualLabel.frame.size.width;
+        CGFloat const kLabel2Width      =   kMaxWidth - contextualLabel.frame.size.width;
+        CGFloat const kLabel2Height     =   contextualLabel.frame.size.height;
+        
+        _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLocationImageYPos, kLabel2Width, kLabel2Height)];
+        [_locationLabel setText:_wantData.meetingLocation];
         [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
         [_locationLabel setTextColor:TEXT_COLOR_GRAY];
         [_scrollView addSubview:_locationLabel];
