@@ -149,6 +149,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities customizeBackButtonForViewController:self withAction:@selector(topBackButtonTapEventHandler)];
+    [Utilities customizeTitleLabel:_wantData.itemName forViewController:self];
     
     if ([_wantData.buyerID isEqualToString:[PFUser currentUser].objectId])
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editInfoOfMyWantData)];
