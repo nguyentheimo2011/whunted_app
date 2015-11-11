@@ -286,7 +286,7 @@
     
     _itemNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kNameLabelLeftMargin, kNameLabelYPos, kNameLabelWidth, kNameLabelHeight)];
     [_itemNameLabel setText:_wantData.itemName];
-    [_itemNameLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_itemNameLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]];
     [_itemNameLabel setTextColor:TEXT_COLOR_DARK_GRAY];
     [_scrollView addSubview:_itemNameLabel];
 }
@@ -308,7 +308,7 @@
     
     _postedTimestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, 0, 0)];
     [_postedTimestampLabel setText:postedTimestampText];
-    [_postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:15]];
+    [_postedTimestampLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE]];
     [_postedTimestampLabel setTextColor:TEXT_COLOR_GRAY];
     [_postedTimestampLabel sizeToFit];
     [_scrollView addSubview:_postedTimestampLabel];
@@ -325,7 +325,7 @@
     CGFloat const kButtonHeight     =   _postedTimestampLabel.frame.size.height;
     
     _buyerUsernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kButtonYPos, kButtonWidth, kButtonHeight)];
-    [_buyerUsernameButton createTitle:_wantData.buyerUsername withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
+    [_buyerUsernameButton createTitle:_wantData.buyerUsername withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
     _buyerUsernameButton.borderColor = [UIColor clearColor];
     _buyerUsernameButton.cornerRadius = 0;
     _buyerUsernameButton.titleColor = MAIN_BLUE_COLOR;
@@ -837,7 +837,7 @@
 {
     if (_wantData.isFulfilled)
     {
-        [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        [_viewOffersButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
         _viewOffersButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
         _viewOffersButton.borderWidth = 0;
         _viewOffersButton.cornerRadius = 0;
@@ -845,7 +845,7 @@
     else
     {
         NSString *title = [NSString stringWithFormat:@"%@ (%ld)", NSLocalizedString(@"View Offer", nil), _numOfOffers];
-        [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        [_viewOffersButton createTitle:title withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
         _viewOffersButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
         _viewOffersButton.borderWidth = 0;
         _viewOffersButton.cornerRadius = 0;
