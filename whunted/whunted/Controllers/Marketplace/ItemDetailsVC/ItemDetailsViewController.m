@@ -355,7 +355,7 @@
     UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kPriceImageYPos, kMaxWidth, kPriceImageHeight)];
     contextualLabel.text = NSLocalizedString(@"Willing to pay", nil);
     contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+    contextualLabel.textColor = TEXT_COLOR_GRAY;
     [contextualLabel sizeToFit];
     [_scrollView addSubview:contextualLabel];
     
@@ -366,7 +366,7 @@
     _demandedPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kPriceImageYPos, kLabel2Width, kLabel2Height)];
     [_demandedPriceLabel setText:_wantData.demandedPrice];
     [_demandedPriceLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
-    [_demandedPriceLabel setTextColor:TEXT_COLOR_GRAY];
+    [_demandedPriceLabel setTextColor:CYAN_COLOR_WITH_WHITE_1];
     [_scrollView addSubview:_demandedPriceLabel];
     
     _currOccupiedYPos = _demandedPriceLabel.frame.origin.y + _demandedPriceLabel.frame.size.height;
@@ -396,7 +396,7 @@
         UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kLocationImageYPos, kMaxWidth, kLocationImageHeight)];
         contextualLabel.text = NSLocalizedString(@"Buyer is located at", nil);
         contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-        contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+        contextualLabel.textColor = TEXT_COLOR_GRAY;
         [contextualLabel sizeToFit];
         [_scrollView addSubview:contextualLabel];
         
@@ -407,7 +407,7 @@
         _locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLocationImageYPos, kLabel2Width, kLabel2Height)];
         [_locationLabel setText:_wantData.meetingLocation];
         [_locationLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:16]];
-        [_locationLabel setTextColor:TEXT_COLOR_GRAY];
+        [_locationLabel setTextColor:CYAN_COLOR_WITH_WHITE_1];
         [_scrollView addSubview:_locationLabel];
         
         _currOccupiedYPos = _locationLabel.frame.origin.y + _locationLabel.frame.size.height;
@@ -441,7 +441,7 @@
             _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
             _itemDescLabel.text = _wantData.itemDesc;
             _itemDescLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-            _itemDescLabel.textColor = TEXT_COLOR_GRAY;
+            _itemDescLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
             _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
             _itemDescLabel.numberOfLines = 0;
             [_scrollView addSubview:_itemDescLabel];
@@ -458,7 +458,7 @@
             _itemHashtagLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, _currOccupiedYPos, kLabelWidth, expectedSize.height)];
             _itemHashtagLabel.text = hashtagString;
             _itemHashtagLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-            _itemHashtagLabel.textColor = MAIN_BLUE_COLOR;
+            _itemHashtagLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
             _itemHashtagLabel.lineBreakMode = NSLineBreakByWordWrapping;
             _itemHashtagLabel.numberOfLines = 0;
             [_scrollView addSubview:_itemHashtagLabel];
@@ -491,7 +491,7 @@
         
         _referenceLinkButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonXPos, kLinkImageYPos, kButtonWidth, kLinkImageHeight)];
         [_referenceLinkButton createTitle:_wantData.referenceURL withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
-        _referenceLinkButton.titleColor = MAIN_BLUE_COLOR;
+        _referenceLinkButton.titleColor = CYAN_COLOR_WITH_WHITE_1;
         _referenceLinkButton.bgColor = [UIColor whiteColor];
         _referenceLinkButton.borderWidth = 0;
         [_referenceLinkButton addTarget:self action:@selector(referenceLinkButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
@@ -525,7 +525,7 @@
         UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kOriginImageYPos, kMaxWidth, kOriginImageHeight)];
         contextualLabel.text = NSLocalizedString(@"Product comes from", nil);
         contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-        contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+        contextualLabel.textColor = TEXT_COLOR_GRAY;
         [contextualLabel sizeToFit];
         [_scrollView addSubview:contextualLabel];
         
@@ -538,7 +538,7 @@
             _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kOriginImageYPos, kLabel2Width, kLabel2Height)];
             _productOriginLabel.text = _wantData.itemOrigins[0];
             _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-            [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
+            [_productOriginLabel setTextColor:CYAN_COLOR_WITH_WHITE_1];
             [_scrollView addSubview:_productOriginLabel];
         }
         else
@@ -552,7 +552,7 @@
             _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLabel2OriginY, kLabel2Width, expectedSize.height)];
             _productOriginLabel.text = productOriginText;
             _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-            [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
+            [_productOriginLabel setTextColor:CYAN_COLOR_WITH_WHITE_1];
             [_scrollView addSubview:_productOriginLabel];
         }
         
