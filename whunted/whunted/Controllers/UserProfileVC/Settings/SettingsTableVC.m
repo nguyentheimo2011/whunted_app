@@ -10,6 +10,10 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
+#import <JTImageButton.h>
+
+#define CELL_HEIGHT         45.0f
+
 @implementation SettingsTableVC
 {
     UITableViewCell     *_editingProfileCell;
@@ -169,8 +173,16 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     _logoutCell = [[UITableViewCell alloc] init];
-    _logoutCell.textLabel.text  =   NSLocalizedString(@"Log Out", nil);
-    _logoutCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _logoutCell.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_2;
+    
+    JTImageButton *logoutButton = [[JTImageButton alloc] initWithFrame:CGRectMake(20, 0, WINSIZE.width - 40, CELL_HEIGHT)];
+    [logoutButton createTitle:NSLocalizedString(@"Log Out", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    logoutButton.bgColor = FLAT_FRESH_RED_COLOR;
+    logoutButton.titleColor = [UIColor whiteColor];
+    logoutButton.borderWidth = 0;
+    logoutButton.cornerRadius = 8.0f;
+    [logoutButton addTarget:self action:@selector(logoutButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [_logoutCell addSubview:logoutButton];
 }
 
 
@@ -216,10 +228,20 @@
 #pragma mark - UITableViewDelegate methods
 
 //--------------------------------------------------------------------------------------------------------------------------------
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//--------------------------------------------------------------------------------------------------------------------------------
+{
+    return CELL_HEIGHT;
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 30.0f;
+    if (section == 0)
+        return 30.0f;
+    else
+        return 40.0f;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
