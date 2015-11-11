@@ -455,7 +455,7 @@
 {
     CGFloat const kLabelHeight = 20.0f;
     CGFloat const kLabelOriginY = _currHeight;
-    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin * 1.5, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
     
     NSString *firstName = _profileOwner[PF_USER_FIRSTNAME];
     NSString *lastName = _profileOwner[PF_USER_LASTNAME];
@@ -488,9 +488,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelHeight = 20.0f;
-    CGFloat const kLabelOriginY = _currHeight;
+    CGFloat const kLabelOriginY = _currHeight - 2.0f;
     
-    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin * 1.5, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
     _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
     _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];
     _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
