@@ -58,7 +58,7 @@
     UIView                      *_leftHorizontalLine;
     UIView                      *_rightHorizontalLine;
     
-    HMSegmentedControl          *_segmentedControl;
+    UISegmentedControl          *_segmentedControl;
     
     CGFloat                     _currHeight;
     CGFloat                     _collectionViewOriginY;
@@ -652,26 +652,17 @@
 - (void) addSegmentedControl
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kControlLeftMargin = WINSIZE.width / 4.0;
-    CGFloat const kControlTopMargin = WINSIZE.height / 36.0;
-    CGFloat const kYPos = _currHeight + kControlTopMargin;
-    CGFloat const kControlWidth = WINSIZE.width / 2.0;
-    CGFloat const kControlHeight = 35;
+    CGFloat const kControlTopMargin =   WINSIZE.height / 36.0;
+    CGFloat const kControlOriginX   =   WINSIZE.width / 4.0;
+    CGFloat const kControlOriginY   =   _currHeight + kControlTopMargin;
+    CGFloat const kControlWidth     =   WINSIZE.width / 2.0;
+    CGFloat const kControlHeight    =   32;
     
-    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlHeight)];
-    _segmentedControl.sectionTitles = @[NSLocalizedString(@"Buying", nil), NSLocalizedString(@"Selling", nil)];
-    
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Buying", nil), NSLocalizedString(@"Selling", nil)]];
+    _segmentedControl.frame = CGRectMake(kControlOriginX, kControlOriginY, kControlWidth, kControlHeight);
     _segmentedControl.selectedSegmentIndex = 0;
-    
-    /// TODO: colors are likely to change
-    _segmentedControl.titleTextAttributes = @{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:17], NSForegroundColorAttributeName : [UIColor blackColor]};
-    _segmentedControl.backgroundColor = MAIN_BLUE_COLOR_WITH_WHITE_1;
-    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    _segmentedControl.selectionIndicatorColor = MAIN_BLUE_COLOR_WITH_DARK_1;
-    _segmentedControl.layer.cornerRadius = 5.0f;
-    _segmentedControl.clipsToBounds = YES;
-    _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]} forState:UIControlStateNormal];
+    _segmentedControl.tintColor = MAIN_BLUE_COLOR;
     [_segmentedControl addTarget:self action:@selector(segmentedControlSwitchEventHandler:) forControlEvents:UIControlEventValueChanged];
     
     [_scrollView addSubview:_segmentedControl];

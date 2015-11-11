@@ -28,6 +28,7 @@
     segmentedControl.frame = CGRectMake(kControlOriginX, kControlOriginY, kControlWidth, kControlHeight);
     [segmentedControl setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]} forState:UIControlStateNormal];
     segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.tintColor = MAIN_BLUE_COLOR;
     [segmentedControl addTarget:viewController action:@selector(segmentedControlValueChanged) forControlEvents:UIControlEventValueChanged];
     [viewController.view addSubview:segmentedControl];
     
