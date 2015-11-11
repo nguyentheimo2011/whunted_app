@@ -7,7 +7,6 @@
 //
 
 #import "UserProfileViewController.h"
-#import "HistoryCollectionViewCell.h"
 #import "PreferenceViewController.h"
 #import "FeedbackReviewVC.h"
 #import "FeedbackData.h"
@@ -720,7 +719,7 @@
     _historyCollectionView.delegate         =   self;
     _historyCollectionView.backgroundColor  =   GRAY_COLOR_WITH_WHITE_COLOR_2;
     _historyCollectionView.scrollEnabled    =   NO;
-    [_historyCollectionView registerClass:[HistoryCollectionViewCell class] forCellWithReuseIdentifier:@"HistoryCollectionViewCell"];
+    
     [_historyCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     
     [_scrollView addSubview:_historyCollectionView];
@@ -778,55 +777,34 @@
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
+    cell.cellIndex = indexPath.row;
+    cell.cellIdentifier = CELL_IN_USER_PROFILE;
+    
+    if (cell.wantData == nil)
+        [cell initCell];
+    else
+        [cell clearCellUI];
+    
     if (_curViewMode == HistoryCollectionViewModeBuying)
     {
-        HistoryCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"HistoryCollectionViewCell" forIndexPath:indexPath];
-        cell.cellIndex = indexPath.row;
-        
-        if (cell.wantData == nil)
-        {
-            [cell initCell];
-        }
-        else
-        {
-            [cell clearCellUI];
-        }
-        
         WantData *wantData = [_myWantDataList objectAtIndex:indexPath.row];
         [cell setWantData:wantData];
-        
-        return cell;
     }
     else
     {
-       MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
-        cell.cellIndex = indexPath.row;
-        cell.cellIdentifier = CELL_IN_USER_PROFILE;
-        
-        if (cell.wantData == nil)
-            [cell initCell];
-        else
-            [cell clearCellUI];
-        
         WantData *wantData = [_mySellDataList objectAtIndex:indexPath.row];
         [cell setWantData:wantData];
-        
-        return cell;
     }
+    
+    return cell;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    if (_curViewMode == HistoryCollectionViewModeBuying)
-    {
-        return [Utilities sizeOfSimplifiedCollectionCell];
-    }
-    else
-    {
         return [Utilities sizeOfFullCollectionCell];
-    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -961,19 +939,14 @@
     _currHeight -= _collectionViewCurrHeight;
     
     CGFloat const kYDistanceBetweenCell     =   16.0f;
+    CGFloat const kCellHeight = [Utilities sizeOfFullCollectionCell].height;
     
+    NSInteger listSize;
     if (_curViewMode == HistoryCollectionViewModeBuying)
-    {
-        CGFloat const kCellHeight = [Utilities sizeOfSimplifiedCollectionCell].height;
-        NSInteger listSize = _myWantDataList.count;
-        _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
-    }
+        listSize = _myWantDataList.count;
     else
-    {
-        CGFloat const kCellHeight = [Utilities sizeOfFullCollectionCell].height;
-        NSInteger listSize = _mySellDataList.count;
-        _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
-    }
+        listSize = _mySellDataList.count;
+    _collectionViewCurrHeight = ((listSize + 1) / 2) * (kCellHeight + kYDistanceBetweenCell);
     
     _historyCollectionView.frame = CGRectMake(0, _collectionViewOriginY, WINSIZE.width, _collectionViewCurrHeight);
     _currHeight = _collectionViewOriginY + _collectionViewCurrHeight;
