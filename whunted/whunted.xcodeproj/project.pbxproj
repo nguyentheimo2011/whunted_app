@@ -248,7 +248,6 @@
 		E9D432F21B53C89400530492 /* list_view_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432EC1B53C89400530492 /* list_view_icon@2x.png */; };
 		E9D432F31B53C89400530492 /* list_view_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432ED1B53C89400530492 /* list_view_icon@3x.png */; };
 		E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D432F71B54F32500530492 /* UserProfileViewController.m */; };
-		E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */; };
 		E9D433021B550EC200530492 /* edit_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432FC1B550EC200530492 /* edit_icon@1x.png */; };
 		E9D433031B550EC200530492 /* edit_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432FD1B550EC200530492 /* edit_icon@2x.png */; };
 		E9D433041B550EC200530492 /* edit_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D432FE1B550EC200530492 /* edit_icon@3x.png */; };
@@ -641,8 +640,6 @@
 		E9D432ED1B53C89400530492 /* list_view_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list_view_icon@3x.png"; path = "Resources/User Profile/list_view_icon@3x.png"; sourceTree = "<group>"; };
 		E9D432F61B54F32500530492 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProfileViewController.h; path = Controllers/UserProfileVC/UserProfile/UserProfileViewController.h; sourceTree = "<group>"; };
 		E9D432F71B54F32500530492 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProfileViewController.m; path = Controllers/UserProfileVC/UserProfile/UserProfileViewController.m; sourceTree = "<group>"; };
-		E9D432F91B54F38A00530492 /* HistoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryCollectionViewCell.h; path = Controllers/UserProfileVC/HistoryCollectionViewCell/HistoryCollectionViewCell.h; sourceTree = "<group>"; };
-		E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryCollectionViewCell.m; path = Controllers/UserProfileVC/HistoryCollectionViewCell/HistoryCollectionViewCell.m; sourceTree = "<group>"; };
 		E9D432FC1B550EC200530492 /* edit_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit_icon@1x.png"; path = "Resources/User Profile/edit_icon@1x.png"; sourceTree = "<group>"; };
 		E9D432FD1B550EC200530492 /* edit_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit_icon@2x.png"; path = "Resources/User Profile/edit_icon@2x.png"; sourceTree = "<group>"; };
 		E9D432FE1B550EC200530492 /* edit_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit_icon@3x.png"; path = "Resources/User Profile/edit_icon@3x.png"; sourceTree = "<group>"; };
@@ -1446,7 +1443,6 @@
 				E9D264C11B674BA800CBEAFF /* Settings */,
 				E9D264B51B65E76B00CBEAFF /* ResidingCityTableVC */,
 				E9D264A21B6226A700CBEAFF /* ResidingCountryTableVC */,
-				E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */,
 				E9D433081B55162200530492 /* PreferenceVC */,
 			);
 			name = UserProfileVC;
@@ -1699,15 +1695,6 @@
 				E9D264C31B674BF800CBEAFF /* SettingsTableVC.m */,
 			);
 			name = Settings;
-			sourceTree = "<group>";
-		};
-		E9D432F41B54F2B700530492 /* HistoryCollectionViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				E9D432F91B54F38A00530492 /* HistoryCollectionViewCell.h */,
-				E9D432FA1B54F38A00530492 /* HistoryCollectionViewCell.m */,
-			);
-			name = HistoryCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		E9D432F51B54F2E800530492 /* UserProfile */ = {
@@ -2300,7 +2287,6 @@
 				E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */,
 				E9D21D331BCBBAA300912C2C /* MarketplaceLogicHelper.m in Sources */,
 				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
-				E9D432FB1B54F38A00530492 /* HistoryCollectionViewCell.m in Sources */,
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
 				E944C5C81BCD155E00E27337 /* converter.m in Sources */,
 				E944C5CA1BCD155E00E27337 /* fileutil.m in Sources */,
