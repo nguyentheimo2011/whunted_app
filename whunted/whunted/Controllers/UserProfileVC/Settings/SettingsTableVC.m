@@ -100,7 +100,7 @@
 {
     _editingProfileCell = [[UITableViewCell alloc] init];
     _editingProfileCell.textLabel.text  =   NSLocalizedString(@"Edit Profile", nil);
-    _editingProfileCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _editingProfileCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _editingProfileCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -110,7 +110,7 @@
 {
     _emailSupportCell = [[UITableViewCell alloc] init];
     _emailSupportCell.textLabel.text  =   NSLocalizedString(@"Email Support/Feedback", nil);
-    _emailSupportCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _emailSupportCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _emailSupportCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -120,7 +120,7 @@
 {
     _gettingStartedCell = [[UITableViewCell alloc] init];
     _gettingStartedCell.textLabel.text  =   NSLocalizedString(@"Getting Started Guide", nil);
-    _gettingStartedCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _gettingStartedCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _gettingStartedCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -130,7 +130,7 @@
 {
     _helpFAQCell = [[UITableViewCell alloc] init];
     _helpFAQCell.textLabel.text     =   NSLocalizedString(@"Help & FAQ", nil);
-    _helpFAQCell.textLabel.font     =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _helpFAQCell.textLabel.font     =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _helpFAQCell.accessoryType      =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -140,7 +140,7 @@
 {
     _communityRulesCell = [[UITableViewCell alloc] init];
     _communityRulesCell.textLabel.text  =   NSLocalizedString(@"Community Rules", nil);
-    _communityRulesCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _communityRulesCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _communityRulesCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -150,7 +150,7 @@
 {
     _aboutWhuntedCell = [[UITableViewCell alloc] init];
     _aboutWhuntedCell.textLabel.text    =   NSLocalizedString(@"About Whunted", nil);
-    _aboutWhuntedCell.textLabel.font    =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _aboutWhuntedCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _aboutWhuntedCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -160,7 +160,7 @@
 {
     _notificationSettingsCell = [[UITableViewCell alloc] init];
     _notificationSettingsCell.textLabel.text    =   NSLocalizedString(@"Notification Settings", nil);
-    _notificationSettingsCell.textLabel.font    =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _notificationSettingsCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _notificationSettingsCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -170,8 +170,7 @@
 {
     _logoutCell = [[UITableViewCell alloc] init];
     _logoutCell.textLabel.text  =   NSLocalizedString(@"Log Out", nil);
-    _logoutCell.textLabel.font  =   [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _logoutCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
+    _logoutCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
 }
 
 
