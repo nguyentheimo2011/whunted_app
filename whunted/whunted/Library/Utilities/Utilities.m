@@ -923,7 +923,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *errorMessage = [NSString stringWithFormat:@"%@ %@", error, [error userInfo]];
-    //    NSLog(@"%@", errorMessage);
+    NSLog(@"%@", errorMessage);
     [Utilities sendExceptionInfoToGoogleAnalyticsTrackerWithDescription:errorMessage fatal:@0];
 }
 

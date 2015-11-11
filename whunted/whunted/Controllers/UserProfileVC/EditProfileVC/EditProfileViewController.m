@@ -829,8 +829,9 @@
 - (void) doneBarButtonTapEventHandler
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    // Save new changes
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
+    // Save new changes
     PFUser *currUser = [PFUser currentUser];
     
     if (_usernameTextField.text.length > 0 && ![_usernameTextField.text isEqualToString:_userData.username])
@@ -881,11 +882,22 @@
     if (_birthdayLabel.text.length > 0 && ![_birthdayLabel.text isEqualToString:_userData.dateOfBirth])
         currUser[PF_USER_DOB] = [Utilities dateFromCommonlyFormattedString:_birthdayLabel.text];
     
-    [currUser saveInBackground];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error)
+    {
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        
+        if (succeeded)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_EDITED_EVENT object:nil];
+        }
+        else
+        {
+            [Utilities displayErrorAlertView];
+            [Utilities handleError:error];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
