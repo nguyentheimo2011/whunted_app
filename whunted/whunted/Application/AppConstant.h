@@ -263,11 +263,11 @@
 #pragma mark - Font
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     LIGHT_FONT_NAME                     @"HelveticaNeue-Light"
 #define     REGULAR_FONT_NAME                   @"HelveticaNeue-Light"
 #define     SEMIBOLD_FONT_NAME                  @"HelveticaNeue"
 #define     BOLD_FONT_NAME                      @"HelveticaNeue-Medium"
-
+#define     ITALIC_FONT_NAME                    @"HelveticaNeue-LightItalic"
+#define     SEMIBOLD_ITALIC_FONT_NAME           @"HelveticaNeue-Italic"
 #define     BIG_FONT_SIZE                       18
 #define     DEFAULT_FONT_SIZE                   17
 #define     SMALL_FONT_SIZE                     16

@@ -178,8 +178,8 @@
     [self addProfileImage_Name_Country_Rating];
     [self addPreferencesAndSettingsButtons];
     [self addSaperatorLineAndInfoLabel];
-    [self addDate_Verification_DescriptionLabels];
     [self addUserDescription];
+    [self addDate_Verification_DescriptionLabels];
     [self addControls];
     [self addTotalListingsNumLabel];
     [self addHistoryCollectionView];
@@ -544,6 +544,28 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) addUserDescription
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
+    CGFloat const kLabelTopMargin = WINSIZE.height / 192.0;
+    CGFloat const kYPos = _currHeight + kLabelTopMargin;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
+    CGFloat const kMaxNumOfLines = 40;
+    
+    _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
+    _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
+    _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _userDescriptionLabel.numberOfLines = kMaxNumOfLines;
+    [_userDescriptionLabel sizeToFit];
+    [_scrollView addSubview:_userDescriptionLabel];
+    
+    _currHeight += kLabelTopMargin + _userDescriptionLabel.frame.size.height;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addJoiningDate
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -620,50 +642,10 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) addUserDescription
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kLabelTopMargin = WINSIZE.height / 192.0;
-    CGFloat const kYPos = _currHeight + kLabelTopMargin;
-    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
-    CGFloat const kMaxNumOfLines = 40;
-    
-    _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
-    _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
-    _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _userDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _userDescriptionLabel.numberOfLines = kMaxNumOfLines;
-    [_userDescriptionLabel sizeToFit];
-    [_scrollView addSubview:_userDescriptionLabel];
-    
-    _currHeight += kLabelTopMargin + _userDescriptionLabel.frame.size.height;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) addControls
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-//    [self addListGridViewControl];
     [self addSegmentedControl];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addListGridViewControl
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kControlLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kControlTopMargin = WINSIZE.height / 24.0;
-    CGFloat const kYPos = _currHeight + kControlTopMargin;
-    CGFloat const kControlWidth = 35;
-    
-    JTImageButton *listGridViewControl = [[JTImageButton alloc] initWithFrame:CGRectMake(kControlLeftMargin, kYPos, kControlWidth, kControlWidth)];
-    [listGridViewControl createTitle:@"" withIcon:[UIImage imageNamed:@"grid_view_icon.png"] font:nil iconHeight:kControlWidth-10 iconOffsetY:JTImageButtonIconOffsetYNone];
-    listGridViewControl.borderColor = TEXT_COLOR_DARK_GRAY;
-    listGridViewControl.tag = 0;
-    [listGridViewControl addTarget:self action:@selector(listGridViewButtonTapEventHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [_scrollView addSubview:listGridViewControl];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
