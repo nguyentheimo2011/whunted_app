@@ -511,24 +511,50 @@
         CGFloat const kOriginImageTopMargin      =   15.0f;
         CGFloat const kOriginImageYPos           =   _currOccupiedYPos + kOriginImageTopMargin;
         CGFloat const kOriginImageWidth          =   23.0f;
+        CGFloat const kOriginImageHeight         =   kOriginImageWidth;
         
         UIImage *originIconImage = [UIImage imageNamed:@"product_origin_icon.png"];
-        UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kOriginImageLeftMargin, kOriginImageYPos, kOriginImageWidth, kOriginImageWidth)];
+        UIImageView *originIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kOriginImageLeftMargin, kOriginImageYPos, kOriginImageWidth, kOriginImageHeight)];
         [originIconImageView setImage:originIconImage];
         [_scrollView addSubview:originIconImageView];
         
         CGFloat const kLabelLeftMargin      =   15.0f;
-        CGFloat const kLabelXPos            =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
-        CGFloat const kLabelWidth           =   WINSIZE.width - kLabelXPos - 10.0f;
+        CGFloat const kLabel1OriginX        =   kOriginImageLeftMargin + kOriginImageWidth + kLabelLeftMargin;
+        CGFloat const kMaxWidth             =   WINSIZE.width - kLabel1OriginX - 10.0f;
         
-        NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
-        NSString *text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Product comes from", nil), productOriginText];
-        CGSize expectedSize = [text sizeWithAttributes:@{NSFontAttributeName: DEFAULT_FONT}];
-        _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kOriginImageYPos, kLabelWidth, expectedSize.height)];
-        _productOriginLabel.text = text;
-        _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-        [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
-        [_scrollView addSubview:_productOriginLabel];
+        UILabel *contextualLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel1OriginX, kOriginImageYPos, kMaxWidth, kOriginImageHeight)];
+        contextualLabel.text = NSLocalizedString(@"Product comes from", nil);
+        contextualLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+        contextualLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+        [contextualLabel sizeToFit];
+        [_scrollView addSubview:contextualLabel];
+        
+        if (_wantData.itemOrigins.count == 1)
+        {
+            CGFloat const kLabel2OriginX    =   kLabel1OriginX + contextualLabel.frame.size.width;
+            CGFloat const kLabel2Width      =   kMaxWidth - contextualLabel.frame.size.width;
+            CGFloat const kLabel2Height     =   contextualLabel.frame.size.height;
+            
+            _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kOriginImageYPos, kLabel2Width, kLabel2Height)];
+            _productOriginLabel.text = _wantData.itemOrigins[0];
+            _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
+            [_scrollView addSubview:_productOriginLabel];
+        }
+        else
+        {
+            NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
+            CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+            CGFloat const kLabel2OriginX    =   kLabel1OriginX;
+            CGFloat const kLabel2OriginY    =   kOriginImageYPos + contextualLabel.frame.size.height + 4.0f;
+            CGFloat const kLabel2Width      =   kMaxWidth;
+            
+            _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLabel2OriginY, kLabel2Width, expectedSize.height)];
+            _productOriginLabel.text = productOriginText;
+            _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            [_productOriginLabel setTextColor:TEXT_COLOR_GRAY];
+            [_scrollView addSubview:_productOriginLabel];
+        }
         
         _currOccupiedYPos = _productOriginLabel.frame.origin.y + _productOriginLabel.frame.size.height;
     }
