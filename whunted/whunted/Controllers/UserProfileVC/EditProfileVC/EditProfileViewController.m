@@ -192,7 +192,7 @@
 - (void) addTableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
@@ -557,7 +557,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return NSLocalizedString(@"PUBLIC PROFILE", nil);
+        return nil;
     else if (section == 1)
         return NSLocalizedString(@"PRIVATE PROFILE", nil);
     else
@@ -583,7 +583,10 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 0.0f;
+    if (section == 0)
+        return 10.0f;
+    else
+        return 0.0f;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
