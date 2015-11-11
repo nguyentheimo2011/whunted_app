@@ -18,7 +18,6 @@
 #import "AppConstant.h"
 
 #import <JTImageButton.h>
-#import <HMSegmentedControl.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
 #define kLeftMargin     WINSIZE.width / 30.0
@@ -929,7 +928,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) segmentedControlSwitchEventHandler: (HMSegmentedControl *) segmentedControl
+- (void) segmentedControlSwitchEventHandler: (UISegmentedControl *) segmentedControl
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities sendEventToGoogleAnalyticsTrackerWithEventCategory:UI_ACTION action:@"SwitchSegmentedControlInUserProfileEvent" label:@"SegmentedControl" value:nil];

@@ -39,7 +39,6 @@ PODS:
   - GoogleSymbolUtilities (1.0.0)
   - GoogleUtilities (1.0.1):
     - GoogleSymbolUtilities (~> 1.0)
-  - HMSegmentedControl (1.5.2)
   - IDMPhotoBrowser (1.6.2):
     - AFNetworking
     - DACircularProgress
@@ -91,7 +90,6 @@ DEPENDENCIES:
   - CLImageEditor
   - Firebase (>= 2.3.1)
   - Google/Analytics (~> 1.0.0)
-  - HMSegmentedControl
   - IDMPhotoBrowser
   - JSQMessagesViewController
   - JTImageButton
@@ -113,7 +111,6 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
-  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   IDMPhotoBrowser: ebbfa6690456b72dd92d93b7bc11d71519f4d06d
   JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
