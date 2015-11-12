@@ -115,12 +115,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kTableYPos = kControlContainerHeight + STATUS_BAR_AND_NAV_BAR_HEIGHT;
-    CGFloat const kTableHeight = WINSIZE.height - kTableYPos - BOTTOM_TAB_BAR_HEIGHT;
+    CGFloat const kTableHeight = WINSIZE.height - kTableYPos;
     
     _inboxTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTableYPos, WINSIZE.width, kTableHeight)];
     [_inboxTableView setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
     _inboxTableView.delegate = self;
     _inboxTableView.dataSource = self;
+    _inboxTableView.contentInset = UIEdgeInsetsMake(0, 0, BOTTOM_TAB_BAR_HEIGHT, 0);
     [self.view addSubview:_inboxTableView];    
 }
 

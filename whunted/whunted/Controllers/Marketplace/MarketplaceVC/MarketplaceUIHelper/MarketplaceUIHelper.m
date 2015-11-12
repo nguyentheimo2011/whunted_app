@@ -312,13 +312,14 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kCollectionViewYPos   =   STATUS_BAR_AND_NAV_BAR_HEIGHT + SORT_FILTER_BAR_HEIGHT;
-    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos - BOTTOM_TAB_BAR_HEIGHT;
+    CGFloat const kCollectionViewHeight =   WINSIZE.height - kCollectionViewYPos;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     UICollectionView *wantCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kCollectionViewYPos, WINSIZE.width, kCollectionViewHeight) collectionViewLayout:layout];
     wantCollectionView.dataSource = viewController;
     wantCollectionView.delegate = viewController;
     wantCollectionView.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    wantCollectionView.contentInset = UIEdgeInsetsMake(0, 0, BOTTOM_TAB_BAR_HEIGHT, 0);
     
     [wantCollectionView registerClass:[MarketplaceCollectionViewCell class] forCellWithReuseIdentifier:@"MarketplaceCollectionViewCell"];
     [viewController.view addSubview:wantCollectionView];
