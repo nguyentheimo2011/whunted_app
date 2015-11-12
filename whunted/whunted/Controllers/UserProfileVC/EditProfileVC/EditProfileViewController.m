@@ -311,7 +311,7 @@
     _bioCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _bioCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    _myBioTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, 3 * kTextFieldHeight)];
+    _myBioTextView = [[SZTextView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * kTextFieldWidthRatio, 4 * kTextFieldHeight)];
     _myBioTextView.layer.borderWidth = 1.0f;
     _myBioTextView.layer.borderColor = [GRAY_COLOR_WITH_WHITE_COLOR_4 CGColor];
     _myBioTextView.layer.cornerRadius = 10.0f;
@@ -596,9 +596,9 @@
     if (indexPath.section == 0)
     {
         if (indexPath.row == 4)
-            return 3 * kTextFieldHeight + 20;
+            return 4 * kTextFieldHeight + 20;   // height for biography row
         else if (indexPath.row == 5)
-            return kUserPhotoHeightRatio * kTextFieldHeight + 5;
+            return kUserPhotoHeightRatio * kTextFieldHeight + 15;    // height for photo row
         else
             return kAverageCellHeight;
     }
