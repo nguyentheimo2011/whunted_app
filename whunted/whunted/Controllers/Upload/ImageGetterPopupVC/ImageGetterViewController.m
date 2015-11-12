@@ -59,8 +59,7 @@
     [self.titleView setBackgroundColor:MAIN_BLUE_COLOR];
     [self.firstTitleLabel setText:NSLocalizedString(@"Tell people what you want to buy", nil)];
     [self.firstTitleLabel setTextColor:[UIColor whiteColor]];
-    [self.secondTitleLabel setText:NSLocalizedString(@"Choose a way to upload your photo", nil)];
-    [self.secondTitleLabel setTextColor:[UIColor whiteColor]];
+    self.firstTitleLabel.textAlignment = NSTextAlignmentCenter;
     
     [_takingPhotoButton createTitle:NSLocalizedString(@"Take a photo", nil) withIcon:[UIImage imageNamed:@"camera_upload_icon.png"] font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:-8];
     _takingPhotoButton.cornerRadius = 0;
