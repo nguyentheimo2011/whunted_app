@@ -630,6 +630,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self hideKeyboard];
+    
     if (indexPath.section == 0)
     {
         if (indexPath.row == 3)
@@ -640,10 +642,6 @@
         }
     }
     else if (indexPath.section == 1)
-    {
-        
-    }
-    else if (indexPath.section == 2)
     {
         if (indexPath.row == 2)
         {
@@ -656,14 +654,6 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // hide keyboard
-    [_usernameTextField resignFirstResponder];
-    [_firstNameTextField resignFirstResponder];
-    [_lastNameTextField resignFirstResponder];
-    [_myBioTextView resignFirstResponder];
-    [_emailTextField resignFirstResponder];
-    [_mobileTextField resignFirstResponder];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -938,6 +928,21 @@
     [_userProfileImageView setImage:chosenImage];
     
     [picker dismissViewControllerAnimated:NO completion:NULL];
+}
+
+
+#pragma mark - Helper methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) hideKeyboard
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [_usernameTextField resignFirstResponder];
+    [_firstNameTextField resignFirstResponder];
+    [_lastNameTextField resignFirstResponder];
+    [_myBioTextView resignFirstResponder];
+    [_emailTextField resignFirstResponder];
+    [_mobileTextField resignFirstResponder];
 }
 
 @end
