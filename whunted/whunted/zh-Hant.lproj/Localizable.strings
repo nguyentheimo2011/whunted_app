@@ -35,7 +35,6 @@
 "Paste image link here"     =           "貼圖片鏈接";
 "Are you sure you want to cancel your listing?" =   "確定取消發佈?";
 "Yes, I'm sure!"            =           "確定";
-"Enter reference link. http://..."  =   "輸入參考網址. http://...";
 "Meeting location:"         =           "交易地點";
 "Product origin:"           =           "商品產地";
 "Proceed to edit"           =           "繼續編輯";
@@ -43,8 +42,9 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 "Item name"             =           "物品名稱";
-"Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "請描述您所需的物品，詳細細節如：尺碼， 顏色，等。";
-"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc." =   "鍵入關於所需物品的井字號，好讓賣家滿足您所望。列如： #coach #lv #prada";
+"Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "型號、顏色、尺寸等細節,多多描述你想要的物品.";
+"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc." =   "輸入物品關鍵字,讓賣家更容易找到你.例如：#Chanel #Nike #NARS";
+"Enter reference link. http://..."  =   "輸入參考連結 http://...";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
