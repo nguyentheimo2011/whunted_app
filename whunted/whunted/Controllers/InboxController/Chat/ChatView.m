@@ -33,6 +33,7 @@
 #import "ChatView.h"
 
 #import "TransactionData.h"
+#import "UserProfileViewController.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
@@ -1154,6 +1155,24 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities logOutMessage:[NSString stringWithFormat:@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation)]];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
+    UserHandler handler = ^(PFUser *user)
+    {
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        
+        UserProfileViewController *userProfileVC = [[UserProfileViewController alloc] initWithProfileOwner:user];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    };
+    
+    JSQMessage *message = messages[indexPath.item];
+    [Utilities retrieveUserInfoByUserID:message.senderId andRunBlock:handler];
 }
 
 
