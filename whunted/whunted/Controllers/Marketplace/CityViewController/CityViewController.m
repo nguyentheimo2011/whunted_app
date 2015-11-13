@@ -104,7 +104,7 @@
     
     _guidanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
     _guidanceLabel.text = _labelText;    
-    _guidanceLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _guidanceLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _guidanceLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self.view addSubview:_guidanceLabel];
 }
@@ -121,11 +121,11 @@
     
     _cityTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldLeftMargin, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _cityTextField.text = _currentLocation;
-    _cityTextField.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter a location", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
+    _cityTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Enter a location", nil) attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]}];
     _cityTextField.returnKeyType = UIReturnKeyDone;
     _cityTextField.layer.borderWidth = 0.5f;
-    _cityTextField.layer.borderColor = [TEXT_COLOR_DARK_GRAY CGColor];
+    _cityTextField.layer.borderColor = [TEXT_COLOR_GRAY CGColor];
     _cityTextField.layer.cornerRadius = 8.0f;
     _cityTextField.delegate = self;
     [Utilities addLeftPaddingToTextField:_cityTextField];
