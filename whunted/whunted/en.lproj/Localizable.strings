@@ -187,6 +187,7 @@
 "FILTER BY PRODUCT ORIGIN"          =   "FILTER BY PRODUCT ORIGIN";
 "Filter by product origin:"         =   "Filter by product origin:";
 "Filter by buyer's location:"       =   "Filter by buyer's location:";
+"Enter a location"                  =   "Enter a location";
 
 // Item Details
 //------------------------------------------------------------------------------------------------------------------------------

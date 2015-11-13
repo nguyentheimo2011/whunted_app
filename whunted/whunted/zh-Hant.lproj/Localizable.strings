@@ -187,6 +187,7 @@
 "FILTER BY PRODUCT ORIGIN"          =   "篩選商品產地";
 "Filter by product origin:"         =   "篩選商品產地:";
 "Filter by buyer's location:"       =   "篩選交易地點:";
+"Enter a location"                  =   "輸入位置";
 
 // Item Details
 //------------------------------------------------------------------------------------------------------------------------------
