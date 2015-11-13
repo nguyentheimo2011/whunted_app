@@ -175,11 +175,11 @@
     _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"category"];
     _categoryCell.textLabel.text = NSLocalizedString(@"Category", nil);
     _categoryCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _categoryCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _categoryCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _categoryCell.indentationLevel = 3;
     _categoryCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _categoryCell.detailTextLabel.text = NSLocalizedString(@"Choose category", nil);
-    _categoryCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _categoryCell.detailTextLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
     
     // add category icon
     UIImageView *catImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
@@ -195,11 +195,11 @@
     _itemInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"item info"];
     _itemInfoCell.textLabel.text = NSLocalizedString(@"Item info", nil);
     _itemInfoCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _itemInfoCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _itemInfoCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _itemInfoCell.indentationLevel = 3;
     _itemInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _itemInfoCell.detailTextLabel.text = NSLocalizedString(@"What are you buying?", nil);
-    _itemInfoCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _itemInfoCell.detailTextLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
     
     // add info icon
     UIImageView *infoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
@@ -215,12 +215,12 @@
     _priceCell = [[UITableViewCell alloc] init];
     _priceCell.textLabel.text = NSLocalizedString(@"Your price", nil);
     _priceCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _priceCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _priceCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _priceCell.indentationLevel = 3;
     _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [_priceTextField setTextAlignment:NSTextAlignmentRight];
     UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    _priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:15]}];
+    _priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     _priceTextField.delegate = self;
     _priceTextField.tag = 102;
     _priceTextField.inputView = ({
@@ -249,11 +249,11 @@
     _locationCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"location"];
     _locationCell.textLabel.text = NSLocalizedString(@"Location", nil);
     _locationCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _locationCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _locationCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _locationCell.indentationLevel = 3;
     _locationCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     _locationCell.detailTextLabel.text = NSLocalizedString(@"Where to meet?", nil);
-    _locationCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _locationCell.detailTextLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
     
     // add location icon
     UIImageView *locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
