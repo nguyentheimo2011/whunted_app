@@ -494,6 +494,8 @@
 - (void) didFinishEditingPrice
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [self normalizePriceText];
+    
     _wantData.demandedPrice = _priceTextField.text;
     [_priceTextField resignFirstResponder];
     
@@ -506,6 +508,17 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Submit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(submittingButtonTapEventHandler)];
     }
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) normalizePriceText
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if ([_priceTextField.text isEqualToString:TAIWAN_CURRENCY])
+    {
+        _priceTextField.text = [_priceTextField.text stringByAppendingString:@"0"];
+    }
+}
+
 
 /*
 //------------------------------------------------------------------------------------------------------------------------------
