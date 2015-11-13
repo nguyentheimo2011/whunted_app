@@ -86,7 +86,7 @@
     CGFloat const kButtonHeight = 18.0f;
     
     _usernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
-    [_usernameButton createTitle:NSLocalizedString(@"username", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
+    [_usernameButton createTitle:NSLocalizedString(@"username", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
     _usernameButton.titleColor = TEXT_COLOR_GRAY;
     _usernameButton.bgColor = [UIColor whiteColor];
     _usernameButton.borderWidth = 0;
@@ -122,7 +122,7 @@
     
     _lastMessageLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
     _lastMessageLabel.text = NSLocalizedString(@"Last message\nAgree ya", nil);
-    _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];
+    _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _lastMessageLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _lastMessageLabel.numberOfLines = 2;
     _lastMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
