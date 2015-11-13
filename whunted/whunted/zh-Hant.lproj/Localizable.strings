@@ -261,6 +261,8 @@
 "Enter your email address"              =   "輸入email";
 "Send me a password reset link."        =   "將重設密碼的連結寄送給我.";
 "Password Reset"                        =   "重設密碼";
+"It seems that you did not use this email to register with us." =   "無此email帳號";
+"Instructions on how to reset password has been sent to your email address."    =   "已寄送重設密碼步驟至您的Email";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------

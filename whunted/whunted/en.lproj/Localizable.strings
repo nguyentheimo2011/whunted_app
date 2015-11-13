@@ -261,6 +261,8 @@
 "Enter your email address"              =   "Enter your email address";
 "Send me a password reset link."        =   "Send me a password reset link.";
 "Password Reset"                        =   "Password Reset";
+"It seems that you did not use this email to register with us." =   "It seems that you did not use this email to register with us.";
+"Instructions on how to reset password has been sent to your email address."    =   "Instructions on how to reset password has been sent to your email address.";
 
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------
