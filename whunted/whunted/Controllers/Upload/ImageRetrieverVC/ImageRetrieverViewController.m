@@ -106,7 +106,7 @@
     _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelTopMargin, kLabelWidth, kLabelHeight)];
     [_instructionLabel setText:NSLocalizedString(@"Paste image link here", nil)];
     [_instructionLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_instructionLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]];
+    [_instructionLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]];
     [_scrollView addSubview:_instructionLabel];
 }
 
@@ -150,7 +150,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     JTImageButton *proceedToEditButton = [[JTImageButton alloc] init];
-    [proceedToEditButton createTitle:NSLocalizedString(@"Proceed to edit", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    [proceedToEditButton createTitle:NSLocalizedString(@"Proceed to edit", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
     proceedToEditButton.titleColor = [UIColor whiteColor];
     proceedToEditButton.cornerRadius = 6.0f;
     proceedToEditButton.borderColor = MAIN_BLUE_COLOR;
