@@ -174,7 +174,11 @@
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
+    
+    if ([Utilities isCurrLanguageTraditionalChinese])
+        titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
+    else
+        titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:11];
     
     if (tag == 0)
     {
