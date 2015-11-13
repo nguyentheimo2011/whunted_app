@@ -219,8 +219,7 @@
     _priceCell.indentationLevel = 3;
     _priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width * 0.55, 30)];
     [_priceTextField setTextAlignment:NSTextAlignmentRight];
-    UIColor *color = [UIColor colorWithRed:123/255.0 green:123/255.0 blue:129/255.0 alpha:1];
-    _priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: color, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
+    _priceTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Set a price", nil) attributes:@{NSForegroundColorAttributeName: GRAY_COLOR_WITH_WHITE_COLOR_8, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15]}];
     _priceTextField.delegate = self;
     _priceTextField.tag = 102;
     _priceTextField.inputView = ({

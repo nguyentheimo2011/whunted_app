@@ -186,7 +186,7 @@
     
     _referenceLinkTextView = [[SZTextView alloc] initWithFrame:CGRectMake(kTextViewLeftMargin, 0, kTextViewWidth, kTextViewHeight)];
     _referenceLinkTextView.text = [_itemInfoDict objectForKey:ITEM_REFERENCE_LINK];
-    _referenceLinkTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _referenceLinkTextView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     NSString *placeholder = NSLocalizedString(@"Enter reference link. http://...", nil);
     _referenceLinkTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: PLACEHOLDER_TEXT_COLOR, NSFontAttributeName: [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]}];
     [_referenceLinkCell addSubview:_referenceLinkTextView];
