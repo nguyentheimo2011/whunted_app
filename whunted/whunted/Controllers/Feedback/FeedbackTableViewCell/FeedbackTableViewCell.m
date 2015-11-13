@@ -115,7 +115,7 @@
     CGFloat const kUsernameLabelTopMargin = 0.0f;
     
     _writerUsernameButton = [[UIButton alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kUsernameLabelTopMargin, 0, 0)];
-    _writerUsernameButton.titleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _writerUsernameButton.titleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     [_writerUsernameButton setTitle:@" " forState:UIControlStateNormal];
     [_writerUsernameButton setTitle:@" " forState:UIControlStateHighlighted];
     [_writerUsernameButton setTitleColor:TEA_ROSE_COLOR forState:UIControlStateNormal];
@@ -160,7 +160,7 @@
 - (void) addFeedbackCommentTextView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kTextViewTopMargin = _writerUsernameButton.frame.size.height - 5;
+    CGFloat const kTextViewTopMargin = _writerUsernameButton.frame.size.height;
     CGFloat const kTextViewWidth = WINSIZE.width - kProfilePictureContainerWidth - kRatingContainerWidth;
     CGFloat const kTextViewTopInset = -10.0f;
     CGFloat const KTextViewBottomInset = -5.0f;
@@ -168,7 +168,8 @@
     
     _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(kProfilePictureContainerWidth, kTextViewTopMargin, kTextViewWidth, 0)];
     _commentTextView.text = _feedbackData.comment;
-    _commentTextView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _commentTextView.textColor = TEXT_COLOR_DARK_GRAY;
+    _commentTextView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _commentTextView.contentInset = UIEdgeInsetsMake(kTextViewTopInset, kTextViewLeftInset, KTextViewBottomInset, 0);
     [_commentTextView sizeToFit];
     _commentTextView.editable = NO;
@@ -224,11 +225,11 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat kTimestampLabelXPos = kProfilePictureContainerWidth + kClockImageWidth + 3;
-    CGFloat kTimestampLabelYPos = _clockImageView.frame.origin.y - 5;
+    CGFloat kTimestampLabelYPos = _clockImageView.frame.origin.y - 1;
     
     _timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(kTimestampLabelXPos, kTimestampLabelYPos, 0, 0)];
     _timestampLabel.text = [Utilities timestampStringFromDate:_feedbackData.updatedDate];
-    _timestampLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _timestampLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:12];
     _timestampLabel.textColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
     [_timestampLabel sizeToFit];
     [self addSubview:_timestampLabel];
@@ -240,12 +241,12 @@
 {
     CGFloat kPurchasingRoleLabelXPos = _timestampLabel.frame.origin.x + _timestampLabel.frame.size.width + 10.0f;
     
-    _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y, 0, 0)];
+    _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y - 1, 0, 0)];
     if (!_feedbackData.isWriterTheBuyer)
         _purchasingRoleLabel.text = NSLocalizedString(@"As Buyer", nil);
     else
         _purchasingRoleLabel.text = NSLocalizedString(@"As Seller", nil);
-    _purchasingRoleLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _purchasingRoleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
     [_purchasingRoleLabel sizeToFit];
     [self addSubview:_purchasingRoleLabel];
 }
