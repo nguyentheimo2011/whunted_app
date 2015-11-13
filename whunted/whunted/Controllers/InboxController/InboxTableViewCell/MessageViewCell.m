@@ -87,7 +87,7 @@
     
     _usernameButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
     [_usernameButton createTitle:NSLocalizedString(@"username", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
-    _usernameButton.titleColor = TEXT_COLOR_GRAY;
+    _usernameButton.titleColor = TEA_ROSE_COLOR;
     _usernameButton.bgColor = [UIColor whiteColor];
     _usernameButton.borderWidth = 0;
     _usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -208,8 +208,8 @@
         [self getProfileImageFromRemoteServer];
     }
 	
-	[_usernameButton createTitle:_message[FB_OPPOSING_USER_USERNAME] withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
-    _usernameButton.titleColor = TEXT_COLOR_GRAY;
+	[_usernameButton createTitle:_message[FB_OPPOSING_USER_USERNAME] withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
+    _usernameButton.titleColor = TEA_ROSE_COLOR;
     _usernameButton.bgColor = [UIColor whiteColor];
     _usernameButton.borderWidth = 0;
     _usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -225,7 +225,7 @@
 	int counter = [_message[FB_UNREAD_MESSAGES_COUNTER] intValue];
     if (counter == 0)
     {
-        _lastMessageLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+        _lastMessageLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
         _lastMessageLabel.textColor = TEXT_COLOR_GRAY;
         self.backgroundColor = [UIColor whiteColor];
         _usernameButton.bgColor = [UIColor whiteColor];
