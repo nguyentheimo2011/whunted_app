@@ -107,6 +107,10 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     cell.textLabel.text = [_categoryList objectAtIndex:indexPath.row];
     if (indexPath.row == _selectedIndex)
