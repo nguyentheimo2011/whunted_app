@@ -243,9 +243,9 @@
     
     _purchasingRoleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kPurchasingRoleLabelXPos, _timestampLabel.frame.origin.y - 1, 0, 0)];
     if (!_feedbackData.isWriterTheBuyer)
-        _purchasingRoleLabel.text = NSLocalizedString(@"As Buyer", nil);
+        _purchasingRoleLabel.text = NSLocalizedString(@"as buyer", nil);
     else
-        _purchasingRoleLabel.text = NSLocalizedString(@"As Seller", nil);
+        _purchasingRoleLabel.text = NSLocalizedString(@"as seller", nil);
     _purchasingRoleLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
     [_purchasingRoleLabel sizeToFit];
     [self addSubview:_purchasingRoleLabel];

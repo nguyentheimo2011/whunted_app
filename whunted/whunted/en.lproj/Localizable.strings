@@ -134,8 +134,10 @@
 "Sold"                              =   "Sold";
 "All displayed"                     =   "All displayed";
 "All"                               =   "All";
-"As Seller"                         =   "as seller";
-"As Buyer"                          =   "as buyer";
+"As Seller"                         =   "As Seller";
+"As Buyer"                          =   "As Buyer";
+"as seller"                         =   "as seller";
+"as buyer"                          =   "as buyer";
 "Where are you travelling to?"      =   "Where are you travelling to?";
 "Where are you living?"             =   "Where are you living?";
 "What would you like to buy?"       =   "What would you like to buy?";
