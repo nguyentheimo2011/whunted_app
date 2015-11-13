@@ -304,7 +304,7 @@
         cityViewController.viewControllerIsPresented = NO;
         cityViewController.viewTitle = NSLocalizedString(@"Product origin", nil);
         cityViewController.currentLocation = _productOriginFilter;
-        
+        cityViewController.usedForFiltering = YES;
         cityViewController.delegate = self;
         [self.navigationController pushViewController:cityViewController animated:YES];
     }

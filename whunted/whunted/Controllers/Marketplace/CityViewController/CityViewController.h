@@ -32,5 +32,6 @@
 @property (nonatomic, strong)   NSString        *currentLocation;
 @property (nonatomic)           NSInteger       tag;
 @property (nonatomic)           BOOL            viewControllerIsPresented;
+@property (nonatomic)           BOOL            usedForFiltering;
 
 @end

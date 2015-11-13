@@ -269,6 +269,7 @@
     cityViewController.viewTitle = NSLocalizedString(@"Location", nil);
     cityViewController.viewControllerIsPresented = YES;
     cityViewController.currentLocation = location;
+    cityViewController.usedForFiltering = YES;
     cityViewController.delegate = controller;
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cityViewController];

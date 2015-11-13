@@ -577,6 +577,7 @@
     meetingLocationVC.labelText = NSLocalizedString(@"Meeting location:", nil);
     meetingLocationVC.currentLocation = _wantData.meetingLocation;
     meetingLocationVC.viewTitle = NSLocalizedString(@"Location", nil);
+    meetingLocationVC.usedForFiltering = NO;
     meetingLocationVC.delegate = self;
     
     [self.navigationController pushViewController:meetingLocationVC animated:YES];

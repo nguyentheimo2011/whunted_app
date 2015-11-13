@@ -32,6 +32,7 @@
 @synthesize labelText                   =   _labelText;
 @synthesize currentLocation             =   _currentLocation;
 @synthesize viewControllerIsPresented   =   _viewControllerIsPresented;
+@synthesize usedForFiltering            =   _usedForFiltering;
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -135,19 +136,22 @@
 - (void) addClearButton
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kButtonWidth      =   100.0f;
-    CGFloat const kButtonHeight     =   40.0f;
-    CGFloat const kButtonOriginX    =   WINSIZE.width - kButtonWidth - WINSIZE.width/10.0f;
-    CGFloat const kBUttonOriginY    =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height + 20.0f;
-    
-    JTImageButton *clearButton      =   [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kBUttonOriginY, kButtonWidth, kButtonHeight)];
-    [clearButton createTitle:NSLocalizedString(@"Reset Filter", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
-    clearButton.titleColor = [UIColor whiteColor];
-    clearButton.bgColor = FLAT_FRESH_RED_COLOR;
-    clearButton.borderWidth = 0;
-    clearButton.cornerRadius = 8.0f;
-    [clearButton addTarget:self action:@selector(clearButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:clearButton];
+    if (_usedForFiltering)
+    {
+        CGFloat const kButtonWidth      =   100.0f;
+        CGFloat const kButtonHeight     =   40.0f;
+        CGFloat const kButtonOriginX    =   WINSIZE.width - kButtonWidth - WINSIZE.width/10.0f;
+        CGFloat const kBUttonOriginY    =   _cityTextField.frame.origin.y + _cityTextField.frame.size.height + 20.0f;
+        
+        JTImageButton *clearButton      =   [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kBUttonOriginY, kButtonWidth, kButtonHeight)];
+        [clearButton createTitle:NSLocalizedString(@"Reset Filter", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+        clearButton.titleColor = [UIColor whiteColor];
+        clearButton.bgColor = FLAT_FRESH_RED_COLOR;
+        clearButton.borderWidth = 0;
+        clearButton.cornerRadius = 8.0f;
+        [clearButton addTarget:self action:@selector(clearButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:clearButton];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -292,14 +296,14 @@
 - (void) topDoneButtonTapEventHandler
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if ([self isValidLocation:_cityTextField.text])
+    if ((_cityTextField.text.length == 0 && !_usedForFiltering) || [self isValidLocation:_cityTextField.text])
     {
         [_delegate cityView:self didSpecifyLocation:_cityTextField.text];
         [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", nil) message:NSLocalizedString(@"Location must be selected from drop down suggestion", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Location must be selected from drop down suggestion", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alertView show];
     }
 }

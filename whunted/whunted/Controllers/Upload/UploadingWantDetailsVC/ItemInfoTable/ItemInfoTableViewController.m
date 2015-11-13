@@ -248,6 +248,7 @@
     productOriginVC.labelText = NSLocalizedString(@"Product origin:", nil);
     productOriginVC.currentLocation = (productOrigins.count > 0) ? [productOrigins objectAtIndex:0] : nil;
     productOriginVC.viewTitle = NSLocalizedString(@"Product origin", nil);
+    productOriginVC.usedForFiltering = NO;
     productOriginVC.delegate = self;
     
     [self.navigationController pushViewController:productOriginVC animated:YES];
