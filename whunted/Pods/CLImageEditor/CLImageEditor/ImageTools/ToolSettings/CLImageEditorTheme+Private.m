@@ -52,7 +52,8 @@
 {
     NSString *str = NSLocalizedString(key, @"");
     if(![str isEqualToString:key]){ return str; }
-    return NSLocalizedStringWithDefaultValue(key, nil, [CLImageEditorTheme bundle], defaultValue, @"");
+    
+    return NSLocalizedString(defaultValue, nil);
 }
 
 #pragma mark color settings
