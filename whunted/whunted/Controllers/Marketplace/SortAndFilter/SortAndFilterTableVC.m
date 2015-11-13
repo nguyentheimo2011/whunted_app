@@ -109,7 +109,7 @@
     _recentSortCell = [[UITableViewCell alloc] init];
     _recentSortCell.textLabel.text = NSLocalizedString(SORTING_BY_RECENT, nil);
     _recentSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _recentSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _recentSortCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _recentSortCell.indentationLevel = 3;
     
     // add popular sort icon
@@ -126,7 +126,7 @@
     _lowestPriceSortCell = [[UITableViewCell alloc] init];
     _lowestPriceSortCell.textLabel.text = NSLocalizedString(SORTING_BY_LOWEST_PRICE, nil);
     _lowestPriceSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _lowestPriceSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _lowestPriceSortCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _lowestPriceSortCell.indentationLevel = 3;
     
     // add popular sort icon
@@ -143,7 +143,7 @@
     _highestPriceSortCell = [[UITableViewCell alloc] init];
     _highestPriceSortCell.textLabel.text = NSLocalizedString(SORTING_BY_HIGHEST_PRICE, nil);
     _highestPriceSortCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _highestPriceSortCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _highestPriceSortCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _highestPriceSortCell.indentationLevel = 3;
     
     // add popular sort icon
@@ -173,12 +173,12 @@
     _productOriginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ProductOriginCell"];
     _productOriginCell.textLabel.text = NSLocalizedString(@"Product origin", nil);
     _productOriginCell.textLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    _productOriginCell.textLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _productOriginCell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _productOriginCell.indentationLevel = 3;
     _productOriginCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     _productOriginCell.detailTextLabel.text = _productOriginFilter;
-    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _productOriginCell.detailTextLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     
     // add popular sort icon
     UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconWidth, kIconHeight)];
