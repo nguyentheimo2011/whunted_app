@@ -64,18 +64,27 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Beauty products"       =           "美容產品";
-"Books and magazines"   =           "書籍雜誌";
-"Luxury branded"        =           "名牌產品";
-"Games & Toys"          =           "遊戲玩具";
-"Professional services" =           "專業服務";
-"Sporting equipment"    =           "體育器材";
-"Tickets and vouchers"  =           "門票優惠券";
-"Watches"               =           "手錶";
-"Customization"         =           "定製產品";
-"Borrowing"             =           "我想借";
-"Furniture"             =           "家具";
-"Others"                =           "其他";
+"Luxury Fashion"            =           "時尚精品";
+"Popular Brands"            =           "流行品牌";
+"Beauty Products"           =           "美妝保養";
+"Clothing Apparels"         =           "衣物服飾";
+"Shoes, Bags & Accessories" =           "鞋包配件";
+"3C Products"               =           "3C產品";
+"Art & Design"              =           "藝術設計";
+"Home Accessories"          =           "生活雜物";
+"Home Furniture"            =           "家庭寢具";
+"Pet Supplies"              =           "寵物用品";
+"Games"                     =           "遊戲產品";
+"Toys"                      =           "玩具模型";
+"Books & Magazines"         =           "書籍雜誌";
+"Video Production Equipment"=           "影音文具";
+"Musical Instruments"       =           "音樂器具";
+"Sports Equipment"          =           "體育器材";
+"Professional Services"     =           "專業服務";
+"Tickets & Vouchers"        =           "門票優惠券";
+"Customized Products"       =           "客製化產品";
+"I would like to rent"      =           "我想租借";
+"Others"                    =           "其他";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------

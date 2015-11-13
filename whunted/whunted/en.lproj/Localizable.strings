@@ -65,18 +65,27 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Beauty products"       =           "Beauty products";
-"Books and magazines"   =           "Books and magazines";
-"Luxury branded"        =           "Luxury branded";
-"Games & Toys"          =           "Games & Toys";
-"Professional services" =           "Professional services";
-"Sporting equipment"    =           "Sporting equipment";
-"Tickets and vouchers"  =           "Tickets and vouchers";
-"Watches"               =           "Watches";
-"Customization"         =           "Customization";
-"Borrowing"             =           "Borrowing";
-"Furniture"             =           "Furniture";
-"Others"                =           "Others";
+"Luxury Fashion"            =           "Luxury Fashion";
+"Popular Brands"            =           "Popular Brands";
+"Beauty Products"           =           "Beauty Products";
+"Clothing Apparels"         =           "Clothing Apparels";
+"Shoes, Bags & Accessories" =           "Shoes, Bags & Accessories";
+"3C Products"               =           "3C Products";
+"Art & Design"              =           "Art & Design";
+"Home Accessories"          =           "Home Accessories";
+"Home Furniture"            =           "Home Furniture";
+"Pet Supplies"              =           "Pet Supplies";
+"Games"                     =           "Games";
+"Toys"                      =           "Toys";
+"Books & Magazines"         =           "Books & Magazines";
+"Video Production Equipment"=           "Video Production Equipment";
+"Musical Instruments"       =           "Musical Instruments";
+"Sports Equipment"          =           "Sports Equipment";
+"Professional Services"     =           "Professional Services";
+"Tickets & Vouchers"        =           "Tickets & Vouchers";
+"Customized Products"       =           "Customized Products";
+"I would like to rent"      =           "I would like to rent";
+"Others"                    =           "Others";
 //------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------

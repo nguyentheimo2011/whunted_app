@@ -525,14 +525,12 @@
     if ([englishCategories containsObject:word])
     {
         NSInteger index = [englishCategories indexOfObject:word];
-        NSLog(@"getSynonymOfWord %@", chineseCategories[index]);
         return chineseCategories[index];
     }
     
     if ([chineseCategories containsObject:word])
     {
         NSInteger index = [chineseCategories indexOfObject:word];
-        NSLog(@"getSynonymOfWord %@", englishCategories[index]);
         return englishCategories[index];
     }
     
