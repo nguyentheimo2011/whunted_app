@@ -207,7 +207,13 @@
     {
         NSArray *origins = [_itemInfoDict objectForKey:ITEM_ORIGINS_KEY];
         if (origins.count > 0)
-            _productOriginCell.detailTextLabel.text = [origins objectAtIndex:0];
+        {
+            NSString *origin = [origins objectAtIndex:0];
+            if (origin.length > 0)
+                _productOriginCell.detailTextLabel.text = origin;
+            else
+                _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
+        }
     }
     else
         _productOriginCell.detailTextLabel.text = NSLocalizedString(@"Choose origin", nil);
