@@ -491,7 +491,7 @@
     
     _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin * 1.5, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
     _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
-    _countryLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALLER_FONT_SIZE];
+    _countryLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:_countryLabel];
     
