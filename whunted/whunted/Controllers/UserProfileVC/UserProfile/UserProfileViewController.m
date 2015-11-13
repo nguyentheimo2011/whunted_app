@@ -284,9 +284,9 @@
 {
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
-    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.7;
     CGFloat const kIconLeftMargin = kBackgroundWidth * 0.08;
-    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.15;
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin, kIconTopMargin, kIconHeight * 3, kIconHeight)];
     
@@ -310,9 +310,9 @@
 {
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
-    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.7;
     CGFloat const kIconLeftMargin = kBackgroundWidth * 0.1;
-    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.15;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
@@ -337,9 +337,9 @@
 {
     CGFloat const kBackgroundHeight = backgroundView.frame.size.height;
     CGFloat const kBackgroundWidth = backgroundView.frame.size.width;
-    CGFloat const kIconHeight = kBackgroundHeight * 0.8;
+    CGFloat const kIconHeight = kBackgroundHeight * 0.7;
     CGFloat const kIconLeftMargin = kBackgroundWidth * 0.12;
-    CGFloat const kIconTopMargin = kBackgroundHeight * 0.1;
+    CGFloat const kIconTopMargin = kBackgroundHeight * 0.15;
     CGFloat const kSpaceWidth = (kBackgroundWidth - kIconHeight) / 3.0;
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(kIconLeftMargin + 2 * kSpaceWidth, kIconTopMargin, kIconHeight * 3, kIconHeight)];
