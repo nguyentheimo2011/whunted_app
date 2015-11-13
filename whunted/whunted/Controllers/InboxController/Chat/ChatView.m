@@ -798,13 +798,14 @@
 	{
 		BOOL incoming = [self addMessage:snapshot.value];
 
-		if (initialized)
+		if (initialized)    // initialized is set to YES if ChatView is active, and a new message is received
 		{
 			if (incoming) [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
 			[self finishReceivingMessage];
             
             NSDictionary *item = snapshot.value;
             [self updateOfferStatus:item[CHAT_MESSAGE_TYPE] messageFromSender:item[@"userId"] andCurrOfferID:item[FB_CURRENT_OFFER_ID]];
+            [self updateUnreadChatNotification];
 		}
 	}];
 	
