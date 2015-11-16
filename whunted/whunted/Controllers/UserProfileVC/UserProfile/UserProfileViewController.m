@@ -265,6 +265,10 @@
     
     CGFloat const kBackgroundHeight = (WINSIZE.width * 0.3 - 2 * kTopMargin) / 2 - 10.0f;
     CGFloat kBackgroundOriginY = kTopMargin + 5;
+    if (!_isViewingMyProfile)
+    {
+        kBackgroundOriginY = kTopMargin + 10;
+    }
     
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kBackgroundOriginY, WINSIZE.width * 0.6, kBackgroundHeight)];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ratingViewTapEventHandler)];
