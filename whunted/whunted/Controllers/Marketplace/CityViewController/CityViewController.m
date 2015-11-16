@@ -146,7 +146,7 @@
         JTImageButton *clearButton      =   [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kBUttonOriginY, kButtonWidth, kButtonHeight)];
         [clearButton createTitle:NSLocalizedString(@"Reset Filter", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
         clearButton.titleColor = [UIColor whiteColor];
-        clearButton.bgColor = FLAT_FRESH_RED_COLOR;
+        clearButton.bgColor = PERSIAN_GREEN_COLOR;
         clearButton.borderWidth = 0;
         clearButton.cornerRadius = 8.0f;
         [clearButton addTarget:self action:@selector(clearButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
