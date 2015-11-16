@@ -262,7 +262,9 @@
     [_scrollView addSubview:_topRightView];
     
     CGFloat const kBackgroundHeight = (WINSIZE.width * 0.3 - 2 * kTopMargin) / 2 - 10.0f;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kTopMargin + 5, WINSIZE.width * 0.6, kBackgroundHeight)];
+    CGFloat kBackgroundOriginY = kTopMargin + 5;
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, kBackgroundOriginY, WINSIZE.width * 0.6, kBackgroundHeight)];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ratingViewTapEventHandler)];
     [backgroundView addGestureRecognizer:tapRecognizer];
     
@@ -375,10 +377,6 @@
         [self addPreferencesButton:backgroundView];
         [self addSettingsButtonToView:backgroundView];
     }
-    else
-    {
-        [self addFollowButtonToView:backgroundView];
-    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -423,29 +421,6 @@
     settingsButton.cornerRadius = 6.0;
     [settingsButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:settingsButton];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addFollowButtonToView: (UIView *) backgroundView
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kButtonHeight = backgroundView.frame.size.height;
-    CGFloat const kButtonWidth = backgroundView.frame.size.width;
-    CGFloat kButtonOriginX = 0;
-    
-    JTImageButton *followButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
-    [followButton createTitle:NSLocalizedString(@"+ Follow", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:14] iconOffsetY:0];
-    
-    // TODO: colors are likely to change
-    followButton.bgColor = [UIColor whiteColor];
-    followButton.borderColor = MAIN_BLUE_COLOR_WITH_DARK_2;
-    followButton.borderWidth = 1.3f;
-    followButton.titleColor = MAIN_BLUE_COLOR_WITH_DARK_2;
-    
-    followButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    followButton.cornerRadius = 6.0;
-    followButton.enabled = NO;
-    [backgroundView addSubview:followButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
