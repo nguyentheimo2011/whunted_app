@@ -19,7 +19,7 @@
 #import <JTImageButton.h>
 
 #define kTopMargin      WINSIZE.width / 30.0
-#define kLeftMargin     WINSIZE.width / 30.0
+#define kLeftMargin     WINSIZE.width / 30.0 * 1.5
 
 //-------------------------------------------------------------------------------------------------------------------------------
 @interface UserProfileViewController ()
@@ -175,7 +175,6 @@
     [self addScrollView];
     [self addProfileImage_Name_Country_Rating];
     [self addPreferencesAndEditButtons];
-    [self addSaperatorLineAndInfoLabel];
     [self addUserDescription];
     [self addDate_Verification_DescriptionLabels];
     [self addControls];
@@ -435,7 +434,7 @@
 {
     CGFloat const kLabelHeight = 20.0f;
     CGFloat const kLabelOriginY = _currHeight;
-    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin * 1.5, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    _userFullNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
     
     NSString *firstName = _profileOwner[PF_USER_FIRSTNAME];
     NSString *lastName = _profileOwner[PF_USER_LASTNAME];
@@ -470,48 +469,13 @@
     CGFloat const kLabelHeight = 20.0f;
     CGFloat const kLabelOriginY = _currHeight - 2.0f;
     
-    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin * 1.5, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
+    _countryLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kLabelOriginY, WINSIZE.width - 2 * kLeftMargin, kLabelHeight)];
     _countryLabel.text = _profileOwner[PF_USER_COUNTRY];
     _countryLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
     _countryLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_scrollView addSubview:_countryLabel];
     
     _currHeight += kLabelHeight;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) addSaperatorLineAndInfoLabel
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    UILabel *infoLabel = [[UILabel alloc] init];
-    infoLabel.text = NSLocalizedString(@"Info", nil);
-    infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16];
-    infoLabel.textColor = TEXT_COLOR_DARK_GRAY;
-    [infoLabel sizeToFit];
-    
-    CGFloat const kLabelWidth = infoLabel.frame.size.width;
-    CGFloat const kLabelHeight = infoLabel.frame.size.height;
-    CGFloat const kLabelLeftMargin = WINSIZE.width / 2.0 - kLabelWidth / 2.0;
-    CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
-    CGFloat const kLabelYPos = _currHeight + kLabelTopMargin;
-    infoLabel.frame = CGRectMake(kLabelLeftMargin, kLabelYPos, kLabelWidth, kLabelHeight);
-    [_scrollView addSubview:infoLabel];
-    
-    // add two horizontal lines beside the total listing label
-    CGFloat const kFirstLineLeftMargin = WINSIZE.width / 28.0;
-    CGFloat const kLineWidth = kLabelLeftMargin - 5 - kFirstLineLeftMargin;
-    CGFloat const kLineYPos = kLabelYPos + kLabelHeight / 2.0;
-    CGFloat const kSecondLineXPos = WINSIZE.width / 2.0 + kLabelWidth / 2.0 + 5;
-    
-    UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(kFirstLineLeftMargin, kLineYPos, kLineWidth, 1)];
-    leftLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
-    [_scrollView addSubview:leftLine];
-    
-    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(kSecondLineXPos, kLineYPos, kLineWidth, 1)];
-    rightLine.backgroundColor = GRAY_COLOR_WITH_WHITE_COLOR_5;
-    [_scrollView addSubview:rightLine];
-    
-    _currHeight += kLabelTopMargin + kLabelHeight;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -526,13 +490,12 @@
 - (void) addUserDescription
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kLabelTopMargin = WINSIZE.height / 192.0;
     CGFloat const kYPos = _currHeight + kLabelTopMargin;
-    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLeftMargin;
     CGFloat const kMaxNumOfLines = 40;
     
-    _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, 0)];
+    _userDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kYPos, kLabelWidth, 0)];
     _userDescriptionLabel.text = _profileOwner[PF_USER_DESCRIPTION];
     _userDescriptionLabel.textColor = TEXT_COLOR_DARK_GRAY;
     _userDescriptionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
@@ -552,12 +515,11 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit  fromDate:joiningDate];
     
-    CGFloat const kLabelLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kLabelTopMargin = WINSIZE.height / 96.0;
     CGFloat const kYPos = _currHeight + kLabelTopMargin;
-    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLabelLeftMargin;
+    CGFloat const kLabelWidth = WINSIZE.width - 2 * kLeftMargin;
     CGFloat const kLabelHeight = 20;
-    UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
+    UILabel *joiningDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLeftMargin, kYPos, kLabelWidth, kLabelHeight)];
     joiningDateLabel.text = [NSString stringWithFormat:@"%@ %ld/%ld/%ld", NSLocalizedString(@"Date joined", nil), (long)components.day, (long)components.month, (long)components.year];
     joiningDateLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
     joiningDateLabel.textColor = TEXT_COLOR_DARK_GRAY;
@@ -570,13 +532,12 @@
 - (void) addVerificationInfo
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const kBackgroundLeftMargin = WINSIZE.width / 28.0;
     CGFloat const kBackgroundTopMargin = WINSIZE.height / 192.0;
     CGFloat const kYPos = _currHeight + kBackgroundTopMargin;
-    CGFloat const kBackgroundWidth = WINSIZE.width - 2 * kBackgroundLeftMargin;
+    CGFloat const kBackgroundWidth = WINSIZE.width - 2 * kLeftMargin;
     CGFloat const kBackgroundHeight = 20;
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(kBackgroundLeftMargin, kYPos, kBackgroundWidth, kBackgroundHeight)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(kLeftMargin, kYPos, kBackgroundWidth, kBackgroundHeight)];
     [_scrollView addSubview:backgroundView];
     
     UILabel *verifiedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, kBackgroundHeight)];
