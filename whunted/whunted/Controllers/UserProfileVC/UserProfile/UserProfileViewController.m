@@ -421,7 +421,7 @@
     
     editButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     editButton.cornerRadius = 6.0;
-    [editButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [editButton addTarget:self action:@selector(editButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:editButton];
 }
 
@@ -1056,6 +1056,15 @@
     
     NSString *userID = notification.object;
     [Utilities retrieveUserInfoByUserID:userID andRunBlock:handler];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) editButtonTapEventHandler
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
+    EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
+    [self.navigationController pushViewController:editProfileVC animated:YES];
 }
 
 

@@ -85,6 +85,7 @@
     if (self)
     {
         _userData = userData;
+        self.hidesBottomBarWhenPushed = YES;
     }
     
     return self;
