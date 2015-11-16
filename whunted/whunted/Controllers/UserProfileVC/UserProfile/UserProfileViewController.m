@@ -174,7 +174,7 @@
     [self customizeView];
     [self addScrollView];
     [self addProfileImage_Name_Country_Rating];
-    [self addPreferencesAndSettingsButtons];
+    [self addPreferencesAndEditButtons];
     [self addSaperatorLineAndInfoLabel];
     [self addUserDescription];
     [self addDate_Verification_DescriptionLabels];
@@ -361,7 +361,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) addPreferencesAndSettingsButtons
+- (void) addPreferencesAndEditButtons
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kBackgroundHeight = (WINSIZE.width * 0.3 - 2 * kTopMargin) / 2 - 10.0f;
@@ -375,7 +375,7 @@
     if (_isViewingMyProfile)
     {
         [self addPreferencesButton:backgroundView];
-        [self addSettingsButtonToView:backgroundView];
+        [self addEditButtonToView:backgroundView];
     }
 }
 
@@ -402,25 +402,25 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) addSettingsButtonToView: (UIView *) backgroundView
+- (void) addEditButtonToView: (UIView *) backgroundView
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kButtonHeight = backgroundView.frame.size.height;
     CGFloat kButtonWidth = (backgroundView.frame.size.width - 10) / 2;
     CGFloat kButtonOriginX = kButtonWidth + 10;
     
-    JTImageButton *settingsButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
-    [settingsButton createTitle:NSLocalizedString(@"Settings", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
+    [editButton createTitle:NSLocalizedString(@"Edit Profile", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
     
     // TODO: colors are likely to change
-    settingsButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
-    settingsButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
-    settingsButton.titleColor = TEXT_COLOR_DARK_GRAY;
+    editButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    editButton.borderColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
+    editButton.titleColor = TEXT_COLOR_DARK_GRAY;
     
-    settingsButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    settingsButton.cornerRadius = 6.0;
-    [settingsButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [backgroundView addSubview:settingsButton];
+    editButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    editButton.cornerRadius = 6.0;
+    [editButton addTarget:self action:@selector(settingsButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [backgroundView addSubview:editButton];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
