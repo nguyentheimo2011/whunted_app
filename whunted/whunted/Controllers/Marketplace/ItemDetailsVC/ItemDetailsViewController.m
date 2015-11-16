@@ -437,31 +437,33 @@
         
         if (_wantData.itemDesc.length > 0)
         {
-            CGSize expectedSize = [_wantData.itemDesc sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
-            
-            _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, expectedSize.height)];
+            _itemDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kDescImageYPos, kLabelWidth, 0)];
             _itemDescLabel.text = _wantData.itemDesc;
             _itemDescLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
             _itemDescLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
             _itemDescLabel.lineBreakMode = NSLineBreakByWordWrapping;
             _itemDescLabel.numberOfLines = 0;
+            [_itemDescLabel sizeToFit];
             [_scrollView addSubview:_itemDescLabel];
             
             _currOccupiedYPos = _itemDescLabel.frame.origin.y + _itemDescLabel.frame.size.height;
-        } else
+        }
+        else
+        {
             _currOccupiedYPos = kDescImageYPos;
+        }
         
         if (_wantData.hashTagList.count > 0)
         {
             NSString *hashtagString = [_wantData.hashTagList componentsJoinedByString:@" "];
-            CGSize expectedSize = [hashtagString sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
             
-            _itemHashtagLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, _currOccupiedYPos, kLabelWidth, expectedSize.height)];
+            _itemHashtagLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, _currOccupiedYPos, kLabelWidth, 0)];
             _itemHashtagLabel.text = hashtagString;
             _itemHashtagLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
             _itemHashtagLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
             _itemHashtagLabel.lineBreakMode = NSLineBreakByWordWrapping;
             _itemHashtagLabel.numberOfLines = 0;
+            [_itemHashtagLabel sizeToFit];
             [_scrollView addSubview:_itemHashtagLabel];
             
             _currOccupiedYPos = _itemHashtagLabel.frame.origin.y + _itemHashtagLabel.frame.size.height;
@@ -545,15 +547,17 @@
         else
         {
             NSString *productOriginText = [_wantData.itemOrigins componentsJoinedByString:@", "];
-            CGSize expectedSize = [productOriginText sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE]}];
             CGFloat const kLabel2OriginX    =   kLabel1OriginX;
             CGFloat const kLabel2OriginY    =   kOriginImageYPos + contextualLabel.frame.size.height + 4.0f;
             CGFloat const kLabel2Width      =   kMaxWidth;
             
-            _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLabel2OriginY, kLabel2Width, expectedSize.height)];
+            _productOriginLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabel2OriginX, kLabel2OriginY, kLabel2Width, 0)];
             _productOriginLabel.text = productOriginText;
             _productOriginLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
-            [_productOriginLabel setTextColor:CYAN_COLOR_WITH_WHITE_1];
+            _productOriginLabel.textColor = CYAN_COLOR_WITH_WHITE_1;
+            _productOriginLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            _productOriginLabel.numberOfLines = 0;
+            [_productOriginLabel sizeToFit];
             [_scrollView addSubview:_productOriginLabel];
         }
         
