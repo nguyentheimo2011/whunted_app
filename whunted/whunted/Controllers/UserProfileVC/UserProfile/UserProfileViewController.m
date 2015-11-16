@@ -390,7 +390,7 @@
     CGFloat const kButtonOriginX = 0;
     
     JTImageButton *preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
-    [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
     
     // TODO: colors are likely to change
     preferencesButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_2_5;
@@ -412,7 +412,7 @@
     CGFloat kButtonOriginX = kButtonWidth + 10;
     
     JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
-    [editButton createTitle:NSLocalizedString(@"Edit Profile", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:16] iconOffsetY:0];
+    [editButton createTitle:NSLocalizedString(@"Edit Profile", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconOffsetY:0];
     
     // TODO: colors are likely to change
     editButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
