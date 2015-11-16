@@ -132,7 +132,6 @@
 "Info"                              =   "關於我";
 "Date joined"                       =   "加入日期";
 "Verified"                          =   "已驗證";
-"Sold"                              =   "在賣";
 "All displayed"                     =   "全部都已顯示";
 "All"                               =   "全部";
 "As Seller"                         =   "賣東西";
@@ -149,9 +148,10 @@
 "Listing"                           =   "個物品";
 "Listings"                          =   "個物品";
 "Edit Profile"                      =   "編輯檔案";
-"Bought"                            =   "已購買";
-"Sold"                              =   "已售出";
+"Bought"                            =   "已購入";
+"Sold"                              =   "已結案";
 "Item Bought"                       =   "已購買";
+"Reset Filter"                      =   "重新設定";
 //------------------------------------------------------------------------------------------------------------------------------
 
 // Chats
@@ -183,13 +183,13 @@
 "Apply"                             =   "完成";
 "SORT BY"                           =   "排序";
 "Popular"                           =   "最高人氣";
-"Recent"                            =   "最新熱門";
+"Recent"                            =   "最新需求";
 "Lowest Price"                      =   "價錢低到高";
 "Highest Price"                     =   "價錢高到低";
 "FILTER BY PRODUCT ORIGIN"          =   "篩選商品產地";
 "Filter by product origin:"         =   "篩選商品產地:";
 "Filter by buyer's location:"       =   "篩選交易地點:";
-"Enter a location"                  =   "輸入位置";
+"Enter a location"                  =   "輸入地點";
 
 // Item Details
 //------------------------------------------------------------------------------------------------------------------------------

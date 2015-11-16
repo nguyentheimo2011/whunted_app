@@ -131,7 +131,6 @@
 "Date joined"                       =   "Date joined";
 "Verified"                          =   "Verified";
 "Item Bought"                       =   "Item Bought";
-"Sold"                              =   "Sold";
 "All displayed"                     =   "All displayed";
 "All"                               =   "All";
 "As Seller"                         =   "As Seller";
@@ -150,6 +149,7 @@
 "Edit Profile"                      =   "Edit Profile";
 "Bought"                            =   "Bought";
 "Sold"                              =   "Sold";
+"Reset Filter"                      =   "Reset Filter";
 
 //------------------------------------------------------------------------------------------------------------------------------
 
