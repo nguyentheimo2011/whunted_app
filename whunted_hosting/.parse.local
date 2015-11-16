@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "whunted"
+    },
+    "whunted": {
+      "applicationId": "QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA"
+    }
+  }
+}

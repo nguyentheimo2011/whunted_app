@@ -1,0 +1,14 @@
+.modal-footer 
+{   
+	border-top: 0px; 
+}
+
+.modal
+{
+	font-family: 'Open Sans', sans-serif;
+}
+
+body .modal-admin 
+{
+    max-width: 500px;
+}
