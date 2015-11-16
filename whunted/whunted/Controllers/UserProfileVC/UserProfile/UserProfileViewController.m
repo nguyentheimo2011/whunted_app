@@ -191,6 +191,8 @@
     
     NSString *title = [NSString stringWithFormat:@"@%@", _profileOwner[PF_USER_USERNAME]];
     [Utilities customizeTitleLabel:title forViewController:self];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTapEventHandler)];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
