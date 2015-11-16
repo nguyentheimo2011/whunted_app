@@ -641,7 +641,9 @@
     if (commaSignRange.location >= address.length)
         return address;
     else
-        return [address substringFromIndex:commaSignRange.location + 1];
+    {
+        return [[address substringFromIndex:commaSignRange.location + 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
