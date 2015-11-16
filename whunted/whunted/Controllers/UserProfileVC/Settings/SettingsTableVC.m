@@ -19,12 +19,9 @@
     UITableViewCell     *_editingProfileCell;
     UITableViewCell     *_emailSupportCell;
     
-    UITableViewCell     *_gettingStartedCell;
-    UITableViewCell     *_helpFAQCell;
-    UITableViewCell     *_communityRulesCell;
-    UITableViewCell     *_aboutWhuntedCell;
+    UITableViewCell     *_termsOfServiceCell;
+    UITableViewCell     *_privacyPolicyCell;
     
-    UITableViewCell     *_notificationSettingsCell;
     UITableViewCell     *_logoutCell;
 }
 
@@ -95,6 +92,9 @@
     [self initEditingProfileCell];
     [self initEmailSupportCell];
     
+    [self initTermsOfService];
+    [self initPrivacyPolicy];
+    
     [self initLogoutCell];
 }
 
@@ -119,53 +119,23 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) initGettingStartedCell
+- (void) initTermsOfService
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _gettingStartedCell = [[UITableViewCell alloc] init];
-    _gettingStartedCell.textLabel.text  =   NSLocalizedString(@"Getting Started Guide", nil);
-    _gettingStartedCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _gettingStartedCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
+    _termsOfServiceCell = [[UITableViewCell alloc] init];
+    _termsOfServiceCell.textLabel.text  =   NSLocalizedString(@"Terms of Service", nil);
+    _termsOfServiceCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _termsOfServiceCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) initHelpFAQCell
+- (void) initPrivacyPolicy
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    _helpFAQCell = [[UITableViewCell alloc] init];
-    _helpFAQCell.textLabel.text     =   NSLocalizedString(@"Help & FAQ", nil);
-    _helpFAQCell.textLabel.font     =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _helpFAQCell.accessoryType      =   UITableViewCellAccessoryDisclosureIndicator;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) initCommunityRulesCell
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    _communityRulesCell = [[UITableViewCell alloc] init];
-    _communityRulesCell.textLabel.text  =   NSLocalizedString(@"Community Rules", nil);
-    _communityRulesCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _communityRulesCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) initAboutWhuntedCell
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    _aboutWhuntedCell = [[UITableViewCell alloc] init];
-    _aboutWhuntedCell.textLabel.text    =   NSLocalizedString(@"About Whunted", nil);
-    _aboutWhuntedCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _aboutWhuntedCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) initNotificationSettingsCell
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    _notificationSettingsCell = [[UITableViewCell alloc] init];
-    _notificationSettingsCell.textLabel.text    =   NSLocalizedString(@"Notification Settings", nil);
-    _notificationSettingsCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _notificationSettingsCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
+    _privacyPolicyCell = [[UITableViewCell alloc] init];
+    _privacyPolicyCell.textLabel.text    =   NSLocalizedString(@"Privacy Policy", nil);
+    _privacyPolicyCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _privacyPolicyCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -192,7 +162,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 2;
+    return 3;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -200,6 +170,8 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
+        return 2;
+    else if (section == 1)
         return 2;
     else
         return 1;
@@ -217,6 +189,13 @@
             return _emailSupportCell;
     }
     else if (indexPath.section == 1)
+    {
+        if (indexPath.row == 0)
+            return _termsOfServiceCell;
+        else
+            return _privacyPolicyCell;
+    }
+    else if (indexPath.section == 2)
     {
         return _logoutCell;
     }
@@ -240,6 +219,8 @@
 {
     if (section == 0)
         return 30.0f;
+    else if (section == 1)
+        return 15.0f;
     else
         return 40.0f;
 }
@@ -285,7 +266,9 @@
     else if (indexPath.section == 1)
     {
         if (indexPath.row == 0)
-            [self logoutButtonTapEventHandler];
+            [self presentTermsOfServiceView];
+        else
+            [self presentPrivacyPolicyView];
     }
 }
 
@@ -345,6 +328,34 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log Out Of Whunted", nil) message:NSLocalizedString(@"Are you sure that you want to log out of Whunted?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     [alertView show];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) presentTermsOfServiceView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/Termsofservice.html"]];
+    [webView loadRequest:request];
+    
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Service", nil) forViewController:viewController];
+    viewController.view = webView;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) presentPrivacyPolicyView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/privacy.html"]];
+    [webView loadRequest:request];
+    
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [Utilities customizeTitleLabel:NSLocalizedString(@"Privacy Policy", nil) forViewController:viewController];
+    viewController.view = webView;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 
