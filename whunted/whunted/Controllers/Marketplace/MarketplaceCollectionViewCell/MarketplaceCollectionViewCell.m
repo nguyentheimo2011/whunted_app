@@ -12,8 +12,8 @@
 #import "AppConstant.h"
 #import "Utilities.h"
 
-#define kCellLeftMagin      4.0f
-#define kCellRightMargin    4.0f
+#define kCellLeftMagin      6.0f
+#define kCellRightMargin    6.0f
 
 @implementation MarketplaceCollectionViewCell
 {
