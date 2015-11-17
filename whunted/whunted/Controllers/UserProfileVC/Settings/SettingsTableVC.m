@@ -17,10 +17,12 @@
 @implementation SettingsTableVC
 {
     UITableViewCell     *_editingProfileCell;
-    UITableViewCell     *_emailSupportCell;
     
-    UITableViewCell     *_termsOfServiceCell;
+    UITableViewCell     *_phoneVerificationCell;
+    
+    UITableViewCell     *_emailSupportCell;
     UITableViewCell     *_privacyPolicyCell;
+    UITableViewCell     *_termsOfServiceCell;
     
     UITableViewCell     *_logoutCell;
 }
@@ -91,6 +93,8 @@
 {
     [self initEditingProfileCell];
     
+    [self initPhoneVerificationCell];
+    
     [self initEmailSupportCell];
     [self initPrivacyPolicy];
     [self initTermsOfService];
@@ -106,6 +110,16 @@
     _editingProfileCell.textLabel.text  =   NSLocalizedString(@"Edit Profile", nil);
     _editingProfileCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _editingProfileCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initPhoneVerificationCell
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _phoneVerificationCell = [[UITableViewCell alloc] init];
+    _phoneVerificationCell.textLabel.text   =   NSLocalizedString(@"Verify Phone Number", nil);
+    _phoneVerificationCell.textLabel.font   =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _phoneVerificationCell.accessoryType    =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -162,7 +176,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    return 3;
+    return 4;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -172,6 +186,8 @@
     if (section == 0)
         return 1;
     else if (section == 1)
+        return 1;
+    else if (section == 2)
         return 3;
     else
         return 1;
@@ -188,6 +204,10 @@
     }
     else if (indexPath.section == 1)
     {
+        return _phoneVerificationCell;
+    }
+    else if (indexPath.section == 2)
+    {
         if (indexPath.row == 0)
             return _emailSupportCell;
         else if (indexPath.row == 1)
@@ -195,7 +215,7 @@
         else
             return _termsOfServiceCell;
     }
-    else if (indexPath.section == 2)
+    else if (indexPath.section == 3)
     {
         return _logoutCell;
     }
@@ -220,7 +240,9 @@
     if (section == 0)
         return 30.0f;
     else if (section == 1)
-        return 15.0f;
+        return 20.0f;
+    else if (section == 2)
+        return 20.0f;
     else
         return 40.0f;
 }
@@ -260,6 +282,10 @@
         }
     }
     else if (indexPath.section == 1)
+    {
+        
+    }
+    else if (indexPath.section == 2)
     {
         if (indexPath.row == 0)
             [self handlerEmailSupport];
