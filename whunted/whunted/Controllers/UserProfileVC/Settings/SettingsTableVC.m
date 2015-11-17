@@ -29,7 +29,7 @@
 - (id) init
 //--------------------------------------------------------------------------------------------------------------------------------
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     
     if (self)
     {
@@ -90,10 +90,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     [self initEditingProfileCell];
-    [self initEmailSupportCell];
     
-    [self initTermsOfService];
+    [self initEmailSupportCell];
     [self initPrivacyPolicy];
+    [self initTermsOfService];
     
     [self initLogoutCell];
 }
@@ -119,16 +119,6 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) initTermsOfService
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    _termsOfServiceCell = [[UITableViewCell alloc] init];
-    _termsOfServiceCell.textLabel.text  =   NSLocalizedString(@"Terms of Service", nil);
-    _termsOfServiceCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
-    _termsOfServiceCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) initPrivacyPolicy
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -136,6 +126,16 @@
     _privacyPolicyCell.textLabel.text    =   NSLocalizedString(@"Privacy Policy", nil);
     _privacyPolicyCell.textLabel.font    =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _privacyPolicyCell.accessoryType     =   UITableViewCellAccessoryDisclosureIndicator;
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) initTermsOfService
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    _termsOfServiceCell = [[UITableViewCell alloc] init];
+    _termsOfServiceCell.textLabel.text  =   NSLocalizedString(@"Terms of Service", nil);
+    _termsOfServiceCell.textLabel.font  =   [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _termsOfServiceCell.accessoryType   =   UITableViewCellAccessoryDisclosureIndicator;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -170,9 +170,9 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 {
     if (section == 0)
-        return 2;
+        return 1;
     else if (section == 1)
-        return 2;
+        return 3;
     else
         return 1;
 }
@@ -185,15 +185,15 @@
     {
         if (indexPath.row == 0)
             return _editingProfileCell;
-        else
-            return _emailSupportCell;
     }
     else if (indexPath.section == 1)
     {
         if (indexPath.row == 0)
-            return _termsOfServiceCell;
-        else
+            return _emailSupportCell;
+        else if (indexPath.row == 1)
             return _privacyPolicyCell;
+        else
+            return _termsOfServiceCell;
     }
     else if (indexPath.section == 2)
     {
@@ -258,17 +258,15 @@
         {
             [self pushEditProfileViewController];
         }
-        else
-        {
-            [self handlerEmailSupport];
-        }
     }
     else if (indexPath.section == 1)
     {
         if (indexPath.row == 0)
-            [self presentTermsOfServiceView];
-        else
+            [self handlerEmailSupport];
+        else if (indexPath.row == 1)
             [self presentPrivacyPolicyView];
+        else
+            [self presentTermsOfServiceView];
     }
 }
 
