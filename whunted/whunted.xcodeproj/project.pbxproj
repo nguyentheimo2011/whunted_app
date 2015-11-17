@@ -115,6 +115,7 @@
 		E963614D1B16C7F000EB9D35 /* marketplace@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614A1B16C7F000EB9D35 /* marketplace@1x.png */; };
 		E963614E1B16C7F000EB9D35 /* marketplace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614B1B16C7F000EB9D35 /* marketplace@2x.png */; };
 		E963614F1B16C7F000EB9D35 /* marketplace@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E963614C1B16C7F000EB9D35 /* marketplace@3x.png */; };
+		E9638C681BFB7F280042DEE5 /* VerificationCodeRequesterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C671BFB7F280042DEE5 /* VerificationCodeRequesterVC.m */; };
 		E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E97138A51BCFA39C00B7F961 /* SearchEngine.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
@@ -469,6 +470,8 @@
 		E963614A1B16C7F000EB9D35 /* marketplace@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@1x.png"; path = "Resources/Tab Bar Icons/marketplace@1x.png"; sourceTree = "<group>"; };
 		E963614B1B16C7F000EB9D35 /* marketplace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@2x.png"; path = "Resources/Tab Bar Icons/marketplace@2x.png"; sourceTree = "<group>"; };
 		E963614C1B16C7F000EB9D35 /* marketplace@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marketplace@3x.png"; path = "Resources/Tab Bar Icons/marketplace@3x.png"; sourceTree = "<group>"; };
+		E9638C661BFB7F280042DEE5 /* VerificationCodeRequesterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerificationCodeRequesterVC.h; path = Controllers/Verification/PhoneVerification/VerificationCodeRequesterVC.h; sourceTree = "<group>"; };
+		E9638C671BFB7F280042DEE5 /* VerificationCodeRequesterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerificationCodeRequesterVC.m; path = Controllers/Verification/PhoneVerification/VerificationCodeRequesterVC.m; sourceTree = "<group>"; };
 		E97138A41BCFA39C00B7F961 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = Library/SearchEngine/SearchEngine.h; sourceTree = "<group>"; };
 		E97138A51BCFA39C00B7F961 /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = Library/SearchEngine/SearchEngine.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
@@ -1082,6 +1085,7 @@
 				E92EC5071B688EBF00AABB72 /* Feedback */,
 				E94D17EA1AF9B28700E31B01 /* SellerList */,
 				E95CFA4D1B141E0B003755E3 /* LoginSignup */,
+				E9638C641BFAFFF60042DEE5 /* Verification */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1299,6 +1303,23 @@
 				E9C3E64C1BB405C00006BEB3 /* background_image.png */,
 			);
 			name = LoginSignup;
+			sourceTree = "<group>";
+		};
+		E9638C641BFAFFF60042DEE5 /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				E9638C651BFB00120042DEE5 /* PhoneVerification */,
+			);
+			name = Verification;
+			sourceTree = "<group>";
+		};
+		E9638C651BFB00120042DEE5 /* PhoneVerification */ = {
+			isa = PBXGroup;
+			children = (
+				E9638C661BFB7F280042DEE5 /* VerificationCodeRequesterVC.h */,
+				E9638C671BFB7F280042DEE5 /* VerificationCodeRequesterVC.m */,
+			);
+			name = PhoneVerification;
 			sourceTree = "<group>";
 		};
 		E97138A31BCFA17B00B7F961 /* SearchEngine */ = {
@@ -2337,6 +2358,7 @@
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
+				E9638C681BFB7F280042DEE5 /* VerificationCodeRequesterVC.m in Sources */,
 				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,

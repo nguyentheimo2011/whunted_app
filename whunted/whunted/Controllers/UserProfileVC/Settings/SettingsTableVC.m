@@ -7,6 +7,7 @@
 //
 
 #import "SettingsTableVC.h"
+#import "VerificationCodeRequesterVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -283,7 +284,7 @@
     }
     else if (indexPath.section == 1)
     {
-        
+        [self pushVerificationCodeRequesterVC];
     }
     else if (indexPath.section == 2)
     {
@@ -320,6 +321,14 @@
     UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
     [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) pushVerificationCodeRequesterVC
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    VerificationCodeRequesterVC *codeRequester = [[VerificationCodeRequesterVC alloc] init];
+    [self.navigationController pushViewController:codeRequester animated:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
