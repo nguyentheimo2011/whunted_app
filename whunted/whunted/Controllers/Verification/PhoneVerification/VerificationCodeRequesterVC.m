@@ -14,6 +14,8 @@
 
 @implementation VerificationCodeRequesterVC
 {
+    UIScrollView        *_scrollView;
+    
     UILabel             *_phoneVerificationLabel;
     UILabel             *_verificationsBenefitsLabel;
     
@@ -45,9 +47,19 @@
 - (void) loadUI
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [self addScrollView];
     [self addPhoneVerficationLabel];
     [self addVerificationsBenefitsLabel];
     [self addInputTableView];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addScrollView
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
+    _scrollView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_scrollView];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -61,9 +73,9 @@
     [_phoneVerificationLabel sizeToFit];
     
     CGFloat kLabelOriginX   =   (WINSIZE.width - _phoneVerificationLabel.frame.size.width) / 2;
-    CGFloat kLabelOriginY   =   [Utilities getHeightOfNavigationAndStatusBars:self] + 20.0f;
+    CGFloat kLabelOriginY   =   20.0f;
     _phoneVerificationLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, _phoneVerificationLabel.frame.size.width, _phoneVerificationLabel.frame.size.height);
-    [self.view addSubview:_phoneVerificationLabel];
+    [_scrollView addSubview:_phoneVerificationLabel];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -83,7 +95,7 @@
     [_verificationsBenefitsLabel sizeToFit];
     _verificationsBenefitsLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, _verificationsBenefitsLabel.frame.size.height);
     _verificationsBenefitsLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:_verificationsBenefitsLabel];
+    [_scrollView addSubview:_verificationsBenefitsLabel];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -98,7 +110,7 @@
     _inputTableView.delegate = self;
     _inputTableView.dataSource = self;
     _inputTableView.scrollEnabled = NO;
-    [self.view addSubview:_inputTableView];
+    [_scrollView addSubview:_inputTableView];
 }
 
 
