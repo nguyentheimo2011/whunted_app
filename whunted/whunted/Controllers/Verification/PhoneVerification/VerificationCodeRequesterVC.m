@@ -116,7 +116,7 @@
 {
     CGFloat kTableOriginY   =   _verificationsBenefitsLabel.frame.origin.y + _verificationsBenefitsLabel.frame.size.height + 20.0f;
     CGFloat kTableWidth     =   WINSIZE.width - 2 * kLeftMargin;
-    CGFloat kTableHeight    =   170.0f;
+    CGFloat kTableHeight    =   165.0f;
     
     _inputTableView = [[UITableView alloc] initWithFrame:CGRectMake(kLeftMargin, kTableOriginY, kTableWidth, kTableHeight)];
     _inputTableView.delegate = self;
@@ -198,10 +198,11 @@
     _buttonCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     CGFloat kButtonOriginX  =   20.0f;
+    CGFloat kButtonOriginY  =   25.0f;
     CGFloat kButtonWidth    =   _inputTableView.frame.size.width - 2 * kButtonOriginX;
     CGFloat kButtonHeight   =   50.0f;
     
-    JTImageButton *continueButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
+    JTImageButton *continueButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
     [continueButton createTitle:NSLocalizedString(@"CONTINUE", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE] iconOffsetY:0];
     continueButton.titleColor = [UIColor whiteColor];
     continueButton.borderWidth = 0;
@@ -227,36 +228,26 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    return 2;
+    return 1;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (section == 0)
-        return 2;
-    else
-        return 1;
+    return 3;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0)
-    {
-        if (indexPath.row == 0)
-            return _countryNameCell;
-        else
-            return _phoneNumberCell;
-    }
-    else if (indexPath.section == 1)
-    {
+    if (indexPath.row == 0)
+        return _countryNameCell;
+    else if (indexPath.row == 1)
+        return _phoneNumberCell;
+    else
         return _buttonCell;
-    }
-    
-    return [[UITableViewCell alloc] init];
 }
 
 
@@ -266,30 +257,36 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (section == 1)
-        return 30.0f;
-    else
-        return 0;
+    return 0;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    UIView *headerView = [[UIView alloc] init];
-    headerView.backgroundColor = [UIColor whiteColor];
+    return 1.0f;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *footerView = [[UIView alloc] init];
+    footerView.backgroundColor = [UIColor whiteColor];
     
-    return headerView;
+    return footerView;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    if (indexPath.section == 0)
+    if (indexPath.row == 0)
+        return 45.0f;
+    else if (indexPath.row == 1)
         return 45.0f;
     else
-        return 50.0f;
+        return 75.0f;
 }
 
 @end
