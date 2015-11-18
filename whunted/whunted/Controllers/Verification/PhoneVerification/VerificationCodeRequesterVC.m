@@ -20,6 +20,9 @@
     UILabel             *_verificationsBenefitsLabel;
     
     UITableView         *_inputTableView;
+    
+    UITableViewCell     *_countryNameCell;
+    UITableViewCell     *_phoneNumberCell;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -51,6 +54,8 @@
     [self addPhoneVerficationLabel];
     [self addVerificationsBenefitsLabel];
     [self addInputTableView];
+    [self initCountryNameCell];
+    [self initPhoneNumberCell];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -113,6 +118,46 @@
     [_scrollView addSubview:_inputTableView];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initCountryNameCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kCellWidth  =   WINSIZE.width - 2 * kLeftMargin;
+    CGFloat kCellHeight =   45.0f;
+    
+    _countryNameCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kCellHeight)];
+    _countryNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat kIconWidth      =   25.0f;
+    CGFloat kIconHeight     =   25.0f;
+    CGFloat kIconOriginX    =   5.0f;
+    CGFloat kIconOriginY    =   (kCellHeight - kIconHeight) / 2;
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconOriginX, kIconOriginY, kIconWidth, kIconHeight)];
+    iconImageView.image = [UIImage imageNamed:@"country_icon.png"];
+    [_countryNameCell addSubview:iconImageView];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initPhoneNumberCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kCellWidth  =   WINSIZE.width - 2 * kLeftMargin;
+    CGFloat kCellHeight =   45.0f;
+    
+    _phoneNumberCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kCellHeight)];
+    _phoneNumberCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat kIconWidth      =   25.0f;
+    CGFloat kIconHeight     =   25.0f;
+    CGFloat kIconOriginX    =   5.0f;
+    CGFloat kIconOriginY    =   (kCellHeight - kIconHeight) / 2;
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconOriginX, kIconOriginY, kIconWidth, kIconHeight)];
+    iconImageView.image = [UIImage imageNamed:@"phone_icon.png"];
+    [_phoneNumberCell addSubview:iconImageView];
+}
+
 
 #pragma mark - Event Handler
 
@@ -147,6 +192,14 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+            return _countryNameCell;
+        else
+            return _phoneNumberCell;
+    }
+    
     return [[UITableViewCell alloc] init];
 }
 
