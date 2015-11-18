@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
+#import <JTImageButton.h>
+
 #define     kLeftMargin             20.0f
 
 @implementation VerificationCodeRequesterVC
@@ -24,6 +26,7 @@
     
     UITableViewCell     *_countryNameCell;
     UITableViewCell     *_phoneNumberCell;
+    UITableViewCell     *_buttonCell;
     
     UITextField         *_phoneNumberTextField;
 }
@@ -59,6 +62,7 @@
     [self addInputTableView];
     [self initCountryNameCell];
     [self initPhoneNumberCell];
+    [self initButtonCell];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -183,6 +187,29 @@
     [_phoneNumberCell addSubview:_phoneNumberTextField];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initButtonCell
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kCellWidth  =   WINSIZE.width - 2 * kLeftMargin;
+    CGFloat kCellHeight =   45.0f;
+    
+    _buttonCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kCellHeight)];
+    _buttonCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    CGFloat kButtonOriginX  =   20.0f;
+    CGFloat kButtonWidth    =   _inputTableView.frame.size.width - 2 * kButtonOriginX;
+    CGFloat kButtonHeight   =   50.0f;
+    
+    JTImageButton *continueButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
+    [continueButton createTitle:NSLocalizedString(@"CONTINUE", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE] iconOffsetY:0];
+    continueButton.titleColor = [UIColor whiteColor];
+    continueButton.borderWidth = 0;
+    continueButton.bgColor = FLAT_FRESH_RED_COLOR;
+    continueButton.cornerRadius = 8.0f;
+    [_buttonCell addSubview:continueButton];
+}
+
 
 #pragma mark - Event Handler
 
@@ -223,6 +250,10 @@
             return _countryNameCell;
         else
             return _phoneNumberCell;
+    }
+    else if (indexPath.section == 1)
+    {
+        return _buttonCell;
     }
     
     return [[UITableViewCell alloc] init];
