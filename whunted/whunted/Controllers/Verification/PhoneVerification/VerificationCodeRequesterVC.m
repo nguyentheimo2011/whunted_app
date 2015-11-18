@@ -21,6 +21,7 @@
     UILabel             *_phoneVerificationLabel;
     UILabel             *_verificationsBenefitsLabel;
     UILabel             *_countryNameLabel;
+    UILabel             *_disclaimerLabel;
     
     UITableView         *_inputTableView;
     
@@ -63,6 +64,7 @@
     [self initCountryNameCell];
     [self initPhoneNumberCell];
     [self initButtonCell];
+    [self addDisclaimerLabel];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -211,6 +213,26 @@
     [_buttonCell addSubview:continueButton];
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addDisclaimerLabel
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kLabelOriginX   =   kLeftMargin + 10.0f;
+    CGFloat kLabelOriginY   =   _inputTableView.frame.origin.y + _inputTableView.frame.size.height + 10.0f;
+    CGFloat kLabelWidth     =   WINSIZE.width - 2 * kLabelOriginX;
+    
+    _disclaimerLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, 0)];
+    _disclaimerLabel.text = NSLocalizedString(@"Your phone number is only used for verification!", nil);
+    _disclaimerLabel.textColor = TEXT_COLOR_LESS_DARK;
+    _disclaimerLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:15];
+    _disclaimerLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _disclaimerLabel.numberOfLines = 0;
+    [_disclaimerLabel sizeToFit];
+    
+    _disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, _disclaimerLabel.frame.size.height);
+    _disclaimerLabel.textAlignment = NSTextAlignmentCenter;
+    [_scrollView addSubview:_disclaimerLabel];
+}
 
 #pragma mark - Event Handler
 
