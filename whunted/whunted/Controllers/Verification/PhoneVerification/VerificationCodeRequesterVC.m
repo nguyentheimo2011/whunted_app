@@ -18,11 +18,14 @@
     
     UILabel             *_phoneVerificationLabel;
     UILabel             *_verificationsBenefitsLabel;
+    UILabel             *_countryNameLabel;
     
     UITableView         *_inputTableView;
     
     UITableViewCell     *_countryNameCell;
     UITableViewCell     *_phoneNumberCell;
+    
+    UITextField         *_phoneNumberTextField;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -127,6 +130,7 @@
     
     _countryNameCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kCellHeight)];
     _countryNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _countryNameCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     CGFloat kIconWidth      =   25.0f;
     CGFloat kIconHeight     =   25.0f;
@@ -136,6 +140,17 @@
     UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconOriginX, kIconOriginY, kIconWidth, kIconHeight)];
     iconImageView.image = [UIImage imageNamed:@"country_icon.png"];
     [_countryNameCell addSubview:iconImageView];
+    
+    CGFloat kLabelOriginX   =   kIconOriginX + kIconWidth + 10.0f;
+    CGFloat kLabelOriginY   =   kIconOriginY;
+    CGFloat kLabelWidth     =   _inputTableView.frame.size.width - kLabelOriginX - 30.0f;
+    CGFloat kLabelHeight    =   kIconHeight;
+    
+    _countryNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight)];
+    _countryNameLabel.text = NSLocalizedString(@"Taiwan", nil);
+    _countryNameLabel.textColor = TEXT_COLOR_LESS_DARK;
+    _countryNameLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    [_countryNameCell addSubview:_countryNameLabel];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -156,6 +171,16 @@
     UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kIconOriginX, kIconOriginY, kIconWidth, kIconHeight)];
     iconImageView.image = [UIImage imageNamed:@"phone_icon.png"];
     [_phoneNumberCell addSubview:iconImageView];
+    
+    CGFloat kTextFieldOriginX   =   _countryNameLabel.frame.origin.x;
+    CGFloat kTextFieldOriginY   =   kIconOriginY;
+    CGFloat kTextFieldWidth     =   _countryNameLabel.frame.size.width;
+    CGFloat kTextFieldHeight    =   kIconHeight;
+    
+    _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
+    _phoneNumberTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _phoneNumberTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"+886 111 111111", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
+    [_phoneNumberCell addSubview:_phoneNumberTextField];
 }
 
 
@@ -214,6 +239,16 @@
         return 30.0f;
     else
         return 0;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor whiteColor];
+    
+    return headerView;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
