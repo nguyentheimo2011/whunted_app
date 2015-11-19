@@ -50,7 +50,6 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShowEventHandler:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideEventHandler:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 
@@ -268,18 +267,10 @@
     CGFloat newContentHeight = keyboardHeight + viewContentHeight + 20.0f;
     [_scrollView setContentSize:CGSizeMake(WINSIZE.width, newContentHeight)];
     
-    CGFloat prevContentHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self];
-    // before keyboard appears, content offset is (0,64).
+    // before keyboard appears, content offset is (0,-64).
     // after keyboard appears, content offset is adjusted accordingly to make important content visible
-    CGFloat offsetY = newContentHeight - prevContentHeight - [Utilities getHeightOfNavigationAndStatusBars:self];
+    CGFloat offsetY = newContentHeight - WINSIZE.height;
     [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
-}
-
-//-----------------------------------------------------------------------------------------------------------------------------
-- (void) keyboardDidHideEventHandler: (NSNotification *) notification
-//-----------------------------------------------------------------------------------------------------------------------------
-{
-    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
 }
 
 
@@ -369,6 +360,12 @@
     [_phoneNumberTextField resignFirstResponder];
     
     self.navigationItem.rightBarButtonItem = nil;
+    
+    [_scrollView setContentOffset:CGPointMake(0, -[Utilities getHeightOfNavigationAndStatusBars:self]) animated:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
+    });
 }
 
 
