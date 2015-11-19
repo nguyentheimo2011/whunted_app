@@ -357,9 +357,18 @@
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    NSLog(@"textFieldShouldBeginEditing");
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(completeEditingPhoneNumber)];
     
     return YES;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) completeEditingPhoneNumber
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [_phoneNumberTextField resignFirstResponder];
+    
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 
