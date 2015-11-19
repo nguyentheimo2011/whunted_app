@@ -18,6 +18,8 @@
     NSArray                 *_availabelCountries;
 }
 
+@synthesize delegate    =   _delegate;
+
 //---------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
 //---------------------------------------------------------------------------------------------------------------------------
@@ -122,5 +124,18 @@
 
 
 #pragma mark - UITableViewDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *country = _availabelCountries[indexPath.row];
+    NSString *countryCode = [_countriesAndCodesDict valueForKey:country];
+    [_delegate didChooseACountry:country withCountryCode:countryCode];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

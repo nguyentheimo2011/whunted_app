@@ -7,7 +7,6 @@
 //
 
 #import "VerificationCodeRequesterVC.h"
-#import "CountryListVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -372,6 +371,7 @@
     if (indexPath.row == 0)
     {
         CountryListVC *countryVC = [[CountryListVC alloc] init];
+        countryVC.delegate = self;
         [self.navigationController pushViewController:countryVC animated:YES];
     }
 }
@@ -401,6 +401,17 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
     });
+}
+
+
+#pragma mark - CountryListDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) didChooseACountry:(NSString *)countryName withCountryCode:(NSString *)countryCode
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _countryNameLabel.text = NSLocalizedString(countryName, nil);
+    _countryCodeLabel.text = countryCode;
 }
 
 
