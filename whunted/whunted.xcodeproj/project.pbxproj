@@ -122,6 +122,7 @@
 		E9638C731BFC3F540042DEE5 /* country_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9638C701BFC3F540042DEE5 /* country_icon@1x.png */; };
 		E9638C741BFC3F540042DEE5 /* country_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9638C711BFC3F540042DEE5 /* country_icon@2x.png */; };
 		E9638C751BFC3F540042DEE5 /* country_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9638C721BFC3F540042DEE5 /* country_icon@3x.png */; };
+		E9638C7C1BFDC0950042DEE5 /* CountryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C7B1BFDC0950042DEE5 /* CountryListVC.m */; };
 		E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E97138A51BCFA39C00B7F961 /* SearchEngine.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
@@ -484,6 +485,8 @@
 		E9638C701BFC3F540042DEE5 /* country_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "country_icon@1x.png"; path = "Resources/Verification/country_icon@1x.png"; sourceTree = "<group>"; };
 		E9638C711BFC3F540042DEE5 /* country_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "country_icon@2x.png"; path = "Resources/Verification/country_icon@2x.png"; sourceTree = "<group>"; };
 		E9638C721BFC3F540042DEE5 /* country_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "country_icon@3x.png"; path = "Resources/Verification/country_icon@3x.png"; sourceTree = "<group>"; };
+		E9638C7A1BFDC0950042DEE5 /* CountryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryListVC.h; path = Controllers/Verification/CountryList/CountryListVC.h; sourceTree = "<group>"; };
+		E9638C7B1BFDC0950042DEE5 /* CountryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryListVC.m; path = Controllers/Verification/CountryList/CountryListVC.m; sourceTree = "<group>"; };
 		E97138A41BCFA39C00B7F961 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = Library/SearchEngine/SearchEngine.h; sourceTree = "<group>"; };
 		E97138A51BCFA39C00B7F961 /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = Library/SearchEngine/SearchEngine.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
@@ -1322,6 +1325,7 @@
 			isa = PBXGroup;
 			children = (
 				E9638C651BFB00120042DEE5 /* PhoneVerification */,
+				E9638C761BFDC0230042DEE5 /* CountryList */,
 			);
 			name = Verification;
 			sourceTree = "<group>";
@@ -1346,6 +1350,15 @@
 				E9638C6C1BFC3E470042DEE5 /* phone_icon@3x.png */,
 			);
 			name = Verification;
+			sourceTree = "<group>";
+		};
+		E9638C761BFDC0230042DEE5 /* CountryList */ = {
+			isa = PBXGroup;
+			children = (
+				E9638C7A1BFDC0950042DEE5 /* CountryListVC.h */,
+				E9638C7B1BFDC0950042DEE5 /* CountryListVC.m */,
+			);
+			name = CountryList;
 			sourceTree = "<group>";
 		};
 		E97138A31BCFA17B00B7F961 /* SearchEngine */ = {
@@ -2355,6 +2368,7 @@
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
 				E944C5C71BCD155E00E27337 /* common.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
+				E9638C7C1BFDC0950042DEE5 /* CountryListVC.m in Sources */,
 				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
 				E944C5CD1BCD155E00E27337 /* recent.m in Sources */,

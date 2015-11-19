@@ -7,6 +7,7 @@
 //
 
 #import "VerificationCodeRequesterVC.h"
+#import "CountryListVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -37,6 +38,8 @@
 - (void) viewDidLoad
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [super viewDidLoad];
+    
     [self registerNotificationListeners];
     
     [self customizeUI];
@@ -149,7 +152,6 @@
     CGFloat kCellHeight =   45.0f;
     
     _countryNameCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kCellHeight)];
-    _countryNameCell.selectionStyle = UITableViewCellSelectionStyleNone;
     _countryNameCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     CGFloat kIconWidth      =   25.0f;
@@ -359,6 +361,19 @@
         return 45.0f;
     else
         return 75.0f;
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 0)
+    {
+        CountryListVC *countryVC = [[CountryListVC alloc] init];
+        [self.navigationController pushViewController:countryVC animated:YES];
+    }
 }
 
 
