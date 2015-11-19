@@ -44,6 +44,8 @@
 
 + (CGSize)      sizeOfSimplifiedCollectionCell;
 
++ (CGFloat)     getHeightOfKeyboard: (NSNotification *) notification;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - UI Customization

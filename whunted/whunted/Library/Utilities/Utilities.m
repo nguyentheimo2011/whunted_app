@@ -160,6 +160,14 @@
     return CGSizeMake(kCellWidth, kCellHeight);
 }
 
+//-----------------------------------------------------------------------------------------------------------------------------
++ (CGFloat) getHeightOfKeyboard:(NSNotification *)notification
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    return [value CGRectValue].size.height;
+}
+
 
 #pragma mark - UI Customization
 

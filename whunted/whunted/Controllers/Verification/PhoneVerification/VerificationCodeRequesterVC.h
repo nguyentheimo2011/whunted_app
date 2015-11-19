@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VerificationCodeRequesterVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface VerificationCodeRequesterVC : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 
 

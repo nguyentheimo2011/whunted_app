@@ -36,8 +36,21 @@
 - (void) viewDidLoad
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [self registerNotificationListeners];
+    
     [self customizeUI];
     [self loadUI];
+}
+
+
+#pragma mark - Setup
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) registerNotificationListeners
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShowEventHandler:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideEventHandler:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 
@@ -73,6 +86,7 @@
 {
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, WINSIZE.height)];
     _scrollView.backgroundColor = [UIColor whiteColor];
+    _scrollView.contentSize = CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self]);
     [self.view addSubview:_scrollView];
 }
 
@@ -186,6 +200,8 @@
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _phoneNumberTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     _phoneNumberTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"+886 111 111111", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
+    _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _phoneNumberTextField.delegate = self;
     [_phoneNumberCell addSubview:_phoneNumberTextField];
 }
 
@@ -241,6 +257,29 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) keyboardDidShowEventHandler: (NSNotification *) notification
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat keyboardHeight = [Utilities getHeightOfKeyboard:notification];
+    CGFloat viewContentHeight = _disclaimerLabel.frame.origin.y + _disclaimerLabel.frame.size.height;
+    CGFloat newContentHeight = keyboardHeight + viewContentHeight + 20.0f;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, newContentHeight)];
+    
+    CGFloat prevContentHeight = WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self];
+    // before keyboard appears, content offset is (0,64).
+    // after keyboard appears, content offset is adjusted accordingly to make important content visible
+    CGFloat offsetY = newContentHeight - prevContentHeight - [Utilities getHeightOfNavigationAndStatusBars:self];
+    [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) keyboardDidHideEventHandler: (NSNotification *) notification
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
 }
 
 
@@ -310,5 +349,18 @@
     else
         return 75.0f;
 }
+
+
+#pragma mark - UITextFieldDelegate methods
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSLog(@"textFieldShouldBeginEditing");
+    
+    return YES;
+}
+
 
 @end
