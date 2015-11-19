@@ -200,7 +200,7 @@
     
     _countryCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, 0, kLabelHeight)];
     _countryCodeLabel.text = NSLocalizedString(@"+886", nil);
-    _countryCodeLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _countryCodeLabel.textColor = TEXT_COLOR_LESS_DARK;
     _countryCodeLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     [_countryCodeLabel sizeToFit];
     [_phoneNumberCell addSubview:_countryCodeLabel];
@@ -213,7 +213,7 @@
     
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _phoneNumberTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
-    _phoneNumberTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"123456789", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
+    _phoneNumberTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"900111222", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
     _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumberTextField.delegate = self;
     [_phoneNumberCell addSubview:_phoneNumberTextField];
