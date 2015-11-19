@@ -31,6 +31,8 @@
     UITableViewCell     *_buttonCell;
     
     UITextField         *_phoneNumberTextField;
+    
+    NSString            *_currCountryName;
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -40,6 +42,7 @@
     [super viewDidLoad];
     
     [self registerNotificationListeners];
+    [self initData];
     
     [self customizeUI];
     [self loadUI];
@@ -53,6 +56,13 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShowEventHandler:) name:UIKeyboardDidShowNotification object:nil];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) initData
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    _currCountryName = @"Taiwan";
 }
 
 
@@ -372,6 +382,7 @@
     {
         CountryListVC *countryVC = [[CountryListVC alloc] init];
         countryVC.delegate = self;
+        countryVC.selectedCountry = _currCountryName;
         [self.navigationController pushViewController:countryVC animated:YES];
     }
 }
@@ -412,6 +423,8 @@
 {
     _countryNameLabel.text = NSLocalizedString(countryName, nil);
     _countryCodeLabel.text = countryCode;
+    
+    _currCountryName = countryName;
 }
 
 

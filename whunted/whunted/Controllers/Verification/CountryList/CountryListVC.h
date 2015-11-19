@@ -23,4 +23,6 @@
 
 @property (nonatomic, weak)         id<CountryListDelegate>     delegate;
 
+@property (nonatomic, strong)       NSString                    *selectedCountry;
+
 @end

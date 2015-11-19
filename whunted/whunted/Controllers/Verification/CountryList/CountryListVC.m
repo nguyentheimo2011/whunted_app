@@ -16,9 +16,12 @@
     
     NSDictionary            *_countriesAndCodesDict;
     NSArray                 *_availabelCountries;
+    
+    NSInteger               _selectedCountryIndex;
 }
 
-@synthesize delegate    =   _delegate;
+@synthesize delegate            =   _delegate;
+@synthesize selectedCountry     =   _selectedCountry;
 
 //---------------------------------------------------------------------------------------------------------------------------
 - (void) viewDidLoad
@@ -43,6 +46,8 @@
     
     _availabelCountries = [_countriesAndCodesDict allKeys];
     _availabelCountries = [_availabelCountries sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    _selectedCountryIndex = [_availabelCountries indexOfObject:_selectedCountry];
 }
 
 
@@ -118,6 +123,11 @@
     cell.textLabel.text = _availabelCountries[indexPath.row];
     cell.textLabel.textColor = TEXT_COLOR_LESS_DARK;
     cell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    
+    if (indexPath.row == _selectedCountryIndex)
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     
     return cell;
 }
