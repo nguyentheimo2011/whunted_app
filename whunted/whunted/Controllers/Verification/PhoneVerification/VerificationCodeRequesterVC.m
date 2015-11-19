@@ -191,6 +191,8 @@
     iconImageView.image = [UIImage imageNamed:@"phone_icon.png"];
     [_phoneNumberCell addSubview:iconImageView];
     
+    
+    
     CGFloat kTextFieldOriginX   =   _countryNameLabel.frame.origin.x;
     CGFloat kTextFieldOriginY   =   kIconOriginY;
     CGFloat kTextFieldWidth     =   _countryNameLabel.frame.size.width;
@@ -270,7 +272,12 @@
     // before keyboard appears, content offset is (0,-64).
     // after keyboard appears, content offset is adjusted accordingly to make important content visible
     CGFloat offsetY = newContentHeight - WINSIZE.height;
-    [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    
+    // if after keyboard is shown, it covers any content, then make the _scrollView scroll up.
+    if (offsetY > -[Utilities getHeightOfNavigationAndStatusBars:self])
+    {
+        [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    }
 }
 
 
