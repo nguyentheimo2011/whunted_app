@@ -7,6 +7,7 @@
 //
 
 #import "VerificationCodeRequesterVC.h"
+#import "CodeVerifierVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -251,6 +252,7 @@
     continueButton.borderWidth = 0;
     continueButton.bgColor = FLAT_FRESH_RED_COLOR;
     continueButton.cornerRadius = 8.0f;
+    [continueButton addTarget:self action:@selector(continueButtonEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_buttonCell addSubview:continueButton];
 }
 
@@ -308,7 +310,22 @@
 - (void) continueButtonEventHandler
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    
+    if (_phoneNumberTextField.text.length == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:NSLocalizedString(@"Phone number must be filled in", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (_phoneNumberTextField.text.length <= 4 || _phoneNumberTextField.text.length >= 14)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!" message:NSLocalizedString(@"The phone number you entered is invalid", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        CodeVerifierVC *codeVerifierVC = [[CodeVerifierVC alloc] init];
+        codeVerifierVC.usersPhoneNumber = _phoneNumberTextField.text;
+        [self.navigationController pushViewController:codeVerifierVC animated:YES];
+    }
 }
 
 

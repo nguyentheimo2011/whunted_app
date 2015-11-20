@@ -94,7 +94,7 @@
     CGFloat kLabelOriginX   =   kLeftMargin;
     CGFloat kLabelOriginY   =   _phoneVerificationLabel.frame.origin.y + _phoneVerificationLabel.frame.size.height + 25.0f;
     CGFloat kLabelWidth     =   WINSIZE.width - 2 * kLabelOriginX;
-    NSString *instruction = [NSString stringWithFormat:@"%@%@.\n@", NSLocalizedString(@"An SMS message has been sent to", nil), _usersPhoneNumber, NSLocalizedString(@"Please enter the 6-digit confirmation code:", nil)];
+    NSString *instruction = [NSString stringWithFormat:@"%@%@.\n%@", NSLocalizedString(@"An SMS message has been sent to", nil), _usersPhoneNumber, NSLocalizedString(@"Please enter the 6-digit confirmation code:", nil)];
     
     _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, 0)];
     _instructionLabel.text = instruction;
