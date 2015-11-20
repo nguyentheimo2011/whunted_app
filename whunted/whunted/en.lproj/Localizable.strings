@@ -286,6 +286,7 @@
 "Email and password do not match"           =       "Email and password do not match";
 "Email is already in use"                   =       "Email is already in use";
 "and"                                       =       "and";
+"Log Out"                                   =       "Log Out";
 "Log Out Of Whunted"                        =       "Log Out Of Whunted";
 "Are you sure that you want to log out of Whunted?"
                                             =       "Are you sure that you want to log out of Whunted?";

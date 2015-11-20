@@ -285,6 +285,7 @@
 "Email and password do not match"           =           "Email和密碼不符";
 "Email is already in use"                   =           "Email 已被使用";
 "and"                                       =           "和";
+"Log Out"                                   =           "登出";
 "Log Out Of Whunted"                        =           "登出Whunted";
 "Are you sure that you want to log out of Whunted?"
                                             =           "你確定要登出?";
