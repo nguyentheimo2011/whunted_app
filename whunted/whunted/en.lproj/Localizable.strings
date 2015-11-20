@@ -24,10 +24,10 @@
 // Upload a want - Starter
 //------------------------------------------------------------------------------------------------------------------------------
 
-"Tell people what you want to buy"      =   "Tell people what you want to buy";
-"Take a photo"                          =   "Take a photo";
-"Choose from gallery"                   =   "Choose from gallery";
-"Paste image URL"                       =   "Paste image URL";
+"Tell people what you want to buy"      =       "Tell people what you want to buy";
+"Take a photo"                          =       "Take a photo";
+"Choose from gallery"                   =       "Choose from gallery";
+"Paste image URL"                       =       "Paste image URL";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -73,27 +73,27 @@
 // Item Categories
 //------------------------------------------------------------------------------------------------------------------------------
 
-"Luxury Fashion"            =           "Luxury Fashion";
-"Popular Brands"            =           "Popular Brands";
-"Beauty Products"           =           "Beauty Products";
-"Clothing Apparels"         =           "Clothing Apparels";
-"Shoes, Bags & Accessories" =           "Shoes, Bags & Accessories";
-"3C Products"               =           "3C Products";
-"Art & Design"              =           "Art & Design";
-"Home Accessories"          =           "Home Accessories";
-"Home Furniture"            =           "Home Furniture";
-"Pet Supplies"              =           "Pet Supplies";
-"Games"                     =           "Games";
-"Toys"                      =           "Toys";
-"Books & Magazines"         =           "Books & Magazines";
-"Video Production Equipment"=           "Video Production Equipment";
-"Musical Instruments"       =           "Musical Instruments";
-"Sports Equipment"          =           "Sports Equipment";
-"Professional Services"     =           "Professional Services";
-"Tickets & Vouchers"        =           "Tickets & Vouchers";
-"Customized Products"       =           "Customized Products";
-"I would like to rent"      =           "I would like to rent";
-"Others"                    =           "Others";
+"Luxury Fashion"                =           "Luxury Fashion";
+"Popular Brands"                =           "Popular Brands";
+"Beauty Products"               =           "Beauty Products";
+"Clothing Apparels"             =           "Clothing Apparels";
+"Shoes, Bags & Accessories"     =           "Shoes, Bags & Accessories";
+"3C Products"                   =           "3C Products";
+"Art & Design"                  =           "Art & Design";
+"Home Accessories"              =           "Home Accessories";
+"Home Furniture"                =           "Home Furniture";
+"Pet Supplies"                  =           "Pet Supplies";
+"Games"                         =           "Games";
+"Toys"                          =           "Toys";
+"Books & Magazines"             =           "Books & Magazines";
+"Video Production Equipment"    =           "Video Production Equipment";
+"Musical Instruments"           =           "Musical Instruments";
+"Sports Equipment"              =           "Sports Equipment";
+"Professional Services"         =           "Professional Services";
+"Tickets & Vouchers"            =           "Tickets & Vouchers";
+"Customized Products"           =           "Customized Products";
+"I would like to rent"          =           "I would like to rent";
+"Others"                        =           "Others";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -188,7 +188,7 @@
 // Setting
 //------------------------------------------------------------------------------------------------------------------------------
 
-"Email Support/Feedback"                =   "Email Support/Feedback";
+"Email Support/Feedback"            =           "Email Support/Feedback";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
