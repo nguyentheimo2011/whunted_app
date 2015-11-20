@@ -148,6 +148,8 @@
 
 + (BOOL)        isCurrLanguageTraditionalChinese;
 
++ (NSString *)  shortFormOfCurrLanguage;
+
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #pragma mark - Whunt Details Helpers

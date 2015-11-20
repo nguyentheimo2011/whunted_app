@@ -322,6 +322,8 @@
     }
     else
     {
+        [self sendPhoneNumberToServer];
+        
         CodeVerifierVC *codeVerifierVC = [[CodeVerifierVC alloc] init];
         codeVerifierVC.usersPhoneNumber = [NSString stringWithFormat:@"%@ %@", _countryCodeLabel.text, _phoneNumberTextField.text];
         [self.navigationController pushViewController:codeVerifierVC animated:YES];
@@ -451,5 +453,23 @@
     _currCountryName = countryName;
 }
 
+
+#pragma mark - Backend Handlers
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) sendPhoneNumberToServer
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *phoneNumber = [NSString stringWithFormat:@"%@%@", _countryCodeLabel.text, _phoneNumberTextField.text];
+    
+    [PFCloud callFunctionInBackground:@"sendVerificationCode" withParameters:@{@"phoneNumber":phoneNumber} block:^(id  _Nullable object, NSError * _Nullable error)
+    {
+        if (error)
+        {
+            [Utilities handleError:error];
+            [Utilities displayErrorAlertView];
+        }
+    }];
+}
 
 @end

@@ -577,6 +577,19 @@
         return NO;
 }
 
+//------------------------------------------------------------------------------------------------------------------------------
++ (NSString *) shortFormOfCurrLanguage
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *currLang = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if ([currLang containsString:LANGUAGE_TRADITIONAL_CHINESE])
+        return LANGUAGE_TRADITIONAL_CHINESE;
+    else if ([currLang containsString:LANGUAGE_ENGLISH])
+        return LANGUAGE_ENGLISH;
+    else
+        return currLang;
+}
+
 
 #pragma mark - Whunt Details Helpers
 
