@@ -520,6 +520,20 @@
 }
 
 
+#pragma mark - NSString Helper
+
+//------------------------------------------------------------------------------------------------------------------------------
++ (BOOL) consistedOnlyOfDigits:(NSString *)string
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    if ([string rangeOfCharacterFromSet:notDigits].location == NSNotFound)
+        return YES;
+    else
+        return NO;
+}
+
+
 #pragma mark - Mutiple Languages Support
 
 //------------------------------------------------------------------------------------------------------------------------------
