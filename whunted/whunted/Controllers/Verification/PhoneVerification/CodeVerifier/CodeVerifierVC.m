@@ -32,8 +32,22 @@
 - (void) viewDidLoad
 //---------------------------------------------------------------------------------------------------------------------------
 {
+    [super viewDidLoad];
+    
+    [self registerNotificationListeners];
+    
     [self customizeUI];
     [self loadUI];
+}
+
+
+#pragma mark - Setup
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) registerNotificationListeners
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShowEventHandler:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 
@@ -54,7 +68,7 @@
 //---------------------------------------------------------------------------------------------------------------------------
 {
     [Utilities customizeTitleLabel:NSLocalizedString(@"Phone Verification", nil) forViewController:self];
-    [Utilities customizeBackButtonForViewController:self withAction:@selector(topRightBackButtonEventHandler)];
+    [Utilities customizeBackButtonForViewController:self withAction:@selector(topLeftBackButtonEventHandler)];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
@@ -158,10 +172,58 @@
 #pragma mark - Event Handlers
 
 //---------------------------------------------------------------------------------------------------------------------------
-- (void) topRightBackButtonEventHandler
+- (void) topLeftBackButtonEventHandler
 //---------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) keyboardDidShowEventHandler: (NSNotification *) notification
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat keyboardHeight = [Utilities getHeightOfKeyboard:notification];
+    CGFloat viewContentHeight = _verificationButton.frame.origin.y + _verificationButton.frame.size.height;
+    CGFloat newContentHeight = keyboardHeight + viewContentHeight + 20.0f;
+    [_scrollView setContentSize:CGSizeMake(WINSIZE.width, newContentHeight)];
+    
+    // before keyboard appears, content offset is (0,-64).
+    // after keyboard appears, content offset is adjusted accordingly to make important content visible
+    CGFloat offsetY = newContentHeight - WINSIZE.height;
+    
+    // if after keyboard is shown, it covers any content, then make the _scrollView scroll up.
+    if (offsetY > -[Utilities getHeightOfNavigationAndStatusBars:self])
+    {
+        [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    }
+}
+
+
+#pragma mark - UITextFieldDelegate methods
+
+//---------------------------------------------------------------------------------------------------------------------------
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(completeEditingCodeTextField)];
+    
+    return YES;
+}
+
+//---------------------------------------------------------------------------------------------------------------------------
+- (void) completeEditingCodeTextField
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    [_codeTextField resignFirstResponder];
+    
+    self.navigationItem.rightBarButtonItem = nil;
+    
+    [_scrollView setContentOffset:CGPointMake(0, -[Utilities getHeightOfNavigationAndStatusBars:self]) animated:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
+    });
+}
+
 
 @end
