@@ -6,7 +6,10 @@
  Copyright (c) 2015 Whunted. All rights reserved.
  */
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+// Frequently Used Button
+//-----------------------------------------------------------------------------------------------------------------------------
+
 "Cancel"                    =           "取消";
 "Submit"                    =           "完成";
 "Done"                      =           "完成";
@@ -14,210 +17,299 @@
 "OK"                        =           "確定";
 "Close"                     =           "關閉";
 "Choose"                    =           "選擇";
-//------------------------------------------------------------------------------------------------------------------------------
+"Edit"                      =           "編輯";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Details"                   =           "商品資訊";
-"Category"                  =           "種類";
-"CATEGORY"                  =           "種類";
-"Choose category"           =           "選擇物品品類";
-"Item info"                 =           "商品名稱";
-"What are you buying?"      =           "你要買什麼?";
-"Your price"                =           "商品預算";
-"Set a price"               =           "開個價";
-"Product origin"            =           "商品產地";
-"Choose origin"             =           "從哪買?";
-"Location"                  =           "交易地點";
-"LOCATION"                  =           "交易地點";
-"Where to meet?"            =           "選擇交易地點?";
-"Request for Escrow"        =           "第三方支付";
-"Allow second-hand item"    =           "不介意二手物品";
-"Paste image link here"     =           "貼圖片鏈接";
-"Are you sure you want to cancel your listing?" =   "確定取消發佈?";
-"Yes, I'm sure!"            =           "確定";
-"Meeting location:"         =           "交易地點";
-"Product origin:"           =           "商品產地";
-"Proceed to edit"           =           "繼續編輯";
+// Upload a want - Starter
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
-"Item name"             =           "物品名稱";
-"Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "型號、顏色、尺寸等細節,多多描述你想要的物品.";
-"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc." =   "輸入物品關鍵字,讓賣家更容易找到你.例如：#Chanel #Nike #NARS";
-"Enter reference link. http://..."  =   "輸入參考連結 http://...";
-//------------------------------------------------------------------------------------------------------------------------------
+"Tell people what you want to buy"      =           "告訴賣家你想買什麼";
+"Take a photo"                          =           "拍照上傳";
+"Choose from gallery"                   =           "相片圖庫";
+"Paste image URL"                       =           "圖片連結";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Marketplace"           =           "市場";
-"Newsfeed"              =           "動態";
-"Upload"                =           "買東西";
-"Chats"                 =           "對話";
-"Profile"               =           "我";
-"Want"                  =           "要買";
-"Sell"                  =           "要賣";
+// Upload a want - General
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
-"seller"                =           "賣家";
-"sellers"               =           "賣家";
-"Lowest offer"          =           "最低競價";
-//------------------------------------------------------------------------------------------------------------------------------
+"Details"                       =           "商品資訊";
+"Category"                      =           "種類";
+"Choose category"               =           "選擇物品品類";
+"Item info"                     =           "商品名稱";
+"What are you buying?"          =           "你要買什麼?";
+"Your price"                    =           "商品預算";
+"Set a price"                   =           "開個價";
+"Product origin"                =           "商品產地";
+"Choose origin"                 =           "從哪買?";
+"Location"                      =           "交易地點";
+"Where to meet?"                =           "選擇交易地點?";
+"Request for Escrow"            =           "第三方支付";
+"Allow second-hand item"        =           "不介意二手物品";
+"Paste image link here"         =           "貼圖片鏈接";
+"Are you sure you want to cancel your listing?"
+                                =           "確定取消發佈?";
+"Yes, I'm sure!"                =           "確定";
+"Meeting location:"             =           "交易地點";
+"Product origin:"               =           "商品產地";
+"Proceed to edit"               =           "繼續編輯";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Luxury Fashion"            =           "時尚精品";
-"Popular Brands"            =           "流行品牌";
-"Beauty Products"           =           "美妝保養";
-"Clothing Apparels"         =           "衣物服飾";
-"Shoes, Bags & Accessories" =           "鞋包配件";
-"3C Products"               =           "3C產品";
-"Art & Design"              =           "藝術設計";
-"Home Accessories"          =           "生活雜物";
-"Home Furniture"            =           "家庭寢具";
-"Pet Supplies"              =           "寵物用品";
-"Games"                     =           "遊戲產品";
-"Toys"                      =           "玩具模型";
-"Books & Magazines"         =           "書籍雜誌";
-"Video Production Equipment"=           "影音文具";
-"Musical Instruments"       =           "音樂器具";
-"Sports Equipment"          =           "體育器材";
-"Professional Services"     =           "專業服務";
-"Tickets & Vouchers"        =           "門票優惠券";
-"Customized Products"       =           "客製化產品";
-"I would like to rent"      =           "我想租借";
-"Others"                    =           "其他";
+// Upload a Want - Item Info
 //------------------------------------------------------------------------------------------------------------------------------
 
+"Item name"                 =           "物品名稱";
+"Describe more about the item that you want. \nE.g. Size, condition, color, etc."
+                            =           "型號、顏色、尺寸等細節,多多描述你想要的物品.";
+"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc."
+                            =           "輸入物品關鍵字,讓賣家更容易找到你.例如：#Chanel #Nike #NARS";
+"Enter reference link. http://..."
+                            =           "輸入參考連結 http://...";
+
+
 //------------------------------------------------------------------------------------------------------------------------------
-"posted"                =           "上架";
-"Chat with buyer"       =           "私訊買家";
-"Offer to sell"         =           "向買家報價";
-"Change your offer"     =           "修改出價";
-"Accept"                =           "接受了報價";
+// Upload a Want - Alert Messages
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Are you sure that you want to delete your post?"       =       "確定刪除貼文?";
+"Are you sure you want to discard your changes?"        =       "確定取消編輯?";
+"Are you sure you want to discard the image?"           =       "確定丢弃圖片?";
+"Please choose a category"                              =       "請先選擇物品類型";
+"Please fill in item name"                              =       "請先填商品名稱";
+"Please state a price"                                  =       "請先填您的預算";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Item Categories
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Luxury Fashion"                =           "時尚精品";
+"Popular Brands"                =           "流行品牌";
+"Beauty Products"               =           "美妝保養";
+"Clothing Apparels"             =           "衣物服飾";
+"Shoes, Bags & Accessories"     =           "鞋包配件";
+"3C Products"                   =           "3C產品";
+"Art & Design"                  =           "藝術設計";
+"Home Accessories"              =           "生活雜物";
+"Home Furniture"                =           "家庭寢具";
+"Pet Supplies"                  =           "寵物用品";
+"Games"                         =           "遊戲產品";
+"Toys"                          =           "玩具模型";
+"Books & Magazines"             =           "書籍雜誌";
+"Video Production Equipment"    =           "影音文具";
+"Musical Instruments"           =           "音樂器具";
+"Sports Equipment"              =           "體育器材";
+"Professional Services"         =           "專業服務";
+"Tickets & Vouchers"            =           "門票優惠券";
+"Customized Products"           =           "客製化產品";
+"I would like to rent"          =           "我想租借";
+"Others"                        =           "其他";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Transaction Status
+//------------------------------------------------------------------------------------------------------------------------------
+
 "Accepted"              =           "接受了報價";
-"Promote your post"     =           "跟朋友分享";
-"Promote"               =           "分享";
 "Offered"               =           "交易出價";
-"Decline"               =           "拒絕交易";
 "Declined"              =           "拒絕交易";
 "Cancelled"             =           "取消";
 "Negotiating"           =           "談判中";
-"Willing to pay"        =           "購買預算 ";
-"Buyer is located at"   =           "買家在 ";
-"Product comes from"   =            "物品來自 ";
-//------------------------------------------------------------------------------------------------------------------------------
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Tell people what you want to buy"    =   "告訴賣家你想買什麼";
-"Take a photo"                        =   "拍照上傳";
-"Choose from gallery"                 =   "相片圖庫";
-"Paste image URL"                     =   "圖片連結";
+// Item Details View + Item Details Cell
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
-"Delivery time"                 =           "交貨時間";
-"originally wants to buy at"    =           "原本要付";
-"originally want to buy at"     =           "原本要付";
-"Your offer is "                =           "你的出價是";
-"You can deliver in"            =           "你可以在多長時間里交貨";
-"You"                           =           "你";
+"posted"                            =           "上架";
+"Willing to pay"                    =           "購買預算 ";
+"Buyer is located at"               =           "買家在 ";
+"Product comes from"                =           "物品來自 ";
+"Accept only new item"              =           "只要買全新物品";
+"Accept both new and second-hand"   =           "不介意二手物品";
+"seller"                            =           "賣家";
+"sellers"                           =           "賣家";
+"Lowest offer"                      =           "最低競價";
+"Chat with buyer"                   =           "私訊買家";
+"Offer to sell"                     =           "向買家報價";
+"Change your offer"                 =           "修改出價";
+"Item Bought"                       =           "已購買";
+"View Offer"                        =           "賣家出價記錄";
+"Bought"                            =           "已購入";
+"Sold"                              =           "已結案";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-
-//User profile page
-//------------------------------------------------------------------------------------------------------------------------------
-"follower"                          =   "粉絲";
-"following"                         =   "追蹤中";
-"+ Follow"                          =   "+ 追蹤";
-"Settings"                          =   "設定";
-"Info"                              =   "關於我";
-"Date joined"                       =   "加入日期";
-"Verified"                          =   "已驗證";
-"All displayed"                     =   "全部都已顯示";
-"All"                               =   "全部";
-"As Seller"                         =   "賣東西";
-"As Buyer"                          =   "買東西";
-"as seller"                         =   "賣東西";
-"as buyer"                          =   "買東西";
-"Where are you travelling to?"      =   "你會到哪些國家?";
-"Where are you living?"             =   "你的居住地?";
-"What would you like to buy?"       =   "你想買什麼物品?";
-"What would you like to sell?"      =   "你想賣什麼物品?";
-"Preferences"                       =   "個人化設定";
-"Buying"                            =   "買東西";
-"Selling"                           =   "賣東西";
-"Listing"                           =   "個物品";
-"Listings"                          =   "個物品";
-"Edit Profile"                      =   "編輯檔案";
-"Bought"                            =   "已購入";
-"Sold"                              =   "已結案";
-"Item Bought"                       =   "已購買";
-"Reset Filter"                      =   "重新設定";
+// Offer View
 //------------------------------------------------------------------------------------------------------------------------------
 
-// Chats
-//------------------------------------------------------------------------------------------------------------------------------
-"Offered you"                       =   "賣家開出";
-"Make Offer"                        =   "出價";
-"Edit Offer"                        =   "編輯出價";
-"Cancel Offer"                      =   "取消出價";
-"Decline Offer"                     =   "拒絕交易";
-"Accept Offer"                      =   "接受交易";
-"Make another offer buyer"          =   "向賣家重新出價";
-"Make another offer seller"         =   "向買家重新出價";
-"Deliver in"                        =   "";
-"dayString"                         =   "日內寄出";
-"daysString"                        =   "日內寄出";
-"Make Offer"                        =   "交易出價";
-"Made An Offer"                     =   "交易出價";
-"Leave Feedback"                    =   "我要評價";
-"has left a feedback"               =   "已發表了評價";
-"Are you sure you want to accept this offer?"   =   "確定交易?";
-"Once accepted, offer cannot be cancelled!"     =   "一旦確認即視同接受報價與雙方協議內容，不可取消!";
-"We are sorry! An error occurred while processing this request."    =   "很抱歉! 這行動出了錯誤";
-//------------------------------------------------------------------------------------------------------------------------------
+"Offers"                            =           "賣家出價記錄";
+"Delivery time"                     =           "交貨時間";
+"originally wants to buy at"        =           "原本要付";
+"originally want to buy at"         =           "原本要付";
+"Your offer is "                    =           "你的出價是";
+"You can deliver in"                =           "你可以在多長時間里交貨";
+"You"                               =           "你";
 
-// Sort & Filter
-//------------------------------------------------------------------------------------------------------------------------------
-"Sort/Filter"                       =   "排序/篩選";
-"SORT/FILTER"                       =   "排序/篩選";
-"Apply"                             =   "完成";
-"SORT BY"                           =   "排序";
-"Popular"                           =   "最高人氣";
-"Recent"                            =   "最新需求";
-"Lowest Price"                      =   "價錢低到高";
-"Highest Price"                     =   "價錢高到低";
-"FILTER BY PRODUCT ORIGIN"          =   "篩選商品產地";
-"Filter by product origin:"         =   "篩選商品產地:";
-"Filter by buyer's location:"       =   "篩選交易地點:";
-"Enter a location"                  =   "輸入地點";
-
-// Item Details
-//------------------------------------------------------------------------------------------------------------------------------
-"View Offer"                        =   "賣家出價記錄";
-"Offers"                            =   "賣家出價記錄";
-"Edit"                              =   "編輯";
-"Accept only new item"              =   "只要買全新物品";
-"Accept both new and second-hand"   =   "不介意二手物品";
-
-// Feedback
-//------------------------------------------------------------------------------------------------------------------------------
-"How was your experience?"              =   "這次的交易評價?";
-"Describe your experience with seller"  =   "形容本次交易你對賣家的感想";
-"Describe your experience with buyer"   =   "形容本次交易你對買家的感想";
-"as a seller"                           =   "";
-"as a buyer"                            =   "";
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Location must be selected from drop down suggestion"   =   "地點需要從以下建議選擇";
-"Are you sure that you want to delete your post?"       =   "確定刪除貼文?";
-"Are you sure you want to discard your changes?"        =   "確定取消編輯?";
-"Are you sure you want to discard the image?"           =   "確定丢弃圖片?";
+// Chat View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Make Offer"                        =           "交易出價";
+"Edit Offer"                        =           "編輯出價";
+"Accept"                            =           "接受了報價";
+"Decline"                           =           "拒絕交易";
+"Make another offer buyer"          =           "向賣家重新出價";
+"Make another offer seller"         =           "向買家重新出價";
+"Leave Feedback"                    =           "我要評價";
+"Made An Offer"                     =           "交易出價";
+"Deliver in"                        =           "";
+"dayString"                         =           "日內寄出";
+"daysString"                        =           "日內寄出";
+"Accept Offer"                      =           "接受交易";
+"Cancel Offer"                      =           "取消出價";
+"Decline Offer"                     =           "拒絕交易";
+"has left a feedback"               =           "已發表了評價";
+"Are you sure you want to accept this offer?"
+                                    =           "確定交易?";
+"Once accepted, offer cannot be cancelled!"
+                                    =           "一旦確認即視同接受報價與雙方協議內容，不可取消!";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Search for wants"                      =   "搜尋需求";
+// Sort & Filter + Marketplace
+//------------------------------------------------------------------------------------------------------------------------------
 
+"Search for wants"                  =           "搜尋需求";
+"Sort/Filter"                       =           "排序/篩選";
+"SORT/FILTER"                       =           "排序/篩選";
+"LOCATION"                          =           "交易地點";
+"CATEGORY"                          =           "種類";
+"Apply"                             =           "完成";
+"SORT BY"                           =           "排序";
+"Popular"                           =           "最高人氣";
+"Recent"                            =           "最新需求";
+"Lowest Price"                      =           "價錢低到高";
+"Highest Price"                     =           "價錢高到低";
+"FILTER BY PRODUCT ORIGIN"          =           "篩選商品產地";
+"Filter by product origin:"         =           "篩選商品產地:";
+"Filter by buyer's location:"       =           "篩選交易地點:";
+"Reset Filter"                      =           "重新設定";
+"Enter a location"                  =           "輸入地點";
+"Location must be selected from drop down suggestion"
+                                    =           "地點需要從以下建議選擇";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Feedback View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"How was your experience?"              =       "這次的交易評價?";
+"Describe your experience with seller"  =       "形容本次交易你對賣家的感想";
+"Describe your experience with buyer"   =       "形容本次交易你對買家的感想";
+"as a seller"                           =       "";
+"as a buyer"                            =       "";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// User Profile View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Settings"                          =           "設定";
+"Edit Profile"                      =           "編輯檔案";
+"Date joined"                       =           "加入日期";
+"Verified"                          =           "已驗證";
+"Buying"                            =           "買東西";
+"Selling"                           =           "賣東西";
+"Listing"                           =           "個物品";
+"Listings"                          =           "個物品";
+"All"                               =           "全部";
+"As Seller"                         =           "賣東西";
+"As Buyer"                          =           "買東西";
+"as seller"                         =           "賣東西";
+"as buyer"                          =           "買東西";
+"Preferences"                       =           "個人化設定";
+"Where are you travelling to?"      =           "你會到哪些國家?";
+"Where are you living?"             =           "你的居住地?";
+"What would you like to buy?"       =           "你想買什麼物品?";
+"What would you like to sell?"      =           "你想賣什麼物品?";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Edit Profile
+//------------------------------------------------------------------------------------------------------------------------------
+
+"PUBLIC PROFILE"                    =           "個人資料(公開)";
+"PRIVATE PROFILE"                   =           "個人資料(不公開)";
+"Username"                          =           "使用者名稱";
+"First Name"                        =           "名";
+"Last Name"                         =           "姓";
+"My City"                           =           "我的城市";
+"Biography"                         =           "個人簡介";
+"Photo"                             =           "照片";
+"Email"                             =           "Email";
+"Mobile"                            =           "手機";
+"Gender"                            =           "性別";
+"Birthday"                          =           "生日";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Setting
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Email Support/Feedback"                =   "Email 支援/意見";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Signup, Login, Logout
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Sign up or Log in with Facebook"           =           "用臉書帳號註冊或登入";
+"Sign up or Log in with Email"              =           " 用email帳號註冊或登入";
+"Sign up"                                   =           "註冊";
+"Log in"                                    =           "登入";
+"Password"                                  =           "密碼";
+"Privacy Policy"                            =           "隱私政策";
+"Choose a username"                         =           "選擇使用者名稱";
+"Your email"                                =           "電郵地址";
+"Choose a password"                         =           "選擇密碼";
+"Forgot Password?"                          =           "忘記密碼?";
+"By signing up, you agree to our "          =           "執行此註冊/登入步驟,即代表你同意我們的";
+"Terms of Service"                          =           "服務條款";
+"By proceeding, you agree to Whunted's"     =           "繼續執行,即代表你同意Whunted的";
+"Username cannot be blank"                  =           "使用者名稱不可留空";
+"Email cannot be blank"                     =           "Email 不可留空";
+"Invalid email"                             =           "請輸入有效的email";
+"Password must be at least 6 characters"    =           "密碼必須至少６個字元";
+"Email and password do not match"           =           "Email和密碼不符";
+"Email is already in use"                   =           "Email 已被使用";
+"and"                                       =           "和";
+"Log Out Of Whunted"                        =           "登出Whunted";
+"Are you sure that you want to log out of Whunted?"
+                                            =           "你確定要登出?";
+"Please enter the email address of your account."
+                                            =           "請在此輸入您註冊帳號的電子郵件信箱.";
+"Enter your email address"                  =           "輸入email";
+"Send me a password reset link."            =           "將重設密碼的連結寄送給我.";
+"Password Reset"                            =           "重設密碼";
+"It seems that you did not use this email to register with us."
+                                            =           "無此email帳號";
+"Instructions on how to reset password has been sent to your email address."
+                                            =           "已寄送重設密碼步驟至您的Email";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Frequently Used Error Messages
+//------------------------------------------------------------------------------------------------------------------------------
+
+"We are sorry! An error occurred while processing this request."        =       "很抱歉! 這行動出了錯誤";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
 // Timestamp
 //------------------------------------------------------------------------------------------------------------------------------
+
 "s"                                     =   "秒";
 "second"                                =   "秒";
 "seconds"                               =   "秒";
@@ -234,68 +326,4 @@
 "week"                                  =   "週";
 "weeks"                                 =   "週";
 "ago"                                   =   "前";
-
-// Signup, Login
-//------------------------------------------------------------------------------------------------------------------------------
-"By signing up, you agree to our "      =   "執行此註冊/登入步驟,即代表你同意我們的";
-"Terms of Service"                      =   "服務條款";
-"Log Out"                               =   "登出";
-"Sign up"                               =   "註冊";
-"Log in"                                =   "登入";
-"Password"                              =   "密碼";
-"By proceeding, you agree to Whunted's" =   "繼續執行,即代表你同意Whunted的";
-"Privacy Policy"                        =   "隱私政策";
-"Choose a username"                     =   "選擇使用者名稱";
-"Your email"                            =   "電郵地址";
-"Choose a password"                     =   "選擇密碼";
-"Forgot Password?"                      =   "忘記密碼?";
-"Username cannot be blank"              =   "使用者名稱不可留空";
-"Email cannot be blank"                 =   "Email 不可留空";
-"Invalid email"                         =   "請輸入有效的email";
-"Password must be at least 6 characters"=   "密碼必須至少６個字元";
-"Email and password do not match"       =   "Email和密碼不符";
-"Email is already in use"               =   "Email 已被使用";
-"and"                                   =   "和";
-"Sign up or Log in with Facebook"       =   "用臉書帳號註冊或登入";
-"Sign up or Log in with Email"          =   " 用email帳號註冊或登入";
-"Log Out Of Whunted"                    =   "登出Whunted";
-"Are you sure that you want to log out of Whunted?"         =   "你確定要登出?";
-"Please enter the email address of your account."           =   "請在此輸入您註冊帳號的電子郵件信箱.";
-"Enter your email address"              =   "輸入email";
-"Send me a password reset link."        =   "將重設密碼的連結寄送給我.";
-"Password Reset"                        =   "重設密碼";
-"It seems that you did not use this email to register with us." =   "無此email帳號";
-"Instructions on how to reset password has been sent to your email address."    =   "已寄送重設密碼步驟至您的Email";
-
-// Edit Profile
-//------------------------------------------------------------------------------------------------------------------------------
-"PUBLIC PROFILE"                        =   "個人資料(公開)";
-"PRIVATE PROFILE"                       =   "個人資料(不公開)";
-"Username"                              =   "使用者名稱";
-"First Name"                            =   "名";
-"Last Name"                             =   "姓";
-"My City"                               =   "我的城市";
-"Biography"                             =   "個人簡介";
-"Photo"                                 =   "照片";
-"Email"                                 =   "Email";
-"Mobile"                                =   "手機";
-"Gender"                                =   "性別";
-"Birthday"                              =   "生日";
-
-// Setting
-//------------------------------------------------------------------------------------------------------------------------------
-"Email Support/Feedback"                =   "Email 支援/意見";
-
-// Newsfeed
-//------------------------------------------------------------------------------------------------------------------------------
-"NewsFeed Message"                      =   "我們的神祕功能即將推出\n\n想瞧瞧朋友們都在買什麼嗎？\n想找到最可靠的賣家和CP超高的商品嗎？\n想知道你能用多便宜的價錢買到心目中的熱門單品嗎？\n\n神祕功能即將揭曉 !";
-"Mystery Function"                      =   "神祕功能";
-
-// Upload Error Message
-//------------------------------------------------------------------------------------------------------------------------------
-"Please choose a category"              =   "請先選擇物品類型";
-"Please fill in item name"              =   "請先填商品名稱";
-"Please state a price"                  =   "請先填您的預算";
-
-
 

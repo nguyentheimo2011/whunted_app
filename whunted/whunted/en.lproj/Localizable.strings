@@ -51,8 +51,6 @@
 "Are you sure you want to cancel your listing?"
                             =           "Are you sure you want to cancel your listing?";
 "Yes, I'm sure!"            =           "Yes, I'm sure!";
-"Enter reference link. http://..."
-                            =           "Enter reference link. http://...";
 "Meeting location:"         =           "Meeting location:";
 "Product origin:"           =           "Product origin:";
 "Proceed to edit"           =           "Proceed to edit";
@@ -67,6 +65,8 @@
                             =           "Describe more about the item that you want. \nE.g. Size, condition, color, etc.";
 "Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc."
                             =           "Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc.";
+"Enter reference link. http://..."
+                            =           "Enter reference link. http://...";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -123,23 +123,22 @@
 // Item Details View + Item Details Cell
 //------------------------------------------------------------------------------------------------------------------------------
 
-"posted"                    =           "posted";
-"Willing to pay"            =           "Willing to pay ";
-"Buyer is located at"       =           "Buyer is located at ";
-"Product comes from"        =           "Product comes from ";
-"Accept only new item"      =           "Accept only new item";
-"Accept both new and second-hand"
-                            =           "Accept both new and second-hand";
-"seller"                    =           "seller";
-"sellers"                   =           "sellers";
-"Lowest offer"              =           "Lowest offer";
-"Chat with buyer"           =           "Chat with buyer";
-"Offer to sell"             =           "Offer to sell";
-"Change your offer"         =           "Change your offer";
-"Item Bought"               =           "Item Bought";
-"View Offer"                =           "View Offer";
-"Bought"                    =           "Bought";
-"Sold"                      =           "Sold";
+"posted"                            =           "posted";
+"Willing to pay"                    =           "Willing to pay ";
+"Buyer is located at"               =           "Buyer is located at ";
+"Product comes from"                =           "Product comes from ";
+"Accept only new item"              =           "Accept only new item";
+"Accept both new and second-hand"   =           "Accept both new and second-hand";
+"seller"                            =           "seller";
+"sellers"                           =           "sellers";
+"Lowest offer"                      =           "Lowest offer";
+"Chat with buyer"                   =           "Chat with buyer";
+"Offer to sell"                     =           "Offer to sell";
+"Change your offer"                 =           "Change your offer";
+"Item Bought"                       =           "Item Bought";
+"View Offer"                        =           "View Offer";
+"Bought"                            =           "Bought";
+"Sold"                              =           "Sold";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -161,9 +160,8 @@
 
 "Make Offer"                        =           "Make Offer";
 "Edit Offer"                        =           "Edit offer";
-"Cancel Offer"                      =           "Cancel offer";
-"Decline Offer"                     =           "Decline Offer";
-"Accept Offer"                      =           "Accept Offer";
+"Accept"                            =           "Accept";
+"Decline"                           =           "Decline";
 "Make another offer buyer"          =           "Make another offer";
 "Make another offer seller"         =           "Make another offer";
 "Leave Feedback"                    =           "Leave Feedback";
@@ -171,6 +169,9 @@
 "Deliver in"                        =           "Deliver in";
 "dayString"                         =           "day";
 "daysString"                        =           "days";
+"Accept Offer"                      =           "Accept Offer";
+"Cancel Offer"                      =           "Cancel offer";
+"Decline Offer"                     =           "Decline Offer";
 "has left a feedback"               =           "has left a feedback";
 "Are you sure you want to accept this offer?"
                                     =           "Are you sure you want to accept this offer?";
