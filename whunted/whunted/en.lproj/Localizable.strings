@@ -6,7 +6,10 @@
   Copyright (c) 2015 Whunted. All rights reserved.
 */
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
+// Frequently Used Button
+//-----------------------------------------------------------------------------------------------------------------------------
+
 "Cancel"                    =           "Cancel";
 "Submit"                    =           "Submit";
 "Done"                      =           "Done";
@@ -14,12 +17,25 @@
 "OK"                        =           "OK";
 "Close"                     =           "Close";
 "Choose"                    =           "Choose";
-//------------------------------------------------------------------------------------------------------------------------------
+"Edit"                      =           "Edit";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
+// Upload a want - Starter
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Tell people what you want to buy"      =   "Tell people what you want to buy";
+"Take a photo"                          =   "Take a photo";
+"Choose from gallery"                   =   "Choose from gallery";
+"Paste image URL"                       =   "Paste image URL";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Upload a want - General
+//------------------------------------------------------------------------------------------------------------------------------
+
 "Details"                   =           "DETAILS";
 "Category"                  =           "Category";
-"CATEGORY"                  =           "CATEGORY";
 "Choose category"           =           "Choose category";
 "Item info"                 =           "Item info";
 "What are you buying?"      =           "What are you buying?";
@@ -28,43 +44,35 @@
 "Product origin"            =           "Product origin";
 "Choose origin"             =           "Choose origin";
 "Location"                  =           "Location";
-"LOCATION"                  =           "LOCATION";
 "Where to meet?"            =           "Where to meet?";
 "Request for Escrow"        =           "Request for Escrow";
 "Allow second-hand item"    =           "Allow second-hand item";
 "Paste image link here"     =           "Paste image link here";
-"Are you sure you want to cancel your listing?"     =   "Are you sure you want to cancel your listing?";
+"Are you sure you want to cancel your listing?"
+                            =           "Are you sure you want to cancel your listing?";
 "Yes, I'm sure!"            =           "Yes, I'm sure!";
-"Enter reference link. http://..."  =   "Enter reference link. http://...";
+"Enter reference link. http://..."
+                            =           "Enter reference link. http://...";
 "Meeting location:"         =           "Meeting location:";
 "Product origin:"           =           "Product origin:";
 "Proceed to edit"           =           "Proceed to edit";
 
-//------------------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Item name"             =           "Item name";
-"Describe more about the item that you want. \nE.g. Size, condition, color, etc."   =   "Describe more about the item that you want. \nE.g. Size, condition, color, etc.";
-"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc." =   "Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc.";
+// Upload a Want - Item Info
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
-"Marketplace"           =           "Marketplace";
-"Newsfeed"              =           "Newsfeed";
-"Upload"                =           "Upload";
-"Chats"                 =           "Chats";
-"Profile"               =           "Profile";
-"Want"                  =           "Want";
-"Sell"                  =           "Sell";
-//------------------------------------------------------------------------------------------------------------------------------
+"Item name"                 =           "Item name";
+"Describe more about the item that you want. \nE.g. Size, condition, color, etc."
+                            =           "Describe more about the item that you want. \nE.g. Size, condition, color, etc.";
+"Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc."
+                            =           "Enter hashtags for the item to help sellers find you. \nE.g. #coach #lv #prada, etc.";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"seller"                =           "seller";
-"sellers"               =           "sellers";
-"Lowest offer"          =           "Lowest offer";
+// Item Categories
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
 "Luxury Fashion"            =           "Luxury Fashion";
 "Popular Brands"            =           "Popular Brands";
 "Beauty Products"           =           "Beauty Products";
@@ -86,218 +94,236 @@
 "Customized Products"       =           "Customized Products";
 "I would like to rent"      =           "I would like to rent";
 "Others"                    =           "Others";
-//------------------------------------------------------------------------------------------------------------------------------
+
 
 //------------------------------------------------------------------------------------------------------------------------------
-"posted"                =           "posted";
-"Chat with buyer"       =           "Chat with buyer";
-"Offer to sell"         =           "Offer to sell";
-"Change your offer"     =           "Change your offer";
-"Accepted"              =           "Accepted";
-"Promote your post"     =           "Promote your post";
-"Promote"               =           "Promote";
-"Offered"               =           "Offered";
-"Declined"              =           "Declined";
-"Cancelled"             =           "Cancelled";
-"Negotiating"           =           "Negotiating";
-"Willing to pay"        =           "Willing to pay ";
-"Buyer is located at"   =           "Buyer is located at ";
-"Product comes from"    =           "Product comes from ";
+// Transaction Status
 //------------------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------------------------
-"Tell people what you want to buy"      =   "Tell people what you want to buy";
-"Take a photo"                          =   "Take a photo";
-"Choose from gallery"                   =   "Choose from gallery";
-"Paste image URL"                       =   "Paste image URL";
-//------------------------------------------------------------------------------------------------------------------------------
+"Accepted"                  =           "Accepted";
+"Offered"                   =           "Offered";
+"Declined"                  =           "Declined";
+"Cancelled"                 =           "Cancelled";
+"Negotiating"               =           "Negotiating";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
+// Item Details View + Item Details Cell
+//------------------------------------------------------------------------------------------------------------------------------
+
+"posted"                    =           "posted";
+"Willing to pay"            =           "Willing to pay ";
+"Buyer is located at"       =           "Buyer is located at ";
+"Product comes from"        =           "Product comes from ";
+"Accept only new item"      =           "Accept only new item";
+"Accept both new and second-hand"
+                            =           "Accept both new and second-hand";
+"seller"                    =           "seller";
+"sellers"                   =           "sellers";
+"Lowest offer"              =           "Lowest offer";
+"Chat with buyer"           =           "Chat with buyer";
+"Offer to sell"             =           "Offer to sell";
+"Change your offer"         =           "Change your offer";
+"Item Bought"               =           "Item Bought";
+"View Offer"                =           "View Offer";
+"Bought"                    =           "Bought";
+"Sold"                      =           "Sold";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Offer View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Offers"                        =           "Offers";
 "Delivery time"                 =           "Delivery time";
 "originally wants to buy at"    =           "originally wants to buy at";
 "originally want to buy at"     =           "originally want to buy at";
 "Your offer is "                =           "Your offer is ";
 "You can deliver in"            =           "You can deliver in";
 "You"                           =           "You ";
-//------------------------------------------------------------------------------------------------------------------------------
 
-//User profile page
-//------------------------------------------------------------------------------------------------------------------------------
-"follower"                          =   "follower";
-"following"                         =   "following";
-"+ Follow"                          =   "+ Follow";
-"Settings"                          =   "Settings";
-"Info"                              =   "Info";
-"Date joined"                       =   "Date joined";
-"Verified"                          =   "Verified";
-"Item Bought"                       =   "Item Bought";
-"All displayed"                     =   "All displayed";
-"All"                               =   "All";
-"As Seller"                         =   "As Seller";
-"As Buyer"                          =   "As Buyer";
-"as seller"                         =   "as seller";
-"as buyer"                          =   "as buyer";
-"Where are you travelling to?"      =   "Where are you travelling to?";
-"Where are you living?"             =   "Where are you living?";
-"What would you like to buy?"       =   "What would you like to buy?";
-"What would you like to sell?"      =   "What would you like to sell?";
-"Preferences"                       =   "Preferences";
-"Buying"                            =   "Buying";
-"Selling"                           =   "Selling";
-"Listing"                           =   "Listing";
-"Listings"                          =   "Listings";
-"Edit Profile"                      =   "Edit Profile";
-"Bought"                            =   "Bought";
-"Sold"                              =   "Sold";
-"Reset Filter"                      =   "Reset Filter";
 
 //------------------------------------------------------------------------------------------------------------------------------
-
-// Chats
-//------------------------------------------------------------------------------------------------------------------------------
-"Offered you"                       =   "Offered you";
-"Make Offer"                        =   "Make Offer";
-"Edit Offer"                        =   "Edit offer";
-"Cancel Offer"                      =   "Cancel offer";
-"Decline Offer"                     =   "Decline Offer";
-"Accept Offer"                      =   "Accept Offer";
-"Make another offer buyer"          =   "Make another offer";
-"Make another offer seller"         =   "Make another offer";
-"Deliver in"                        =   "Deliver in";
-"dayString"                         =   "day";
-"daysString"                        =   "days";
-"Make Offer"                        =   "Make Offer";
-"Made An Offer"                     =   "Made An Offer";
-"Leave Feedback"                    =   "Leave Feedback";
-"has left a feedback"               =   "has left a feedback";
-"Are you sure you want to accept this offer?"   =   "Are you sure you want to accept this offer?";
-"Once accepted, offer cannot be cancelled!"          =   "Once accepted, offer cannot be cancelled!";
-"We are sorry! An error occurred while processing this request."    =   "We are sorry! An error occurred while processing this request.";
-
+// User Profile View
 //------------------------------------------------------------------------------------------------------------------------------
 
-// Sort & Filter
-//------------------------------------------------------------------------------------------------------------------------------
-"Sort/Filter"                       =   "Sort/Filter";
-"SORT/FILTER"                       =   "SORT/FILTER";
-"Apply"                             =   "Apply";
-"SORT BY"                           =   "SORT BY";
-"Popular"                           =   "Popular";
-"Recent"                            =   "Recent";
-"Lowest Price"                      =   "Lowest Price";
-"Highest Price"                     =   "Highest Price";
-"FILTER BY PRODUCT ORIGIN"          =   "FILTER BY PRODUCT ORIGIN";
-"Filter by product origin:"         =   "Filter by product origin:";
-"Filter by buyer's location:"       =   "Filter by buyer's location:";
-"Enter a location"                  =   "Enter a location";
+"Settings"                          =           "Settings";
+"Edit Profile"                      =           "Edit Profile";
+"Date joined"                       =           "Date joined";
+"Verified"                          =           "Verified";
+"Buying"                            =           "Buying";
+"Selling"                           =           "Selling";
+"Listing"                           =           "Listing";
+"Listings"                          =           "Listings";
+"All"                               =           "All";
+"As Seller"                         =           "As Seller";
+"As Buyer"                          =           "As Buyer";
+"as seller"                         =           "as seller";
+"as buyer"                          =           "as buyer";
+"Preferences"                       =           "Preferences";
+"Where are you travelling to?"      =           "Where are you travelling to?";
+"Where are you living?"             =           "Where are you living?";
+"What would you like to buy?"       =           "What would you like to buy?";
+"What would you like to sell?"      =           "What would you like to sell?";
 
-// Item Details
-//------------------------------------------------------------------------------------------------------------------------------
-"View Offer"                        =   "View Offer";
-"Offers"                            =   "Offers";
-"Edit"                              =   "Edit";
-"Accept only new item"              =   "Accept only new item";
-"Accept both new and second-hand"   =   "Accept both new and second-hand";
-
-// Feedback
-//------------------------------------------------------------------------------------------------------------------------------
-"How was your experience?"              =   "How was your experience?";
-"Describe your experience with seller"  =   "Describe your experience with ";
-"Describe your experience with buyer"   =   "Describe your experience with ";
-"as a seller"                           =   "as a seller";
-"as a buyer"                            =   "as a buyer";
 
 //------------------------------------------------------------------------------------------------------------------------------
-"Location must be selected from drop down suggestion"   =   "Location must be selected from drop down suggestion";
-"Are you sure that you want to delete your post?"       =   "Are you sure that you want to delete your post?";
-"Are you sure you want to discard your changes?"        =   "Are you sure you want to discard your changes?";
-"Are you sure you want to discard the image?"           =   "Are you sure you want to discard the image?";
-
-//------------------------------------------------------------------------------------------------------------------------------
-"Search for wants"                      =   "Search for wants";
-
-// Timestamp
-//------------------------------------------------------------------------------------------------------------------------------
-"s"                                     =   "s";
-"second"                                =   " second";
-"seconds"                               =   " seconds";
-"m"                                     =   "m";
-"minute"                                =   " minute";
-"minutes"                               =   " minutes";
-"h"                                     =   "h";
-"hour"                                  =   " hour";
-"hours"                                 =   " hours";
-"d"                                     =   "d";
-"day"                                   =   " day";
-"days"                                  =   " days";
-"w"                                     =   "w";
-"week"                                  =   " week";
-"weeks"                                 =   " weeks";
-"ago"                                   =   " ago";
-
-// Signup, Login, Logout
-//------------------------------------------------------------------------------------------------------------------------------
-"By signing up, you agree to our "      =   "By signing up, you agree to our ";
-"Terms of Service"                      =   "Terms of Service";
-"Log Out"                               =   "Log Out";
-"Sign up"                               =   "Sign up";
-"Log in"                                =   "Log in";
-"Password"                              =   "Password";
-"By proceeding, you agree to Whunted's" =   "By proceeding, you agree to Whunted's";
-"Privacy Policy"                        =   "Privacy Policy";
-"Choose a username"                     =   "Choose a username";
-"Your email"                            =   "Your email";
-"Choose a password"                     =   "Choose a password";
-"Forgot Password?"                      =   "Forgot Password?";
-"Username cannot be blank"              =   "Username cannot be blank";
-"Email cannot be blank"                 =   "Email cannot be blank";
-"Invalid email"                         =   "Invalid email";
-"Password must be at least 6 characters"=   "Password must be at least 6 characters";
-"Email and password do not match"       =   "Email and password do not match";
-"Email is already in use"               =   "Email is already in use";
-"and"                                   =   "and";
-"Sign up or Log in with Facebook"       =   "Sign up or Log in with Facebook";
-"Sign up or Log in with Email"          =   " Sign up or Log in with Email";
-"Log Out Of Whunted"                    =   "Log Out Of Whunted";
-"Are you sure that you want to log out of Whunted?"         =   "Are you sure that you want to log out of Whunted?";
-"Please enter the email address of your account."           =   "Please enter the email address of your account.";
-"Enter your email address"              =   "Enter your email address";
-"Send me a password reset link."        =   "Send me a password reset link.";
-"Password Reset"                        =   "Password Reset";
-"It seems that you did not use this email to register with us." =   "It seems that you did not use this email to register with us.";
-"Instructions on how to reset password has been sent to your email address."    =   "Instructions on how to reset password has been sent to your email address.";
-
 // Edit Profile
 //------------------------------------------------------------------------------------------------------------------------------
-"PUBLIC PROFILE"                        =   "PUBLIC PROFILE";
-"PRIVATE PROFILE"                       =   "PRIVATE PROFILE";
-"Username"                              =   "Username";
-"First Name"                            =   "First Name";
-"Last Name"                             =   "Last Name";
-"My City"                               =   "My City";
-"Biography"                             =   "Biography";
-"Photo"                                 =   "Photo";
-"Email"                                 =   "Email";
-"Mobile"                                =   "Mobile";
-"Gender"                                =   "Gender";
-"Birthday"                              =   "Birthday";
 
+"PUBLIC PROFILE"                    =           "PUBLIC PROFILE";
+"PRIVATE PROFILE"                   =           "PRIVATE PROFILE";
+"Username"                          =           "Username";
+"First Name"                        =           "First Name";
+"Last Name"                         =           "Last Name";
+"My City"                           =           "My City";
+"Biography"                         =           "Biography";
+"Photo"                             =           "Photo";
+"Email"                             =           "Email";
+"Mobile"                            =           "Mobile";
+"Gender"                            =           "Gender";
+"Birthday"                          =           "Birthday";
+
+//------------------------------------------------------------------------------------------------------------------------------
 // Setting
 //------------------------------------------------------------------------------------------------------------------------------
+
 "Email Support/Feedback"                =   "Email Support/Feedback";
 
-// Newsfeed
+
 //------------------------------------------------------------------------------------------------------------------------------
-"NewsFeed Message"                      =   "Do you:\n   -  Wonder what your friends have been buying?\n   -  Feel curious about the latest trends?\n   -  Want to get the best deals from reputable sellers?\n\nIf you answered ‘YES!” to any of those questions, stay tuned!";
-"Mystery Function"                      =   "Mystery Function";
-
-// Upload Error Message
+// Chat View
 //------------------------------------------------------------------------------------------------------------------------------
-"Please choose a category"              =   "Please choose a category";
-"Please fill in item name"              =   "Please fill in item name";
-"Please state a price"                  =   "Please state a price";
+
+"Make Offer"                        =           "Make Offer";
+"Edit Offer"                        =           "Edit offer";
+"Cancel Offer"                      =           "Cancel offer";
+"Decline Offer"                     =           "Decline Offer";
+"Accept Offer"                      =           "Accept Offer";
+"Make another offer buyer"          =           "Make another offer";
+"Make another offer seller"         =           "Make another offer";
+"Leave Feedback"                    =           "Leave Feedback";
+"Made An Offer"                     =           "Made An Offer";
+"Deliver in"                        =           "Deliver in";
+"dayString"                         =           "day";
+"daysString"                        =           "days";
+"has left a feedback"               =           "has left a feedback";
+"Are you sure you want to accept this offer?"
+                                    =           "Are you sure you want to accept this offer?";
+"Once accepted, offer cannot be cancelled!"
+                                    =           "Once accepted, offer cannot be cancelled!";
 
 
+//------------------------------------------------------------------------------------------------------------------------------
+// Sort & Filter + Marketplace
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Search for wants"                  =           "Search for wants";
+"Sort/Filter"                       =           "Sort/Filter";
+"SORT/FILTER"                       =           "SORT/FILTER";
+"LOCATION"                          =           "LOCATION";
+"CATEGORY"                          =           "CATEGORY";
+"Apply"                             =           "Apply";
+"SORT BY"                           =           "SORT BY";
+"Popular"                           =           "Popular";
+"Recent"                            =           "Recent";
+"Lowest Price"                      =           "Lowest Price";
+"Highest Price"                     =           "Highest Price";
+"FILTER BY PRODUCT ORIGIN"          =           "FILTER BY PRODUCT ORIGIN";
+"Filter by product origin:"         =           "Filter by product origin:";
+"Filter by buyer's location:"       =           "Filter by buyer's location:";
+"Enter a location"                  =           "Enter a location";
+"Reset Filter"                      =           "Reset Filter";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Feedback View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"How was your experience?"                  =       "How was your experience?";
+"Describe your experience with seller"      =       "Describe your experience with ";
+"Describe your experience with buyer"       =       "Describe your experience with ";
+"as a seller"                               =       "as a seller";
+"as a buyer"                                =       "as a buyer";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Alert Messages
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Location must be selected from drop down suggestion"       =       "Location must be selected from drop down suggestion";
+"Are you sure that you want to delete your post?"           =       "Are you sure that you want to delete your post?";
+"Are you sure you want to discard your changes?"            =       "Are you sure you want to discard your changes?";
+"Are you sure you want to discard the image?"               =       "Are you sure you want to discard the image?";
+"Please choose a category"                                  =       "Please choose a category";
+"Please fill in item name"                                  =       "Please fill in item name";
+"Please state a price"                                      =       "Please state a price";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Signup, Login, Logout
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Sign up or Log in with Facebook"           =       "Sign up or Log in with Facebook";
+"Sign up or Log in with Email"              =       " Sign up or Log in with Email";
+"Sign up"                                   =       "Sign up";
+"Log in"                                    =       "Log in";
+"Password"                                  =       "Password";
+"Privacy Policy"                            =       "Privacy Policy";
+"Choose a username"                         =       "Choose a username";
+"Your email"                                =       "Your email";
+"Choose a password"                         =       "Choose a password";
+"Forgot Password?"                          =       "Forgot Password?";
+"By signing up, you agree to our "          =       "By signing up, you agree to our ";
+"Terms of Service"                          =       "Terms of Service";
+"By proceeding, you agree to Whunted's"     =       "By proceeding, you agree to Whunted's";
+"Username cannot be blank"                  =       "Username cannot be blank";
+"Email cannot be blank"                     =       "Email cannot be blank";
+"Invalid email"                             =       "Invalid email";
+"Password must be at least 6 characters"    =       "Password must be at least 6 characters";
+"Email and password do not match"           =       "Email and password do not match";
+"Email is already in use"                   =       "Email is already in use";
+"and"                                       =       "and";
+"Log Out Of Whunted"                        =       "Log Out Of Whunted";
+"Are you sure that you want to log out of Whunted?"
+                                            =       "Are you sure that you want to log out of Whunted?";
+"Please enter the email address of your account."
+                                            =       "Please enter the email address of your account.";
+"Enter your email address"                  =       "Enter your email address";
+"Send me a password reset link."            =       "Send me a password reset link.";
+"Password Reset"                            =       "Password Reset";
+"It seems that you did not use this email to register with us."
+                                            =       "It seems that you did not use this email to register with us.";
+"Instructions on how to reset password has been sent to your email address."
+                                            =       "Instructions on how to reset password has been sent to your email address.";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Frequently Used Error Messages
+//------------------------------------------------------------------------------------------------------------------------------
+
+"We are sorry! An error occurred while processing this request."
+                                        =           "We are sorry! An error occurred while processing this request.";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Timestamp
+//------------------------------------------------------------------------------------------------------------------------------
+
+"s"             =       "s";
+"second"        =       " second";
+"seconds"       =       " seconds";
+"m"             =       "m";
+"minute"        =       " minute";
+"minutes"       =       " minutes";
+"h"             =       "h";
+"hour"          =       " hour";
+"hours"         =       " hours";
+"d"             =       "d";
+"day"           =       " day";
+"days"          =       " days";
+"w"             =       "w";
+"week"          =       " week";
+"weeks"         =       " weeks";
+"ago"           =       " ago";
 
 
 
