@@ -70,6 +70,18 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
+// Upload a Want - Alert Messages
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Are you sure that you want to delete your post?"           =       "Are you sure that you want to delete your post?";
+"Are you sure you want to discard your changes?"            =       "Are you sure you want to discard your changes?";
+"Are you sure you want to discard the image?"               =       "Are you sure you want to discard the image?";
+"Please choose a category"                                  =       "Please choose a category";
+"Please fill in item name"                                  =       "Please fill in item name";
+"Please state a price"                                      =       "Please state a price";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
 // Item Categories
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -144,6 +156,64 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
+// Chat View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Make Offer"                        =           "Make Offer";
+"Edit Offer"                        =           "Edit offer";
+"Cancel Offer"                      =           "Cancel offer";
+"Decline Offer"                     =           "Decline Offer";
+"Accept Offer"                      =           "Accept Offer";
+"Make another offer buyer"          =           "Make another offer";
+"Make another offer seller"         =           "Make another offer";
+"Leave Feedback"                    =           "Leave Feedback";
+"Made An Offer"                     =           "Made An Offer";
+"Deliver in"                        =           "Deliver in";
+"dayString"                         =           "day";
+"daysString"                        =           "days";
+"has left a feedback"               =           "has left a feedback";
+"Are you sure you want to accept this offer?"
+                                    =           "Are you sure you want to accept this offer?";
+"Once accepted, offer cannot be cancelled!"
+                                    =           "Once accepted, offer cannot be cancelled!";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Sort & Filter + Marketplace
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Search for wants"                  =           "Search for wants";
+"Sort/Filter"                       =           "Sort/Filter";
+"SORT/FILTER"                       =           "SORT/FILTER";
+"LOCATION"                          =           "LOCATION";
+"CATEGORY"                          =           "CATEGORY";
+"Apply"                             =           "Apply";
+"SORT BY"                           =           "SORT BY";
+"Popular"                           =           "Popular";
+"Recent"                            =           "Recent";
+"Lowest Price"                      =           "Lowest Price";
+"Highest Price"                     =           "Highest Price";
+"FILTER BY PRODUCT ORIGIN"          =           "FILTER BY PRODUCT ORIGIN";
+"Filter by product origin:"         =           "Filter by product origin:";
+"Filter by buyer's location:"       =           "Filter by buyer's location:";
+"Reset Filter"                      =           "Reset Filter";
+"Enter a location"                  =           "Enter a location";
+"Location must be selected from drop down suggestion"
+                                    =           "Location must be selected from drop down suggestion";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Feedback View
+//------------------------------------------------------------------------------------------------------------------------------
+
+"How was your experience?"                  =       "How was your experience?";
+"Describe your experience with seller"      =       "Describe your experience with ";
+"Describe your experience with buyer"       =       "Describe your experience with ";
+"as a seller"                               =       "as a seller";
+"as a buyer"                                =       "as a buyer";
+
+
+//------------------------------------------------------------------------------------------------------------------------------
 // User Profile View
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -189,75 +259,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 
 "Email Support/Feedback"            =           "Email Support/Feedback";
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-// Chat View
-//------------------------------------------------------------------------------------------------------------------------------
-
-"Make Offer"                        =           "Make Offer";
-"Edit Offer"                        =           "Edit offer";
-"Cancel Offer"                      =           "Cancel offer";
-"Decline Offer"                     =           "Decline Offer";
-"Accept Offer"                      =           "Accept Offer";
-"Make another offer buyer"          =           "Make another offer";
-"Make another offer seller"         =           "Make another offer";
-"Leave Feedback"                    =           "Leave Feedback";
-"Made An Offer"                     =           "Made An Offer";
-"Deliver in"                        =           "Deliver in";
-"dayString"                         =           "day";
-"daysString"                        =           "days";
-"has left a feedback"               =           "has left a feedback";
-"Are you sure you want to accept this offer?"
-                                    =           "Are you sure you want to accept this offer?";
-"Once accepted, offer cannot be cancelled!"
-                                    =           "Once accepted, offer cannot be cancelled!";
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-// Sort & Filter + Marketplace
-//------------------------------------------------------------------------------------------------------------------------------
-
-"Search for wants"                  =           "Search for wants";
-"Sort/Filter"                       =           "Sort/Filter";
-"SORT/FILTER"                       =           "SORT/FILTER";
-"LOCATION"                          =           "LOCATION";
-"CATEGORY"                          =           "CATEGORY";
-"Apply"                             =           "Apply";
-"SORT BY"                           =           "SORT BY";
-"Popular"                           =           "Popular";
-"Recent"                            =           "Recent";
-"Lowest Price"                      =           "Lowest Price";
-"Highest Price"                     =           "Highest Price";
-"FILTER BY PRODUCT ORIGIN"          =           "FILTER BY PRODUCT ORIGIN";
-"Filter by product origin:"         =           "Filter by product origin:";
-"Filter by buyer's location:"       =           "Filter by buyer's location:";
-"Enter a location"                  =           "Enter a location";
-"Reset Filter"                      =           "Reset Filter";
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-// Feedback View
-//------------------------------------------------------------------------------------------------------------------------------
-
-"How was your experience?"                  =       "How was your experience?";
-"Describe your experience with seller"      =       "Describe your experience with ";
-"Describe your experience with buyer"       =       "Describe your experience with ";
-"as a seller"                               =       "as a seller";
-"as a buyer"                                =       "as a buyer";
-
-
-//------------------------------------------------------------------------------------------------------------------------------
-// Alert Messages
-//------------------------------------------------------------------------------------------------------------------------------
-
-"Location must be selected from drop down suggestion"       =       "Location must be selected from drop down suggestion";
-"Are you sure that you want to delete your post?"           =       "Are you sure that you want to delete your post?";
-"Are you sure you want to discard your changes?"            =       "Are you sure you want to discard your changes?";
-"Are you sure you want to discard the image?"               =       "Are you sure you want to discard the image?";
-"Please choose a category"                                  =       "Please choose a category";
-"Please fill in item name"                                  =       "Please fill in item name";
-"Please state a price"                                      =       "Please state a price";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
