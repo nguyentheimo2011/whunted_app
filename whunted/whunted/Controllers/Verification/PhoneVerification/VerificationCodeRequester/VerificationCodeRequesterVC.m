@@ -323,7 +323,7 @@
     else
     {
         CodeVerifierVC *codeVerifierVC = [[CodeVerifierVC alloc] init];
-        codeVerifierVC.usersPhoneNumber = _phoneNumberTextField.text;
+        codeVerifierVC.usersPhoneNumber = [NSString stringWithFormat:@"%@ %@", _phoneNumberTextField.text, _countryCodeLabel.text];
         [self.navigationController pushViewController:codeVerifierVC animated:YES];
     }
 }

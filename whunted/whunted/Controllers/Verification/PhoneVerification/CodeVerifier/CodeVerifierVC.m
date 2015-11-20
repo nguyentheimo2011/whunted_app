@@ -10,6 +10,8 @@
 #import "Utilities.h"
 #import "AppConstant.h"
 
+#import <JTImageButton.h>
+
 #define     kLeftMargin     20.0f
 
 @implementation CodeVerifierVC
@@ -19,7 +21,9 @@
     UILabel                     *_phoneVerificationLabel;
     UILabel                     *_instructionLabel;
     
-    UITableView                 *_inputTableView;
+    UITextField                 *_codeTextField;
+    
+    JTImageButton               *_verificationButton;
 }
 
 @synthesize usersPhoneNumber    =   _usersPhoneNumber;
@@ -60,6 +64,8 @@
     [self addScrollView];
     [self addPhoneVerficationLabel];
     [self addVerificationInstructionLabel];
+    [self addCodeTextField];
+    [self addVerificationButton];
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
@@ -77,7 +83,7 @@
 {
     _phoneVerificationLabel = [[UILabel alloc] init];
     _phoneVerificationLabel.text = NSLocalizedString(@"PHONE VERIFICATION", nil);
-    _phoneVerificationLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    _phoneVerificationLabel.textColor = TEXT_COLOR_LESS_DARK;
     _phoneVerificationLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     [_phoneVerificationLabel sizeToFit];
     
@@ -92,9 +98,9 @@
 //-----------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat kLabelOriginX   =   kLeftMargin;
-    CGFloat kLabelOriginY   =   _phoneVerificationLabel.frame.origin.y + _phoneVerificationLabel.frame.size.height + 25.0f;
+    CGFloat kLabelOriginY   =   _phoneVerificationLabel.frame.origin.y + _phoneVerificationLabel.frame.size.height + 20.0f;
     CGFloat kLabelWidth     =   WINSIZE.width - 2 * kLabelOriginX;
-    NSString *instruction = [NSString stringWithFormat:@"%@%@.\n%@", NSLocalizedString(@"An SMS message has been sent to", nil), _usersPhoneNumber, NSLocalizedString(@"Please enter the 6-digit confirmation code:", nil)];
+    NSString *instruction = [NSString stringWithFormat:@"%@%@. %@", NSLocalizedString(@"An SMS message has been sent to", nil), _usersPhoneNumber, NSLocalizedString(@"Please enter the 6-digit confirmation code:", nil)];
     
     _instructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, 0)];
     _instructionLabel.text = instruction;
@@ -104,23 +110,48 @@
     _instructionLabel.numberOfLines = 0;
     [_instructionLabel sizeToFit];
     _instructionLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, _instructionLabel.frame.size.height);
-    _instructionLabel.textAlignment = NSTextAlignmentLeft;
+    _instructionLabel.textAlignment = NSTextAlignmentCenter;
     [_scrollView addSubview:_instructionLabel];
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) addInputTableView
+- (void) addCodeTextField
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat kTableOriginY   =   _instructionLabel.frame.origin.y + _instructionLabel.frame.size.height + 20.0f;
-    CGFloat kTableWidth     =   WINSIZE.width - 2 * kLeftMargin;
-    CGFloat kTableHeight    =   165.0f;
+    CGFloat kTextFieldOriginX       =       30.0f;
+    CGFloat kTextFieldOriginY       =       _instructionLabel.frame.origin.y + _instructionLabel.frame.size.height + 15.0f;
+    CGFloat kTextFieldWidth         =       WINSIZE.width - 2 * kTextFieldOriginX;
+    CGFloat kTextFieldHeight        =       40.0f;
     
-    _inputTableView = [[UITableView alloc] initWithFrame:CGRectMake(kLeftMargin, kTableOriginY, kTableWidth, kTableHeight)];
-    _inputTableView.delegate = self;
-    _inputTableView.dataSource = self;
-    _inputTableView.scrollEnabled = NO;
-    [_scrollView addSubview:_inputTableView];
+    _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
+    _codeTextField.textColor = TEXT_COLOR_LESS_DARK;
+    _codeTextField.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _codeTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"123456", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
+    _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _codeTextField.delegate = self;
+    _codeTextField.layer.borderWidth = 1.0f;
+    _codeTextField.layer.borderColor = [TEXT_COLOR_GRAY CGColor];
+    _codeTextField.layer.cornerRadius = 8.0f;
+    [Utilities addLeftPaddingToTextField:_codeTextField];
+    [_scrollView addSubview:_codeTextField];
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) addVerificationButton
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat kButtonOriginX      =       30.0f;
+    CGFloat kButtonOriginY      =       _codeTextField.frame.origin.y + _codeTextField.frame.size.height + 25.0f;
+    CGFloat KButtonWidth        =       WINSIZE.width - 2 * kButtonOriginX;
+    CGFloat kButtonHeight       =       45.0f;
+    
+    _verificationButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, KButtonWidth, kButtonHeight)];
+    [_verificationButton createTitle:NSLocalizedString(@"VERIFY", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE] iconOffsetY:0];
+    _verificationButton.titleColor = [UIColor whiteColor];
+    _verificationButton.bgColor = FLAT_FRESH_RED_COLOR;
+    _verificationButton.borderWidth = 0;
+    _verificationButton.cornerRadius = 8.0f;
+    [_scrollView addSubview:_verificationButton];
 }
 
 

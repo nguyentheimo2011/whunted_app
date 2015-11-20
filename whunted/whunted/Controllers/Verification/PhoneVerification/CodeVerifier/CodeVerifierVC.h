@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CodeVerifierVC : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface CodeVerifierVC : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic, strong)       NSString        *usersPhoneNumber;
 
