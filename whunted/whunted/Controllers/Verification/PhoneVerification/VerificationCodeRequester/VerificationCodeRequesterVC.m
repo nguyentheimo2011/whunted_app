@@ -322,11 +322,13 @@
     }
     else
     {
-        [self sendPhoneNumberToServer];
+        CompletionHandler handler = ^() {
+            CodeVerifierVC *codeVerifierVC = [[CodeVerifierVC alloc] init];
+            codeVerifierVC.usersPhoneNumber = [NSString stringWithFormat:@"%@ %@", _countryCodeLabel.text, _phoneNumberTextField.text];
+            [self.navigationController pushViewController:codeVerifierVC animated:YES];
+        };
         
-        CodeVerifierVC *codeVerifierVC = [[CodeVerifierVC alloc] init];
-        codeVerifierVC.usersPhoneNumber = [NSString stringWithFormat:@"%@ %@", _countryCodeLabel.text, _phoneNumberTextField.text];
-        [self.navigationController pushViewController:codeVerifierVC animated:YES];
+        [self sendPhoneNumberToServerWithSuccessBlock:handler];
     }
 }
 
@@ -457,17 +459,25 @@
 #pragma mark - Backend Handlers
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) sendPhoneNumberToServer
+- (void) sendPhoneNumberToServerWithSuccessBlock: (CompletionHandler) handler
 //-----------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
     NSString *phoneNumber = [NSString stringWithFormat:@"%@%@", _countryCodeLabel.text, _phoneNumberTextField.text];
     
     [PFCloud callFunctionInBackground:@"sendVerificationCode" withParameters:@{@"phoneNumber":phoneNumber} block:^(id  _Nullable object, NSError * _Nullable error)
     {
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        
         if (error)
         {
             [Utilities handleError:error];
             [Utilities displayErrorAlertView];
+        }
+        else
+        {
+            handler();
         }
     }];
 }
