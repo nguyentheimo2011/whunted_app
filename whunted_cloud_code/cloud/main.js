@@ -3,33 +3,48 @@
 // For example:
 var twilio = require('twilio')('AC472c358bd2d70853d1b84e2848cd5a71', '4494f3e24a1c4e05a0f20733727f4ebc');
 
-Parse.Cloud.define("sendVerificationCode", function(request, response) {
-    var verificationCode = Math.floor(Math.random()*999999);
+Parse.Cloud.define("sendVerificationCode", function(request, response) 
+{
+	var randNum = Math.random();
+	if (randNum < 0.11)
+		randNum += 0.11;
+
+    var verificationCode = Math.floor(randNum * 999999);
     var user = Parse.User.current();
     user.set("phoneVerificationCode", verificationCode);
     user.save();
     
-    twilio.sendSms({
+    twilio.sendSms(
+    {
         From: "+1 616-710-4599",
         To: request.params.phoneNumber,
         Body: "Your verification code is " + verificationCode + "."
-    }, function(err, responseData) { 
-        if (err) {
+    }
+    , function(err, responseData) 
+    { 
+        if (err) 
+        {
           response.error(err);
-        } else { 
+        } 
+        else 
+        { 
           response.success("Success");
         }
     });
 });
 
-Parse.Cloud.define("verifyPhoneNumber", function(request, response) {
+Parse.Cloud.define("verifyPhoneNumber", function(request, response) 
+{
     var user = Parse.User.current();
     var verificationCode = user.get("phoneVerificationCode");
-    if (verificationCode == request.params.phoneVerificationCode) {
+    if (verificationCode == request.params.phoneVerificationCode) 
+    {
         user.set("phoneNumber", request.params.phoneNumber);
         user.save();
         response.success("Success");
-    } else {
+    } 
+    else 
+    {
         response.error("Invalid verification code.");
     }
 });
