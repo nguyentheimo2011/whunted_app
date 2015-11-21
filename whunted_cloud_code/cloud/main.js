@@ -5,20 +5,31 @@ var twilio = require('twilio')('AC472c358bd2d70853d1b84e2848cd5a71', '4494f3e24a
 
 Parse.Cloud.define("sendVerificationCode", function(request, response) 
 {
+	// Generate verification code
 	var randNum = Math.random();
 	if (randNum < 0.11)
 		randNum += 0.11;
 
     var verificationCode = Math.floor(randNum * 999999);
+
+    // Save verification code to database
     var user = Parse.User.current();
     user.set("phoneVerificationCode", verificationCode);
     user.save();
+
+    // Based on user's phone language, send an sms message in that language.
+    var message;
+    var phoneLang = request.params.phoneLanguage; 
+    if (phoneLang.localeCompare("zh-Hant") == 0)
+    	message = "Chinese: Your verification code is " + verificationCode + ".";
+    else
+    	message = "Your verification code is " + verificationCode + ".";
     
     twilio.sendSms(
     {
         From: "+1 616-710-4599",
         To: request.params.phoneNumber,
-        Body: "Your verification code is " + verificationCode + "."
+        Body: message
     }
     , function(err, responseData) 
     { 

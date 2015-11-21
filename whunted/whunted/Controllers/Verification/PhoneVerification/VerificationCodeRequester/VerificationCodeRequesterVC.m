@@ -328,6 +328,8 @@
             [self.navigationController pushViewController:codeVerifierVC animated:YES];
         };
         
+        [_phoneNumberTextField resignFirstResponder];
+        
         [self sendPhoneNumberToServerWithSuccessBlock:handler];
     }
 }
@@ -466,7 +468,7 @@
     
     NSString *phoneNumber = [NSString stringWithFormat:@"%@%@", _countryCodeLabel.text, _phoneNumberTextField.text];
     
-    [PFCloud callFunctionInBackground:@"sendVerificationCode" withParameters:@{@"phoneNumber":phoneNumber} block:^(id  _Nullable object, NSError * _Nullable error)
+    [PFCloud callFunctionInBackground:@"sendVerificationCode" withParameters:@{@"phoneNumber":phoneNumber, @"phoneLanguage":[Utilities shortFormOfCurrLanguage]} block:^(id  _Nullable object, NSError * _Nullable error)
     {
         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
         
