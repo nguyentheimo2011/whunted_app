@@ -546,6 +546,9 @@
     verifiedLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [verifiedLabel sizeToFit];
     
+    
+    CGFloat currOriginX = verifiedLabel.frame.size.width + 8;
+    
     BOOL facebookVerified = (BOOL) _profileOwner[PF_USER_FACEBOOK_VERIFIED];
     if (facebookVerified)
     {
@@ -554,28 +557,44 @@
         UIImage *fbImage = [UIImage imageNamed:@"fb_verification.png"];
         
         CGFloat const kImageWith = 16;
-        CGFloat const kImageLeftMargin = verifiedLabel.frame.size.width + 8;
         
-        UIImageView *fbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, 2, kImageWith, kImageWith)];
+        UIImageView *fbImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 2, kImageWith, kImageWith)];
         [fbImageView setImage:fbImage];
         [backgroundView addSubview:fbImageView];
+        
+        currOriginX += 8 + kImageWith;
     }
     
     BOOL emailVerified = (BOOL) _profileOwner[PF_USER_EMAIL_VERIFICATION];
     if (emailVerified)
     {
+        if (!facebookVerified)
+            [backgroundView addSubview:verifiedLabel];
+        
         UIImage *emailImage = [UIImage imageNamed:@"email_verification.png"];
         
         CGFloat const kImageWith = 20;
-        CGFloat kImageLeftMargin;
-        if (facebookVerified)
-            kImageLeftMargin = verifiedLabel.frame.size.width + 2 * 8 + kImageWith;
-        else
-            kImageLeftMargin = verifiedLabel.frame.size.width + 8;
         
-        UIImageView *emailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kImageLeftMargin, 0, kImageWith, kImageWith)];
+        UIImageView *emailImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 0, kImageWith, kImageWith)];
         [emailImageView setImage:emailImage];
         [backgroundView addSubview:emailImageView];
+        
+        currOriginX += 8 + kImageWith;
+    }
+    
+    BOOL phoneVerified = (BOOL) _profileOwner[PF_USER_PHONE_VERIFIED];
+    if (phoneVerified)
+    {
+        if (!facebookVerified && !emailVerified)
+            [backgroundView addSubview:verifiedLabel];
+        
+        UIImage *phoneImage = [UIImage imageNamed:@"phone_icon.png"];
+        
+        CGFloat const kImageWidth = 20;
+        
+        UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 0, kImageWidth, kImageWidth)];
+        [phoneImageView setImage:phoneImage];
+        [backgroundView addSubview:phoneImageView];
     }
     
     _currHeight += kBackgroundTopMargin + kBackgroundHeight;

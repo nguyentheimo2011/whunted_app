@@ -133,6 +133,7 @@
 #define     PF_USER_DESCRIPTION                 @"userDescription"      //  String
 #define     PF_USER_PHONE_NUMBER                @"phoneNumber"          //  String
 #define     PF_USER_FACEBOOK_VERIFIED           @"facebookVerified"     //  Boolean
+#define     PF_USER_PHONE_VERIFIED              @"phoneVerified"        //  Boolean
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_OBJECT_ID                        @"objectId"

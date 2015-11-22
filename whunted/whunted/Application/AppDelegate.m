@@ -111,13 +111,15 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (![PFUser currentUser]) // Check if user is cached
-//        ![PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
     {
         LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
         [self.window setRootViewController:loginVC];
     }
     else
     {
+        // refresh data of current user
+        [[PFUser currentUser] fetch];
+        
         MainViewController *mainVC = [[MainViewController alloc] init];
         [self.window setRootViewController:mainVC];
     }

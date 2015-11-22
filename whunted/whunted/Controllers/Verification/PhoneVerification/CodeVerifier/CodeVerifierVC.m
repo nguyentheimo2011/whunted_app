@@ -197,7 +197,7 @@
     
     if (_codeTextField.text.length != 6)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alertView show];
     }
     else
@@ -210,7 +210,7 @@
             
             if (error)
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alertView show];
             }
             else
@@ -247,6 +247,19 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
     });
+}
+
+
+#pragma mark - UIAlertViewDelegate methods
+
+//---------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    if (buttonIndex == 0)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 
