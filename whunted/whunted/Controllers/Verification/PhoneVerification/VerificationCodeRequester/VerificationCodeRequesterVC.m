@@ -225,6 +225,7 @@
     
     _phoneNumberTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _phoneNumberTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _phoneNumberTextField.textColor = TEXT_COLOR_LESS_DARK;
     _phoneNumberTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"900111222", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
     _phoneNumberTextField.keyboardType = UIKeyboardTypeNumberPad;
     _phoneNumberTextField.delegate = self;

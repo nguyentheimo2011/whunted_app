@@ -129,7 +129,7 @@
     
     _codeTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextFieldOriginX, kTextFieldOriginY, kTextFieldWidth, kTextFieldHeight)];
     _codeTextField.textColor = TEXT_COLOR_LESS_DARK;
-    _codeTextField.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _codeTextField.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     _codeTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"123456", nil) attributes:@{NSFontAttributeName : [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE]}];
     _codeTextField.keyboardType = UIKeyboardTypeNumberPad;
     _codeTextField.delegate = self;
@@ -155,6 +155,7 @@
     _verificationButton.bgColor = FLAT_FRESH_RED_COLOR;
     _verificationButton.borderWidth = 0;
     _verificationButton.cornerRadius = 8.0f;
+    [_verificationButton addTarget:self action:@selector(verificationButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [_scrollView addSubview:_verificationButton];
 }
 
@@ -185,6 +186,39 @@
     if (offsetY > -[Utilities getHeightOfNavigationAndStatusBars:self])
     {
         [_scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------------------------------
+- (void) verificationButtonTapEventHandler
+//-----------------------------------------------------------------------------------------------------------------------------
+{
+    [_codeTextField resignFirstResponder];
+    
+    if (_codeTextField.text.length != 6)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+        
+        [PFCloud callFunctionInBackground:@"verifyPhoneNumber" withParameters:@{@"phoneVerificationCode" : _codeTextField.text} block:^(id  _Nullable object, NSError * _Nullable error)
+        {
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+            
+            if (error)
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"Your code you entered is incorrect.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                [alertView show];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
     }
 }
 
