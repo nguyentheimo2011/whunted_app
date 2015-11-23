@@ -331,6 +331,9 @@
 		E9FC1D951B8EBA2E001226C5 /* recent_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D861B8EBA2E001226C5 /* recent_icon@2x.png */; };
 		E9FC1D961B8EBA2E001226C5 /* recent_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D871B8EBA2E001226C5 /* recent_icon@3x.png */; };
 		E9FC1D9C1B93D96F001226C5 /* countriesToCities.json in Resources */ = {isa = PBXBuildFile; fileRef = E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */; };
+		E9FC40451C02C7CA00C02520 /* verified_phone_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */; };
+		E9FC40461C02C7CA00C02520 /* verified_phone_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */; };
+		E9FC40471C02C7CA00C02520 /* verified_phone_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -749,6 +752,9 @@
 		E9FC1D861B8EBA2E001226C5 /* recent_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent_icon@2x.png"; path = "Resources/SortAndFilter/recent_icon@2x.png"; sourceTree = "<group>"; };
 		E9FC1D871B8EBA2E001226C5 /* recent_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent_icon@3x.png"; path = "Resources/SortAndFilter/recent_icon@3x.png"; sourceTree = "<group>"; };
 		E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countriesToCities.json; path = "Resources/JSON-files/countriesToCities.json"; sourceTree = "<group>"; };
+		E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@1x.png"; path = "Resources/Verification/verified_phone_icon@1x.png"; sourceTree = "<group>"; };
+		E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@2x.png"; path = "Resources/Verification/verified_phone_icon@2x.png"; sourceTree = "<group>"; };
+		E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@3x.png"; path = "Resources/Verification/verified_phone_icon@3x.png"; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1345,6 +1351,9 @@
 		E9638C691BFC3E1C0042DEE5 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
+				E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */,
+				E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */,
+				E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */,
 				E9638C701BFC3F540042DEE5 /* country_icon@1x.png */,
 				E9638C711BFC3F540042DEE5 /* country_icon@2x.png */,
 				E9638C721BFC3F540042DEE5 /* country_icon@3x.png */,
@@ -2105,6 +2114,7 @@
 				E9FC1D941B8EBA2E001226C5 /* recent_icon@1x.png in Resources */,
 				E9FC1D641B8C5D09001226C5 /* product_origin_small_icon@2x.png in Resources */,
 				E91A5A641B048590008382E2 /* cameraplus@3x.png in Resources */,
+				E9FC40461C02C7CA00C02520 /* verified_phone_icon@2x.png in Resources */,
 				E9B659B91BF05C7E002CF40B /* cross_icon@2x.png in Resources */,
 				E9D433061B550EC200530492 /* setting_icon@2x.png in Resources */,
 				E9FC1D951B8EBA2E001226C5 /* recent_icon@2x.png in Resources */,
@@ -2161,6 +2171,7 @@
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
 				E951C3FC1B81F26300A1B384 /* category_icon@1x.png in Resources */,
 				E983C4571BEC8C1300F0D316 /* facebook_icon@2x.png in Resources */,
+				E9FC40471C02C7CA00C02520 /* verified_phone_icon@3x.png in Resources */,
 				E90ACE0C1B71F04400DC9768 /* activity_tab_icon@2x.png in Resources */,
 				E90ACE241B73250700DC9768 /* profile_tab_icon@3x.png in Resources */,
 				E918062D1B7C85C7009C1F2D /* location_icon@2x.png in Resources */,
@@ -2294,6 +2305,7 @@
 				E90ACE231B73250700DC9768 /* profile_tab_icon@2x.png in Resources */,
 				E97A954A1B528F18003796DD /* move_to_next_icon@3x.png in Resources */,
 				E9E456701B0D8C7400E8B55D /* want_icon@1x.png in Resources */,
+				E9FC40451C02C7CA00C02520 /* verified_phone_icon@1x.png in Resources */,
 				E918062E1B7C85C7009C1F2D /* location_icon@3x.png in Resources */,
 				E9CF95701BB01E89007272F3 /* reference_link_icon@1x.png in Resources */,
 				E9E456711B0D8C7400E8B55D /* want_icon@2x.png in Resources */,

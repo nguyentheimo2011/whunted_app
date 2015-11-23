@@ -52,6 +52,7 @@ Parse.Cloud.define("verifyPhoneNumber", function(request, response)
     {
         user.set("phoneNumber", request.params.phoneNumber);
         user.set("phoneVerified", true);
+        user.set("phoneVerificationCode", "");
         user.save();
         response.success("Success");
     } 

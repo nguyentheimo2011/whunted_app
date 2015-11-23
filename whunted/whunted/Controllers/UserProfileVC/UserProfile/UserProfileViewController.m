@@ -588,11 +588,11 @@
         if (!facebookVerified && !emailVerified)
             [backgroundView addSubview:verifiedLabel];
         
-        UIImage *phoneImage = [UIImage imageNamed:@"phone_icon.png"];
+        UIImage *phoneImage = [UIImage imageNamed:@"verified_phone_icon.png"];
         
-        CGFloat const kImageWidth = 20;
+        CGFloat const kImageWidth = 16;
         
-        UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 0, kImageWidth, kImageWidth)];
+        UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 2, kImageWidth, kImageWidth)];
         [phoneImageView setImage:phoneImage];
         [backgroundView addSubview:phoneImageView];
     }
