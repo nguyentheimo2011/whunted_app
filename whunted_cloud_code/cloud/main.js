@@ -14,6 +14,7 @@ Parse.Cloud.define("sendVerificationCode", function(request, response)
 
     // Save verification code to database
     var user = Parse.User.current();
+    user.set("phoneNumber", request.params.phoneNumber);
     user.set("phoneVerificationCode", verificationCode);
     user.save();
 
@@ -50,9 +51,8 @@ Parse.Cloud.define("verifyPhoneNumber", function(request, response)
     var verificationCode = user.get("phoneVerificationCode");
     if (verificationCode == request.params.phoneVerificationCode) 
     {
-        user.set("phoneNumber", request.params.phoneNumber);
         user.set("phoneVerified", true);
-        user.set("phoneVerificationCode", "");
+        user.set("phoneVerificationCode", 0);
         user.save();
         response.success("Success");
     } 

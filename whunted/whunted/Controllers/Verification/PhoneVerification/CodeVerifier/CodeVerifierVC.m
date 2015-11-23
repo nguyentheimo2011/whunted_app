@@ -258,6 +258,9 @@
 {
     if (buttonIndex == 0)
     {
+        // Notify User Profile to update its data after phone verification
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
