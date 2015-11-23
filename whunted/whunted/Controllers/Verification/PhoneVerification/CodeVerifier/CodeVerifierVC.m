@@ -215,10 +215,9 @@
             }
             else
             {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_DID_VERIFY_PHONE_NUMBER object:nil];
                 
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-                [alertView show];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }];
     }
@@ -249,22 +248,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [_scrollView setContentSize:CGSizeMake(WINSIZE.width, WINSIZE.height - [Utilities getHeightOfNavigationAndStatusBars:self])];
     });
-}
-
-
-#pragma mark - UIAlertViewDelegate methods
-
-//---------------------------------------------------------------------------------------------------------------------------
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//---------------------------------------------------------------------------------------------------------------------------
-{
-    if (buttonIndex == 0)
-    {
-        // Notify User Profile to update its data after phone verification
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
 }
 
 

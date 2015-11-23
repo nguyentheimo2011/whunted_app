@@ -147,6 +147,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUserProfile) name:NOTIFICATION_USER_PROFILE_UPDATED_EVENT object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEventAfterPhoneVerification) name:NOTIFICATION_USER_DID_VERIFY_PHONE_NUMBER object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntFulfilledEventHandler:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT object:nil];
@@ -1049,6 +1051,21 @@
     UserData *userData = [[UserData alloc] initWithParseUser:[PFUser currentUser]];
     EditProfileViewController *editProfileVC = [[EditProfileViewController alloc] initWithUserData:userData];
     [self.navigationController pushViewController:editProfileVC animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) handleEventAfterPhoneVerification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (!error)
+        {
+            [self updateUserProfile];
+        }
+    }];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
 }
 
 
