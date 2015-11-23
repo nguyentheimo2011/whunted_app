@@ -17,6 +17,7 @@
 #define     MAIN_BLUE_COLOR_WITH_WHITE_1        [UIColor colorWithRed:0.0/255 green:124.0/255 blue:220.0/255 alpha:1.0]
 #define     MAIN_BLUE_COLOR_WITH_WHITE_2        [UIColor colorWithRed:33.0/255 green:154.0/255 blue:255.0/255 alpha:1.0]
 #define     MAIN_BLUE_COLOR_WITH_WHITE_3        [UIColor colorWithRed:80.0/255 green:176.0/255 blue:255.0/255 alpha:1.0]
+#define     MAIN_BLUE_COLOR_WITH_DARK           [UIColor colorWithRed:0.0/255 green:80.0/255 blue:150.0/255 alpha:1.0]
 #define     MAIN_BLUE_COLOR_WITH_DARK_1         [UIColor colorWithRed:0.0/255 green:64.0/255 blue:115.0/255 alpha:1.0]
 #define     MAIN_BLUE_COLOR_WITH_DARK_2         [UIColor colorWithRed:0.0/255 green:50.0/255 blue:90.0/255 alpha:1.0]
 

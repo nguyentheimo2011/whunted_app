@@ -74,17 +74,23 @@
 //----------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat kLabelOriginX   =   20.0f;
-    CGFloat kLabelOriginY   =   _phoneImageView.frame.origin.y + _phoneImageView.frame.size.height + 20.0f;
+    CGFloat kLabelOriginY   =   _phoneImageView.frame.origin.y + _phoneImageView.frame.size.height + 15.0f;
     CGFloat kLabelWidth     =   WINSIZE.width - 2 * kLabelOriginX;
     
     _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, 0)];
     _infoLabel.text = NSLocalizedString(@"Your phone number has already been verified.", nil);
-    _infoLabel.textColor = TEXT_COLOR_LESS_DARK;
-    _infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _infoLabel.textColor = MAIN_BLUE_COLOR_WITH_DARK;
+    _infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _infoLabel.numberOfLines = 0;
-    [_infoLabel sizeToFit];
     _infoLabel.textAlignment = NSTextAlignmentCenter;
+    _infoLabel.layer.cornerRadius = 8.0f;
+    _infoLabel.layer.masksToBounds = YES;
+    [_infoLabel sizeToFit];
+    
+    CGFloat kLabelHeight    =   _infoLabel.frame.size.height + 20.0f;
+    _infoLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+    
     [self.view addSubview:_infoLabel];
 }
 
@@ -99,9 +105,10 @@
     
     _phoneNumberChangeButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
     [_phoneNumberChangeButton createTitle:NSLocalizedString(@"Change phone number", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
-    _phoneNumberChangeButton.titleColor = [UIColor redColor];
-    _phoneNumberChangeButton.bgColor = [UIColor whiteColor];
+    _phoneNumberChangeButton.titleColor = [UIColor whiteColor];
+    _phoneNumberChangeButton.bgColor = FLAT_FRESH_RED_COLOR;
     _phoneNumberChangeButton.borderWidth = 0;
+    _phoneNumberChangeButton.cornerRadius = 8.0;
     [self.view addSubview:_phoneNumberChangeButton];
 }
 
