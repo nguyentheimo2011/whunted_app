@@ -7,6 +7,7 @@
 //
 
 #import "CompletedVerificationVC.h"
+#import "VerificationCodeRequesterVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -109,6 +110,7 @@
     _phoneNumberChangeButton.bgColor = FLAT_FRESH_RED_COLOR;
     _phoneNumberChangeButton.borderWidth = 0;
     _phoneNumberChangeButton.cornerRadius = 8.0;
+    [_phoneNumberChangeButton addTarget:self action:@selector(phoneNumberChangeButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_phoneNumberChangeButton];
 }
 
@@ -120,6 +122,14 @@
 //----------------------------------------------------------------------------------------------------------------------------
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+//----------------------------------------------------------------------------------------------------------------------------
+- (void) phoneNumberChangeButtonTapEventHandler
+//----------------------------------------------------------------------------------------------------------------------------
+{
+    VerificationCodeRequesterVC *codeRequesterVC = [[VerificationCodeRequesterVC alloc] init];
+    [self.navigationController pushViewController:codeRequesterVC animated:YES];
 }
 
 @end
