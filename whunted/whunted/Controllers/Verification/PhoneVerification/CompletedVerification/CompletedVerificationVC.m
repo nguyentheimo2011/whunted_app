@@ -16,7 +16,7 @@
 {
     UIImageView             *_phoneImageView;
     
-    UILabel                 *_phoneLabel;
+    UILabel                 *_infoLabel;
     
     JTImageButton           *_phoneNumberChangeButton;
 }
@@ -73,14 +73,36 @@
 - (void) addInfoLabel
 //----------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat kLabelOriginX   =   20.0f;
+    CGFloat kLabelOriginY   =   _phoneImageView.frame.origin.y + _phoneImageView.frame.size.height + 20.0f;
+    CGFloat kLabelWidth     =   WINSIZE.width - 2 * kLabelOriginX;
     
+    _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, 0)];
+    _infoLabel.text = NSLocalizedString(@"Your phone number has already been verified.", nil);
+    _infoLabel.textColor = TEXT_COLOR_LESS_DARK;
+    _infoLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _infoLabel.numberOfLines = 0;
+    [_infoLabel sizeToFit];
+    _infoLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_infoLabel];
 }
 
 //----------------------------------------------------------------------------------------------------------------------------
 - (void) addPhoneNumberChangeButton
 //----------------------------------------------------------------------------------------------------------------------------
 {
+    CGFloat kButtonOriginX  =   20.0f;
+    CGFloat kButtonOriginY  =   _infoLabel.frame.origin.y + _infoLabel.frame.size.height + 20.0f;
+    CGFloat kButtonWidth    =   WINSIZE.width - 2 * kButtonOriginX;
+    CGFloat kButtonHeight   =   45.0f;
     
+    _phoneNumberChangeButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
+    [_phoneNumberChangeButton createTitle:NSLocalizedString(@"Change phone number", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE] iconOffsetY:0];
+    _phoneNumberChangeButton.titleColor = [UIColor redColor];
+    _phoneNumberChangeButton.bgColor = [UIColor whiteColor];
+    _phoneNumberChangeButton.borderWidth = 0;
+    [self.view addSubview:_phoneNumberChangeButton];
 }
 
 
