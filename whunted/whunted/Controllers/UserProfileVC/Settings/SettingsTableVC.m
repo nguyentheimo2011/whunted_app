@@ -8,6 +8,7 @@
 
 #import "SettingsTableVC.h"
 #import "VerificationCodeRequesterVC.h"
+#import "CompletedVerificationVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -284,7 +285,7 @@
     }
     else if (indexPath.section == 1)
     {
-        [self pushVerificationCodeRequesterVC];
+        [self pushVerificationViewController];
     }
     else if (indexPath.section == 2)
     {
@@ -324,11 +325,22 @@
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
-- (void) pushVerificationCodeRequesterVC
+- (void) pushVerificationViewController
 //-----------------------------------------------------------------------------------------------------------------------------
 {
-    VerificationCodeRequesterVC *codeRequester = [[VerificationCodeRequesterVC alloc] init];
-    [self.navigationController pushViewController:codeRequester animated:YES];
+    PFUser *currUser = [PFUser currentUser];
+    BOOL phoneVerified = [currUser[PF_USER_PHONE_VERIFIED] boolValue];
+    
+    if (phoneVerified)
+    {
+        CompletedVerificationVC *completedVC = [[CompletedVerificationVC alloc] init];
+        [self.navigationController pushViewController:completedVC animated:YES];
+    }
+    else
+    {
+        VerificationCodeRequesterVC *codeRequester = [[VerificationCodeRequesterVC alloc] init];
+        [self.navigationController pushViewController:codeRequester animated:YES];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

@@ -334,6 +334,10 @@
 		E9FC40451C02C7CA00C02520 /* verified_phone_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */; };
 		E9FC40461C02C7CA00C02520 /* verified_phone_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */; };
 		E9FC40471C02C7CA00C02520 /* verified_phone_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */; };
+		E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC404A1C03000200C02520 /* CompletedVerificationVC.m */; };
+		E9FC404F1C030CC400C02520 /* big_verified_phone_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC404C1C030CC400C02520 /* big_verified_phone_icon@1x.png */; };
+		E9FC40501C030CC400C02520 /* big_verified_phone_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC404D1C030CC400C02520 /* big_verified_phone_icon@2x.png */; };
+		E9FC40511C030CC400C02520 /* big_verified_phone_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FC404E1C030CC400C02520 /* big_verified_phone_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -755,6 +759,11 @@
 		E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@1x.png"; path = "Resources/Verification/verified_phone_icon@1x.png"; sourceTree = "<group>"; };
 		E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@2x.png"; path = "Resources/Verification/verified_phone_icon@2x.png"; sourceTree = "<group>"; };
 		E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "verified_phone_icon@3x.png"; path = "Resources/Verification/verified_phone_icon@3x.png"; sourceTree = "<group>"; };
+		E9FC40491C03000200C02520 /* CompletedVerificationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletedVerificationVC.h; path = Controllers/Verification/PhoneVerification/CompletedVerification/CompletedVerificationVC.h; sourceTree = "<group>"; };
+		E9FC404A1C03000200C02520 /* CompletedVerificationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompletedVerificationVC.m; path = Controllers/Verification/PhoneVerification/CompletedVerification/CompletedVerificationVC.m; sourceTree = "<group>"; };
+		E9FC404C1C030CC400C02520 /* big_verified_phone_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big_verified_phone_icon@1x.png"; path = "Resources/Verification/big_verified_phone_icon@1x.png"; sourceTree = "<group>"; };
+		E9FC404D1C030CC400C02520 /* big_verified_phone_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big_verified_phone_icon@2x.png"; path = "Resources/Verification/big_verified_phone_icon@2x.png"; sourceTree = "<group>"; };
+		E9FC404E1C030CC400C02520 /* big_verified_phone_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big_verified_phone_icon@3x.png"; path = "Resources/Verification/big_verified_phone_icon@3x.png"; sourceTree = "<group>"; };
 		EF75C2A99F4BA89B058BEE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1341,6 +1350,7 @@
 		E9638C651BFB00120042DEE5 /* PhoneVerification */ = {
 			isa = PBXGroup;
 			children = (
+				E9FC40481C02FF4F00C02520 /* CompletedVerification */,
 				E9638C7D1BFE12200042DEE5 /* VerificationCodeRequester */,
 				E9638C851BFE13E90042DEE5 /* CodeVerifier */,
 				E9638C7E1BFE127D0042DEE5 /* CountryList */,
@@ -1351,6 +1361,9 @@
 		E9638C691BFC3E1C0042DEE5 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
+				E9FC404C1C030CC400C02520 /* big_verified_phone_icon@1x.png */,
+				E9FC404D1C030CC400C02520 /* big_verified_phone_icon@2x.png */,
+				E9FC404E1C030CC400C02520 /* big_verified_phone_icon@3x.png */,
 				E9FC40421C02C7CA00C02520 /* verified_phone_icon@1x.png */,
 				E9FC40431C02C7CA00C02520 /* verified_phone_icon@2x.png */,
 				E9FC40441C02C7CA00C02520 /* verified_phone_icon@3x.png */,
@@ -2022,6 +2035,15 @@
 			name = "JSON-files";
 			sourceTree = "<group>";
 		};
+		E9FC40481C02FF4F00C02520 /* CompletedVerification */ = {
+			isa = PBXGroup;
+			children = (
+				E9FC40491C03000200C02520 /* CompletedVerificationVC.h */,
+				E9FC404A1C03000200C02520 /* CompletedVerificationVC.m */,
+			);
+			name = CompletedVerification;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2185,6 +2207,7 @@
 				E9638C741BFC3F540042DEE5 /* country_icon@2x.png in Resources */,
 				E97A95481B528F18003796DD /* move_to_next_icon@1x.png in Resources */,
 				E9E31F711B849989008D6A3D /* camera_upload_icon@3x.png in Resources */,
+				E9FC40501C030CC400C02520 /* big_verified_phone_icon@2x.png in Resources */,
 				E9D433051B550EC200530492 /* setting_icon@1x.png in Resources */,
 				E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */,
 				E91806341B7C85C7009C1F2D /* pricetag_icon@3x.png in Resources */,
@@ -2219,6 +2242,7 @@
 				E9E4566F1B0D8C7400E8B55D /* sell_icon@3x.png in Resources */,
 				E97A95431B528973003796DD /* sad_face@2x.png in Resources */,
 				E92A0BF21B706F0E000D66BD /* meh_face_small@2x.png in Resources */,
+				E9FC404F1C030CC400C02520 /* big_verified_phone_icon@1x.png in Resources */,
 				E9D432E41B536D0500530492 /* fb_verification@3x.png in Resources */,
 				E9CF95721BB01E89007272F3 /* reference_link_icon@3x.png in Resources */,
 				E9E31F861B859305008D6A3D /* user_profile_image_placeholder_small@2x.png in Resources */,
@@ -2254,6 +2278,7 @@
 				E9FC1D611B8C5D09001226C5 /* category_small_icon@2x.png in Resources */,
 				E9E456921B0F0DA500E8B55D /* view_icon.png in Resources */,
 				E9E31F821B859305008D6A3D /* user_profile_image_placeholder_big@1x.png in Resources */,
+				E9FC40511C030CC400C02520 /* big_verified_phone_icon@3x.png in Resources */,
 				E9638C6D1BFC3E470042DEE5 /* phone_icon@1x.png in Resources */,
 				E98113131B2155CB00ECAA0C /* chat_with_seller@1x.png in Resources */,
 				E91806331B7C85C7009C1F2D /* pricetag_icon@2x.png in Resources */,
@@ -2399,6 +2424,7 @@
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
+				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
 				E944C5C71BCD155E00E27337 /* common.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */,
