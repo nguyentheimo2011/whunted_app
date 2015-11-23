@@ -118,7 +118,7 @@
     else
     {
         // refresh data of current user
-        [[PFUser currentUser] fetch];
+        [[PFUser currentUser] fetchInBackground];
         
         MainViewController *mainVC = [[MainViewController alloc] init];
         [self.window setRootViewController:mainVC];

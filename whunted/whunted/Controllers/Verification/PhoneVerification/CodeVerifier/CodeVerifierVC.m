@@ -215,6 +215,8 @@
             }
             else
             {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
                 [alertView show];
             }

@@ -33,7 +33,7 @@
         _receiverID         =   obj[PF_FEEDBACK_RECEIVER_ID];
         _rating             =   [self feedbackRatingFromString:obj[PF_FEEDBACK_RATING]];
         _comment            =   obj[PF_FEEDBACK_COMMENT];
-        _isWriterTheBuyer   =   [Utilities booleanFromString:obj[PF_FEEDBACK_IS_WRITER_THE_BUYER]];
+        _isWriterTheBuyer   =   [Utilities booleanFromYesNoString:obj[PF_FEEDBACK_IS_WRITER_THE_BUYER]];
         _updatedDate        =   obj.updatedAt;
         _createdDate        =   obj.createdAt;
     }

@@ -102,7 +102,9 @@
 #pragma mark - Data Type Conversion
 //-----------------------------------------------------------------------------------------------------------------------------
 
-+ (BOOL)            booleanFromString:              (NSString *) string;
++ (BOOL)            booleanFromYesNoString:         (NSString *) string;
+
++ (BOOL)            booleanFrom01String:            (NSString *) string;
 
 + (NSString *)      stringFromBoolean:              (BOOL) boolean;
 

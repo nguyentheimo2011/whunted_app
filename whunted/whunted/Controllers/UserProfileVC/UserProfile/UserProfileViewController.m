@@ -549,7 +549,7 @@
     
     CGFloat currOriginX = verifiedLabel.frame.size.width + 8;
     
-    BOOL facebookVerified = (BOOL) _profileOwner[PF_USER_FACEBOOK_VERIFIED];
+    BOOL facebookVerified = [_profileOwner[PF_USER_FACEBOOK_VERIFIED] boolValue];
     if (facebookVerified)
     {
         [backgroundView addSubview:verifiedLabel];
@@ -565,7 +565,7 @@
         currOriginX += 8 + kImageWith;
     }
     
-    BOOL emailVerified = (BOOL) _profileOwner[PF_USER_EMAIL_VERIFICATION];
+    BOOL emailVerified = [_profileOwner[PF_USER_EMAIL_VERIFICATION] boolValue];
     if (emailVerified)
     {
         if (!facebookVerified)
@@ -582,7 +582,7 @@
         currOriginX += 8 + kImageWith;
     }
     
-    BOOL phoneVerified = (BOOL) _profileOwner[PF_USER_PHONE_VERIFIED];
+    BOOL phoneVerified = [_profileOwner[PF_USER_PHONE_VERIFIED] boolValue];
     if (phoneVerified)
     {
         if (!facebookVerified && !emailVerified)
