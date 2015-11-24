@@ -22,7 +22,7 @@ Parse.Cloud.define("sendVerificationCode", function(request, response)
     var message;
     var phoneLang = request.params.phoneLanguage; 
     if (phoneLang.localeCompare("zh-Hant") == 0)
-    	message = "Chinese: Your verification code is " + verificationCode + ".";
+    	message = "您的認證號碼是" + verificationCode + ".";
     else
     	message = "Your verification code is " + verificationCode + ".";
     
