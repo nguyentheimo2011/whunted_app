@@ -853,12 +853,17 @@
     NSNumber *temp = [[NSUserDefaults standardUserDefaults] objectForKey:NUMBER_OF_TIMES_APP_IS_LAUNCHED];
     NSInteger numOfTimesAppIsLaunched = [temp integerValue];
     
+    NSNumber *temp_2 = [[NSUserDefaults standardUserDefaults] objectForKey:PHONE_VERIFICATION_REMINDER_DISPLAYED];
+    NSInteger reminderDisplayed = [temp_2 boolValue];
+    
     // if this is the second time user launchs the app, then alert him/her to do phone verification
-//    if (numOfTimesAppIsLaunched == 2)
-//    {
+    if (numOfTimesAppIsLaunched == 2 && !reminderDisplayed)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:PHONE_VERIFICATION_REMINDER_DISPLAYED];
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Phone Verification", nil) message:NSLocalizedString(@"Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Yes, let's verify", nil) otherButtonTitles:NSLocalizedString(@"I'll verify later", nil), nil];
         [alertView show];
-//    }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

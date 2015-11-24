@@ -399,6 +399,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     NUMBER_OF_TIMES_APP_IS_LAUNCHED             @"numberOfTimesAppIsLaunched"
+#define     PHONE_VERIFICATION_REMINDER_DISPLAYED       @"phoneVerificationReminderDisplayed"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301
