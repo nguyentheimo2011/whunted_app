@@ -263,12 +263,6 @@
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-// Phone Verification
-//------------------------------------------------------------------------------------------------------------------------------
-
-"An SMS message has been sent to"   =           "An SMS message has been sent to ";
-
-//------------------------------------------------------------------------------------------------------------------------------
 // Signup, Login, Logout
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -305,6 +299,65 @@
                                             =       "It seems that you did not use this email to register with us.";
 "Instructions on how to reset password has been sent to your email address."
                                             =       "Instructions on how to reset password has been sent to your email address.";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Phone Verification
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Verify Phone Number"               =           "Verify Phone Number";
+"Phone Verification"                =           "Phone Verification";
+"Your phone number has already been verified."
+                                    =           "Your phone number has already been verified.";
+"Change phone number"               =           "Change phone number";
+"PHONE VERIFICATION"                =           "PHONE VERIFICATION";
+"Increase trust between you and other buyers and sellers with phone verification"
+                                    =           "Increase trust between you and other buyers and sellers with phone verification";
+"CONTINUE"                          =           "CONTINUE";
+"Your phone number is only used for verification!"
+                                    =           "Your phone number is only used for verification!";
+"Phone number must be filled in"    =           "Phone number must be filled in";
+"The phone number you entered is invalid"
+                                    =           "The phone number you entered is invalid";
+"An SMS message has been sent to"   =           "An SMS message has been sent to ";
+"Please enter the 6-digit confirmation code:"
+                                    =           "Please enter the 6-digit confirmation code:";
+"VERIFY"                            =           "VERIFY";
+"Your phone number has been verified."
+                                    =           "Your phone number has been verified.";
+"Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?"
+                                    =           "Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?";
+"I'll verify later"                 =           "I'll verify later";
+"Yes, let's verify"                 =           "Yes, let's verify";
+"To verify your phone number later, tap Settings button at the top and choose Verify Phone Number."
+                                    =           "To verify your phone number later, tap Settings button at the top and choose Verify Phone Number.";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Country List
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Choose a country"                  =               "Choose a country";
+"Australia"                         =               "Australia";
+"Belgium"                           =               "Belgium";
+"Canada"                            =               "Canada";
+"China"                             =               "China";
+"Czech Republic"                    =               "Czech Republic";
+"Denmark"                           =               "Denmark";
+"France"                            =               "France";
+"Germany"                           =               "Germany";
+"Hong Kong"                         =               "Hong Kong";
+"Italy"                             =               "Italy";
+"Japan"                             =               "Japan";
+"South Korea"                       =               "South Korea";
+"Macau"                             =               "Macau";
+"Malaysia"                          =               "Malaysia";
+"New Zealand"                       =               "New Zealand";
+"Norway"                            =               "Norway";
+"Singapore"                         =               "Singapore";
+"Spain"                             =               "Spain";
+"Taiwan"                            =               "Taiwan";
+"Turkey"                            =               "Turkey";
+"United Kingdom"                    =               "United Kingdom";
+"United States"                     =               "United States";
 
 //------------------------------------------------------------------------------------------------------------------------------
 // Frequently Used Error Messages

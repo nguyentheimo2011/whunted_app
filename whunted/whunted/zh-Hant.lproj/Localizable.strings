@@ -299,6 +299,65 @@
 "Instructions on how to reset password has been sent to your email address."
                                             =           "已寄送重設密碼步驟至您的Email";
 
+//------------------------------------------------------------------------------------------------------------------------------
+// Phone Verification
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Verify Phone Number"               =           "手機號碼認證";
+"Phone Verification"                =           "手機號碼認證";
+"Your phone number has already been verified."
+                                    =           "您的手機號碼已被認證了";
+"Change phone number"               =           "換手機號碼";
+"PHONE VERIFICATION"                =           "手機號碼認證";
+"Increase trust between you and other buyers and sellers with phone verification"
+                                    =           "有了認證, 賣/買 家就會比較信任你, 讓你更容易得到交易!";
+"CONTINUE"                          =           "繼續";
+"Your phone number is only used for verification!"
+                                    =           "您的手機號碼只是用來認證身份!";
+"Phone number must be filled in"    =           "你必須填您的手機號碼";
+"The phone number you entered is invalid"
+                                    =           "您的手機號碼不正確";
+"An SMS message has been sent to"   =           "我們已經發了一個短訊到你手機, ";
+"Please enter the 6-digit confirmation code:"
+                                    =           "請輸入我們發給您的認證號碼";
+"VERIFY"                            =           "認證";
+"Your phone number has been verified."
+                                    =           "您的手機號碼已被認證了";
+"Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?"
+=           "有了手機號碼認證, 賣/買 家就會比較信任你, 讓你更容易得到交易! 你要現在認證嗎?";
+"I'll verify later"                 =           "我之後再認證";
+"Yes, let's verify"                 =           "好, 現在就認證";
+"To verify your phone number later, tap Settings button at the top and choose Verify Phone Number."
+                                    =           "如果你之後要認證,你可以去Whunted設定, 選手機號碼認證!";
+
+//------------------------------------------------------------------------------------------------------------------------------
+// Country List
+//------------------------------------------------------------------------------------------------------------------------------
+
+"Choose a country"                  =               "選擇國家";
+"Australia"                         =               "澳大利亞";
+"Belgium"                           =               "比利時";
+"Canada"                            =               "加拿大";
+"China"                             =               "中國";
+"Czech Republic"                    =               "捷克共和國";
+"Denmark"                           =               "丹麥";
+"France"                            =               "法國";
+"Germany"                           =               "德國";
+"Hong Kong"                         =               "香港";
+"Italy"                             =               "義大利";
+"Japan"                             =               "日本";
+"South Korea"                       =               "韓國";
+"Macau"                             =               "澳門";
+"Malaysia"                          =               "馬來西亞";
+"New Zealand"                       =               "新西蘭";
+"Norway"                            =               "挪威";
+"Singapore"                         =               "新加坡";
+"Spain"                             =               "西班牙";
+"Taiwan"                            =               "台灣";
+"Turkey"                            =               "土耳其";
+"United Kingdom"                    =               "英國";
+"United States"                     =               "美國";
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 // Frequently Used Error Messages

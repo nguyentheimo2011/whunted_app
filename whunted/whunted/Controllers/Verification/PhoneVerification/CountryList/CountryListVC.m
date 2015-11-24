@@ -120,7 +120,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = _availabelCountries[indexPath.row];
+    cell.textLabel.text = NSLocalizedString(_availabelCountries[indexPath.row], nil);
     cell.textLabel.textColor = TEXT_COLOR_LESS_DARK;
     cell.textLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     
