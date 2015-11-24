@@ -407,6 +407,7 @@
     _mobileTextField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     _mobileTextField.returnKeyType = UIReturnKeyDone;
     _mobileTextField.delegate = self;
+    _mobileTextField.enabled = NO;
     
     _mobileCell.accessoryView = _mobileTextField;
     _mobileCell.selectionStyle = UITableViewCellSelectionStyleNone;
