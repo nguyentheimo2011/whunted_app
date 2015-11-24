@@ -54,6 +54,8 @@
     UILabel                     *_countryLabel;
     UILabel                     *_userDescriptionLabel;
     
+    UIImageView                 *_phoneImageView;
+    
     UIView                      *_leftHorizontalLine;
     UIView                      *_rightHorizontalLine;
     
@@ -590,18 +592,25 @@
     }
     
     BOOL phoneVerified = [_profileOwner[PF_USER_PHONE_VERIFIED] boolValue];
+    
+    if (!facebookVerified && !emailVerified)
+        [backgroundView addSubview:verifiedLabel];
+    
+    UIImage *phoneImage = [UIImage imageNamed:@"verified_phone_icon.png"];
+    
+    CGFloat const kImageWidth = 16;
+    
+    _phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 2, kImageWidth, kImageWidth)];
+    [_phoneImageView setImage:phoneImage];
+    [backgroundView addSubview:_phoneImageView];
+    
     if (phoneVerified)
     {
-        if (!facebookVerified && !emailVerified)
-            [backgroundView addSubview:verifiedLabel];
-        
-        UIImage *phoneImage = [UIImage imageNamed:@"verified_phone_icon.png"];
-        
-        CGFloat const kImageWidth = 16;
-        
-        UIImageView *phoneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(currOriginX, 2, kImageWidth, kImageWidth)];
-        [phoneImageView setImage:phoneImage];
-        [backgroundView addSubview:phoneImageView];
+        _phoneImageView.hidden = NO;
+    }
+    else
+    {
+        _phoneImageView.hidden = YES;
     }
     
     _currHeight += kBackgroundTopMargin + kBackgroundHeight;
@@ -1085,12 +1094,8 @@
 - (void) handleEventAfterPhoneVerification
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (!error)
-        {
-            [self updateUserProfile];
-        }
-    }];
+    [[PFUser currentUser] fetchInBackground];
+    _phoneImageView.hidden = NO;
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
     [alertView show];
