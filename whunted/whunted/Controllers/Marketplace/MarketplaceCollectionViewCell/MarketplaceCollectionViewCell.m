@@ -113,10 +113,7 @@
         [self retrieveProfileImage];
     }
     
-    if (_wantData.isFulfilled)
-        _boughtOrSoldLabel.hidden = NO;
-    else
-        _boughtOrSoldLabel.hidden = YES;
+    [self updateBoughtOrSoldLabel];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -182,6 +179,34 @@
     _boughtOrSoldLabel.textAlignment = NSTextAlignmentCenter;
     
     [_itemImageView addSubview:_boughtOrSoldLabel];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) updateBoughtOrSoldLabel
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    PFUser *currUser = [PFUser currentUser];
+    if ([_wantData.buyerID isEqualToString:currUser.objectId])
+    {
+        _boughtOrSoldLabel.text = NSLocalizedString(@"Bought", nil);
+    }
+    else
+    {
+        _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
+    }
+    
+    [_boughtOrSoldLabel sizeToFit];
+    
+    CGFloat const kLabelWidth   =   _boughtOrSoldLabel.frame.size.width + 15.0f;
+    CGFloat const kLabelHeight  =   _boughtOrSoldLabel.frame.size.height + 3.0f;
+    CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 8.0f;
+    CGFloat const kLabelOriginY =   8.0f;
+    _boughtOrSoldLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, kLabelWidth, kLabelHeight);
+    
+    if (_wantData.isFulfilled)
+        _boughtOrSoldLabel.hidden = NO;
+    else
+        _boughtOrSoldLabel.hidden = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
