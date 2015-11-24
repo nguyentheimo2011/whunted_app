@@ -138,31 +138,24 @@
     NSString *regex = [SearchEngine createRegexFromSearchKeyword:searchKeyword];
     
     PFQuery *query1 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query1 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query1 whereKey:PF_ITEM_NAME matchesRegex:regex];
     
     PFQuery *query2 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query2 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query2 whereKey:PF_ITEM_DESC matchesRegex:regex];
     
     PFQuery *query3 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query3 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query3 whereKey:PF_ITEM_CATEGORY matchesRegex:regex];
     
     PFQuery *query4 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query4 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query4 whereKey:PF_ITEM_ORIGINS matchesRegex:regex];
     
     PFQuery *query5 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query5 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query5 whereKey:PF_ITEM_HASHTAG_LIST equalTo:searchKeyword];
     
     PFQuery *query6 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query6 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query6 whereKey:PF_ITEM_BUYER_USERNAME matchesRegex:regex];
     
     PFQuery *query7 = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-    [query7 whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
     [query7 whereKey:PF_ITEM_MEETING_PLACE matchesRegex:regex];
     
     PFQuery *query = [PFQuery orQueryWithSubqueries:@[query1, query2, query3, query4, query5, query6, query7]];
