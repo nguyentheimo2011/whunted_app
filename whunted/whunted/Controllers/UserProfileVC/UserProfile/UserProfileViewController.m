@@ -13,6 +13,7 @@
 #import "MarketplaceCollectionViewCell.h"
 #import "ItemDetailsViewController.h"
 #import "ProfileImageCache.h"
+#import "VerificationCodeRequesterVC.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -1084,6 +1085,35 @@
     }];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Yay!", nil) message:NSLocalizedString(@"Your phone number has been verified.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alertView show];
+}
+
+
+#pragma mark - UIAlertViewDelegate methods
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    if (buttonIndex == 0)
+        [self userChoseToVerifyNow];
+    else
+        [self userChoseToVerifyLater];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) userChoseToVerifyNow
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    VerificationCodeRequesterVC *codeRequester = [[VerificationCodeRequesterVC alloc] init];
+    [self.navigationController pushViewController:codeRequester animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) userChoseToVerifyLater
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Phone Verification", nil) message:NSLocalizedString(@"To verify your phone number later, tap Settings button at the top and choose Verify Phone Number.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles: nil];
     [alertView show];
 }
 

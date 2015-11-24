@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 
 //-------------------------------------------------------------------------------------------------------------------------------
-@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface UserProfileViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UIAlertViewDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------
 
 @property (nonatomic, strong)   PFUser      *profileOwner;
