@@ -397,6 +397,8 @@
 #define     LANGUAGE_TRADITIONAL_CHINESE                @"zh-Hant"
 #define     LANGUAGE_ENGLISH                            @"en"
 
+//----------------------------------------------------------------------------------------------------------------------------
+#define     NUMBER_OF_TIMES_APP_IS_LAUNCHED             @"numberOfTimesAppIsLaunched"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301

@@ -28,6 +28,8 @@
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
     
+    [self keepTranckOfNumberOfTimesAppIsLaunched];
+    
     [self setUpParseAsBackend:launchOptions];
     [self customizeUI];
     [self setViewController];
@@ -148,7 +150,6 @@
 - (void) setUpParseAsBackend:(NSDictionary *)launchOptions
 //------------------------------------------------------------------------------------------------------------------------------
 {
-//    [Parse enableLocalDatastore];
     [Parse setApplicationId:@"QfLWfiKXjtNWiXuy6AmuvYmXwUvXhlZoWcoqtJJA" clientKey:@"OZJAI2MX0K2HGtBL7r6FM3FMqTRsOYnjYv99TXVD"];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
 
@@ -176,6 +177,24 @@
     gai.trackUncaughtExceptions = YES;  // report uncaught exceptions
     gai.logger.logLevel = kGAILogLevelNone;  // remove before app release
     gai.dispatchInterval = 20;
+}
+
+
+#pragma mark - Trancking Handler
+
+//----------------------------------------------------------------------------------------------------------------------------
+- (void) keepTranckOfNumberOfTimesAppIsLaunched
+//----------------------------------------------------------------------------------------------------------------------------
+{
+    NSNumber *temp = [[NSUserDefaults standardUserDefaults] objectForKey:NUMBER_OF_TIMES_APP_IS_LAUNCHED];
+    NSInteger numOfTimesAppIsLaunched = [temp integerValue];
+    
+    // Only increase numOfTimesAppIsLaunched if it is less than 10
+    if (numOfTimesAppIsLaunched < 10)
+    {
+        numOfTimesAppIsLaunched++;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:numOfTimesAppIsLaunched] forKey:NUMBER_OF_TIMES_APP_IS_LAUNCHED];
+    }    
 }
 
 
