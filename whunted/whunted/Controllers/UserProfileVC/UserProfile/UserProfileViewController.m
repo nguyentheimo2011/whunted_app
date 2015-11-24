@@ -114,6 +114,7 @@
     [super viewWillAppear:animated];
     
     [Utilities sendScreenNameToGoogleAnalyticsTracker:@"UserProfileScreen"];
+    [self displayReminderForPhoneVerification];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -124,6 +125,9 @@
     
     [Utilities logOutMessage:@"UserProfileViewController didReceiveMemoryWarning"];
 }
+
+
+#pragma mark - Setting Up
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) initData
@@ -840,6 +844,21 @@
 
 
 #pragma mark - Event Handlers
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) displayReminderForPhoneVerification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSNumber *temp = [[NSUserDefaults standardUserDefaults] objectForKey:NUMBER_OF_TIMES_APP_IS_LAUNCHED];
+    NSInteger numOfTimesAppIsLaunched = [temp integerValue];
+    
+    // if this is the second time user launchs the app, then alert him/her to do phone verification
+//    if (numOfTimesAppIsLaunched == 2)
+//    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Phone Verification", nil) message:NSLocalizedString(@"Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Yes, let's verify", nil) otherButtonTitles:NSLocalizedString(@"I'll verify later", nil), nil];
+        [alertView show];
+//    }
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) listGridViewButtonTapEventHandler: (id) sender

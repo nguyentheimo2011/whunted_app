@@ -194,7 +194,7 @@
     {
         numOfTimesAppIsLaunched++;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:numOfTimesAppIsLaunched] forKey:NUMBER_OF_TIMES_APP_IS_LAUNCHED];
-    }    
+    }
 }
 
 
