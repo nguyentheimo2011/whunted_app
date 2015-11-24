@@ -856,8 +856,11 @@
     NSNumber *temp_2 = [[NSUserDefaults standardUserDefaults] objectForKey:PHONE_VERIFICATION_REMINDER_DISPLAYED];
     NSInteger reminderDisplayed = [temp_2 boolValue];
     
+    PFUser *currUser = [PFUser currentUser];
+    BOOL phoneVerified = [currUser[PF_USER_PHONE_VERIFIED] boolValue];
+    
     // if this is the second time user launchs the app, then alert him/her to do phone verification
-    if (numOfTimesAppIsLaunched == 2 && !reminderDisplayed)
+    if (numOfTimesAppIsLaunched == 2 && !reminderDisplayed && !phoneVerified)
     {
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:PHONE_VERIFICATION_REMINDER_DISPLAYED];
         
