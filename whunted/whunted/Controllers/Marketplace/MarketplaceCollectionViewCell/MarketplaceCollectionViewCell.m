@@ -191,7 +191,7 @@
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
         {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
-            _boughtOrSoldLabel.backgroundColor = [MAIN_BLUE_COLOR colorWithAlphaComponent:0.95f];
+            _boughtOrSoldLabel.backgroundColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.85f];
         }
         else
         {
@@ -203,7 +203,7 @@
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
         {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
-            _boughtOrSoldLabel.backgroundColor = [MAIN_BLUE_COLOR colorWithAlphaComponent:0.95f];
+            _boughtOrSoldLabel.backgroundColor = [PERSIAN_GREEN_COLOR colorWithAlphaComponent:0.85f];
         }
         else
         {
