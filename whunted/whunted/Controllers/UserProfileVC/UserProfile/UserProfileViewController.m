@@ -399,7 +399,7 @@
 {
     CGFloat const kButtonWidth = (backgroundView.frame.size.width - 10) / 2;
     CGFloat const kButtonHeight = backgroundView.frame.size.height;
-    CGFloat const kButtonOriginX = 0;
+    CGFloat const kButtonOriginX = kButtonWidth + 10;
     
     JTImageButton *preferencesButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
     [preferencesButton createTitle:NSLocalizedString(@"Preferences", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:14] iconOffsetY:0];
@@ -421,7 +421,7 @@
 {
     CGFloat const kButtonHeight = backgroundView.frame.size.height;
     CGFloat kButtonWidth = (backgroundView.frame.size.width - 10) / 2;
-    CGFloat kButtonOriginX = kButtonWidth + 10;
+    CGFloat kButtonOriginX = 0;
     
     JTImageButton *editButton = [[JTImageButton alloc] initWithFrame:CGRectMake(kButtonOriginX, 0, kButtonWidth, kButtonHeight)];
     [editButton createTitle:NSLocalizedString(@"Edit Profile", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:14] iconOffsetY:0];
