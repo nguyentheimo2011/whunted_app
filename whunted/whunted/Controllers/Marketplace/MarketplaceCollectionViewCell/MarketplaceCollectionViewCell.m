@@ -185,15 +185,13 @@
 - (void) updateBoughtOrSoldLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIColor *color = [UIColor colorWithRed:255.0/255 green:102.0/255 blue:0 alpha:1.0f];
-    
     PFUser *currUser = [PFUser currentUser];
     if ([_wantData.buyerID isEqualToString:currUser.objectId])
     {
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
         {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
-            _boughtOrSoldLabel.backgroundColor = [color colorWithAlphaComponent:0.8f];
+            _boughtOrSoldLabel.backgroundColor = [MAIN_BLUE_COLOR colorWithAlphaComponent:0.95f];
         }
         else
         {
@@ -205,7 +203,7 @@
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
         {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
-            _boughtOrSoldLabel.backgroundColor = [color colorWithAlphaComponent:0.8f];
+            _boughtOrSoldLabel.backgroundColor = [MAIN_BLUE_COLOR colorWithAlphaComponent:0.95f];
         }
         else
         {
