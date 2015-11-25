@@ -139,6 +139,7 @@
 "View Offer"                        =           "View Offer";
 "Bought"                            =           "Bought";
 "Sold"                              =           "Sold";
+"Completed"                         =           "Completed";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -355,6 +356,7 @@
 "Singapore"                         =               "Singapore";
 "Spain"                             =               "Spain";
 "Taiwan"                            =               "Taiwan";
+"Thailand"                          =               "Thailand";
 "Turkey"                            =               "Turkey";
 "United Kingdom"                    =               "United Kingdom";
 "United States"                     =               "United States";

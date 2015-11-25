@@ -138,6 +138,7 @@
 "View Offer"                        =           "賣家出價記錄";
 "Bought"                            =           "已購入";
 "Sold"                              =           "已結案";
+"Completed"                         =           "完成交易";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -306,29 +307,29 @@
 "Verify Phone Number"               =           "手機號碼認證";
 "Phone Verification"                =           "手機號碼認證";
 "Your phone number has already been verified."
-                                    =           "您的手機號碼已被認證了";
-"Change phone number"               =           "換手機號碼";
+                                    =           "手機號碼已被認證";
+"Change phone number"               =           "更改手機號碼";
 "PHONE VERIFICATION"                =           "手機號碼認證";
 "Increase trust between you and other buyers and sellers with phone verification"
-                                    =           "有了認證, 賣/買 家就會比較信任你, 讓你更容易得到交易!";
+                                    =           "透過認證增加你與買/賣家間的信任，讓你更容易、更放心地交易！";
 "CONTINUE"                          =           "繼續";
 "Your phone number is only used for verification!"
-                                    =           "您的手機號碼只是用來認證身份!";
-"Phone number must be filled in"    =           "你必須填您的手機號碼";
+                                    =           "手機號碼僅用於身份認證!";
+"Phone number must be filled in"    =           "必須填入手機號碼";
 "The phone number you entered is invalid"
-                                    =           "您的手機號碼不正確";
-"An SMS message has been sent to"   =           "我們已經發了一個短訊到你手機, ";
+                                    =           "手機號碼不正確";
+"An SMS message has been sent to"   =           "已傳送簡訊至";
 "Please enter the 6-digit confirmation code:"
-                                    =           "請輸入我們發給您的認證號碼";
+                                    =           "請輸入簡訊中6位數認證碼:";
 "VERIFY"                            =           "認證";
 "Your phone number has been verified."
-                                    =           "您的手機號碼已被認證了";
+                                    =           "手機號碼已被認證";
 "Phone verification helps to increase trust among buyers and sellers. Would you like to verify your phone number now?"
-=           "有了手機號碼認證, 賣/買 家就會比較信任你, 讓你更容易得到交易! 你要現在認證嗎?";
-"I'll verify later"                 =           "我之後再認證";
-"Yes, let's verify"                 =           "好, 現在就認證";
+                                    =           "新增手機號碼認證，讓買/賣家增加對你的信任，使你更輕鬆安心地交易，是否現在認證嗎？";
+"I'll verify later"                 =           "之後再認證";
+"Yes, let's verify"                 =           "是，現在認證";
 "To verify your phone number later, tap Settings button at the top and choose Verify Phone Number."
-                                    =           "如果你之後要認證,你可以去Whunted設定, 選手機號碼認證!";
+                                    =           "如果要稍後進行認證，可以至Whunted設定頁面中進行。";
 
 //------------------------------------------------------------------------------------------------------------------------------
 // Country List
@@ -354,6 +355,7 @@
 "Singapore"                         =               "新加坡";
 "Spain"                             =               "西班牙";
 "Taiwan"                            =               "台灣";
+"Thailand"                          =               "泰國";
 "Turkey"                            =               "土耳其";
 "United Kingdom"                    =               "英國";
 "United States"                     =               "美國";
