@@ -602,7 +602,8 @@
 - (void) addChatButton: (BOOL) isFullWidth
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    // if the want hasn't been fulfilled yet, chat button has the width of half of screen's width.
+    // if the want has already been fulfilled, chat button is temporarily 'Item Bought' button and is disabled.
     UIView *backgroundView;
     
     if (isFullWidth)
@@ -620,18 +621,19 @@
     if (isFullWidth)
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
+        [_chatButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
     }
     else
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+        [_chatButton createTitle:NSLocalizedString(@"Chat with buyer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
+        [_chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    [_chatButton createTitle:NSLocalizedString(@"Chat with buyer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
     _chatButton.cornerRadius = 0;
     _chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     _chatButton.titleColor = [UIColor whiteColor];
-    [_chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
     [backgroundView addSubview:_chatButton];
 }
 
