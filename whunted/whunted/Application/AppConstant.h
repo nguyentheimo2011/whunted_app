@@ -390,16 +390,23 @@
 #define     ITEM_BUYER_LOCATION_DEFAULT                 @"All"
 
 //----------------------------------------------------------------------------------------------------------------------------
-#define     CELL_IN_MARKETPLACE                         @"cellInMarketplace"
-#define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
-
-//----------------------------------------------------------------------------------------------------------------------------
 #define     LANGUAGE_TRADITIONAL_CHINESE                @"zh-Hant"
 #define     LANGUAGE_ENGLISH                            @"en"
 
 //----------------------------------------------------------------------------------------------------------------------------
+#pragma mark - Phone Verification
+//----------------------------------------------------------------------------------------------------------------------------
+
 #define     NUMBER_OF_TIMES_APP_IS_LAUNCHED             @"numberOfTimesAppIsLaunched"
 #define     PHONE_VERIFICATION_REMINDER_DISPLAYED       @"phoneVerificationReminderDisplayed"
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+#pragma mark - UITableViewCell name
+//----------------------------------------------------------------------------------------------------------------------------
+
+#define     CELL_IN_MARKETPLACE                         @"cellInMarketplace"
+#define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301

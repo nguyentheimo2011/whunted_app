@@ -188,11 +188,17 @@
     PFUser *currUser = [PFUser currentUser];
     if ([_wantData.buyerID isEqualToString:currUser.objectId])
     {
-        _boughtOrSoldLabel.text = NSLocalizedString(@"Bought", nil);
+        if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+            _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
+        else
+            _boughtOrSoldLabel.text = NSLocalizedString(@"Bought", nil);
     }
     else
     {
-        _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
+        if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+            _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
+        else
+            _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
     }
     
     [_boughtOrSoldLabel sizeToFit];

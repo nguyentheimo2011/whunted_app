@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "WantData.h"
 
+//----------------------------------------------------------------------------------------------------------------------------
 @interface MarketplaceCollectionViewCell : UICollectionViewCell
+//----------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong)   WantData        *wantData;
-@property (nonatomic)           NSInteger       cellIndex;
-@property (nonatomic, strong)   NSString        *cellIdentifier;
+@property (nonatomic, strong)   WantData            *wantData;
+@property (nonatomic)           NSInteger           cellIndex;
+@property (nonatomic, strong)   NSString            *cellIdentifier;
 
 - (void) initCell;
 
