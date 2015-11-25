@@ -173,7 +173,7 @@
 "Accept Offer"                      =           "Accept Offer";
 "Cancel Offer"                      =           "Cancel offer";
 "Decline Offer"                     =           "Decline Offer";
-"given a feedback"                  =           "given a feedback";
+"Given a feedback"                  =           "Given a \nfeedback";
 "Are you sure you want to accept this offer?"
                                     =           "Are you sure you want to accept this offer?";
 "Once accepted, offer cannot be cancelled!"

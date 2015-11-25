@@ -1097,9 +1097,11 @@
 				return 0;
 			}
 		}
+        
 		return kJSQMessagesCollectionViewCellLabelHeightDefault;
 	}
-	else return 0;
+	else
+        return 0;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1269,7 +1271,7 @@
 - (void) leaveFeedBackViewController:(UIViewController *)controller didCompleteGivingFeedBack:(FeedbackData *)feedbackData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *action = NSLocalizedString(@"given a feedback", nil);
+    NSString *action = NSLocalizedString(@"Given a feedback", nil);
     NSString *message = action;
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeLeavingFeeback TransactionDetails:nil CompletionBlock:nil];
 }

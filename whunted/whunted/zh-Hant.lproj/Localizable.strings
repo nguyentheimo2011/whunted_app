@@ -172,7 +172,7 @@
 "Accept Offer"                      =           "接受交易";
 "Cancel Offer"                      =           "取消出價";
 "Decline Offer"                     =           "拒絕交易";
-"given a feedback"                  =           "已發表了評價";
+"Given a feedback"                  =           "已發表了評價";
 "Are you sure you want to accept this offer?"
                                     =           "確定交易?";
 "Once accepted, offer cannot be cancelled!"
