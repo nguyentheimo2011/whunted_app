@@ -830,6 +830,10 @@
     
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     
+    PFUser *currUser = [PFUser currentUser];
+    if (![_profileOwner.objectId isEqualToString:currUser.objectId])
+        itemDetailsVC.viewControllerName = ITEM_DETAILS_FROM_MARKETPLACE;
+    
     PFQuery *sQuery = [PFQuery queryWithClassName:PF_ONGOING_TRANSACTION_CLASS];
     [sQuery whereKey:@"sellerID" equalTo:_profileOwner.objectId];
     [sQuery whereKey:@"itemID" equalTo:itemDetailsVC.wantData.itemID];
