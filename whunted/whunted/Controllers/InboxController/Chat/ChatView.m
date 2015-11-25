@@ -1269,8 +1269,8 @@
 - (void) leaveFeedBackViewController:(UIViewController *)controller didCompleteGivingFeedBack:(FeedbackData *)feedbackData
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    NSString *action = NSLocalizedString(@"has left a feedback", nil);
-    NSString *message = [NSString stringWithFormat:@"%@\n %@", [PFUser currentUser][PF_USER_USERNAME], action];
+    NSString *action = NSLocalizedString(@"given a feedback", nil);
+    NSString *message = action;
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeLeavingFeeback TransactionDetails:nil CompletionBlock:nil];
 }
 
