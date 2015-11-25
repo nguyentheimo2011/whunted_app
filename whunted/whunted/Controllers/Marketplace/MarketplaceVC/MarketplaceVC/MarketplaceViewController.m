@@ -292,6 +292,7 @@
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     itemDetailsVC.wantData = [_retrievedWantDataList objectAtIndex:indexPath.row];
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
+    itemDetailsVC.viewControllerName = ITEM_DETAILS_FROM_MARKETPLACE;
     
     TransactionHandler tranHandler = ^(TransactionData *offer)
     {

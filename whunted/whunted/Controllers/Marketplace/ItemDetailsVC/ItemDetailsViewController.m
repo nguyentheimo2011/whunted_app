@@ -604,7 +604,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // if the want hasn't been fulfilled yet, chat button has the width of half of screen's width.
-    // if the want has already been fulfilled, chat button is temporarily 'Item Bought' button and is disabled.
+    // if the want has already been fulfilled and item is viewd from marketplace, chat button is temporarily 'Item Bought' button and is disabled.
     UIView *backgroundView;
     
     if (isFullWidth)
@@ -619,7 +619,7 @@
     [backgroundView setBackgroundColor:[GRAY_COLOR_WITH_WHITE_COLOR_2 colorWithAlphaComponent:0.5f]];
     [self.view addSubview:backgroundView];
     
-    if (isFullWidth)
+    if (isFullWidth && [_viewControllerName isEqualToString:ITEM_DETAILS_FROM_MARKETPLACE])
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
         [_chatButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
@@ -627,7 +627,15 @@
     }
     else
     {
-        _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+        if (isFullWidth)
+        {
+            _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
+        }
+        else
+        {
+            _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
+        }
+        
         [_chatButton createTitle:NSLocalizedString(@"Chat with buyer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
         [_chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
         _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
