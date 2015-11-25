@@ -41,6 +41,7 @@
 @synthesize wantData        =   _wantData;
 @synthesize cellIndex       =   _cellIndex;
 @synthesize cellIdentifier  =   _cellIdentifier;
+@synthesize profileOwner    =   _profileOwner;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initCell
@@ -185,8 +186,7 @@
 - (void) updateBoughtOrSoldLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    PFUser *currUser = [PFUser currentUser];
-    if ([_wantData.buyerID isEqualToString:currUser.objectId])
+    if ([_wantData.buyerID isEqualToString:_profileOwner.objectId])
     {
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
         {

@@ -757,6 +757,7 @@
     MarketplaceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MarketplaceCollectionViewCell" forIndexPath:indexPath];
     cell.cellIndex = indexPath.row;
     cell.cellIdentifier = CELL_IN_USER_PROFILE;
+    cell.profileOwner = _profileOwner;
     
     if (cell.wantData == nil)
         [cell initCell];

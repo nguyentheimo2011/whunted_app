@@ -16,6 +16,7 @@
 @property (nonatomic, strong)   WantData            *wantData;
 @property (nonatomic)           NSInteger           cellIndex;
 @property (nonatomic, strong)   NSString            *cellIdentifier;
+@property (nonatomic, strong)   PFUser              *profileOwner;
 
 - (void) initCell;
 
