@@ -22,9 +22,9 @@ Parse.Cloud.define("sendVerificationCode", function(request, response)
     var message;
     var phoneLang = request.params.phoneLanguage; 
     if (phoneLang.localeCompare("zh-Hant") == 0)
-    	message = "您的認證號碼是" + verificationCode + ".";
+    	message = "從Whunted傳送 - 手機認證碼為 " + verificationCode + ".";
     else
-    	message = "Your verification code is " + verificationCode + ".";
+    	message = "Sent from Whunted - Your verification code is " + verificationCode + ".";
     
     twilio.sendSms(
     {
