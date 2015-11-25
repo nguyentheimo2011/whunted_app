@@ -60,6 +60,7 @@
 @synthesize currOffer               =   _currOffer;
 @synthesize bottomButtonsNotNeeded  =   _bottomButtonsNotNeeded;
 @synthesize viewControllerName      =   _viewControllerName;
+@synthesize viewedOnSellingTab      =   _viewedOnSellingTab;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -622,7 +623,16 @@
     if (isFullWidth && [_viewControllerName isEqualToString:ITEM_DETAILS_FROM_MARKETPLACE])
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
-        [_chatButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
+        
+        if (_viewedOnSellingTab)
+        {
+            [_chatButton createTitle:NSLocalizedString(@"Item Sold", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
+        }
+        else
+        {
+            [_chatButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
+        }
+    
         _chatButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
     }
     else

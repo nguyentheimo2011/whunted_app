@@ -24,5 +24,6 @@
 @property (nonatomic)           BOOL                    bottomButtonsNotNeeded;
 @property (nonatomic, strong)   NSString                *viewControllerName;
 @property (nonatomic)           TransactionData         *currOffer;
+@property (nonatomic)           BOOL                    viewedOnSellingTab;
 
 @end

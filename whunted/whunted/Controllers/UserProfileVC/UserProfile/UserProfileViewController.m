@@ -824,12 +824,19 @@
     ItemDetailsViewController *itemDetailsVC = [[ItemDetailsViewController alloc] init];
     
     if (_curViewMode == HistoryCollectionViewModeBuying)
+    {
         itemDetailsVC.wantData = [_myWantDataList objectAtIndex:indexPath.row];
+        itemDetailsVC.viewedOnSellingTab = NO;
+    }
     else
+    {
         itemDetailsVC.wantData = [_mySellDataList objectAtIndex:indexPath.row];
+        itemDetailsVC.viewedOnSellingTab = YES;
+    }
     
     itemDetailsVC.itemImagesNum = itemDetailsVC.wantData.itemPicturesNum;
     
+    // set viewControllerName for itemDetailsVC
     PFUser *currUser = [PFUser currentUser];
     if (![_profileOwner.objectId isEqualToString:currUser.objectId])
         itemDetailsVC.viewControllerName = ITEM_DETAILS_FROM_MARKETPLACE;
