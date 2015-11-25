@@ -59,6 +59,7 @@
 @synthesize itemImagesNum           =   _itemImagesNum;
 @synthesize currOffer               =   _currOffer;
 @synthesize bottomButtonsNotNeeded  =   _bottomButtonsNotNeeded;
+@synthesize viewControllerName      =   _viewControllerName;
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (id) init
@@ -622,17 +623,18 @@
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
         [_chatButton createTitle:NSLocalizedString(@"Item Bought", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
+        _chatButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
     }
     else
     {
         _chatButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width/2, BOTTOM_BUTTON_HEIGHT)];
         [_chatButton createTitle:NSLocalizedString(@"Chat with buyer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE] iconHeight:0 iconOffsetY:0];
         [_chatButton addTarget:self action:@selector(chatButtonClickedEvent) forControlEvents:UIControlEventTouchUpInside];
+        _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
     }
     
     _chatButton.cornerRadius = 0;
-    _chatButton.borderColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
-    _chatButton.bgColor = [DARK_CYAN_COLOR colorWithAlphaComponent:0.9f];
+    _chatButton.borderWidth = 0;
     _chatButton.titleColor = [UIColor whiteColor];
     [backgroundView addSubview:_chatButton];
 }

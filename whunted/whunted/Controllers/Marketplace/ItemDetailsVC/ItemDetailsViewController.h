@@ -19,10 +19,10 @@
 @interface ItemDetailsViewController : UIViewController<UIPageViewControllerDataSource, BuyersOrSellerOfferDelegate, UploadingWantDetailsViewControllerDelegate>
 //------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, strong) WantData              *wantData;
-@property (nonatomic)         NSInteger             itemImagesNum;
-@property (nonatomic)         BOOL                  bottomButtonsNotNeeded;
-
-@property (nonatomic)         TransactionData       *currOffer;
+@property (nonatomic, strong)   WantData                *wantData;
+@property (nonatomic)           NSInteger               itemImagesNum;
+@property (nonatomic)           BOOL                    bottomButtonsNotNeeded;
+@property (nonatomic, strong)   NSString                *viewControllerName;
+@property (nonatomic)           TransactionData         *currOffer;
 
 @end

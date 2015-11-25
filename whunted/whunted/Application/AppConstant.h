@@ -409,6 +409,15 @@
 #define     CELL_IN_MARKETPLACE                         @"cellInMarketplace"
 #define     CELL_IN_USER_PROFILE                        @"cellInUserProfile"
 
+
+//----------------------------------------------------------------------------------------------------------------------------
+#pragma mark - ItemDetails Name
+//----------------------------------------------------------------------------------------------------------------------------
+
+#define     ITEM_DETAILS_FROM_MARKETPLACE               @"itemDetailsFromMarketplace"
+#define     ITEM_DETAILS_FROM_USER_PROFILE              @"itemDetailsFromUserProfile"
+
+
 //----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301
 #define     CATEGORY_CONTAINER_TAG                      302
