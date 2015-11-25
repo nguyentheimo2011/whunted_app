@@ -164,7 +164,7 @@
 {
     _boughtOrSoldLabel = [[UILabel alloc] init];
     _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
-    _boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+    _boughtOrSoldLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:14];
     _boughtOrSoldLabel.textColor = [UIColor whiteColor];
     _boughtOrSoldLabel.backgroundColor = FLAT_FRESH_RED_COLOR;
     _boughtOrSoldLabel.layer.cornerRadius = 4.0f;
@@ -185,25 +185,37 @@
 - (void) updateBoughtOrSoldLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    UIColor *color = [UIColor colorWithRed:255.0/255 green:102.0/255 blue:0 alpha:1.0f];
+    
     PFUser *currUser = [PFUser currentUser];
     if ([_wantData.buyerID isEqualToString:currUser.objectId])
     {
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+        {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
+            _boughtOrSoldLabel.backgroundColor = [color colorWithAlphaComponent:0.8f];
+        }
         else
+        {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Bought", nil);
+        }
     }
     else
     {
         if ([_cellIdentifier isEqualToString:CELL_IN_MARKETPLACE])
+        {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Completed", nil);
+            _boughtOrSoldLabel.backgroundColor = [color colorWithAlphaComponent:0.8f];
+        }
         else
+        {
             _boughtOrSoldLabel.text = NSLocalizedString(@"Sold", nil);
+        }
     }
     
     [_boughtOrSoldLabel sizeToFit];
     
-    CGFloat const kLabelWidth   =   _boughtOrSoldLabel.frame.size.width + 15.0f;
+    CGFloat const kLabelWidth   =   _boughtOrSoldLabel.frame.size.width + 10.0f;
     CGFloat const kLabelHeight  =   _boughtOrSoldLabel.frame.size.height + 3.0f;
     CGFloat const kLabelOriginX =   _cellWidth - kLabelWidth - 8.0f;
     CGFloat const kLabelOriginY =   8.0f;
