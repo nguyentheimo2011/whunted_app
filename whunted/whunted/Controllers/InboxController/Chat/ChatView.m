@@ -226,7 +226,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     if (_offerData.initiatorID.length > 0) {
-        if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED]) {
+        if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED])
+        {
             // Offer was accepted
             [_makingOfferButton setHidden:YES];
             
@@ -238,8 +239,11 @@
             
             [_edittingOfferButton setHidden:YES];
             [_cancellingOfferButton setHidden:YES];
-        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ONGOING]) {
-            if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId]) {
+        }
+        else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ONGOING])
+        {
+            if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId])
+            {
                 // Offer is made by me
                 [_makingOfferButton setHidden:YES];
                 
@@ -251,7 +255,9 @@
                 
                 [_edittingOfferButton setHidden:NO];
                 [_cancellingOfferButton setHidden:NO];
-            } else {
+            }
+            else
+            {
                 [_makingOfferButton setHidden:YES];
                 
                 [_leavingFeedbackButton setHidden:YES];
@@ -263,7 +269,9 @@
                 [_edittingOfferButton setHidden:YES];
                 [_cancellingOfferButton setHidden:YES];
             }
-        } else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED] || [_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED]) {
+        }
+        else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED] || [_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
+        {
             [_makingOfferButton setHidden:NO];
             
             [_leavingFeedbackButton setHidden:YES];
@@ -275,7 +283,9 @@
             [_edittingOfferButton setHidden:YES];
             [_cancellingOfferButton setHidden:YES];
         }
-    } else {
+    }
+    else
+    {
         // No one has made any offers yet
         [_makingOfferButton setHidden:NO];
         

@@ -125,6 +125,7 @@
 		E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C831BFE12F50042DEE5 /* CountryListVC.m */; };
 		E9638C881BFE14600042DEE5 /* CodeVerifierVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */; };
 		E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E97138A51BCFA39C00B7F961 /* SearchEngine.m */; };
+		E973D0381C0C4E8B002C00C2 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D0371C0C4E8B002C00C2 /* ChatView.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
 		E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */; };
@@ -161,7 +162,6 @@
 		E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A07BE61B3009F500904DE9 /* libc++.dylib */; };
 		E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */; };
 		E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BF21B313EF200904DE9 /* MessageViewCell.m */; };
-		E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07BFB1B315F0400904DE9 /* ChatView.m */; };
 		E9A07C031B315F5300904DE9 /* Incoming.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C001B315F5300904DE9 /* Incoming.m */; };
 		E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C021B315F5300904DE9 /* Outgoing.m */; };
 		E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C061B315F6600904DE9 /* EmojiMediaItem.m */; };
@@ -499,6 +499,8 @@
 		E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeVerifierVC.m; path = Controllers/Verification/PhoneVerification/CodeVerifier/CodeVerifierVC.m; sourceTree = "<group>"; };
 		E97138A41BCFA39C00B7F961 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = Library/SearchEngine/SearchEngine.h; sourceTree = "<group>"; };
 		E97138A51BCFA39C00B7F961 /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = Library/SearchEngine/SearchEngine.m; sourceTree = "<group>"; };
+		E973D0361C0C4E8B002C00C2 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView.h; sourceTree = "<group>"; };
+		E973D0371C0C4E8B002C00C2 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
 		E97A95191B454072003796DD /* chat_pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_pictures.png; path = Resources/Chat/chat_pictures.png; sourceTree = "<group>"; };
 		E97A95251B463BCF003796DD /* BuyersOrSellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyersOrSellersOfferViewController.h; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.h; sourceTree = "<group>"; };
@@ -541,8 +543,6 @@
 		E9A07BEF1B313D7000904DE9 /* InboxAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InboxAllViewController.m; path = Controllers/InboxController/InboxAllController/InboxAllViewController.m; sourceTree = "<group>"; };
 		E9A07BF11B313EF200904DE9 /* MessageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageViewCell.h; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.h; sourceTree = "<group>"; };
 		E9A07BF21B313EF200904DE9 /* MessageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewCell.m; path = Controllers/InboxController/InboxTableViewCell/MessageViewCell.m; sourceTree = "<group>"; };
-		E9A07BFA1B315F0400904DE9 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView.h; sourceTree = "<group>"; };
-		E9A07BFB1B315F0400904DE9 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView.m; sourceTree = "<group>"; };
 		E9A07BFF1B315F5300904DE9 /* Incoming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Incoming.h; path = Controllers/InboxController/Chat/Messages/Incoming.h; sourceTree = "<group>"; };
 		E9A07C001B315F5300904DE9 /* Incoming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Incoming.m; path = Controllers/InboxController/Chat/Messages/Incoming.m; sourceTree = "<group>"; };
 		E9A07C011B315F5300904DE9 /* Outgoing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Outgoing.h; path = Controllers/InboxController/Chat/Messages/Outgoing.h; sourceTree = "<group>"; };
@@ -1413,6 +1413,23 @@
 			name = SearchEngine;
 			sourceTree = "<group>";
 		};
+		E973D0311C0C4D90002C00C2 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				E973D0351C0C4E65002C00C2 /* MainChatView */,
+			);
+			name = ChatView;
+			sourceTree = "<group>";
+		};
+		E973D0351C0C4E65002C00C2 /* MainChatView */ = {
+			isa = PBXGroup;
+			children = (
+				E973D0361C0C4E8B002C00C2 /* ChatView.h */,
+				E973D0371C0C4E8B002C00C2 /* ChatView.m */,
+			);
+			name = MainChatView;
+			sourceTree = "<group>";
+		};
 		E97A95151B454061003796DD /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,10 +1599,9 @@
 		E9A07BF91B315EED00904DE9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				E973D0311C0C4D90002C00C2 /* ChatView */,
 				E9A07BFE1B315F3000904DE9 /* Messages */,
 				E9A07BFD1B315F0900904DE9 /* MediaItems */,
-				E9A07BFA1B315F0400904DE9 /* ChatView.h */,
-				E9A07BFB1B315F0400904DE9 /* ChatView.m */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -2435,6 +2451,7 @@
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
+				E973D0381C0C4E8B002C00C2 /* ChatView.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
@@ -2464,7 +2481,6 @@
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9638C811BFE129E0042DEE5 /* VerificationCodeRequesterVC.m in Sources */,
-				E9A07BFC1B315F0400904DE9 /* ChatView.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
 				E9638C881BFE14600042DEE5 /* CodeVerifierVC.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
