@@ -125,7 +125,9 @@
 		E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C831BFE12F50042DEE5 /* CountryListVC.m */; };
 		E9638C881BFE14600042DEE5 /* CodeVerifierVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */; };
 		E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E97138A51BCFA39C00B7F961 /* SearchEngine.m */; };
-		E973D0381C0C4E8B002C00C2 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D0371C0C4E8B002C00C2 /* ChatView.m */; };
+		E973D03D1C0D55A8002C00C2 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D03C1C0D55A8002C00C2 /* ChatView.m */; };
+		E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D03F1C0D5677002C00C2 /* ChatViewUIHelper.m */; };
+		E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D0421C0D569D002C00C2 /* ChatViewLogicHelper.m */; };
 		E97A951D1B454072003796DD /* chat_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95171B454072003796DD /* chat_camera.png */; };
 		E97A951F1B454072003796DD /* chat_pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = E97A95191B454072003796DD /* chat_pictures.png */; };
 		E97A95271B463BCF003796DD /* BuyersOrSellersOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97A95261B463BCF003796DD /* BuyersOrSellersOfferViewController.m */; };
@@ -499,8 +501,12 @@
 		E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeVerifierVC.m; path = Controllers/Verification/PhoneVerification/CodeVerifier/CodeVerifierVC.m; sourceTree = "<group>"; };
 		E97138A41BCFA39C00B7F961 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = Library/SearchEngine/SearchEngine.h; sourceTree = "<group>"; };
 		E97138A51BCFA39C00B7F961 /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = Library/SearchEngine/SearchEngine.m; sourceTree = "<group>"; };
-		E973D0361C0C4E8B002C00C2 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView.h; sourceTree = "<group>"; };
-		E973D0371C0C4E8B002C00C2 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView.m; sourceTree = "<group>"; };
+		E973D03B1C0D55A8002C00C2 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView/MainChatView/ChatView.h; sourceTree = "<group>"; };
+		E973D03C1C0D55A8002C00C2 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView/MainChatView/ChatView.m; sourceTree = "<group>"; };
+		E973D03E1C0D5677002C00C2 /* ChatViewUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewUIHelper.h; path = Controllers/InboxController/Chat/ChatView/ChatViewUIHelper/ChatViewUIHelper.h; sourceTree = "<group>"; };
+		E973D03F1C0D5677002C00C2 /* ChatViewUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewUIHelper.m; path = Controllers/InboxController/Chat/ChatView/ChatViewUIHelper/ChatViewUIHelper.m; sourceTree = "<group>"; };
+		E973D0411C0D569D002C00C2 /* ChatViewLogicHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewLogicHelper.h; path = Controllers/InboxController/Chat/ChatView/ChatViewLogicHelper/ChatViewLogicHelper.h; sourceTree = "<group>"; };
+		E973D0421C0D569D002C00C2 /* ChatViewLogicHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatViewLogicHelper.m; path = Controllers/InboxController/Chat/ChatView/ChatViewLogicHelper/ChatViewLogicHelper.m; sourceTree = "<group>"; };
 		E97A95171B454072003796DD /* chat_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_camera.png; path = Resources/Chat/chat_camera.png; sourceTree = "<group>"; };
 		E97A95191B454072003796DD /* chat_pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_pictures.png; path = Resources/Chat/chat_pictures.png; sourceTree = "<group>"; };
 		E97A95251B463BCF003796DD /* BuyersOrSellersOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyersOrSellersOfferViewController.h; path = Controllers/Marketplace/BuyersOrSellersOfferVC/BuyersOrSellersOfferViewController.h; sourceTree = "<group>"; };
@@ -1417,6 +1423,8 @@
 			isa = PBXGroup;
 			children = (
 				E973D0351C0C4E65002C00C2 /* MainChatView */,
+				E973D0391C0D525A002C00C2 /* ChatViewUIHelper */,
+				E973D03A1C0D527B002C00C2 /* ChatViewLogicHelper */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -1424,10 +1432,28 @@
 		E973D0351C0C4E65002C00C2 /* MainChatView */ = {
 			isa = PBXGroup;
 			children = (
-				E973D0361C0C4E8B002C00C2 /* ChatView.h */,
-				E973D0371C0C4E8B002C00C2 /* ChatView.m */,
+				E973D03B1C0D55A8002C00C2 /* ChatView.h */,
+				E973D03C1C0D55A8002C00C2 /* ChatView.m */,
 			);
 			name = MainChatView;
+			sourceTree = "<group>";
+		};
+		E973D0391C0D525A002C00C2 /* ChatViewUIHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E973D03E1C0D5677002C00C2 /* ChatViewUIHelper.h */,
+				E973D03F1C0D5677002C00C2 /* ChatViewUIHelper.m */,
+			);
+			name = ChatViewUIHelper;
+			sourceTree = "<group>";
+		};
+		E973D03A1C0D527B002C00C2 /* ChatViewLogicHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E973D0411C0D569D002C00C2 /* ChatViewLogicHelper.h */,
+				E973D0421C0D569D002C00C2 /* ChatViewLogicHelper.m */,
+			);
+			name = ChatViewLogicHelper;
 			sourceTree = "<group>";
 		};
 		E97A95151B454061003796DD /* Chat */ = {
@@ -2438,6 +2464,7 @@
 				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
+				E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
@@ -2451,7 +2478,7 @@
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
-				E973D0381C0C4E8B002C00C2 /* ChatView.m in Sources */,
+				E973D03D1C0D55A8002C00C2 /* ChatView.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
@@ -2478,6 +2505,7 @@
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
 				E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */,
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
+				E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9638C811BFE129E0042DEE5 /* VerificationCodeRequesterVC.m in Sources */,
