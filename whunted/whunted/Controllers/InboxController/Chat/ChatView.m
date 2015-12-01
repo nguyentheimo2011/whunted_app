@@ -39,40 +39,42 @@
 @interface ChatView()
 //------------------------------------------------------------------------------------------------------------------------------
 {
-	NSString                *groupId;
-
-	BOOL                    initialized;
-	int                     typingCounter;
-
-	Firebase                *firebase1;
-	Firebase                *firebase2;
-
-	NSMutableArray          *items;
-	NSMutableArray          *messages;
-	NSMutableDictionary     *avatars;
-    NSMutableDictionary     *messageStatusDict;
-
-	JSQMessagesBubbleImage  *_bubbleImageOutgoing;
-    JSQMessagesBubbleImage  *_bubbleImageOutgoingSending;
-	JSQMessagesBubbleImage  *_bubbleImageIncoming;
-
-	JSQMessagesAvatarImage  *_avatarImageBlank;
-    
-    UIView                  *_background;
-    
-    JTImageButton           *_makingOfferButton;
-    JTImageButton           *_leavingFeedbackButton;
-    JTImageButton           *_makingAnotherOfferButton;
-    JTImageButton           *_acceptingButton;
-    JTImageButton           *_decliningButton;
-    JTImageButton           *_edittingOfferButton;
-    JTImageButton           *_cancellingOfferButton;
+	
 }
 @end
 
 //------------------------------------------------------------------------------------------------------------------------------
 @implementation ChatView
 //------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString                        *groupId;
+    
+    BOOL                            initialized;
+    
+    Firebase                        *firebase1;
+    Firebase                        *firebase2;
+    
+    NSMutableArray                  *items;
+    NSMutableArray                  *messages;
+    NSMutableDictionary             *avatars;
+    NSMutableDictionary             *messageStatusDict;
+    
+    JSQMessagesBubbleImage          *_bubbleImageOutgoing;
+    JSQMessagesBubbleImage          *_bubbleImageOutgoingSending;
+    JSQMessagesBubbleImage          *_bubbleImageIncoming;
+    
+    JSQMessagesAvatarImage          *_avatarImageBlank;
+    
+    UIView                          *_background;
+    
+    JTImageButton                   *_makingOfferButton;
+    JTImageButton                   *_leavingFeedbackButton;
+    JTImageButton                   *_makingAnotherOfferButton;
+    JTImageButton                   *_acceptingButton;
+    JTImageButton                   *_decliningButton;
+    JTImageButton                   *_edittingOfferButton;
+    JTImageButton                   *_cancellingOfferButton;
+}
 
 @synthesize delegate        =   _delegate;
 @synthesize user2Username   =   _user2Username;
