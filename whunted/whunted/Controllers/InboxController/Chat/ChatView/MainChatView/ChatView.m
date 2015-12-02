@@ -282,6 +282,8 @@
 - (void) receiveWillUploadMessageNotification: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // if message is still being sent, its status is 'sending'.
+    // use messageStatusDict dictionary to see if the message is sent successfully or not
     NSString *messageID = (NSString *) notification.object;
     messageStatusDict[messageID] = @NO;
 }
@@ -290,6 +292,7 @@
 - (void) receiveUploadMessageSuccessfullyNotification: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // update messageStatusDict when message is sent successfully. Reload the collection view after that.
     NSString *messageID = (NSString *) notification.object;
     messageStatusDict[messageID] = @YES;
     [self.collectionView reloadData];
@@ -657,6 +660,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OFFER_ACCEPTED object:_offerData.itemID];
     }
     
+    // update visibility of top functional button if a transactional event happens.
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
     {
         [self adjustVisibilityOfTopFunctionalButtons];
