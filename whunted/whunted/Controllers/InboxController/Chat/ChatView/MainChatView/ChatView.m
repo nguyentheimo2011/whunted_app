@@ -741,6 +741,22 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
+- (void) downloadImageFromRemoteServer: (NSString *) senderId
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    FetchedUserHandler successHandler = ^(PFUser *user, UIImage *image)
+    {
+        avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+        [self.collectionView reloadData];
+        
+        NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
+        [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
+    };
+    
+    [Utilities getUserWithID:senderId imageNeeded:YES andRunBlock:successHandler];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
 - (void)messageSend:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture Audio:(NSString *)audio ChatMessageType: (ChatMessageType) type TransactionDetails: (NSDictionary *) details CompletionBlock: (CompletionHandler) completionBlock
 //-------------------------------------------------------------------------------------------------------------------------------
 {
@@ -1184,42 +1200,6 @@
     {
         [self acceptOffer];
     }
-}
-
-
-#pragma mark - Backend methods
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void) downloadImageFromRemoteServer: (NSString *) senderId
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-    [query whereKey:PF_USER_OBJECTID equalTo:senderId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (error == nil)
-         {
-             if ([objects count] != 0)
-             {
-                 PFUser *user = [objects firstObject];
-                 PFFile *file = user[PF_USER_PICTURE];
-                 [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-                  {
-                      if (error == nil)
-                      {
-                          UIImage *image = [UIImage imageWithData:imageData];
-                          avatars[senderId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
-                          [self.collectionView reloadData];
-                          
-                          NSString *imageKey = [NSString stringWithFormat:@"%@%@", senderId, USER_PROFILE_IMAGE];
-                          [[ProfileImageCache sharedCache] setObject:image forKey:imageKey];
-                      }
-                  }];
-             }
-         }
-         else
-             [Utilities handleError:error];
-     }];
 }
 
 @end
