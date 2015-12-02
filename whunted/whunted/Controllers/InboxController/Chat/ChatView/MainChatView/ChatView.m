@@ -34,14 +34,7 @@
 
 #import "TransactionData.h"
 #import "UserProfileViewController.h"
-
-//------------------------------------------------------------------------------------------------------------------------------
-@interface ChatView()
-//------------------------------------------------------------------------------------------------------------------------------
-{
-	
-}
-@end
+#import "ChatViewUIHelper.h"
 
 //------------------------------------------------------------------------------------------------------------------------------
 @implementation ChatView
@@ -52,7 +45,6 @@
     BOOL                            initialized;
     
     Firebase                        *firebase1;
-    Firebase                        *firebase2;
     
     NSMutableArray                  *items;
     NSMutableArray                  *messages;
@@ -62,8 +54,6 @@
     JSQMessagesBubbleImage          *_bubbleImageOutgoing;
     JSQMessagesBubbleImage          *_bubbleImageOutgoingSending;
     JSQMessagesBubbleImage          *_bubbleImageIncoming;
-    
-    JSQMessagesAvatarImage          *_avatarImageBlank;
     
     UIView                          *_background;
     
@@ -130,13 +120,7 @@
 {
 	[super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-	if (self.isMovingFromParentViewController)
-	{
-		[firebase1 removeAllObservers];
-		[firebase2 removeAllObservers];
-	}
+    [self removeObserver];
 }
 
 
@@ -156,7 +140,6 @@
     self.senderDisplayName = user[PF_USER_USERNAME];
     
     firebase1 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Message/%@", FIREBASE, groupId]];
-    firebase2 = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Typing/%@", FIREBASE, groupId]];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -165,6 +148,18 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveWillUploadMessageNotification:) name:NOTIFICATION_WILL_UPLOAD_MESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUploadMessageSuccessfullyNotification:) name:NOTIFICATION_UPLOAD_MESSAGE_SUCCESSFULLY object:nil];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) removeObserver
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if (self.isMovingFromParentViewController)
+    {
+        [firebase1 removeAllObservers];
+    }
 }
 
 
@@ -176,6 +171,9 @@
 {
     [Utilities customizeTitleLabel:_user2Username forViewController:self];
     [Utilities customizeBackButtonForViewController:self withAction:@selector(backButtonTapEventHandler)];
+    
+    // table is displayed below top buttons
+    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 10;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -187,8 +185,6 @@
     _bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
     _bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
     
-    _avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"user_profile_image_placeholder_small.png"] diameter:30.0];
-    
     [JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
     
     UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
@@ -196,24 +192,10 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addBackgroundForButtons
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat statusAndNavigationBarHeight = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
-    _background = [[UIView alloc] initWithFrame:CGRectMake(0, statusAndNavigationBarHeight, WINSIZE.width, FLAT_BUTTON_HEIGHT + 10)];
-    [_background setBackgroundColor:GRAY_COLOR_WITH_WHITE_COLOR_2];
-    [_background setAlpha:0.98];
-    [self.view addSubview:_background];
-    
-    // table is displayed below top buttons
-    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 10;
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (void) addTopButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    [self addBackgroundForButtons];
+    [self addBackgroundForTopButtons];
     [self addMakingOfferButton];
     [self addLeavingFeedbackButton];
     [self addMakingAnotherOfferButton];
@@ -221,6 +203,13 @@
     [self addAcceptingButton];
     [self addEdittingOfferButton];
     [self addCancellingButton];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addBackgroundForTopButtons
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _background = [ChatViewUIHelper addBackgroundForTopButtonsToViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -306,103 +295,58 @@
 - (void) addMakingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _makingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
-    [_makingOfferButton createTitle:NSLocalizedString(@"Make Offer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _makingOfferButton.cornerRadius = 6.0;
-    _makingOfferButton.borderColor = FLAT_FRESH_RED_COLOR;
-    _makingOfferButton.bgColor = FLAT_BLUR_RED_COLOR;
-    _makingOfferButton.titleColor = [UIColor whiteColor];
+    _makingOfferButton = [ChatViewUIHelper addMakingOfferButtonToView:_background];
     [_makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEventHanlder) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_makingOfferButton];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addLeavingFeedbackButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _leavingFeedbackButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.1, 5, WINSIZE.width * 0.8, FLAT_BUTTON_HEIGHT)];
-    [_leavingFeedbackButton createTitle:NSLocalizedString(@"Leave Feedback", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _leavingFeedbackButton.cornerRadius = 6.0;
-    _leavingFeedbackButton.borderColor = FLAT_GRAY_COLOR_LIGHTER;
-    _leavingFeedbackButton.bgColor = FLAT_GRAY_COLOR_LIGHTER;
-    _leavingFeedbackButton.titleColor = [UIColor whiteColor];
-    [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_leavingFeedbackButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addMakingAnotherOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _makingAnotherOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.025, 5, WINSIZE.width * 0.43, FLAT_BUTTON_HEIGHT)];
-    if ([Utilities amITheBuyer:_offerData])
-        [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer buyer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    else
-        [_makingAnotherOfferButton createTitle:NSLocalizedString(@"Make another offer seller", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:15] iconOffsetY:0];
-        
-    _makingAnotherOfferButton.cornerRadius = 6.0;
-    _makingAnotherOfferButton.borderColor = FLAT_BLUE_COLOR;
-    _makingAnotherOfferButton.bgColor = FLAT_BLUE_COLOR;
-    _makingAnotherOfferButton.titleColor = [UIColor whiteColor];
+    _makingAnotherOfferButton = [ChatViewUIHelper addMakingAnotherOfferButtonToView:_background currentOffer:_offerData];
     [_makingAnotherOfferButton addTarget:self action:@selector(makingAnotherOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_makingAnotherOfferButton];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addDecliningButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _decliningButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.48, 5, WINSIZE.width * 0.21, FLAT_BUTTON_HEIGHT)];
-    [_decliningButton createTitle:NSLocalizedString(@"Decline", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _decliningButton.cornerRadius = 6.0;
-    _decliningButton.borderColor = FLAT_GRAY_COLOR;
-    _decliningButton.bgColor = FLAT_GRAY_COLOR;
-    _decliningButton.titleColor = [UIColor whiteColor];
-    [_decliningButton addTarget:self action:@selector(decliningOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_decliningButton];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addAcceptingButton
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _acceptingButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.715, 5, WINSIZE.width * 0.26, FLAT_BUTTON_HEIGHT)];
-    [_acceptingButton createTitle:NSLocalizedString(@"Accept", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _acceptingButton.cornerRadius = 6.0;
-    _acceptingButton.borderColor = FLAT_BLUR_RED_COLOR;
-    _acceptingButton.bgColor = FLAT_BLUR_RED_COLOR;
-    _acceptingButton.titleColor = [UIColor whiteColor];
-    [_acceptingButton addTarget:self action:@selector(acceptingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_acceptingButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addEdittingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _edittingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.05, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
-    [_edittingOfferButton createTitle:NSLocalizedString(@"Edit Offer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _edittingOfferButton.cornerRadius = 6.0;
-    _edittingOfferButton.borderColor = FLAT_BLUE_COLOR;
-    _edittingOfferButton.bgColor = FLAT_BLUE_COLOR;
-    _edittingOfferButton.titleColor = [UIColor whiteColor];
+    _edittingOfferButton = [ChatViewUIHelper addEditingOfferButtonToView:_background];
     [_edittingOfferButton addTarget:self action:@selector(edittingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_edittingOfferButton];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addCancellingButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _cancellingOfferButton = [[JTImageButton alloc] initWithFrame:CGRectMake(WINSIZE.width * 0.525, 5, WINSIZE.width * 0.425, FLAT_BUTTON_HEIGHT)];
-    [_cancellingOfferButton createTitle:NSLocalizedString(@"Cancel Offer", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:15] iconOffsetY:0];
-    _cancellingOfferButton.cornerRadius = 6.0;
-    _cancellingOfferButton.borderColor = FLAT_GRAY_COLOR;
-    _cancellingOfferButton.bgColor = FLAT_GRAY_COLOR;
-    _cancellingOfferButton.titleColor = [UIColor whiteColor];
+    _cancellingOfferButton = [ChatViewUIHelper addCancelingOfferButtonToView:_background];
     [_cancellingOfferButton addTarget:self action:@selector(cancellingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
-    [_background addSubview:_cancellingOfferButton];
 }
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addAcceptingButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _acceptingButton = [ChatViewUIHelper addAcceptingOfferButtonToView:_background];
+    [_acceptingButton addTarget:self action:@selector(acceptingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addDecliningButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _decliningButton = [ChatViewUIHelper addDecliningOfferButtonToView:_background];
+    [_decliningButton addTarget:self action:@selector(decliningOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addLeavingFeedbackButton
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _leavingFeedbackButton = [ChatViewUIHelper addLeavingFeedbackButtonToView:_background];
+    [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+}
+
 
 #pragma mark - Event Handling
 
