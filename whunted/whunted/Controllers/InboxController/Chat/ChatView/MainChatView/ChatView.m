@@ -692,9 +692,13 @@
 	{
 		BOOL incoming = [self addMessage:snapshot.value];
 
-		if (initialized)    // initialized is set to YES if ChatView is active, and a new message is received
+		if (initialized)
 		{
-			if (incoming) [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+            // initialized is set to YES after all messages have been retrieved when ChatView is first displayed
+			if (incoming)
+            {
+                [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+            }
 			[self finishReceivingMessage];
             
             NSDictionary *item = snapshot.value;
