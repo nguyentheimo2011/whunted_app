@@ -789,7 +789,7 @@
 }
 
 
-#pragma mark - JSQMessages CollectionView DataSource
+#pragma mark - JSQMessagesCollectionViewDataSource
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -838,6 +838,11 @@
         return avatars[message.senderId];
 }
 
+/*
+ * Return an attributed string or nil for Cell top label.
+ * Here, Cell top label is either timestamp or nil
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -854,14 +859,20 @@
         NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
         NSDate *prevMessageRoundDate = [Utilities getRoundMinuteDateFromDate:prevMessageDate];
         int timePeriod = [currMessageRoundDate timeIntervalSinceDate:prevMessageRoundDate];
+        
         if (timePeriod > 0)
         {
+            // if current message and previous message are of different minutes, then display timestamp for current message
             return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:currMessageDate];
         }
         else
             return nil;
     }
 }
+
+/*
+ * Display sender name on top of the message bubble if necessary
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -884,6 +895,10 @@
         return nil;
 }
 
+/*
+ * Display status of an outgoing message. The status can be either 'Sending...' or 'Delivered'
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -904,7 +919,7 @@
 }
 
 
-#pragma mark - UICollectionView DataSource
+#pragma mark - UICollectionViewDataSource
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -925,25 +940,26 @@
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
         if (messageType == ChatMessageTypeNormal)
-            cell.textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
         else
             cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
 	}
     else
     {
-		cell.textView.textColor = [UIColor blackColor];
+		cell.textView.textColor = TEXT_COLOR_LESS_DARK;
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
         if (messageType == ChatMessageTypeNormal)
-            cell.textView.font = [UIFont fontWithName:REGULAR_FONT_NAME size:SMALL_FONT_SIZE];
+            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
         else
             cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
 	}
+    
 	return cell;
 }
 
 
-#pragma mark - UICollectionView Delegate
+#pragma mark - UICollectionViewDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -953,7 +969,8 @@
 	if (action == @selector(actionCopy:))
 	{
 		NSDictionary *item = items[indexPath.item];
-		if ([item[@"type"] isEqualToString:@"text"]) return YES;
+		if ([item[@"type"] isEqualToString:@"text"])
+            return YES;
 	}
 
 	return NO;
@@ -969,7 +986,11 @@
 }
 
 
-#pragma mark - JSQMessages collection view flow layout delegate
+#pragma mark - JSQMessagesCollectionViewDelegateFlowLayout
+
+/*
+ * Return height for timestamp label
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -987,12 +1008,21 @@
         NSDate *currMessageRoundDate = [Utilities getRoundMinuteDateFromDate:currMessageDate];
         NSDate *prevMessageRoundDate = [Utilities getRoundMinuteDateFromDate:prevMessageDate];
         int timePeriod = [currMessageRoundDate timeIntervalSinceDate:prevMessageRoundDate];
-        if (timePeriod > 0) {
+        
+        if (timePeriod > 0)
+        {
+            // timestamp label is displayed
             return kJSQMessagesCollectionViewCellLabelHeightDefault;
-        } else
+        }
+        else
+            // timestamp label is not displayed
             return 0;
     }
 }
+
+/*
+ * Return height for sender's name label
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -1007,6 +1037,7 @@
 			JSQMessage *previous = messages[indexPath.item-1];
 			if ([previous.senderId isEqualToString:message.senderId])
 			{
+                // sender's name label is not displayed
 				return 0;
 			}
 		}
@@ -1014,8 +1045,13 @@
 		return kJSQMessagesCollectionViewCellLabelHeightDefault;
 	}
 	else
+        // sender's name label is not displayed
         return 0;
 }
+
+/*
+ * Return height for message status label
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -1026,7 +1062,8 @@
 	{
 		return kJSQMessagesCollectionViewCellLabelHeightDefault;
 	}
-	else return 0;
+	else
+        return 0;
 }
 
 
@@ -1045,7 +1082,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	JSQMessage *message = messages[indexPath.item];
-	//---------------------------------------------------------------------------------------------------------------------------
+	
 	if (message.isMediaMessage)
 	{
 		if ([message.media isKindOfClass:[PhotoMediaItem class]])
@@ -1055,6 +1092,7 @@
 			IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
 			[self presentViewController:browser animated:YES completion:nil];
 		}
+        
 		if ([message.media isKindOfClass:[VideoMediaItem class]])
 		{
 			VideoMediaItem *mediaItem = (VideoMediaItem *)message.media;
@@ -1065,12 +1103,9 @@
 	}
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [Utilities logOutMessage:[NSString stringWithFormat:@"didTapCellAtIndexPath %@", NSStringFromCGPoint(touchLocation)]];
-}
+/*
+ * When avatar is tapped, user profile of corresponding user is presented.
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void) collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath
@@ -1093,6 +1128,10 @@
 
 #pragma mark - User actions
 
+/*
+ * Show Camera and Pictures options when user chooses to attach media content.
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)actionAttach
 //-------------------------------------------------------------------------------------------------------------------------------
@@ -1104,6 +1143,10 @@
 	gridMenu.delegate = self;
 	[gridMenu showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
 }
+
+/*
+ * User chooses to copy some text
+ */
 
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)actionCopy:(NSIndexPath *)indexPath
@@ -1121,8 +1164,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	[gridMenu dismissAnimated:NO];
+    
 	if ([item.title isEqualToString:@"Camera"])
         PresentMultiCamera(self, YES);
+    
 	if ([item.title isEqualToString:@"Pictures"])
         PresentPhotoLibrary(self, YES);
 }
@@ -1130,15 +1175,19 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 
+/*
+ * This function gets called after user chose an image or video from library
+ */
+
 //-------------------------------------------------------------------------------------------------------------------------------
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 //-------------------------------------------------------------------------------------------------------------------------------
 {
 	NSURL *video = info[UIImagePickerControllerMediaURL];
 	UIImage *picture = info[UIImagePickerControllerEditedImage];
-	//---------------------------------------------------------------------------------------------------------------------------
+	
 	[self messageSend:nil Video:video Picture:picture Audio:nil ChatMessageType:ChatMessageTypeNone TransactionDetails:nil CompletionBlock:nil];
-	//---------------------------------------------------------------------------------------------------------------------------
+	
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
 
