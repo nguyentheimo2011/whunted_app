@@ -33,4 +33,6 @@
 
 + (JTImageButton *) addLeavingFeedbackButtonToView: (UIView *) backgroundView;
 
++ (void)            adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton: (JTImageButton *) makingOfferButton makingAnotherOfferButton: (JTImageButton *) makingAnotherOfferButton editingOfferButton: (JTImageButton *) editingOfferButton cancelingOfferButton: (JTImageButton *) cancelingOfferButton acceptingOfferButton: (JTImageButton *) acceptingButton decliningButton: (JTImageButton *) decliningButton leavingFeedbackButton: (JTImageButton *) leavingFeedbackButton currentOffer: (TransactionData *) currOffer;
+
 @end

@@ -62,8 +62,8 @@
     JTImageButton                   *_makingAnotherOfferButton;
     JTImageButton                   *_acceptingButton;
     JTImageButton                   *_decliningButton;
-    JTImageButton                   *_edittingOfferButton;
-    JTImageButton                   *_cancellingOfferButton;
+    JTImageButton                   *_editingOfferButton;
+    JTImageButton                   *_cancelingOfferButton;
 }
 
 @synthesize delegate        =   _delegate;
@@ -97,7 +97,7 @@
     [self customizeUI];
     [self initUI];
     [self addTopButtons];
-    [self adjustButtonsVisibility];
+    [self adjustVisibilityOfTopFunctionalButtons];
     
     [self registerNotification];
 	
@@ -213,85 +213,6 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) adjustButtonsVisibility
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    if (_offerData.initiatorID.length > 0) {
-        if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED])
-        {
-            // Offer was accepted
-            [_makingOfferButton setHidden:YES];
-            
-            [_leavingFeedbackButton setHidden:NO];
-            
-            [_makingAnotherOfferButton setHidden:YES];
-            [_decliningButton setHidden:YES];
-            [_acceptingButton setHidden:YES];
-            
-            [_edittingOfferButton setHidden:YES];
-            [_cancellingOfferButton setHidden:YES];
-        }
-        else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_ONGOING])
-        {
-            if ([_offerData.initiatorID isEqualToString:[PFUser currentUser].objectId])
-            {
-                // Offer is made by me
-                [_makingOfferButton setHidden:YES];
-                
-                [_leavingFeedbackButton setHidden:YES];
-                
-                [_makingAnotherOfferButton setHidden:YES];
-                [_decliningButton setHidden:YES];
-                [_acceptingButton setHidden:YES];
-                
-                [_edittingOfferButton setHidden:NO];
-                [_cancellingOfferButton setHidden:NO];
-            }
-            else
-            {
-                [_makingOfferButton setHidden:YES];
-                
-                [_leavingFeedbackButton setHidden:YES];
-                
-                [_makingAnotherOfferButton setHidden:NO];
-                [_decliningButton setHidden:NO];
-                [_acceptingButton setHidden:NO];
-                
-                [_edittingOfferButton setHidden:YES];
-                [_cancellingOfferButton setHidden:YES];
-            }
-        }
-        else if ([_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED] || [_offerData.transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
-        {
-            [_makingOfferButton setHidden:NO];
-            
-            [_leavingFeedbackButton setHidden:YES];
-            
-            [_makingAnotherOfferButton setHidden:YES];
-            [_decliningButton setHidden:YES];
-            [_acceptingButton setHidden:YES];
-            
-            [_edittingOfferButton setHidden:YES];
-            [_cancellingOfferButton setHidden:YES];
-        }
-    }
-    else
-    {
-        // No one has made any offers yet
-        [_makingOfferButton setHidden:NO];
-        
-        [_leavingFeedbackButton setHidden:YES];
-        
-        [_makingAnotherOfferButton setHidden:YES];
-        [_decliningButton setHidden:YES];
-        [_acceptingButton setHidden:YES];
-        
-        [_edittingOfferButton setHidden:YES];
-        [_cancellingOfferButton setHidden:YES];
-    }
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (void) addMakingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -311,16 +232,16 @@
 - (void) addEdittingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _edittingOfferButton = [ChatViewUIHelper addEditingOfferButtonToView:_background];
-    [_edittingOfferButton addTarget:self action:@selector(edittingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    _editingOfferButton = [ChatViewUIHelper addEditingOfferButtonToView:_background];
+    [_editingOfferButton addTarget:self action:@selector(edittingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addCancellingButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _cancellingOfferButton = [ChatViewUIHelper addCancelingOfferButtonToView:_background];
-    [_cancellingOfferButton addTarget:self action:@selector(cancellingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    _cancelingOfferButton = [ChatViewUIHelper addCancelingOfferButtonToView:_background];
+    [_cancelingOfferButton addTarget:self action:@selector(cancellingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -345,6 +266,13 @@
 {
     _leavingFeedbackButton = [ChatViewUIHelper addLeavingFeedbackButtonToView:_background];
     [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) adjustVisibilityOfTopFunctionalButtons
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [ChatViewUIHelper adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton:_makingOfferButton makingAnotherOfferButton:_makingAnotherOfferButton editingOfferButton:_editingOfferButton cancelingOfferButton:_cancelingOfferButton acceptingOfferButton:_acceptingButton decliningButton:_decliningButton leavingFeedbackButton:_leavingFeedbackButton currentOffer:_offerData];
 }
 
 
@@ -469,7 +397,7 @@
             _offerData.deliveryTime = @"";
             _offerData.transactionStatus = TRANSACTION_STATUS_CANCELLED;
             
-            [self adjustButtonsVisibility];
+            [self adjustVisibilityOfTopFunctionalButtons];
             
             // Update recent message
             NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
@@ -533,7 +461,7 @@
             _offerData.deliveryTime = @"";
             _offerData.transactionStatus = TRANSACTION_STATUS_DECLINED;
             
-            [self adjustButtonsVisibility];
+            [self adjustVisibilityOfTopFunctionalButtons];
             
             // Update recent message
             NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
@@ -578,7 +506,7 @@
      {
          if (succeeded)
          {
-             [self adjustButtonsVisibility];
+             [self adjustVisibilityOfTopFunctionalButtons];
              
              // Update recent message
              NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
@@ -730,7 +658,9 @@
     }
     
     if (messageType != ChatMessageTypeNormal && messageType != ChatMessageTypeNone)
-        [self adjustButtonsVisibility];
+    {
+        [self adjustVisibilityOfTopFunctionalButtons];
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -743,6 +673,7 @@
     
     _isUnread = NO;
 }
+
 
 #pragma mark - Backend methods
 
@@ -1211,7 +1142,7 @@
 - (void) buyersOrSellersOfferViewController:(BuyersOrSellersOfferViewController *)controller didOffer:(TransactionData *)offer
 //-------------------------------------------------------------------------------------------------------------------------------
 {
-    [self adjustButtonsVisibility];
+    [self adjustVisibilityOfTopFunctionalButtons];
     _offerData = offer;
     
     NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];

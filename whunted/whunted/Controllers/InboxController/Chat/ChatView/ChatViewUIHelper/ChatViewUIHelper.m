@@ -137,4 +137,87 @@
     return leavingFeedbackButton;
 }
 
+//---------------------------------------------------------------------------------------------------------------------------
++ (void) adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton:(JTImageButton *)makingOfferButton makingAnotherOfferButton:(JTImageButton *)makingAnotherOfferButton editingOfferButton:(JTImageButton *)editingOfferButton cancelingOfferButton:(JTImageButton *)cancelingOfferButton acceptingOfferButton:(JTImageButton *)acceptingButton decliningButton:(JTImageButton *)decliningButton leavingFeedbackButton: (JTImageButton *) leavingFeedbackButton currentOffer: (TransactionData *) currOffer
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    if (currOffer.initiatorID.length > 0)
+    {
+        // an offer has been made
+        if ([currOffer.transactionStatus isEqualToString:TRANSACTION_STATUS_ACCEPTED])
+        {
+            // the offer was accepted
+            [makingOfferButton setHidden:YES];
+            
+            [leavingFeedbackButton setHidden:NO];
+            
+            [makingAnotherOfferButton setHidden:YES];
+            [decliningButton setHidden:YES];
+            [acceptingButton setHidden:YES];
+            
+            [editingOfferButton setHidden:YES];
+            [cancelingOfferButton setHidden:YES];
+        }
+        else if ([currOffer.transactionStatus isEqualToString:TRANSACTION_STATUS_ONGOING])
+        {
+            if ([currOffer.initiatorID isEqualToString:[PFUser currentUser].objectId])
+            {
+                // the offer was made by me
+                [makingOfferButton setHidden:YES];
+                
+                [leavingFeedbackButton setHidden:YES];
+                
+                [makingAnotherOfferButton setHidden:YES];
+                [decliningButton setHidden:YES];
+                [acceptingButton setHidden:YES];
+                
+                [editingOfferButton setHidden:NO];
+                [cancelingOfferButton setHidden:NO];
+            }
+            else
+            {
+                // the offer was made by the other person
+                [makingOfferButton setHidden:YES];
+                
+                [leavingFeedbackButton setHidden:YES];
+                
+                [makingAnotherOfferButton setHidden:NO];
+                [decliningButton setHidden:NO];
+                [acceptingButton setHidden:NO];
+                
+                [editingOfferButton setHidden:YES];
+                [cancelingOfferButton setHidden:YES];
+            }
+        }
+        else if ([currOffer.transactionStatus isEqualToString:TRANSACTION_STATUS_CANCELLED] || [currOffer.transactionStatus isEqualToString:TRANSACTION_STATUS_DECLINED])
+        {
+            // the offer has been cancelled or declined
+            [makingOfferButton setHidden:NO];
+            
+            [leavingFeedbackButton setHidden:YES];
+            
+            [makingAnotherOfferButton setHidden:YES];
+            [decliningButton setHidden:YES];
+            [acceptingButton setHidden:YES];
+            
+            [editingOfferButton setHidden:YES];
+            [cancelingOfferButton setHidden:YES];
+        }
+    }
+    else
+    {
+        // No one has made any offers yet
+        [makingOfferButton setHidden:NO];
+        
+        [leavingFeedbackButton setHidden:YES];
+        
+        [makingAnotherOfferButton setHidden:YES];
+        [decliningButton setHidden:YES];
+        [acceptingButton setHidden:YES];
+        
+        [editingOfferButton setHidden:YES];
+        [cancelingOfferButton setHidden:YES];
+    }
+}
+
 @end
