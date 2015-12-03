@@ -97,10 +97,9 @@
     [self customizeUI];
     [self initUI];
     [self addTopButtons];
-    [self adjustVisibilityOfTopFunctionalButtons];
     
     [self registerNotification];
-	
+    
 	[self loadMessages];
     
     [self updateUnreadChatNotification];
@@ -112,6 +111,7 @@
 {
 	[super viewDidAppear:animated];
 	self.collectionView.collectionViewLayout.springinessEnabled = NO;
+    self.showLoadEarlierMessagesHeader = YES;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -203,6 +203,8 @@
     [self addAcceptingButton];
     [self addEdittingOfferButton];
     [self addCancellingButton];
+    
+    [self adjustVisibilityOfTopFunctionalButtons];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -943,7 +945,7 @@
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
         if (messageType == ChatMessageTypeNormal)
-            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
+            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16.5];
         else
             cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
 	}
@@ -953,7 +955,7 @@
         
         ChatMessageType messageType = [Utilities chatMessageTypeFromString:items[indexPath.item][CHAT_MESSAGE_TYPE]];
         if (messageType == ChatMessageTypeNormal)
-            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALLER_FONT_SIZE];
+            cell.textView.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:16.5];
         else
             cell.textView.font = [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
 	}
