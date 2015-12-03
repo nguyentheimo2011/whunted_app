@@ -87,9 +87,6 @@
 #define     NEWSFEED_CELL_HEIGHT                WINSIZE.width + 105.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     NUM_OF_WHUNTS_IN_EACH_LOADING_TIME  20
-
-//-----------------------------------------------------------------------------------------------------------------------------
 #define     ITEM_NAME_KEY                       @"itemName"
 #define     ITEM_DESC_KEY                       @"itemDescription"
 #define     ITEM_HASH_TAG_KEY                   @"itemHashTag"
@@ -417,6 +414,9 @@
 #define     ITEM_DETAILS_FROM_MARKETPLACE               @"itemDetailsFromMarketplace"
 #define     ITEM_DETAILS_FROM_USER_PROFILE              @"itemDetailsFromUserProfile"
 
+//-----------------------------------------------------------------------------------------------------------------------------
+#define     NUM_OF_WHUNTS_IN_EACH_LOADING_TIME          20
+#define     NUM_OF_MESSAGES_IN_EACH_LOADING_TIME        20
 
 //----------------------------------------------------------------------------------------------------------------------------
 #define     BUYER_LOCATION_CONTAINER_TAG                301

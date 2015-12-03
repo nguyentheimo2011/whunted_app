@@ -687,8 +687,10 @@
 {
 	initialized = NO;
 	self.automaticallyScrollsToMostRecentMessage = NO;
+    
+    Firebase *queryForLatestMessages = (Firebase *) [[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME];
 	
-	[firebase1 observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
+	[queryForLatestMessages observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
 	{
 		BOOL incoming = [self addMessage:snapshot.value];
 
