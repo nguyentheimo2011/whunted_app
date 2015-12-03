@@ -707,6 +707,7 @@
 		}
 	}];
 	
+    // Event Value is only observed once.
 	[firebase1 observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
 	{
 		[self finishReceivingMessage];
