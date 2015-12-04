@@ -56,7 +56,6 @@
     JSQMessagesBubbleImage          *_bubbleImageIncoming;
     
     UIView                          *_topFunctionalButtonsBackground;
-    UIView                          *_loadEarlierMessagesBackground;
     
     JTImageButton                   *_makingOfferButton;
     JTImageButton                   *_leavingFeedbackButton;
@@ -176,6 +175,7 @@
     
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     self.showLoadEarlierMessagesHeader = YES;
+    self.collectionView.loadEarlierMessagesHeaderTextColor = [UIColor whiteColor];
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     _bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
@@ -201,9 +201,7 @@
     [self addEdittingOfferButton];
     [self addCancellingButton];
     
-    [self adjustVisibilityOfTopFunctionalButtons];
-    
-    [self addLoadEarlierMessagesBackground];
+    [self adjustVisibilityOfTopFunctionalButtons];    
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -274,13 +272,6 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [ChatViewUIHelper adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton:_makingOfferButton makingAnotherOfferButton:_makingAnotherOfferButton editingOfferButton:_editingOfferButton cancelingOfferButton:_cancelingOfferButton acceptingOfferButton:_acceptingButton decliningButton:_decliningButton leavingFeedbackButton:_leavingFeedbackButton currentOffer:_offerData];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) addLoadEarlierMessagesBackground
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    _loadEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToViewController:self];
 }
 
 
@@ -1155,7 +1146,8 @@
     if (scrollView.contentOffset.y < yPosOfLoadEarlierMessageButton && messages.count > 0 && !_isLoadingEarlierMessages)
     {
         _isLoadingEarlierMessages = YES;
-        [Utilities showSmallIndeterminateProgressIndicatorInView:_loadEarlierMessagesBackground];
+        JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
+        [Utilities showSmallIndeterminateProgressIndicatorInView:headerView];
     }
 }
 
