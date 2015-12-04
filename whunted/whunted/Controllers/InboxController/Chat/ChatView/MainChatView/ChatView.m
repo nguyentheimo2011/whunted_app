@@ -110,8 +110,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
-	self.collectionView.collectionViewLayout.springinessEnabled = NO;
-    self.showLoadEarlierMessagesHeader = NO;
+	
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -180,6 +179,9 @@
 - (void) initUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    self.collectionView.collectionViewLayout.springinessEnabled = NO;
+    self.showLoadEarlierMessagesHeader = YES;
+    
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     _bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
     _bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
