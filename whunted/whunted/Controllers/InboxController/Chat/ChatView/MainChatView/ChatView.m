@@ -694,7 +694,7 @@
 	
 	[queryForLatestMessages observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
 	{
-		BOOL incoming = [self addMessage:snapshot.value];
+		BOOL incoming = [self addMessage:snapshot.value appending:YES];
 
 		if (initialized)
 		{
@@ -711,8 +711,8 @@
 		}
 	}];
 	
-    // Event Value is only observed once.
-	[firebase1 observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
+    // Event Value is only observed once. Get called when all latest messages are received.
+	[queryForLatestMessages observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
 	{
 		[self finishReceivingMessage];
 		[self scrollToBottomAnimated:NO];
@@ -731,24 +731,49 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     Firebase *queryForEarlierMessage = (Firebase *) [[[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME + 1] queryEndingAtValue:items[0][@"key"]];
-    [queryForEarlierMessage observeSingleEventOfType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        [self addMessage:snapshot.value];
-        [self finishReceivingMessage];
+    
+    __block NSMutableArray *earlierItems = [[NSMutableArray alloc] init];
+    
+    [queryForEarlierMessage observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
+    {
+        NSDictionary *item = snapshot.value;
+        if (![item[@"key"] isEqualToString:items[0][@"key"]])
+            [earlierItems addObject:item];
+    }];
+    
+    [queryForEarlierMessage observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot)
+    {
+        for (int i=(int)earlierItems.count-1; i>=0; i--)
+        {
+            [self addMessage:earlierItems[i] appending:NO];
+        }
+        
+        [self.collectionView reloadData];
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:earlierItems.count] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
         [Utilities hideIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
     }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)addMessage:(NSDictionary *)item
+- (BOOL)addMessage:(NSDictionary *)item appending: (BOOL) appending
 //------------------------------------------------------------------------------------------------------------------------------
 {
 	Incoming *incoming = [[Incoming alloc] initWith:self.senderId ChatView:self];
 	JSQMessage *message = [incoming create:item];
 	
-	if (message == nil) return NO;
+	if (message == nil)
+        return NO;
 	
-	[items addObject:item];
-	[messages addObject:message];
+    if (appending)
+    {
+        [items addObject:item];
+        [messages addObject:message];
+    }
+	else
+    {
+        [items insertObject:item atIndex:0];
+        [messages insertObject:message atIndex:0];
+    }
 	
 	return [self incoming:message];
 }
