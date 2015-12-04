@@ -220,4 +220,25 @@
     }
 }
 
+
+#pragma mark - LoadEarlierMessagesButton 
+
+//----------------------------------------------------------------------------------------------------------------------------
++ (UIView *) addBackgroundForLoadEarlierMessagesButtonToViewController:(UIViewController *)viewController
+//----------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat statusAndNavigationBarHeight = viewController.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat width       =       40.0f;
+    CGFloat height      =       40.0f;
+    CGFloat originX     =       (WINSIZE.width - width) / 2;
+    CGFloat originY     =       statusAndNavigationBarHeight + FLAT_BUTTON_HEIGHT + 10;
+    
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(originX, originY, width, height)];
+    [background setBackgroundColor:[UIColor whiteColor]];
+    [background setAlpha:1];
+    [viewController.view addSubview:background];
+    
+    return background;
+}
+
 @end

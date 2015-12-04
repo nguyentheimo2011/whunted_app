@@ -55,7 +55,8 @@
     JSQMessagesBubbleImage          *_bubbleImageOutgoingSending;
     JSQMessagesBubbleImage          *_bubbleImageIncoming;
     
-    UIView                          *_background;
+    UIView                          *_topFunctionalButtonsBackground;
+    UIView                          *_loadEarlierMessagesBackground;
     
     JTImageButton                   *_makingOfferButton;
     JTImageButton                   *_leavingFeedbackButton;
@@ -64,6 +65,8 @@
     JTImageButton                   *_decliningButton;
     JTImageButton                   *_editingOfferButton;
     JTImageButton                   *_cancelingOfferButton;
+    
+    BOOL                            _isLoadingEarlierMessages;
 }
 
 @synthesize delegate        =   _delegate;
@@ -103,14 +106,6 @@
 	[self loadMessages];
     
     [self updateUnreadChatNotification];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated
-//------------------------------------------------------------------------------------------------------------------------------
-{
-	[super viewDidAppear:animated];
-	
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -170,15 +165,15 @@
 {
     [Utilities customizeTitleLabel:_user2Username forViewController:self];
     [Utilities customizeBackButtonForViewController:self withAction:@selector(backButtonTapEventHandler)];
-    
-    // table is displayed below top buttons
-    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 10;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) initUI
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    // table is displayed below top buttons
+    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 13.5;
+    
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     self.showLoadEarlierMessagesHeader = YES;
     
@@ -207,20 +202,22 @@
     [self addCancellingButton];
     
     [self adjustVisibilityOfTopFunctionalButtons];
+    
+    [self addLoadEarlierMessagesBackground];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addBackgroundForTopButtons
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _background = [ChatViewUIHelper addBackgroundForTopButtonsToViewController:self];
+    _topFunctionalButtonsBackground = [ChatViewUIHelper addBackgroundForTopButtonsToViewController:self];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) addMakingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _makingOfferButton = [ChatViewUIHelper addMakingOfferButtonToView:_background];
+    _makingOfferButton = [ChatViewUIHelper addMakingOfferButtonToView:_topFunctionalButtonsBackground];
     [_makingOfferButton addTarget:self action:@selector(makingOfferButtonTapEventHanlder) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -228,7 +225,7 @@
 - (void) addMakingAnotherOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _makingAnotherOfferButton = [ChatViewUIHelper addMakingAnotherOfferButtonToView:_background currentOffer:_offerData];
+    _makingAnotherOfferButton = [ChatViewUIHelper addMakingAnotherOfferButtonToView:_topFunctionalButtonsBackground currentOffer:_offerData];
     [_makingAnotherOfferButton addTarget:self action:@selector(makingAnotherOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -236,7 +233,7 @@
 - (void) addEdittingOfferButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _editingOfferButton = [ChatViewUIHelper addEditingOfferButtonToView:_background];
+    _editingOfferButton = [ChatViewUIHelper addEditingOfferButtonToView:_topFunctionalButtonsBackground];
     [_editingOfferButton addTarget:self action:@selector(edittingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -244,7 +241,7 @@
 - (void) addCancellingButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _cancelingOfferButton = [ChatViewUIHelper addCancelingOfferButtonToView:_background];
+    _cancelingOfferButton = [ChatViewUIHelper addCancelingOfferButtonToView:_topFunctionalButtonsBackground];
     [_cancelingOfferButton addTarget:self action:@selector(cancellingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -252,7 +249,7 @@
 - (void) addAcceptingButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _acceptingButton = [ChatViewUIHelper addAcceptingOfferButtonToView:_background];
+    _acceptingButton = [ChatViewUIHelper addAcceptingOfferButtonToView:_topFunctionalButtonsBackground];
     [_acceptingButton addTarget:self action:@selector(acceptingOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -260,7 +257,7 @@
 - (void) addDecliningButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _decliningButton = [ChatViewUIHelper addDecliningOfferButtonToView:_background];
+    _decliningButton = [ChatViewUIHelper addDecliningOfferButtonToView:_topFunctionalButtonsBackground];
     [_decliningButton addTarget:self action:@selector(decliningOfferButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -268,7 +265,7 @@
 - (void) addLeavingFeedbackButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    _leavingFeedbackButton = [ChatViewUIHelper addLeavingFeedbackButtonToView:_background];
+    _leavingFeedbackButton = [ChatViewUIHelper addLeavingFeedbackButtonToView:_topFunctionalButtonsBackground];
     [_leavingFeedbackButton addTarget:self action:@selector(leavingFeedbackButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -277,6 +274,13 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     [ChatViewUIHelper adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton:_makingOfferButton makingAnotherOfferButton:_makingAnotherOfferButton editingOfferButton:_editingOfferButton cancelingOfferButton:_cancelingOfferButton acceptingOfferButton:_acceptingButton decliningButton:_decliningButton leavingFeedbackButton:_leavingFeedbackButton currentOffer:_offerData];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) addLoadEarlierMessagesBackground
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    _loadEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToViewController:self];
 }
 
 
@@ -1142,19 +1146,18 @@
     [Utilities retrieveUserInfoByUserID:message.senderId andRunBlock:handler];
 }
 
-////------------------------------------------------------------------------------------------------------------------------------
-//- (void) scrollViewDidScroll:(UIScrollView *)scrollView
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    CGFloat const yPosOfLoadEarlierMessageButton = -80.0f;
-//    
-//    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessageButton)
-//    {
-//        NSLog(@"dispatch_once dispatch_once dispatch_once");
-//        JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:0];
-//        [Utilities showSmallIndeterminateProgressIndicatorInView:headerView];
-//    }
-//}
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const yPosOfLoadEarlierMessageButton = -80.0f;
+    
+    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessageButton && messages.count > 0 && !_isLoadingEarlierMessages)
+    {
+        _isLoadingEarlierMessages = YES;
+        [Utilities showSmallIndeterminateProgressIndicatorInView:_loadEarlierMessagesBackground];
+    }
+}
 
 
 #pragma mark - User actions
