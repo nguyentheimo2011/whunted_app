@@ -37,4 +37,9 @@
 
 + (void)            adjustVisibilityOfTopFunctionalButtonsStartWithMakingOfferButton: (JTImageButton *) makingOfferButton makingAnotherOfferButton: (JTImageButton *) makingAnotherOfferButton editingOfferButton: (JTImageButton *) editingOfferButton cancelingOfferButton: (JTImageButton *) cancelingOfferButton acceptingOfferButton: (JTImageButton *) acceptingButton decliningButton: (JTImageButton *) decliningButton leavingFeedbackButton: (JTImageButton *) leavingFeedbackButton currentOffer: (TransactionData *) currOffer;
 
+
+#pragma mark - LoadEarlierMessages Button
+
++ (UIView *)        addBackgroundForLoadEarlierMessagesButtonToView: (UIView *) view;
+
 @end

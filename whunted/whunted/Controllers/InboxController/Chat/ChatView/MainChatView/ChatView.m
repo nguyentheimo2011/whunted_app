@@ -56,6 +56,7 @@
     JSQMessagesBubbleImage          *_bubbleImageIncoming;
     
     UIView                          *_topFunctionalButtonsBackground;
+    UIView                          *_loadingEarlierMessagesBackground;
     
     JTImageButton                   *_makingOfferButton;
     JTImageButton                   *_leavingFeedbackButton;
@@ -1147,18 +1148,8 @@
     {
         _isLoadingEarlierMessages = YES;
         JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
-        
-        CGFloat width   =   34.0f;
-        CGFloat height  =   34.0f;
-        CGFloat xPosition = (WINSIZE.width - width) / 2;
-        CGFloat yPosition = 0;
-        
-        UIView *loadingEarlierMessagesBackground = [[UIView alloc] initWithFrame:CGRectMake(xPosition, yPosition, width, height)];
-        loadingEarlierMessagesBackground.layer.cornerRadius = 8.0f;
-        loadingEarlierMessagesBackground.layer.masksToBounds = YES;
-        [headerView addSubview:loadingEarlierMessagesBackground];
-        
-        [Utilities showSmallIndeterminateProgressIndicatorInView:loadingEarlierMessagesBackground];
+        _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
+        [Utilities showSmallIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
     }
 }
 

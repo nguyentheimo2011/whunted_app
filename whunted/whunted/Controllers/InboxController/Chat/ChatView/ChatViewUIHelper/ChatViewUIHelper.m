@@ -220,4 +220,24 @@
     }
 }
 
+
+#pragma mark - LoadEarlierMessages
+
+//---------------------------------------------------------------------------------------------------------------------------
++ (UIView *) addBackgroundForLoadEarlierMessagesButtonToView:(UIView *)view
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat width   =   34.0f;
+    CGFloat height  =   34.0f;
+    CGFloat xPosition = (WINSIZE.width - width) / 2;
+    CGFloat yPosition = 0;
+    
+    UIView *loadingEarlierMessagesBackground = [[UIView alloc] initWithFrame:CGRectMake(xPosition, yPosition, width, height)];
+    loadingEarlierMessagesBackground.layer.cornerRadius = 8.0f;
+    loadingEarlierMessagesBackground.layer.masksToBounds = YES;
+    [view addSubview:loadingEarlierMessagesBackground];
+    
+    return loadingEarlierMessagesBackground;
+}
+
 @end
