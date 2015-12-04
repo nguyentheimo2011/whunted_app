@@ -692,6 +692,8 @@
 	initialized = NO;
 	self.automaticallyScrollsToMostRecentMessage = NO;
     
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
     Firebase *queryForLatestMessages = (Firebase *) [[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME];
 	
 	[queryForLatestMessages observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
@@ -720,6 +722,7 @@
 		[self scrollToBottomAnimated:NO];
 		self.automaticallyScrollsToMostRecentMessage = YES;
 		initialized	= YES;
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
 	}];
 }
 
