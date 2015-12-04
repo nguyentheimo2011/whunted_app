@@ -1141,13 +1141,24 @@
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const yPosOfLoadEarlierMessageButton = -80.0f;
+    CGFloat const yPosOfLoadEarlierMessagesButton = -80.0f;
     
-    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessageButton && messages.count > 0 && !_isLoadingEarlierMessages)
+    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessagesButton && messages.count > 0 && !_isLoadingEarlierMessages)
     {
         _isLoadingEarlierMessages = YES;
         JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
-        [Utilities showSmallIndeterminateProgressIndicatorInView:headerView];
+        
+        CGFloat width   =   34.0f;
+        CGFloat height  =   34.0f;
+        CGFloat xPosition = (WINSIZE.width - width) / 2;
+        CGFloat yPosition = 0;
+        
+        UIView *loadingEarlierMessagesBackground = [[UIView alloc] initWithFrame:CGRectMake(xPosition, yPosition, width, height)];
+        loadingEarlierMessagesBackground.layer.cornerRadius = 8.0f;
+        loadingEarlierMessagesBackground.layer.masksToBounds = YES;
+        [headerView addSubview:loadingEarlierMessagesBackground];
+        
+        [Utilities showSmallIndeterminateProgressIndicatorInView:loadingEarlierMessagesBackground];
     }
 }
 
