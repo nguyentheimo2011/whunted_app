@@ -724,6 +724,13 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) loadEarlierMessages
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)addMessage:(NSDictionary *)item
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -1131,6 +1138,20 @@
     JSQMessage *message = messages[indexPath.item];
     [Utilities retrieveUserInfoByUserID:message.senderId andRunBlock:handler];
 }
+
+////------------------------------------------------------------------------------------------------------------------------------
+//- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+////------------------------------------------------------------------------------------------------------------------------------
+//{
+//    CGFloat const yPosOfLoadEarlierMessageButton = -80.0f;
+//    
+//    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessageButton)
+//    {
+//        NSLog(@"dispatch_once dispatch_once dispatch_once");
+//        JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:0];
+//        [Utilities showSmallIndeterminateProgressIndicatorInView:headerView];
+//    }
+//}
 
 
 #pragma mark - User actions
