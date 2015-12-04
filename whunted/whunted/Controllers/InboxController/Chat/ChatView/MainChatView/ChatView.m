@@ -111,7 +111,7 @@
 {
 	[super viewDidAppear:animated];
 	self.collectionView.collectionViewLayout.springinessEnabled = NO;
-    self.showLoadEarlierMessagesHeader = YES;
+    self.showLoadEarlierMessagesHeader = NO;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
