@@ -722,11 +722,20 @@
 	}];
 }
 
+/*
+ * Load earlier messages when user scrolls up
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) loadEarlierMessages
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    Firebase *queryForEarlierMessage = (Firebase *) [[[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME + 1] queryEndingAtValue:items[0][@"key"]];
+    [queryForEarlierMessage observeSingleEventOfType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        [self addMessage:snapshot.value];
+        [self finishReceivingMessage];
+        [Utilities hideIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
+    }];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -1146,10 +1155,12 @@
     
     if (scrollView.contentOffset.y < yPosOfLoadEarlierMessagesButton && messages.count > 0 && !_isLoadingEarlierMessages)
     {
-        _isLoadingEarlierMessages = YES;
         JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
         _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
         [Utilities showSmallIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
+        
+        _isLoadingEarlierMessages = YES;
+        [self loadEarlierMessages];
     }
 }
 
