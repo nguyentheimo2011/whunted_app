@@ -227,8 +227,8 @@
 + (UIView *) addBackgroundForLoadEarlierMessagesButtonToView:(UIView *)view
 //---------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat width   =   34.0f;
-    CGFloat height  =   34.0f;
+    CGFloat width   =   36.0f;
+    CGFloat height  =   36.0f;
     CGFloat xPosition = (WINSIZE.width - width) / 2;
     CGFloat yPosition = 0;
     
