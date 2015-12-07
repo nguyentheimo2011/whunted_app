@@ -67,6 +67,7 @@
     JTImageButton                   *_cancelingOfferButton;
     
     BOOL                            _isLoadingEarlierMessages;
+    BOOL                            _allMessagesAreLoaded;
 }
 
 @synthesize delegate        =   _delegate;
@@ -724,6 +725,7 @@
 
 /*
  * Load earlier messages when user scrolls up
+ *
  */
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -749,6 +751,9 @@
             [self addMessage:earlierItems[i] appending:NO];
         }
         
+        if (earlierItems.count == 0)
+            _allMessagesAreLoaded = YES;
+        
         [self.collectionView reloadData];
         [self.collectionView layoutIfNeeded];
         
@@ -756,7 +761,7 @@
         self.collectionView.contentOffset = CGPointMake(0.0, self.collectionView.contentSize.height - prevYContentOffset);
         
         [Utilities hideIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
-//        _isLoadingEarlierMessages = NO;
+        _isLoadingEarlierMessages = NO;
     }];
 }
 
@@ -1185,7 +1190,7 @@
     CGFloat const loadEarlierMessageButtonHeight  = 32.0f;
     CGFloat const yOffsetToStartLoadingEearlierMessages = -([Utilities getHeightOfNavigationAndStatusBars:self] + TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT - loadEarlierMessageButtonHeight);
     
-    if (scrollView.contentOffset.y < yOffsetToStartLoadingEearlierMessages && messages.count > 0 && !_isLoadingEarlierMessages)
+    if (scrollView.contentOffset.y < yOffsetToStartLoadingEearlierMessages && messages.count > 0 && !_isLoadingEarlierMessages && !_allMessagesAreLoaded)
     {
         JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
         _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
