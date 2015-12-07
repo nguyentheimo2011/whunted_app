@@ -183,11 +183,6 @@
     _bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING];
     _bubbleImageOutgoingSending = [bubbleFactory outgoingMessagesBubbleImageWithColor:COLOR_OUTGOING_SENDING];
     _bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:COLOR_INCOMING];
-    
-    [JSQMessagesCollectionViewCell registerMenuAction:@selector(actionCopy:)];
-    
-    UIMenuItem *menuItemCopy = [[UIMenuItem alloc] initWithTitle:@"Copy" action:@selector(actionCopy:)];
-    [UIMenuController sharedMenuController].menuItems = @[menuItemCopy];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -1017,33 +1012,6 @@
 }
 
 
-#pragma mark - UICollectionViewDelegate
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath
-			withSender:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-	if (action == @selector(actionCopy:))
-	{
-		NSDictionary *item = items[indexPath.item];
-		if ([item[@"type"] isEqualToString:@"text"])
-            return YES;
-	}
-
-	return NO;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath
-			withSender:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-	if (action == @selector(actionCopy:))
-        [self actionCopy:indexPath];
-}
-
-
 #pragma mark - JSQMessagesCollectionViewDelegateFlowLayout
 
 /*
@@ -1218,18 +1186,6 @@
 	RNGridMenu *gridMenu = [[RNGridMenu alloc] initWithItems:menuItems];
 	gridMenu.delegate = self;
 	[gridMenu showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
-}
-
-/*
- * User chooses to copy some text
- */
-
-//-------------------------------------------------------------------------------------------------------------------------------
-- (void)actionCopy:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-	NSDictionary *item = items[indexPath.item];
-	[[UIPasteboard generalPasteboard] setString:item[@"text"]];
 }
 
 
