@@ -76,15 +76,16 @@
 #define     ACCEPTED_BUTTON_BACKGROUND_COLOR    [UIColor colorWithRed:0.0/255 green:172.0/255 blue:113.0/255 alpha:1.0]
 
 //-----------------------------------------------------------------------------------------------------------------------------
-#define     WINSIZE                             [[UIScreen mainScreen] bounds].size
-#define     STATUS_BAR_AND_NAV_BAR_HEIGHT       64.0f
-#define     BOTTOM_TAB_BAR_HEIGHT               48.0f
-#define     SEARCH_BAR_HEIGHT                   44.0f
-#define     BOTTOM_BUTTON_HEIGHT                45.0f
-#define     IPHONE_6_PLUS_WIDTH                 414.0f
-#define     FLAT_BUTTON_HEIGHT                  35.0f
-#define     kOFFSET_FOR_KEYBOARD                200.0f
-#define     NEWSFEED_CELL_HEIGHT                WINSIZE.width + 105.0f
+#define     WINSIZE                                 [[UIScreen mainScreen] bounds].size
+#define     STATUS_BAR_AND_NAV_BAR_HEIGHT           64.0f
+#define     BOTTOM_TAB_BAR_HEIGHT                   48.0f
+#define     SEARCH_BAR_HEIGHT                       44.0f
+#define     BOTTOM_BUTTON_HEIGHT                    45.0f
+#define     IPHONE_6_PLUS_WIDTH                     414.0f
+#define     FLAT_BUTTON_HEIGHT                      35.0f
+#define     TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT 48.5f
+#define     kOFFSET_FOR_KEYBOARD                    200.0f
+#define     NEWSFEED_CELL_HEIGHT                    WINSIZE.width + 105.0f
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     ITEM_NAME_KEY                       @"itemName"

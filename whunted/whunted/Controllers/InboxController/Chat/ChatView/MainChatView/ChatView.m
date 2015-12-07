@@ -172,7 +172,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // table is displayed below top buttons
-    self.topContentAdditionalInset = FLAT_BUTTON_HEIGHT + 13.5;
+    self.topContentAdditionalInset = TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT;
     
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     self.showLoadEarlierMessagesHeader = YES;
@@ -1177,11 +1177,10 @@
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const yPosOfLoadEarlierMessagesButton = -80.0f;
+    CGFloat const loadEarlierMessageButtonHeight  = 32.0f;
+    CGFloat const yOffsetToStartLoadingEearlierMessages = -([Utilities getHeightOfNavigationAndStatusBars:self] + TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT - loadEarlierMessageButtonHeight);
     
-//    NSLog(@"scrollViewDidScroll scrollViewDidScroll contentOffset %f", scrollView.contentOffset.y);
-    
-    if (scrollView.contentOffset.y < yPosOfLoadEarlierMessagesButton && messages.count > 0 && !_isLoadingEarlierMessages)
+    if (scrollView.contentOffset.y < yOffsetToStartLoadingEearlierMessages && messages.count > 0 && !_isLoadingEarlierMessages)
     {
         JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
         _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
