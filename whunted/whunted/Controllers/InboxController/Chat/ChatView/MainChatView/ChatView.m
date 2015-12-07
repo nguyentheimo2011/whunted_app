@@ -748,9 +748,10 @@
             [self addMessage:earlierItems[i] appending:NO];
         }
         
+        self.automaticallyScrollsToMostRecentMessage = NO;
         [self.collectionView reloadData];
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathWithIndex:earlierItems.count] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
         [Utilities hideIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
+//        _isLoadingEarlierMessages = NO;
     }];
 }
 
@@ -1177,6 +1178,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const yPosOfLoadEarlierMessagesButton = -80.0f;
+    
+//    NSLog(@"scrollViewDidScroll scrollViewDidScroll contentOffset %f", scrollView.contentOffset.y);
     
     if (scrollView.contentOffset.y < yPosOfLoadEarlierMessagesButton && messages.count > 0 && !_isLoadingEarlierMessages)
     {
