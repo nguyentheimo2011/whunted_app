@@ -1,6 +1,10 @@
 //
 //  InboxAllViewController.m
 //  whunted
+//  This class is to display all chat conversations that involves the current user
+//  in the app. It is called by MainViewController when the app starts.
+//  When the object of this class is initiated, only 10 latest messages are loaded.
+//  If the user scrolls down to bottom, older messages will be retrieved.
 //
 //  Created by thomas nguyen on 17/6/15.
 //  Copyright (c) 2015 Whunted. All rights reserved.
@@ -61,15 +65,6 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) viewWillAppear:(BOOL)animated
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [super viewWillAppear:animated];
-    
-    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"InboxScreen"];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
 - (void) addNotificationListener
 //------------------------------------------------------------------------------------------------------------------------------
 {
@@ -124,6 +119,7 @@
     _inboxTableView.contentInset = UIEdgeInsetsMake(0, 0, BOTTOM_TAB_BAR_HEIGHT, 0);
     [self.view addSubview:_inboxTableView];    
 }
+
 
 #pragma mark - Backend methods
 
