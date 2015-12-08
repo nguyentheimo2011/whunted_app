@@ -686,7 +686,7 @@
     
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
-    Firebase *queryForLatestMessages = (Firebase *) [[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME];
+    FQuery *queryForLatestMessages = [[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME];
 	
 	[queryForLatestMessages observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot)
 	{
@@ -727,7 +727,7 @@
 - (void) loadEarlierMessages
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    Firebase *queryForEarlierMessage = (Firebase *) [[[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME + 1] queryEndingAtValue:items[0][@"key"]];
+    FQuery *queryForEarlierMessage = (FQuery *) [[[firebase1 queryOrderedByKey] queryLimitedToLast:NUM_OF_MESSAGES_IN_EACH_LOADING_TIME + 1] queryEndingAtValue:items[0][@"key"]];
     
     __block NSMutableArray *earlierItems = [[NSMutableArray alloc] init];
     __block CGFloat prevYContentOffset = self.collectionView.contentSize.height - self.collectionView.contentOffset.y;
