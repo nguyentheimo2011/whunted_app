@@ -83,13 +83,14 @@
 {
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
+    self.wantData.itemIsDeleted = YES;
     PFObject *pfObj = [self.wantData getPFObject];
-    [pfObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
          if (error)
          {
              [Utilities handleError:error];
-             [pfObj deleteEventually];
+             [pfObj saveEventually];
          }
          
          [Utilities hideIndeterminateProgressIndicatorInView:self.view];

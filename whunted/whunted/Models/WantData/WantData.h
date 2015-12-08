@@ -42,6 +42,7 @@
 @property (nonatomic)           NSInteger         sellersNum;
 
 @property (nonatomic)           BOOL              isFulfilled;
+@property (nonatomic)           BOOL              itemIsDeleted;
 @property (nonatomic, strong)   TransactionData   *acceptedOffer;
 
 // Temprary data sturetures

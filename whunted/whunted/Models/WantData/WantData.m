@@ -32,32 +32,29 @@
     self = [super init];
     
     if (self != nil) {
-        self.itemID             =   wantDataPFObject.objectId;
-        self.itemName           =   wantDataPFObject[PF_ITEM_NAME];
-        self.itemDesc           =   wantDataPFObject[PF_ITEM_DESC];
-        self.itemCategory       =   wantDataPFObject[PF_ITEM_CATEGORY];
-        self.itemOrigins        =   [wantDataPFObject[PF_ITEM_ORIGINS] componentsSeparatedByString:COMMA_CHARACTER];
-        self.itemPictureList    =   wantDataPFObject[PF_ITEM_PICTURE_LIST];
-        self.itemPicturesNum    =   [wantDataPFObject[PF_ITEM_PICTURES_NUM] integerValue];
-        self.hashTagList        =   [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
-        self.referenceURL       =   wantDataPFObject[PF_ITEM_REFERENCE_URL];
+        self.itemID                 =       wantDataPFObject.objectId;
+        self.itemName               =       wantDataPFObject[PF_ITEM_NAME];
+        self.itemDesc               =       wantDataPFObject[PF_ITEM_DESC];
+        self.itemCategory           =       wantDataPFObject[PF_ITEM_CATEGORY];
+        self.itemOrigins            =       [wantDataPFObject[PF_ITEM_ORIGINS] componentsSeparatedByString:COMMA_CHARACTER];
+        self.itemPictureList        =       wantDataPFObject[PF_ITEM_PICTURE_LIST];
+        self.itemPicturesNum        =       [wantDataPFObject[PF_ITEM_PICTURES_NUM] integerValue];
+        self.hashTagList            =       [NSArray arrayWithArray:wantDataPFObject[PF_ITEM_HASHTAG_LIST]];
+        self.referenceURL           =       wantDataPFObject[PF_ITEM_REFERENCE_URL];
         
-        self.buyerID            =   wantDataPFObject[PF_ITEM_BUYER_ID];
-        self.buyerUsername      =   wantDataPFObject[PF_ITEM_BUYER_USERNAME];
-        self.demandedPrice      =   [Utilities formattedPriceFromNumber:wantDataPFObject[PF_ITEM_DEMANDED_PRICE]];
-        self.acceptedSecondHand   =   [wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND] boolValue];
-        self.meetingLocation    =   wantDataPFObject[PF_ITEM_MEETING_PLACE];
+        self.buyerID                =       wantDataPFObject[PF_ITEM_BUYER_ID];
+        self.buyerUsername          =       wantDataPFObject[PF_ITEM_BUYER_USERNAME];
+        self.demandedPrice          =       [Utilities formattedPriceFromNumber:wantDataPFObject[PF_ITEM_DEMANDED_PRICE]];
+        self.acceptedSecondHand     =       [wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND] boolValue];
+        self.meetingLocation        =       wantDataPFObject[PF_ITEM_MEETING_PLACE];
        
-        self.sellersNum         =   [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
-        self.likesNum           =   [wantDataPFObject[PF_ITEM_LIKES_NUM] integerValue];
-        self.createdDate        =   wantDataPFObject.createdAt;
-        self.updatedDate        =   wantDataPFObject.updatedAt;
+        self.sellersNum             =       [wantDataPFObject[PF_ITEM_SELLERS_NUM] integerValue];
+        self.likesNum               =       [wantDataPFObject[PF_ITEM_LIKES_NUM] integerValue];
+        self.createdDate            =       wantDataPFObject.createdAt;
+        self.updatedDate            =       wantDataPFObject.updatedAt;
         
-        NSString *dealClosed = wantDataPFObject[PF_ITEM_IS_FULFILLED];
-        if ([dealClosed isEqual:@"YES"])
-            self.isFulfilled = YES;
-        else
-            self.isFulfilled = NO;
+        self.isFulfilled            =       [Utilities booleanFromYesNoString:wantDataPFObject[PF_ITEM_IS_FULFILLED]];
+        self.itemIsDeleted          =       [Utilities booleanFromYesNoString:wantDataPFObject[PF_ITEM_IS_DELETED]];
     }
     
     return self;
@@ -69,28 +66,27 @@
 {
     PFObject *wantDataPFObject = [PFObject objectWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     
-    wantDataPFObject.objectId                       =   self.itemID;
-    wantDataPFObject[PF_ITEM_NAME]                  =   self.itemName;
-    wantDataPFObject[PF_ITEM_DESC]                  =   self.itemDesc;
-    wantDataPFObject[PF_ITEM_CATEGORY]              =   self.itemCategory;
-    wantDataPFObject[PF_ITEM_ORIGINS]               =   [self.itemOrigins componentsJoinedByString:COMMA_CHARACTER];
-    wantDataPFObject[PF_ITEM_PICTURES_NUM]          =   [NSString stringWithFormat:@"%ld", self.itemPicturesNum];
-    wantDataPFObject[PF_ITEM_HASHTAG_LIST]          =   self.hashTagList;
-    wantDataPFObject[PF_ITEM_REFERENCE_URL]         =   self.referenceURL;
+    wantDataPFObject.objectId                       =       self.itemID;
+    wantDataPFObject[PF_ITEM_NAME]                  =       self.itemName;
+    wantDataPFObject[PF_ITEM_DESC]                  =       self.itemDesc;
+    wantDataPFObject[PF_ITEM_CATEGORY]              =       self.itemCategory;
+    wantDataPFObject[PF_ITEM_ORIGINS]               =       [self.itemOrigins componentsJoinedByString:COMMA_CHARACTER];
+    wantDataPFObject[PF_ITEM_PICTURES_NUM]          =       [NSString stringWithFormat:@"%ld", self.itemPicturesNum];
+    wantDataPFObject[PF_ITEM_HASHTAG_LIST]          =       self.hashTagList;
+    wantDataPFObject[PF_ITEM_REFERENCE_URL]         =       self.referenceURL;
     
-    wantDataPFObject[PF_ITEM_BUYER_ID]              =   self.buyerID;
-    wantDataPFObject[PF_ITEM_BUYER_USERNAME]        =   self.buyerUsername;
-    wantDataPFObject[PF_ITEM_DEMANDED_PRICE]        =   [Utilities numberFromFormattedPrice:self.demandedPrice];
-    wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND]   =   [Utilities stringFromBoolean:self.acceptedSecondHand];
-    wantDataPFObject[PF_ITEM_MEETING_PLACE]         =   self.meetingLocation;
+    wantDataPFObject[PF_ITEM_BUYER_ID]              =       self.buyerID;
+    wantDataPFObject[PF_ITEM_BUYER_USERNAME]        =       self.buyerUsername;
+    wantDataPFObject[PF_ITEM_DEMANDED_PRICE]        =       [Utilities numberFromFormattedPrice:self.demandedPrice];
+    wantDataPFObject[PF_ITEM_ACCEPTED_SECONDHAND]   =       [Utilities stringFromBoolean:self.acceptedSecondHand];
+    wantDataPFObject[PF_ITEM_MEETING_PLACE]         =       self.meetingLocation;
     
-    wantDataPFObject[PF_ITEM_SELLERS_NUM]           =   [NSString stringWithFormat:@"%ld", self.sellersNum];
-    wantDataPFObject[PF_ITEM_LIKES_NUM]             =   [NSString stringWithFormat:@"%ld", self.likesNum];
+    wantDataPFObject[PF_ITEM_SELLERS_NUM]           =       [NSString stringWithFormat:@"%ld", self.sellersNum];
+    wantDataPFObject[PF_ITEM_LIKES_NUM]             =       [NSString stringWithFormat:@"%ld", self.likesNum];
     
-    if (self.isFulfilled)
-        wantDataPFObject[PF_ITEM_IS_FULFILLED]      =   STRING_OF_YES;
-    else
-        wantDataPFObject[PF_ITEM_IS_FULFILLED]      =   STRING_OF_NO;
+    
+    wantDataPFObject[PF_ITEM_IS_FULFILLED]          =       [Utilities stringFromBoolean:self.isFulfilled];
+    wantDataPFObject[PF_ITEM_IS_DELETED]            =       [Utilities stringFromBoolean:self.itemIsDeleted];
     
     PFRelation *relation = [wantDataPFObject relationForKey:PF_ITEM_PICTURE_LIST];
     for (PFObject *obj in self.itemPictures)
