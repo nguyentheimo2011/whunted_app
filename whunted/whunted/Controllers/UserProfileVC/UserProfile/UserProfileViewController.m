@@ -1337,6 +1337,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:tableName];
     [query whereKey:@"sellerID" equalTo:currentUser.objectId];
+    [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     [query orderByDescending:PF_UPDATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offerObjects, NSError *error)
     {

@@ -338,6 +338,17 @@
             
             [MarketplaceBackend retrieveOfferByUser:[PFUser currentUser].objectId forItem:itemDetailsVC.wantData.itemID completionHandler:tranHandler];
         }
+        else if (whunts.count == 0)
+        {
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops!", nil) message:NSLocalizedString(@"The item has been deleted", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alertView show];
+        }
+        else
+        {
+            [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+        }
     };
     
     FailureHandler failHandler = ^(NSError *error)
