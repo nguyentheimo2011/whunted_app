@@ -320,6 +320,7 @@
 {
     PFQuery *query = [[PFQuery alloc] initWithClassName:PF_ONGOING_WANT_DATA_CLASS];
     [query whereKey:PF_OBJECT_ID equalTo:_transactionData.itemID];
+    [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
     {
         if (!error)

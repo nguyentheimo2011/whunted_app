@@ -313,6 +313,7 @@
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     [query whereKey:PF_OBJECT_ID equalTo:itemID];
     
     WhuntsHandler succHandler = ^(NSArray *whunts)

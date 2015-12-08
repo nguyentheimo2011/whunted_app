@@ -86,11 +86,12 @@
     {
         NSString *searchKeyword = [requirements objectForKey:SEARCH_KEYWORD];
         query = [MarketplaceBackend createQueryForWhuntsFromSearchKeyword:searchKeyword];
+        [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     }
     else
     {
         query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
-        [query whereKey:PF_ITEM_IS_FULFILLED equalTo:STRING_OF_NO];
+        [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     }
     
     if ([allKeys containsObject:BUYER_LOCATION_FILTER])

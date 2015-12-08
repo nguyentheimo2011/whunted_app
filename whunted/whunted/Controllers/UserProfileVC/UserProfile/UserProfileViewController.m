@@ -1228,6 +1228,7 @@
     _myWantDataList = [[NSMutableArray alloc] init];
     
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     [query whereKey:PF_ITEM_BUYER_ID equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -1413,6 +1414,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------
 {
     PFQuery *query = [PFQuery queryWithClassName:PF_ONGOING_WANT_DATA_CLASS];
+    [query whereKey:PF_ITEM_IS_DELETED equalTo:STRING_OF_NO];
     [query whereKey:@"buyerID" equalTo:_profileOwner.objectId];
     [query orderByDescending:PF_CREATED_AT];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *obj, NSError *error)

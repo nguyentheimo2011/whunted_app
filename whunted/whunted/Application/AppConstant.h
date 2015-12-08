@@ -155,6 +155,7 @@
 #define     PF_ITEM_SELLERS_NUM                 @"sellersNum"
 #define     PF_ITEM_LIKES_NUM                   @"likesNum"
 #define     PF_ITEM_IS_FULFILLED                @"isFulfilled"
+#define     PF_ITEM_IS_DELETED                  @"itemIsDeleted"
 
 //-----------------------------------------------------------------------------------------------------------------------------
 #define     PF_ITEM_PICTURE                     @"itemPicture"
