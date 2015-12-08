@@ -9,6 +9,7 @@
 #import "EditWantDataVC.h"
 #import "Utilities.h"
 
+#define     DELETION_ALERT_VIEW_TAG             114
 
 @implementation EditWantDataVC
 
@@ -20,7 +21,7 @@
     
     if (self)
     {
-//        [self addDeletionButton];
+        [self addDeletionButton];
     }
     
     return self;
@@ -54,7 +55,7 @@
     [self.view addSubview:backgroundView];
     
     JTImageButton *deletionButton = [[JTImageButton alloc] initWithFrame:CGRectMake(0, 0, WINSIZE.width, BOTTOM_BUTTON_HEIGHT)];
-    [deletionButton createTitle:NSLocalizedString(@"Delete", nil) withIcon:nil font:[UIFont fontWithName:REGULAR_FONT_NAME size:18] iconHeight:0 iconOffsetY:0];
+    [deletionButton createTitle:NSLocalizedString(@"Delete", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:DEFAULT_FONT_SIZE] iconHeight:0 iconOffsetY:0];
     deletionButton.cornerRadius = 0;
     deletionButton.borderWidth = 0;
     deletionButton.bgColor = [FLAT_FRESH_RED_COLOR colorWithAlphaComponent:0.9f];
@@ -71,6 +72,7 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure that you want to delete your post?", nil) message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+    alertView.tag = DELETION_ALERT_VIEW_TAG;
     alertView.delegate = self;
     [alertView show];
 }
@@ -98,15 +100,22 @@
 
 #pragma mark - UIAlertViewDelegate methods
 
-////------------------------------------------------------------------------------------------------------------------------------
-//- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-////------------------------------------------------------------------------------------------------------------------------------
-//{
-//    if (buttonIndex == 1)
-//    {
-//        [self deletionButtonTapEventHandler];
-//    }
-//}
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    if (alertView.tag == DELETION_ALERT_VIEW_TAG)
+    {
+        if (buttonIndex == 1)
+        {
+            [self deletionButtonTapEventHandler];
+        }
+    }
+    else
+    {
+        [super alertView:alertView didDismissWithButtonIndex:buttonIndex];
+    }
+}
 
 
 @end
