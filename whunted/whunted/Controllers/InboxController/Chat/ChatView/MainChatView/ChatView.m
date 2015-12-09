@@ -747,13 +747,17 @@
         }
         
         if (earlierItems.count == 0)
+        {
             _allMessagesAreLoaded = YES;
-        
-        [self.collectionView reloadData];
-        [self.collectionView layoutIfNeeded];
-        
-        // set contentOffset to previous position before reloading
-        self.collectionView.contentOffset = CGPointMake(0.0, self.collectionView.contentSize.height - prevYContentOffset);
+        }
+        else
+        {
+            [self.collectionView reloadData];
+            [self.collectionView layoutIfNeeded];
+            
+            // set contentOffset to previous position before reloading
+            self.collectionView.contentOffset = CGPointMake(0.0, self.collectionView.contentSize.height - prevYContentOffset);
+        }
         
         [Utilities hideIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
         _isLoadingEarlierMessages = NO;
