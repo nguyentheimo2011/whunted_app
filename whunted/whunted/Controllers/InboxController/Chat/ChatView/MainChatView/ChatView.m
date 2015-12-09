@@ -1096,17 +1096,9 @@
 #pragma mark - Responding to collection view tap events
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void)collectionView:(JSQMessagesCollectionView *)collectionView
-				header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    [Utilities logOutMessage:@"didTapLoadEarlierMessagesButton"];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------
-{
+{    
 	JSQMessage *message = messages[indexPath.item];
 	
 	if (message.isMediaMessage)
@@ -1149,6 +1141,13 @@
     
     JSQMessage *message = messages[indexPath.item];
     [Utilities retrieveUserInfoByUserID:message.senderId andRunBlock:handler];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.keyboardController.textView resignFirstResponder];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
