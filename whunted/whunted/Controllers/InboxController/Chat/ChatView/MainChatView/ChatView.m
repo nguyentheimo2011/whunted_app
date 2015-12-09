@@ -756,6 +756,8 @@
         if (earlierItems.count == 0)
         {
             _allMessagesAreLoaded = YES;
+            self.showLoadEarlierMessagesHeader = NO;
+            [self.collectionView reloadData];
         }
         else
         {
