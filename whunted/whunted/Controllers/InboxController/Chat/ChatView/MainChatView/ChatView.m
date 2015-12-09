@@ -1154,21 +1154,30 @@
     [self.keyboardController.textView resignFirstResponder];
 }
 
+/*
+ * This method is to track if a user scrolls to the top of the ChatView.
+ * It will earlier messages if a user scrolls to the top of the ChatView.
+ */
+
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    CGFloat const loadEarlierMessageButtonHeight  = 32.0f;
-    CGFloat const yOffsetToStartLoadingEearlierMessages = -([Utilities getHeightOfNavigationAndStatusBars:self] + TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT - loadEarlierMessageButtonHeight);
-    
-    if (scrollView.contentOffset.y < yOffsetToStartLoadingEearlierMessages && messages.count > 0 && !_isLoadingEarlierMessages && !_allMessagesAreLoaded)
+    // Only load earlier message if the user deliberately scroll up to the top
+    if (self.collectionView.contentSize.height >= self.collectionView.bounds.size.height)
     {
-        JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
-        _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
-        [Utilities showSmallIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
+        CGFloat const loadEarlierMessageButtonHeight  = 32.0f;
+        CGFloat const yOffsetToStartLoadingEearlierMessages = -([Utilities getHeightOfNavigationAndStatusBars:self] + TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT - loadEarlierMessageButtonHeight);
         
-        _isLoadingEarlierMessages = YES;
-        [self loadEarlierMessages];
+        if (scrollView.contentOffset.y < yOffsetToStartLoadingEearlierMessages && messages.count > 0 && !_isLoadingEarlierMessages && !_allMessagesAreLoaded)
+        {
+            JSQMessagesLoadEarlierHeaderView *headerView = [self.collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:[NSIndexPath indexPathWithIndex:0]];
+            _loadingEarlierMessagesBackground = [ChatViewUIHelper addBackgroundForLoadEarlierMessagesButtonToView:headerView];
+            [Utilities showSmallIndeterminateProgressIndicatorInView:_loadingEarlierMessagesBackground];
+            
+            _isLoadingEarlierMessages = YES;
+            [self loadEarlierMessages];
+        }
     }
 }
 
