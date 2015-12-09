@@ -86,15 +86,27 @@
     self.wantData.itemIsDeleted = YES;
     PFObject *pfObj = [self.wantData getPFObject];
     [pfObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         if (error)
-         {
-             [Utilities handleError:error];
-             [pfObj saveEventually];
-         }
+    {
+        if (error)
+        {
+            [Utilities handleError:error];
+            [pfObj saveEventually];
+        }
          
-         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
-         [self.navigationController popViewControllerAnimated:YES];
+        [Utilities hideIndeterminateProgressIndicatorInView:self.view];
+         
+        // Skip itemDetails view when going back because item is already deleted
+        // In the viewController list, the last viewController is EditWantDataVC, then ItemDetailsVC, so on.
+        NSArray *viewControllers = self.navigationController.viewControllers;
+        if (viewControllers.count >= 3)
+        {
+            UIViewController *nextViewController = viewControllers[viewControllers.count - 3];
+            [self.navigationController popToViewController:nextViewController animated:YES];
+        }
+        else
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
      }];
 }
 
