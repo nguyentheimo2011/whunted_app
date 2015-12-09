@@ -714,6 +714,13 @@
 		[self scrollToBottomAnimated:NO];
 		self.automaticallyScrollsToMostRecentMessage = YES;
 		initialized	= YES;
+        
+        // If there are too few messages, the loadEarlierMessageButton won't be displayed
+        if (messages.count < NUM_OF_MESSAGES_IN_EACH_LOADING_TIME)
+        {
+            self.showLoadEarlierMessagesHeader = NO;
+        }
+        
         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
 	}];
 }
@@ -1164,7 +1171,8 @@
 //------------------------------------------------------------------------------------------------------------------------------
 {
     // Only load earlier message if the user deliberately scroll up to the top
-    if (self.collectionView.contentSize.height >= self.collectionView.bounds.size.height)
+    // and there are earlier messages to load
+    if (messages.count >= NUM_OF_MESSAGES_IN_EACH_LOADING_TIME)
     {
         CGFloat const loadEarlierMessageButtonHeight  = 32.0f;
         CGFloat const yOffsetToStartLoadingEearlierMessages = -([Utilities getHeightOfNavigationAndStatusBars:self] + TOP_FUNCTIONAL_BUTTON_BACKGROUND_HEIGHT - loadEarlierMessageButtonHeight);
