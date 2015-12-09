@@ -92,6 +92,9 @@
             [Utilities handleError:error];
             [pfObj saveEventually];
         }
+        
+        // Broadcast ItemDeletion Event
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ITEM_DELETION_EVENT object:self.wantData.itemID];
          
         [Utilities hideIndeterminateProgressIndicatorInView:self.view];
          

@@ -106,6 +106,9 @@
     // Update whunts list after a whunt is fulfilled.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeFulfilledWhuntFromMarketplace:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
     
+    // Listener for ItemDeletion event
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeDeletedItemFromMarketplace:) name:NOTIFICATION_ITEM_DELETION_EVENT object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_MARKETPLACE_TAP_EVENT object:nil];
@@ -417,6 +420,29 @@
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) removeFulfilledWhuntFromMarketplace: (NSNotification *) notification
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *itemID = notification.object;
+    
+    for (int i=0; i<_retrievedWantDataList.count; i++)
+    {
+        WantData *wantData = [_retrievedWantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:itemID])
+        {
+            [_retrievedWantDataList removeObjectAtIndex:i];
+            [_wantCollectionView reloadData];
+            break;
+        }
+    }
+}
+
+/*
+ * Remove the item from Marketplace if it get deleted
+ */
+
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) removeDeletedItemFromMarketplace: (NSNotification *) notification
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *itemID = notification.object;
