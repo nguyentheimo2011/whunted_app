@@ -157,7 +157,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEventAfterPhoneVerification) name:NOTIFICATION_USER_DID_VERIFY_PHONE_NUMBER object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntFulfilledEventHandler:) name:NOTIFICATION_OFFER_ACCEPTED object:nil];
+    
+    // Listener foe ItemDeletion event
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeDeletedItemFromMyWantList:) name:NOTIFICATION_ITEM_DELETION_EVENT object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(whuntDetailsEditedEventHandler:) name:NOTIFICATION_WHUNT_DETAILS_EDITED_EVENT object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usernameButtonTapEventHandler:) name:NOTIFICATION_USERNAME_BUTTON_USER_PROFILE_TAP_EVENT object:nil];
 }
 
@@ -1064,6 +1069,31 @@
         {
             wantData.isFulfilled = YES;
             [_historyCollectionView reloadData];
+            break;
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------
+- (void) removeDeletedItemFromMyWantList: (NSNotification *) notification
+//-------------------------------------------------------------------------------------------------------------------------------
+{
+    NSString *itemID = notification.object;
+    
+    for (int i=0; i<_myWantDataList.count; i++)
+    {
+        WantData *wantData = [_myWantDataList objectAtIndex:i];
+        
+        if ([wantData.itemID isEqualToString:itemID])
+        {
+            [_myWantDataList removeObjectAtIndex:i];
+            
+            if (_curViewMode == HistoryCollectionViewModeBuying)
+            {
+                [self updateTotalListingNumLabel:_myWantDataList.count numListingsDisplayed:YES];
+                [_historyCollectionView reloadData];
+            }
+            
             break;
         }
     }
