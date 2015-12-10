@@ -167,6 +167,7 @@
 #define     PF_INITIATOR_ID                     @"initiatorID"
 #define     PF_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
 #define     PF_OFFERED_PRICE                    @"offeredPrice"
+#define     PF_SHIPPING_FEE_INCLUDED            @"shippingFeeIncluded"
 #define     PF_DELIVERY_TIME                    @"deliveryTime"
 #define     PF_TRANSACTION_STATUS               @"transactionStatus"
 

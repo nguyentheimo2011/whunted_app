@@ -207,6 +207,7 @@
     [_shippingFeeLabel sizeToFit];
     
     CGFloat const kSwitchXDistanceFromLabel     =   30.0f;
+    _shippingFeeSwitch.on = _offerData.shippingFeeIncluded;
     
     _shippingFeeSwitch = [[UISwitch alloc] init];
     
@@ -348,6 +349,7 @@
     [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
     
     _offerData.offeredPrice         =   _offeredPriceTextField.text;
+    _offerData.shippingFeeIncluded  =   _shippingFeeSwitch.on;
     _offerData.deliveryTime         =   _offeredDeliveryTextField.text;
     _offerData.initiatorID          =   [PFUser currentUser].objectId;
     _offerData.transactionStatus    =   TRANSACTION_STATUS_ONGOING;

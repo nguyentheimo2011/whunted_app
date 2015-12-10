@@ -8,6 +8,7 @@
 
 #import "TransactionData.h"
 #import "AppConstant.h"
+#import "Utilities.h"
 
 @implementation TransactionData
 
@@ -19,6 +20,7 @@
 @synthesize initiatorID             =   _initiatorID;
 @synthesize originalDemandedPrice   =   _originalDemandedPrice;
 @synthesize offeredPrice            =   _offeredPrice;
+@synthesize shippingFeeIncluded     =   _shippingFeeIncluded;
 @synthesize deliveryTime            =   _deliveryTime;
 @synthesize transactionStatus       =   _transactionStatus;
 
@@ -40,16 +42,17 @@
 {
     self = [super init];
     if (self != nil) {
-        _objectID               =   pfObj.objectId;
-        _itemID                 =   pfObj[PF_ITEM_ID];
-        _itemName               =   pfObj[PF_ITEM_NAME];
-        _buyerID                =   pfObj[PF_BUYER_ID];
-        _sellerID               =   pfObj[PF_SELLER_ID];
-        _initiatorID            =   pfObj[PF_INITIATOR_ID];
-        _originalDemandedPrice  =   pfObj[PF_ORIGINAL_DEMANDED_PRICE];
-        _offeredPrice           =   pfObj[PF_OFFERED_PRICE];
-        _deliveryTime           =   pfObj[PF_DELIVERY_TIME];
-        _transactionStatus      =   pfObj[PF_TRANSACTION_STATUS];
+        _objectID               =       pfObj.objectId;
+        _itemID                 =       pfObj[PF_ITEM_ID];
+        _itemName               =       pfObj[PF_ITEM_NAME];
+        _buyerID                =       pfObj[PF_BUYER_ID];
+        _sellerID               =       pfObj[PF_SELLER_ID];
+        _initiatorID            =       pfObj[PF_INITIATOR_ID];
+        _originalDemandedPrice  =       pfObj[PF_ORIGINAL_DEMANDED_PRICE];
+        _offeredPrice           =       pfObj[PF_OFFERED_PRICE];
+        _shippingFeeIncluded    =       [Utilities booleanFromYesNoString:pfObj[PF_SHIPPING_FEE_INCLUDED]];
+        _deliveryTime           =       pfObj[PF_DELIVERY_TIME];
+        _transactionStatus      =       pfObj[PF_TRANSACTION_STATUS];
     }
     
     return self;
@@ -64,15 +67,16 @@
     if (_objectID && _objectID.length > 0)
         pfObj.objectId = _objectID;
     
-    pfObj[PF_ITEM_ID]                   =   _itemID;
-    pfObj[PF_ITEM_NAME]                 =   _itemName;
-    pfObj[PF_BUYER_ID]                  =   _buyerID;
-    pfObj[PF_SELLER_ID]                 =   _sellerID;
-    pfObj[PF_INITIATOR_ID]              =   _initiatorID;
-    pfObj[PF_ORIGINAL_DEMANDED_PRICE]   =   _originalDemandedPrice;
-    pfObj[PF_OFFERED_PRICE]             =   _offeredPrice;
-    pfObj[PF_DELIVERY_TIME]             =   _deliveryTime;
-    pfObj[PF_TRANSACTION_STATUS]        =   _transactionStatus;
+    pfObj[PF_ITEM_ID]                   =       _itemID;
+    pfObj[PF_ITEM_NAME]                 =       _itemName;
+    pfObj[PF_BUYER_ID]                  =       _buyerID;
+    pfObj[PF_SELLER_ID]                 =       _sellerID;
+    pfObj[PF_INITIATOR_ID]              =       _initiatorID;
+    pfObj[PF_ORIGINAL_DEMANDED_PRICE]   =       _originalDemandedPrice;
+    pfObj[PF_OFFERED_PRICE]             =       _offeredPrice;
+    pfObj[PF_SHIPPING_FEE_INCLUDED]     =       [Utilities stringFromBoolean:_shippingFeeIncluded];
+    pfObj[PF_DELIVERY_TIME]             =       _deliveryTime;
+    pfObj[PF_TRANSACTION_STATUS]        =       _transactionStatus;
     
     return pfObj;
 }

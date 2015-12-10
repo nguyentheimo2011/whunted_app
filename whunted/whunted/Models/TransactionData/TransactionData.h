@@ -19,6 +19,7 @@
 @property (nonatomic, strong)   NSString    *sellerID;
 @property (nonatomic, strong)   NSString    *initiatorID;
 @property (nonatomic, strong)   NSString    *offeredPrice;
+@property (nonatomic)           BOOL        shippingFeeIncluded;
 @property (nonatomic, strong)   NSString    *deliveryTime;
 @property (nonatomic, strong)   NSString    *transactionStatus;
 
