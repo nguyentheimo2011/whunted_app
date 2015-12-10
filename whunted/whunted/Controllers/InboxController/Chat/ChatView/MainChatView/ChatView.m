@@ -975,7 +975,7 @@
         if ([messageStatusDict objectForKey:item[@"key"]]) {
             BOOL isSuccessful = [messageStatusDict[item[@"key"]] boolValue];
             if (!isSuccessful)
-                return [[NSAttributedString alloc] initWithString:@"Sending..."];
+                return [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sending...", nil)];
         }
         
 		return [[NSAttributedString alloc] initWithString:item[@"status"]];

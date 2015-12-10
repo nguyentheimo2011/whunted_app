@@ -56,7 +56,7 @@
 	item[@"userId"]             =   user.objectId;
 	item[@"name"]               =   user[PF_USER_USERNAME];
 	item[@"date"]               =   Date2String([NSDate date]);
-	item[@"status"]             =   @"Delivered";
+	item[@"status"]             =   NSLocalizedString(@"Delivered", nil);
     item[CHAT_MESSAGE_TYPE]     =   [Utilities stringFromChatMessageType:type];
     
     if ([[details allKeys] containsObject:FB_CURRENT_OFFER_ID])

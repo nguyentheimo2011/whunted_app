@@ -201,7 +201,7 @@
     CGFloat const kLabelOriginY     =   _offeredPriceTextField.frame.origin.y + _offeredPriceTextField.frame.size.height + 5.0;
     
     _shippingFeeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kLabelOriginY, 0, 0)];
-    _shippingFeeLabel.text = NSLocalizedString(@"Including shipping fee", nil);
+    _shippingFeeLabel.text = NSLocalizedString(@"Include shipping?", nil);
     _shippingFeeLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _shippingFeeLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [_shippingFeeLabel sizeToFit];

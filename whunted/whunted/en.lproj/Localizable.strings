@@ -141,6 +141,7 @@
 "Bought"                            =           "Bought";
 "Sold"                              =           "Sold";
 "Completed"                         =           "Completed";
+"The item has been deleted"         =           "The item has been deleted";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -152,6 +153,7 @@
 "originally wants to buy at"    =           "originally wants to buy at";
 "originally want to buy at"     =           "originally want to buy at";
 "Your offer is "                =           "Your offer is ";
+"Include shipping?"             =           "Include shipping?";
 "You can deliver in"            =           "You can deliver in";
 "You"                           =           "You ";
 
@@ -168,6 +170,8 @@
 "Make another offer seller"         =           "Make another offer";
 "Leave Feedback"                    =           "Leave Feedback";
 "Made An Offer"                     =           "Made An Offer";
+"Shipping is included"              =           "Shipping is included";
+"Shipping is not included"          =           "Shipping is not included";
 "Deliver in"                        =           "Deliver in";
 "dayString"                         =           "day";
 "daysString"                        =           "days";
@@ -179,6 +183,8 @@
                                     =           "Are you sure you want to accept this offer?";
 "Once accepted, offer cannot be cancelled!"
                                     =           "Once accepted, offer cannot be cancelled!";
+"Sending..."                        =           "Sending...";
+"Delivered"                         =           "Delivered";
 
 
 //------------------------------------------------------------------------------------------------------------------------------

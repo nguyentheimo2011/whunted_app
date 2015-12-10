@@ -140,6 +140,7 @@
 "Bought"                            =           "已購入";
 "Sold"                              =           "已結案";
 "Completed"                         =           "完成交易";
+"The item has been deleted"         =           "物品已刪除";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -151,6 +152,7 @@
 "originally wants to buy at"        =           "原本要付";
 "originally want to buy at"         =           "原本要付";
 "Your offer is "                    =           "你的出價是";
+"Include shipping?"                 =           "含運費?";
 "You can deliver in"                =           "你可以在多長時間里交貨";
 "You"                               =           "你";
 
@@ -167,6 +169,8 @@
 "Make another offer seller"         =           "向買家重新出價";
 "Leave Feedback"                    =           "我要評價";
 "Made An Offer"                     =           "交易出價";
+"Shipping is included"              =           "含運費";
+"Shipping is not included"          =           "不含運費";
 "Deliver in"                        =           "";
 "dayString"                         =           "日內寄出";
 "daysString"                        =           "日內寄出";
@@ -178,6 +182,8 @@
                                     =           "確定交易?";
 "Once accepted, offer cannot be cancelled!"
                                     =           "一旦確認即視同接受報價與雙方協議內容，不可取消!";
+"Sending..."                        =           "傳輸中...";
+"Delivered"                         =           "已寄出";
 
 
 //------------------------------------------------------------------------------------------------------------------------------
