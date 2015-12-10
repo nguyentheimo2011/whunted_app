@@ -385,6 +385,7 @@
     offerData.initiatorID           =   chatDict[FB_TRANSACTION_LAST_USER];
     offerData.originalDemandedPrice =   chatDict[FB_ORIGINAL_DEMANDED_PRICE];
     offerData.offeredPrice          =   chatDict[FB_CURRENT_OFFERED_PRICE];
+    offerData.shippingFeeIncluded   =   [Utilities booleanFromYesNoString:chatDict[FB_CURRENT_SHIPPING_FEE_INCLUDED]];
     offerData.deliveryTime          =   chatDict[FB_CURRENT_OFFERED_DELIVERY_TIME];
     offerData.transactionStatus     =   chatDict[FB_TRANSACTION_STATUS];
     

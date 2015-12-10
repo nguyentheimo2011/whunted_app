@@ -207,9 +207,9 @@
     [_shippingFeeLabel sizeToFit];
     
     CGFloat const kSwitchXDistanceFromLabel     =   30.0f;
-    _shippingFeeSwitch.on = _offerData.shippingFeeIncluded;
     
     _shippingFeeSwitch = [[UISwitch alloc] init];
+    _shippingFeeSwitch.on = _offerData.shippingFeeIncluded;
     
     CGFloat const totalLength   =   _shippingFeeLabel.frame.size.width + _shippingFeeSwitch.frame.size.width + kSwitchXDistanceFromLabel;
     CGFloat const kLabelOriginX =   (WINSIZE.width - totalLength) / 2;
