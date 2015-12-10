@@ -17,12 +17,15 @@
 {
     UILabel         *_summaryLabel;
     UILabel         *_priceAskingLabel;
+    UILabel         *_shippingFeeLabel;
     UILabel         *_deliveryAskingLabel;
     UILabel         *_instructionLabel;
     UILabel         *_deliveryTimeUnitLabel;
     
     UITextField     *_offeredPriceTextField;
     UITextField     *_offeredDeliveryTextField;
+    
+    UISwitch        *_shippingFeeSwitch;
     
     CGFloat         _startingYPos;
 }
@@ -45,6 +48,7 @@
     [self addSummaryLabel];
     [self addPriceAskingLabel];
     [self addOfferedPriceTextField];
+    [self addShippingFeeOption];
     [self addDeliveryAskingLabel];
     [self addOfferedDeliveryTextField];
     [self addDeliveryTimeUnitLabel];
@@ -110,7 +114,7 @@
     _summaryLabel.textAlignment = NSTextAlignmentCenter;
     [_summaryLabel setText:text];
     [_summaryLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_summaryLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_summaryLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]];
     _summaryLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _summaryLabel.numberOfLines = 2;
     [self.view addSubview:_summaryLabel];
@@ -130,7 +134,7 @@
     _priceAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_priceAskingLabel setText:NSLocalizedString(@"Your offer is ", nil)];
     [_priceAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_priceAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_priceAskingLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]];
     [self.view addSubview:_priceAskingLabel];
 }
 
@@ -191,19 +195,46 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
+- (void) addShippingFeeOption
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    CGFloat const kLabelOriginY     =   _offeredPriceTextField.frame.origin.y + _offeredPriceTextField.frame.size.height + 5.0;
+    
+    _shippingFeeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kLabelOriginY, 0, 0)];
+    _shippingFeeLabel.text = NSLocalizedString(@"Including shipping fee", nil);
+    _shippingFeeLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
+    _shippingFeeLabel.textColor = TEXT_COLOR_DARK_GRAY;
+    [_shippingFeeLabel sizeToFit];
+    
+    CGFloat const kSwitchXDistanceFromLabel     =   30.0f;
+    
+    _shippingFeeSwitch = [[UISwitch alloc] init];
+    
+    CGFloat const totalLength   =   _shippingFeeLabel.frame.size.width + _shippingFeeSwitch.frame.size.width + kSwitchXDistanceFromLabel;
+    CGFloat const kLabelOriginX =   (WINSIZE.width - totalLength) / 2;
+    CGFloat const kLabelHeight  =   _shippingFeeSwitch.frame.size.height;
+    _shippingFeeLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, _shippingFeeLabel.frame.size.width, kLabelHeight);
+    [self.view addSubview:_shippingFeeLabel];
+    
+    CGFloat const kSwitchOriginX    =   _shippingFeeLabel.frame.origin.x + _shippingFeeLabel.frame.size.width + kSwitchXDistanceFromLabel;
+    _shippingFeeSwitch.frame = CGRectMake(kSwitchOriginX, kLabelOriginY, _shippingFeeSwitch.frame.size.width, _shippingFeeSwitch.frame.size.height);
+    [self.view addSubview:_shippingFeeSwitch];
+}
+
+//------------------------------------------------------------------------------------------------------------------------------
 - (void) addDeliveryAskingLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kLabelLeftMargin  =   0.0f;
     CGFloat const kLabelTopMargin   =   15.0f;
-    CGFloat const kLabelYPos        =   _offeredPriceTextField.frame.origin.y + _offeredPriceTextField.frame.size.height + kLabelTopMargin;
+    CGFloat const kLabelYPos        =   _shippingFeeLabel.frame.origin.y + _shippingFeeLabel.frame.size.height + kLabelTopMargin;
     CGFloat const kLabelHeight      =   20.0f;
     
     _deliveryAskingLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelLeftMargin, kLabelYPos, 0, kLabelHeight)];
     _deliveryAskingLabel.textAlignment = NSTextAlignmentCenter;
     [_deliveryAskingLabel setText:NSLocalizedString(@"You can deliver in", nil)];
     [_deliveryAskingLabel setTextColor:TEXT_COLOR_DARK_GRAY];
-    [_deliveryAskingLabel setFont:[UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE]];
+    [_deliveryAskingLabel setFont:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE]];
     [_deliveryAskingLabel sizeToFit];
     [self.view addSubview:_deliveryAskingLabel];
 }
@@ -222,7 +253,7 @@
     _offeredDeliveryTextField.textColor         =   TEXT_COLOR_DARK_GRAY;
     _offeredDeliveryTextField.text              =   _offerData.deliveryTime;
     _offeredDeliveryTextField.textAlignment     =   NSTextAlignmentCenter;
-    _offeredDeliveryTextField.font              =   [UIFont fontWithName:BOLD_FONT_NAME size:18];
+    _offeredDeliveryTextField.font              =   [UIFont fontWithName:BOLD_FONT_NAME size:DEFAULT_FONT_SIZE];
     _offeredDeliveryTextField.placeholder       =   @"5";
     _offeredDeliveryTextField.delegate          =   self;
     
@@ -269,7 +300,7 @@
     
     _deliveryTimeUnitLabel = [[UILabel alloc] initWithFrame:CGRectMake(kLabelXPos, kLabelYPos, kLabelWidth, kLabelHeight)];
     _deliveryTimeUnitLabel.text = NSLocalizedString(@"days", nil);
-    _deliveryTimeUnitLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:DEFAULT_FONT_SIZE];
+    _deliveryTimeUnitLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:SMALL_FONT_SIZE];
     _deliveryTimeUnitLabel.textColor = TEXT_COLOR_DARK_GRAY;
     [self.view addSubview:_deliveryTimeUnitLabel];
     
@@ -296,7 +327,7 @@
     _instructionLabel.textAlignment = NSTextAlignmentCenter;
     _instructionLabel.text = @"Tap to change";
     _instructionLabel.textColor = [UIColor grayColor];
-    _instructionLabel.font = [UIFont fontWithName:REGULAR_FONT_NAME size:15];
+    _instructionLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:14];
     [self.view addSubview:_instructionLabel];
 }
 
