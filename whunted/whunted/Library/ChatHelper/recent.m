@@ -85,7 +85,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
     // first message can only be either normal message or making offer message
     if (offerData.offeredPrice && offerData.offeredPrice.length > 0)
     {
-        message = [Utilities makingOfferMessageFromOfferedPrice:offerData.offeredPrice andDeliveryTime:offerData.deliveryTime];
+        message = [Utilities makingOfferMessageFromOfferedPrice:offerData.offeredPrice deliveryTime:offerData.deliveryTime shippingFeeIncluded:offerData.shippingFeeIncluded];
         transactionLastUser = lastUser.objectId;
     }
     
@@ -122,7 +122,7 @@ void CreateRecentItem2(PFUser *user, NSString *groupId, NSArray *members, NSStri
 
 //------------------------------------------------------------------------------------------------------------------------------
 void UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, NSString *transactionLastUserID,
-                               NSString *offerID, NSString *offeredPrice, NSString *deliveryTime, NSString *message)
+                               NSString *offerID, NSString *offeredPrice, NSString *shippingFeeIncluded, NSString *deliveryTime, NSString *message)
 //------------------------------------------------------------------------------------------------------------------------------
 {
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent", FIREBASE]];
@@ -133,7 +133,7 @@ void UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, N
          {
              for (NSDictionary *recent in [snapshot.value allValues])
              {
-                 UpdateRecentTransaction2(recent, transactionStatus, transactionLastUserID, offerID, offeredPrice, deliveryTime, message);
+                 UpdateRecentTransaction2(recent, transactionStatus, transactionLastUserID, offerID, offeredPrice, shippingFeeIncluded, deliveryTime, message);
              }
          }
      }];
@@ -141,7 +141,7 @@ void UpdateRecentTransaction1 (NSString *groupId, NSString *transactionStatus, N
 
 //------------------------------------------------------------------------------------------------------------------------------
 void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus, NSString *transactionLastUserID,
-                               NSString *offerID, NSString *offeredPrice, NSString *deliveryTime, NSString *message)
+                               NSString *offerID, NSString *offeredPrice, NSString *shippingFeeIncluded, NSString *deliveryTime, NSString *message)
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *date = Date2String([NSDate date]);
@@ -151,7 +151,7 @@ void UpdateRecentTransaction2 (NSDictionary *recent, NSString *transactionStatus
     Firebase *firebase = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/Recent/%@", FIREBASE, recent[FB_RECENT_CHAT_ID]]];
     NSDictionary *values;
     if (transactionStatus.length > 0)
-        values = @{FB_TRANSACTION_STATUS:transactionStatus, FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_CURRENT_OFFER_ID:offerID, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
+        values = @{FB_TRANSACTION_STATUS:transactionStatus, FB_LAST_USER:transactionLastUserID, FB_LAST_MESSAGE:message, FB_TRANSACTION_LAST_USER:transactionLastUserID, FB_CURRENT_OFFERED_PRICE:offeredPrice, FB_CURRENT_SHIPPING_FEE_INCLUDED:shippingFeeIncluded, FB_CURRENT_OFFERED_DELIVERY_TIME:deliveryTime, FB_TIMESTAMP:date, FB_CURRENT_OFFER_ID:offerID, FB_UNREAD_MESSAGES_COUNTER:@(counter)};
     else
         values = @{FB_LAST_USER:[PFUser currentUser].objectId, FB_LAST_MESSAGE:message, FB_UNREAD_MESSAGES_COUNTER:@(counter), FB_TIMESTAMP:date};
     

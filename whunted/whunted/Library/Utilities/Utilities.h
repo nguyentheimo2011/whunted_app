@@ -123,7 +123,7 @@
 
 + (NSString *)  idOfDealerDealingWithMe: (TransactionData *) offerData;
 
-+ (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice andDeliveryTime: (NSString *) deliveryTime;
++ (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice deliveryTime: (NSString *) deliveryTime shippingFeeIncluded: (BOOL) shippingFeeIncluded;
 
 
 //------------------------------------------------------------------------------------------------------------------------------

@@ -400,7 +400,7 @@
             
             // Update recent message
             NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Cancel Offer", nil)];
-            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_SHIPPING_FEE_INCLUDED:[Utilities stringFromBoolean:_offerData.shippingFeeIncluded], FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeCancellingOffer TransactionDetails:transDetails CompletionBlock:nil];
             
@@ -464,7 +464,7 @@
             
             // Update recent message
             NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Decline Offer", nil)];
-            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+            NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_SHIPPING_FEE_INCLUDED:[Utilities stringFromBoolean:_offerData.shippingFeeIncluded], FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
             
             [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeDecliningOffer TransactionDetails:transDetails CompletionBlock:nil];
             
@@ -509,7 +509,7 @@
              
              // Update recent message
              NSString *message = [NSString stringWithFormat:@"\n %@ \n", NSLocalizedString(@"Accept Offer", nil)];
-             NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+             NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_SHIPPING_FEE_INCLUDED:[Utilities stringFromBoolean:_offerData.shippingFeeIncluded], FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
              
              [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeAcceptingOffer TransactionDetails:transDetails CompletionBlock:nil];
              
@@ -1272,8 +1272,8 @@
     [self adjustVisibilityOfTopFunctionalButtons];
     _offerData = offer;
     
-    NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice andDeliveryTime:offer.deliveryTime];
-    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
+    NSString *message = [Utilities makingOfferMessageFromOfferedPrice:offer.offeredPrice deliveryTime:offer.deliveryTime shippingFeeIncluded:offer.shippingFeeIncluded];
+    NSDictionary *transDetails = @{FB_GROUP_ID:groupId, FB_TRANSACTION_STATUS:_offerData.transactionStatus, FB_TRANSACTION_LAST_USER: [PFUser currentUser].objectId, FB_CURRENT_OFFER_ID:_offerData.objectID, FB_CURRENT_OFFERED_PRICE:_offerData.offeredPrice, FB_CURRENT_SHIPPING_FEE_INCLUDED:[Utilities stringFromBoolean:_offerData.shippingFeeIncluded], FB_CURRENT_OFFERED_DELIVERY_TIME:_offerData.deliveryTime};
     
     [self messageSend:message Video:nil Picture:nil Audio:nil ChatMessageType:ChatMessageTypeMakingOffer TransactionDetails:transDetails CompletionBlock:nil];
     

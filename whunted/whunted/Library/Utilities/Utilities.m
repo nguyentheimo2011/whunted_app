@@ -497,7 +497,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-+ (NSString *) makingOfferMessageFromOfferedPrice:(NSString *)offeredPrice andDeliveryTime:(NSString *)deliveryTime
++ (NSString *)  makingOfferMessageFromOfferedPrice: (NSString *) offeredPrice deliveryTime: (NSString *) deliveryTime shippingFeeIncluded: (BOOL) shippingFeeIncluded
 //------------------------------------------------------------------------------------------------------------------------------
 {
     NSString *message = @"";
@@ -506,10 +506,15 @@
     NSString *day     = NSLocalizedString(@"dayString", nil);
     NSString *days    = NSLocalizedString(@"daysString", nil);
     
+    NSString *shippingFeeOption = NSLocalizedString(@"Shipping fee is included", nil);
+    if (!shippingFeeIncluded)
+        shippingFeeOption = NSLocalizedString(@"Shipping fee is not included", nil);
+        
+    
     if ([deliveryTime integerValue] <= 1)
-        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, day];
+        message = [NSString stringWithFormat:@"%@\n  %@  \n%@\n%@ %@ %@", string1, offeredPrice, shippingFeeOption, string2, deliveryTime, day];
     else
-        message = [NSString stringWithFormat:@"%@\n  %@  \n%@ %@ %@", string1, offeredPrice, string2, deliveryTime, days];
+        message = [NSString stringWithFormat:@"%@\n  %@  \n%@\n%@ %@ %@", string1, offeredPrice, shippingFeeOption, string2, deliveryTime, days];
     
     return message;
 }

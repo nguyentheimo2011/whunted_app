@@ -213,6 +213,7 @@
 #define     FB_ORIGINAL_DEMANDED_PRICE          @"originalDemandedPrice"
 #define     FB_CURRENT_OFFER_ID                 @"currentOfferID"
 #define     FB_CURRENT_OFFERED_PRICE            @"currentOfferedPrice"
+#define     FB_CURRENT_SHIPPING_FEE_INCLUDED    @"currentShippingFeeIncluded"
 #define     FB_CURRENT_OFFERED_DELIVERY_TIME    @"currentOfferedDeliveryTime"
 #define     FB_CHAT_MESSAGE_TYPE                @"chatMessageType"
 
