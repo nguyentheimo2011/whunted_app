@@ -190,8 +190,6 @@
 		E9B659B81BF05C7E002CF40B /* cross_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B51BF05C7E002CF40B /* cross_icon@1x.png */; };
 		E9B659B91BF05C7E002CF40B /* cross_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B61BF05C7E002CF40B /* cross_icon@2x.png */; };
 		E9B659BA1BF05C7E002CF40B /* cross_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659B71BF05C7E002CF40B /* cross_icon@3x.png */; };
-		E9B800701B144376006D9133 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006E1B144376006D9133 /* Bolts.framework */; };
-		E9B800711B144376006D9133 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8006F1B144376006D9133 /* Parse.framework */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
 		E9B800751B1443D8006D9133 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800741B1443D8006D9133 /* Accounts.framework */; };
 		E9B800771B1443E3006D9133 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800761B1443E3006D9133 /* AudioToolbox.framework */; };
@@ -207,10 +205,6 @@
 		E9B8008B1B1444D1006D9133 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8008A1B1444D1006D9133 /* StoreKit.framework */; };
 		E9B8008D1B1444DE006D9133 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8008C1B1444DE006D9133 /* SystemConfiguration.framework */; };
 		E9B8008F1B1444F2006D9133 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B8008E1B1444F2006D9133 /* libz.dylib */; };
-		E9B800941B144527006D9133 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800911B144527006D9133 /* FBSDKCoreKit.framework */; };
-		E9B800951B144527006D9133 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800921B144527006D9133 /* FBSDKLoginKit.framework */; };
-		E9B800961B144527006D9133 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800931B144527006D9133 /* FBSDKShareKit.framework */; };
-		E9B800981B14458B006D9133 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800971B14458B006D9133 /* ParseFacebookUtilsV4.framework */; };
 		E9B800A31B16B5BC006D9133 /* app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A01B16B5BC006D9133 /* app_icon@1x.png */; };
 		E9B800A41B16B5BC006D9133 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A11B16B5BC006D9133 /* app_icon@2x.png */; };
 		E9B800A51B16B5BC006D9133 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B800A21B16B5BC006D9133 /* app_icon@3x.png */; };
@@ -590,8 +584,6 @@
 		E9B659B51BF05C7E002CF40B /* cross_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@1x.png"; path = "Resources/Navigation Icons/cross_icon@1x.png"; sourceTree = "<group>"; };
 		E9B659B61BF05C7E002CF40B /* cross_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@2x.png"; path = "Resources/Navigation Icons/cross_icon@2x.png"; sourceTree = "<group>"; };
 		E9B659B71BF05C7E002CF40B /* cross_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cross_icon@3x.png"; path = "Resources/Navigation Icons/cross_icon@3x.png"; sourceTree = "<group>"; };
-		E9B8006E1B144376006D9133 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "whunted/Library/Parse-library-1.7.4/Bolts.framework"; sourceTree = "<group>"; };
-		E9B8006F1B144376006D9133 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "whunted/Library/Parse-library-1.7.4/Parse.framework"; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E9B800741B1443D8006D9133 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E9B800761B1443E3006D9133 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -607,10 +599,6 @@
 		E9B8008A1B1444D1006D9133 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E9B8008C1B1444DE006D9133 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E9B8008E1B1444F2006D9133 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		E9B800911B144527006D9133 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "whunted/Library/Facebook SDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		E9B800921B144527006D9133 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "whunted/Library/Facebook SDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		E9B800931B144527006D9133 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "whunted/Library/Facebook SDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
-		E9B800971B14458B006D9133 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "whunted/Library/Parse-library-1.7.4/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
 		E9B800A01B16B5BC006D9133 /* app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@1x.png"; path = "Resources/App Icons/App Icon/app_icon@1x.png"; sourceTree = "<group>"; };
 		E9B800A11B16B5BC006D9133 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/App Icons/App Icon/app_icon@2x.png"; sourceTree = "<group>"; };
 		E9B800A21B16B5BC006D9133 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/App Icons/App Icon/app_icon@3x.png"; sourceTree = "<group>"; };
@@ -785,24 +773,18 @@
 				E9A07BE71B3009F500904DE9 /* libc++.dylib in Frameworks */,
 				E9A07BE51B3009D800904DE9 /* libicucore.dylib in Frameworks */,
 				E9B8008F1B1444F2006D9133 /* libz.dylib in Frameworks */,
-				E9B800951B144527006D9133 /* FBSDKLoginKit.framework in Frameworks */,
 				E9B8008B1B1444D1006D9133 /* StoreKit.framework in Frameworks */,
 				E9B800871B1444BB006D9133 /* QuartzCore.framework in Frameworks */,
 				E9B800851B1444B3006D9133 /* MobileCoreServices.framework in Frameworks */,
 				E9B800831B14447B006D9133 /* AdSupport.framework in Frameworks */,
 				E9B800811B144470006D9133 /* CoreGraphics.framework in Frameworks */,
-				E9B800941B144527006D9133 /* FBSDKCoreKit.framework in Frameworks */,
-				E9B800981B14458B006D9133 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				E9B8007F1B14445B006D9133 /* Social.framework in Frameworks */,
 				E9B8007D1B144447006D9133 /* Foundation.framework in Frameworks */,
 				E9B800791B144412006D9133 /* CoreLocation.framework in Frameworks */,
 				E9B800771B1443E3006D9133 /* AudioToolbox.framework in Frameworks */,
 				E9B800751B1443D8006D9133 /* Accounts.framework in Frameworks */,
 				E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */,
-				E9B800961B144527006D9133 /* FBSDKShareKit.framework in Frameworks */,
 				64AE23510F482E5A1A10D7E5 /* libPods.a in Frameworks */,
-				E9B800711B144376006D9133 /* Parse.framework in Frameworks */,
-				E9B800701B144376006D9133 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,8 +819,6 @@
 				E9B800761B1443E3006D9133 /* AudioToolbox.framework */,
 				E9B800741B1443D8006D9133 /* Accounts.framework */,
 				E9B800721B1443B5006D9133 /* libsqlite3.dylib */,
-				E95CFA4C1B133FD5003755E3 /* Parse SDK */,
-				E95CFA4B1B133FB6003755E3 /* Facebook SDK */,
 				A02F6CD541644ABF1CD6C53B /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1300,26 +1280,6 @@
 				E95574591AF86D2600F0B230 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E95CFA4B1B133FB6003755E3 /* Facebook SDK */ = {
-			isa = PBXGroup;
-			children = (
-				E9B800911B144527006D9133 /* FBSDKCoreKit.framework */,
-				E9B800921B144527006D9133 /* FBSDKLoginKit.framework */,
-				E9B800931B144527006D9133 /* FBSDKShareKit.framework */,
-			);
-			name = "Facebook SDK";
-			sourceTree = "<group>";
-		};
-		E95CFA4C1B133FD5003755E3 /* Parse SDK */ = {
-			isa = PBXGroup;
-			children = (
-				E9B800971B14458B006D9133 /* ParseFacebookUtilsV4.framework */,
-				E9B8006E1B144376006D9133 /* Bolts.framework */,
-				E9B8006F1B144376006D9133 /* Parse.framework */,
-			);
-			name = "Parse SDK";
 			sourceTree = "<group>";
 		};
 		E95CFA4D1B141E0B003755E3 /* LoginSignup */ = {
@@ -2098,6 +2058,7 @@
 				E95574381AF86D2600F0B230 /* Frameworks */,
 				E95574391AF86D2600F0B230 /* Resources */,
 				E65F4206D65767DD8A00C8D0 /* Copy Pods Resources */,
+				7446038F9EBC6661180ADE95 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2425,6 +2386,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7446038F9EBC6661180ADE95 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E65F4206D65767DD8A00C8D0 /* Copy Pods Resources */ = {
