@@ -1,20 +1,37 @@
 platform :ios, '8.0'
-pod 'AFNetworking', '~> 2.0'
+
+# Facebook SDK and Parse SDK
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'Parse'
 pod 'ParseFacebookUtilsV4'
-pod 'SZTextView'
-pod 'MRProgress'
-pod 'CLImageEditor'
+
+# Google Analytics SDK
+pod 'Google/Analytics', '~> 1.0.0'
+
+# Firebase SDK
 pod 'Firebase', '>= 2.3.1'
+
+# Web Service
+pod 'AFNetworking', '~> 2.0'
+
+# Progress Indicator
+pod 'MRProgress'
+
+# Messaging UI
 pod 'JSQMessagesViewController'
 pod 'IDMPhotoBrowser'
 pod 'RNGridMenu', '~> 0.1.2'
 pod 'SDWebImage', '~>3.7'
-pod 'APNumberPad'
-pod 'JTImageButton'
-pod 'MMPickerView', '~> 0.0.1'
+
+# Image Editor
+pod 'CLImageEditor'
 pod 'RSKImageCropper'
-pod 'Google/Analytics', '~> 1.0.0'
+
+# Alternative for default UI
+pod 'JTImageButton'
+pod 'APNumberPad'
+pod 'SZTextView'
+pod 'MMPickerView', '~> 0.0.1'
+

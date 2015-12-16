@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '36C4E78FE86F8A28E731BF4C'
+               BlueprintIdentifier = '7D06BA80EB76D23ECA10F1EE'
                BlueprintName = 'APNumberPad'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libAPNumberPad.a'>
