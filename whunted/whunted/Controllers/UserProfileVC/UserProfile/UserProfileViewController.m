@@ -896,25 +896,6 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-- (void) listGridViewButtonTapEventHandler: (id) sender
-//-------------------------------------------------------------------------------------------------------------------------------
-{
-    CGFloat const kIconHeight = 25;
-    
-    JTImageButton *listGridViewControl = (JTImageButton *) sender;
-    if (listGridViewControl.tag == 0)
-    {
-        [listGridViewControl createTitle:nil withIcon:[UIImage imageNamed:@"list_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
-        listGridViewControl.tag = 1;
-    }
-    else
-    {
-        [listGridViewControl createTitle:@"" withIcon:[UIImage imageNamed:@"grid_view_icon.png"] font:nil iconHeight:kIconHeight iconOffsetY:JTImageButtonIconOffsetYNone];
-        listGridViewControl.tag = 0;
-    }
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------
 - (void) preferencesButtonTapEventHandler
 //------------------------------------------------------------------------------------------------------------------------------
 {
