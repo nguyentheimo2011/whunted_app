@@ -91,8 +91,6 @@
 		E944C5CE1BCD155E00E27337 /* video.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5C51BCD155E00E27337 /* video.m */; };
 		E944C5D11BCD160600E27337 /* BackendUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5D01BCD160600E27337 /* BackendUtil.m */; };
 		E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */; };
-		E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17CA1AF8B51000E31B01 /* AppDelegate.m */; };
-		E94D17D41AF8B66000E31B01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E94D17D31AF8B66000E31B01 /* main.m */; };
 		E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94D17D91AF8B8F800E31B01 /* Info.plist */; };
 		E94D18151AF9CE8900E31B01 /* filter@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D18031AF9CE8900E31B01 /* filter@1x.png */; };
 		E94D18161AF9CE8900E31B01 /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E94D18041AF9CE8900E31B01 /* filter@2x.png */; };
@@ -254,6 +252,8 @@
 		E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C50E1B1C059D00222E0C /* MarketplaceCollectionViewCell.m */; };
 		E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */; };
 		E9DBDD791C218B0100A6BC8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9DBDD781C218B0100A6BC8A /* GoogleService-Info.plist */; };
+		E9DBDD831C22652700A6BC8A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDD821C22652700A6BC8A /* main.m */; };
+		E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDD851C22659A00A6BC8A /* AppDelegate.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9E31F651B849710008D6A3D /* camera_upload_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E31F5F1B849710008D6A3D /* camera_upload_icon@2x.png */; };
@@ -444,9 +444,6 @@
 		E944C5D01BCD160600E27337 /* BackendUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackendUtil.m; path = Library/Utilities/BackendUtil.m; sourceTree = "<group>"; };
 		E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageViewController.h; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.h; sourceTree = "<group>"; };
 		E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageViewController.m; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.m; sourceTree = "<group>"; };
-		E94D17C91AF8B51000E31B01 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Application/AppDelegate.h; sourceTree = "<group>"; };
-		E94D17CA1AF8B51000E31B01 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Application/AppDelegate.m; sourceTree = "<group>"; };
-		E94D17D31AF8B66000E31B01 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Application/main.m; sourceTree = "<group>"; };
 		E94D17D91AF8B8F800E31B01 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E94D18031AF9CE8900E31B01 /* filter@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "filter@1x.png"; path = "Resources/Navigation Icons/filter@1x.png"; sourceTree = "<group>"; };
 		E94D18041AF9CE8900E31B01 /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "filter@2x.png"; path = "Resources/Navigation Icons/filter@2x.png"; sourceTree = "<group>"; };
@@ -526,7 +523,6 @@
 		E983C4531BEC8C1300F0D316 /* mail_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail_icon@1x.png"; path = "Resources/LoginSignup/mail_icon@1x.png"; sourceTree = "<group>"; };
 		E983C4541BEC8C1300F0D316 /* mail_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail_icon@2x.png"; path = "Resources/LoginSignup/mail_icon@2x.png"; sourceTree = "<group>"; };
 		E983C4551BEC8C1300F0D316 /* mail_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail_icon@3x.png"; path = "Resources/LoginSignup/mail_icon@3x.png"; sourceTree = "<group>"; };
-		E9A07BE31B2ED9F500904DE9 /* AppConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Application/AppConstant.h; sourceTree = "<group>"; };
 		E9A07BE41B3009D800904DE9 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		E9A07BE61B3009F500904DE9 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		E9A07BEE1B313D7000904DE9 /* InboxAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InboxAllViewController.h; path = Controllers/InboxController/InboxAllController/InboxAllViewController.h; sourceTree = "<group>"; };
@@ -659,6 +655,10 @@
 		E9D9C5111B1DA51F00222E0C /* ItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailsViewController.h; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.h; sourceTree = "<group>"; };
 		E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailsViewController.m; path = Controllers/Marketplace/ItemDetailsVC/ItemDetailsViewController.m; sourceTree = "<group>"; };
 		E9DBDD781C218B0100A6BC8A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/pList-Files/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9DBDD821C22652700A6BC8A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Other Sources/main.m"; sourceTree = "<group>"; };
+		E9DBDD841C22659A00A6BC8A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate/AppDelegate.h; sourceTree = "<group>"; };
+		E9DBDD851C22659A00A6BC8A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate/AppDelegate.m; sourceTree = "<group>"; };
+		E9DBDD881C22666500A6BC8A /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstant.h; path = Classes/Common/Constants/AppConstant.h; sourceTree = "<group>"; };
 		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
 		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
@@ -1094,10 +1094,10 @@
 			isa = PBXGroup;
 			children = (
 				E9DBDD811C22631B00A6BC8A /* Images */,
-				E9DBDD801C2261DE00A6BC8A /* Localization */,
 				E9DBDD7F1C2260F400A6BC8A /* NIBs */,
-				E9FC1D9A1B93D916001226C5 /* JSON */,
+				E9DBDD801C2261DE00A6BC8A /* Localization */,
 				E915F8191B3908CE00D0A2F8 /* Property List */,
+				E9FC1D9A1B93D916001226C5 /* JSON */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1811,8 +1811,8 @@
 		E9DBDD7B1C225D4300A6BC8A /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				E94D17C91AF8B51000E31B01 /* AppDelegate.h */,
-				E94D17CA1AF8B51000E31B01 /* AppDelegate.m */,
+				E9DBDD841C22659A00A6BC8A /* AppDelegate.h */,
+				E9DBDD851C22659A00A6BC8A /* AppDelegate.m */,
 			);
 			name = AppDelegate;
 			sourceTree = "<group>";
@@ -1820,7 +1820,7 @@
 		E9DBDD7C1C225D7E00A6BC8A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E9A07BE31B2ED9F500904DE9 /* AppConstant.h */,
+				E9DBDD871C2265EB00A6BC8A /* Constants */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1835,7 +1835,7 @@
 		E9DBDD7E1C225E3400A6BC8A /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E94D17D31AF8B66000E31B01 /* main.m */,
+				E9DBDD821C22652700A6BC8A /* main.m */,
 				E94D17D91AF8B8F800E31B01 /* Info.plist */,
 				E955744B1AF86D2600F0B230 /* Images.xcassets */,
 			);
@@ -1861,6 +1861,7 @@
 		E9DBDD811C22631B00A6BC8A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E94D18211AF9CFB400E31B01 /* App Icons */,
 				E9FC1D591B8C5CEF001226C5 /* SortAndFilter */,
 				E9E31F5D1B8496F7008D6A3D /* UploadPopup */,
 				E92A0BE11B6CD36B000D66BD /* Feedback */,
@@ -1872,10 +1873,17 @@
 				E91A5A581B0484CA008382E2 /* Want Details */,
 				E94D182A1AF9F16800E31B01 /* Tab Bar Icons */,
 				E94D17DB1AF8C0C400E31B01 /* Navigation Icons */,
-				E94D18211AF9CFB400E31B01 /* App Icons */,
 				E9638C691BFC3E1C0042DEE5 /* Verification */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E9DBDD871C2265EB00A6BC8A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDD881C22666500A6BC8A /* AppConstant.h */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
@@ -2441,7 +2449,6 @@
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
 				E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
-				E94D17CB1AF8B51000E31B01 /* AppDelegate.m in Sources */,
 				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
 				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */,
@@ -2450,6 +2457,7 @@
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
 				E944C5C71BCD155E00E27337 /* common.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
+				E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */,
 				E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */,
 				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
@@ -2481,7 +2489,7 @@
 				E944C5CE1BCD155E00E27337 /* video.m in Sources */,
 				E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */,
 				E944C5CB1BCD155E00E27337 /* image.m in Sources */,
-				E94D17D41AF8B66000E31B01 /* main.m in Sources */,
+				E9DBDD831C22652700A6BC8A /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
 				E9EEB93A1B5D203800815D56 /* HashtagData.m in Sources */,
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
