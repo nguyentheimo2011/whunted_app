@@ -179,9 +179,6 @@
 		E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */; };
 		E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */; };
 		E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */; };
-		E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */; };
-		E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */; };
-		E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */; };
 		E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */; };
 		E9B659AF1BF0564D002CF40B /* magnifying_glass_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659AD1BF0564D002CF40B /* magnifying_glass_icon@1x.png */; };
 		E9B659B01BF0564D002CF40B /* magnifying_glass_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9B659AE1BF0564D002CF40B /* magnifying_glass_icon@2x.png */; };
@@ -229,12 +226,6 @@
 		E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A01B62268500CBEAFF /* CountryTableViewController.m */; };
 		E9D264A51B6226E500CBEAFF /* ResidingCountryTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */; };
 		E9D264A71B62295D00CBEAFF /* CountryAndCityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */; };
-		E9D264AF1B64ACB300CBEAFF /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */; };
-		E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */; };
-		E9D264B11B64ACB300CBEAFF /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */; };
-		E9D264B21B64ACB300CBEAFF /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */; };
-		E9D264B31B64ACB300CBEAFF /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */; };
-		E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */; };
 		E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264B71B65E7DA00CBEAFF /* ResidingCityTableVC.m */; };
 		E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264BB1B66399900CBEAFF /* AIDatePickerController.m */; };
 		E9D264C01B6640EE00CBEAFF /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D264BF1B6640EE00CBEAFF /* UserData.m */; };
@@ -572,9 +563,6 @@
 		E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginUIHelper.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginUIHelper/EmailSignupLoginUIHelper.m; sourceTree = "<group>"; };
 		E9B063E51BD6AE6E00C49D77 /* EmailSignupLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSignupLoginVC.h; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.h; sourceTree = "<group>"; };
 		E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginVC.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.m; sourceTree = "<group>"; };
-		E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "Resources/Fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; };
-		E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.otf"; path = "Resources/Fonts/Montserrat-Light.otf"; sourceTree = "<group>"; };
-		E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.otf"; path = "Resources/Fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		E9B5CAC41B41FC330004CDC9 /* SyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncEngine.h; path = Library/SyncEngine/SyncEngine.h; sourceTree = "<group>"; };
 		E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncEngine.m; path = Library/SyncEngine/SyncEngine.m; sourceTree = "<group>"; };
 		E9B659AD1BF0564D002CF40B /* magnifying_glass_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass_icon@1x.png"; path = "Resources/Navigation Icons/magnifying_glass_icon@1x.png"; sourceTree = "<group>"; };
@@ -633,12 +621,6 @@
 		E9D264A31B6226E500CBEAFF /* ResidingCountryTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResidingCountryTableVC.h; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.h; sourceTree = "<group>"; };
 		E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResidingCountryTableVC.m; path = Controllers/UserProfileVC/ResidingCountryTableVC/ResidingCountryTableVC.m; sourceTree = "<group>"; };
 		E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CountryAndCityList.plist; path = "Resources/pList-Files/CountryAndCityList.plist"; sourceTree = "<group>"; };
-		E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
-		E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-ExtraLight.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-ExtraLight.otf"; sourceTree = "<group>"; };
-		E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-It.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-It.otf"; sourceTree = "<group>"; };
-		E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Light.otf"; sourceTree = "<group>"; };
-		E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
-		E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Semibold.otf"; path = "Resources/Fonts/SourceSanPro/SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		E9D264B61B65E7DA00CBEAFF /* ResidingCityTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResidingCityTableVC.h; path = Controllers/UserProfileVC/ResidingCityTableVC/ResidingCityTableVC.h; sourceTree = "<group>"; };
 		E9D264B71B65E7DA00CBEAFF /* ResidingCityTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResidingCityTableVC.m; path = Controllers/UserProfileVC/ResidingCityTableVC/ResidingCityTableVC.m; sourceTree = "<group>"; };
 		E9D264BA1B66399900CBEAFF /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIDatePickerController.h; path = Library/AIDatePickerController/AIDatePickerController.h; sourceTree = "<group>"; };
@@ -851,14 +833,14 @@
 			name = PasswordResetVC;
 			sourceTree = "<group>";
 		};
-		E915F8191B3908CE00D0A2F8 /* pList-Files */ = {
+		E915F8191B3908CE00D0A2F8 /* Property List */ = {
 			isa = PBXGroup;
 			children = (
 				E9DBDD781C218B0100A6BC8A /* GoogleService-Info.plist */,
 				E915F81A1B39090D00D0A2F8 /* CountryNames.plist */,
 				E9D264A61B62295D00CBEAFF /* CountryAndCityList.plist */,
 			);
-			name = "pList-Files";
+			name = "Property List";
 			sourceTree = "<group>";
 		};
 		E915F81C1B39162B00D0A2F8 /* CountryTableVC */ = {
@@ -1111,22 +1093,11 @@
 		E94D17D51AF8B68600E31B01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E9FC1D9A1B93D916001226C5 /* JSON-files */,
-				E9FC1D591B8C5CEF001226C5 /* SortAndFilter */,
-				E9E31F5D1B8496F7008D6A3D /* UploadPopup */,
-				E92A0BE11B6CD36B000D66BD /* Feedback */,
-				E97A95151B454061003796DD /* Chat */,
-				E9B5CAB31B3AA8240004CDC9 /* Fonts */,
-				E915F8191B3908CE00D0A2F8 /* pList-Files */,
-				E98113091B2155B200ECAA0C /* Transaction */,
-				E98113021B21559B00ECAA0C /* User Profile */,
-				E95CFA511B141ED0003755E3 /* LoginSignup */,
-				E9E4568E1B0F0D9300E8B55D /* WantSellCell */,
-				E91A5A581B0484CA008382E2 /* Want Details */,
-				E94D182A1AF9F16800E31B01 /* Tab Bar Icons */,
-				E94D18211AF9CFB400E31B01 /* App Icons */,
-				E94D17DB1AF8C0C400E31B01 /* Navigation Icons */,
-				E9638C691BFC3E1C0042DEE5 /* Verification */,
+				E9DBDD811C22631B00A6BC8A /* Images */,
+				E9DBDD801C2261DE00A6BC8A /* Localization */,
+				E9DBDD7F1C2260F400A6BC8A /* NIBs */,
+				E9FC1D9A1B93D916001226C5 /* JSON */,
+				E915F8191B3908CE00D0A2F8 /* Property List */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1244,8 +1215,6 @@
 				E9DBDD7A1C225D0800A6BC8A /* Classes */,
 				E94D17D51AF8B68600E31B01 /* Resources */,
 				E9DBDD7E1C225E3400A6BC8A /* Other Sources */,
-				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
-				E9D5049C1B340F6F008ABDE4 /* Localizable.strings */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
 				E94D183D1AF9FB2300E31B01 /* Models */,
 				E916F45D1B02F604005055E3 /* Library */,
@@ -1667,17 +1636,6 @@
 			name = EmailSignupLoginUIHelper;
 			sourceTree = "<group>";
 		};
-		E9B5CAB31B3AA8240004CDC9 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				E9D264A81B64AC9B00CBEAFF /* SourceSanPro */,
-				E9B5CAB81B3ADC6D0004CDC9 /* Montserrat-Bold.otf */,
-				E9B5CAB91B3ADC6D0004CDC9 /* Montserrat-Light.otf */,
-				E9B5CABA1B3ADC6D0004CDC9 /* Montserrat-Regular.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1739,19 +1697,6 @@
 				E9D264A41B6226E500CBEAFF /* ResidingCountryTableVC.m */,
 			);
 			name = ResidingCountryTableVC;
-			sourceTree = "<group>";
-		};
-		E9D264A81B64AC9B00CBEAFF /* SourceSanPro */ = {
-			isa = PBXGroup;
-			children = (
-				E9D264A91B64ACB300CBEAFF /* SourceSansPro-Bold.otf */,
-				E9D264AA1B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf */,
-				E9D264AB1B64ACB300CBEAFF /* SourceSansPro-It.otf */,
-				E9D264AC1B64ACB300CBEAFF /* SourceSansPro-Light.otf */,
-				E9D264AD1B64ACB300CBEAFF /* SourceSansPro-Regular.otf */,
-				E9D264AE1B64ACB300CBEAFF /* SourceSansPro-Semibold.otf */,
-			);
-			name = SourceSanPro;
 			sourceTree = "<group>";
 		};
 		E9D264B51B65E76B00CBEAFF /* ResidingCityTableVC */ = {
@@ -1895,6 +1840,42 @@
 				E955744B1AF86D2600F0B230 /* Images.xcassets */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		E9DBDD7F1C2260F400A6BC8A /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
+		E9DBDD801C2261DE00A6BC8A /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				E9D5049C1B340F6F008ABDE4 /* Localizable.strings */,
+			);
+			name = Localization;
+			sourceTree = "<group>";
+		};
+		E9DBDD811C22631B00A6BC8A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E9FC1D591B8C5CEF001226C5 /* SortAndFilter */,
+				E9E31F5D1B8496F7008D6A3D /* UploadPopup */,
+				E92A0BE11B6CD36B000D66BD /* Feedback */,
+				E97A95151B454061003796DD /* Chat */,
+				E98113091B2155B200ECAA0C /* Transaction */,
+				E98113021B21559B00ECAA0C /* User Profile */,
+				E95CFA511B141ED0003755E3 /* LoginSignup */,
+				E9E4568E1B0F0D9300E8B55D /* WantSellCell */,
+				E91A5A581B0484CA008382E2 /* Want Details */,
+				E94D182A1AF9F16800E31B01 /* Tab Bar Icons */,
+				E94D17DB1AF8C0C400E31B01 /* Navigation Icons */,
+				E94D18211AF9CFB400E31B01 /* App Icons */,
+				E9638C691BFC3E1C0042DEE5 /* Verification */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
@@ -2061,12 +2042,12 @@
 			name = SortAndFilter;
 			sourceTree = "<group>";
 		};
-		E9FC1D9A1B93D916001226C5 /* JSON-files */ = {
+		E9FC1D9A1B93D916001226C5 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
 				E9FC1D9B1B93D96F001226C5 /* countriesToCities.json */,
 			);
-			name = "JSON-files";
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		E9FC40481C02FF4F00C02520 /* CompletedVerification */ = {
@@ -2191,7 +2172,6 @@
 				E9FC1D881B8EBA2E001226C5 /* highest_price_icon@1x.png in Resources */,
 				E9E4566D1B0D8C7400E8B55D /* sell_icon@1x.png in Resources */,
 				E91A5A701B04C1E6008382E2 /* next@3x.png in Resources */,
-				E9D264B31B64ACB300CBEAFF /* SourceSansPro-Regular.otf in Resources */,
 				E915F81B1B39090D00D0A2F8 /* CountryNames.plist in Resources */,
 				E900E0261BEA0A7600C08947 /* default_profile_image@3x.png in Resources */,
 				E98113151B2155CB00ECAA0C /* chat_with_seller@3x.png in Resources */,
@@ -2209,7 +2189,6 @@
 				E92A0BF41B706F0E000D66BD /* sad_face_small@1x.png in Resources */,
 				E92A0BF61B706F0E000D66BD /* sad_face_small@3x.png in Resources */,
 				E9638C6E1BFC3E470042DEE5 /* phone_icon@2x.png in Resources */,
-				E9B5CABD1B3ADC6D0004CDC9 /* Montserrat-Regular.otf in Resources */,
 				E91A5A6A1B049A2D008382E2 /* square_dashed@3x.png in Resources */,
 				E9E31F741B849989008D6A3D /* image_link_upload_icon@1x.png in Resources */,
 				E9CF95731BB01E89007272F3 /* secondhand_option_icon@1x.png in Resources */,
@@ -2218,12 +2197,8 @@
 				E9B659B21BF0586F002CF40B /* magnifying_glass_icon@3x.png in Resources */,
 				E98113101B2155CB00ECAA0C /* accept@1x.png in Resources */,
 				E91A5A621B048590008382E2 /* cameraplus@1x.png in Resources */,
-				E9B5CABB1B3ADC6D0004CDC9 /* Montserrat-Bold.otf in Resources */,
 				E94D181C1AF9CE8900E31B01 /* profile@2x.png in Resources */,
 				E9E31F671B849710008D6A3D /* gallery_upload_icon@2x.png in Resources */,
-				E9D264AF1B64ACB300CBEAFF /* SourceSansPro-Bold.otf in Resources */,
-				E9B5CABC1B3ADC6D0004CDC9 /* Montserrat-Light.otf in Resources */,
-				E9D264B41B64ACB300CBEAFF /* SourceSansPro-Semibold.otf in Resources */,
 				E9E456911B0F0DA500E8B55D /* likes_icon.png in Resources */,
 				E951C3FC1B81F26300A1B384 /* category_icon@1x.png in Resources */,
 				E983C4571BEC8C1300F0D316 /* facebook_icon@2x.png in Resources */,
@@ -2244,13 +2219,11 @@
 				E9E31F711B849989008D6A3D /* camera_upload_icon@3x.png in Resources */,
 				E9FC40501C030CC400C02520 /* big_verified_phone_icon@2x.png in Resources */,
 				E9D433051B550EC200530492 /* setting_icon@1x.png in Resources */,
-				E9D264B01B64ACB300CBEAFF /* SourceSansPro-ExtraLight.otf in Resources */,
 				E91806341B7C85C7009C1F2D /* pricetag_icon@3x.png in Resources */,
 				E90ACE221B73250700DC9768 /* profile_tab_icon@1x.png in Resources */,
 				E918063C1B7C88EE009C1F2D /* sellers_icon@2x.png in Resources */,
 				E91806321B7C85C7009C1F2D /* pricetag_icon@1x.png in Resources */,
 				E9E4566E1B0D8C7400E8B55D /* sell_icon@2x.png in Resources */,
-				E9D264B11B64ACB300CBEAFF /* SourceSansPro-It.otf in Resources */,
 				E97A951F1B454072003796DD /* chat_pictures.png in Resources */,
 				E9E31F751B849989008D6A3D /* image_link_upload_icon@3x.png in Resources */,
 				E9E31F841B859305008D6A3D /* user_profile_image_placeholder_big@3x.png in Resources */,
@@ -2337,7 +2310,6 @@
 				E955744F1AF86D2600F0B230 /* LaunchScreen.xib in Resources */,
 				E9FC1D8E1B8EBA2E001226C5 /* nearest_icon@1x.png in Resources */,
 				E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */,
-				E9D264B21B64ACB300CBEAFF /* SourceSansPro-Light.otf in Resources */,
 				E9FC1D911B8EBA2E001226C5 /* popular_icon@1x.png in Resources */,
 				E983C4591BEC8C1300F0D316 /* mail_icon@1x.png in Resources */,
 				E918063D1B7C88EE009C1F2D /* sellers_icon@3x.png in Resources */,
