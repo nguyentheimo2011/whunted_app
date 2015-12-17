@@ -165,9 +165,9 @@
     _ratingSegmentedControl.frame = CGRectMake(kControlLeftMargin, kControlYPos, kControlWidth, kControlHeight);
     [_ratingSegmentedControl setTitleTextAttributes:@{NSFontAttributeName : DEFAULT_FONT} forState:UIControlStateNormal];
     _ratingSegmentedControl.selectedSegmentIndex = 0;
-    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"smiling_face_small.png"] forSegmentAtIndex:0];
-    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"meh_face_small.png"] forSegmentAtIndex:1];
-    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"sad_face_small.png"] forSegmentAtIndex:2];
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"smiling_face.png"] forSegmentAtIndex:0];
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"meh_face.png"] forSegmentAtIndex:1];
+    [_ratingSegmentedControl setImage:[UIImage imageNamed:@"sad_face.png"] forSegmentAtIndex:2];
     _ratingSegmentedControl.tintColor = MAIN_BLUE_COLOR;
     [_ratingCell addSubview:_ratingSegmentedControl];
 }
