@@ -1082,17 +1082,6 @@
 			name = ItemImageVC;
 			sourceTree = "<group>";
 		};
-		E94D17C81AF8B4FD00E31B01 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				E94D17C91AF8B51000E31B01 /* AppDelegate.h */,
-				E94D17CA1AF8B51000E31B01 /* AppDelegate.m */,
-				E94D17D31AF8B66000E31B01 /* main.m */,
-				E9A07BE31B2ED9F500904DE9 /* AppConstant.h */,
-			);
-			name = Application;
-			sourceTree = "<group>";
-		};
 		E94D17CC1AF8B55800E31B01 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1252,15 +1241,14 @@
 		E955743D1AF86D2600F0B230 /* whunted */ = {
 			isa = PBXGroup;
 			children = (
-				E94D17C81AF8B4FD00E31B01 /* Application */,
+				E9DBDD7A1C225D0800A6BC8A /* Classes */,
+				E94D17D51AF8B68600E31B01 /* Resources */,
+				E9DBDD7E1C225E3400A6BC8A /* Other Sources */,
+				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
+				E9D5049C1B340F6F008ABDE4 /* Localizable.strings */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
 				E94D183D1AF9FB2300E31B01 /* Models */,
 				E916F45D1B02F604005055E3 /* Library */,
-				E94D17D51AF8B68600E31B01 /* Resources */,
-				E955744B1AF86D2600F0B230 /* Images.xcassets */,
-				E955744D1AF86D2600F0B230 /* LaunchScreen.xib */,
-				E94D17D91AF8B8F800E31B01 /* Info.plist */,
-				E9D5049C1B340F6F008ABDE4 /* Localizable.strings */,
 			);
 			path = whunted;
 			sourceTree = "<group>";
@@ -1863,6 +1851,50 @@
 				E9D9C5121B1DA51F00222E0C /* ItemDetailsViewController.m */,
 			);
 			name = ItemDetailsVC;
+			sourceTree = "<group>";
+		};
+		E9DBDD7A1C225D0800A6BC8A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDD7B1C225D4300A6BC8A /* AppDelegate */,
+				E9DBDD7C1C225D7E00A6BC8A /* Common */,
+				E9DBDD7D1C225DA400A6BC8A /* Modules */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		E9DBDD7B1C225D4300A6BC8A /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E94D17C91AF8B51000E31B01 /* AppDelegate.h */,
+				E94D17CA1AF8B51000E31B01 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		E9DBDD7C1C225D7E00A6BC8A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E9A07BE31B2ED9F500904DE9 /* AppConstant.h */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		E9DBDD7D1C225DA400A6BC8A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		E9DBDD7E1C225E3400A6BC8A /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E94D17D31AF8B66000E31B01 /* main.m */,
+				E94D17D91AF8B8F800E31B01 /* Info.plist */,
+				E955744B1AF86D2600F0B230 /* Images.xcassets */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
