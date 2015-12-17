@@ -68,7 +68,7 @@
     CGFloat const kButtonOriginY = 30.0f;
     
     _userProfileImageButton = [[UIButton alloc] initWithFrame:CGRectMake(kButtonOriginX, kButtonOriginY, kButtonWidth, kButtonHeight)];
-    [_userProfileImageButton setBackgroundImage:[UIImage imageNamed:@"user_profile_image_placeholder_big.png"] forState:UIControlStateNormal];
+    [_userProfileImageButton setBackgroundImage:[UIImage imageNamed:@"user_profile_image_placeholder_medium.png"] forState:UIControlStateNormal];
     _userProfileImageButton.layer.cornerRadius = kButtonHeight/2;
     _userProfileImageButton.clipsToBounds = YES;
     [_userProfileImageButton addTarget:self action:@selector(userProfilePicButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
@@ -315,7 +315,7 @@
             {
                 if (_cellIndex == cellIndex)
                 {
-                    UIImage *image = [UIImage imageNamed:@"user_profile_image_placeholder_big.png"];
+                    UIImage *image = [UIImage imageNamed:@"user_profile_image_placeholder_medium.png"];
                     [_userProfileImageButton setBackgroundImage:image forState:UIControlStateNormal];
                 
                     NSString *imageKey = [NSString stringWithFormat:@"%@%@", _message[FB_OPPOSING_USER_ID], USER_PROFILE_IMAGE];

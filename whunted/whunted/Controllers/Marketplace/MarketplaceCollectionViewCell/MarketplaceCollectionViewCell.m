@@ -441,7 +441,7 @@
             }
             else
             {
-                UIImage *placeHolder = [UIImage imageNamed:@"user_profile_image_placeholder_big.png"];
+                UIImage *placeHolder = [UIImage imageNamed:@"user_profile_image_placeholder_medium.png"];
                 [_buyerProfilePic setBackgroundImage:placeHolder forState:UIControlStateNormal];
                 NSString *imageKey = [NSString stringWithFormat:@"%@%@", _wantData.buyerID, USER_PROFILE_IMAGE];
                 [[ProfileImageCache sharedCache] setObject:placeHolder forKey:imageKey];
