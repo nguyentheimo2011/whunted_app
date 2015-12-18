@@ -16,15 +16,6 @@
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
 		E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */; };
-		E944C5C61BCD155E00E27337 /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5B51BCD155E00E27337 /* camera.m */; };
-		E944C5C71BCD155E00E27337 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5B71BCD155E00E27337 /* common.m */; };
-		E944C5C81BCD155E00E27337 /* converter.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5B91BCD155E00E27337 /* converter.m */; };
-		E944C5C91BCD155E00E27337 /* emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5BB1BCD155E00E27337 /* emoji.m */; };
-		E944C5CA1BCD155E00E27337 /* fileutil.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5BD1BCD155E00E27337 /* fileutil.m */; };
-		E944C5CB1BCD155E00E27337 /* image.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5BF1BCD155E00E27337 /* image.m */; };
-		E944C5CC1BCD155E00E27337 /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5C11BCD155E00E27337 /* push.m */; };
-		E944C5CD1BCD155E00E27337 /* recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5C31BCD155E00E27337 /* recent.m */; };
-		E944C5CE1BCD155E00E27337 /* video.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5C51BCD155E00E27337 /* video.m */; };
 		E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */; };
 		E94D17DA1AF8B8F800E31B01 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94D17D91AF8B8F800E31B01 /* Info.plist */; };
 		E955744C1AF86D2600F0B230 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E955744B1AF86D2600F0B230 /* Images.xcassets */; };
@@ -270,6 +261,15 @@
 		E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF3C1C23D31E00A6BC8A /* HashtagData.m */; };
 		E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */; };
 		E9DBDF531C23DA7700A6BC8A /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */; };
+		E9DBDF691C23DCC300A6BC8A /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF581C23DCC300A6BC8A /* camera.m */; };
+		E9DBDF6A1C23DCC300A6BC8A /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF5A1C23DCC300A6BC8A /* common.m */; };
+		E9DBDF6B1C23DCC300A6BC8A /* converter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF5C1C23DCC300A6BC8A /* converter.m */; };
+		E9DBDF6C1C23DCC300A6BC8A /* emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF5E1C23DCC300A6BC8A /* emoji.m */; };
+		E9DBDF6D1C23DCC300A6BC8A /* fileutil.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF601C23DCC300A6BC8A /* fileutil.m */; };
+		E9DBDF6E1C23DCC300A6BC8A /* image.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF621C23DCC300A6BC8A /* image.m */; };
+		E9DBDF6F1C23DCC300A6BC8A /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF641C23DCC300A6BC8A /* push.m */; };
+		E9DBDF701C23DCC300A6BC8A /* recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF661C23DCC300A6BC8A /* recent.m */; };
+		E9DBDF711C23DCC300A6BC8A /* video.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF681C23DCC300A6BC8A /* video.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
@@ -309,24 +309,6 @@
 		E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackReviewVC.m; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.m; sourceTree = "<group>"; };
 		E92EC51E1B6A3D0E00AABB72 /* FeedbackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackTableViewCell.h; path = Controllers/Feedback/FeedbackTableViewCell/FeedbackTableViewCell.h; sourceTree = "<group>"; };
 		E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackTableViewCell.m; path = Controllers/Feedback/FeedbackTableViewCell/FeedbackTableViewCell.m; sourceTree = "<group>"; };
-		E944C5B41BCD155E00E27337 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = Library/ChatHelper/camera.h; sourceTree = "<group>"; };
-		E944C5B51BCD155E00E27337 /* camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = camera.m; path = Library/ChatHelper/camera.m; sourceTree = "<group>"; };
-		E944C5B61BCD155E00E27337 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = Library/ChatHelper/common.h; sourceTree = "<group>"; };
-		E944C5B71BCD155E00E27337 /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = common.m; path = Library/ChatHelper/common.m; sourceTree = "<group>"; };
-		E944C5B81BCD155E00E27337 /* converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = converter.h; path = Library/ChatHelper/converter.h; sourceTree = "<group>"; };
-		E944C5B91BCD155E00E27337 /* converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = converter.m; path = Library/ChatHelper/converter.m; sourceTree = "<group>"; };
-		E944C5BA1BCD155E00E27337 /* emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emoji.h; path = Library/ChatHelper/emoji.h; sourceTree = "<group>"; };
-		E944C5BB1BCD155E00E27337 /* emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = emoji.m; path = Library/ChatHelper/emoji.m; sourceTree = "<group>"; };
-		E944C5BC1BCD155E00E27337 /* fileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fileutil.h; path = Library/ChatHelper/fileutil.h; sourceTree = "<group>"; };
-		E944C5BD1BCD155E00E27337 /* fileutil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = fileutil.m; path = Library/ChatHelper/fileutil.m; sourceTree = "<group>"; };
-		E944C5BE1BCD155E00E27337 /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image.h; path = Library/ChatHelper/image.h; sourceTree = "<group>"; };
-		E944C5BF1BCD155E00E27337 /* image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = image.m; path = Library/ChatHelper/image.m; sourceTree = "<group>"; };
-		E944C5C01BCD155E00E27337 /* push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = push.h; path = Library/ChatHelper/push.h; sourceTree = "<group>"; };
-		E944C5C11BCD155E00E27337 /* push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = push.m; path = Library/ChatHelper/push.m; sourceTree = "<group>"; };
-		E944C5C21BCD155E00E27337 /* recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recent.h; path = Library/ChatHelper/recent.h; sourceTree = "<group>"; };
-		E944C5C31BCD155E00E27337 /* recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recent.m; path = Library/ChatHelper/recent.m; sourceTree = "<group>"; };
-		E944C5C41BCD155E00E27337 /* video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = video.h; path = Library/ChatHelper/video.h; sourceTree = "<group>"; };
-		E944C5C51BCD155E00E27337 /* video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = video.m; path = Library/ChatHelper/video.m; sourceTree = "<group>"; };
 		E94A03721B1E9B9200339BC4 /* ItemImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageViewController.h; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.h; sourceTree = "<group>"; };
 		E94A03731B1E9B9200339BC4 /* ItemImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageViewController.m; path = Controllers/Marketplace/ItemImageVC/ItemImageViewController.m; sourceTree = "<group>"; };
 		E94D17D91AF8B8F800E31B01 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -628,6 +610,24 @@
 		E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackData.m; path = "Classes/Modules/UserFeedback/Application Logic/Model/Feedback/FeedbackData.m"; sourceTree = "<group>"; };
 		E9DBDF511C23DA7600A6BC8A /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = "Classes/Modules/Search/Application Logic/Helpers/SearchEngine.h"; sourceTree = "<group>"; };
 		E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = "Classes/Modules/Search/Application Logic/Helpers/SearchEngine.m"; sourceTree = "<group>"; };
+		E9DBDF571C23DCC300A6BC8A /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = "Classes/Modules/MessagingService/Application Logic/Library/camera.h"; sourceTree = "<group>"; };
+		E9DBDF581C23DCC300A6BC8A /* camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = camera.m; path = "Classes/Modules/MessagingService/Application Logic/Library/camera.m"; sourceTree = "<group>"; };
+		E9DBDF591C23DCC300A6BC8A /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common.h; path = "Classes/Modules/MessagingService/Application Logic/Library/common.h"; sourceTree = "<group>"; };
+		E9DBDF5A1C23DCC300A6BC8A /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = common.m; path = "Classes/Modules/MessagingService/Application Logic/Library/common.m"; sourceTree = "<group>"; };
+		E9DBDF5B1C23DCC300A6BC8A /* converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = converter.h; path = "Classes/Modules/MessagingService/Application Logic/Library/converter.h"; sourceTree = "<group>"; };
+		E9DBDF5C1C23DCC300A6BC8A /* converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = converter.m; path = "Classes/Modules/MessagingService/Application Logic/Library/converter.m"; sourceTree = "<group>"; };
+		E9DBDF5D1C23DCC300A6BC8A /* emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emoji.h; path = "Classes/Modules/MessagingService/Application Logic/Library/emoji.h"; sourceTree = "<group>"; };
+		E9DBDF5E1C23DCC300A6BC8A /* emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = emoji.m; path = "Classes/Modules/MessagingService/Application Logic/Library/emoji.m"; sourceTree = "<group>"; };
+		E9DBDF5F1C23DCC300A6BC8A /* fileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fileutil.h; path = "Classes/Modules/MessagingService/Application Logic/Library/fileutil.h"; sourceTree = "<group>"; };
+		E9DBDF601C23DCC300A6BC8A /* fileutil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = fileutil.m; path = "Classes/Modules/MessagingService/Application Logic/Library/fileutil.m"; sourceTree = "<group>"; };
+		E9DBDF611C23DCC300A6BC8A /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image.h; path = "Classes/Modules/MessagingService/Application Logic/Library/image.h"; sourceTree = "<group>"; };
+		E9DBDF621C23DCC300A6BC8A /* image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = image.m; path = "Classes/Modules/MessagingService/Application Logic/Library/image.m"; sourceTree = "<group>"; };
+		E9DBDF631C23DCC300A6BC8A /* push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = push.h; path = "Classes/Modules/MessagingService/Application Logic/Library/push.h"; sourceTree = "<group>"; };
+		E9DBDF641C23DCC300A6BC8A /* push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = push.m; path = "Classes/Modules/MessagingService/Application Logic/Library/push.m"; sourceTree = "<group>"; };
+		E9DBDF651C23DCC300A6BC8A /* recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recent.h; path = "Classes/Modules/MessagingService/Application Logic/Library/recent.h"; sourceTree = "<group>"; };
+		E9DBDF661C23DCC300A6BC8A /* recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recent.m; path = "Classes/Modules/MessagingService/Application Logic/Library/recent.m"; sourceTree = "<group>"; };
+		E9DBDF671C23DCC300A6BC8A /* video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = video.h; path = "Classes/Modules/MessagingService/Application Logic/Library/video.h"; sourceTree = "<group>"; };
+		E9DBDF681C23DCC300A6BC8A /* video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = video.m; path = "Classes/Modules/MessagingService/Application Logic/Library/video.m"; sourceTree = "<group>"; };
 		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
 		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
@@ -779,7 +779,6 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E944C5B31BCD153300E27337 /* ChatHelper */,
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
@@ -841,31 +840,6 @@
 				E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */,
 			);
 			name = FeedbackTableViewCell;
-			sourceTree = "<group>";
-		};
-		E944C5B31BCD153300E27337 /* ChatHelper */ = {
-			isa = PBXGroup;
-			children = (
-				E944C5B41BCD155E00E27337 /* camera.h */,
-				E944C5B51BCD155E00E27337 /* camera.m */,
-				E944C5B61BCD155E00E27337 /* common.h */,
-				E944C5B71BCD155E00E27337 /* common.m */,
-				E944C5B81BCD155E00E27337 /* converter.h */,
-				E944C5B91BCD155E00E27337 /* converter.m */,
-				E944C5BA1BCD155E00E27337 /* emoji.h */,
-				E944C5BB1BCD155E00E27337 /* emoji.m */,
-				E944C5BC1BCD155E00E27337 /* fileutil.h */,
-				E944C5BD1BCD155E00E27337 /* fileutil.m */,
-				E944C5BE1BCD155E00E27337 /* image.h */,
-				E944C5BF1BCD155E00E27337 /* image.m */,
-				E944C5C01BCD155E00E27337 /* push.h */,
-				E944C5C11BCD155E00E27337 /* push.m */,
-				E944C5C21BCD155E00E27337 /* recent.h */,
-				E944C5C31BCD155E00E27337 /* recent.m */,
-				E944C5C41BCD155E00E27337 /* video.h */,
-				E944C5C51BCD155E00E27337 /* video.m */,
-			);
-			name = ChatHelper;
 			sourceTree = "<group>";
 		};
 		E94A03711B1E9B3A00339BC4 /* ItemImageVC */ = {
@@ -2220,6 +2194,8 @@
 		E9DBDF2A1C23BBA300A6BC8A /* MessagingService */ = {
 			isa = PBXGroup;
 			children = (
+				E9DBDF551C23DC6800A6BC8A /* Application Logic */,
+				E9DBDF541C23DC5000A6BC8A /* User Interface */,
 			);
 			name = MessagingService;
 			sourceTree = "<group>";
@@ -2411,6 +2387,46 @@
 				E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		E9DBDF541C23DC5000A6BC8A /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		E9DBDF551C23DC6800A6BC8A /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF561C23DC7400A6BC8A /* Library */,
+			);
+			name = "Application Logic";
+			sourceTree = "<group>";
+		};
+		E9DBDF561C23DC7400A6BC8A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF571C23DCC300A6BC8A /* camera.h */,
+				E9DBDF581C23DCC300A6BC8A /* camera.m */,
+				E9DBDF591C23DCC300A6BC8A /* common.h */,
+				E9DBDF5A1C23DCC300A6BC8A /* common.m */,
+				E9DBDF5B1C23DCC300A6BC8A /* converter.h */,
+				E9DBDF5C1C23DCC300A6BC8A /* converter.m */,
+				E9DBDF5D1C23DCC300A6BC8A /* emoji.h */,
+				E9DBDF5E1C23DCC300A6BC8A /* emoji.m */,
+				E9DBDF5F1C23DCC300A6BC8A /* fileutil.h */,
+				E9DBDF601C23DCC300A6BC8A /* fileutil.m */,
+				E9DBDF611C23DCC300A6BC8A /* image.h */,
+				E9DBDF621C23DCC300A6BC8A /* image.m */,
+				E9DBDF631C23DCC300A6BC8A /* push.h */,
+				E9DBDF641C23DCC300A6BC8A /* push.m */,
+				E9DBDF651C23DCC300A6BC8A /* recent.h */,
+				E9DBDF661C23DCC300A6BC8A /* recent.m */,
+				E9DBDF671C23DCC300A6BC8A /* video.h */,
+				E9DBDF681C23DCC300A6BC8A /* video.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
@@ -2828,9 +2844,6 @@
 				E9D21D331BCBBAA300912C2C /* MarketplaceLogicHelper.m in Sources */,
 				E9D2649D1B5FB29000CBEAFF /* EditProfileViewController.m in Sources */,
 				E9D9C5131B1DA51F00222E0C /* ItemDetailsViewController.m in Sources */,
-				E944C5C81BCD155E00E27337 /* converter.m in Sources */,
-				E944C5CA1BCD155E00E27337 /* fileutil.m in Sources */,
-				E944C5C61BCD155E00E27337 /* camera.m in Sources */,
 				E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */,
 				E9DBDF341C23D2DB00A6BC8A /* UserData.m in Sources */,
 				E9A6392A1B2813C40085C54F /* CategoryTableViewController.m in Sources */,
@@ -2839,17 +2852,19 @@
 				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
 				E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
+				E9DBDF6F1C23DCC300A6BC8A /* push.m in Sources */,
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
+				E9DBDF6C1C23DCC300A6BC8A /* emoji.m in Sources */,
+				E9DBDF6A1C23DCC300A6BC8A /* common.m in Sources */,
 				E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */,
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
-				E944C5C71BCD155E00E27337 /* common.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9DBDF371C23D2ED00A6BC8A /* WantData.m in Sources */,
 				E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */,
 				E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */,
 				E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */,
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
-				E944C5CD1BCD155E00E27337 /* recent.m in Sources */,
+				E9DBDF711C23DCC300A6BC8A /* video.m in Sources */,
 				E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */,
 				E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */,
 				E9DBDF531C23DA7700A6BC8A /* SearchEngine.m in Sources */,
@@ -2861,6 +2876,7 @@
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */,
+				E9DBDF6B1C23DCC300A6BC8A /* converter.m in Sources */,
 				E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */,
 				E9DBDF261C23ABD000A6BC8A /* BackendUtil.m in Sources */,
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
@@ -2874,27 +2890,27 @@
 				E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */,
-				E944C5CE1BCD155E00E27337 /* video.m in Sources */,
 				E9DBDF3A1C23D30200A6BC8A /* TransactionData.m in Sources */,
 				E9D264B81B65E7DA00CBEAFF /* ResidingCityTableVC.m in Sources */,
-				E944C5CB1BCD155E00E27337 /* image.m in Sources */,
+				E9DBDF6E1C23DCC300A6BC8A /* image.m in Sources */,
 				E9DBDD831C22652700A6BC8A /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
+				E9DBDF701C23DCC300A6BC8A /* recent.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9638C811BFE129E0042DEE5 /* VerificationCodeRequesterVC.m in Sources */,
 				E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */,
+				E9DBDF6D1C23DCC300A6BC8A /* fileutil.m in Sources */,
 				E9638C881BFE14600042DEE5 /* CodeVerifierVC.m in Sources */,
 				E9A07BF01B313D7000904DE9 /* InboxAllViewController.m in Sources */,
 				E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */,
-				E944C5C91BCD155E00E27337 /* emoji.m in Sources */,
 				E9D264BC1B66399900CBEAFF /* AIDatePickerController.m in Sources */,
+				E9DBDF691C23DCC300A6BC8A /* camera.m in Sources */,
 				E90C4C7E1BD7C286002C22CD /* PasswordResetVC.m in Sources */,
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9C3E6491BB148270006BEB3 /* EditWantDataVC.m in Sources */,
-				E944C5CC1BCD155E00E27337 /* push.m in Sources */,
 				E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */,
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
