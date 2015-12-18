@@ -765,17 +765,6 @@
 			name = "Main Controller";
 			sourceTree = "<group>";
 		};
-		E916F4461B00AEE1005055E3 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				E916F46C1B033BDE005055E3 /* Utilities.h */,
-				E916F46D1B033BDE005055E3 /* Utilities.m */,
-				E944C5CF1BCD160600E27337 /* BackendUtil.h */,
-				E944C5D01BCD160600E27337 /* BackendUtil.m */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
 		E916F4511B01AAAD005055E3 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,7 +780,6 @@
 			isa = PBXGroup;
 			children = (
 				E97138A31BCFA17B00B7F961 /* SearchEngine */,
-				E916F4461B00AEE1005055E3 /* Utilities */,
 				E944C5B31BCD153300E27337 /* ChatHelper */,
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
@@ -1480,6 +1468,7 @@
 			isa = PBXGroup;
 			children = (
 				E9DBDD871C2265EB00A6BC8A /* Constants */,
+				E9DBDF211C23AAD200A6BC8A /* Helpers */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2232,6 +2221,17 @@
 				E9DBDEE91C22CF3600A6BC8A /* placeholder.png */,
 			);
 			name = "Image Link";
+			sourceTree = "<group>";
+		};
+		E9DBDF211C23AAD200A6BC8A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E916F46C1B033BDE005055E3 /* Utilities.h */,
+				E916F46D1B033BDE005055E3 /* Utilities.m */,
+				E944C5CF1BCD160600E27337 /* BackendUtil.h */,
+				E944C5D01BCD160600E27337 /* BackendUtil.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
