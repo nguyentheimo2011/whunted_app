@@ -33,7 +33,6 @@
 		E9638C811BFE129E0042DEE5 /* VerificationCodeRequesterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C801BFE129E0042DEE5 /* VerificationCodeRequesterVC.m */; };
 		E9638C841BFE12F50042DEE5 /* CountryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C831BFE12F50042DEE5 /* CountryListVC.m */; };
 		E9638C881BFE14600042DEE5 /* CodeVerifierVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */; };
-		E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E97138A51BCFA39C00B7F961 /* SearchEngine.m */; };
 		E973D03D1C0D55A8002C00C2 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D03C1C0D55A8002C00C2 /* ChatView.m */; };
 		E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D03F1C0D5677002C00C2 /* ChatViewUIHelper.m */; };
 		E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E973D0421C0D569D002C00C2 /* ChatViewLogicHelper.m */; };
@@ -270,6 +269,7 @@
 		E9DBDF3A1C23D30200A6BC8A /* TransactionData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF391C23D30200A6BC8A /* TransactionData.m */; };
 		E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF3C1C23D31E00A6BC8A /* HashtagData.m */; };
 		E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */; };
+		E9DBDF531C23DA7700A6BC8A /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
@@ -342,8 +342,6 @@
 		E9638C831BFE12F50042DEE5 /* CountryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryListVC.m; path = Controllers/Verification/PhoneVerification/CountryList/CountryListVC.m; sourceTree = "<group>"; };
 		E9638C861BFE14600042DEE5 /* CodeVerifierVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodeVerifierVC.h; path = Controllers/Verification/PhoneVerification/CodeVerifier/CodeVerifierVC.h; sourceTree = "<group>"; };
 		E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodeVerifierVC.m; path = Controllers/Verification/PhoneVerification/CodeVerifier/CodeVerifierVC.m; sourceTree = "<group>"; };
-		E97138A41BCFA39C00B7F961 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = Library/SearchEngine/SearchEngine.h; sourceTree = "<group>"; };
-		E97138A51BCFA39C00B7F961 /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = Library/SearchEngine/SearchEngine.m; sourceTree = "<group>"; };
 		E973D03B1C0D55A8002C00C2 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Controllers/InboxController/Chat/ChatView/MainChatView/ChatView.h; sourceTree = "<group>"; };
 		E973D03C1C0D55A8002C00C2 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Controllers/InboxController/Chat/ChatView/MainChatView/ChatView.m; sourceTree = "<group>"; };
 		E973D03E1C0D5677002C00C2 /* ChatViewUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatViewUIHelper.h; path = Controllers/InboxController/Chat/ChatView/ChatViewUIHelper/ChatViewUIHelper.h; sourceTree = "<group>"; };
@@ -628,6 +626,8 @@
 		E9DBDF3C1C23D31E00A6BC8A /* HashtagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HashtagData.m; path = Classes/Common/Models/Hashtag/HashtagData.m; sourceTree = "<group>"; };
 		E9DBDF491C23D74100A6BC8A /* FeedbackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackData.h; path = "Classes/Modules/UserFeedback/Application Logic/Model/Feedback/FeedbackData.h"; sourceTree = "<group>"; };
 		E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackData.m; path = "Classes/Modules/UserFeedback/Application Logic/Model/Feedback/FeedbackData.m"; sourceTree = "<group>"; };
+		E9DBDF511C23DA7600A6BC8A /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = "Classes/Modules/Search/Application Logic/Helpers/SearchEngine.h"; sourceTree = "<group>"; };
+		E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchEngine.m; path = "Classes/Modules/Search/Application Logic/Helpers/SearchEngine.m"; sourceTree = "<group>"; };
 		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
 		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
@@ -779,7 +779,6 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E97138A31BCFA17B00B7F961 /* SearchEngine */,
 				E944C5B31BCD153300E27337 /* ChatHelper */,
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
@@ -1027,15 +1026,6 @@
 				E9638C871BFE14600042DEE5 /* CodeVerifierVC.m */,
 			);
 			name = CodeVerifier;
-			sourceTree = "<group>";
-		};
-		E97138A31BCFA17B00B7F961 /* SearchEngine */ = {
-			isa = PBXGroup;
-			children = (
-				E97138A41BCFA39C00B7F961 /* SearchEngine.h */,
-				E97138A51BCFA39C00B7F961 /* SearchEngine.m */,
-			);
-			name = SearchEngine;
 			sourceTree = "<group>";
 		};
 		E973D0311C0C4D90002C00C2 /* ChatView */ = {
@@ -1451,6 +1441,7 @@
 				E9DBDF2A1C23BBA300A6BC8A /* MessagingService */,
 				E9DBDF291C23BB7A00A6BC8A /* UserProfile */,
 				E9DBDF281C23BB5F00A6BC8A /* UserFeedback */,
+				E9DBDF4C1C23D7B300A6BC8A /* Search */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -2381,6 +2372,47 @@
 			name = Feedback;
 			sourceTree = "<group>";
 		};
+		E9DBDF4C1C23D7B300A6BC8A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF4D1C23D85800A6BC8A /* Application Logic */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		E9DBDF4D1C23D85800A6BC8A /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF4F1C23D87E00A6BC8A /* Data Manager */,
+				E9DBDF4E1C23D86200A6BC8A /* Service Agent */,
+				E9DBDF501C23DA5000A6BC8A /* Helper */,
+			);
+			name = "Application Logic";
+			sourceTree = "<group>";
+		};
+		E9DBDF4E1C23D86200A6BC8A /* Service Agent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Service Agent";
+			sourceTree = "<group>";
+		};
+		E9DBDF4F1C23D87E00A6BC8A /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Manager";
+			sourceTree = "<group>";
+		};
+		E9DBDF501C23DA5000A6BC8A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF511C23DA7600A6BC8A /* SearchEngine.h */,
+				E9DBDF521C23DA7600A6BC8A /* SearchEngine.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2820,6 +2852,7 @@
 				E944C5CD1BCD155E00E27337 /* recent.m in Sources */,
 				E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */,
 				E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */,
+				E9DBDF531C23DA7700A6BC8A /* SearchEngine.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
@@ -2866,7 +2899,6 @@
 				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
-				E97138A61BCFA39C00B7F961 /* SearchEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
