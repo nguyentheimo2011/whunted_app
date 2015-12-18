@@ -270,12 +270,12 @@
 		E9DBDF6F1C23DCC300A6BC8A /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF641C23DCC300A6BC8A /* push.m */; };
 		E9DBDF701C23DCC300A6BC8A /* recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF661C23DCC300A6BC8A /* recent.m */; };
 		E9DBDF711C23DCC300A6BC8A /* video.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF681C23DCC300A6BC8A /* video.m */; };
-		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
+		E9DBDF781C23DDC100A6BC8A /* ItemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF751C23DDC100A6BC8A /* ItemImageCache.m */; };
+		E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
 		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
 		E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1ACBC1B941B14009819DE /* CityViewController.m */; };
-		E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FB22971B43A62000395062 /* ItemImageCache.m */; };
 		E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */; };
 		E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC404A1C03000200C02520 /* CompletedVerificationVC.m */; };
 /* End PBXBuildFile section */
@@ -628,8 +628,10 @@
 		E9DBDF661C23DCC300A6BC8A /* recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recent.m; path = "Classes/Modules/MessagingService/Application Logic/Library/recent.m"; sourceTree = "<group>"; };
 		E9DBDF671C23DCC300A6BC8A /* video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = video.h; path = "Classes/Modules/MessagingService/Application Logic/Library/video.h"; sourceTree = "<group>"; };
 		E9DBDF681C23DCC300A6BC8A /* video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = video.m; path = "Classes/Modules/MessagingService/Application Logic/Library/video.m"; sourceTree = "<group>"; };
-		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
-		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
+		E9DBDF741C23DDC100A6BC8A /* ItemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageCache.h; path = "Classes/Modules/Cache/Application Logic/ItemImageCache.h"; sourceTree = "<group>"; };
+		E9DBDF751C23DDC100A6BC8A /* ItemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageCache.m; path = "Classes/Modules/Cache/Application Logic/ItemImageCache.m"; sourceTree = "<group>"; };
+		E9DBDF761C23DDC100A6BC8A /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = "Classes/Modules/Cache/Application Logic/ProfileImageCache.h"; sourceTree = "<group>"; };
+		E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = "Classes/Modules/Cache/Application Logic/ProfileImageCache.m"; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
 		E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceBackend.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.m; sourceTree = "<group>"; };
 		E9EEB9311B5CBA1F00815D56 /* IGLDropDownItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownItem.h; path = Library/IGLDropDownMenu/IGLDropDownItem.h; sourceTree = "<group>"; };
@@ -638,8 +640,6 @@
 		E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownMenu.m; path = Library/IGLDropDownMenu/IGLDropDownMenu.m; sourceTree = "<group>"; };
 		E9F1ACBB1B941B14009819DE /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = Controllers/Marketplace/CityViewController/CityViewController.h; sourceTree = "<group>"; };
 		E9F1ACBC1B941B14009819DE /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityViewController.m; path = Controllers/Marketplace/CityViewController/CityViewController.m; sourceTree = "<group>"; };
-		E9FB22961B43A62000395062 /* ItemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemImageCache.h; path = Library/TemporaryCache/ItemImageCache.h; sourceTree = "<group>"; };
-		E9FB22971B43A62000395062 /* ItemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemImageCache.m; path = Library/TemporaryCache/ItemImageCache.m; sourceTree = "<group>"; };
 		E9FC1D761B8DCAF5001226C5 /* SortAndFilterTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortAndFilterTableVC.h; path = Controllers/Marketplace/SortAndFilter/SortAndFilterTableVC.h; sourceTree = "<group>"; };
 		E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortAndFilterTableVC.m; path = Controllers/Marketplace/SortAndFilter/SortAndFilterTableVC.m; sourceTree = "<group>"; };
 		E9FC40491C03000200C02520 /* CompletedVerificationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletedVerificationVC.h; path = Controllers/Verification/PhoneVerification/CompletedVerification/CompletedVerificationVC.h; sourceTree = "<group>"; };
@@ -780,7 +780,6 @@
 			isa = PBXGroup;
 			children = (
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
-				E9FB22951B43A5E300395062 /* TemporaryCache */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
 				E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */,
 			);
@@ -1416,6 +1415,7 @@
 				E9DBDF291C23BB7A00A6BC8A /* UserProfile */,
 				E9DBDF281C23BB5F00A6BC8A /* UserFeedback */,
 				E9DBDF4C1C23D7B300A6BC8A /* Search */,
+				E9DBDF721C23DD2800A6BC8A /* Cache */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -2429,6 +2429,25 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		E9DBDF721C23DD2800A6BC8A /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF731C23DD4C00A6BC8A /* Application Logic */,
+			);
+			name = Cache;
+			sourceTree = "<group>";
+		};
+		E9DBDF731C23DD4C00A6BC8A /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF741C23DDC100A6BC8A /* ItemImageCache.h */,
+				E9DBDF751C23DDC100A6BC8A /* ItemImageCache.m */,
+				E9DBDF761C23DDC100A6BC8A /* ProfileImageCache.h */,
+				E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */,
+			);
+			name = "Application Logic";
+			sourceTree = "<group>";
+		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2466,17 +2485,6 @@
 				E9F1ACBC1B941B14009819DE /* CityViewController.m */,
 			);
 			name = CityViewController;
-			sourceTree = "<group>";
-		};
-		E9FB22951B43A5E300395062 /* TemporaryCache */ = {
-			isa = PBXGroup;
-			children = (
-				E9FB22961B43A62000395062 /* ItemImageCache.h */,
-				E9FB22971B43A62000395062 /* ItemImageCache.m */,
-				E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */,
-				E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */,
-			);
-			name = TemporaryCache;
 			sourceTree = "<group>";
 		};
 		E9FB2E931B1F0DC700F8C435 /* BuyersOrSellersOfferVC */ = {
@@ -2853,11 +2861,11 @@
 				E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9DBDF6F1C23DCC300A6BC8A /* push.m in Sources */,
-				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
 				E9DBDF6C1C23DCC300A6BC8A /* emoji.m in Sources */,
 				E9DBDF6A1C23DCC300A6BC8A /* common.m in Sources */,
 				E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */,
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
+				E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9DBDF371C23D2ED00A6BC8A /* WantData.m in Sources */,
 				E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */,
@@ -2886,7 +2894,6 @@
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E9DBDF271C23ABD000A6BC8A /* Utilities.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
-				E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */,
 				E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */,
 				E9D432F81B54F32500530492 /* UserProfileViewController.m in Sources */,
 				E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */,
@@ -2898,6 +2905,7 @@
 				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
+				E9DBDF781C23DDC100A6BC8A /* ItemImageCache.m in Sources */,
 				E9DBDF701C23DCC300A6BC8A /* recent.m in Sources */,
 				E9D9C50F1B1C059D00222E0C /* MarketplaceCollectionViewCell.m in Sources */,
 				E9638C811BFE129E0042DEE5 /* VerificationCodeRequesterVC.m in Sources */,
