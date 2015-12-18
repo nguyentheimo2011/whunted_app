@@ -62,7 +62,6 @@
 		E9B063DC1BD55DA300C49D77 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063DB1BD55DA300C49D77 /* LoginSignupViewController.m */; };
 		E9B063E41BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */; };
 		E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */; };
-		E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */; };
 		E9B800731B1443B5006D9133 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800721B1443B5006D9133 /* libsqlite3.dylib */; };
 		E9B800751B1443D8006D9133 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800741B1443D8006D9133 /* Accounts.framework */; };
 		E9B800771B1443E3006D9133 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9B800761B1443E3006D9133 /* AudioToolbox.framework */; };
@@ -399,8 +398,6 @@
 		E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginUIHelper.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginUIHelper/EmailSignupLoginUIHelper.m; sourceTree = "<group>"; };
 		E9B063E51BD6AE6E00C49D77 /* EmailSignupLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSignupLoginVC.h; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.h; sourceTree = "<group>"; };
 		E9B063E61BD6AE6E00C49D77 /* EmailSignupLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSignupLoginVC.m; path = Controllers/LoginSignup/EmailSignupLogin/EmailSignupLoginVC/EmailSignupLoginVC.m; sourceTree = "<group>"; };
-		E9B5CAC41B41FC330004CDC9 /* SyncEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncEngine.h; path = Library/SyncEngine/SyncEngine.h; sourceTree = "<group>"; };
-		E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncEngine.m; path = Library/SyncEngine/SyncEngine.m; sourceTree = "<group>"; };
 		E9B800721B1443B5006D9133 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E9B800741B1443D8006D9133 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		E9B800761B1443E3006D9133 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -803,7 +800,6 @@
 				E944C5B31BCD153300E27337 /* ChatHelper */,
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 				E9FB22951B43A5E300395062 /* TemporaryCache */,
-				E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */,
 				E916F45E1B02F615005055E3 /* KLCPopup */,
 				E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */,
 			);
@@ -1311,15 +1307,6 @@
 				E9B063E31BD6AE1300C49D77 /* EmailSignupLoginUIHelper.m */,
 			);
 			name = EmailSignupLoginUIHelper;
-			sourceTree = "<group>";
-		};
-		E9B5CAC01B3D42AA0004CDC9 /* SyncEngine */ = {
-			isa = PBXGroup;
-			children = (
-				E9B5CAC41B41FC330004CDC9 /* SyncEngine.h */,
-				E9B5CAC51B41FC330004CDC9 /* SyncEngine.m */,
-			);
-			name = SyncEngine;
 			sourceTree = "<group>";
 		};
 		E9C3E6461BB147E10006BEB3 /* EditWantDataVC */ = {
@@ -2726,7 +2713,6 @@
 				E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */,
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
-				E9B5CAC61B41FC330004CDC9 /* SyncEngine.m in Sources */,
 				E9A07C1F1B31640B00904DE9 /* PFUser+Util.m in Sources */,
 				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
 				E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */,
