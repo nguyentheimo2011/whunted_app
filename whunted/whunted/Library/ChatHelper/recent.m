@@ -11,7 +11,6 @@
 
 #import <Parse/Parse.h>
 #import <Firebase/Firebase.h>
-#import "PFUser+Util.h"
 
 #import "Utilities.h"
 #import "converter.h"

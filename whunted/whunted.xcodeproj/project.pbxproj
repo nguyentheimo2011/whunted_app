@@ -52,7 +52,6 @@
 		E9A07C0B1B315F6600904DE9 /* EmojiMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C061B315F6600904DE9 /* EmojiMediaItem.m */; };
 		E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C081B315F6600904DE9 /* PhotoMediaItem.m */; };
 		E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C0A1B315F6600904DE9 /* VideoMediaItem.m */; };
-		E9A07C1F1B31640B00904DE9 /* PFUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A07C1E1B31640B00904DE9 /* PFUser+Util.m */; };
 		E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */; };
 		E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A6391D1B28131F0085C54F /* ImageGetterViewController.m */; };
 		E9A639201B28131F0085C54F /* ImageGetterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9A6391E1B28131F0085C54F /* ImageGetterViewController.xib */; };
@@ -379,8 +378,6 @@
 		E9A07C081B315F6600904DE9 /* PhotoMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoMediaItem.m; path = Controllers/InboxController/Chat/MediaItems/PhotoMediaItem.m; sourceTree = "<group>"; };
 		E9A07C091B315F6600904DE9 /* VideoMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoMediaItem.h; path = Controllers/InboxController/Chat/MediaItems/VideoMediaItem.h; sourceTree = "<group>"; };
 		E9A07C0A1B315F6600904DE9 /* VideoMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoMediaItem.m; path = Controllers/InboxController/Chat/MediaItems/VideoMediaItem.m; sourceTree = "<group>"; };
-		E9A07C1D1B31640B00904DE9 /* PFUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFUser+Util.h"; path = "Library/Utilities/PFUser+Util.h"; sourceTree = "<group>"; };
-		E9A07C1E1B31640B00904DE9 /* PFUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PFUser+Util.m"; path = "Library/Utilities/PFUser+Util.m"; sourceTree = "<group>"; };
 		E9A639191B28111C0085C54F /* ImageRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageRetrieverViewController.h; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.h; sourceTree = "<group>"; };
 		E9A6391A1B28111C0085C54F /* ImageRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageRetrieverViewController.m; path = Controllers/Upload/ImageRetrieverVC/ImageRetrieverViewController.m; sourceTree = "<group>"; };
 		E9A6391C1B28131F0085C54F /* ImageGetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageGetterViewController.h; path = Controllers/Upload/ImageGetterPopupVC/ImageGetterViewController.h; sourceTree = "<group>"; };
@@ -775,8 +772,6 @@
 				E916F46D1B033BDE005055E3 /* Utilities.m */,
 				E944C5CF1BCD160600E27337 /* BackendUtil.h */,
 				E944C5D01BCD160600E27337 /* BackendUtil.m */,
-				E9A07C1D1B31640B00904DE9 /* PFUser+Util.h */,
-				E9A07C1E1B31640B00904DE9 /* PFUser+Util.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2713,7 +2708,6 @@
 				E9B063E71BD6AE6E00C49D77 /* EmailSignupLoginVC.m in Sources */,
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
-				E9A07C1F1B31640B00904DE9 /* PFUser+Util.m in Sources */,
 				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
 				E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */,
 				E9FB2E9A1B20481E00F8C435 /* WantData.m in Sources */,
