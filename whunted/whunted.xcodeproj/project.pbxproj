@@ -15,7 +15,6 @@
 		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
-		E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51B1B6A276900AABB72 /* FeedbackData.m */; };
 		E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */; };
 		E944C5C61BCD155E00E27337 /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5B51BCD155E00E27337 /* camera.m */; };
 		E944C5C71BCD155E00E27337 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = E944C5B71BCD155E00E27337 /* common.m */; };
@@ -270,6 +269,7 @@
 		E9DBDF371C23D2ED00A6BC8A /* WantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF361C23D2ED00A6BC8A /* WantData.m */; };
 		E9DBDF3A1C23D30200A6BC8A /* TransactionData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF391C23D30200A6BC8A /* TransactionData.m */; };
 		E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF3C1C23D31E00A6BC8A /* HashtagData.m */; };
+		E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */; };
 		E9DE82E51BAA76F20060C79B /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
@@ -307,8 +307,6 @@
 		E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E92EC5161B6A0E3B00AABB72 /* FeedbackReviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackReviewVC.h; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.h; sourceTree = "<group>"; };
 		E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackReviewVC.m; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.m; sourceTree = "<group>"; };
-		E92EC51A1B6A276900AABB72 /* FeedbackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackData.h; path = Models/FeedbackData/FeedbackData.h; sourceTree = "<group>"; };
-		E92EC51B1B6A276900AABB72 /* FeedbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackData.m; path = Models/FeedbackData/FeedbackData.m; sourceTree = "<group>"; };
 		E92EC51E1B6A3D0E00AABB72 /* FeedbackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackTableViewCell.h; path = Controllers/Feedback/FeedbackTableViewCell/FeedbackTableViewCell.h; sourceTree = "<group>"; };
 		E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackTableViewCell.m; path = Controllers/Feedback/FeedbackTableViewCell/FeedbackTableViewCell.m; sourceTree = "<group>"; };
 		E944C5B41BCD155E00E27337 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera.h; path = Library/ChatHelper/camera.h; sourceTree = "<group>"; };
@@ -628,6 +626,8 @@
 		E9DBDF391C23D30200A6BC8A /* TransactionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionData.m; path = Classes/Common/Models/Transaction/TransactionData.m; sourceTree = "<group>"; };
 		E9DBDF3B1C23D31E00A6BC8A /* HashtagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HashtagData.h; path = Classes/Common/Models/Hashtag/HashtagData.h; sourceTree = "<group>"; };
 		E9DBDF3C1C23D31E00A6BC8A /* HashtagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HashtagData.m; path = Classes/Common/Models/Hashtag/HashtagData.m; sourceTree = "<group>"; };
+		E9DBDF491C23D74100A6BC8A /* FeedbackData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackData.h; path = "Classes/Modules/UserFeedback/Application Logic/Model/Feedback/FeedbackData.h"; sourceTree = "<group>"; };
+		E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackData.m; path = "Classes/Modules/UserFeedback/Application Logic/Model/Feedback/FeedbackData.m"; sourceTree = "<group>"; };
 		E9DE82E31BAA76F20060C79B /* ProfileImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileImageCache.h; path = Library/TemporaryCache/ProfileImageCache.h; sourceTree = "<group>"; };
 		E9DE82E41BAA76F20060C79B /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = Library/TemporaryCache/ProfileImageCache.m; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
@@ -835,15 +835,6 @@
 			name = FeedbackReviewVC;
 			sourceTree = "<group>";
 		};
-		E92EC5191B6A274400AABB72 /* FeedbackData */ = {
-			isa = PBXGroup;
-			children = (
-				E92EC51A1B6A276900AABB72 /* FeedbackData.h */,
-				E92EC51B1B6A276900AABB72 /* FeedbackData.m */,
-			);
-			name = FeedbackData;
-			sourceTree = "<group>";
-		};
 		E92EC51D1B6A3CD300AABB72 /* FeedbackTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,14 +925,6 @@
 			name = SellerList;
 			sourceTree = "<group>";
 		};
-		E94D183D1AF9FB2300E31B01 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E92EC5191B6A274400AABB72 /* FeedbackData */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		E95574321AF86D2600F0B230 = {
 			isa = PBXGroup;
 			children = (
@@ -969,7 +952,6 @@
 				E94D17D51AF8B68600E31B01 /* Resources */,
 				E9DBDD7E1C225E3400A6BC8A /* Other Sources */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
-				E94D183D1AF9FB2300E31B01 /* Models */,
 				E916F45D1B02F604005055E3 /* Library */,
 			);
 			path = whunted;
@@ -2230,6 +2212,9 @@
 		E9DBDF281C23BB5F00A6BC8A /* UserFeedback */ = {
 			isa = PBXGroup;
 			children = (
+				E9DBDF401C23D3BD00A6BC8A /* Application Logic */,
+				E9DBDF3F1C23D3AB00A6BC8A /* Module Interface */,
+				E9DBDF3E1C23D38900A6BC8A /* User Interface */,
 			);
 			name = UserFeedback;
 			sourceTree = "<group>";
@@ -2307,6 +2292,93 @@
 				E9DBDF331C23D2DB00A6BC8A /* UserData.m */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		E9DBDF3E1C23D38900A6BC8A /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF471C23D43700A6BC8A /* Presenter */,
+				E9DBDF461C23D43100A6BC8A /* View */,
+				E9DBDF451C23D42500A6BC8A /* Wireframe */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		E9DBDF3F1C23D3AB00A6BC8A /* Module Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Module Interface";
+			sourceTree = "<group>";
+		};
+		E9DBDF401C23D3BD00A6BC8A /* Application Logic */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF441C23D3F700A6BC8A /* Interactor */,
+				E9DBDF431C23D3ED00A6BC8A /* Data Manager */,
+				E9DBDF421C23D3E000A6BC8A /* Service Agent */,
+				E9DBDF411C23D3CD00A6BC8A /* Model */,
+			);
+			name = "Application Logic";
+			sourceTree = "<group>";
+		};
+		E9DBDF411C23D3CD00A6BC8A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF481C23D71900A6BC8A /* Feedback */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E9DBDF421C23D3E000A6BC8A /* Service Agent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Service Agent";
+			sourceTree = "<group>";
+		};
+		E9DBDF431C23D3ED00A6BC8A /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Manager";
+			sourceTree = "<group>";
+		};
+		E9DBDF441C23D3F700A6BC8A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Interactor;
+			sourceTree = "<group>";
+		};
+		E9DBDF451C23D42500A6BC8A /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Wireframe;
+			sourceTree = "<group>";
+		};
+		E9DBDF461C23D43100A6BC8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E9DBDF471C23D43700A6BC8A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		E9DBDF481C23D71900A6BC8A /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF491C23D74100A6BC8A /* FeedbackData.h */,
+				E9DBDF4A1C23D74100A6BC8A /* FeedbackData.m */,
+			);
+			name = Feedback;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
@@ -2733,7 +2805,6 @@
 				E9D21D2D1BCBB9F800912C2C /* MarketplaceViewController.m in Sources */,
 				E9A639271B2813910085C54F /* UploadingWantDetailsViewController.m in Sources */,
 				E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */,
-				E92EC51C1B6A276900AABB72 /* FeedbackData.m in Sources */,
 				E973D0431C0D569D002C00C2 /* ChatViewLogicHelper.m in Sources */,
 				E9A07C0D1B315F6600904DE9 /* VideoMediaItem.m in Sources */,
 				E9FB22981B43A62000395062 /* ItemImageCache.m in Sources */,
@@ -2748,6 +2819,7 @@
 				E9D0E6721B96A9EE0061AE8E /* NewsfeedViewController.m in Sources */,
 				E944C5CD1BCD155E00E27337 /* recent.m in Sources */,
 				E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */,
+				E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
