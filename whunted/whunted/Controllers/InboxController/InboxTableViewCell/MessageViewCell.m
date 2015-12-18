@@ -10,7 +10,6 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
 #import <JTImageButton.h>
 
 #import "converter.h"
