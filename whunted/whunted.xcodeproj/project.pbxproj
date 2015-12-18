@@ -272,9 +272,9 @@
 		E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */; };
 		E9DBDF801C23DFE100A6BC8A /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF7F1C23DFE100A6BC8A /* AIDatePickerController.m */; };
 		E9DBDF861C23E0A100A6BC8A /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF851C23E0A100A6BC8A /* KLCPopup.m */; };
+		E9DBDF8E1C23E1DF00A6BC8A /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF8B1C23E1DF00A6BC8A /* IGLDropDownItem.m */; };
+		E9DBDF8F1C23E1DF00A6BC8A /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF8D1C23E1DF00A6BC8A /* IGLDropDownMenu.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
-		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
-		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
 		E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1ACBC1B941B14009819DE /* CityViewController.m */; };
 		E9FC1D781B8DCAF5001226C5 /* SortAndFilterTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC1D771B8DCAF5001226C5 /* SortAndFilterTableVC.m */; };
 		E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FC404A1C03000200C02520 /* CompletedVerificationVC.m */; };
@@ -632,12 +632,12 @@
 		E9DBDF7F1C23DFE100A6BC8A /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIDatePickerController.m; path = "Classes/Modules/UserProfile/User Interface/Library/AIDatePickerController/AIDatePickerController.m"; sourceTree = "<group>"; };
 		E9DBDF841C23E0A100A6BC8A /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = "Classes/Modules/UploadWant/User Interface/Library/KLCPopup/KLCPopup.h"; sourceTree = "<group>"; };
 		E9DBDF851C23E0A100A6BC8A /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = "Classes/Modules/UploadWant/User Interface/Library/KLCPopup/KLCPopup.m"; sourceTree = "<group>"; };
+		E9DBDF8A1C23E1DF00A6BC8A /* IGLDropDownItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownItem.h; path = "Classes/Modules/UserPreferences/User Interface/Library/IGLDropDownMenu/IGLDropDownItem.h"; sourceTree = "<group>"; };
+		E9DBDF8B1C23E1DF00A6BC8A /* IGLDropDownItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownItem.m; path = "Classes/Modules/UserPreferences/User Interface/Library/IGLDropDownMenu/IGLDropDownItem.m"; sourceTree = "<group>"; };
+		E9DBDF8C1C23E1DF00A6BC8A /* IGLDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownMenu.h; path = "Classes/Modules/UserPreferences/User Interface/Library/IGLDropDownMenu/IGLDropDownMenu.h"; sourceTree = "<group>"; };
+		E9DBDF8D1C23E1DF00A6BC8A /* IGLDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownMenu.m; path = "Classes/Modules/UserPreferences/User Interface/Library/IGLDropDownMenu/IGLDropDownMenu.m"; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
 		E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceBackend.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.m; sourceTree = "<group>"; };
-		E9EEB9311B5CBA1F00815D56 /* IGLDropDownItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownItem.h; path = Library/IGLDropDownMenu/IGLDropDownItem.h; sourceTree = "<group>"; };
-		E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownItem.m; path = Library/IGLDropDownMenu/IGLDropDownItem.m; sourceTree = "<group>"; };
-		E9EEB9331B5CBA1F00815D56 /* IGLDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownMenu.h; path = Library/IGLDropDownMenu/IGLDropDownMenu.h; sourceTree = "<group>"; };
-		E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGLDropDownMenu.m; path = Library/IGLDropDownMenu/IGLDropDownMenu.m; sourceTree = "<group>"; };
 		E9F1ACBB1B941B14009819DE /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityViewController.h; path = Controllers/Marketplace/CityViewController/CityViewController.h; sourceTree = "<group>"; };
 		E9F1ACBC1B941B14009819DE /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityViewController.m; path = Controllers/Marketplace/CityViewController/CityViewController.m; sourceTree = "<group>"; };
 		E9FC1D761B8DCAF5001226C5 /* SortAndFilterTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortAndFilterTableVC.h; path = Controllers/Marketplace/SortAndFilter/SortAndFilterTableVC.h; sourceTree = "<group>"; };
@@ -776,14 +776,6 @@
 			name = Upload;
 			sourceTree = "<group>";
 		};
-		E916F45D1B02F604005055E3 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */,
-			);
-			name = Library;
-			sourceTree = "<group>";
-		};
 		E918254C1B9D2D6100A40B0A /* OfferViewingVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,7 +905,6 @@
 				E94D17D51AF8B68600E31B01 /* Resources */,
 				E9DBDD7E1C225E3400A6BC8A /* Other Sources */,
 				E94D17CC1AF8B55800E31B01 /* Controllers */,
-				E916F45D1B02F604005055E3 /* Library */,
 			);
 			path = whunted;
 			sourceTree = "<group>";
@@ -1403,6 +1394,7 @@
 				E9DBDF2A1C23BBA300A6BC8A /* MessagingService */,
 				E9DBDF291C23BB7A00A6BC8A /* UserProfile */,
 				E9DBDF281C23BB5F00A6BC8A /* UserFeedback */,
+				E9DBDF871C23E12100A6BC8A /* UserPreferences */,
 				E9DBDF4C1C23D7B300A6BC8A /* Search */,
 				E9DBDF721C23DD2800A6BC8A /* Cache */,
 			);
@@ -2496,6 +2488,30 @@
 			name = KLCPopup;
 			sourceTree = "<group>";
 		};
+		E9DBDF871C23E12100A6BC8A /* UserPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF881C23E18500A6BC8A /* User Interface */,
+			);
+			name = UserPreferences;
+			sourceTree = "<group>";
+		};
+		E9DBDF881C23E18500A6BC8A /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF891C23E19E00A6BC8A /* Library */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		E9DBDF891C23E19E00A6BC8A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2518,10 +2534,10 @@
 		E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */ = {
 			isa = PBXGroup;
 			children = (
-				E9EEB9311B5CBA1F00815D56 /* IGLDropDownItem.h */,
-				E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */,
-				E9EEB9331B5CBA1F00815D56 /* IGLDropDownMenu.h */,
-				E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */,
+				E9DBDF8A1C23E1DF00A6BC8A /* IGLDropDownItem.h */,
+				E9DBDF8B1C23E1DF00A6BC8A /* IGLDropDownItem.m */,
+				E9DBDF8C1C23E1DF00A6BC8A /* IGLDropDownMenu.h */,
+				E9DBDF8D1C23E1DF00A6BC8A /* IGLDropDownMenu.m */,
 			);
 			name = IGLDropdownMenu;
 			sourceTree = "<group>";
@@ -2925,12 +2941,14 @@
 				E9D21D301BCBBA1B00912C2C /* MarketplaceUIHelper.m in Sources */,
 				E9DBDF4B1C23D74100A6BC8A /* FeedbackData.m in Sources */,
 				E9DBDF531C23DA7700A6BC8A /* SearchEngine.m in Sources */,
+				E9DBDF8F1C23E1DF00A6BC8A /* IGLDropDownMenu.m in Sources */,
 				E9D4330B1B55167200530492 /* PreferenceViewController.m in Sources */,
 				E9A07C0C1B315F6600904DE9 /* PhotoMediaItem.m in Sources */,
 				E9A07C031B315F5300904DE9 /* Incoming.m in Sources */,
 				E973D03D1C0D55A8002C00C2 /* ChatView.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
+				E9DBDF8E1C23E1DF00A6BC8A /* IGLDropDownItem.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */,
 				E9DBDF6B1C23DCC300A6BC8A /* converter.m in Sources */,
@@ -2939,7 +2957,6 @@
 				E9F1ACBD1B941B14009819DE /* CityViewController.m in Sources */,
 				E9A07C041B315F5300904DE9 /* Outgoing.m in Sources */,
 				E9A6392D1B2813F40085C54F /* ItemInfoTableViewController.m in Sources */,
-				E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */,
 				E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */,
 				E9DBDF271C23ABD000A6BC8A /* Utilities.m in Sources */,
 				E9A6391B1B28111C0085C54F /* ImageRetrieverViewController.m in Sources */,
@@ -2951,7 +2968,6 @@
 				E9DBDF6E1C23DCC300A6BC8A /* image.m in Sources */,
 				E9DBDD831C22652700A6BC8A /* main.m in Sources */,
 				E981131D1B21EB7D00ECAA0C /* SellerListCell.m in Sources */,
-				E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */,
 				E973D0401C0D5677002C00C2 /* ChatViewUIHelper.m in Sources */,
 				E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */,
 				E9DBDF781C23DDC100A6BC8A /* ItemImageCache.m in Sources */,
