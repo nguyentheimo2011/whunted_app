@@ -11,7 +11,6 @@
 		E90ACE141B71F1FF00DC9768 /* UploadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90ACE131B71F1FF00DC9768 /* UploadingViewController.m */; };
 		E90C4C7E1BD7C286002C22CD /* PasswordResetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
-		E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4601B02F62C005055E3 /* KLCPopup.m */; };
 		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
@@ -272,6 +271,7 @@
 		E9DBDF781C23DDC100A6BC8A /* ItemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF751C23DDC100A6BC8A /* ItemImageCache.m */; };
 		E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */; };
 		E9DBDF801C23DFE100A6BC8A /* AIDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF7F1C23DFE100A6BC8A /* AIDatePickerController.m */; };
+		E9DBDF861C23E0A100A6BC8A /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DBDF851C23E0A100A6BC8A /* KLCPopup.m */; };
 		E9DF7EF01BCCE85900B85154 /* MarketplaceBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */; };
 		E9EEB9351B5CBA1F00815D56 /* IGLDropDownItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9321B5CBA1F00815D56 /* IGLDropDownItem.m */; };
 		E9EEB9361B5CBA1F00815D56 /* IGLDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEB9341B5CBA1F00815D56 /* IGLDropDownMenu.m */; };
@@ -299,8 +299,6 @@
 		E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordResetVC.m; path = Controllers/LoginSignup/EmailSignupLogin/PasswordResetVC/PasswordResetVC.m; sourceTree = "<group>"; };
 		E916F4431B00A9ED005055E3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Controllers/MainController/MainViewController.h; sourceTree = "<group>"; };
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
-		E916F45F1B02F62C005055E3 /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = Library/KLCPopup/KLCPopup.h; sourceTree = "<group>"; };
-		E916F4601B02F62C005055E3 /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = Library/KLCPopup/KLCPopup.m; sourceTree = "<group>"; };
 		E918254D1B9D2DB900A40B0A /* OfferViewingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferViewingVC.h; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.h; sourceTree = "<group>"; };
 		E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferViewingVC.m; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.m; sourceTree = "<group>"; };
 		E92EC5131B6A0E0A00AABB72 /* LeaveFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaveFeedbackVC.h; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.h; sourceTree = "<group>"; };
@@ -632,6 +630,8 @@
 		E9DBDF771C23DDC100A6BC8A /* ProfileImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileImageCache.m; path = "Classes/Modules/Cache/Application Logic/ProfileImageCache.m"; sourceTree = "<group>"; };
 		E9DBDF7E1C23DFE100A6BC8A /* AIDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIDatePickerController.h; path = "Classes/Modules/UserProfile/User Interface/Library/AIDatePickerController/AIDatePickerController.h"; sourceTree = "<group>"; };
 		E9DBDF7F1C23DFE100A6BC8A /* AIDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIDatePickerController.m; path = "Classes/Modules/UserProfile/User Interface/Library/AIDatePickerController/AIDatePickerController.m"; sourceTree = "<group>"; };
+		E9DBDF841C23E0A100A6BC8A /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KLCPopup.h; path = "Classes/Modules/UploadWant/User Interface/Library/KLCPopup/KLCPopup.h"; sourceTree = "<group>"; };
+		E9DBDF851C23E0A100A6BC8A /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KLCPopup.m; path = "Classes/Modules/UploadWant/User Interface/Library/KLCPopup/KLCPopup.m"; sourceTree = "<group>"; };
 		E9DF7EEE1BCCE85900B85154 /* MarketplaceBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarketplaceBackend.h; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.h; sourceTree = "<group>"; };
 		E9DF7EEF1BCCE85900B85154 /* MarketplaceBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarketplaceBackend.m; path = Controllers/Marketplace/MarketplaceVC/MarketplaceBackend/MarketplaceBackend.m; sourceTree = "<group>"; };
 		E9EEB9311B5CBA1F00815D56 /* IGLDropDownItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGLDropDownItem.h; path = Library/IGLDropDownMenu/IGLDropDownItem.h; sourceTree = "<group>"; };
@@ -779,19 +779,9 @@
 		E916F45D1B02F604005055E3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				E916F45E1B02F615005055E3 /* KLCPopup */,
 				E9EEB9301B5CB9DD00815D56 /* IGLDropdownMenu */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		E916F45E1B02F615005055E3 /* KLCPopup */ = {
-			isa = PBXGroup;
-			children = (
-				E916F45F1B02F62C005055E3 /* KLCPopup.h */,
-				E916F4601B02F62C005055E3 /* KLCPopup.m */,
-			);
-			name = KLCPopup;
 			sourceTree = "<group>";
 		};
 		E918254C1B9D2D6100A40B0A /* OfferViewingVC */ = {
@@ -2205,6 +2195,7 @@
 		E9DBDF2B1C23BBB600A6BC8A /* UploadWant */ = {
 			isa = PBXGroup;
 			children = (
+				E9DBDF811C23E01F00A6BC8A /* User Interface */,
 			);
 			name = UploadWant;
 			sourceTree = "<group>";
@@ -2478,6 +2469,31 @@
 				E9D264B91B66398A00CBEAFF /* AIDatePickerController */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		E9DBDF811C23E01F00A6BC8A /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF821C23E03100A6BC8A /* Library */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		E9DBDF821C23E03100A6BC8A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF831C23E06A00A6BC8A /* KLCPopup */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		E9DBDF831C23E06A00A6BC8A /* KLCPopup */ = {
+			isa = PBXGroup;
+			children = (
+				E9DBDF841C23E0A100A6BC8A /* KLCPopup.h */,
+				E9DBDF851C23E0A100A6BC8A /* KLCPopup.m */,
+			);
+			name = KLCPopup;
 			sourceTree = "<group>";
 		};
 		E9DF7EED1BCCE7F400B85154 /* MarketplaceBackend */ = {
@@ -2898,6 +2914,7 @@
 				E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */,
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
 				E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */,
+				E9DBDF861C23E0A100A6BC8A /* KLCPopup.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9DBDF371C23D2ED00A6BC8A /* WantData.m in Sources */,
 				E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */,
@@ -2952,7 +2969,6 @@
 				E9A6391F1B28131F0085C54F /* ImageGetterViewController.m in Sources */,
 				E9C3E6491BB148270006BEB3 /* EditWantDataVC.m in Sources */,
 				E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */,
-				E916F4611B02F62C005055E3 /* KLCPopup.m in Sources */,
 				E9D264C41B674BF800CBEAFF /* SettingsTableVC.m in Sources */,
 				E981131A1B21EB6C00ECAA0C /* SellerListViewController.m in Sources */,
 			);
