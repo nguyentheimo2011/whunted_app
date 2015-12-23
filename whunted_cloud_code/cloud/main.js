@@ -67,6 +67,8 @@ Parse.Cloud.beforeSave("OngoingWantData", function(request, response)
 {
     if (!request.object.get("itemIsDeleted"))
         request.object.set("itemIsDeleted", "NO");
+
+    response.success();
 });
 
 
