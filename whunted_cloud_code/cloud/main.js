@@ -61,3 +61,12 @@ Parse.Cloud.define("verifyPhoneNumber", function(request, response)
         response.error("Invalid verification code.");
     }
 });
+
+// Make sure that isDeleted is set to NO
+Parse.Cloud.beforeSave("OngoingWantData", function(request, response) 
+{
+    if (!request.object.get("itemIsDeleted"))
+        request.object.set("itemIsDeleted", "NO");
+});
+
+
