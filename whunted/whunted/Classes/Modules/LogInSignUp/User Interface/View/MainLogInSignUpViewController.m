@@ -36,17 +36,21 @@
 {
     [super viewDidLoad];
     
-    [self addBackgroundImage];
-    [self addFacebookLoginOrSignupButton];
-    [self addEmailLoginOrSignupButton];
-    [self addDisclaimerLabel];
+    [self setUpUIForView];
 }
 
-
-#pragma mark - UI Handlers
+//------------------------------------------------------------------------------------------------------------------------------
+- (void) setUpUIForView
+//------------------------------------------------------------------------------------------------------------------------------
+{
+    [self addBackgroundForView];
+    [self addFacebookLoginButton];
+    [self addEmailLoginOrSignupButton];
+    [self addUserAgreementLabel];
+}
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addBackgroundImage
+- (void) addBackgroundForView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIImage *originalBackground = [UIImage imageNamed:@"background_image.png"];
@@ -56,7 +60,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addFacebookLoginOrSignupButton
+- (void) addFacebookLoginButton
 //------------------------------------------------------------------------------------------------------------------------------
 {
     CGFloat const kButtonOriginX    =   WINSIZE.width * 0.1 - 10.0f;
@@ -70,7 +74,7 @@
     _FBLoginButton.bgColor = [UIColor colorWithRed:45.0/255 green:68.0/255 blue:134.0/255 alpha:1.0];
     _FBLoginButton.borderWidth = 0;
     _FBLoginButton.cornerRadius = 5;
-    [_FBLoginButton addTarget:self action:@selector(facebookLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [_FBLoginButton addTarget:self action:@selector(logInOrSignUpWithFacebook) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_FBLoginButton];
 }
 
@@ -94,14 +98,14 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) addDisclaimerLabel
+- (void) addUserAgreementLabel
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UILabel *disclaimerLabel = [[UILabel alloc] init];
-    disclaimerLabel.text = NSLocalizedString(@"By signing up, you agree to our ", nil);
-    disclaimerLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
-    disclaimerLabel.textColor = [UIColor whiteColor];
-    [disclaimerLabel sizeToFit];
+    UILabel *userAgreementLabel = [[UILabel alloc] init];
+    userAgreementLabel.text = NSLocalizedString(@"By signing up, you agree to our ", nil);
+    userAgreementLabel.font = [UIFont fontWithName:SEMIBOLD_FONT_NAME size:13];
+    userAgreementLabel.textColor = [UIColor whiteColor];
+    [userAgreementLabel sizeToFit];
     
     JTImageButton *termOfServiceButton = [[JTImageButton alloc] init];
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:13] iconOffsetY:0];
@@ -110,14 +114,14 @@
     [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
-    CGFloat totalWidth = disclaimerLabel.frame.size.width + termOfServiceButton.frame.size.width;
+    CGFloat totalWidth = userAgreementLabel.frame.size.width + termOfServiceButton.frame.size.width;
     CGFloat kLabelOriginX   =   (WINSIZE.width - totalWidth) / 2;
     CGFloat kLabelOriginY   =   _emailLoginButton.frame.origin.y + _emailLoginButton.frame.size.height + 10.0f;
     
-    disclaimerLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, disclaimerLabel.frame.size.width, disclaimerLabel.frame.size.height);
-    [self.view addSubview:disclaimerLabel];
+    userAgreementLabel.frame = CGRectMake(kLabelOriginX, kLabelOriginY, userAgreementLabel.frame.size.width, userAgreementLabel.frame.size.height);
+    [self.view addSubview:userAgreementLabel];
     
-    CGFloat kButtonOriginX  =   kLabelOriginX + disclaimerLabel.frame.size.width;
+    CGFloat kButtonOriginX  =   kLabelOriginX + userAgreementLabel.frame.size.width;
     CGFloat kButtonOriginY  =   kLabelOriginY - 5.5f;
     
     termOfServiceButton.frame = CGRectMake(kButtonOriginX, kButtonOriginY, termOfServiceButton.frame.size.width, termOfServiceButton.frame.size.height);
@@ -125,16 +129,7 @@
 }
 
 
-
 #pragma mark - Event Handling
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) facebookLoginButtonTapEventHandler
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
-    [self loginOrSignUpWithFacebook];
-}
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void) emailLoginButtonTapEventHandler
@@ -147,9 +142,11 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) loginOrSignUpWithFacebook
+- (void) logInOrSignUpWithFacebook
 //------------------------------------------------------------------------------------------------------------------------------
 {
+    [Utilities showStandardIndeterminateProgressIndicatorInView:self.view];
+    
     NSArray *permissionsArray = @[@"public_profile", @"user_friends", @"email", @"user_about_me", @"user_birthday", @"user_location"];
     
     [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
