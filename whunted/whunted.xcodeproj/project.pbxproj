@@ -12,7 +12,7 @@
 		E90C4C7E1BD7C286002C22CD /* PasswordResetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C4C7D1BD7C286002C22CD /* PasswordResetVC.m */; };
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
-		E9186F2A1C2BD686002AF0B3 /* LoginSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F291C2BD686002AF0B3 /* LoginSignupViewController.m */; };
+		E9186F2A1C2BD686002AF0B3 /* MainLogInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
 		E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */; };
@@ -301,8 +301,8 @@
 		E916F4441B00A9ED005055E3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Controllers/MainController/MainViewController.m; sourceTree = "<group>"; };
 		E918254D1B9D2DB900A40B0A /* OfferViewingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfferViewingVC.h; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.h; sourceTree = "<group>"; };
 		E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferViewingVC.m; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.m; sourceTree = "<group>"; };
-		E9186F281C2BD686002AF0B3 /* LoginSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginSignupViewController.h; path = "Classes/Modules/LogInSignUp/User Interface/View/LoginSignupViewController.h"; sourceTree = "<group>"; };
-		E9186F291C2BD686002AF0B3 /* LoginSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginSignupViewController.m; path = "Classes/Modules/LogInSignUp/User Interface/View/LoginSignupViewController.m"; sourceTree = "<group>"; };
+		E9186F281C2BD686002AF0B3 /* MainLogInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpViewController.h; path = "Classes/Modules/LogInSignUp/User Interface/View/MainLogInSignUpViewController.h"; sourceTree = "<group>"; };
+		E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLogInSignUpViewController.m; path = "Classes/Modules/LogInSignUp/User Interface/View/MainLogInSignUpViewController.m"; sourceTree = "<group>"; };
 		E92EC5131B6A0E0A00AABB72 /* LeaveFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaveFeedbackVC.h; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.h; sourceTree = "<group>"; };
 		E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E92EC5161B6A0E3B00AABB72 /* FeedbackReviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackReviewVC.h; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.h; sourceTree = "<group>"; };
@@ -829,8 +829,8 @@
 		E9186F261C2BD468002AF0B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9186F281C2BD686002AF0B3 /* LoginSignupViewController.h */,
-				E9186F291C2BD686002AF0B3 /* LoginSignupViewController.m */,
+				E9186F281C2BD686002AF0B3 /* MainLogInSignUpViewController.h */,
+				E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2979,7 +2979,7 @@
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
 				E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */,
 				E9DBDF861C23E0A100A6BC8A /* KLCPopup.m in Sources */,
-				E9186F2A1C2BD686002AF0B3 /* LoginSignupViewController.m in Sources */,
+				E9186F2A1C2BD686002AF0B3 /* MainLogInSignUpViewController.m in Sources */,
 				E9D264A11B62268500CBEAFF /* CountryTableViewController.m in Sources */,
 				E9DBDF371C23D2ED00A6BC8A /* WantData.m in Sources */,
 				E9DBDD861C22659A00A6BC8A /* AppDelegate.m in Sources */,

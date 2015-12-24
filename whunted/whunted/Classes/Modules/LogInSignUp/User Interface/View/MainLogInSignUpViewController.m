@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Whunted. All rights reserved.
 //
 
-#import "LoginSignupViewController.h"
-#import "MainViewController.h"
-#import "EmailSignupLoginVC.h"
-#import "AppConstant.h"
-#import "Utilities.h"
-
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKGraphRequest.h>
 #import <Parse/Parse.h>
 #import <MRProgress.h>
 #import <JTImageButton.h>
+
+#import "MainLogInSignUpViewController.h"
+#import "MainViewController.h"
+#import "EmailSignupLoginVC.h"
+#import "AppConstant.h"
+#import "Utilities.h"
 
 
 @implementation LoginSignupViewController

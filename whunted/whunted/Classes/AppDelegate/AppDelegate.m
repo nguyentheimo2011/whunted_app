@@ -13,7 +13,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "LoginSignupViewController.h"
+#import "MainLogInSignUpViewController.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
