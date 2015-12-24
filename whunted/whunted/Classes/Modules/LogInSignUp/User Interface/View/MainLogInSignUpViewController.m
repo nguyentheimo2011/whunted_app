@@ -19,13 +19,16 @@
 #import "Utilities.h"
 
 
-@implementation LoginSignupViewController
+@implementation MainLogInSignUpViewController
 {
-    JTImageButton           *_FBLoginButton;
-    JTImageButton           *_emailLoginButton;
+    JTImageButton                   *_FBLoginButton;
+    JTImageButton                   *_emailLoginButton;
     
-    UINavigationController  *_termOfServiceNavController;
+    UINavigationController          *_termOfServiceNavController;
 }
+
+@synthesize eventHandler    =   _eventHandler;
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
@@ -37,22 +40,6 @@
     [self addFacebookLoginOrSignupButton];
     [self addEmailLoginOrSignupButton];
     [self addDisclaimerLabel];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void) viewWillAppear:(BOOL)animated
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [super viewWillAppear:animated];
-    
-    [Utilities sendScreenNameToGoogleAnalyticsTracker:@"LoginScreen"];
-}
-
-//------------------------------------------------------------------------------------------------------------------------------
-- (void)didReceiveMemoryWarning
-//------------------------------------------------------------------------------------------------------------------------------
-{
-    [super didReceiveMemoryWarning];
 }
 
 

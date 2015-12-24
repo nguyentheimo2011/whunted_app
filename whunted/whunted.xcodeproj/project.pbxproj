@@ -13,6 +13,7 @@
 		E916F4451B00A9ED005055E3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E916F4441B00A9ED005055E3 /* MainViewController.m */; };
 		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
 		E9186F2A1C2BD686002AF0B3 /* MainLogInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */; };
+		E9186F301C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F2F1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
 		E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */; };
@@ -303,6 +304,9 @@
 		E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfferViewingVC.m; path = Controllers/Marketplace/OfferViewingVC/OfferViewingVC.m; sourceTree = "<group>"; };
 		E9186F281C2BD686002AF0B3 /* MainLogInSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpViewController.h; path = "Classes/Modules/LogInSignUp/User Interface/View/MainLogInSignUpViewController.h"; sourceTree = "<group>"; };
 		E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLogInSignUpViewController.m; path = "Classes/Modules/LogInSignUp/User Interface/View/MainLogInSignUpViewController.m"; sourceTree = "<group>"; };
+		E9186F2B1C2BFE7E002AF0B3 /* MainLogInSignUpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpInterface.h; path = "Classes/Modules/LogInSignUp/Module Interface/MainLogInSignUpInterface.h"; sourceTree = "<group>"; };
+		E9186F2E1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpPresenter.h; path = "Classes/Modules/LogInSignUp/User Interface/Presenter/MainLogInSignUpPresenter.h"; sourceTree = "<group>"; };
+		E9186F2F1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLogInSignUpPresenter.m; path = "Classes/Modules/LogInSignUp/User Interface/Presenter/MainLogInSignUpPresenter.m"; sourceTree = "<group>"; };
 		E92EC5131B6A0E0A00AABB72 /* LeaveFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaveFeedbackVC.h; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.h; sourceTree = "<group>"; };
 		E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E92EC5161B6A0E3B00AABB72 /* FeedbackReviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackReviewVC.h; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.h; sourceTree = "<group>"; };
@@ -808,6 +812,7 @@
 		E9186F231C2BD436002AF0B3 /* Module Interface */ = {
 			isa = PBXGroup;
 			children = (
+				E9186F2B1C2BFE7E002AF0B3 /* MainLogInSignUpInterface.h */,
 			);
 			name = "Module Interface";
 			sourceTree = "<group>";
@@ -838,6 +843,8 @@
 		E9186F271C2BD46F002AF0B3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				E9186F2E1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.h */,
+				E9186F2F1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -2975,6 +2982,7 @@
 				E9DBDF6F1C23DCC300A6BC8A /* push.m in Sources */,
 				E9DBDF6C1C23DCC300A6BC8A /* emoji.m in Sources */,
 				E9DBDF6A1C23DCC300A6BC8A /* common.m in Sources */,
+				E9186F301C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m in Sources */,
 				E9DBDF3D1C23D31E00A6BC8A /* HashtagData.m in Sources */,
 				E9FC404B1C03000200C02520 /* CompletedVerificationVC.m in Sources */,
 				E9DBDF791C23DDC100A6BC8A /* ProfileImageCache.m in Sources */,

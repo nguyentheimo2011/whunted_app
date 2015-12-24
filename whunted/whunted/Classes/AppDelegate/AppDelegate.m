@@ -114,7 +114,7 @@
 {
     if (![PFUser currentUser]) // Check if user is cached
     {
-        LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
+        MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
         [self.window setRootViewController:loginVC];
     }
     else
@@ -220,7 +220,7 @@
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error)
     {
-        LoginSignupViewController *loginVC = [[LoginSignupViewController alloc] init];
+        MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
         [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         [self.window setRootViewController:loginVC];
         

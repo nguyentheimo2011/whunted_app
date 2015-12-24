@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginSignupViewController : UIViewController
+#import "MainLogInSignUpInterface.h"
+
+@interface MainLogInSignUpViewController : UIViewController
+
+@property (nonatomic, strong)   id<MainLogInSignUpInterface>    eventHandler;
 
 @end
