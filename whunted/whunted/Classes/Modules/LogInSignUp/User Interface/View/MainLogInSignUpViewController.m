@@ -111,7 +111,7 @@
     [termOfServiceButton createTitle:NSLocalizedString(@"Terms of Service", nil) withIcon:nil font:[UIFont fontWithName:SEMIBOLD_FONT_NAME size:13] iconOffsetY:0];
     termOfServiceButton.titleColor = RED_COLOR_WITH_DARK_2;
     termOfServiceButton.borderWidth = 0;
-    [termOfServiceButton addTarget:self action:@selector(disclaimerButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [termOfServiceButton addTarget:self action:@selector(presentTermsOfService) forControlEvents:UIControlEventTouchUpInside];
     [termOfServiceButton sizeToFit];
     
     CGFloat totalWidth = userAgreementLabel.frame.size.width + termOfServiceButton.frame.size.width;
@@ -188,7 +188,7 @@
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) disclaimerButtonTapEventHandler
+- (void) presentTermsOfService
 //------------------------------------------------------------------------------------------------------------------------------
 {
     UIWebView *webView = [[UIWebView alloc] init];
