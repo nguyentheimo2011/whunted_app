@@ -13,7 +13,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "MainLogInSignUpViewController.h"
+#import "MainLogInSignUpWireframe.h"
 #import "Utilities.h"
 #import "AppConstant.h"
 
@@ -114,8 +114,8 @@
 {
     if (![PFUser currentUser]) // Check if user is cached
     {
-        MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
-        [self.window setRootViewController:loginVC];
+        MainLogInSignUpWireframe *mainLogInSignUpWireframe = [[MainLogInSignUpWireframe alloc] init];
+        [mainLogInSignUpWireframe presentMainLogInSignUpInterfaceFromWindow:self.window];
     }
     else
     {
@@ -220,9 +220,8 @@
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error)
     {
-        MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
-        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-        [self.window setRootViewController:loginVC];
+        MainLogInSignUpWireframe *mainLogInSignUpWireframe = [[MainLogInSignUpWireframe alloc] init];
+        [mainLogInSignUpWireframe presentMainLogInSignUpInterfaceFromWindow:self.window];
         
         [Utilities hideIndeterminateProgressIndicatorInView:self.window.rootViewController.view];
     }];

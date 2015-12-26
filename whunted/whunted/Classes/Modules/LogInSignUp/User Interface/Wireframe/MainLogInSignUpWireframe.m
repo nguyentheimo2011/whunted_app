@@ -24,7 +24,8 @@
     MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
     loginVC.eventHandler = _mainLogInSignUpEventHandler;
     
-    [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+    if (window.rootViewController)
+        [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
     [window setRootViewController:loginVC];
 }
 
