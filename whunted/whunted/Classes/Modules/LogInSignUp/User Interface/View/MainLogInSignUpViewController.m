@@ -93,7 +93,7 @@
     _emailLoginButton.bgColor = GRAY_COLOR_WITH_WHITE_COLOR_3;
     _emailLoginButton.borderWidth = 0;
     _emailLoginButton.cornerRadius = 5;
-    [_emailLoginButton addTarget:self action:@selector(emailLoginButtonTapEventHandler) forControlEvents:UIControlEventTouchUpInside];
+    [_emailLoginButton addTarget:self action:@selector(moveToEmailLogInSignUpView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_emailLoginButton];
 }
 
@@ -132,7 +132,7 @@
 #pragma mark - Event Handling
 
 //------------------------------------------------------------------------------------------------------------------------------
-- (void) emailLoginButtonTapEventHandler
+- (void) moveToEmailLogInSignUpView
 //------------------------------------------------------------------------------------------------------------------------------
 {
     EmailSignupLoginVC *emailVC = [[EmailSignupLoginVC alloc] init];

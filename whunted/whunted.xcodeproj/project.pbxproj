@@ -14,6 +14,7 @@
 		E918254F1B9D2DBA00A40B0A /* OfferViewingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E918254E1B9D2DB900A40B0A /* OfferViewingVC.m */; };
 		E9186F2A1C2BD686002AF0B3 /* MainLogInSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F291C2BD686002AF0B3 /* MainLogInSignUpViewController.m */; };
 		E9186F301C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F2F1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m */; };
+		E9186F331C2E46B0002AF0B3 /* MainLogInSignUpWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = E9186F321C2E46B0002AF0B3 /* MainLogInSignUpWireframe.m */; };
 		E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */; };
 		E92EC5181B6A0E3B00AABB72 /* FeedbackReviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC5171B6A0E3B00AABB72 /* FeedbackReviewVC.m */; };
 		E92EC5201B6A3D0E00AABB72 /* FeedbackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E92EC51F1B6A3D0E00AABB72 /* FeedbackTableViewCell.m */; };
@@ -307,6 +308,8 @@
 		E9186F2B1C2BFE7E002AF0B3 /* MainLogInSignUpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpInterface.h; path = "Classes/Modules/LogInSignUp/Module Interface/MainLogInSignUpInterface.h"; sourceTree = "<group>"; };
 		E9186F2E1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpPresenter.h; path = "Classes/Modules/LogInSignUp/User Interface/Presenter/MainLogInSignUpPresenter.h"; sourceTree = "<group>"; };
 		E9186F2F1C2BFF0A002AF0B3 /* MainLogInSignUpPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLogInSignUpPresenter.m; path = "Classes/Modules/LogInSignUp/User Interface/Presenter/MainLogInSignUpPresenter.m"; sourceTree = "<group>"; };
+		E9186F311C2E46B0002AF0B3 /* MainLogInSignUpWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainLogInSignUpWireframe.h; path = "Classes/Modules/LogInSignUp/User Interface/Wireframe/MainLogInSignUpWireframe.h"; sourceTree = "<group>"; };
+		E9186F321C2E46B0002AF0B3 /* MainLogInSignUpWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainLogInSignUpWireframe.m; path = "Classes/Modules/LogInSignUp/User Interface/Wireframe/MainLogInSignUpWireframe.m"; sourceTree = "<group>"; };
 		E92EC5131B6A0E0A00AABB72 /* LeaveFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaveFeedbackVC.h; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.h; sourceTree = "<group>"; };
 		E92EC5141B6A0E0A00AABB72 /* LeaveFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaveFeedbackVC.m; path = Controllers/Feedback/LeaveFeedbackVC/LeaveFeedbackVC.m; sourceTree = "<group>"; };
 		E92EC5161B6A0E3B00AABB72 /* FeedbackReviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackReviewVC.h; path = Controllers/Feedback/FeedbackReviewVC/FeedbackReviewVC.h; sourceTree = "<group>"; };
@@ -827,6 +830,8 @@
 		E9186F251C2BD45C002AF0B3 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
+				E9186F311C2E46B0002AF0B3 /* MainLogInSignUpWireframe.h */,
+				E9186F321C2E46B0002AF0B3 /* MainLogInSignUpWireframe.m */,
 			);
 			name = Wireframe;
 			sourceTree = "<group>";
@@ -3005,6 +3010,7 @@
 				E973D03D1C0D55A8002C00C2 /* ChatView.m in Sources */,
 				E92EC5151B6A0E0A00AABB72 /* LeaveFeedbackVC.m in Sources */,
 				E9A07BF41B313EF200904DE9 /* MessageViewCell.m in Sources */,
+				E9186F331C2E46B0002AF0B3 /* MainLogInSignUpWireframe.m in Sources */,
 				E9DBDF8E1C23E1DF00A6BC8A /* IGLDropDownItem.m in Sources */,
 				E94A03741B1E9B9200339BC4 /* ItemImageViewController.m in Sources */,
 				E9D0E6751B96AAC20061AE8E /* NewsfeedTableViewCell.m in Sources */,
