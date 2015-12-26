@@ -10,6 +10,6 @@
 
 @protocol MainLogInSignUpInterface <NSObject>
 
-
+- (void) presentTermsOfService;
 
 @end

@@ -10,9 +10,17 @@
 #import "MainLogInSignUpViewController.h"
 #import "MainLogInSignUpPresenter.h"
 
+@interface MainLogInSignUpWireframe ()
+
+@property (nonatomic, strong) MainLogInSignUpViewController *mainLogInSignUpVC;
+
+@end
+
+
 @implementation MainLogInSignUpWireframe
 
 @synthesize mainLogInSignUpEventHandler     =   _mainLogInSignUpEventHandler;
+@synthesize mainLogInSignUpVC               =   _mainLogInSignUpVC;
 
 //---------------------------------------------------------------------------------------------------------------------------
 - (void) presentMainLogInSignUpInterfaceFromWindow:(UIWindow *)window
@@ -21,12 +29,19 @@
     if (!_mainLogInSignUpEventHandler)
         _mainLogInSignUpEventHandler = [[MainLogInSignUpPresenter alloc] init];
     
-    MainLogInSignUpViewController *loginVC = [[MainLogInSignUpViewController alloc] init];
-    loginVC.eventHandler = _mainLogInSignUpEventHandler;
+    _mainLogInSignUpVC = [[MainLogInSignUpViewController alloc] init];
+    _mainLogInSignUpVC.eventHandler = _mainLogInSignUpEventHandler;
     
     if (window.rootViewController)
         [window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-    [window setRootViewController:loginVC];
+    [window setRootViewController:_mainLogInSignUpVC];
+}
+
+//---------------------------------------------------------------------------------------------------------------------------
+- (void) presentTermsOfService
+//---------------------------------------------------------------------------------------------------------------------------
+{
+    
 }
 
 @end
