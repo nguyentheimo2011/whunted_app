@@ -191,21 +191,7 @@
 - (void) presentTermsOfService
 //------------------------------------------------------------------------------------------------------------------------------
 {
-    UIWebView *webView = [[UIWebView alloc] init];
-    NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://whunted.com/Termsofservice.html"]];
-    [webView loadRequest:request];
     
-    UIViewController *viewController = [[UIViewController alloc] init];
-    [Utilities customizeTitleLabel:NSLocalizedString(@"Terms of Service", nil) forViewController:viewController];
-    viewController.view = webView;
-    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spacer.width = -11.0f;
-    
-    viewController.navigationItem.leftBarButtonItems = @[spacer, [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissTermOfServiceView)]];
-    
-    _termOfServiceNavController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    
-    [self presentViewController:_termOfServiceNavController animated:YES completion:nil];
 }
 
 //------------------------------------------------------------------------------------------------------------------------------

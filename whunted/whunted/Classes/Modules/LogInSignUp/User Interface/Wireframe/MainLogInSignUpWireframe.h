@@ -17,6 +17,6 @@
 
 - (void) presentMainLogInSignUpInterfaceFromWindow: (UIWindow *) window;
 
-- (void) presentTermsOfService;
+- (void) presentTermsOfServiceFromMainLogInSignUpInterface;
 
 @end
